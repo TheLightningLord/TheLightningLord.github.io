@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mt. Olympus Health Solutions - Catch the Healthy Foods!</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Game Styles */
+        #gameArea {
+            width: 100%;
+            height: 400px;
+            background-color: #e0f7fa;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #player {
+            width: 50px;
+            height: 50px;
+            background-color: #4caf50;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .food {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+        }
+        .healthy {
+            background-color: green;
+        }
+        .unhealthy {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mt. Olympus Health Solutions</h1>
+        <p>Catch the Healthy Foods to Stay Fit!</p>
+    </header>
+
+    <section>
+        <div style="text-align: center;">
+            <h2>Play the Mini-Game!</h2>
+            <p>Use the left and right arrow keys to move and catch the healthy foods (green). Avoid the unhealthy foods (red)!</p>
+        </div>
+        <div id="gameArea">
+            <div id="player"></div>
+        </div>
+        <div style="text-align: center;">
+            <h3>Your Score: <span id="score">0</span></h3>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mt. Olympus Health Solutions | Exercise as Medicine</p>
+    </footer>
+
+    <script>
+        const gameArea = document.getElementById('gameArea');
+        const player = document.getElementById('player');
+        const scoreDisplay = document.getElementById('score');
+        let score = 0;
+
+        // Player movement
+        let playerX = gameArea.offsetWidth / 2 - player.offsetWidth / 2;
+        let gameWidth = gameArea.offsetWidth;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && playerX > 0) {
+                playerX -= 20;  // Move left
+            } else if (e.key === 'ArrowRight' && playerX < gameWidth - player.offsetWidth) {
+                playerX += 20;  // Move right
+            }
+            player.style.left = playerX + 'px';
+        });
+
+        // Spawn foods
+        function spawnFood() {
+            const food = document.createElement('div');
+            const isHealthy = Math.random() > 0.5;  // Randomly decide if it's healthy or not
+            food.classList.add('food');
+            food.classList.add(isHealthy ? 'healthy' : 'unhealthy');
+            food.style.left = Math.random() * (gameArea.offsetWidth - 30) + 'px';
+            gameArea.appendChild(food);
+
+            // Make the food fall
+            let foodY = 0;
+            const interval = setInterval(() => {
+                foodY += 5;
+                food.style.top = foodY + 'px';
+
+                if (foodY > gameArea.offsetHeight - player.offsetHeight && 
+                    playerX < parseInt(food.style.left) + 30 && 
+                    playerX + player.offsetWidth > parseInt(food.style.left)) {
+                    // Check for collision with player
+                    clearInterval(interval);
+                    gameArea.removeChild(food);
+
+                    if (isHealthy) {
+                        score++;
+                    } else {
+                        score--;
+                    }
+                    scoreDisplay.textContent = score;
+                } else if (foodY > gameArea.offsetHeight) {
+                    // Remove food if it goes off screen
+                    clearInterval(interval);
+                    gameArea.removeChild(food);
+                }
+            }, 50);  // Move the food every 50ms
+        }
+
+        // Spawn a new food every second
+        setInterval(spawnFood, 1000);
+    </script>
+</body>
+</html>
