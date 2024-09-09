@@ -14,13 +14,17 @@ body {
 header {
     background: #333;
     color: #fff;
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-style: italic;
+    margin-top: 5px;
 }
 
 nav ul {
@@ -49,6 +53,15 @@ nav ul li a {
     flex-direction: column;
 }
 
+#hero h2 {
+    font-size: 2.5rem;
+}
+
+#hero p {
+    margin-top: 10px;
+    font-size: 1.25rem;
+}
+
 .cta-button {
     background-color: #ff5e57;
     padding: 10px 20px;
@@ -63,7 +76,7 @@ section {
     text-align: center;
 }
 
-#about {
+#about, #philosophy {
     background-color: #f9f9f9;
 }
 
@@ -76,11 +89,16 @@ section {
     background-color: #eee;
     padding: 10px;
     margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+#philosophy p {
+    font-style: italic;
 }
 
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
 }
