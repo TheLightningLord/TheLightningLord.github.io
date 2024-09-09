@@ -20,7 +20,7 @@
         .pet {
             width: 150px;
             height: 150px;
-            background: url('https://via.placeholder.com/150x150.png?text=Pet') no-repeat center center;
+            background: url('https://via.placeholder.com/150x150.png?text=PetTexture') no-repeat center center;
             background-size: cover;
             margin: 0 auto;
         }
@@ -49,7 +49,8 @@
             width: 300px;
             height: 300px;
             margin: 20px auto;
-            background: #87ceeb;
+            background: url('https://via.placeholder.com/300x300.png?text=MiniGameBackground') no-repeat center center;
+            background-size: cover;
             position: relative;
         }
         #miniGame .cloud {
@@ -62,6 +63,34 @@
         #miniGame .cloud1 { top: 20px; left: 20px; }
         #miniGame .cloud2 { top: 80px; left: 150px; }
         #miniGame .cloud3 { top: 150px; left: 80px; }
+        #healthBar {
+            background: #ddd;
+            width: 100%;
+            height: 20px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        #healthBar div {
+            height: 100%;
+            background: #4CAF50;
+            width: 100%;
+        }
+        #miniGameCanvas {
+            display: none;
+            width: 300px;
+            height: 300px;
+            background: #87ceeb;
+        }
+        #miniGameCanvas .cloud {
+            position: absolute;
+            background: url('https://via.placeholder.com/50x30.png?text=Cloud') no-repeat center center;
+            background-size: cover;
+            width: 50px;
+            height: 30px;
+        }
+        #miniGameCanvas .cloud1 { top: 20px; left: 20px; }
+        #miniGameCanvas .cloud2 { top: 80px; left: 150px; }
+        #miniGameCanvas .cloud3 { top: 150px; left: 80px; }
     </style>
 </head>
 <body>
@@ -69,6 +98,9 @@
 <div class="container">
     <div class="pet" id="pet"></div>
     <div id="status">Happiness: 50 | Hunger: 50 | Cleanliness: 50 | Energy: 50</div>
+    <div id="healthBar">
+        <div id="healthLevel" style="width: 100%;"></div>
+    </div>
     <button id="feedButton">Feed</button>
     <button id="playButton">Play</button>
     <button id="sleepButton">Sleep</button>
@@ -79,6 +111,7 @@
         <div class="cloud cloud2"></div>
         <div class="cloud cloud3"></div>
     </div>
+    <canvas id="miniGameCanvas"></canvas>
 </div>
 
 <script>
@@ -90,6 +123,8 @@
     const bathButton = document.getElementById('bathButton');
     const miniGameButton = document.getElementById('miniGameButton');
     const miniGameElement = document.getElementById('miniGame');
+    const miniGameCanvas = document.getElementById('miniGameCanvas');
+    const healthLevel = document.getElementById('healthLevel');
 
     let happiness = 50;
     let hunger = 50;
@@ -109,6 +144,11 @@
             bathButton.disabled = true;
             miniGameButton.disabled = true;
         }
+
+        // Update health bar
+        const totalHealth = happiness + hunger + cleanliness + energy;
+        const healthPercentage = Math.min(100, totalHealth / 4);
+        healthLevel.style.width = `${healthPercentage}%`;
     }
 
     function feedPet() {
@@ -146,13 +186,49 @@
     function startMiniGame() {
         if (!gameOver) {
             miniGameElement.style.display = 'block';
+            miniGameCanvas.style.display = 'none';
             setTimeout(() => {
                 miniGameElement.style.display = 'none';
+                miniGameCanvas.style.display = 'block';
+                startCanvasGame();
                 happiness = Math.min(happiness + 20, 100);
                 energy = Math.max(energy - 10, 0);
                 updateStatus();
             }, 5000); // Mini-game lasts 5 seconds
         }
+    }
+
+    function startCanvasGame() {
+        const canvas = miniGameCanvas.getContext('2d');
+        const canvasWidth = miniGameCanvas.width;
+        const canvasHeight = miniGameCanvas.height;
+
+        canvas.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        let score = 0;
+        let lightning = { x: canvasWidth / 2, y: canvasHeight / 2, width: 50, height: 50 };
+
+        function drawLightning() {
+            canvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            canvas.fillStyle = 'yellow';
+            canvas.fillRect(lightning.x, lightning.y, lightning.width, lightning.height);
+        }
+
+        function updateLightning() {
+            lightning.x = Math.random() * (canvasWidth - lightning.width);
+            lightning.y = Math.random() * (canvasHeight - lightning.height);
+            score++;
+            drawLightning();
+        }
+
+        function gameLoop() {
+            if (!gameOver) {
+                updateLightning();
+                setTimeout(gameLoop, 1000); // Update every 1 second
+            }
+        }
+
+        gameLoop();
     }
 
     feedButton.addEventListener('click', feedPet);
@@ -170,8 +246,7 @@
             energy = Math.max(energy - 1, 0);
             updateStatus();
         }
-    }, 1000);
-
+    }, 10000); // Every 10 seconds
 </script>
 
 </body>
