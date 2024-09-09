@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagotchi</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .pet {
+            width: 150px;
+            height: 150px;
+            background: url('https://via.placeholder.com/150x150.png?text=Pet') no-repeat center center;
+            background-size: cover;
+            margin: 0 auto;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+        #status {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        #miniGame {
+            display: none;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            background: #87ceeb;
+            position: relative;
+        }
+        #miniGame .cloud {
+            position: absolute;
+            background: url('https://via.placeholder.com/50x30.png?text=Cloud') no-repeat center center;
+            background-size: cover;
+            width: 50px;
+            height: 30px;
+        }
+        #miniGame .cloud1 { top: 20px; left: 20px; }
+        #miniGame .cloud2 { top: 80px; left: 150px; }
+        #miniGame .cloud3 { top: 150px; left: 80px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="pet" id="pet"></div>
+    <div id="status">Happiness: 50 | Hunger: 50 | Cleanliness: 50 | Energy: 50</div>
+    <button id="feedButton">Feed</button>
+    <button id="playButton">Play</button>
+    <button id="sleepButton">Sleep</button>
+    <button id="bathButton">Bath</button>
+    <button id="miniGameButton">Play Mini-Game</button>
+    <div id="miniGame">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+    </div>
+</div>
+
+<script>
+    const petElement = document.getElementById('pet');
+    const statusElement = document.getElementById('status');
+    const feedButton = document.getElementById('feedButton');
+    const playButton = document.getElementById('playButton');
+    const sleepButton = document.getElementById('sleepButton');
+    const bathButton = document.getElementById('bathButton');
+    const miniGameButton = document.getElementById('miniGameButton');
+    const miniGameElement = document.getElementById('miniGame');
+
+    let happiness = 50;
+    let hunger = 50;
+    let cleanliness = 50;
+    let energy = 50;
+    let gameOver = false;
+
+    function updateStatus() {
+        statusElement.textContent = `Happiness: ${happiness} | Hunger: ${hunger} | Cleanliness: ${cleanliness} | Energy: ${energy}`;
+        
+        if (happiness <= 0 || hunger <= 0 || cleanliness <= 0 || energy <= 0) {
+            gameOver = true;
+            statusElement.textContent = 'Game Over! Your pet needs attention.';
+            feedButton.disabled = true;
+            playButton.disabled = true;
+            sleepButton.disabled = true;
+            bathButton.disabled = true;
+            miniGameButton.disabled = true;
+        }
+    }
+
+    function feedPet() {
+        if (!gameOver) {
+            hunger = Math.min(hunger + 10, 100);
+            happiness = Math.max(happiness - 5, 0);
+            updateStatus();
+        }
+    }
+
+    function playWithPet() {
+        if (!gameOver) {
+            happiness = Math.min(happiness + 10, 100);
+            energy = Math.max(energy - 10, 0);
+            updateStatus();
+        }
+    }
+
+    function sleepPet() {
+        if (!gameOver) {
+            energy = Math.min(energy + 20, 100);
+            cleanliness = Math.max(cleanliness - 5, 0);
+            updateStatus();
+        }
+    }
+
+    function givePetABath() {
+        if (!gameOver) {
+            cleanliness = Math.min(cleanliness + 20, 100);
+            happiness = Math.max(happiness - 5, 0);
+            updateStatus();
+        }
+    }
+
+    function startMiniGame() {
+        if (!gameOver) {
+            miniGameElement.style.display = 'block';
+            setTimeout(() => {
+                miniGameElement.style.display = 'none';
+                happiness = Math.min(happiness + 20, 100);
+                energy = Math.max(energy - 10, 0);
+                updateStatus();
+            }, 5000); // Mini-game lasts 5 seconds
+        }
+    }
+
+    feedButton.addEventListener('click', feedPet);
+    playButton.addEventListener('click', playWithPet);
+    sleepButton.addEventListener('click', sleepPet);
+    bathButton.addEventListener('click', givePetABath);
+    miniGameButton.addEventListener('click', startMiniGame);
+
+    // Simulate pet's stats changing over time
+    setInterval(() => {
+        if (!gameOver) {
+            hunger = Math.max(hunger - 1, 0);
+            happiness = Math.max(happiness - 1, 0);
+            cleanliness = Math.max(cleanliness - 1, 0);
+            energy = Math.max(energy - 1, 0);
+            updateStatus();
+        }
+    }, 1000);
+
+</script>
+
+</body>
+</html>
