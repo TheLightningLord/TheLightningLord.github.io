@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeus Lightning Shooter</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #87CEEB; /* Sky blue background */
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid #000;
+            background: url('https://via.placeholder.com/640x480.png?text=Mount+Olympus') no-repeat center center;
+            background-size: cover;
+        }
+        #gameInfo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 20px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div id="gameInfo">
+    <p>Help Zeus defend Olympus! Use arrow keys to move and spacebar to shoot.</p>
+    <p>Score: <span id="score">0</span></p>
+</div>
+
+<canvas id="gameCanvas" width="640" height="480"></canvas>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Load textures
+    const zeusTexture = new Image();
+    const lightningTexture = new Image();
+    const rockTexture = new Image();
+    zeusTexture.src = 'https://via.placeholder.com/50x50.png?text=Zeus';
+    lightningTexture.src = 'https://via.placeholder.com/20x50.png?text=Lightning';
+    rockTexture.src = 'https://via.placeholder.com/30x30.png?text=Rock';
+
+    // Player object (Zeus)
+    const player = {
+        x: canvas.width / 2 - 25,
+        y: canvas.height - 60,
+        width: 50,
+        height: 50,
+        speed: 5,
+        draw() {
+            ctx.drawImage(zeusTexture, this.x, this.y, this.width, this.height);
+        },
+        moveLeft() {
+            if (this.x > 0) this.x -= this.speed;
+        },
+        moveRight() {
+            if (this.x < canvas.width - this.width) this.x += this.speed;
+        }
+    };
+
+    // Lightning bolt
+    class Lightning {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.width = 20;
+            this.height = 50;
+            this.speed = 7;
+        }
+
+        draw() {
+            ctx.drawImage(lightningTexture, this.x, this.y, this.width, this.height);
+        }
+
+        update() {
+            this.y -= this.speed;
+            this.draw();
+        }
+    }
+
+    // Obstacle (falling rocks)
+    class Obstacle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.width = 30;
+            this.height = 30;
+            this.speed = 3;
+        }
+
+        draw() {
+            ctx.drawImage(rockTexture, this.x, this.y, this.width, this.height);
+        }
+
+        update() {
+            this.y += this.speed;
+            this.draw();
+        }
+    }
+
+    const lightningBolts = [];
+    const obstacles = [];
+    let score = 0;
+    let gameOver = false;
+
+    function spawnObstacle() {
+        const x = Math.random() * (canvas.width - 30);
+        obstacles.push(new Obstacle(x, 0));
+    }
+
+    function detectCollision(rect1, rect2) {
+        return (
+            rect1.x < rect2.x + rect2.width &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.y + rect1.height > rect2.y
+        );
+    }
+
+    function update() {
+        if (gameOver) {
+            ctx.fillStyle = '#fff';
+            ctx.font = '30px Arial';
+            ctx.fillText('Game Over!', canvas.width / 4, canvas.height / 2);
+            return;
+        }
+
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the player
+        player.draw();
+
+        // Update and draw lightning bolts
+        lightningBolts.forEach((lightning, index) => {
+            lightning.update();
+            if (lightning.y < 0) {
+                lightningBolts.splice(index, 1); // Remove lightning bolt if it goes off screen
+            }
+            // Collision detection with obstacles
+            obstacles.forEach((obstacle, obsIndex) => {
+                if (detectCollision(lightning, obstacle)) {
+                    score += 10; // Gain 10 points for hitting an obstacle
+                    document.getElementById('score').textContent = score;
+                    lightningBolts.splice(index, 1); // Remove the lightning bolt
+                    obstacles.splice(obsIndex, 1); // Remove the obstacle
+                }
+            });
+        });
+
+        // Update and draw obstacles
+        obstacles.forEach((obstacle, index) => {
+            obstacle.update();
+            if (obstacle.y > canvas.height) {
+                gameOver = true; // End game if an obstacle goes off screen
+            }
+        });
+
+        // Spawning new obstacles
+        if (Math.random() < 0.02) spawnObstacle(); // 2% chance per frame
+
+        // Request the next frame
+        requestAnimationFrame(update);
+    }
+
+    // Event listener for player movement and shooting
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') player.moveLeft();
+        if (e.key === 'ArrowRight') player.moveRight();
+        if (e.key === ' ') { // Spacebar to shoot lightning
+            lightningBolts.push(new Lightning(player.x + player.width / 2 - 10, player.y));
+        }
+    });
+
+    // Start the game loop
+    update();
+</script>
+
+</body>
+</html>
