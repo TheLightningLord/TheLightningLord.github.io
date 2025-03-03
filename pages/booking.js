@@ -1,10 +1,26 @@
-export default function handler(req, res) {
-  if (req.method === 'POST') {
-    // Process booking request (e.g., save to database, send confirmation email)
-    console.log('Booking request received:', req.body);
-    res.status(200).json({ message: 'Your booking request has been received. We will get back to you shortly.' });
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
-  }
-}
+import Head from 'next/head';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import BookingForm from '../components/BookingForm';
+import { motion } from 'framer-motion';
 
+export default function Booking() {
+  return (
+    <>
+      <Head>
+        <title>Book a Session | Olympian Health Solutions</title>
+      </Head>
+      <Header />
+      <motion.main
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        style={{ padding: '2rem' }}
+      >
+        <h1>Book a Session</h1>
+        <BookingForm />
+      </motion.main>
+      <Footer />
+    </>
+  );
+}
