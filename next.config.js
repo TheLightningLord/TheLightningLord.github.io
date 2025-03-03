@@ -1,11 +1,12 @@
- /** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: 'export', // Enables static export
+  basePath: '/TheLightningLord.github.io', // Use your GitHub repository name here
+  assetPrefix: '/olympian-health-solutions/', // Ensures correct static asset paths
   images: {
-    unoptimized: true, // Prevents image optimization (since Vercel/AWS optimize it automatically)
+    unoptimized: true // Avoids Next.js image optimization (not supported by GitHub Pages)
   },
 };
 
 module.exports = nextConfig;
-
