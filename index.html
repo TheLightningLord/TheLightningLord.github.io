@@ -9,7 +9,14 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style>
-    /* Reset & Global Styles */
+    :root {
+      --primary-color: #003366; /* Dark Blue */
+      --accent-color: #D4AF37;  /* Gold */
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+      --white: #fff;
+    }
+    /* Global Styles */
     * {
       margin: 0;
       padding: 0;
@@ -18,8 +25,8 @@
     body {
       font-family: 'Open Sans', sans-serif;
       line-height: 1.6;
-      color: #333;
-      background: #f4f4f4;
+      color: var(--text-color);
+      background: var(--bg-color);
     }
     .container {
       width: 90%;
@@ -27,13 +34,12 @@
       margin: auto;
       overflow: hidden;
     }
-    
     /* Header & Navigation */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255,255,255,0.95);
+      background: var(--primary-color);
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       z-index: 1000;
     }
@@ -42,22 +48,28 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 0;
+      flex-wrap: wrap;
     }
-    nav a {
+    nav .logo a {
       text-decoration: none;
-      color: #333;
-      padding: 0 1rem;
+      color: var(--accent-color);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+    }
+    nav .menu a {
+      text-decoration: none;
+      color: var(--white);
+      padding: 0.5rem 1rem;
       font-weight: 600;
       transition: color 0.3s ease;
     }
-    nav a:hover {
-      color: #f76c6c;
+    nav .menu a:hover {
+      color: var(--accent-color);
     }
-    
     /* Hero Section */
     #hero {
       height: 100vh;
-      background: url('https://source.unsplash.com/1600x900/?fitness,health') no-repeat center center/cover;
+      background: url('https://source.unsplash.com/1600x900/?fitness,wellness') no-repeat center center/cover;
       position: relative;
       display: flex;
       align-items: center;
@@ -70,29 +82,30 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.4);
     }
     #hero .content {
       position: relative;
       z-index: 1;
       text-align: center;
-      color: #fff;
+      color: var(--white);
       max-width: 800px;
+      padding: 0 20px;
     }
     #hero h1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 3.5rem;
+      font-size: 4rem;
       margin-bottom: 0.5rem;
     }
     #hero p {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       margin-bottom: 1rem;
     }
     .btn {
       display: inline-block;
       padding: 0.75rem 2rem;
-      background: #f76c6c;
-      color: #fff;
+      background: var(--accent-color);
+      color: var(--white);
       border: none;
       border-radius: 50px;
       font-size: 1rem;
@@ -101,9 +114,8 @@
       text-decoration: none;
     }
     .btn:hover {
-      background: #f44336;
+      background: #bfa15a;
     }
-    
     /* Section Titles */
     section {
       padding: 80px 0;
@@ -114,36 +126,39 @@
     }
     .section-title h2 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 10px;
+      color: var(--primary-color);
     }
     .section-title p {
       font-size: 1.1rem;
       color: #777;
     }
-    
-    /* About Section */
-    #about {
-      background: #fff;
+    /* About & Philosophy Sections */
+    #about, #philosophy {
+      background: var(--white);
     }
-    #about .content {
+    #about .content, #philosophy .content {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      padding: 20px;
     }
-    #about .content .image {
+    #about .image, #philosophy .image {
       flex: 1 1 50%;
       padding: 20px;
     }
-    #about .content .image img {
+    #about .image img, #philosophy .image img {
       width: 100%;
       border-radius: 10px;
     }
-    #about .content .text {
+    #about .text, #philosophy .text {
       flex: 1 1 50%;
       padding: 20px;
     }
-    
+    #philosophy {
+      background: #f9f9f9;
+    }
     /* Services Section */
     #services .services {
       display: flex;
@@ -151,7 +166,7 @@
       justify-content: space-around;
     }
     .service-item {
-      background: #fff;
+      background: var(--white);
       flex: 0 0 30%;
       margin: 15px;
       padding: 30px;
@@ -165,17 +180,17 @@
     }
     .service-item i {
       font-size: 3rem;
-      color: #f76c6c;
+      color: var(--accent-color);
       margin-bottom: 15px;
     }
     .service-item h3 {
       font-size: 1.5rem;
       margin-bottom: 10px;
+      color: var(--primary-color);
     }
     .service-item p {
       color: #555;
     }
-    
     /* Pricing Section */
     #pricing .pricing-cards {
       display: flex;
@@ -183,7 +198,7 @@
       justify-content: space-around;
     }
     .pricing-card {
-      background: #fff;
+      background: var(--white);
       flex: 0 0 30%;
       margin: 15px;
       padding: 30px;
@@ -198,10 +213,12 @@
     .pricing-card h3 {
       margin-bottom: 10px;
       font-family: 'Montserrat', sans-serif;
+      color: var(--primary-color);
     }
     .pricing-card .price {
       font-size: 2rem;
       margin: 20px 0;
+      color: var(--accent-color);
     }
     .pricing-card .price span {
       font-size: 1rem;
@@ -215,10 +232,43 @@
       margin: 10px 0;
       color: #555;
     }
-    
-    /* Animated Counters */
+    /* Team Section */
+    #team .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .team-member {
+      background: var(--white);
+      flex: 0 0 30%;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .team-member h4 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      color: var(--primary-color);
+    }
+    .team-member p {
+      color: #555;
+    }
+    /* Animated Counters / Stats Section */
     #stats {
-      background: #fff;
+      background: var(--white);
       text-align: center;
       padding: 60px 0;
     }
@@ -233,14 +283,43 @@
     }
     .stat h3 {
       font-size: 3rem;
-      color: #f76c6c;
+      color: var(--accent-color);
     }
     .stat p {
       font-size: 1.2rem;
       color: #555;
     }
-    
-    /* Testimonials Carousel */
+    /* Quiz Section */
+    #quiz {
+      background: #f9f9f9;
+      padding: 60px 20px;
+    }
+    #quiz form {
+      max-width: 800px;
+      margin: auto;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #quiz form .question {
+      margin-bottom: 20px;
+    }
+    #quiz form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    #quiz form input[type="radio"] {
+      margin-right: 10px;
+    }
+    #quizResult {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+    /* Testimonials Carousel Section */
     #testimonials .carousel {
       position: relative;
       overflow: hidden;
@@ -258,8 +337,8 @@
       margin-top: 20px;
     }
     .carousel-controls button {
-      background: #f76c6c;
-      color: #fff;
+      background: var(--accent-color);
+      color: var(--white);
       border: none;
       padding: 10px 20px;
       margin: 0 10px;
@@ -269,14 +348,13 @@
       transition: background 0.3s ease;
     }
     .carousel-controls button:hover {
-      background: #f44336;
+      background: #bfa15a;
     }
-    
     /* Contact Section */
     #contact form {
       max-width: 600px;
       margin: auto;
-      background: #fff;
+      background: var(--white);
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -287,6 +365,7 @@
     #contact form label {
       display: block;
       margin-bottom: 5px;
+      font-weight: bold;
     }
     #contact form input,
     #contact form textarea {
@@ -299,7 +378,6 @@
       resize: vertical;
       height: 150px;
     }
-    
     /* Modal for Special Offer */
     .modal {
       display: none; 
@@ -313,8 +391,8 @@
       background-color: rgba(0,0,0,0.7);
     }
     .modal-content {
-      background: #fff;
-      margin: 15% auto;
+      background: var(--white);
+      margin: 10% auto;
       padding: 20px;
       border-radius: 10px;
       width: 80%;
@@ -331,25 +409,23 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-    
     /* Footer */
     footer {
-      background: #333;
-      color: #fff;
+      background: var(--primary-color);
+      color: var(--white);
       text-align: center;
       padding: 20px 0;
     }
-    
     /* Responsive Styles */
     @media (max-width: 768px) {
-      .service-item, .pricing-card {
-        flex: 0 0 45%;
-      }
-      #about .content {
+      #about .content, #philosophy .content {
         flex-direction: column;
       }
-      #about .content .image, #about .content .text {
+      #about .image, #philosophy .image, #about .text, #philosophy .text {
         flex: 1 1 100%;
+      }
+      .service-item, .pricing-card, .team-member {
+        flex: 0 0 45%;
       }
       .stats-container {
         flex-direction: column;
@@ -359,7 +435,7 @@
       nav {
         flex-direction: column;
       }
-      .service-item, .pricing-card {
+      .service-item, .pricing-card, .team-member {
         flex: 0 0 100%;
       }
     }
@@ -371,13 +447,16 @@
     <div class="container">
       <nav>
         <div class="logo">
-          <a href="#hero" style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem;">Olympian Health Solutions</a>
+          <a href="#hero">Olympian Health Solutions</a>
         </div>
         <div class="menu">
           <a href="#hero">Home</a>
           <a href="#about">About</a>
+          <a href="#philosophy">Philosophy</a>
           <a href="#services">Services</a>
           <a href="#pricing">Pricing</a>
+          <a href="#team">Team</a>
+          <a href="#quiz">Quiz</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
         </div>
@@ -385,12 +464,12 @@
     </div>
   </header>
   
-  <!-- Modal Pop-Up for Special Offer -->
+  <!-- Modal Special Offer -->
   <div id="offerModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>Special Offer!</h2>
-      <p>Sign up now and get a <strong>20% discount</strong> on your first month of training – for you or your grandparents!</p>
+      <h2>Special Healing Offer!</h2>
+      <p>Register now and enjoy a <strong>20% discount</strong> on your first month. Experience the power of neuroscience-based healing today!</p>
       <a href="#contact" class="btn">Claim Offer</a>
     </div>
   </div>
@@ -398,8 +477,8 @@
   <!-- Hero Section -->
   <section id="hero">
     <div class="content">
-      <h1>Revitalize Your Life</h1>
-      <p>Personalized training and rehabilitation to empower your journey toward better health.</p>
+      <h1>Revitalize Your Mind & Body</h1>
+      <p>Experience personalized training, rehabilitation, and a holistic approach to healing based on neuroscience and pain science research.</p>
       <a href="#contact" class="btn">Get Started</a>
     </div>
   </section>
@@ -408,11 +487,24 @@
   <section id="about">
     <div class="container content">
       <div class="image">
-        <img src="https://source.unsplash.com/800x600/?health,rehab" alt="About Olympian Health Solutions">
+        <img src="https://source.unsplash.com/800x600/?wellness,healing" alt="About Olympian Health Solutions">
       </div>
       <div class="text">
         <h2>About Us</h2>
-        <p>At Olympian Health Solutions, we specialize in advanced personal training and rehabilitation techniques tailored to the needs of the elderly and general population alike. Our mission is to help you overcome injuries, reduce pain, and reclaim your independence through innovative and compassionate care.</p>
+        <p>At Olympian Health Solutions, we combine modern science with compassionate care to help you overcome pain and reclaim your vitality. Our approach is rooted in the latest neuroscience, physical therapy, and pain management research, ensuring you receive effective, personalized training and rehabilitation.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Philosophy Section -->
+  <section id="philosophy">
+    <div class="container content">
+      <div class="text">
+        <h2>Our Philosophy</h2>
+        <p>Healing begins with understanding the mind-body connection. Our philosophy is simple: by harnessing the brain's neuroplasticity and combining it with evidence-based physical therapy, we empower you to transform your quality of life. We believe that with the right guidance, every individual can overcome pain and achieve optimal well-being.</p>
+      </div>
+      <div class="image">
+        <img src="https://source.unsplash.com/800x600/?neuroscience,meditation" alt="Our Philosophy">
       </div>
     </div>
   </section>
@@ -422,23 +514,23 @@
     <div class="container">
       <div class="section-title">
         <h2>Our Services</h2>
-        <p>Customized programs designed to enhance mobility, strength, and overall well-being.</p>
+        <p>Innovative, science-backed programs tailored for healing, strength, and wellness.</p>
       </div>
       <div class="services">
         <div class="service-item">
           <i class="fas fa-dumbbell"></i>
-          <h3>Strength Training</h3>
-          <p>Improve muscle tone and build strength safely with guided exercises tailored to your abilities.</p>
+          <h3>Strength & Rehabilitation</h3>
+          <p>Customized training to build strength, improve mobility, and accelerate recovery.</p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-brain"></i>
+          <h3>Neuroplasticity Training</h3>
+          <p>Utilize cutting-edge techniques that promote brain health and improve motor function.</p>
         </div>
         <div class="service-item">
           <i class="fas fa-heartbeat"></i>
-          <h3>Rehabilitation</h3>
-          <p>Expert rehabilitation to help you recover from injuries and manage chronic pain.</p>
-        </div>
-        <div class="service-item">
-          <i class="fas fa-running"></i>
-          <h3>Mobility &amp; Balance</h3>
-          <p>Programs focused on improving balance, flexibility, and overall mobility for daily activities.</p>
+          <h3>Pain Management</h3>
+          <p>Effective strategies grounded in pain science to reduce discomfort and enhance your quality of life.</p>
         </div>
       </div>
     </div>
@@ -449,7 +541,7 @@
     <div class="container">
       <div class="section-title">
          <h2>Pricing Plans</h2>
-         <p>Choose the package that best fits your needs.</p>
+         <p>Choose the plan that suits your healing journey.</p>
       </div>
       <div class="pricing-cards">
          <div class="pricing-card">
@@ -458,7 +550,7 @@
             <ul>
               <li>Personalized rehab sessions</li>
               <li>In-home consultation</li>
-              <li>Specialized recovery exercises</li>
+              <li>Tailored recovery exercises</li>
             </ul>
             <a href="#contact" class="btn">Get Started</a>
          </div>
@@ -467,8 +559,8 @@
             <p class="price">$149<span>/month</span></p>
             <ul>
               <li>Group training sessions</li>
-              <li>Nutrition &amp; wellness advice</li>
-              <li>Family-oriented exercises</li>
+              <li>Nutrition & wellness advice</li>
+              <li>Family-focused exercises</li>
             </ul>
             <a href="#contact" class="btn">Get Started</a>
          </div>
@@ -478,7 +570,7 @@
             <ul>
               <li>One-on-one sessions</li>
               <li>Customized workout plan</li>
-              <li>24/7 support &amp; tracking</li>
+              <li>24/7 support & tracking</li>
             </ul>
             <a href="#contact" class="btn">Get Started</a>
          </div>
@@ -486,7 +578,34 @@
     </div>
   </section>
   
-  <!-- Animated Counters Section -->
+  <!-- Team Section -->
+  <section id="team">
+    <div class="container">
+      <div class="section-title">
+         <h2>Meet Our Team</h2>
+         <p>Our dedicated experts are here to support your journey to healing.</p>
+      </div>
+      <div class="team-members">
+         <div class="team-member">
+            <img src="https://source.unsplash.com/120x120/?woman,face" alt="Dr. Amanda Lee">
+            <h4>Dr. Amanda Lee</h4>
+            <p>Physical Therapist</p>
+         </div>
+         <div class="team-member">
+            <img src="https://source.unsplash.com/120x120/?man,face" alt="Johnathan Kim">
+            <h4>Johnathan Kim</h4>
+            <p>Senior Trainer</p>
+         </div>
+         <div class="team-member">
+            <img src="https://source.unsplash.com/120x120/?woman,portrait" alt="Emily Roberts">
+            <h4>Emily Roberts</h4>
+            <p>Wellness Coach</p>
+         </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Animated Counters / Stats Section -->
   <section id="stats">
     <div class="container">
       <div class="stats-container">
@@ -506,24 +625,56 @@
     </div>
   </section>
   
+  <!-- Quiz Section -->
+  <section id="quiz">
+    <div class="container">
+      <div class="section-title">
+         <h2>Healing Quiz</h2>
+         <p>Discover how your habits impact your quality of life with insights from neuroscience and pain science research.</p>
+      </div>
+      <form id="quizForm">
+         <div class="question">
+            <label>1. How often do you engage in physical activity?</label>
+            <input type="radio" name="q1" value="1" required> Rarely<br>
+            <input type="radio" name="q1" value="2"> Sometimes<br>
+            <input type="radio" name="q1" value="3"> Often
+         </div>
+         <div class="question">
+            <label>2. How would you rate your current pain levels?</label>
+            <input type="radio" name="q2" value="1" required> High<br>
+            <input type="radio" name="q2" value="2"> Moderate<br>
+            <input type="radio" name="q2" value="3"> Low
+         </div>
+         <div class="question">
+            <label>3. Do you feel that regular exercise improves your mental clarity?</label>
+            <input type="radio" name="q3" value="1" required> Not really<br>
+            <input type="radio" name="q3" value="2"> Sometimes<br>
+            <input type="radio" name="q3" value="3"> Definitely
+         </div>
+         <button type="button" class="btn" onclick="calculateQuiz()">See Your Results</button>
+      </form>
+      <div id="quizResult"></div>
+    </div>
+  </section>
+  
   <!-- Testimonials Carousel Section -->
   <section id="testimonials">
     <div class="container">
       <div class="section-title">
         <h2>Testimonials</h2>
-        <p>Hear from our satisfied clients who have transformed their lives.</p>
+        <p>Hear from our clients whose lives have been transformed.</p>
       </div>
       <div class="carousel">
          <div class="carousel-item active">
-            <p>"Olympian Health Solutions has been a game-changer. My grandmother regained her mobility and confidence!"</p>
+            <p>"Olympian Health Solutions has revolutionized my approach to healing. My pain has decreased significantly and I feel more energetic."</p>
             <h4>- Susan R.</h4>
          </div>
          <div class="carousel-item">
-            <p>"Their expertise and personalized care helped me recover faster than I ever expected."</p>
+            <p>"The neuroplasticity training has boosted my confidence and mobility. I highly recommend their personalized programs."</p>
             <h4>- Michael B.</h4>
          </div>
          <div class="carousel-item">
-            <p>"I felt supported every step of the way. Highly recommend for family wellness."</p>
+            <p>"Their science-backed methods have given me a new lease on life. My grandparents are thriving thanks to their care."</p>
             <h4>- Linda K.</h4>
          </div>
       </div>
@@ -539,7 +690,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Contact Us</h2>
-        <p>Get in touch for a consultation or more information about our services.</p>
+        <p>Reach out today for a consultation or more information about our services.</p>
       </div>
       <form action="mailto:info@olympianhealthsolutions.com" method="post" enctype="text/plain">
         <div class="form-group">
@@ -566,13 +717,12 @@
     </div>
   </footer>
   
-  <!-- JavaScript for Modal, Counters & Carousel -->
+  <!-- JavaScript for Modal, Counters, Quiz & Carousel -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Modal functionality
       var modal = document.getElementById("offerModal");
       var closeBtn = document.querySelector(".modal .close");
-      // Show modal after 5 seconds
       setTimeout(function() {
         modal.style.display = "block";
       }, 5000);
@@ -617,11 +767,29 @@
         currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
         carouselItems[currentSlide].classList.add('active');
       });
-      // Auto slide carousel every 5 seconds
       setInterval(function() {
         document.getElementById("nextBtn").click();
       }, 5000);
     });
+    
+    // Quiz Calculation
+    function calculateQuiz() {
+      var score = 0;
+      var form = document.getElementById('quizForm');
+      var q1 = parseInt(form.elements['q1'].value);
+      var q2 = parseInt(form.elements['q2'].value);
+      var q3 = parseInt(form.elements['q3'].value);
+      score = q1 + q2 + q3;
+      var resultText = "";
+      if (score <= 4) {
+        resultText = "It seems there is room for improvement. Consider our Elderly Recovery Package to jumpstart your healing journey.";
+      } else if (score <= 7) {
+        resultText = "You're on the right track! Our Family Wellness Package could further enhance your overall well-being.";
+      } else {
+        resultText = "Excellent! Your habits are impressive. For even greater benefits, explore our Premium Personal Training for a tailored experience.";
+      }
+      document.getElementById('quizResult').textContent = resultText;
+    }
   </script>
 </body>
 </html>
