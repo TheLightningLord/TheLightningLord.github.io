@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Olympian Health Solutions | Transform Your Recovery & Enjoy the Joy of Movement</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Olympian Health Solutions | Revitalize Your Health</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600"
+    rel="stylesheet"
+  />
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+  />
   <style>
     :root {
       --primary-color: #003366; /* Dark Blue */
       --accent-color: #D4AF37;  /* Gold */
-      --bg-color: #f4f4f4;
+      --light-bg: #f4f4f4;
       --white: #fff;
       --text-color: #333;
     }
-    /* Global Styles */
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: 'Open Sans', sans-serif;
-      background: var(--bg-color);
+      font-family: "Open Sans", sans-serif;
+      background: var(--light-bg);
       color: var(--text-color);
       line-height: 1.6;
     }
@@ -34,14 +41,13 @@
       margin: auto;
       overflow: hidden;
     }
-    /* Header & Navigation */
+
+    /************************************
+     * Header & Navigation
+     ************************************/
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
       background: var(--primary-color);
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
     nav {
       display: flex;
@@ -53,42 +59,46 @@
     nav .logo a {
       text-decoration: none;
       color: var(--accent-color);
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 1.8rem;
     }
     nav .menu a {
       text-decoration: none;
       color: var(--white);
-      padding: 0.5rem 1rem;
+      margin: 0 0.75rem;
       font-weight: 600;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
     nav .menu a:hover {
       color: var(--accent-color);
     }
     nav .cta {
       background: var(--accent-color);
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
       color: var(--primary-color);
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      margin-left: 1rem;
       transition: background 0.3s ease;
     }
     nav .cta:hover {
       background: #bfa15a;
     }
-    /* Sticky Floating CTA */
+
+    /************************************
+     * Sticky Floating CTA
+     ************************************/
     .sticky-cta {
       position: fixed;
-      right: 20px;
       bottom: 20px;
+      right: 20px;
       background: var(--accent-color);
       color: var(--primary-color);
       padding: 15px 20px;
       border-radius: 50px;
       font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
       text-decoration: none;
       z-index: 3000;
       transition: background 0.3s ease;
@@ -96,198 +106,263 @@
     .sticky-cta:hover {
       background: #bfa15a;
     }
-    /* Hero Section */
+
+    /************************************
+     * Hero Section
+     ************************************/
     #hero {
-      height: 100vh;
-      background: url('https://source.unsplash.com/1600x900/?home,rehab,fun') no-repeat center center/cover;
-      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 90vh;
+      align-items: center;
+      padding: 2rem 0;
+    }
+    #hero .hero-left,
+    #hero .hero-right {
+      flex: 1 1 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 1rem;
+    }
+    #hero .hero-left {
+      flex-direction: column;
       text-align: center;
-      color: var(--white);
-    }
-    #hero::after {
-      content: '';
-      position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-    }
-    #hero .content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 0 20px;
     }
     #hero h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 4rem;
-      margin-bottom: 0.5rem;
-    }
-    #hero p {
-      font-size: 1.4rem;
+      font-family: "Montserrat", sans-serif;
+      font-size: 3rem;
+      color: var(--primary-color);
       margin-bottom: 1rem;
     }
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      background: var(--accent-color);
-      color: var(--white);
-      border: none;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      text-decoration: none;
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #555;
+      max-width: 500px;
     }
-    .btn:hover {
-      background: #bfa15a;
-    }
-    .trust-badge {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: var(--accent-color);
-    }
-    /* Section Titles */
-    section {
-      padding: 80px 0;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    .section-title h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-      color: var(--primary-color);
-    }
-    .section-title p {
-      font-size: 1.1rem;
-      color: #777;
-    }
-    /* About Section */
-    #about .content {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      padding: 20px;
-    }
-    #about .image, #about .text {
-      flex: 1 1 50%;
-      padding: 20px;
-    }
-    #about .image img {
+    #hero img {
       width: 100%;
+      max-width: 500px;
       border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
-    /* Why Choose Us Section */
-    #why .why-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 20px;
-    }
-    .why-item {
-      flex: 0 0 30%;
-      text-align: center;
-      margin: 15px;
-      padding: 20px;
-    }
-    .why-item i {
-      font-size: 3rem;
-      color: var(--accent-color);
-      margin-bottom: 10px;
-    }
-    .why-item h3 {
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    .why-item p {
-      color: #555;
-    }
-    /* Our Guarantee Section */
-    #guarantee {
-      background: #f9f9f9;
-      padding: 40px;
-      text-align: center;
-      border-top: 5px solid var(--accent-color);
-    }
-    #guarantee h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    #guarantee p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-    /* Services Section */
-    #services .services {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-    .service-item {
+
+    /************************************
+     * Highlights Section
+     ************************************/
+    #highlights {
       background: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+    #highlights .highlight-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+    .highlight-item {
       flex: 0 0 30%;
       margin: 15px;
-      padding: 30px;
+      background: var(--light-bg);
       border-radius: 10px;
+      padding: 30px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: center;
       transition: transform 0.3s ease;
     }
-    .service-item:hover {
+    .highlight-item:hover {
       transform: translateY(-10px);
     }
-    .service-item i {
+    .highlight-item i {
       font-size: 3rem;
       color: var(--accent-color);
       margin-bottom: 15px;
     }
-    .service-item h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+    .highlight-item h3 {
+      font-size: 1.4rem;
       color: var(--primary-color);
+      margin-bottom: 10px;
     }
-    .service-item p {
+    .highlight-item p {
       color: #555;
     }
-    /* Pricing Section */
-    #pricing .pricing-cards {
+
+    /************************************
+     * About / Full-Width CTA
+     ************************************/
+    #about {
+      background: #f9f9f9;
+      padding: 80px 0;
+    }
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    #about .about-left,
+    #about .about-right {
+      flex: 1 1 50%;
+      padding: 1rem;
+    }
+    #about img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #about .about-right h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    #about .about-right p {
+      color: #555;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    /************************************
+     * Services Section
+     ************************************/
+    #services {
+      background: var(--white);
+      padding: 80px 0;
+      text-align: center;
+    }
+    #services .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+    .service-card {
+      flex: 0 0 30%;
+      background: var(--light-bg);
+      margin: 15px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    .service-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /************************************
+     * Success Stories (Testimonials)
+     ************************************/
+    #success-stories {
+      background: var(--light-bg);
+      padding: 80px 0;
+    }
+    #success-stories .testimonials-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
     }
-    .pricing-card {
+    .testimonial-item {
       background: var(--white);
+      flex: 0 0 30%;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .testimonial-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 10px auto;
+    }
+    .testimonial-item p {
+      color: #555;
+      font-style: italic;
+      margin: 15px 0;
+    }
+    .testimonial-item h4 {
+      color: var(--primary-color);
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    /************************************
+     * Join The Movement CTA
+     ************************************/
+    #join-movement {
+      background: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    #join-movement h2 {
+      font-family: "Montserrat", sans-serif;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    #join-movement p {
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    /************************************
+     * Pricing Section
+     ************************************/
+    #pricing {
+      background: #fff;
+      padding: 80px 0;
+      text-align: center;
+    }
+    #pricing .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+    .pricing-card {
+      background: var(--light-bg);
       flex: 0 0 30%;
       margin: 15px;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: center;
       transition: transform 0.3s ease;
     }
     .pricing-card:hover {
       transform: translateY(-10px);
     }
     .pricing-card h3 {
-      margin-bottom: 10px;
-      font-family: 'Montserrat', sans-serif;
       color: var(--primary-color);
+      margin-bottom: 10px;
     }
-    .pricing-card .price {
+    .price {
       font-size: 2rem;
       margin: 20px 0;
       color: var(--accent-color);
     }
-    .pricing-card .price span {
+    .price span {
       font-size: 1rem;
       color: #777;
     }
@@ -299,157 +374,15 @@
       margin: 10px 0;
       color: #555;
     }
-    /* Program Finder Quiz Section */
-    #quiz form {
-      max-width: 800px;
-      margin: auto;
-      background: var(--white);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    #quiz form .question {
-      margin-bottom: 20px;
-    }
-    #quiz form label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    #quiz form input[type="radio"] {
-      margin-right: 10px;
-    }
-    #quizResult {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 1.2rem;
-      color: var(--primary-color);
-    }
-    /* Testimonials Carousel Section */
-    #testimonials .carousel {
-      position: relative;
-      overflow: hidden;
-    }
-    .carousel-item {
-      display: none;
-      text-align: center;
-      padding: 20px;
-    }
-    .carousel-item.active {
-      display: block;
-    }
-    .carousel-controls {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .carousel-controls button {
-      background: var(--accent-color);
-      color: var(--white);
-      border: none;
-      padding: 10px 20px;
-      margin: 0 10px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-    .carousel-controls button:hover {
-      background: #bfa15a;
-    }
-    /* Community & Fun Section */
-    #community {
-      background: var(--white);
-      padding: 60px 20px;
-    }
-    #community .content {
-      text-align: center;
-      padding: 20px;
-    }
-    #community h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.8rem;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    #community p {
-      font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 30px;
-    }
-    /* Research Section */
-    #research .research-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-gap: 20px;
-      margin-top: 20px;
-    }
-    .research-card {
-      background: var(--white);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .research-card h3 {
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    .research-card p {
-      color: #555;
-      margin-bottom: 15px;
-    }
-    /* Articles Section */
-    #articles .articles-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      grid-gap: 20px;
-      margin-top: 20px;
-    }
-    .article-item {
-      background: var(--white);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .article-item h3 {
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    .article-item p {
-      color: #555;
-      margin-bottom: 15px;
-    }
-    .articles-cta {
-      text-align: center;
-      margin-top: 20px;
-    }
-    /* FAQ Section */
-    #faq {
+
+    /************************************
+     * Contact Section
+     ************************************/
+    #contact {
       background: #f9f9f9;
-      padding: 60px 20px;
+      padding: 80px 0;
+      text-align: center;
     }
-    #faq .section-title {
-      margin-bottom: 30px;
-    }
-    .faq-container {
-      max-width: 800px;
-      margin: auto;
-    }
-    .faq-item {
-      background: var(--white);
-      margin-bottom: 15px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .faq-item h3 {
-      margin-bottom: 10px;
-      color: var(--primary-color);
-    }
-    .faq-item p {
-      color: #555;
-      margin-bottom: 0;
-    }
-    /* Contact Section */
     #contact form {
       max-width: 600px;
       margin: auto;
@@ -457,6 +390,7 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: left;
     }
     #contact form .form-group {
       margin-bottom: 15px;
@@ -472,34 +406,40 @@
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
+      font: inherit;
     }
     #contact form textarea {
       resize: vertical;
-      height: 150px;
+      height: 120px;
     }
-    /* Footer */
+
+    /************************************
+     * Footer
+     ************************************/
     footer {
       background: var(--primary-color);
       color: var(--white);
       text-align: center;
       padding: 20px 0;
     }
-    /* Responsive Styles */
+
+    /************************************
+     * Responsive
+     ************************************/
     @media (max-width: 768px) {
-      #about .content,
-      #why .why-content,
-      .service-item, .pricing-card, .article-item, .research-card {
-        flex: 0 0 45%;
+      nav .menu a {
+        margin: 0.5rem;
       }
-      #about .image, #about .text {
+      #hero .hero-left,
+      #hero .hero-right,
+      #about .about-left,
+      #about .about-right {
         flex: 1 1 100%;
       }
-    }
-    @media (max-width: 480px) {
-      nav {
-        flex-direction: column;
-      }
-      .service-item, .pricing-card, .article-item, .research-card {
+      .highlight-item,
+      .service-card,
+      .testimonial-item,
+      .pricing-card {
         flex: 0 0 100%;
       }
     }
@@ -515,379 +455,261 @@
         </div>
         <div class="menu">
           <a href="#hero">Home</a>
+          <a href="#highlights">Highlights</a>
           <a href="#about">About</a>
-          <a href="#why">Why Choose Us</a>
           <a href="#services">Services</a>
+          <a href="#success-stories">Success Stories</a>
           <a href="#pricing">Pricing</a>
-          <a href="#guarantee">Our Guarantee</a>
-          <a href="#team">Team</a>
-          <a href="#quiz">Program Finder</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#research">Research</a>
-          <a href="#articles">Articles</a>
-          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </div>
-        <a href="#contact" class="cta">Free Consultation</a>
+        <a href="#contact" class="cta">Book Now</a>
       </nav>
     </div>
   </header>
-  
+
   <!-- Sticky Floating CTA -->
-  <a href="#contact" class="sticky-cta"><i class="fas fa-phone-alt"></i> Book Now</a>
-  
+  <a href="#contact" class="sticky-cta"><i class="fas fa-phone-alt"></i> Contact Us</a>
+
   <!-- Hero Section -->
-  <section id="hero">
-    <div class="content">
-      <h1>Revolutionize Your Recovery &amp; Discover the Joy of Movement</h1>
-      <p>Experience personalized in-home training, rehab, and fun group fitness that brings you back to life—whether you're overcoming pain or simply embracing a healthier lifestyle.</p>
-      <a href="#contact" class="btn">Book Your Free Consultation</a>
-      <div class="trust-badge">Trusted by Healthcare Professionals &amp; Fitness Enthusiasts Nationwide</div>
+  <section id="hero" class="container">
+    <div class="hero-left">
+      <h1>Elevate Your Strength &amp; Mobility</h1>
+      <p>
+        Embrace a fresh start with our modern approach to in-home training, group
+        fitness, and advanced rehabilitation.
+      </p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+    <div class="hero-right">
+      <!-- Placeholder for your brand’s hero image -->
+      <!-- SUGGESTED DALLE PROMPT: 
+           "Epic health and wellness scene with a Greek flair, dynamic posture, 
+            warm lighting, in dark blue and gold branding style" -->
+      <img src="images/hero-placeholder.jpg" alt="Brand Hero Placeholder" />
     </div>
   </section>
-  
+
+  <!-- Highlights Section -->
+  <section id="highlights">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Key Highlights</span>
+      </h2>
+      <div class="highlight-cards">
+        <div class="highlight-item">
+          <i class="fas fa-heartbeat"></i>
+          <h3>Innovative Rehab Techniques</h3>
+          <p>
+            We blend modern neuroscience with classical training principles for
+            faster recovery and lasting results.
+          </p>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-user-friends"></i>
+          <h3>Community &amp; Support</h3>
+          <p>
+            Join a vibrant network of clients and professionals dedicated to
+            your growth and well-being.
+          </p>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-clock"></i>
+          <h3>Flexible Scheduling</h3>
+          <p>
+            Our in-home and group sessions easily adapt to your unique
+            lifestyle and commitments.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- About Section -->
   <section id="about">
     <div class="container content">
-      <div class="image">
-        <img src="https://source.unsplash.com/800x600/?health,rehab" alt="About Olympian Health Solutions">
+      <div class="about-left">
+        <!-- Placeholder for about image or brand story shot -->
+        <!-- SUGGESTED DALLE PROMPT: 
+             "Welcoming coach assisting an older adult with an exercise routine, 
+              bright, lively, warm golden sunlight, in Greek-inspired environment" -->
+        <img src="images/about-placeholder.jpg" alt="About Us Placeholder" />
       </div>
-      <div class="text">
-        <h2>About Us</h2>
-        <p>At Olympian Health Solutions, we combine breakthrough neuroscience with proven physical therapy techniques to deliver transformative in-home training and rehabilitation. Whether you're recovering from injury or looking for a fun, engaging way to stay fit, we work hand-in-hand with your healthcare professionals to create a program uniquely tailored to you.</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Why Choose Us Section -->
-  <section id="why">
-    <div class="container">
-      <div class="section-title">
-        <h2>Why Choose Us?</h2>
-        <p>Your journey to recovery and wellness deserves the best. Here’s what sets us apart:</p>
-      </div>
-      <div class="why-content">
-        <div class="why-item">
-          <i class="fas fa-home"></i>
-          <h3>In-Home Convenience</h3>
-          <p>Get expert training and rehabilitation in the comfort of your own home.</p>
-        </div>
-        <div class="why-item">
-          <i class="fas fa-user-md"></i>
-          <h3>Professional Collaboration</h3>
-          <p>We partner with your healthcare team to deliver comprehensive, personalized care.</p>
-        </div>
-        <div class="why-item">
-          <i class="fas fa-smile"></i>
-          <h3>Fun &amp; Engaging</h3>
-          <p>Experience the joy of movement through dynamic group fitness and social events designed for all ages.</p>
-        </div>
+      <div class="about-right">
+        <h2>Who We Are</h2>
+        <p>
+          Olympian Health Solutions specializes in bridging the gap between
+          modern exercise science and real-life functionality. Our team’s
+          extensive experience in physical therapy, strength training, and pain
+          management ensures you receive a holistic approach to health. We
+          believe in creating a supportive environment where every client—
+          regardless of age or ability—can thrive.
+        </p>
+        <a href="#contact" class="btn">Learn More</a>
       </div>
     </div>
   </section>
-  
-  <!-- Our Guarantee Section -->
-  <section id="guarantee">
-    <div class="container">
-      <h3>100% Satisfaction Guarantee</h3>
-      <p>If you’re not completely satisfied with your progress, we will work with you until you are.</p>
-    </div>
-  </section>
-  
+
   <!-- Services Section -->
   <section id="services">
     <div class="container">
-      <div class="section-title">
-        <h2>Our Services</h2>
-        <p>Choose from our tailored programs designed for in-home training, fun group workouts, and seamless rehab integration.</p>
-      </div>
-      <div class="services">
-        <div class="service-item">
-          <i class="fas fa-dumbbell"></i>
-          <h3>In-Home Personal Training</h3>
-          <p>Receive one-on-one sessions designed for your recovery and fitness goals, right at home.</p>
-        </div>
-        <div class="service-item">
-          <i class="fas fa-handshake"></i>
-          <h3>Collaborative Rehab Programs</h3>
-          <p>Work together with your physical therapist and our trainers for a holistic rehabilitation approach.</p>
-        </div>
-        <div class="service-item">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
           <i class="fas fa-running"></i>
-          <h3>Group Fitness &amp; Fun</h3>
-          <p>Join energetic group classes and community events that make exercise enjoyable and social.</p>
+          <h3>In-Home Personal Training</h3>
+          <p>
+            Get tailored workouts delivered at home for optimal convenience,
+            including specialized rehabilitative sessions.
+          </p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-users"></i>
+          <h3>Group Fitness Classes</h3>
+          <p>
+            Have fun, stay motivated, and connect with others through dynamic
+            group workouts that suit all levels.
+          </p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-user-md"></i>
+          <h3>Collaborative Health Plans</h3>
+          <p>
+            Work with our trainers and partner healthcare professionals to
+            develop a seamless approach to recovery and wellness.
+          </p>
         </div>
       </div>
     </div>
   </section>
-  
+
+  <!-- Success Stories Section -->
+  <section id="success-stories">
+    <div class="container">
+      <h2 class="section-title">Success Stories</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-item">
+          <!-- Placeholder for client portrait -->
+          <!-- SUGGESTED DALLE PROMPT: 
+               "Close-up portrait of a smiling older adult, looking proud after 
+                completing a fitness session, warm lighting" -->
+          <img src="images/testimonial1-placeholder.jpg" alt="Testimonial 1" />
+          <p>
+            "Olympian Health Solutions helped me regain mobility and confidence
+            after my knee replacement. I never imagined rehab could be this
+            positive and personalized!"
+          </p>
+          <h4>- Elaine M.</h4>
+        </div>
+        <div class="testimonial-item">
+          <!-- Placeholder for client portrait -->
+          <img src="images/testimonial2-placeholder.jpg" alt="Testimonial 2" />
+          <p>
+            "I love the group classes! Not only am I getting stronger, but I've
+            made great friends. It's like a little community that truly cares."
+          </p>
+          <h4>- James L.</h4>
+        </div>
+        <div class="testimonial-item">
+          <!-- Placeholder for client portrait -->
+          <img src="images/testimonial3-placeholder.jpg" alt="Testimonial 3" />
+          <p>
+            "Their approach blends rehab and fitness so naturally. Working with
+            my doctor, they've helped me overcome back pain and feel excited
+            about exercising again."
+          </p>
+          <h4>- Sarah D.</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join The Movement CTA -->
+  <section id="join-movement">
+    <div class="container">
+      <h2>Ready to Thrive?</h2>
+      <p>
+        Embrace a new chapter of health and vitality. Whether you're recovering
+        from an injury or craving a dynamic group workout, we’re here to guide
+        you every step of the way. Join the movement for a stronger, happier
+        you!
+      </p>
+      <a href="#contact" class="btn" style="background: var(--accent-color); color: var(--primary-color); border-radius: 30px;">Join Now</a>
+    </div>
+  </section>
+
   <!-- Pricing Section -->
   <section id="pricing">
     <div class="container">
-      <div class="section-title">
-        <h2>Flexible Pricing Plans</h2>
-        <p>Find the perfect plan for your recovery journey and lifestyle—no long-term commitment, only results.</p>
-      </div>
-      <div class="pricing-cards">
+      <h2 class="section-title">Pricing Plans</h2>
+      <div class="pricing-grid">
         <div class="pricing-card">
-          <h3>Recovery Essentials</h3>
+          <h3>Starter</h3>
           <p class="price">$99<span>/month</span></p>
           <ul>
-            <li>In-home personal training</li>
-            <li>Basic rehab integration</li>
-            <li>Weekly progress tracking</li>
+            <li>Weekly In-Home Sessions</li>
+            <li>Basic Rehab Guidance</li>
+            <li>Email Support</li>
           </ul>
-          <a href="#contact" class="btn">Get Started</a>
+          <a href="#contact" class="btn">Choose Plan</a>
         </div>
         <div class="pricing-card">
-          <h3>Family Wellness</h3>
+          <h3>Standard</h3>
           <p class="price">$149<span>/month</span></p>
           <ul>
-            <li>Group training sessions</li>
-            <li>Personalized rehab plans</li>
-            <li>Nutrition &amp; wellness guidance</li>
+            <li>Bi-Weekly Group Classes</li>
+            <li>Customized Rehab Roadmap</li>
+            <li>Priority Support</li>
           </ul>
-          <a href="#contact" class="btn">Learn More</a>
+          <a href="#contact" class="btn">Choose Plan</a>
         </div>
         <div class="pricing-card">
-          <h3>Premium Transformation</h3>
+          <h3>Premium</h3>
           <p class="price">$199<span>/month</span></p>
           <ul>
-            <li>Dedicated one-on-one training</li>
-            <li>Custom rehab integration</li>
-            <li>24/7 support &amp; progress tracking</li>
+            <li>Unlimited Group Sessions</li>
+            <li>Private In-Home Training</li>
+            <li>Full Rehab Integration</li>
+            <li>24/7 Consultation</li>
           </ul>
-          <a href="#contact" class="btn">Book Now</a>
+          <a href="#contact" class="btn">Choose Plan</a>
         </div>
       </div>
     </div>
   </section>
-  
-  <!-- Program Finder Quiz Section -->
-  <section id="quiz">
-    <div class="container">
-      <div class="section-title">
-        <h2>Discover Your Ideal Program</h2>
-        <p>Take our quick quiz to find out which training plan is right for your unique needs.</p>
-      </div>
-      <form id="quizForm">
-        <div class="question">
-          <label>1. How often do you currently exercise at home?</label>
-          <input type="radio" name="q1" value="1" required> Rarely<br>
-          <input type="radio" name="q1" value="2"> Occasionally<br>
-          <input type="radio" name="q1" value="3"> Regularly
-        </div>
-        <div class="question">
-          <label>2. What is your current pain level?</label>
-          <input type="radio" name="q2" value="1" required> High<br>
-          <input type="radio" name="q2" value="2"> Moderate<br>
-          <input type="radio" name="q2" value="3"> Low
-        </div>
-        <div class="question">
-          <label>3. Are you currently working with a physical therapist or healthcare provider?</label>
-          <input type="radio" name="q3" value="1" required> No<br>
-          <input type="radio" name="q3" value="3"> Yes
-        </div>
-        <button type="button" class="btn" onclick="calculateQuiz()">See Your Results</button>
-      </form>
-      <div id="quizResult"></div>
-    </div>
-  </section>
-  
-  <!-- Testimonials Carousel Section -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="section-title">
-        <h2>Testimonials</h2>
-        <p>Read success stories from clients who transformed their lives with our programs.</p>
-      </div>
-      <div class="carousel">
-        <div class="carousel-item active">
-          <p>"Olympian Health Solutions gave me the convenience and expert guidance I needed. My recovery journey has been nothing short of amazing!"</p>
-          <h4>- Susan R.</h4>
-        </div>
-        <div class="carousel-item">
-          <p>"Working with my physical therapist and these trainers has revolutionized my rehab. I feel stronger and more confident every day."</p>
-          <h4>- Michael B.</h4>
-        </div>
-        <div class="carousel-item">
-          <p>"Their in-home approach meant I never had to leave my house. My parents and I both appreciate the personalized care we received."</p>
-          <h4>- Linda K.</h4>
-        </div>
-      </div>
-      <div class="carousel-controls">
-        <button id="prevBtn">&#10094;</button>
-        <button id="nextBtn">&#10095;</button>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Community & Fun Section -->
-  <section id="community">
-    <div class="container content">
-      <h2>Experience the Joy of Movement</h2>
-      <p>Join our community events, fun group workouts, and social challenges that make fitness an enjoyable part of your life. Whether you’re recovering from an injury or just want to have fun while getting fit, our programs bring energy, excitement, and a sense of belonging to every workout.</p>
-      <a href="#contact" class="btn">Join the Movement</a>
-    </div>
-  </section>
-  
-  <!-- Research Section -->
-  <section id="research">
-    <div class="container">
-      <div class="section-title">
-        <h2>Our Research</h2>
-        <p>Advancing Exercise Physiology and Pain Science for a Healthier Future</p>
-      </div>
-      <div class="research-cards">
-        <div class="research-card">
-          <h3>Breakthrough in Back Pain Treatment</h3>
-          <p>Discover our latest study demonstrating how targeted exercise physiology and neuroplasticity techniques can significantly reduce chronic back pain.</p>
-          <a href="#" class="btn">Read More</a>
-        </div>
-        <div class="research-card">
-          <h3>Innovative Neck Pain Solutions</h3>
-          <p>Learn about our pioneering research in neck pain management, integrating cutting-edge pain science with advanced rehab strategies.</p>
-          <a href="#" class="btn">Read More</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Articles Section -->
-  <section id="articles">
-    <div class="container">
-      <div class="section-title">
-        <h2>Free Articles</h2>
-        <p>Explore our expert articles on exercise science, pain science breakthroughs, and advanced rehabilitation strategies.</p>
-      </div>
-      <div class="articles-list">
-        <article class="article-item">
-          <h3>The Benefits of Inflammation</h3>
-          <p>Understand how controlled inflammation can contribute to tissue repair and muscle adaptation when managed properly.</p>
-          <a href="#" class="btn">Read More</a>
-        </article>
-        <article class="article-item">
-          <h3>Decoding Chronic Pain</h3>
-          <p>Dive into our comprehensive analysis of chronic pain mechanisms and discover innovative treatment strategies.</p>
-          <a href="#" class="btn">Read More</a>
-        </article>
-        <article class="article-item">
-          <h3>Nutrition and Pain Management</h3>
-          <p>Learn about the critical role of nutrition in managing pain and supporting recovery through a balanced diet.</p>
-          <a href="#" class="btn">Read More</a>
-        </article>
-      </div>
-      <div class="articles-cta">
-        <p>Unlock Premium Books and Nutrition Plans to Accelerate Your Recovery Journey.</p>
-        <a href="#contact" class="btn">Get Premium Access</a>
-      </div>
-    </div>
-  </section>
-  
-  <!-- FAQ Section -->
-  <section id="faq">
-    <div class="container">
-      <div class="section-title">
-        <h2>FAQ</h2>
-        <p>Answers to common questions about our programs, services, and more.</p>
-      </div>
-      <div class="faq-container">
-        <div class="faq-item">
-          <h3>1. Do you accept insurance?</h3>
-          <p>We work with select providers. Contact us to verify your coverage and learn more about options.</p>
-        </div>
-        <div class="faq-item">
-          <h3>2. Can I switch plans or services later?</h3>
-          <p>Absolutely! Our flexible plans let you adjust as your needs evolve—no long-term contracts required.</p>
-        </div>
-        <div class="faq-item">
-          <h3>3. How often are group classes scheduled?</h3>
-          <p>Group classes are offered multiple times a week, with options for all fitness levels and schedules.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
+
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <div class="section-title">
-        <h2>Contact Us</h2>
-        <p>Ready to transform your recovery and embrace the joy of movement? Fill out the form below for a free consultation.</p>
-      </div>
+      <h2 class="section-title">Contact Us</h2>
+      <p>Get in touch and let’s craft your path to better health—together!</p>
       <form action="mailto:info@olympianhealthsolutions.com" method="post" enctype="text/plain">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your Email" required>
+          <input type="email" id="email" name="email" placeholder="Your Email" required />
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+          <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
         </div>
         <button type="submit" class="btn">Send Message</button>
       </form>
     </div>
   </section>
-  
+
   <!-- Footer -->
   <footer>
     <div class="container">
       <p>&copy; 2025 Olympian Health Solutions. All Rights Reserved.</p>
     </div>
   </footer>
-  
-  <!-- JavaScript for Carousel and Quiz -->
+
+  <!-- Optional JS for Additional Interactivity (If Needed) -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Carousel functionality
-      var carouselItems = document.querySelectorAll('.carousel-item');
-      var currentSlide = 0;
-      var nextBtn = document.getElementById("nextBtn");
-      var prevBtn = document.getElementById("prevBtn");
-      
-      // Show next slide
-      nextBtn.addEventListener("click", function() {
-        carouselItems[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % carouselItems.length;
-        carouselItems[currentSlide].classList.add('active');
-      });
-      // Show previous slide
-      prevBtn.addEventListener("click", function() {
-        carouselItems[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
-        carouselItems[currentSlide].classList.add('active');
-      });
-      // Auto-advance slides
-      setInterval(function() {
-        nextBtn.click();
-      }, 5000);
-    });
-    
-    // Quiz Calculation
-    function calculateQuiz() {
-      var score = 0;
-      var form = document.getElementById('quizForm');
-      var q1 = parseInt(form.elements['q1'].value);
-      var q2 = parseInt(form.elements['q2'].value);
-      var q3 = parseInt(form.elements['q3'].value);
-      
-      score = q1 + q2 + q3;
-      var resultText = "";
-      
-      if (score <= 4) {
-        resultText = "It looks like you’re just getting started. Our Recovery Essentials plan is perfect to kickstart your healing journey.";
-      } else if (score <= 7) {
-        resultText = "Great progress! The Family Wellness plan will further enhance your recovery and overall well-being.";
-      } else {
-        resultText = "Outstanding! Our Premium Transformation plan is ideal for those ready to take their recovery to the next level.";
-      }
-      
-      document.getElementById('quizResult').textContent = resultText;
-    }
+    // You can add JS here for added interactivity if desired
   </script>
 </body>
 </html>
