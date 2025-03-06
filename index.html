@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Olympian Health Solutions | Transform Your In-Home Rehab</title>
+  <title>Olympian Health Solutions | Transform Your Recovery & Enjoy the Joy of Movement</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600" rel="stylesheet">
   <!-- Font Awesome -->
@@ -78,10 +78,28 @@
     nav .cta:hover {
       background: #bfa15a;
     }
+    /* Sticky Floating CTA */
+    .sticky-cta {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--accent-color);
+      color: var(--primary-color);
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      text-decoration: none;
+      z-index: 3000;
+      transition: background 0.3s ease;
+    }
+    .sticky-cta:hover {
+      background: #bfa15a;
+    }
     /* Hero Section */
     #hero {
       height: 100vh;
-      background: url('https://source.unsplash.com/1600x900/?home,rehab') no-repeat center center/cover;
+      background: url('https://source.unsplash.com/1600x900/?home,rehab,fun') no-repeat center center/cover;
       position: relative;
       display: flex;
       align-items: center;
@@ -150,10 +168,22 @@
       font-size: 1.1rem;
       color: #777;
     }
-    /* Why Choose Us Section */
-    #why {
-      background: var(--white);
+    /* About Section */
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 20px;
     }
+    #about .image, #about .text {
+      flex: 1 1 50%;
+      padding: 20px;
+    }
+    #about .image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    /* Why Choose Us Section */
     #why .why-content {
       display: flex;
       flex-wrap: wrap;
@@ -178,7 +208,7 @@
     .why-item p {
       color: #555;
     }
-    /* Our Guarantee */
+    /* Our Guarantee Section */
     #guarantee {
       background: #f9f9f9;
       padding: 40px;
@@ -268,11 +298,7 @@
       margin: 10px 0;
       color: #555;
     }
-    /* Program Finder Quiz */
-    #quiz {
-      background: #f9f9f9;
-      padding: 60px 20px;
-    }
+    /* Program Finder Quiz Section */
     #quiz form {
       max-width: 800px;
       margin: auto;
@@ -328,6 +354,77 @@
     }
     .carousel-controls button:hover {
       background: #bfa15a;
+    }
+    /* Community & Fun Section */
+    #community {
+      background: #fff;
+      padding: 60px 20px;
+    }
+    #community .content {
+      text-align: center;
+      padding: 20px;
+    }
+    #community h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    #community p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    #community .btn {
+      margin-top: 20px;
+    }
+    /* Research Section */
+    #research .research-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .research-card {
+      background: #fff;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      flex: 0 0 45%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .research-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    .research-card p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+    /* Articles Section */
+    #articles .articles-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .article-item {
+      background: #fff;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 10px;
+      flex: 0 0 30%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .article-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    .article-item p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .articles-cta {
+      text-align: center;
+      margin-top: 20px;
     }
     /* Contact Section */
     #contact form {
@@ -388,24 +485,6 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-    /* Sticky Floating CTA */
-    .sticky-cta {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background: var(--accent-color);
-      color: var(--primary-color);
-      padding: 15px 20px;
-      border-radius: 50px;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      text-decoration: none;
-      z-index: 3000;
-      transition: background 0.3s ease;
-    }
-    .sticky-cta:hover {
-      background: #bfa15a;
-    }
     /* Footer */
     footer {
       background: var(--primary-color);
@@ -415,25 +494,20 @@
     }
     /* Responsive Styles */
     @media (max-width: 768px) {
+      #about .content,
       #why .why-content,
-      .service-item, .pricing-card, .team-member {
+      .service-item, .pricing-card, .team-member, .article-item, .research-card {
         flex: 0 0 45%;
       }
-      #about .content, #philosophy .content {
-        flex-direction: column;
-      }
-      #about .image, #philosophy .image, #about .text, #philosophy .text {
+      #about .image, #about .text {
         flex: 1 1 100%;
-      }
-      .stats-container {
-        flex-direction: column;
       }
     }
     @media (max-width: 480px) {
       nav {
         flex-direction: column;
       }
-      .service-item, .pricing-card, .team-member {
+      .service-item, .pricing-card, .team-member, .article-item, .research-card {
         flex: 0 0 100%;
       }
     }
@@ -457,6 +531,8 @@
           <a href="#team">Team</a>
           <a href="#quiz">Program Finder</a>
           <a href="#testimonials">Testimonials</a>
+          <a href="#research">Research</a>
+          <a href="#articles">Articles</a>
           <a href="#contact">Contact</a>
         </div>
         <a href="#contact" class="cta">Free Consultation</a>
@@ -480,10 +556,10 @@
   <!-- Hero Section -->
   <section id="hero">
     <div class="content">
-      <h1>Revolutionize Your Recovery at Home</h1>
-      <p>Experience personalized in-home training and rehab in collaboration with your healthcare team. Start your journey toward a pain-free, active life now.</p>
+      <h1>Revolutionize Your Recovery & Discover the Joy of Movement</h1>
+      <p>Experience personalized in-home training, rehab, and fun group fitness that brings you back to life—whether you're overcoming pain or simply embracing a healthier lifestyle.</p>
       <a href="#contact" class="btn">Book Your Free Consultation</a>
-      <div class="trust-badge">Trusted by Healthcare Professionals Nationwide</div>
+      <div class="trust-badge">Trusted by Healthcare Professionals & Fitness Enthusiasts Nationwide</div>
     </div>
   </section>
   
@@ -495,7 +571,7 @@
       </div>
       <div class="text">
         <h2>About Us</h2>
-        <p>At Olympian Health Solutions, we combine breakthrough neuroscience with proven physical therapy techniques to deliver transformative in-home training and rehabilitation. We work hand-in-hand with your healthcare professionals to create a program uniquely tailored to your needs.</p>
+        <p>At Olympian Health Solutions, we combine breakthrough neuroscience with proven physical therapy techniques to deliver transformative in-home training and rehabilitation. Whether you're recovering from injury or looking for a fun, engaging way to stay fit, we work hand-in-hand with your healthcare professionals to create a program uniquely tailored to you.</p>
       </div>
     </div>
   </section>
@@ -511,17 +587,17 @@
         <div class="why-item">
           <i class="fas fa-home"></i>
           <h3>In-Home Convenience</h3>
-          <p>Skip the commute and get expert training in the comfort of your own home.</p>
+          <p>Get expert training and rehabilitation in the comfort of your own home.</p>
         </div>
         <div class="why-item">
           <i class="fas fa-user-md"></i>
           <h3>Professional Collaboration</h3>
-          <p>We partner with physical therapists and healthcare experts to ensure comprehensive care.</p>
+          <p>We partner with your healthcare team to deliver comprehensive, personalized care.</p>
         </div>
         <div class="why-item">
-          <i class="fas fa-chart-line"></i>
-          <h3>Proven Results</h3>
-          <p>Our science-backed methods have helped hundreds reclaim their vitality and live pain-free.</p>
+          <i class="fas fa-smile"></i>
+          <h3>Fun & Engaging</h3>
+          <p>Experience the joy of movement through dynamic group fitness and social events designed for all ages.</p>
         </div>
       </div>
     </div>
@@ -540,23 +616,23 @@
     <div class="container">
       <div class="section-title">
         <h2>Our Services</h2>
-        <p>Choose from our tailored programs designed for in-home training and seamless rehab integration.</p>
+        <p>Choose from our tailored programs designed for in-home training, fun group workouts, and seamless rehab integration.</p>
       </div>
       <div class="services">
         <div class="service-item">
           <i class="fas fa-dumbbell"></i>
           <h3>In-Home Personal Training</h3>
-          <p>Receive one-on-one sessions designed specifically for your recovery and fitness goals.</p>
+          <p>Receive one-on-one sessions designed for your recovery and fitness goals, right at home.</p>
         </div>
         <div class="service-item">
           <i class="fas fa-handshake"></i>
           <h3>Collaborative Rehab Programs</h3>
-          <p>Work together with your physical therapist and our trainers for a holistic rehab approach.</p>
+          <p>Work together with your physical therapist and our trainers for a holistic rehabilitation approach.</p>
         </div>
         <div class="service-item">
-          <i class="fas fa-brain"></i>
-          <h3>Neuroplasticity & Wellness</h3>
-          <p>Enhance your brain health and motor function with cutting-edge neuroplasticity training.</p>
+          <i class="fas fa-running"></i>
+          <h3>Group Fitness & Fun</h3>
+          <p>Join energetic group classes and community events that make exercise enjoyable and social.</p>
         </div>
       </div>
     </div>
@@ -567,7 +643,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Flexible Pricing Plans</h2>
-        <p>Find the perfect plan for your recovery journey. No long-term commitment—only results.</p>
+        <p>Find the perfect plan for your recovery journey and lifestyle—no long-term commitment, only results.</p>
       </div>
       <div class="pricing-cards">
         <div class="pricing-card">
@@ -640,7 +716,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Testimonials</h2>
-        <p>Read success stories from clients who transformed their lives with our in-home programs.</p>
+        <p>Read success stories from clients who transformed their lives with our programs.</p>
       </div>
       <div class="carousel">
         <div class="carousel-item active">
@@ -663,12 +739,74 @@
     </div>
   </section>
   
+  <!-- Community & Fun Section -->
+  <section id="community">
+    <div class="container content">
+      <h2>Experience the Joy of Movement</h2>
+      <p>Join our community events, fun group workouts, and social challenges that make fitness an enjoyable part of your life. Whether you’re recovering from an injury or just want to have fun while getting fit, our programs are designed to bring energy, excitement, and a sense of belonging to every workout.</p>
+      <a href="#contact" class="btn">Join the Movement</a>
+    </div>
+  </section>
+  
+  <!-- Research Section -->
+  <section id="research">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Research</h2>
+        <p>Advancing Exercise Physiology and Pain Science for a Healthier Future</p>
+      </div>
+      <div class="research-cards">
+        <div class="research-card">
+          <h3>Breakthrough in Back Pain Treatment</h3>
+          <p>Discover our latest study demonstrating how targeted exercise physiology and neuroplasticity techniques can significantly reduce chronic back pain.</p>
+          <a href="https://example.com/backpain-study" target="_blank" class="btn">Read More</a>
+        </div>
+        <div class="research-card">
+          <h3>Innovative Neck Pain Solutions</h3>
+          <p>Learn about our pioneering research in neck pain management, integrating cutting-edge pain science with advanced rehab strategies.</p>
+          <a href="https://example.com/neckpain-research" target="_blank" class="btn">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Articles Section -->
+  <section id="articles">
+    <div class="container">
+      <div class="section-title">
+        <h2>Free Articles</h2>
+        <p>Explore our expert articles on pain science, inflammation benefits, and advanced rehabilitation strategies.</p>
+      </div>
+      <div class="articles-list">
+        <article class="article-item">
+          <h3>The Benefits of Inflammation</h3>
+          <p>Understand how controlled inflammation can contribute to tissue repair and muscle adaptation when managed properly.</p>
+          <a href="https://example.com/inflammation-benefits" target="_blank" class="btn">Read More</a>
+        </article>
+        <article class="article-item">
+          <h3>Decoding Chronic Pain</h3>
+          <p>Dive into our comprehensive analysis of chronic pain mechanisms and discover innovative treatment strategies.</p>
+          <a href="https://example.com/chronic-pain" target="_blank" class="btn">Read More</a>
+        </article>
+        <article class="article-item">
+          <h3>Nutrition and Pain Management</h3>
+          <p>Learn about the critical role of nutrition in managing pain and supporting recovery through a balanced diet.</p>
+          <a href="https://example.com/nutrition-pain" target="_blank" class="btn">Read More</a>
+        </article>
+      </div>
+      <div class="articles-cta">
+        <p>Unlock Premium Books and Nutrition Plans to Accelerate Your Recovery Journey.</p>
+        <a href="#contact" class="btn">Get Premium Access</a>
+      </div>
+    </div>
+  </section>
+  
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
       <div class="section-title">
         <h2>Contact Us</h2>
-        <p>Ready to transform your recovery? Fill out the form below for a free consultation.</p>
+        <p>Ready to transform your recovery and embrace the joy of movement? Fill out the form below for a free consultation.</p>
       </div>
       <form action="mailto:info@olympianhealthsolutions.com" method="post" enctype="text/plain">
         <div class="form-group">
@@ -695,7 +833,7 @@
     </div>
   </footer>
   
-  <!-- JavaScript for Modal, Counters, Quiz & Carousel -->
+  <!-- JavaScript for Modal, Carousel, and Quiz -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Modal functionality
@@ -750,59 +888,5 @@
       document.getElementById('quizResult').textContent = resultText;
     }
   </script>
-
-  <!-- Research Section -->
-<section id="research">
-  <div class="container">
-    <div class="section-title">
-      <h2>Our Research</h2>
-      <p>Advancing Exercise Physiology and Pain Science for a Healthier Future</p>
-    </div>
-    <div class="research-cards" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-      <div class="research-card" style="background: #fff; padding: 20px; margin: 15px; border-radius: 10px; flex: 0 0 45%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3>Breakthrough in Back Pain Treatment</h3>
-        <p>Discover our latest study demonstrating how targeted exercise physiology and neuroplasticity techniques can significantly reduce chronic back pain.</p>
-        <a href="https://example.com/backpain-study" target="_blank" class="btn">Read More</a>
-      </div>
-      <div class="research-card" style="background: #fff; padding: 20px; margin: 15px; border-radius: 10px; flex: 0 0 45%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3>Innovative Neck Pain Solutions</h3>
-        <p>Learn about our pioneering research in neck pain management, integrating cutting-edge pain science with advanced rehab strategies.</p>
-        <a href="https://example.com/neckpain-research" target="_blank" class="btn">Read More</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Articles Section -->
-<section id="articles">
-  <div class="container">
-    <div class="section-title">
-      <h2>Free Articles</h2>
-      <p>Explore our expert articles on pain science, inflammation benefits, and advanced rehabilitation strategies.</p>
-    </div>
-    <div class="articles-list" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-      <article class="article-item" style="background: #fff; padding: 20px; margin: 15px; border-radius: 10px; flex: 0 0 30%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3>The Benefits of Inflammation</h3>
-        <p>Understand how controlled inflammation can contribute to tissue repair and muscle adaptation when managed properly.</p>
-        <a href="https://example.com/inflammation-benefits" target="_blank" class="btn">Read More</a>
-      </article>
-      <article class="article-item" style="background: #fff; padding: 20px; margin: 15px; border-radius: 10px; flex: 0 0 30%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3>Decoding Chronic Pain</h3>
-        <p>Dive into our comprehensive analysis of chronic pain mechanisms and discover innovative treatment strategies.</p>
-        <a href="https://example.com/chronic-pain" target="_blank" class="btn">Read More</a>
-      </article>
-      <article class="article-item" style="background: #fff; padding: 20px; margin: 15px; border-radius: 10px; flex: 0 0 30%; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3>Nutrition and Pain Management</h3>
-        <p>Learn about the critical role of nutrition in managing pain and supporting recovery through a balanced diet.</p>
-        <a href="https://example.com/nutrition-pain" target="_blank" class="btn">Read More</a>
-      </article>
-    </div>
-    <div class="articles-cta" style="text-align: center; margin-top: 20px;">
-      <p>Unlock Premium Books and Nutrition Plans to Accelerate Your Recovery Journey.</p>
-      <a href="#contact" class="btn">Get Premium Access</a>
-    </div>
-  </div>
-</section>
-  
 </body>
 </html>
