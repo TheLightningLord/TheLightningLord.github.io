@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Olympian Health Solutions</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <style>
+    /* Reset and Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f4f4f4;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+    }
+    
+    /* Header and Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      padding: 0 1rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #f76c6c;
+    }
+    
+    /* Hero Section */
+    #hero {
+      height: 100vh;
+      background: url('https://source.unsplash.com/1600x900/?fitness,health') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    #hero .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      max-width: 800px;
+    }
+    #hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: #f76c6c;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #f44336;
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 80px 0;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .section-title p {
+      font-size: 1.1rem;
+      color: #777;
+    }
+    
+    /* Services Section */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .service-item {
+      background: #fff;
+      flex: 0 0 30%;
+      margin: 15px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .service-item:hover {
+      transform: translateY(-10px);
+    }
+    .service-item i {
+      font-size: 3rem;
+      color: #f76c6c;
+      margin-bottom: 15px;
+    }
+    .service-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .service-item p {
+      color: #555;
+    }
+    
+    /* About Section */
+    #about {
+      background: #fff;
+    }
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    #about .content .image {
+      flex: 1 1 50%;
+      padding: 20px;
+    }
+    #about .content .image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    #about .content .text {
+      flex: 1 1 50%;
+      padding: 20px;
+    }
+    
+    /* Testimonials Section */
+    #testimonials {
+      background: #f9f9f9;
+    }
+    .testimonial {
+      text-align: center;
+      padding: 20px;
+      margin: 10px;
+    }
+    .testimonial p {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .testimonial h4 {
+      color: #333;
+    }
+    
+    /* Contact Section */
+    #contact form {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #contact form .form-group {
+      margin-bottom: 15px;
+    }
+    #contact form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    #contact form input,
+    #contact form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    #contact form textarea {
+      resize: vertical;
+      height: 150px;
+    }
+    
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .service-item {
+        flex: 0 0 45%;
+      }
+      #about .content {
+        flex-direction: column;
+      }
+      #about .content .image, #about .content .text {
+        flex: 1 1 100%;
+      }
+    }
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+      }
+      .service-item {
+        flex: 0 0 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <a href="#hero" style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem;">Olympian Health Solutions</a>
+        </div>
+        <div class="menu">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="content">
+      <h1>Revitalize Your Life</h1>
+      <p>Personalized training and rehabilitation to empower your journey towards better health.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container content">
+      <div class="image">
+        <img src="https://source.unsplash.com/800x600/?health,rehab" alt="About Olympian Health Solutions">
+      </div>
+      <div class="text">
+        <h2>About Us</h2>
+        <p>At Olympian Health Solutions, we specialize in advanced personal training and rehabilitation techniques tailored to the needs of the elderly and general population alike. Our mission is to help you overcome injuries, reduce pain, and reclaim your independence through innovative and compassionate care.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Services</h2>
+        <p>Customized programs designed to enhance mobility, strength, and overall well-being.</p>
+      </div>
+      <div class="services">
+        <div class="service-item">
+          <i class="fas fa-dumbbell"></i>
+          <h3>Strength Training</h3>
+          <p>Improve muscle tone and build strength safely with guided exercises tailored to your abilities.</p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-heartbeat"></i>
+          <h3>Rehabilitation</h3>
+          <p>Expert rehabilitation to help you recover from injuries and manage chronic pain.</p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-running"></i>
+          <h3>Mobility & Balance</h3>
+          <p>Programs focused on improving balance, flexibility, and overall mobility for daily activities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+        <p>Hear from our satisfied clients who have transformed their lives.</p>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial">
+          <p>"Olympian Health Solutions has completely transformed my approach to fitness and recovery. I feel stronger and more confident every day."</p>
+          <h4>- Jane D.</h4>
+        </div>
+        <div class="testimonial">
+          <p>"Their personalized care and expert guidance made all the difference in my rehabilitation journey."</p>
+          <h4>- Mark T.</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Get in touch for a consultation or more information about our services.</p>
+      </div>
+      <form action="mailto:info@olympianhealthsolutions.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Olympian Health Solutions. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Smooth Scrolling Script -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
