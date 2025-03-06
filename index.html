@@ -357,7 +357,7 @@
     }
     /* Community & Fun Section */
     #community {
-      background: #fff;
+      background: var(--white);
       padding: 60px 20px;
     }
     #community .content {
@@ -375,21 +375,17 @@
       color: #555;
       margin-bottom: 30px;
     }
-    #community .btn {
-      margin-top: 20px;
-    }
     /* Research Section */
     #research .research-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px;
+      margin-top: 20px;
     }
     .research-card {
-      background: #fff;
+      background: var(--white);
       padding: 20px;
-      margin: 15px;
       border-radius: 10px;
-      flex: 0 0 45%;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .research-card h3 {
@@ -402,16 +398,15 @@
     }
     /* Articles Section */
     #articles .articles-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-gap: 20px;
+      margin-top: 20px;
     }
     .article-item {
-      background: #fff;
+      background: var(--white);
       padding: 20px;
-      margin: 15px;
       border-radius: 10px;
-      flex: 0 0 30%;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .article-item h3 {
@@ -496,7 +491,7 @@
     @media (max-width: 768px) {
       #about .content,
       #why .why-content,
-      .service-item, .pricing-card, .team-member, .article-item, .research-card {
+      .service-item, .pricing-card, .article-item, .research-card {
         flex: 0 0 45%;
       }
       #about .image, #about .text {
@@ -507,7 +502,7 @@
       nav {
         flex-direction: column;
       }
-      .service-item, .pricing-card, .team-member, .article-item, .research-card {
+      .service-item, .pricing-card, .article-item, .research-card {
         flex: 0 0 100%;
       }
     }
@@ -631,7 +626,7 @@
         </div>
         <div class="service-item">
           <i class="fas fa-running"></i>
-          <h3>Group Fitness & Fun</h3>
+          <h3>Group Fitness &amp; Fun</h3>
           <p>Join energetic group classes and community events that make exercise enjoyable and social.</p>
         </div>
       </div>
@@ -662,7 +657,7 @@
           <ul>
             <li>Group training sessions</li>
             <li>Personalized rehab plans</li>
-            <li>Nutrition & wellness guidance</li>
+            <li>Nutrition &amp; wellness guidance</li>
           </ul>
           <a href="#contact" class="btn">Learn More</a>
         </div>
@@ -672,7 +667,7 @@
           <ul>
             <li>Dedicated one-on-one training</li>
             <li>Custom rehab integration</li>
-            <li>24/7 support & progress tracking</li>
+            <li>24/7 support &amp; progress tracking</li>
           </ul>
           <a href="#contact" class="btn">Book Now</a>
         </div>
@@ -743,7 +738,7 @@
   <section id="community">
     <div class="container content">
       <h2>Experience the Joy of Movement</h2>
-      <p>Join our community events, fun group workouts, and social challenges that make fitness an enjoyable part of your life. Whether you’re recovering from an injury or just want to have fun while getting fit, our programs are designed to bring energy, excitement, and a sense of belonging to every workout.</p>
+      <p>Join our community events, fun group workouts, and social challenges that make fitness an enjoyable part of your life. Whether you’re recovering from an injury or just want to have fun while getting fit, our programs bring energy, excitement, and a sense of belonging to every workout.</p>
       <a href="#contact" class="btn">Join the Movement</a>
     </div>
   </section>
@@ -759,12 +754,12 @@
         <div class="research-card">
           <h3>Breakthrough in Back Pain Treatment</h3>
           <p>Discover our latest study demonstrating how targeted exercise physiology and neuroplasticity techniques can significantly reduce chronic back pain.</p>
-          <a href="https://example.com/backpain-study" target="_blank" class="btn">Read More</a>
+          <a href="/research/backpain-study" class="btn">Read More</a>
         </div>
         <div class="research-card">
           <h3>Innovative Neck Pain Solutions</h3>
           <p>Learn about our pioneering research in neck pain management, integrating cutting-edge pain science with advanced rehab strategies.</p>
-          <a href="https://example.com/neckpain-research" target="_blank" class="btn">Read More</a>
+          <a href="/research/neckpain-solutions" class="btn">Read More</a>
         </div>
       </div>
     </div>
@@ -775,23 +770,23 @@
     <div class="container">
       <div class="section-title">
         <h2>Free Articles</h2>
-        <p>Explore our expert articles on pain science, inflammation benefits, and advanced rehabilitation strategies.</p>
+        <p>Explore our expert articles on exercise science, pain science breakthroughs, and advanced rehabilitation strategies.</p>
       </div>
       <div class="articles-list">
         <article class="article-item">
           <h3>The Benefits of Inflammation</h3>
           <p>Understand how controlled inflammation can contribute to tissue repair and muscle adaptation when managed properly.</p>
-          <a href="https://example.com/inflammation-benefits" target="_blank" class="btn">Read More</a>
+          <a href="/blog" class="btn">Read More</a>
         </article>
         <article class="article-item">
           <h3>Decoding Chronic Pain</h3>
           <p>Dive into our comprehensive analysis of chronic pain mechanisms and discover innovative treatment strategies.</p>
-          <a href="https://example.com/chronic-pain" target="_blank" class="btn">Read More</a>
+          <a href="/blog" class="btn">Read More</a>
         </article>
         <article class="article-item">
           <h3>Nutrition and Pain Management</h3>
           <p>Learn about the critical role of nutrition in managing pain and supporting recovery through a balanced diet.</p>
-          <a href="https://example.com/nutrition-pain" target="_blank" class="btn">Read More</a>
+          <a href="/blog" class="btn">Read More</a>
         </article>
       </div>
       <div class="articles-cta">
