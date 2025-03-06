@@ -110,7 +110,8 @@
     #hero::after {
       content: '';
       position: absolute;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.5);
@@ -421,6 +422,33 @@
       text-align: center;
       margin-top: 20px;
     }
+    /* FAQ Section */
+    #faq {
+      background: #f9f9f9;
+      padding: 60px 20px;
+    }
+    #faq .section-title {
+      margin-bottom: 30px;
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .faq-item {
+      background: var(--white);
+      margin-bottom: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .faq-item h3 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    .faq-item p {
+      color: #555;
+      margin-bottom: 0;
+    }
     /* Contact Section */
     #contact form {
       max-width: 600px;
@@ -448,37 +476,6 @@
     #contact form textarea {
       resize: vertical;
       height: 150px;
-    }
-    /* Modal for Special Offer */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-    .modal-content {
-      background: var(--white);
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-      animation: slideDown 0.5s ease;
-    }
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .modal .close {
-      float: right;
-      font-size: 1.5rem;
-      cursor: pointer;
     }
     /* Footer */
     footer {
@@ -528,6 +525,7 @@
           <a href="#testimonials">Testimonials</a>
           <a href="#research">Research</a>
           <a href="#articles">Articles</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </div>
         <a href="#contact" class="cta">Free Consultation</a>
@@ -538,23 +536,13 @@
   <!-- Sticky Floating CTA -->
   <a href="#contact" class="sticky-cta"><i class="fas fa-phone-alt"></i> Book Now</a>
   
-  <!-- Modal Special Offer -->
-  <div id="offerModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Limited Time Offer!</h2>
-      <p>Book your free in-home consultation now and receive a <strong>20% discount</strong> on your first month of training.</p>
-      <a href="#contact" class="btn">Claim Offer</a>
-    </div>
-  </div>
-  
   <!-- Hero Section -->
   <section id="hero">
     <div class="content">
-      <h1>Revolutionize Your Recovery & Discover the Joy of Movement</h1>
+      <h1>Revolutionize Your Recovery &amp; Discover the Joy of Movement</h1>
       <p>Experience personalized in-home training, rehab, and fun group fitness that brings you back to life—whether you're overcoming pain or simply embracing a healthier lifestyle.</p>
       <a href="#contact" class="btn">Book Your Free Consultation</a>
-      <div class="trust-badge">Trusted by Healthcare Professionals & Fitness Enthusiasts Nationwide</div>
+      <div class="trust-badge">Trusted by Healthcare Professionals &amp; Fitness Enthusiasts Nationwide</div>
     </div>
   </section>
   
@@ -591,7 +579,7 @@
         </div>
         <div class="why-item">
           <i class="fas fa-smile"></i>
-          <h3>Fun & Engaging</h3>
+          <h3>Fun &amp; Engaging</h3>
           <p>Experience the joy of movement through dynamic group fitness and social events designed for all ages.</p>
         </div>
       </div>
@@ -754,12 +742,12 @@
         <div class="research-card">
           <h3>Breakthrough in Back Pain Treatment</h3>
           <p>Discover our latest study demonstrating how targeted exercise physiology and neuroplasticity techniques can significantly reduce chronic back pain.</p>
-          <a href="/research/backpain-study" class="btn">Read More</a>
+          <a href="#" class="btn">Read More</a>
         </div>
         <div class="research-card">
           <h3>Innovative Neck Pain Solutions</h3>
           <p>Learn about our pioneering research in neck pain management, integrating cutting-edge pain science with advanced rehab strategies.</p>
-          <a href="/research/neckpain-solutions" class="btn">Read More</a>
+          <a href="#" class="btn">Read More</a>
         </div>
       </div>
     </div>
@@ -776,22 +764,46 @@
         <article class="article-item">
           <h3>The Benefits of Inflammation</h3>
           <p>Understand how controlled inflammation can contribute to tissue repair and muscle adaptation when managed properly.</p>
-          <a href="/blog" class="btn">Read More</a>
+          <a href="#" class="btn">Read More</a>
         </article>
         <article class="article-item">
           <h3>Decoding Chronic Pain</h3>
           <p>Dive into our comprehensive analysis of chronic pain mechanisms and discover innovative treatment strategies.</p>
-          <a href="/blog" class="btn">Read More</a>
+          <a href="#" class="btn">Read More</a>
         </article>
         <article class="article-item">
           <h3>Nutrition and Pain Management</h3>
           <p>Learn about the critical role of nutrition in managing pain and supporting recovery through a balanced diet.</p>
-          <a href="/blog" class="btn">Read More</a>
+          <a href="#" class="btn">Read More</a>
         </article>
       </div>
       <div class="articles-cta">
         <p>Unlock Premium Books and Nutrition Plans to Accelerate Your Recovery Journey.</p>
         <a href="#contact" class="btn">Get Premium Access</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>FAQ</h2>
+        <p>Answers to common questions about our programs, services, and more.</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3>1. Do you accept insurance?</h3>
+          <p>We work with select providers. Contact us to verify your coverage and learn more about options.</p>
+        </div>
+        <div class="faq-item">
+          <h3>2. Can I switch plans or services later?</h3>
+          <p>Absolutely! Our flexible plans let you adjust as your needs evolve—no long-term contracts required.</p>
+        </div>
+        <div class="faq-item">
+          <h3>3. How often are group classes scheduled?</h3>
+          <p>Group classes are offered multiple times a week, with options for all fitness levels and schedules.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -828,39 +840,30 @@
     </div>
   </footer>
   
-  <!-- JavaScript for Modal, Carousel, and Quiz -->
+  <!-- JavaScript for Carousel and Quiz -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Modal functionality
-      var modal = document.getElementById("offerModal");
-      var closeBtn = document.querySelector(".modal .close");
-      setTimeout(function() {
-        modal.style.display = "block";
-      }, 5000);
-      closeBtn.onclick = function() {
-        modal.style.display = "none";
-      }
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-      
       // Carousel functionality
       var carouselItems = document.querySelectorAll('.carousel-item');
       var currentSlide = 0;
-      document.getElementById("nextBtn").addEventListener("click", function() {
+      var nextBtn = document.getElementById("nextBtn");
+      var prevBtn = document.getElementById("prevBtn");
+      
+      // Show next slide
+      nextBtn.addEventListener("click", function() {
         carouselItems[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % carouselItems.length;
         carouselItems[currentSlide].classList.add('active');
       });
-      document.getElementById("prevBtn").addEventListener("click", function() {
+      // Show previous slide
+      prevBtn.addEventListener("click", function() {
         carouselItems[currentSlide].classList.remove('active');
         currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
         carouselItems[currentSlide].classList.add('active');
       });
+      // Auto-advance slides
       setInterval(function() {
-        document.getElementById("nextBtn").click();
+        nextBtn.click();
       }, 5000);
     });
     
@@ -871,8 +874,10 @@
       var q1 = parseInt(form.elements['q1'].value);
       var q2 = parseInt(form.elements['q2'].value);
       var q3 = parseInt(form.elements['q3'].value);
+      
       score = q1 + q2 + q3;
       var resultText = "";
+      
       if (score <= 4) {
         resultText = "It looks like you’re just getting started. Our Recovery Essentials plan is perfect to kickstart your healing journey.";
       } else if (score <= 7) {
@@ -880,6 +885,7 @@
       } else {
         resultText = "Outstanding! Our Premium Transformation plan is ideal for those ready to take their recovery to the next level.";
       }
+      
       document.getElementById('quizResult').textContent = resultText;
     }
   </script>
