@@ -9,7 +9,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style>
-    /* Reset and Global Styles */
+    /* Reset & Global Styles */
     * {
       margin: 0;
       padding: 0;
@@ -28,7 +28,7 @@
       overflow: hidden;
     }
     
-    /* Header and Navigation */
+    /* Header & Navigation */
     header {
       position: fixed;
       top: 0;
@@ -104,7 +104,7 @@
       background: #f44336;
     }
     
-    /* Section Styles */
+    /* Section Titles */
     section {
       padding: 80px 0;
     }
@@ -122,8 +122,30 @@
       color: #777;
     }
     
+    /* About Section */
+    #about {
+      background: #fff;
+    }
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    #about .content .image {
+      flex: 1 1 50%;
+      padding: 20px;
+    }
+    #about .content .image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    #about .content .text {
+      flex: 1 1 50%;
+      padding: 20px;
+    }
+    
     /* Services Section */
-    .services {
+    #services .services {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
@@ -154,44 +176,100 @@
       color: #555;
     }
     
-    /* About Section */
-    #about {
-      background: #fff;
-    }
-    #about .content {
+    /* Pricing Section */
+    #pricing .pricing-cards {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      justify-content: space-around;
     }
-    #about .content .image {
-      flex: 1 1 50%;
-      padding: 20px;
-    }
-    #about .content .image img {
-      width: 100%;
+    .pricing-card {
+      background: #fff;
+      flex: 0 0 30%;
+      margin: 15px;
+      padding: 30px;
       border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
     }
-    #about .content .text {
-      flex: 1 1 50%;
-      padding: 20px;
+    .pricing-card:hover {
+      transform: translateY(-10px);
+    }
+    .pricing-card h3 {
+      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .pricing-card .price {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+    .pricing-card .price span {
+      font-size: 1rem;
+      color: #777;
+    }
+    .pricing-card ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    .pricing-card ul li {
+      margin: 10px 0;
+      color: #555;
     }
     
-    /* Testimonials Section */
-    #testimonials {
-      background: #f9f9f9;
+    /* Animated Counters */
+    #stats {
+      background: #fff;
+      text-align: center;
+      padding: 60px 0;
     }
-    .testimonial {
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .stat {
+      flex: 1 1 30%;
+      margin: 20px;
+    }
+    .stat h3 {
+      font-size: 3rem;
+      color: #f76c6c;
+    }
+    .stat p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    
+    /* Testimonials Carousel */
+    #testimonials .carousel {
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-item {
+      display: none;
       text-align: center;
       padding: 20px;
-      margin: 10px;
     }
-    .testimonial p {
-      font-style: italic;
-      color: #666;
-      margin-bottom: 15px;
+    .carousel-item.active {
+      display: block;
     }
-    .testimonial h4 {
-      color: #333;
+    .carousel-controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .carousel-controls button {
+      background: #f76c6c;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .carousel-controls button:hover {
+      background: #f44336;
     }
     
     /* Contact Section */
@@ -222,6 +300,38 @@
       height: 150px;
     }
     
+    /* Modal for Special Offer */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 2000; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      animation: slideDown 0.5s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal .close {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
     /* Footer */
     footer {
       background: #333;
@@ -232,7 +342,7 @@
     
     /* Responsive Styles */
     @media (max-width: 768px) {
-      .service-item {
+      .service-item, .pricing-card {
         flex: 0 0 45%;
       }
       #about .content {
@@ -241,19 +351,22 @@
       #about .content .image, #about .content .text {
         flex: 1 1 100%;
       }
+      .stats-container {
+        flex-direction: column;
+      }
     }
     @media (max-width: 480px) {
       nav {
         flex-direction: column;
       }
-      .service-item {
+      .service-item, .pricing-card {
         flex: 0 0 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header and Navigation -->
+  <!-- Header & Navigation -->
   <header>
     <div class="container">
       <nav>
@@ -264,22 +377,33 @@
           <a href="#hero">Home</a>
           <a href="#about">About</a>
           <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
     </div>
   </header>
-
+  
+  <!-- Modal Pop-Up for Special Offer -->
+  <div id="offerModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Special Offer!</h2>
+      <p>Sign up now and get a <strong>20% discount</strong> on your first month of training – for you or your grandparents!</p>
+      <a href="#contact" class="btn">Claim Offer</a>
+    </div>
+  </div>
+  
   <!-- Hero Section -->
   <section id="hero">
     <div class="content">
       <h1>Revitalize Your Life</h1>
-      <p>Personalized training and rehabilitation to empower your journey towards better health.</p>
+      <p>Personalized training and rehabilitation to empower your journey toward better health.</p>
       <a href="#contact" class="btn">Get Started</a>
     </div>
   </section>
-
+  
   <!-- About Section -->
   <section id="about">
     <div class="container content">
@@ -292,7 +416,7 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Services Section -->
   <section id="services">
     <div class="container">
@@ -313,33 +437,103 @@
         </div>
         <div class="service-item">
           <i class="fas fa-running"></i>
-          <h3>Mobility & Balance</h3>
+          <h3>Mobility &amp; Balance</h3>
           <p>Programs focused on improving balance, flexibility, and overall mobility for daily activities.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Testimonials Section -->
+  
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+         <h2>Pricing Plans</h2>
+         <p>Choose the package that best fits your needs.</p>
+      </div>
+      <div class="pricing-cards">
+         <div class="pricing-card">
+            <h3>Elderly Recovery Package</h3>
+            <p class="price">$99<span>/month</span></p>
+            <ul>
+              <li>Personalized rehab sessions</li>
+              <li>In-home consultation</li>
+              <li>Specialized recovery exercises</li>
+            </ul>
+            <a href="#contact" class="btn">Get Started</a>
+         </div>
+         <div class="pricing-card">
+            <h3>Family Wellness Package</h3>
+            <p class="price">$149<span>/month</span></p>
+            <ul>
+              <li>Group training sessions</li>
+              <li>Nutrition &amp; wellness advice</li>
+              <li>Family-oriented exercises</li>
+            </ul>
+            <a href="#contact" class="btn">Get Started</a>
+         </div>
+         <div class="pricing-card">
+            <h3>Premium Personal Training</h3>
+            <p class="price">$199<span>/month</span></p>
+            <ul>
+              <li>One-on-one sessions</li>
+              <li>Customized workout plan</li>
+              <li>24/7 support &amp; tracking</li>
+            </ul>
+            <a href="#contact" class="btn">Get Started</a>
+         </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Animated Counters Section -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-container">
+         <div class="stat">
+            <h3 id="happyClients">0</h3>
+            <p>Happy Clients</p>
+         </div>
+         <div class="stat">
+            <h3 id="sessionsCompleted">0</h3>
+            <p>Sessions Completed</p>
+         </div>
+         <div class="stat">
+            <h3 id="yearsExperience">0</h3>
+            <p>Years of Experience</p>
+         </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Carousel Section -->
   <section id="testimonials">
     <div class="container">
       <div class="section-title">
         <h2>Testimonials</h2>
         <p>Hear from our satisfied clients who have transformed their lives.</p>
       </div>
-      <div class="testimonials">
-        <div class="testimonial">
-          <p>"Olympian Health Solutions has completely transformed my approach to fitness and recovery. I feel stronger and more confident every day."</p>
-          <h4>- Jane D.</h4>
-        </div>
-        <div class="testimonial">
-          <p>"Their personalized care and expert guidance made all the difference in my rehabilitation journey."</p>
-          <h4>- Mark T.</h4>
-        </div>
+      <div class="carousel">
+         <div class="carousel-item active">
+            <p>"Olympian Health Solutions has been a game-changer. My grandmother regained her mobility and confidence!"</p>
+            <h4>- Susan R.</h4>
+         </div>
+         <div class="carousel-item">
+            <p>"Their expertise and personalized care helped me recover faster than I ever expected."</p>
+            <h4>- Michael B.</h4>
+         </div>
+         <div class="carousel-item">
+            <p>"I felt supported every step of the way. Highly recommend for family wellness."</p>
+            <h4>- Linda K.</h4>
+         </div>
+      </div>
+      <div class="carousel-controls">
+         <button id="prevBtn">&#10094;</button>
+         <button id="nextBtn">&#10095;</button>
       </div>
     </div>
   </section>
-
+  
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
@@ -364,23 +558,69 @@
       </form>
     </div>
   </section>
-
+  
   <!-- Footer -->
   <footer>
     <div class="container">
       <p>&copy; 2025 Olympian Health Solutions. All Rights Reserved.</p>
     </div>
   </footer>
-
-  <!-- Smooth Scrolling Script -->
+  
+  <!-- JavaScript for Modal, Counters & Carousel -->
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+      // Modal functionality
+      var modal = document.getElementById("offerModal");
+      var closeBtn = document.querySelector(".modal .close");
+      // Show modal after 5 seconds
+      setTimeout(function() {
+        modal.style.display = "block";
+      }, 5000);
+      closeBtn.onclick = function() {
+        modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      
+      // Animated Counters
+      function animateValue(id, start, end, duration) {
+        var obj = document.getElementById(id);
+        var range = end - start;
+        var current = start;
+        var increment = end > start ? 1 : -1;
+        var stepTime = Math.abs(Math.floor(duration / range));
+        var timer = setInterval(function() {
+          current += increment;
+          obj.textContent = current;
+          if (current == end) {
+            clearInterval(timer);
+          }
+        }, stepTime);
+      }
+      animateValue("happyClients", 0, 500, 2000);
+      animateValue("sessionsCompleted", 0, 1200, 2000);
+      animateValue("yearsExperience", 0, 25, 2000);
+      
+      // Carousel functionality
+      var carouselItems = document.querySelectorAll('.carousel-item');
+      var currentSlide = 0;
+      document.getElementById("nextBtn").addEventListener("click", function() {
+        carouselItems[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % carouselItems.length;
+        carouselItems[currentSlide].classList.add('active');
       });
+      document.getElementById("prevBtn").addEventListener("click", function() {
+        carouselItems[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+        carouselItems[currentSlide].classList.add('active');
+      });
+      // Auto slide carousel every 5 seconds
+      setInterval(function() {
+        document.getElementById("nextBtn").click();
+      }, 5000);
     });
   </script>
 </body>
