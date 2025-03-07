@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Olympian Health Solutions | Your Path to Lasting Health</title>
   <!-- Link to your external CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- HEADER & NAVIGATION -->
@@ -136,7 +136,126 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS / SUCCESS STORIES (OPTIONAL) -->
+  <!-- NEW: AREAS WE TREAT (INTERACTIVE SECTION) -->
+  <section class="areas-we-treat container">
+    <h2>Areas We Treat</h2>
+    <p class="section-intro">
+      Hover or click on any region below to see how we address common musculoskeletal issues.
+    </p>
+    <div class="areas-grid">
+      <!-- Each button triggers the same modal, but with different data attributes -->
+      <button 
+        class="area-button" 
+        data-title="Headaches & Migraines" 
+        data-content="Our approach targets tension in the cervical spine and surrounding musculature, helping alleviate headaches caused by poor posture, stress, or muscular imbalances. By combining gentle stretches, postural training, and relaxation techniques, we aim to reduce the frequency and intensity of migraines and headaches."
+      >
+        Headaches & Migraines
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Neck Pain" 
+        data-content="We use targeted exercises, manual techniques, and ergonomic assessments to restore mobility, decrease stiffness, and correct imbalances that contribute to chronic neck pain."
+      >
+        Neck Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Low Back Pain" 
+        data-content="Our low back protocols involve core stabilization, movement re-education, and flexibility work. We collaborate with your existing healthcare provider to ensure safe progression and long-term relief."
+      >
+        Low Back Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Shoulder Pain" 
+        data-content="From rotator cuff strains to impingements, we emphasize corrective exercises, scapular stabilization, and postural alignment to promote healthy, pain-free shoulder function."
+      >
+        Shoulder Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Elbow Pain" 
+        data-content="Whether it’s tennis elbow or golfer’s elbow, our exercise prescriptions target forearm strength and flexibility while reducing inflammation through graded load."
+      >
+        Elbow Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="SI Joint & Hip Pain" 
+        data-content="We address sacroiliac joint dysfunctions and hip-related pain through stabilization exercises, muscle energy techniques, and precise movement pattern retraining."
+      >
+        SI Joint & Hip Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Hand & Wrist Pain" 
+        data-content="Carpal tunnel, arthritis, and overuse injuries are managed through gentle mobilizations, strengthening, and task-specific retraining to restore function."
+      >
+        Hand & Wrist Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Knee Pain" 
+        data-content="We focus on proper knee alignment, quadriceps/hamstring balance, and functional exercises to alleviate pain and restore mobility, particularly for osteoarthritis or post-surgical recovery."
+      >
+        Knee Pain
+      </button>
+      <button 
+        class="area-button" 
+        data-title="Ankle & Foot Pain" 
+        data-content="Our programs include balance training, ankle stabilization, and foot biomechanics correction to help you move confidently and pain-free."
+      >
+        Ankle & Foot Pain
+      </button>
+    </div>
+  </section>
+
+  <!-- NEW: CHRONIC DISEASES (INTERACTIVE SECTION) -->
+  <section class="chronic-diseases container">
+    <h2>Learn How We Combat Chronic Diseases</h2>
+    <p class="section-intro">
+      Exercise is a powerful tool in managing and potentially improving various chronic conditions. Click below to learn more.
+    </p>
+    <div class="diseases-grid">
+      <button 
+        class="disease-button" 
+        data-title="Diabetes" 
+        data-content="Our exercise prescriptions aim to improve insulin sensitivity, aid in weight management, and enhance cardiovascular health. We monitor progression closely to ensure safe blood glucose control."
+      >
+        Diabetes
+      </button>
+      <button 
+        class="disease-button" 
+        data-title="Arthritis" 
+        data-content="Through low-impact exercises, joint mobilizations, and targeted strengthening, we help reduce joint stress and enhance daily function for those with osteoarthritis or rheumatoid arthritis."
+      >
+        Arthritis
+      </button>
+      <button 
+        class="disease-button" 
+        data-title="Extreme Fatigue" 
+        data-content="We employ a graded exercise approach to gradually build endurance, reduce fatigue, and improve overall energy levels, especially in conditions like chronic fatigue syndrome."
+      >
+        Extreme Fatigue
+      </button>
+      <button 
+        class="disease-button" 
+        data-title="Depression" 
+        data-content="Physical activity is linked to the release of endorphins and improved mood regulation. Our programs incorporate moderate aerobic and strength exercises to support mental well-being."
+      >
+        Depression
+      </button>
+      <button 
+        class="disease-button" 
+        data-title="Cognitive Decline" 
+        data-content="Regular exercise promotes better blood flow, neuroplasticity, and can help slow cognitive decline. We integrate coordination drills and functional tasks to keep both mind and body active."
+      >
+        Cognitive Decline
+      </button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS / SUCCESS STORIES -->
   <section class="testimonials-section container">
     <h2>Success Stories</h2>
     <p class="section-intro">Real clients, real results. Here’s what some of our members have to say about their journey with Olympian Health Solutions.</p>
@@ -218,6 +337,15 @@
       <p class="footer-disclaimer">*Disclaimer: Olympian Health Solutions does not replace medical advice from your physician. Always consult with your doctor before starting a new exercise program.</p>
     </div>
   </footer>
+
+  <!-- MODAL (Used for Both Areas & Diseases) -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close-modal">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalContent"></p>
+    </div>
+  </div>
 
   <!-- Link to your external JS -->
   <script src="script.js"></script>
