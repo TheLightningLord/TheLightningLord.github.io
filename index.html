@@ -31,35 +31,47 @@
 </head>
 <body>
   <!-- HEADER -->
-  <header role="banner">
-    <div class="container header-container">
-      <div class="logo">
-        <img src="assets/images/logo.webp" alt="Olympian Health Solutions Logo" loading="lazy">
-        <span>Olympian Health Solutions</span>
-      </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav role="navigation">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="telehealth.html">Telehealth</a></li>
-          <li><a href="in-home.html">In-Home</a></li>
-          <li><a href="in-clinic.html">In-Clinic</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="books.html">Books</a></li>
-          <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-          <li><a href="learn.html">Learn How We Help</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+<header role="banner">
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="Olympian Health Solutions Logo" loading="lazy" />
+      <span>Olympian Health Solutions</span>
     </div>
-  </header>
+    
+    <!-- Hamburger Toggle for Mobile -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <!-- Navigation -->
+    <nav role="navigation">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        
+        <!-- Dropdown Menu for Services -->
+        <li class="dropdown">
+          <a href="services.html">Services</a>
+          <ul class="dropdown-content">
+            <li><a href="telehealth.html">Telehealth</a></li>
+            <li><a href="in-home.html">In-Home</a></li>
+            <li><a href="in-clinic.html">In-Clinic</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
+        <li><a href="learn.html">Learn How We Help</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
   <!-- HERO SECTION -->
   <section class="hero-section scroll-reveal">
