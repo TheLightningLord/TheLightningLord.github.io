@@ -45,18 +45,44 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 let carouselIndex = 0;
 const updateCarousel = () => {
-  const totalItems = document.querySelectorAll(".carousel-item").length;
+  const totalItems = document.querySelectorAll(".carousel-inner#carouselInner .carousel-item").length;
   carouselInner.style.transform = "translateX(-" + carouselIndex * 100 + "%)";
   prevBtn.disabled = carouselIndex <= 0;
   nextBtn.disabled = carouselIndex >= totalItems - 1;
 };
-prevBtn.addEventListener("click", () => {
-  carouselIndex = Math.max(0, carouselIndex - 1);
+if(prevBtn && nextBtn) {
+  prevBtn.addEventListener("click", () => {
+    carouselIndex = Math.max(0, carouselIndex - 1);
+    updateCarousel();
+  });
+  nextBtn.addEventListener("click", () => {
+    const totalItems = document.querySelectorAll(".carousel-inner#carouselInner .carousel-item").length;
+    carouselIndex = Math.min(totalItems - 1, carouselIndex + 1);
+    updateCarousel();
+  });
   updateCarousel();
-});
-nextBtn.addEventListener("click", () => {
-  const totalItems = document.querySelectorAll(".carousel-item").length;
-  carouselIndex = Math.min(totalItems - 1, carouselIndex + 1);
-  updateCarousel();
-});
-updateCarousel();
+}
+
+// Meet the Team Carousel
+const teamCarouselInner = document.getElementById("teamCarouselInner");
+const teamPrevBtn = document.getElementById("teamPrevBtn");
+const teamNextBtn = document.getElementById("teamNextBtn");
+let teamCarouselIndex = 0;
+const updateTeamCarousel = () => {
+  const totalTeamItems = document.querySelectorAll("#teamCarouselInner .carousel-item").length;
+  teamCarouselInner.style.transform = "translateX(-" + teamCarouselIndex * 100 + "%)";
+  teamPrevBtn.disabled = teamCarouselIndex <= 0;
+  teamNextBtn.disabled = teamCarouselIndex >= totalTeamItems - 1;
+};
+if(teamPrevBtn && teamNextBtn) {
+  teamPrevBtn.addEventListener("click", () => {
+    teamCarouselIndex = Math.max(0, teamCarouselIndex - 1);
+    updateTeamCarousel();
+  });
+  teamNextBtn.addEventListener("click", () => {
+    const totalTeamItems = document.querySelectorAll("#teamCarouselInner .carousel-item").length;
+    teamCarouselIndex = Math.min(totalTeamItems - 1, teamCarouselIndex + 1);
+    updateTeamCarousel();
+  });
+  updateTeamCarousel();
+}
