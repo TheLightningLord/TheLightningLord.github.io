@@ -1,292 +1,299 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions - End pain, and start thriving. Your trusted partner for in-home personal training, telehealth, and in-clinic services to manage pain and chronic diseases." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | End pain, and start thriving</title>
-  <!-- Google Fonts for enhanced typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Link to external CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="spinner"></div>
-  </div>
+/* ========== RESET & VARIABLES ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --gold: #C9A142;
+  --blue: #003366;
+  --silver: #C0C0C0;
+  --black: #000;
+  --white: #fff;
+  --grey: #f8f8f8;
+  --dark-grey: #333;
+  --transition-speed: 0.3s;
+}
 
-  <!-- Back to Top Button -->
-  <button id="backToTop" title="Back to top">&#8679;</button>
+/* ========== GLOBAL STYLES ========== */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--white);
+  color: var(--dark-grey);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-  <!-- HEADER & NAVIGATION -->
- <!-- HEADER & NAVIGATION -->
-<header class="sticky-header">
-  <nav class="navbar container">
-    <div class="logo">Olympian Health Solutions</div>
-    <!-- Hamburger Menu Button for Mobile -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="telehealth.html">Telehealth</a></li>
-      <li><a href="in-home.html">In-Home</a></li>
-      <li><a href="in-clinic.html">In-Clinic</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="books.html">Books</a></li>
-      <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="olympus-jeopardy.html">Jeopardy!</a></li>
-    </ul>
-  </nav>
-</header>
+/* ========== CONTAINER ========== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
 
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1>End pain, and start thriving</h1>
-      <p class="tagline">
-        Experience a revolutionary approach to pain management and chronic disease care through exercise medicine.
-      </p>
-      <a href="booking.html" class="btn-primary">Schedule Appointment</a>
-    </div>
-  </section>
+/* ========== HEADER & NAVIGATION ========== */
+header {
+  position: sticky;
+  top: 0;
+  background: var(--blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+header .logo {
+  display: flex;
+  align-items: center;
+}
+header .logo img {
+  height: 40px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+header .logo span {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.nav-links li a {
+  color: var(--silver);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background var(--transition-speed);
+}
+.nav-links li a:hover,
+.nav-links li a.active {
+  background: var(--gold);
+  color: var(--black);
+}
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--silver);
+  transition: background var(--transition-speed);
+}
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    background: var(--blue);
+    flex-direction: column;
+    padding: 2rem 1rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+  }
+  .nav-links.active {
+    right: 0;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
 
-  <!-- PROBLEM & SOLUTION SECTION -->
-  <section class="problem-solution container scroll-reveal">
-    <h2>We Understand Your Struggles—And We Have Solutions</h2>
-    <div class="ps-grid">
-      <div class="ps-item">
-        <h3>The Problems You Face</h3>
-        <ul>
-          <li><strong>Ongoing Pain:</strong> Residual pain post-therapy or injury.</li>
-          <li><strong>Chronic Conditions:</strong> Diabetes, arthritis, cognitive decline, mood disorders.</li>
-          <li><strong>Confusing Guidance:</strong> Uncertainty about safe, effective exercise.</li>
-          <li><strong>Time Constraints:</strong> Busy professionals with limited availability.</li>
-          <li><strong>Limited Mobility:</strong> Elderly or at-risk individuals needing specialized care.</li>
-        </ul>
-      </div>
-      <div class="ps-item">
-        <h3>How We Help You Thrive</h3>
-        <ul>
-          <li><strong>Pain Science Expertise:</strong> Targeted, research-based strategies for lasting relief.</li>
-          <li><strong>Chronic Disease Management:</strong> Tailored exercise prescriptions to combat diabetes, arthritis, and more.</li>
-          <li><strong>Convenient Delivery:</strong> In-home, telehealth, or in-clinic options to fit your life.</li>
-          <li><strong>Personalized Plans:</strong> Programs customized to your goals and medical needs.</li>
-          <li><strong>Ongoing Support:</strong> Collaborative care with your existing healthcare team.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+/* ========== HERO SECTION ========== */
+.hero-section {
+  position: relative;
+  min-height: 70vh;
+  background: url("../images/landing.webp") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: var(--white);
+  padding: 2rem;
+  z-index: 1;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero-content p.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-buttons a {
+  background: var(--gold);
+  color: var(--black);
+  padding: 0.8rem 1.6rem;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background var(--transition-speed);
+}
+.hero-buttons a:hover {
+  background: var(--silver);
+}
 
-  <!-- WHY CHOOSE US SECTION -->
-  <section class="why-choose-us-section scroll-reveal">
-    <div class="container">
-      <h2>Why Choose Olympian Health Solutions?</h2>
-      <div class="why-grid">
-        <div class="why-item">
-          <h3>Expert-Led Care</h3>
-          <p>
-            Our team of DPT students, certified trainers, and nutrition coaches combine clinical expertise with the latest in pain science research.
-          </p>
-        </div>
-        <div class="why-item">
-          <h3>Seamless Rehab Transition</h3>
-          <p>
-            We bridge the gap between traditional therapy and independent exercise, ensuring continuous progress after your initial treatment.
-          </p>
-        </div>
-        <div class="why-item">
-          <h3>Holistic Wellness</h3>
-          <p>
-            Beyond exercise, we provide nutrition coaching and mental health support to promote overall well-being.
-          </p>
-        </div>
-        <div class="why-item">
-          <h3>Proven Results</h3>
-          <p>
-            Our evidence-based approach has empowered countless clients to regain mobility, reduce pain, and reclaim their quality of life.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ========== MAIN CONTENT SECTIONS ========== */
+section {
+  margin-bottom: 3rem;
+}
+section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--blue);
+  text-align: center;
+}
+.section-intro {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--dark-grey);
+}
 
-  <!-- CORE SERVICES SECTION -->
-  <section id="services-overview" class="services-overview container scroll-reveal">
-    <h2>Our Core Services</h2>
-    <p class="section-intro">
-      Whether you need in-home guidance, virtual sessions, or in-clinic expertise, our services are designed to meet your unique needs.
-    </p>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="https://via.placeholder.com/100" alt="In-Home Icon" />
-        <h3>In-Home Personal Training</h3>
-        <p>Receive tailored exercise programs in the comfort of your home. Perfect for seniors, post-injury, and those with mobility challenges.</p>
-        <a href="in-home.html" class="service-link">Learn More</a>
-      </div>
-      <div class="service-card">
-        <img src="https://via.placeholder.com/100" alt="Telehealth Icon" />
-        <h3>Telehealth Sessions</h3>
-        <p>Connect with experts via video consultations for ongoing guidance and customized exercise plans—anywhere, anytime.</p>
-        <a href="telehealth.html" class="service-link">Learn More</a>
-      </div>
-      <div class="service-card">
-        <img src="https://via.placeholder.com/100" alt="In-Clinic Icon" />
-        <h3>In-Clinic Appointments</h3>
-        <p>Visit our state-of-the-art clinic for hands-on sessions and specialized care with advanced equipment and expert support.</p>
-        <a href="in-clinic.html" class="service-link">Learn More</a>
-      </div>
-      <div class="service-card">
-        <img src="https://via.placeholder.com/100" alt="Nutrition Icon" />
-        <h3>Nutrition Coaching</h3>
-        <p>Optimize your health with holistic nutritional guidance designed to support weight management, metabolic health, and recovery.</p>
-        <a href="services.html" class="service-link">All Services</a>
-      </div>
-    </div>
-  </section>
+/* ========== TESTIMONIALS CAROUSEL ========== */
+.carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+.testimonial {
+  background: var(--grey);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.testimonial p.quote {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.testimonial p.author {
+  font-weight: bold;
+}
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+.carousel-controls button {
+  background: var(--gold);
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+.carousel-controls button:hover {
+  background: var(--silver);
+}
 
-  <!-- INTERACTIVE: AREAS WE TREAT -->
-  <section class="areas-we-treat container scroll-reveal">
-    <h2>Areas We Treat</h2>
-    <p class="section-intro">
-      Hover or click on any area below to discover our research-backed methods to relieve pain and restore function.
-    </p>
-    <div class="areas-grid">
-      <!-- Each button contains data attributes for modal content -->
-      <button class="area-button" data-title="Headaches & Migraines" data-content="Our comprehensive approach focuses on relieving tension in the cervical region through corrective exercises, targeted stretches, and stress-reduction techniques that help alleviate headaches and migraines.">Headaches & Migraines</button>
-      <button class="area-button" data-title="Neck Pain" data-content="Through precise manual therapy techniques, postural retraining, and individualized exercise programs, we reduce neck stiffness and pain, allowing for improved range of motion and comfort.">Neck Pain</button>
-      <button class="area-button" data-title="Low Back Pain" data-content="Our protocols emphasize core stabilization, lumbar mobility, and progressive strength training to ease low back pain and prevent recurrence, in collaboration with your healthcare providers.">Low Back Pain</button>
-      <button class="area-button" data-title="Shoulder Pain" data-content="By addressing muscular imbalances, scapular stabilization, and corrective movement patterns, we alleviate shoulder pain and improve overall upper body function.">Shoulder Pain</button>
-      <button class="area-button" data-title="Elbow Pain" data-content="Targeted exercises combined with load management and stretching protocols help reduce inflammation and restore strength to the elbow, addressing conditions such as tennis or golfer’s elbow.">Elbow Pain</button>
-      <button class="area-button" data-title="SI Joint & Hip Pain" data-content="Our treatment plans for SI joint and hip pain focus on stabilization, proper alignment, and strengthening of surrounding musculature to relieve discomfort and improve mobility.">SI Joint & Hip Pain</button>
-      <button class="area-button" data-title="Hand & Wrist Pain" data-content="We design exercises to enhance grip strength, promote flexibility, and reduce repetitive strain, providing relief for conditions like carpal tunnel syndrome and arthritis.">Hand & Wrist Pain</button>
-      <button class="area-button" data-title="Knee Pain" data-content="Our knee pain programs integrate corrective exercises, balance training, and quadriceps-hamstring conditioning to promote joint health and reduce pain from arthritis or injury.">Knee Pain</button>
-      <button class="area-button" data-title="Ankle & Foot Pain" data-content="Specialized foot and ankle exercises, along with balance and proprioception training, help alleviate pain and improve stability for a more confident stride.">Ankle & Foot Pain</button>
-    </div>
-  </section>
+/* ========== CERTIFICATIONS SECTION ========== */
+.certifications {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.certifications img {
+  max-height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+.certifications img:hover {
+  filter: grayscale(0%);
+}
 
-  <!-- INTERACTIVE: CHRONIC DISEASES -->
-  <section class="chronic-diseases container scroll-reveal">
-    <h2>Learn How We Combat Chronic Diseases</h2>
-    <p class="section-intro">
-      Our exercise medicine strategies have been shown to improve outcomes in chronic conditions. Click below to learn more.
-    </p>
-    <div class="diseases-grid">
-      <button class="disease-button" data-title="Diabetes" data-content="Our tailored exercise programs enhance insulin sensitivity and promote weight management, contributing to better glycemic control and overall metabolic health.">Diabetes</button>
-      <button class="disease-button" data-title="Arthritis" data-content="Through low-impact movement, joint mobilizations, and strengthening exercises, we help reduce joint stress and improve mobility in patients with arthritis.">Arthritis</button>
-      <button class="disease-button" data-title="Extreme Fatigue" data-content="A graded exercise approach is employed to gradually build stamina, combat fatigue, and boost overall energy levels, even in individuals with chronic fatigue syndrome.">Extreme Fatigue</button>
-      <button class="disease-button" data-title="Depression" data-content="Regular physical activity stimulates endorphin production and improves mood regulation, supporting mental health and reducing symptoms of depression.">Depression</button>
-      <button class="disease-button" data-title="Cognitive Decline" data-content="Our programs incorporate balance, coordination, and aerobic exercises that enhance cerebral blood flow and promote neuroplasticity, helping slow cognitive decline.">Cognitive Decline</button>
-    </div>
-  </section>
+/* ========== BACK TO TOP BUTTON ========== */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: background var(--transition-speed);
+}
+#backToTop:hover {
+  background: var(--silver);
+}
 
-  <!-- TESTIMONIALS / SUCCESS STORIES -->
-  <section class="testimonials-section container scroll-reveal">
-    <h2>Success Stories</h2>
-    <p class="section-intro">
-      Real clients, real transformations. See how our approach has empowered individuals to overcome pain and reclaim their lives.
-    </p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <p class="quote">
-          “After years of chronic back pain, Olympian’s program transformed my life. I’m now active, confident, and pain-free!”
-        </p>
-        <p class="author">— Sarah M.</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="quote">
-          “The telehealth sessions seamlessly fit into my busy schedule. I’ve seen remarkable improvements in my diabetes management.”
-        </p>
-        <p class="author">— James K.</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="quote">
-          “Olympian Health Solutions helped me transition from rehab to full recovery after knee surgery. Their expertise is unmatched.”
-        </p>
-        <p class="author">— Maria R.</p>
-      </div>
-    </div>
-  </section>
+/* ========== SCROLL REVEAL ANIMATION ========== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  <!-- OUR THREE-STEP APPROACH -->
-  <section id="philosophy" class="philosophy-section scroll-reveal">
-    <div class="container">
-      <h2>Our Three-Step Approach</h2>
-      <p class="section-intro">
-        Backed by rigorous research in pain science and exercise physiology, our methodology ensures lasting results.
-      </p>
-      <div class="philosophy-grid">
-        <div class="philosophy-item">
-          <h3>1. Comprehensive Assessment</h3>
-          <p>We evaluate your medical history, current condition, and goals to craft a safe and effective exercise prescription.</p>
-          <a href="booking.html" class="philosophy-link">Get Assessed</a>
-        </div>
-        <div class="philosophy-item">
-          <h3>2. Tailored Intervention</h3>
-          <p>Our personalized programs integrate pain management, functional training, and nutritional guidance based on the latest clinical research.</p>
-          <a href="research.html" class="philosophy-link">View Our Research</a>
-        </div>
-        <div class="philosophy-item">
-          <h3>3. Continuous Support</h3>
-          <p>We track your progress, adjust your program, and work in tandem with your healthcare providers to ensure sustainable improvements.</p>
-          <a href="contact.html" class="philosophy-link">Talk to an Expert</a>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ========== FOOTER ========== */
+footer {
+  background: var(--blue);
+  color: var(--white);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  font-size: 0.9rem;
+}
 
-  <!-- BOOKING CTA SECTION -->
-  <section id="booking-section" class="booking-cta-section">
-    <div class="booking-overlay"></div>
-    <div class="booking-content container">
-      <h2>Ready to Take the Next Step?</h2>
-      <p>
-        Whether you’re battling chronic pain, managing a chronic disease, or simply want to feel your best, our proven methods can help you thrive.
-      </p>
-      <a href="booking.html" class="btn-primary">Book Your Consultation</a>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact-section" class="contact-section container scroll-reveal">
-    <h2>Get in Touch</h2>
-    <p>
-      Have questions or need more details? Reach out to us and let’s start a conversation about your health.
-    </p>
-    <div class="contact-details">
-      <p><strong>Email:</strong> <a href="mailto:info@olympianhealth.com">info@olympianhealth.com</a></p>
-      <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-      <p><strong>Address:</strong> 123 Wellness Ave, Suite 100, Your City, ST 00000</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="main-footer">
-    <div class="footer-container container">
-      <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
-      <p class="footer-disclaimer">*Disclaimer: Our services do not replace professional medical advice. Always consult your physician before beginning any new exercise program.</p>
-    </div>
-  </footer>
-
-  <!-- MODAL (Used for interactive areas & diseases) -->
-  <div id="infoModal" class="modal">
-    <div class="modal-content">
-      <span id="closeModal" class="close-modal">&times;</span>
-      <h3 id="modalTitle"></h3>
-      <p id="modalContent"></p>
-    </div>
-  </div>
-
-  <!-- Link to external JS -->
-  <script src="assets/js/script.js"></script>
-</body>
-</html>
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  header .logo span { font-size: 1.6rem; }
+  .hero-content h1 { font-size: 2.5rem; }
+  .hero-content p.tagline { font-size: 1.2rem; }
+  .board-cell { font-size: 1.2rem; padding: 0.8rem; }
+  section h2 { font-size: 1.8rem; }
+}
