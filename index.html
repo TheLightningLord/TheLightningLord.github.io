@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions - Your trusted partner for in-home personal training, telehealth, and in-clinic services to help you manage pain, continue rehab, and improve overall health.">
+  <meta name="description" content="Olympian Health Solutions - End pain, and start thriving. Your trusted partner for in-home personal training, telehealth, and in-clinic services to manage pain and chronic diseases." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | Your Path to Lasting Health</title>
-  <!-- Link to your external CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Olympian Health Solutions | End pain, and start thriving</title>
+  <!-- Google Fonts for enhanced typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to top">&#8679;</button>
+
   <!-- HEADER & NAVIGATION -->
   <header class="sticky-header">
     <nav class="navbar container">
@@ -34,274 +44,192 @@
   <section class="hero-section">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
-      <h1>Revolutionize Your Health With Exercise Medicine</h1>
-      <p>
-        We’re the experts in post-therapy rehab, chronic disease management, and prescriptive exercise for long-term wellness. Let us guide you toward a stronger, pain-free life.
+      <h1>End pain, and start thriving</h1>
+      <p class="tagline">
+        Experience a revolutionary approach to pain management and chronic disease care through exercise medicine.
       </p>
       <a href="booking.html" class="btn-primary">Schedule Appointment</a>
     </div>
   </section>
 
   <!-- PROBLEM & SOLUTION SECTION -->
-  <section class="problem-solution container">
+  <section class="problem-solution container scroll-reveal">
     <h2>We Understand Your Struggles—And We Have Solutions</h2>
     <div class="ps-grid">
       <div class="ps-item">
         <h3>The Problems You Face</h3>
         <ul>
-          <li><strong>Ongoing Pain:</strong> Post-physical therapy, chiropractic care, or injury.</li>
+          <li><strong>Ongoing Pain:</strong> Residual pain post-therapy or injury.</li>
           <li><strong>Chronic Conditions:</strong> Diabetes, arthritis, cognitive decline, mood disorders.</li>
-          <li><strong>Lack of Guidance:</strong> Unsure how to exercise safely or effectively.</li>
+          <li><strong>Confusing Guidance:</strong> Uncertainty about safe, effective exercise.</li>
           <li><strong>Time Constraints:</strong> Busy professionals with limited availability.</li>
-          <li><strong>Limited Mobility:</strong> Elderly or at-risk individuals who need extra care.</li>
+          <li><strong>Limited Mobility:</strong> Elderly or at-risk individuals needing specialized care.</li>
         </ul>
       </div>
       <div class="ps-item">
-        <h3>How Olympian Health Solutions Helps</h3>
+        <h3>How We Help You Thrive</h3>
         <ul>
-          <li><strong>Pain Science Expertise:</strong> Evidence-based strategies for continued rehab and pain management.</li>
-          <li><strong>Chronic Disease Specialists:</strong> Exercise prescriptions designed to combat diabetes, arthritis, and more.</li>
-          <li><strong>Convenient Delivery:</strong> In-home, telehealth, or in-clinic sessions to fit your lifestyle.</li>
-          <li><strong>Custom Plans:</strong> Tailored programs to your goals, schedule, and medical needs.</li>
-          <li><strong>Ongoing Support:</strong> Our team collaborates with your healthcare providers for seamless continuity of care.</li>
+          <li><strong>Pain Science Expertise:</strong> Targeted, research-based strategies for lasting relief.</li>
+          <li><strong>Chronic Disease Management:</strong> Tailored exercise prescriptions to combat diabetes, arthritis, and more.</li>
+          <li><strong>Convenient Delivery:</strong> In-home, telehealth, or in-clinic options to fit your life.</li>
+          <li><strong>Personalized Plans:</strong> Programs customized to your goals and medical needs.</li>
+          <li><strong>Ongoing Support:</strong> Collaborative care with your existing healthcare team.</li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- WHY CHOOSE US SECTION -->
-  <section class="why-choose-us-section">
+  <section class="why-choose-us-section scroll-reveal">
     <div class="container">
       <h2>Why Choose Olympian Health Solutions?</h2>
       <div class="why-grid">
         <div class="why-item">
-          <h3>Industry-Leading Expertise</h3>
+          <h3>Expert-Led Care</h3>
           <p>
-            Our team includes Doctor of Physical Therapy students, certified personal trainers, and nutrition coaches who specialize in exercise physiology and pain science research.
+            Our team of DPT students, certified trainers, and nutrition coaches combine clinical expertise with the latest in pain science research.
           </p>
         </div>
         <div class="why-item">
-          <h3>Continuing Rehab, Simplified</h3>
+          <h3>Seamless Rehab Transition</h3>
           <p>
-            We bridge the gap between clinical therapy and everyday fitness. Whether you’ve just finished PT or chiropractic care, we’ll ensure your progress continues safely.
+            We bridge the gap between traditional therapy and independent exercise, ensuring continuous progress after your initial treatment.
           </p>
         </div>
         <div class="why-item">
-          <h3>Holistic Approach</h3>
+          <h3>Holistic Wellness</h3>
           <p>
-            From personalized nutrition coaching to mental well-being, we tackle every aspect of health—so you can experience real, lasting change.
+            Beyond exercise, we provide nutrition coaching and mental health support to promote overall well-being.
           </p>
         </div>
         <div class="why-item">
-          <h3>Proven Track Record</h3>
+          <h3>Proven Results</h3>
           <p>
-            Our evidence-based methods have helped countless individuals reclaim their mobility, manage chronic conditions, and regain confidence in daily life.
+            Our evidence-based approach has empowered countless clients to regain mobility, reduce pain, and reclaim their quality of life.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES HIGHLIGHT (QUICK OVERVIEW) -->
-  <section id="services-overview" class="services-overview container">
+  <!-- CORE SERVICES SECTION -->
+  <section id="services-overview" class="services-overview container scroll-reveal">
     <h2>Our Core Services</h2>
     <p class="section-intro">
-      Choose the service format that suits your needs—whether it’s online, at home, or in our fully-equipped clinic.
+      Whether you need in-home guidance, virtual sessions, or in-clinic expertise, our services are designed to meet your unique needs.
     </p>
     <div class="services-grid">
       <div class="service-card">
         <img src="https://via.placeholder.com/100" alt="In-Home Icon" />
         <h3>In-Home Personal Training</h3>
-        <p>We bring clinical-grade exercise interventions directly to your living room—ideal for seniors, post-injury, and those with mobility challenges.</p>
+        <p>Receive tailored exercise programs in the comfort of your home. Perfect for seniors, post-injury, and those with mobility challenges.</p>
         <a href="in-home.html" class="service-link">Learn More</a>
       </div>
       <div class="service-card">
         <img src="https://via.placeholder.com/100" alt="Telehealth Icon" />
         <h3>Telehealth Sessions</h3>
-        <p>Stay consistent with your exercise routine and get expert guidance from anywhere in the world—perfect for busy professionals and remote clients.</p>
+        <p>Connect with experts via video consultations for ongoing guidance and customized exercise plans—anywhere, anytime.</p>
         <a href="telehealth.html" class="service-link">Learn More</a>
       </div>
       <div class="service-card">
         <img src="https://via.placeholder.com/100" alt="In-Clinic Icon" />
         <h3>In-Clinic Appointments</h3>
-        <p>Visit our professional facility for hands-on sessions, specialized equipment, and collaboration with healthcare professionals on-site.</p>
+        <p>Visit our state-of-the-art clinic for hands-on sessions and specialized care with advanced equipment and expert support.</p>
         <a href="in-clinic.html" class="service-link">Learn More</a>
       </div>
       <div class="service-card">
         <img src="https://via.placeholder.com/100" alt="Nutrition Icon" />
         <h3>Nutrition Coaching</h3>
-        <p>Enhance your results with holistic dietary strategies, from weight management to chronic disease support.</p>
+        <p>Optimize your health with holistic nutritional guidance designed to support weight management, metabolic health, and recovery.</p>
         <a href="services.html" class="service-link">All Services</a>
       </div>
     </div>
   </section>
 
-  <!-- NEW: AREAS WE TREAT (INTERACTIVE SECTION) -->
-  <section class="areas-we-treat container">
+  <!-- INTERACTIVE: AREAS WE TREAT -->
+  <section class="areas-we-treat container scroll-reveal">
     <h2>Areas We Treat</h2>
     <p class="section-intro">
-      Hover or click on any region below to see how we address common musculoskeletal issues.
+      Hover or click on any area below to discover our research-backed methods to relieve pain and restore function.
     </p>
     <div class="areas-grid">
-      <!-- Each button triggers the same modal, but with different data attributes -->
-      <button 
-        class="area-button" 
-        data-title="Headaches & Migraines" 
-        data-content="Our approach targets tension in the cervical spine and surrounding musculature, helping alleviate headaches caused by poor posture, stress, or muscular imbalances. By combining gentle stretches, postural training, and relaxation techniques, we aim to reduce the frequency and intensity of migraines and headaches."
-      >
-        Headaches & Migraines
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Neck Pain" 
-        data-content="We use targeted exercises, manual techniques, and ergonomic assessments to restore mobility, decrease stiffness, and correct imbalances that contribute to chronic neck pain."
-      >
-        Neck Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Low Back Pain" 
-        data-content="Our low back protocols involve core stabilization, movement re-education, and flexibility work. We collaborate with your existing healthcare provider to ensure safe progression and long-term relief."
-      >
-        Low Back Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Shoulder Pain" 
-        data-content="From rotator cuff strains to impingements, we emphasize corrective exercises, scapular stabilization, and postural alignment to promote healthy, pain-free shoulder function."
-      >
-        Shoulder Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Elbow Pain" 
-        data-content="Whether it’s tennis elbow or golfer’s elbow, our exercise prescriptions target forearm strength and flexibility while reducing inflammation through graded load."
-      >
-        Elbow Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="SI Joint & Hip Pain" 
-        data-content="We address sacroiliac joint dysfunctions and hip-related pain through stabilization exercises, muscle energy techniques, and precise movement pattern retraining."
-      >
-        SI Joint & Hip Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Hand & Wrist Pain" 
-        data-content="Carpal tunnel, arthritis, and overuse injuries are managed through gentle mobilizations, strengthening, and task-specific retraining to restore function."
-      >
-        Hand & Wrist Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Knee Pain" 
-        data-content="We focus on proper knee alignment, quadriceps/hamstring balance, and functional exercises to alleviate pain and restore mobility, particularly for osteoarthritis or post-surgical recovery."
-      >
-        Knee Pain
-      </button>
-      <button 
-        class="area-button" 
-        data-title="Ankle & Foot Pain" 
-        data-content="Our programs include balance training, ankle stabilization, and foot biomechanics correction to help you move confidently and pain-free."
-      >
-        Ankle & Foot Pain
-      </button>
+      <!-- Each button contains data attributes for modal content -->
+      <button class="area-button" data-title="Headaches & Migraines" data-content="Our comprehensive approach focuses on relieving tension in the cervical region through corrective exercises, targeted stretches, and stress-reduction techniques that help alleviate headaches and migraines.">Headaches & Migraines</button>
+      <button class="area-button" data-title="Neck Pain" data-content="Through precise manual therapy techniques, postural retraining, and individualized exercise programs, we reduce neck stiffness and pain, allowing for improved range of motion and comfort.">Neck Pain</button>
+      <button class="area-button" data-title="Low Back Pain" data-content="Our protocols emphasize core stabilization, lumbar mobility, and progressive strength training to ease low back pain and prevent recurrence, in collaboration with your healthcare providers.">Low Back Pain</button>
+      <button class="area-button" data-title="Shoulder Pain" data-content="By addressing muscular imbalances, scapular stabilization, and corrective movement patterns, we alleviate shoulder pain and improve overall upper body function.">Shoulder Pain</button>
+      <button class="area-button" data-title="Elbow Pain" data-content="Targeted exercises combined with load management and stretching protocols help reduce inflammation and restore strength to the elbow, addressing conditions such as tennis or golfer’s elbow.">Elbow Pain</button>
+      <button class="area-button" data-title="SI Joint & Hip Pain" data-content="Our treatment plans for SI joint and hip pain focus on stabilization, proper alignment, and strengthening of surrounding musculature to relieve discomfort and improve mobility.">SI Joint & Hip Pain</button>
+      <button class="area-button" data-title="Hand & Wrist Pain" data-content="We design exercises to enhance grip strength, promote flexibility, and reduce repetitive strain, providing relief for conditions like carpal tunnel syndrome and arthritis.">Hand & Wrist Pain</button>
+      <button class="area-button" data-title="Knee Pain" data-content="Our knee pain programs integrate corrective exercises, balance training, and quadriceps-hamstring conditioning to promote joint health and reduce pain from arthritis or injury.">Knee Pain</button>
+      <button class="area-button" data-title="Ankle & Foot Pain" data-content="Specialized foot and ankle exercises, along with balance and proprioception training, help alleviate pain and improve stability for a more confident stride.">Ankle & Foot Pain</button>
     </div>
   </section>
 
-  <!-- NEW: CHRONIC DISEASES (INTERACTIVE SECTION) -->
-  <section class="chronic-diseases container">
+  <!-- INTERACTIVE: CHRONIC DISEASES -->
+  <section class="chronic-diseases container scroll-reveal">
     <h2>Learn How We Combat Chronic Diseases</h2>
     <p class="section-intro">
-      Exercise is a powerful tool in managing and potentially improving various chronic conditions. Click below to learn more.
+      Our exercise medicine strategies have been shown to improve outcomes in chronic conditions. Click below to learn more.
     </p>
     <div class="diseases-grid">
-      <button 
-        class="disease-button" 
-        data-title="Diabetes" 
-        data-content="Our exercise prescriptions aim to improve insulin sensitivity, aid in weight management, and enhance cardiovascular health. We monitor progression closely to ensure safe blood glucose control."
-      >
-        Diabetes
-      </button>
-      <button 
-        class="disease-button" 
-        data-title="Arthritis" 
-        data-content="Through low-impact exercises, joint mobilizations, and targeted strengthening, we help reduce joint stress and enhance daily function for those with osteoarthritis or rheumatoid arthritis."
-      >
-        Arthritis
-      </button>
-      <button 
-        class="disease-button" 
-        data-title="Extreme Fatigue" 
-        data-content="We employ a graded exercise approach to gradually build endurance, reduce fatigue, and improve overall energy levels, especially in conditions like chronic fatigue syndrome."
-      >
-        Extreme Fatigue
-      </button>
-      <button 
-        class="disease-button" 
-        data-title="Depression" 
-        data-content="Physical activity is linked to the release of endorphins and improved mood regulation. Our programs incorporate moderate aerobic and strength exercises to support mental well-being."
-      >
-        Depression
-      </button>
-      <button 
-        class="disease-button" 
-        data-title="Cognitive Decline" 
-        data-content="Regular exercise promotes better blood flow, neuroplasticity, and can help slow cognitive decline. We integrate coordination drills and functional tasks to keep both mind and body active."
-      >
-        Cognitive Decline
-      </button>
+      <button class="disease-button" data-title="Diabetes" data-content="Our tailored exercise programs enhance insulin sensitivity and promote weight management, contributing to better glycemic control and overall metabolic health.">Diabetes</button>
+      <button class="disease-button" data-title="Arthritis" data-content="Through low-impact movement, joint mobilizations, and strengthening exercises, we help reduce joint stress and improve mobility in patients with arthritis.">Arthritis</button>
+      <button class="disease-button" data-title="Extreme Fatigue" data-content="A graded exercise approach is employed to gradually build stamina, combat fatigue, and boost overall energy levels, even in individuals with chronic fatigue syndrome.">Extreme Fatigue</button>
+      <button class="disease-button" data-title="Depression" data-content="Regular physical activity stimulates endorphin production and improves mood regulation, supporting mental health and reducing symptoms of depression.">Depression</button>
+      <button class="disease-button" data-title="Cognitive Decline" data-content="Our programs incorporate balance, coordination, and aerobic exercises that enhance cerebral blood flow and promote neuroplasticity, helping slow cognitive decline.">Cognitive Decline</button>
     </div>
   </section>
 
   <!-- TESTIMONIALS / SUCCESS STORIES -->
-  <section class="testimonials-section container">
+  <section class="testimonials-section container scroll-reveal">
     <h2>Success Stories</h2>
-    <p class="section-intro">Real clients, real results. Here’s what some of our members have to say about their journey with Olympian Health Solutions.</p>
+    <p class="section-intro">
+      Real clients, real transformations. See how our approach has empowered individuals to overcome pain and reclaim their lives.
+    </p>
     <div class="testimonials-grid">
       <div class="testimonial-card">
         <p class="quote">
-          “I struggled with chronic back pain for years after PT ended. Olympian’s approach helped me finally get relief and build strength—I’m now pain-free for the first time in a decade!”
+          “After years of chronic back pain, Olympian’s program transformed my life. I’m now active, confident, and pain-free!”
         </p>
         <p class="author">— Sarah M.</p>
       </div>
       <div class="testimonial-card">
         <p class="quote">
-          “Their telehealth sessions fit perfectly into my busy schedule. I’ve managed my diabetes better in the last 3 months than I have in years of trying on my own.”
+          “The telehealth sessions seamlessly fit into my busy schedule. I’ve seen remarkable improvements in my diabetes management.”
         </p>
         <p class="author">— James K.</p>
       </div>
       <div class="testimonial-card">
         <p class="quote">
-          “After a knee surgery, I needed more guided exercise. Olympian bridged the gap between rehab and full recovery, and now I’m back to running 5Ks!”
+          “Olympian Health Solutions helped me transition from rehab to full recovery after knee surgery. Their expertise is unmatched.”
         </p>
         <p class="author">— Maria R.</p>
       </div>
     </div>
   </section>
 
-  <!-- OUR PHILOSOPHY (CONDENSED) -->
-  <section id="philosophy" class="philosophy-section">
+  <!-- OUR THREE-STEP APPROACH -->
+  <section id="philosophy" class="philosophy-section scroll-reveal">
     <div class="container">
       <h2>Our Three-Step Approach</h2>
       <p class="section-intro">
-        Backed by research in pain science and exercise physiology, we use a proven methodology to ensure lasting results.
+        Backed by rigorous research in pain science and exercise physiology, our methodology ensures lasting results.
       </p>
       <div class="philosophy-grid">
         <div class="philosophy-item">
           <h3>1. Comprehensive Assessment</h3>
-          <p>We review your medical history, current condition, and personal goals, ensuring each exercise prescription is safe and effective.</p>
+          <p>We evaluate your medical history, current condition, and goals to craft a safe and effective exercise prescription.</p>
           <a href="booking.html" class="philosophy-link">Get Assessed</a>
         </div>
         <div class="philosophy-item">
           <h3>2. Tailored Intervention</h3>
-          <p>From pain management to sports performance, we craft programs backed by the latest clinical research in movement and nutrition.</p>
+          <p>Our personalized programs integrate pain management, functional training, and nutritional guidance based on the latest clinical research.</p>
           <a href="research.html" class="philosophy-link">View Our Research</a>
         </div>
         <div class="philosophy-item">
           <h3>3. Continuous Support</h3>
-          <p>We monitor progress, adjust interventions, and collaborate with your healthcare providers to keep you on track for the long haul.</p>
+          <p>We track your progress, adjust your program, and work in tandem with your healthcare providers to ensure sustainable improvements.</p>
           <a href="contact.html" class="philosophy-link">Talk to an Expert</a>
         </div>
       </div>
@@ -314,16 +242,18 @@
     <div class="booking-content container">
       <h2>Ready to Take the Next Step?</h2>
       <p>
-        Whether you’re managing chronic pain, tackling diabetes, or just want to move better, we’re here to help. Complete our quick questionnaire and let’s start transforming your health.
+        Whether you’re battling chronic pain, managing a chronic disease, or simply want to feel your best, our proven methods can help you thrive.
       </p>
       <a href="booking.html" class="btn-primary">Book Your Consultation</a>
     </div>
   </section>
 
-  <!-- FOOTER / CONTACT INFO -->
-  <section id="contact-section" class="contact-section container">
+  <!-- CONTACT SECTION -->
+  <section id="contact-section" class="contact-section container scroll-reveal">
     <h2>Get in Touch</h2>
-    <p>Have questions or want more details? We’d love to hear from you.</p>
+    <p>
+      Have questions or need more details? Reach out to us and let’s start a conversation about your health.
+    </p>
     <div class="contact-details">
       <p><strong>Email:</strong> <a href="mailto:info@olympianhealth.com">info@olympianhealth.com</a></p>
       <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
@@ -331,14 +261,15 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="main-footer">
     <div class="footer-container container">
       <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
-      <p class="footer-disclaimer">*Disclaimer: Olympian Health Solutions does not replace medical advice from your physician. Always consult with your doctor before starting a new exercise program.</p>
+      <p class="footer-disclaimer">*Disclaimer: Our services do not replace professional medical advice. Always consult your physician before beginning any new exercise program.</p>
     </div>
   </footer>
 
-  <!-- MODAL (Used for Both Areas & Diseases) -->
+  <!-- MODAL (Used for interactive areas & diseases) -->
   <div id="infoModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close-modal">&times;</span>
@@ -347,7 +278,7 @@
     </div>
   </div>
 
-  <!-- Link to your external JS -->
+  <!-- Link to external JS -->
   <script src="script.js"></script>
 </body>
 </html>
