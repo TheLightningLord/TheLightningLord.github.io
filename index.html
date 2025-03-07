@@ -268,62 +268,58 @@ img {
 }
 
 /* ========== FAQ / ACCORDION SECTION ========== */
-.faq-section {
-  padding: 3rem 0;
-}
+<section id="faq" class="faq-section container">
+  <h2>Top 4 Common Questions</h2>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>1. What is my next step?</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          After a consultation, we’ll design a goal-based plan to address your specific needs. You’ll leave with clarity on scheduling, costs, and expectations.
+        </p>
+      </div>
+    </div>
 
-.faq-section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>2. How long until I see real benefits?</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Results vary, but most clients notice improved mobility, strength, or reduced pain within a few weeks of consistent exercise and guidance.
+        </p>
+      </div>
+    </div>
 
-.accordion {
-  max-width: 800px;
-  margin: 0 auto;
-}
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>3. What if I have never exercised before?</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          No problem. We tailor each program to your baseline, gradually introducing you to safe and effective movements that build confidence and capability.
+        </p>
+      </div>
+    </div>
 
-.accordion-item {
-  margin-bottom: 1rem;
-  border: 1px solid var(--dark-grey);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.accordion-header {
-  background-color: var(--grey);
-  width: 100%;
-  padding: 1rem;
-  text-align: left;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-}
-
-.accordion-icon {
-  font-weight: bold;
-}
-
-.accordion-content {
-  background-color: var(--white);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s;
-  padding: 0 1rem;
-}
-
-.accordion-content p {
-  margin: 1rem 0;
-}
-
-/* Active Accordion State */
-.accordion-item.active .accordion-content {
-  max-height: 200px; /* adjust if you expect more text */
-  padding: 1rem;
-}
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>4. Can I use insurance or HSA?</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>
+          Coverage depends on your plan and our collaboration with your healthcare provider. We’re happy to help you navigate possible reimbursement options.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 /* ========== BOOKING CTA SECTION ========== */
 .booking-cta-section {
