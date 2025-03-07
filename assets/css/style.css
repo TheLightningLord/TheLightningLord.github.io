@@ -48,6 +48,7 @@ header {
   z-index: 1000;
   background: var(--blue);
   color: var(--white);
+  width: 100%;
 }
 
 /* Main flex container inside the header */
@@ -55,9 +56,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.5rem 1rem;
+  /* Removed max-width so it can stretch fully */
+  width: 100%;
+  padding: 0.5rem 2rem; /* increased horizontal padding */
 }
 
 /* Logo styles */
@@ -66,7 +67,7 @@ header .logo {
   align-items: center;
 }
 header .logo img {
-  height: 40px;
+  height: 60px; /* increased logo size */
   width: auto;
   margin-right: 0.5rem;
 }
@@ -153,6 +154,7 @@ header .logo span {
 }
 
 /* ========== HERO SECTION ========== */
+/* (No scroll-reveal class here so it's visible immediately) */
 .hero-section {
   position: relative;
   min-height: 70vh;
@@ -375,6 +377,7 @@ section h2 {
 }
 
 /* ========== SCROLL REVEAL ANIMATION ========== */
+/* Keep this for other sections if desired, but not for the hero */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
