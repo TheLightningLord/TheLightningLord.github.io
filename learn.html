@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Learn How We Help – Explore how Olympian Health Solutions combats joint pain, arthritis, and other chronic conditions through personalized exercise medicine." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn How We Help | Olympian Health Solutions</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET & VARIABLES ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #C9A142;
+      --blue: #003366;
+      --silver: #C0C0C0;
+      --black: #000;
+      --white: #fff;
+      --grey: #f8f8f8;
+      --dark-grey: #333;
+      --transition-speed: 0.3s;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--white);
+      color: var(--dark-grey);
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    /* ---------- HEADER ---------- */
+    header {
+      background: var(--blue);
+      color: var(--white);
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 { font-size: 2.5rem; }
+    /* ---------- HERO ---------- */
+    .hero {
+      background: url("../images/learn-banner.jpg") center/cover no-repeat;
+      position: relative;
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      margin-bottom: 2rem;
+    }
+    .hero h2 { font-size: 2rem; }
+    /* ---------- CARD GRID ---------- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      position: relative;
+      background: var(--gold);
+      color: var(--blue);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform var(--transition-speed);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 51, 102, 0.85);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition-speed);
+      padding: 1rem;
+      text-align: center;
+    }
+    .card:hover .card-overlay {
+      opacity: 1;
+    }
+    /* ---------- INFO SECTION ---------- */
+    .info-section {
+      margin: 2rem 0;
+      font-size: 1.1rem;
+      color: var(--dark-grey);
+    }
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--blue);
+      color: var(--white);
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .card img { height: 150px; }
+      .card-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Navigation -->
+  <header>
+    <div class="container">
+      <h1>Learn How We Help</h1>
+      <p>Discover our unique, science-based approach to alleviating pain and enhancing quality of life.</p>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h2>Your Path to a Pain-Free Life</h2>
+  </div>
+
+  <!-- Interactive Card Grid -->
+  <div class="container">
+    <div class="card-grid">
+      <!-- Card 1: Joint Pain & Arthritis -->
+      <div class="card">
+        <img src="assets/images/arthritis.jpg" alt="Joint Pain & Arthritis" />
+        <div class="card-content">
+          <div class="card-title">Joint Pain & Arthritis</div>
+        </div>
+        <div class="card-overlay">
+          Our expert programs combine low-impact exercises, strength training, and personalized rehabilitation strategies to reduce joint inflammation and improve mobility.
+        </div>
+      </div>
+      <!-- Card 2: Chronic Back & Neck Pain -->
+      <div class="card">
+        <img src="assets/images/back-pain.jpg" alt="Chronic Back & Neck Pain" />
+        <div class="card-content">
+          <div class="card-title">Chronic Back & Neck Pain</div>
+        </div>
+        <div class="card-overlay">
+          Experience customized exercise routines that target muscular imbalances and promote spinal health to alleviate persistent back and neck discomfort.
+        </div>
+      </div>
+      <!-- Card 3: Post-Injury Rehabilitation -->
+      <div class="card">
+        <img src="assets/images/rehab.jpg" alt="Post-Injury Rehabilitation" />
+        <div class="card-content">
+          <div class="card-title">Post-Injury Rehab</div>
+        </div>
+        <div class="card-overlay">
+          Our rehabilitation strategies ensure a seamless transition from clinical therapy to independent exercise, fostering safe recovery and long-term strength.
+        </div>
+      </div>
+      <!-- Card 4: Metabolic & Diabetes Management -->
+      <div class="card">
+        <img src="assets/images/diabetes.jpg" alt="Metabolic & Diabetes Management" />
+        <div class="card-content">
+          <div class="card-title">Diabetes & Metabolic Health</div>
+        </div>
+        <div class="card-overlay">
+          Discover how tailored exercise programs combined with nutritional guidance can boost insulin sensitivity and promote balanced metabolism.
+        </div>
+      </div>
+      <!-- Card 5: Mental Health & Mood Disorders -->
+      <div class="card">
+        <img src="assets/images/mental-health.jpg" alt="Mental Health & Mood Disorders" />
+        <div class="card-content">
+          <div class="card-title">Mental Health & Mood</div>
+        </div>
+        <div class="card-overlay">
+          Learn how our holistic approach, integrating exercise and mindfulness, supports mental well-being and helps manage depression and stress.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Section: Why Choose Us -->
+  <div class="container info-section">
+    <h2>Why Hire Olympian Health Solutions?</h2>
+    <p>
+      Whether you're struggling with chronic pain, recovering from an injury, or seeking to manage a metabolic or mood disorder, our expert team—comprised of physical therapy specialists, certified trainers, and nutrition coaches—delivers personalized, science-based programs that transform lives. Our approach is simple yet powerful:
+    </p>
+    <ul style="list-style: disc; text-align: left; max-width: 600px; margin: 1rem auto;">
+      <li>Evidence-based exercise prescriptions to reduce pain and boost function.</li>
+      <li>Customized rehabilitation and preventive care tailored to your needs.</li>
+      <li>Holistic nutritional and lifestyle guidance to support long-term health.</li>
+      <li>Continuous support and collaboration with healthcare professionals.</li>
+    </ul>
+    <p>
+      Discover the positive outcomes our services can bring and take the first step toward a pain-free, thriving life.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
