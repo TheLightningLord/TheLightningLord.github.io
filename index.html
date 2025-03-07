@@ -7,9 +7,9 @@
   <title>Olympian Health Solutions | End pain, and start thriving</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Link to external CSS -->
+  <!-- External CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,33 +30,35 @@
   </script>
 </head>
 <body>
-  <!-- Header -->
+  <!-- HEADER -->
   <header role="banner">
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="Olympian Health Solutions Logo" loading="lazy" />
-      <span>Olympian Health Solutions</span>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Olympian Health Solutions Logo" loading="lazy">
+        <span>Olympian Health Solutions</span>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav role="navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="telehealth.html">Telehealth</a></li>
+          <li><a href="in-home.html">In-Home</a></li>
+          <li><a href="in-clinic.html">In-Clinic</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="booking.html" class="cta-btn">Book Now</a></li>
+          <li><a href="learn.html">Learn How We Help</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav role="navigation">
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="telehealth.html">Telehealth</a></li>
-        <li><a href="in-home.html">In-Home</a></li>
-        <li><a href="in-clinic.html">In-Clinic</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-        <li><a href="learn.html">Learn How We Help</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
   </header>
 
   <!-- HERO SECTION -->
@@ -64,7 +66,9 @@
     <div class="hero-overlay"></div>
     <div class="hero-content container">
       <h1>End pain, and start thriving</h1>
-      <p class="tagline">Transform your life with personalized, science-based exercise medicine and holistic care.</p>
+      <p class="tagline">
+        Transform your life with personalized, science-based exercise medicine and holistic care.
+      </p>
       <div class="hero-buttons">
         <a href="booking.html">Schedule Now</a>
         <a href="learn.html">Learn How We Help</a>
@@ -78,7 +82,65 @@
     <p class="section-intro">
       Whether you suffer from chronic pain, metabolic challenges, or limited mobility, our expert strategies are designed to help you overcome obstacles and achieve optimal health.
     </p>
-    <!-- Additional content can be added here -->
+    <!-- Additional problem/solution content can go here -->
+  </section>
+
+  <!-- INTERACTIVE "LEARN HOW WE HELP" CARD GRID -->
+  <section class="container scroll-reveal">
+    <h2>Learn How We Help</h2>
+    <p class="section-intro">
+      Explore our science-based solutions to common conditions. Hover over each card for a quick overview.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <img src="assets/images/arthritis.jpg" alt="Joint Pain & Arthritis">
+        <div class="card-content">
+          <div class="card-title">Joint Pain & Arthritis</div>
+        </div>
+        <div class="card-overlay">
+          Our expert programs combine low-impact exercises, strength training, and personalized rehabilitation to reduce joint inflammation and improve mobility.
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/images/back-pain.jpg" alt="Chronic Back & Neck Pain">
+        <div class="card-content">
+          <div class="card-title">Chronic Back & Neck Pain</div>
+        </div>
+        <div class="card-overlay">
+          Experience customized routines that target muscular imbalances and promote spinal health to alleviate persistent discomfort.
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/images/rehab.jpg" alt="Post-Injury Rehabilitation">
+        <div class="card-content">
+          <div class="card-title">Post-Injury Rehab</div>
+        </div>
+        <div class="card-overlay">
+          Our rehabilitation strategies ensure a seamless transition from clinical therapy to independent exercise for safe recovery and lasting strength.
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/images/diabetes.jpg" alt="Diabetes & Metabolic Health">
+        <div class="card-content">
+          <div class="card-title">Diabetes & Metabolic Health</div>
+        </div>
+        <div class="card-overlay">
+          Discover how tailored exercise programs combined with nutritional guidance can boost insulin sensitivity and balance metabolism.
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/images/mental-health.jpg" alt="Mental Health & Mood Disorders">
+        <div class="card-content">
+          <div class="card-title">Mental Health & Mood</div>
+        </div>
+        <div class="card-overlay">
+          Learn how our holistic approach integrates exercise and mindfulness to support mental well-being and manage depression and stress.
+        </div>
+      </div>
+    </div>
+    <p>
+      <a href="learn.html" class="cta-btn">Read More on How We Help</a>
+    </p>
   </section>
 
   <!-- TESTIMONIALS CAROUSEL -->
@@ -92,7 +154,7 @@
       </div>
       <div class="carousel-item">
         <div class="testimonial">
-          <p class="quote">"Their telehealth sessions fit perfectly into my schedule while revolutionizing my diabetes management."</p>
+          <p class="quote">"Their telehealth sessions revolutionized my diabetes management and fit perfectly into my busy schedule."</p>
           <p class="author">— James K.</p>
         </div>
       </div>
@@ -106,6 +168,38 @@
     <div class="carousel-controls">
       <button id="prevBtn" aria-label="Previous testimonial">&#10094;</button>
       <button id="nextBtn" aria-label="Next testimonial">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- MEET THE TEAM CAROUSEL -->
+  <section class="carousel scroll-reveal">
+    <h2>Meet Our Team</h2>
+    <div class="carousel-inner" id="teamCarouselInner">
+      <div class="carousel-item">
+        <div class="team-member">
+          <img src="assets/images/team1.jpg" alt="Team Member 1" loading="lazy">
+          <h3>Dr. Alex Johnson</h3>
+          <p>PT Student & Exercise Physiologist</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="team-member">
+          <img src="assets/images/team2.jpg" alt="Team Member 2" loading="lazy">
+          <h3>Jordan Lee</h3>
+          <p>Certified Personal Trainer</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="team-member">
+          <img src="assets/images/team3.jpg" alt="Team Member 3" loading="lazy">
+          <h3>Maria Garcia</h3>
+          <p>Nutrition Coach & Wellness Advisor</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls" id="teamCarouselControls">
+      <button id="teamPrevBtn" aria-label="Previous team member">&#10094;</button>
+      <button id="teamNextBtn" aria-label="Next team member">&#10095;</button>
     </div>
   </section>
 
