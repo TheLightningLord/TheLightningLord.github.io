@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Mount Olympus Challenge: A strategic, interactive quiz to dispel fitness myths and provide lifestyle resources for managing conditions like diabetes and arthritis." />
+  <meta name="description" content="Mount Olympus Challenge: A strategic, interactive quiz to dispel fitness myths and provide lifestyle resources for managing conditions like Diabetes, Arthritis, Hypertension, Obesity, and Depression." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mount Olympus Challenge - Lifestyle Quiz</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Inline CSS (You can also place this in assets/css/style.css) -->
   <style>
     /* ========== RESET & VARIABLES ========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --gold: #C9A142;
       --blue: #003366;
@@ -32,9 +29,7 @@
       padding: 1rem;
       text-align: center;
     }
-    h1, h2, h3, p {
-      margin-bottom: 1rem;
-    }
+    h1, h2, h3, p { margin-bottom: 1rem; }
     input, select, button {
       padding: 0.7rem;
       margin: 0.5rem;
@@ -49,9 +44,8 @@
       cursor: pointer;
       transition: background var(--transition-speed);
     }
-    button:hover {
-      background: #FFD700;
-    }
+    button:hover { background: #FFD700; }
+
     /* ========== SETUP SCREEN ========== */
     #setupScreen {
       max-width: 500px;
@@ -62,21 +56,18 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       background: var(--grey);
     }
+
     /* ========== GAME SCREEN HEADER ========== */
     .game-header {
-      background: url("../images/olympus-banner.jpg") center/cover no-repeat;
+      background: url("assets/images/olympus-banner.jpg") center/cover no-repeat;
       padding: 1.5rem;
       color: var(--white);
       text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
       margin-bottom: 1rem;
     }
-    .game-header h2 {
-      font-size: 2rem;
-    }
-    .game-info {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
+    .game-header h2 { font-size: 2rem; }
+    .game-info { font-size: 1.2rem; margin-top: 0.5rem; }
+
     /* ========== GAME BOARD ========== */
     #gameBoard {
       max-width: 800px;
@@ -87,9 +78,7 @@
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    .board-row {
-      display: flex;
-    }
+    .board-row { display: flex; }
     .board-cell {
       flex: 1;
       padding: 1rem;
@@ -101,9 +90,7 @@
       color: var(--blue);
       transition: background var(--transition-speed);
     }
-    .board-cell:hover {
-      background: #FFD700;
-    }
+    .board-cell:hover { background: #FFD700; }
     .board-cell.disabled {
       background: #ddd;
       cursor: default;
@@ -117,11 +104,11 @@
       font-size: 1.2rem;
       padding: 1rem;
     }
-    /* ========== MODAL ========== */
+
+    /* ========== MODAL FOR QUESTIONS ========== */
     .modal {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.8);
@@ -133,10 +120,7 @@
       transition: opacity 0.3s ease;
       z-index: 1000;
     }
-    .modal.open {
-      opacity: 1;
-      visibility: visible;
-    }
+    .modal.open { opacity: 1; visibility: visible; }
     .modal-content {
       background: var(--white);
       padding: 2rem;
@@ -146,13 +130,8 @@
       text-align: center;
       position: relative;
     }
-    .modal-content h2 {
-      margin-bottom: 1rem;
-      color: var(--blue);
-    }
-    .modal-content p {
-      margin-bottom: 1.5rem;
-    }
+    .modal-content h2 { margin-bottom: 1rem; color: var(--blue); }
+    .modal-content p { margin-bottom: 1.5rem; }
     .close-modal {
       position: absolute;
       top: 10px;
@@ -161,23 +140,17 @@
       font-size: 1.5rem;
       color: var(--blue);
     }
+
     /* ========== RESPONSIVE ========== */
     @media (max-width: 600px) {
-      #setupScreen, .game-header, #gameBoard {
-        width: 90%;
-      }
-      .board-cell {
-        font-size: 1.2rem;
-        padding: 0.8rem;
-      }
-      .game-header h2 {
-        font-size: 1.8rem;
-      }
+      #setupScreen, .game-header, #gameBoard { width: 90%; }
+      .board-cell { font-size: 1.2rem; padding: 0.8rem; }
+      .game-header h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
-  <!-- SETUP SCREEN: Enter Name & Choose Condition -->
+  <!-- SETUP SCREEN: Player Name & Condition Choice -->
   <div id="setupScreen">
     <h1>Welcome to the Mount Olympus Challenge!</h1>
     <p>Enter your name and choose a condition to focus on:</p>
@@ -187,6 +160,9 @@
         <option value="">Select Condition</option>
         <option value="Diabetes">Diabetes</option>
         <option value="Arthritis">Arthritis</option>
+        <option value="Hypertension">Hypertension</option>
+        <option value="Obesity">Obesity</option>
+        <option value="Depression">Depression</option>
       </select>
       <br />
       <button type="submit">Start Game</button>
@@ -212,17 +188,12 @@
       <span class="close-modal" id="closeModal">&times;</span>
       <h2 id="questionTitle"></h2>
       <p id="questionText"></p>
-      <div id="actionButtons">
-        <button id="showAnswerBtn">Show Answer</button>
-      </div>
-      <div id="answerSection" style="display:none;">
-        <p id="answerText"></p>
-        <button id="correctBtn">Correct (+<span id="pointsCorrect">0</span>)</button>
-        <button id="wrongBtn">Wrong (-<span id="pointsWrong">0</span>)</button>
-      </div>
+      <div id="optionsContainer"></div>
+      <div id="feedback" style="margin-top: 1rem; font-weight: bold;"></div>
     </div>
   </div>
 
+  <!-- JavaScript -->
   <script>
     /* ========= Data for Conditions ========= */
     const conditionsData = {
@@ -231,25 +202,70 @@
           {
             title: "Exercise",
             questions: [
-              { value: 100, question: "What type of exercise improves insulin sensitivity?", answer: "Aerobic exercise" },
-              { value: 200, question: "Name one benefit of strength training for diabetes.", answer: "Improved muscle glucose uptake" },
-              { value: 300, question: "What is the recommended frequency of exercise for diabetes management?", answer: "At least 150 minutes per week" }
+              { 
+                value: 100, 
+                question: "What type of exercise improves insulin sensitivity?", 
+                choices: ["Aerobic exercise", "Strength training", "Flexibility training", "Balance exercises"],
+                answer: "Aerobic exercise" 
+              },
+              { 
+                value: 200, 
+                question: "Which exercise is most effective for muscle glucose uptake?", 
+                choices: ["Yoga", "Aerobic exercise", "High-intensity interval training", "Pilates"],
+                answer: "High-intensity interval training" 
+              },
+              { 
+                value: 300, 
+                question: "How many minutes per week are recommended for diabetes management?", 
+                choices: ["60 minutes", "90 minutes", "150 minutes", "200 minutes"],
+                answer: "150 minutes" 
+              }
             ]
           },
           {
             title: "Nutrition",
             questions: [
-              { value: 100, question: "Which nutrient is important for blood sugar control?", answer: "Fiber" },
-              { value: 200, question: "Name a dietary approach effective for diabetes.", answer: "Low glycemic index diet" },
-              { value: 300, question: "How do healthy fats benefit metabolic health?", answer: "They stabilize blood sugar and reduce inflammation." }
+              { 
+                value: 100, 
+                question: "Which nutrient helps control blood sugar levels?", 
+                choices: ["Protein", "Fiber", "Fat", "Vitamin C"],
+                answer: "Fiber" 
+              },
+              { 
+                value: 200, 
+                question: "A low glycemic index diet emphasizes foods that:", 
+                choices: ["Spike blood sugar", "Slowly raise blood sugar", "Are high in fat", "Are low in calories"],
+                answer: "Slowly raise blood sugar" 
+              },
+              { 
+                value: 300, 
+                question: "Healthy fats help by:", 
+                choices: ["Raising cholesterol", "Stabilizing blood sugar", "Increasing insulin", "Lowering metabolism"],
+                answer: "Stabilizing blood sugar" 
+              }
             ]
           },
           {
             title: "Lifestyle",
             questions: [
-              { value: 100, question: "How does stress affect blood sugar levels?", answer: "It increases cortisol, which raises blood sugar." },
-              { value: 200, question: "Name one benefit of regular physical activity.", answer: "Improved mood and energy" },
-              { value: 300, question: "Why is sleep important for managing diabetes?", answer: "It regulates hormones affecting appetite and glucose metabolism." }
+              { 
+                value: 100, 
+                question: "Stress increases which hormone that affects blood sugar?", 
+                choices: ["Insulin", "Cortisol", "Adrenaline", "Estrogen"],
+                answer: "Cortisol" 
+              },
+              { 
+                value: 200, 
+                question: "Regular physical activity helps improve:", 
+                choices: ["Sleep quality", "Mood", "Energy levels", "All of the above"],
+                answer: "All of the above" 
+              },
+              { 
+                value: 300, 
+                question: "Adequate sleep is important because it:", 
+                choices: ["Raises blood sugar", "Regulates hormones", "Decreases metabolism", "Increases appetite"],
+                answer: "Regulates hormones" 
+              }
             ]
           }
         ]
@@ -259,25 +275,289 @@
           {
             title: "Exercise",
             questions: [
-              { value: 100, question: "What type of exercise is most beneficial for arthritis?", answer: "Low-impact aerobic exercise" },
-              { value: 200, question: "Why is strength training recommended for arthritis?", answer: "It supports joints by building surrounding muscle." },
-              { value: 300, question: "Name an exercise modification for arthritis.", answer: "Water aerobics to reduce joint stress" }
+              { 
+                value: 100, 
+                question: "What type of exercise is most beneficial for arthritis patients?", 
+                choices: ["High-impact", "Low-impact", "Sprint training", "Heavy weightlifting"],
+                answer: "Low-impact" 
+              },
+              { 
+                value: 200, 
+                question: "Strength training helps arthritis by:", 
+                choices: ["Building muscle around joints", "Increasing joint pressure", "Reducing flexibility", "Causing inflammation"],
+                answer: "Building muscle around joints" 
+              },
+              { 
+                value: 300, 
+                question: "Which is an exercise modification for arthritis?", 
+                choices: ["Running on concrete", "Water aerobics", "Jumping jacks", "Box jumps"],
+                answer: "Water aerobics" 
+              }
             ]
           },
           {
             title: "Rehab",
             questions: [
-              { value: 100, question: "What does RICE stand for?", answer: "Rest, Ice, Compression, Elevation" },
-              { value: 200, question: "Name one benefit of physical therapy for arthritis.", answer: "Improved joint mobility" },
-              { value: 300, question: "Why is early mobilization important in arthritis care?", answer: "It helps maintain joint flexibility." }
+              { 
+                value: 100, 
+                question: "What does RICE stand for in injury management?", 
+                choices: ["Rest, Ice, Compression, Elevation", "Run, Inhale, Compress, Elevate", "Rest, Initiate, Cool, Evolve", "Relax, Ice, Compress, Exercise"],
+                answer: "Rest, Ice, Compression, Elevation" 
+              },
+              { 
+                value: 200, 
+                question: "Physical therapy can improve arthritis by:", 
+                choices: ["Decreasing joint mobility", "Increasing pain", "Improving joint flexibility", "None of the above"],
+                answer: "Improving joint flexibility" 
+              },
+              { 
+                value: 300, 
+                question: "Early mobilization in arthritis care is important because it:", 
+                choices: ["Increases stiffness", "Helps maintain joint range", "Causes injury", "Reduces muscle mass"],
+                answer: "Helps maintain joint range" 
+              }
             ]
           },
           {
             title: "Nutrition & Lifestyle",
             questions: [
-              { value: 100, question: "Name a nutrient that reduces inflammation.", answer: "Omega-3 fatty acids" },
-              { value: 200, question: "How does weight management affect arthritis?", answer: "Less weight means less joint stress." },
-              { value: 300, question: "What lifestyle change can help manage arthritis?", answer: "Regular exercise and a balanced diet." }
+              { 
+                value: 100, 
+                question: "Which nutrient reduces inflammation?", 
+                choices: ["Saturated fat", "Omega-3 fatty acids", "Carbohydrates", "Sugars"],
+                answer: "Omega-3 fatty acids" 
+              },
+              { 
+                value: 200, 
+                question: "Weight management is crucial for arthritis because:", 
+                choices: ["It increases joint stress", "It reduces joint stress", "It has no effect", "It causes joint pain"],
+                answer: "It reduces joint stress" 
+              },
+              { 
+                value: 300, 
+                question: "A healthy lifestyle for arthritis includes:", 
+                choices: ["Sedentary behavior", "Regular exercise and balanced diet", "Skipping meals", "Excessive exercise"],
+                answer: "Regular exercise and balanced diet" 
+              }
+            ]
+          }
+        ]
+      },
+      "Hypertension": {
+        categories: [
+          {
+            title: "Exercise",
+            questions: [
+              { 
+                value: 100, 
+                question: "Which type of exercise is recommended to lower blood pressure?", 
+                choices: ["Aerobic exercise", "Heavy weightlifting", "Sprinting", "High-impact training"],
+                answer: "Aerobic exercise" 
+              },
+              { 
+                value: 200, 
+                question: "How often should one exercise to help manage hypertension?", 
+                choices: ["Once a week", "Daily", "At least 3-5 times per week", "Never"],
+                answer: "At least 3-5 times per week" 
+              },
+              { 
+                value: 300, 
+                question: "Exercise lowers blood pressure by:", 
+                choices: ["Increasing stress hormones", "Improving heart efficiency", "Narrowing blood vessels", "Increasing sodium retention"],
+                answer: "Improving heart efficiency" 
+              }
+            ]
+          },
+          {
+            title: "Nutrition",
+            questions: [
+              { 
+                value: 100, 
+                question: "Reducing sodium intake helps lower:", 
+                choices: ["Blood sugar", "Cholesterol", "Blood pressure", "Heart rate"],
+                answer: "Blood pressure" 
+              },
+              { 
+                value: 200, 
+                question: "The DASH diet is designed to:", 
+                choices: ["Increase fat intake", "Lower blood pressure", "Increase sugar", "Promote weight gain"],
+                answer: "Lower blood pressure" 
+              },
+              { 
+                value: 300, 
+                question: "Which nutrient is beneficial for vascular health?", 
+                choices: ["Calcium", "Potassium", "Iron", "Vitamin D"],
+                answer: "Potassium" 
+              }
+            ]
+          },
+          {
+            title: "Lifestyle",
+            questions: [
+              { 
+                value: 100, 
+                question: "Stress management is important because stress can:", 
+                choices: ["Lower blood pressure", "Raise blood pressure", "Have no effect", "Stabilize blood pressure"],
+                answer: "Raise blood pressure" 
+              },
+              { 
+                value: 200, 
+                question: "Regular physical activity helps reduce:", 
+                choices: ["Weight", "Blood pressure", "Cholesterol", "None of the above"],
+                answer: "Blood pressure" 
+              },
+              { 
+                value: 300, 
+                question: "Good sleep hygiene contributes to:", 
+                choices: ["Higher blood pressure", "Better overall cardiovascular health", "Increased stress", "Poor heart function"],
+                answer: "Better overall cardiovascular health" 
+              }
+            ]
+          }
+        ]
+      },
+      "Obesity": {
+        categories: [
+          {
+            title: "Exercise",
+            questions: [
+              { 
+                value: 100, 
+                question: "Which type of exercise burns the most calories?", 
+                choices: ["Walking", "Jogging", "Swimming", "Light stretching"],
+                answer: "Jogging" 
+              },
+              { 
+                value: 200, 
+                question: "High-intensity interval training (HIIT) is effective because it:", 
+                choices: ["Burns calories only during exercise", "Boosts metabolism long after exercise", "Decreases metabolism", "Is not effective"],
+                answer: "Boosts metabolism long after exercise" 
+              },
+              { 
+                value: 300, 
+                question: "Consistent exercise in obesity management leads to:", 
+                choices: ["Weight gain", "Increased muscle mass and fat loss", "No changes", "Decreased energy"],
+                answer: "Increased muscle mass and fat loss" 
+              }
+            ]
+          },
+          {
+            title: "Nutrition",
+            questions: [
+              { 
+                value: 100, 
+                question: "Reducing calorie intake is important for weight loss. True or False?", 
+                choices: ["True", "False", "Maybe", "Not sure"],
+                answer: "True" 
+              },
+              { 
+                value: 200, 
+                question: "Which macronutrient is most calorie-dense?", 
+                choices: ["Protein", "Carbohydrates", "Fat", "Fiber"],
+                answer: "Fat" 
+              },
+              { 
+                value: 300, 
+                question: "A balanced diet for obesity should focus on:", 
+                choices: ["Processed foods", "Whole foods and portion control", "Sugary drinks", "Skipping meals"],
+                answer: "Whole foods and portion control" 
+              }
+            ]
+          },
+          {
+            title: "Lifestyle",
+            questions: [
+              { 
+                value: 100, 
+                question: "Reducing sedentary behavior helps with weight management. True or False?", 
+                choices: ["True", "False", "Not applicable", "Maybe"],
+                answer: "True" 
+              },
+              { 
+                value: 200, 
+                question: "Regular physical activity improves:", 
+                choices: ["Metabolism", "Energy levels", "Overall health", "All of the above"],
+                answer: "All of the above" 
+              },
+              { 
+                value: 300, 
+                question: "Behavioral changes are important because:", 
+                choices: ["They lead to temporary results", "They promote lasting weight loss", "They are not effective", "They only work for some"],
+                answer: "They promote lasting weight loss" 
+              }
+            ]
+          }
+        ]
+      },
+      "Depression": {
+        categories: [
+          {
+            title: "Exercise",
+            questions: [
+              { 
+                value: 100, 
+                question: "Regular exercise helps improve mood by:", 
+                choices: ["Releasing endorphins", "Decreasing serotonin", "Increasing stress", "None of the above"],
+                answer: "Releasing endorphins" 
+              },
+              { 
+                value: 200, 
+                question: "Which type of exercise is most associated with mental health benefits?", 
+                choices: ["Aerobic exercise", "Strength training", "Flexibility exercises", "Balance exercises"],
+                answer: "Aerobic exercise" 
+              },
+              { 
+                value: 300, 
+                question: "How does exercise affect stress hormones?", 
+                choices: ["Increases cortisol", "Decreases cortisol", "Has no effect", "Unpredictable effect"],
+                answer: "Decreases cortisol" 
+              }
+            ]
+          },
+          {
+            title: "Nutrition",
+            questions: [
+              { 
+                value: 100, 
+                question: "A diet rich in omega-3 fatty acids can help improve mood. True or False?", 
+                choices: ["True", "False", "Maybe", "Not sure"],
+                answer: "True" 
+              },
+              { 
+                value: 200, 
+                question: "Which food is high in omega-3s?", 
+                choices: ["Salmon", "Bread", "Pasta", "Rice"],
+                answer: "Salmon" 
+              },
+              { 
+                value: 300, 
+                question: "Balanced nutrition supports mental health by:", 
+                choices: ["Regulating neurotransmitters", "Causing mood swings", "Increasing anxiety", "None of the above"],
+                answer: "Regulating neurotransmitters" 
+              }
+            ]
+          },
+          {
+            title: "Lifestyle",
+            questions: [
+              { 
+                value: 100, 
+                question: "Social interaction is beneficial for mental health. True or False?", 
+                choices: ["True", "False", "Sometimes", "Rarely"],
+                answer: "True" 
+              },
+              { 
+                value: 200, 
+                question: "Regular physical activity reduces symptoms of depression by:", 
+                choices: ["Raising stress", "Improving sleep", "Causing fatigue", "None of the above"],
+                answer: "Improving sleep" 
+              },
+              { 
+                value: 300, 
+                question: "Mindfulness practices can be combined with exercise to improve mood. True or False?", 
+                choices: ["True", "False", "Maybe", "Not sure"],
+                answer: "True" 
+              }
             ]
           }
         ]
@@ -305,13 +585,8 @@
     const closeModalBtn = document.getElementById('closeModal');
     const questionTitleEl = document.getElementById('questionTitle');
     const questionTextEl = document.getElementById('questionText');
-    const showAnswerBtn = document.getElementById('showAnswerBtn');
-    const answerSection = document.getElementById('answerSection');
-    const answerTextEl = document.getElementById('answerText');
-    const correctBtn = document.getElementById('correctBtn');
-    const wrongBtn = document.getElementById('wrongBtn');
-    const pointsCorrectEl = document.getElementById('pointsCorrect');
-    const pointsWrongEl = document.getElementById('pointsWrong');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const feedbackEl = document.getElementById('feedback');
 
     /* ========= Setup Form Submission ========= */
     setupForm.addEventListener('submit', function(e) {
@@ -370,45 +645,40 @@
       const catIndex = cell.dataset.category;
       const qIndex = cell.dataset.index;
       currentQuestion = currentCategories[catIndex].questions[qIndex];
-      initScoring(currentQuestion.value);
+      // Set up modal with question and multiple-choice options
       questionTitleEl.textContent = currentCategories[catIndex].title + " - $" + currentQuestion.value;
       questionTextEl.textContent = currentQuestion.question;
-      answerSection.style.display = "none";
-      showAnswerBtn.style.display = "inline-block";
+      optionsContainer.innerHTML = "";
+      feedbackEl.textContent = "";
+      // Create a button for each choice
+      currentQuestion.choices.forEach(choice => {
+        const btn = document.createElement('button');
+        btn.textContent = choice;
+        btn.addEventListener('click', () => checkAnswer(btn.textContent));
+        optionsContainer.appendChild(btn);
+      });
       cell.classList.add('disabled');
       modal.classList.add('open');
     }
 
-    /* ========= Show Answer ========= */
-    showAnswerBtn.addEventListener('click', function() {
-      answerTextEl.textContent = "Answer: " + currentQuestion.answer;
-      answerSection.style.display = "block";
-      showAnswerBtn.style.display = "none";
-    });
-
-    /* ========= Scoring ========= */
-    function updateScoringValues(value) {
-      pointsCorrectEl.textContent = value;
-      pointsWrongEl.textContent = value;
-    }
-    function initScoring(questionValue) {
-      updateScoringValues(questionValue);
-    }
-    correctBtn.addEventListener('click', function() {
-      score += currentQuestion.value;
+    /* ========= Check Answer & Provide Feedback ========= */
+    function checkAnswer(selected) {
+      if (selected === currentQuestion.answer) {
+        score += currentQuestion.value;
+        feedbackEl.style.color = "green";
+        feedbackEl.textContent = "Correct! +" + currentQuestion.value;
+      } else {
+        score -= currentQuestion.value;
+        feedbackEl.style.color = "red";
+        feedbackEl.textContent = "Wrong! The correct answer was: " + currentQuestion.answer + " (-" + currentQuestion.value + ")";
+      }
       scoreEl.textContent = score;
-      modal.classList.remove('open');
-      checkLevelProgress();
-    });
-    wrongBtn.addEventListener('click', function() {
-      score -= currentQuestion.value;
-      scoreEl.textContent = score;
-      modal.classList.remove('open');
-      checkLevelProgress();
-    });
-    closeModalBtn.addEventListener('click', function() {
-      modal.classList.remove('open');
-    });
+      // After 2 seconds, close modal and check for level progression
+      setTimeout(() => {
+        modal.classList.remove('open');
+        checkLevelProgress();
+      }, 2000);
+    }
 
     /* ========= Level Progression ========= */
     function checkLevelProgress() {
@@ -426,17 +696,17 @@
         buildBoard();
       }
     }
+
+    /* ========= Modal Close ========= */
+    closeModalBtn.addEventListener('click', function() {
+      modal.classList.remove('open');
+    });
   </script>
+  <!-- Additional styles for the game board (if needed, can be merged with above CSS) -->
   <style>
-    /* ========= Game Board Styles ========= */
+    /* ========== Game Board Additional Styles ========== */
     #gameBoard {
-      max-width: 800px;
-      margin: 2rem auto;
-      border: 3px solid var(--blue);
-      background: var(--white);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      margin-bottom: 2rem;
     }
     .board-row {
       display: flex;
