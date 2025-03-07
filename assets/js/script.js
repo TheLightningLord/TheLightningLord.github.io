@@ -1,48 +1,35 @@
 // Update footer year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Preloader functionality
-window.addEventListener('load', function() {
-  const preloader = document.getElementById('preloader');
-  preloader.style.opacity = '0';
-  setTimeout(() => {
-    preloader.style.display = 'none';
-  }, 500);
+// Mobile Menu Toggle
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
 });
 
 // Back to Top Button
-const backToTopBtn = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
+const backToTopBtn = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
-    backToTopBtn.style.display = 'block';
+    backToTopBtn.style.display = "block";
   } else {
-    backToTopBtn.style.display = 'none';
+    backToTopBtn.style.display = "none";
   }
 });
-backToTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Mobile Menu Toggle Functionality
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 // Scroll Reveal Animation
-const scrollElements = document.querySelectorAll('.scroll-reveal');
-
+const scrollElements = document.querySelectorAll(".scroll-reveal");
 const elementInView = (el, dividend = 1.25) => {
   const elementTop = el.getBoundingClientRect().top;
   return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
 };
-
 const displayScrollElement = (element) => {
-  element.classList.add('visible');
+  element.classList.add("visible");
 };
-
 const handleScrollAnimation = () => {
   scrollElements.forEach((el) => {
     if (elementInView(el)) {
@@ -50,42 +37,26 @@ const handleScrollAnimation = () => {
     }
   });
 };
+window.addEventListener("scroll", handleScrollAnimation);
 
-window.addEventListener('scroll', handleScrollAnimation);
-
-// Modal Functionality for Interactive Areas & Diseases
-const infoModal = document.getElementById("infoModal");
-const closeModalBtn = document.getElementById("closeModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalContent = document.getElementById("modalContent");
-
-const areaButtons = document.querySelectorAll(".area-button");
-const diseaseButtons = document.querySelectorAll(".disease-button");
-
-function openModal(title, content) {
-  modalTitle.textContent = title;
-  modalContent.textContent = content;
-  infoModal.classList.add("open");
-}
-
-areaButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    openModal(button.dataset.title, button.dataset.content);
-  });
+// Testimonials Carousel
+const carouselInner = document.getElementById("carouselInner");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+let carouselIndex = 0;
+const updateCarousel = () => {
+  const totalItems = document.querySelectorAll(".carousel-item").length;
+  carouselInner.style.transform = "translateX(-" + carouselIndex * 100 + "%)";
+  prevBtn.disabled = carouselIndex <= 0;
+  nextBtn.disabled = carouselIndex >= totalItems - 1;
+};
+prevBtn.addEventListener("click", () => {
+  carouselIndex = Math.max(0, carouselIndex - 1);
+  updateCarousel();
 });
-
-diseaseButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    openModal(button.dataset.title, button.dataset.content);
-  });
+nextBtn.addEventListener("click", () => {
+  const totalItems = document.querySelectorAll(".carousel-item").length;
+  carouselIndex = Math.min(totalItems - 1, carouselIndex + 1);
+  updateCarousel();
 });
-
-closeModalBtn.addEventListener("click", () => {
-  infoModal.classList.remove("open");
-});
-
-infoModal.addEventListener("click", (e) => {
-  if (e.target === infoModal) {
-    infoModal.classList.remove("open");
-  }
-});
+updateCarousel();
