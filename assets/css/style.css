@@ -1,46 +1,3 @@
-/* ========== RESET & VARIABLES ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --gold: #C9A142;
-  --blue: #003366;
-  --silver: #C0C0C0;
-  --black: #000;
-  --white: #fff;
-  --grey: #f8f8f8;
-  --dark-grey: #333;
-  --transition-speed: 0.3s;
-}
-
-/* ========== GLOBAL STYLES ========== */
-html {
-  scroll-behavior: smooth;
-}
-body {
-  font-family: 'Roboto', sans-serif;
-  background: var(--white);
-  color: var(--dark-grey);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-a {
-  text-decoration: none;
-}
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* ========== CONTAINER ========== */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
 /* ========== HEADER & NAVIGATION ========== */
 header {
   position: sticky;
@@ -57,7 +14,8 @@ header {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.5rem 1rem;
+  /* Adjust the padding if the header feels too tall */
+  padding: 0.3rem 1rem;
 }
 
 /* Logo styles */
@@ -116,8 +74,9 @@ header .logo span {
 
 /* ========== DROPDOWN MENU ========== */
 .dropdown {
-  position: relative; /* Needed for submenu positioning */
+  position: relative; /* needed to position the submenu */
 }
+/* The hidden submenu */
 .dropdown-content {
   position: absolute;
   top: 100%;
@@ -125,11 +84,15 @@ header .logo span {
   background: var(--blue);
   min-width: 150px;
   padding: 0.5rem 0;
+  
+  /* Fade-in approach */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 999;
 }
+
+/* Submenu items */
 .dropdown-content li a {
   display: block;
   padding: 0.5rem 1rem;
@@ -141,257 +104,14 @@ header .logo span {
   background: var(--gold);
   color: var(--black);
 }
-/* Reveal on hover (desktop) */
+
+/* Reveal the submenu on hover (desktop) */
 .dropdown:hover .dropdown-content {
   opacity: 1;
   visibility: visible;
 }
 
-/* ========== HERO SECTION ========== */
-.hero-section {
-  position: relative;
-  min-height: 70vh;
-  background: url("../images/landing.webp") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-}
-.hero-content {
-  position: relative;
-  text-align: center;
-  color: var(--white);
-  padding: 2rem;
-  z-index: 1;
-}
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-.hero-content p.tagline {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.hero-buttons a {
-  background: var(--gold);
-  color: var(--black);
-  padding: 0.8rem 1.6rem;
-  border-radius: 4px;
-  font-weight: 700;
-  transition: background var(--transition-speed);
-}
-.hero-buttons a:hover {
-  background: var(--silver);
-}
-
-/* ========== MAIN CONTENT SECTIONS ========== */
-section {
-  margin-bottom: 3rem;
-}
-section h2 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  color: var(--blue);
-  text-align: center;
-}
-.section-intro {
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  font-size: 1.1rem;
-  text-align: center;
-  color: var(--dark-grey);
-}
-
-/* ========== INTERACTIVE CARD GRID (Learn How We Help) ========== */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-.card {
-  position: relative;
-  background: var(--gold);
-  color: var(--blue);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform var(--transition-speed);
-}
-.card:hover {
-  transform: translateY(-5px);
-}
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.card-content {
-  padding: 1rem;
-}
-.card-title {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-.card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,51,102,0.85);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--transition-speed), visibility var(--transition-speed);
-  padding: 1rem;
-  text-align: center;
-}
-.card:hover .card-overlay {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ========== TESTIMONIALS & TEAM CAROUSELS ========== */
-.carousel {
-  position: relative;
-  max-width: 800px;
-  margin: 2rem auto;
-  overflow: hidden;
-}
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-}
-.testimonial,
-.team-member {
-  background: var(--grey);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-.testimonial p.quote {
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-.testimonial p.author,
-.team-member h3,
-.team-member p {
-  font-weight: bold;
-}
-.team-member img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px 8px 0 0;
-}
-.team-member h3 {
-  margin: 0.5rem 0 0.2rem;
-}
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-.carousel-controls button {
-  background: var(--gold);
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: background var(--transition-speed);
-}
-.carousel-controls button:hover {
-  background: var(--silver);
-}
-
-/* ========== CERTIFICATIONS SECTION ========== */
-.certifications {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-.certifications img {
-  max-height: 60px;
-  width: auto;
-  object-fit: contain;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
-.certifications img:hover {
-  filter: grayscale(0%);
-}
-
-/* ========== BACK TO TOP BUTTON ========== */
-#backToTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--gold);
-  color: var(--black);
-  border: none;
-  padding: 0.75rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  z-index: 1000;
-  transition: background var(--transition-speed);
-}
-#backToTop:hover {
-  background: var(--silver);
-}
-
-/* ========== SCROLL REVEAL ANIMATION ========== */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========== FOOTER ========== */
-footer {
-  background: var(--blue);
-  color: var(--white);
-  padding: 1rem;
-  text-align: center;
-}
-footer p {
-  font-size: 0.9rem;
-}
-
-/* ========== RESPONSIVE ========== */
+/* ========== MOBILE STYLES ========== */
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
@@ -411,23 +131,13 @@ footer p {
   .menu-toggle {
     display: flex;
   }
-  /* Keep dropdown visible in mobile nav if desired */
+  
+  /* On mobile, the entire nav slides in; the submenu is also visible
+     if you scroll or open it. There's no separate hover event for mobile. */
   .dropdown:hover .dropdown-content {
+    /* Keep default hidden if you want the user to see it only
+       when the entire menu is open and they tap/click on 'Services' */
     opacity: 1;
     visibility: visible;
-  }
-}
-@media (max-width: 600px) {
-  header .logo span {
-    font-size: 1.6rem;
-  }
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-  .hero-content p.tagline {
-    font-size: 1.2rem;
-  }
-  section h2 {
-    font-size: 1.8rem;
   }
 }
