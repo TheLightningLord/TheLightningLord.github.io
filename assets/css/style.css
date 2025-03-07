@@ -1,4 +1,4 @@
-/* ========== BASIC RESET & VARIABLES ========== */
+/* ========== RESET & VARIABLES ========== */
 * {
   margin: 0;
   padding: 0;
@@ -6,42 +6,92 @@
 }
 
 :root {
-  --gold: #C9A142; /* Adjust to your preferred gold shade */
+  --gold: #C9A142;
   --blue: #003366;
   --silver: #C0C0C0;
-  --black: #000000;
-  --white: #ffffff;
+  --black: #000;
+  --white: #fff;
   --grey: #f8f8f8;
-  --dark-grey: #333333;
+  --dark-grey: #333;
   --container-width: 1200px;
+  --transition-speed: 0.3s;
 }
 
 /* ========== GLOBAL STYLES ========== */
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  color: var(--dark-grey);
-  background-color: var(--white);
+  font-family: 'Roboto', sans-serif;
   line-height: 1.6;
+  background-color: var(--white);
+  color: var(--dark-grey);
+  overflow-x: hidden;
 }
 
 img {
-  display: block;
   max-width: 100%;
-  height: auto;
+  display: block;
 }
 
 .container {
+  width: 90%;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
-/* ========== NAVBAR & HEADER ========== */
+/* ========== PRELOADER ========== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid var(--grey);
+  border-top: 6px solid var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========== BACK TO TOP BUTTON ========== */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: background var(--transition-speed);
+}
+
+#backToTop:hover {
+  background: var(--silver);
+}
+
+/* ========== NAVIGATION ========== */
 .sticky-header {
   position: sticky;
   top: 0;
   z-index: 999;
-  background-color: var(--blue);
+  background: var(--blue);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navbar {
@@ -53,40 +103,40 @@ img {
 
 .logo {
   color: var(--gold);
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .nav-links {
+  list-style: none;
   display: flex;
   gap: 1rem;
-  list-style: none;
 }
 
 .nav-links a {
   color: var(--silver);
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
+  transition: background var(--transition-speed);
   border-radius: 4px;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  background-color: var(--gold);
+  background: var(--gold);
   color: var(--black);
 }
 
 .nav-links .cta-btn {
-  background-color: var(--gold);
+  background: var(--gold);
   color: var(--black);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 /* ========== HERO SECTION ========== */
 .hero-section {
   position: relative;
-  min-height: 60vh;
+  min-height: 70vh;
   background: url("https://via.placeholder.com/1920x1080") center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -97,232 +147,249 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
 }
 
 .hero-content {
   position: relative;
   text-align: center;
   color: var(--white);
+  padding: 2rem;
 }
 
 .hero-content h1 {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+.hero-content .tagline {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .btn-primary {
-  background-color: var(--gold);
+  background: var(--gold);
   color: var(--black);
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.6rem;
   text-decoration: none;
   border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  font-weight: 700;
+  transition: background var(--transition-speed);
 }
 
 .btn-primary:hover {
-  background-color: var(--silver);
-  color: var(--black);
+  background: var(--silver);
 }
 
-/* ========== SERVICES OVERVIEW ========== */
-.services-overview {
-  padding: 3rem 0;
+/* ========== SECTION HEADINGS & INTRO ========== */
+section h2 {
   text-align: center;
-}
-
-.services-overview h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
+  color: var(--blue);
 }
 
 .section-intro {
+  text-align: center;
   max-width: 700px;
-  margin: 0.5rem auto 2rem auto;
+  margin: 0.5rem auto 2rem;
   font-size: 1rem;
   color: var(--dark-grey);
 }
 
+/* ========== PROBLEM & SOLUTION SECTION ========== */
+.ps-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.ps-item {
+  flex: 1 1 300px;
+  background: var(--grey);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.ps-item h3 {
+  margin-bottom: 1rem;
+  color: var(--blue);
+}
+
+/* ========== WHY CHOOSE US SECTION ========== */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.why-item {
+  background: var(--grey);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.why-item h3 {
+  margin-bottom: 0.75rem;
+  color: var(--gold);
+}
+
+/* ========== SERVICES GRID ========== */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .service-card {
-  background-color: var(--grey);
-  padding: 2rem 1.5rem;
+  background: var(--grey);
+  padding: 1.5rem;
   border-radius: 8px;
   text-align: center;
-  transition: box-shadow 0.3s;
+  transition: transform var(--transition-speed);
 }
 
 .service-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.service-card img {
-  width: 80px;
-  margin-bottom: 1rem;
+  transform: translateY(-5px);
 }
 
 .service-card h3 {
-  margin-bottom: 0.75rem;
+  margin: 1rem 0;
   color: var(--blue);
 }
 
-.service-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--blue);
-  text-decoration: underline;
+/* ========== INTERACTIVE AREAS & DISEASES ========== */
+.areas-grid, .diseases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  justify-items: center;
 }
 
-/* ========== SPECIALTIES SECTION ========== */
-.specialties-section {
-  padding: 3rem 0;
-}
-
-.specialties-section h2 {
+.area-button, .disease-button {
+  background: var(--grey);
+  color: var(--dark-grey);
+  border: none;
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  transition: background var(--transition-speed), transform var(--transition-speed);
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
 }
 
-.specialties-content {
+.area-button:hover, .disease-button:hover {
+  background: var(--gold);
+  color: var(--black);
+  transform: scale(1.05);
+}
+
+/* ========== MODAL ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
   align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-.specialties-text {
-  flex: 1;
+.modal.open {
+  opacity: 1;
+  visibility: visible;
 }
 
-.specialties-text p {
+.modal-content {
+  background: var(--white);
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--dark-grey);
+}
+
+.close-modal:hover {
+  color: var(--blue);
+}
+
+#modalTitle {
   margin-bottom: 1rem;
+  color: var(--blue);
+  font-size: 1.5rem;
 }
 
-.specialties-text ul {
-  list-style: disc inside;
-  margin-left: 1rem;
+#modalContent {
+  line-height: 1.5;
 }
 
-.specialties-image {
-  flex: 1;
-  text-align: center;
+/* ========== TESTIMONIALS ========== */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.testimonial-card {
+  background: var(--grey);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.testimonial-card .quote {
+  font-style: italic;
+  margin-bottom: 1rem;
 }
 
 /* ========== PHILOSOPHY SECTION ========== */
-.philosophy-section {
-  background-color: var(--blue);
-  color: var(--white);
-  padding: 3rem 1rem;
-  text-align: center;
-}
-
-.philosophy-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.philosophy-section .section-intro {
-  margin: 0 auto 2rem auto;
-  color: var(--silver);
-}
-
 .philosophy-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .philosophy-item {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 2rem;
+  background: rgba(255,255,255,0.1);
+  padding: 1.8rem;
   border-radius: 8px;
-  transition: background-color 0.3s;
+  text-align: center;
+  transition: background var(--transition-speed);
 }
 
 .philosophy-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.2);
 }
 
 .philosophy-item h3 {
   color: var(--gold);
   margin-bottom: 1rem;
-}
-
-.philosophy-link {
-  color: var(--gold);
-  text-decoration: underline;
-}
-
-/* ========== FAQ / ACCORDION SECTION ========== */
-.faq-section {
-  padding: 3rem 0;
-}
-
-.faq-section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.accordion {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.accordion-item {
-  margin-bottom: 1rem;
-  border: 1px solid var(--dark-grey);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.accordion-header {
-  background-color: var(--grey);
-  width: 100%;
-  padding: 1rem;
-  text-align: left;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-}
-
-.accordion-icon {
-  font-weight: bold;
-}
-
-.accordion-content {
-  background-color: var(--white);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s;
-  padding: 0 1rem;
-}
-
-.accordion-content p {
-  margin: 1rem 0;
-}
-
-/* Active Accordion State */
-.accordion-item.active .accordion-content {
-  max-height: 200px; /* adjust if you expect more text */
-  padding: 1rem;
 }
 
 /* ========== BOOKING CTA SECTION ========== */
@@ -339,15 +406,16 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 51, 102, 0.6);
+  width: 100%;
+  height: 100%;
+  background: rgba(0,51,102,0.6);
 }
 
 .booking-content {
   position: relative;
   text-align: center;
   color: var(--white);
+  padding: 2rem;
 }
 
 .booking-content h2 {
@@ -355,169 +423,45 @@ img {
   margin-bottom: 1rem;
 }
 
-.booking-content p {
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
-}
-
-/* ========== CONTACT SECTION & FOOTER ========== */
+/* ========== CONTACT SECTION ========== */
 .contact-section {
   padding: 3rem 0;
   text-align: center;
 }
 
-.contact-details {
-  margin-top: 1rem;
-}
-
-.contact-details p {
-  margin-bottom: 0.5rem;
-}
-
+/* ========== FOOTER ========== */
 .main-footer {
-  background-color: var(--blue);
+  background: var(--blue);
   color: var(--white);
   padding: 2rem 1rem;
-}
-
-.footer-container {
   text-align: center;
 }
 
 .footer-disclaimer {
-  margin-top: 0.5rem;
   font-size: 0.8rem;
+  margin-top: 0.5rem;
   color: var(--silver);
 }
-/* ========== NEW SECTIONS: AREAS WE TREAT & CHRONIC DISEASES ========== */
-.areas-we-treat,
-.chronic-diseases {
-  padding: 3rem 0;
-}
 
-.areas-we-treat h2,
-.chronic-diseases h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-.areas-we-treat .section-intro,
-.chronic-diseases .section-intro {
-  text-align: center;
-  max-width: 700px;
-  margin: 0.5rem auto 2rem auto;
-}
-
-.areas-grid,
-.diseases-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  justify-items: center;
-}
-
-.area-button,
-.disease-button {
-  background-color: var(--grey);
-  color: var(--dark-grey);
-  border: none;
-  padding: 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  max-width: 200px;
-  transition: background-color 0.3s;
-  text-align: center;
-}
-
-.area-button:hover,
-.disease-button:hover {
-  background-color: var(--gold);
-  color: var(--black);
-}
-
-/* ========== MODAL STYLES ========== */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+/* ========== SCROLL REVEAL ANIMATION ========== */
+.scroll-reveal {
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.modal.open {
+.scroll-reveal.visible {
   opacity: 1;
-  visibility: visible;
+  transform: translateY(0);
 }
 
-.modal-content {
-  background-color: var(--white);
-  padding: 2rem;
-  max-width: 600px;
-  width: 90%;
-  border-radius: 8px;
-  position: relative;
-}
-
-.close-modal {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.close-modal:hover {
-  color: var(--blue);
-}
-
-/* Title & Content in Modal */
-#modalTitle {
-  margin-bottom: 1rem;
-  color: var(--blue);
-  font-size: 1.5rem;
-}
-
-#modalContent {
-  line-height: 1.5;
-}
-
-/* ========== RESPONSIVE TWEAKS ========== */
-@media (max-width: 768px) {
-  .areas-grid,
-  .diseases-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 480px) {
-  .areas-grid,
-  .diseases-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* ========== MEDIA QUERIES ========== */
+/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;
     gap: 0.5rem;
   }
-
-  .specialties-content {
-    flex-direction: column;
-  }
-
-  .philosophy-grid,
-  .services-grid {
+  .ps-grid, .why-grid, .services-grid, .philosophy-grid {
     grid-template-columns: 1fr;
   }
 }
