@@ -1,299 +1,136 @@
-/* ========== RESET & VARIABLES ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --gold: #C9A142;
-  --blue: #003366;
-  --silver: #C0C0C0;
-  --black: #000;
-  --white: #fff;
-  --grey: #f8f8f8;
-  --dark-grey: #333;
-  --transition-speed: 0.3s;
-}
-
-/* ========== GLOBAL STYLES ========== */
-html {
-  scroll-behavior: smooth;
-}
-body {
-  font-family: 'Roboto', sans-serif;
-  background: var(--white);
-  color: var(--dark-grey);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-a { text-decoration: none; }
-img { max-width: 100%; display: block; }
-
-/* ========== CONTAINER ========== */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-/* ========== HEADER & NAVIGATION ========== */
-header {
-  position: sticky;
-  top: 0;
-  background: var(--blue);
-  color: var(--white);
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
-}
-header .logo {
-  display: flex;
-  align-items: center;
-}
-header .logo img {
-  height: 40px;
-  width: auto;
-  margin-right: 0.5rem;
-}
-header .logo span {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-.nav-links li a {
-  color: var(--silver);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background var(--transition-speed);
-}
-.nav-links li a:hover,
-.nav-links li a.active {
-  background: var(--gold);
-  color: var(--black);
-}
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.menu-toggle span {
-  width: 25px;
-  height: 3px;
-  background: var(--silver);
-  transition: background var(--transition-speed);
-}
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100%;
-    background: var(--blue);
-    flex-direction: column;
-    padding: 2rem 1rem;
-    transition: right 0.3s ease-in-out;
-    z-index: 999;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Olympian Health Solutions – End pain, and start thriving. Transform your life with expert exercise medicine, personalized care, and holistic lifestyle adjustments." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olympian Health Solutions | End pain, and start thriving</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Olympian Health Solutions",
+    "image": "https://yourdomain.github.io/olympian-health-solutions/assets/images/logo.png",
+    "telephone": "+1-234-567-890",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Wellness Ave, Suite 100",
+      "addressLocality": "Your City",
+      "addressRegion": "ST",
+      "postalCode": "00000",
+      "addressCountry": "US"
+    },
+    "url": "https://yourdomain.github.io/olympian-health-solutions/"
   }
-  .nav-links.active {
-    right: 0;
-  }
-  .menu-toggle {
-    display: flex;
-  }
-}
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header role="banner">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="Olympian Health Solutions Logo" loading="lazy" />
+      <span>Olympian Health Solutions</span>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav role="navigation">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="telehealth.html">Telehealth</a></li>
+        <li><a href="in-home.html">In-Home</a></li>
+        <li><a href="in-clinic.html">In-Clinic</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
+        <li><a href="learn.html">Learn How We Help</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-/* ========== HERO SECTION ========== */
-.hero-section {
-  position: relative;
-  min-height: 70vh;
-  background: url("../images/landing.webp") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-}
-.hero-content {
-  position: relative;
-  text-align: center;
-  color: var(--white);
-  padding: 2rem;
-  z-index: 1;
-}
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-.hero-content p.tagline {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.hero-buttons a {
-  background: var(--gold);
-  color: var(--black);
-  padding: 0.8rem 1.6rem;
-  border-radius: 4px;
-  font-weight: 700;
-  transition: background var(--transition-speed);
-}
-.hero-buttons a:hover {
-  background: var(--silver);
-}
+  <!-- HERO SECTION -->
+  <section class="hero-section scroll-reveal">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>End pain, and start thriving</h1>
+      <p class="tagline">Transform your life with personalized, science-based exercise medicine and holistic care.</p>
+      <div class="hero-buttons">
+        <a href="booking.html">Schedule Now</a>
+        <a href="learn.html">Learn How We Help</a>
+      </div>
+    </div>
+  </section>
 
-/* ========== MAIN CONTENT SECTIONS ========== */
-section {
-  margin-bottom: 3rem;
-}
-section h2 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  color: var(--blue);
-  text-align: center;
-}
-.section-intro {
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  font-size: 1.1rem;
-  text-align: center;
-  color: var(--dark-grey);
-}
+  <!-- PROBLEM & SOLUTION SECTION -->
+  <section class="container scroll-reveal">
+    <h2>We Understand Your Struggles—And We Have Solutions</h2>
+    <p class="section-intro">
+      Whether you suffer from chronic pain, metabolic challenges, or limited mobility, our expert strategies are designed to help you overcome obstacles and achieve optimal health.
+    </p>
+    <!-- Additional content can be added here -->
+  </section>
 
-/* ========== TESTIMONIALS CAROUSEL ========== */
-.carousel {
-  position: relative;
-  max-width: 800px;
-  margin: 2rem auto;
-  overflow: hidden;
-}
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-}
-.testimonial {
-  background: var(--grey);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-.testimonial p.quote {
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-.testimonial p.author {
-  font-weight: bold;
-}
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-.carousel-controls button {
-  background: var(--gold);
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: background var(--transition-speed);
-}
-.carousel-controls button:hover {
-  background: var(--silver);
-}
+  <!-- TESTIMONIALS CAROUSEL -->
+  <section class="carousel scroll-reveal">
+    <div class="carousel-inner" id="carouselInner">
+      <div class="carousel-item">
+        <div class="testimonial">
+          <p class="quote">"Olympian Health Solutions transformed my chronic pain into newfound strength and vitality!"</p>
+          <p class="author">— Sarah M.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="testimonial">
+          <p class="quote">"Their telehealth sessions fit perfectly into my schedule while revolutionizing my diabetes management."</p>
+          <p class="author">— James K.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="testimonial">
+          <p class="quote">"After my injury, their holistic rehab approach helped me regain mobility and confidence."</p>
+          <p class="author">— Maria R.</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button id="prevBtn" aria-label="Previous testimonial">&#10094;</button>
+      <button id="nextBtn" aria-label="Next testimonial">&#10095;</button>
+    </div>
+  </section>
 
-/* ========== CERTIFICATIONS SECTION ========== */
-.certifications {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-.certifications img {
-  max-height: 60px;
-  width: auto;
-  object-fit: contain;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
-.certifications img:hover {
-  filter: grayscale(0%);
-}
+  <!-- CERTIFICATIONS SECTION -->
+  <section class="container scroll-reveal">
+    <h2>Our Certifications & Partnerships</h2>
+    <div class="certifications">
+      <img src="assets/images/cert1.png" alt="Certification 1" loading="lazy">
+      <img src="assets/images/cert2.png" alt="Certification 2" loading="lazy">
+      <img src="assets/images/cert3.png" alt="Certification 3" loading="lazy">
+    </div>
+  </section>
 
-/* ========== BACK TO TOP BUTTON ========== */
-#backToTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--gold);
-  color: var(--black);
-  border: none;
-  padding: 0.75rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  z-index: 1000;
-  transition: background var(--transition-speed);
-}
-#backToTop:hover {
-  background: var(--silver);
-}
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to top" aria-label="Back to top">&#8679;</button>
 
-/* ========== SCROLL REVEAL ANIMATION ========== */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
+      <p class="footer-disclaimer">*Disclaimer: Our services do not replace professional medical advice. Always consult your physician before starting any new exercise program.</p>
+    </div>
+  </footer>
 
-/* ========== FOOTER ========== */
-footer {
-  background: var(--blue);
-  color: var(--white);
-  padding: 1rem;
-  text-align: center;
-}
-footer p {
-  font-size: 0.9rem;
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 600px) {
-  header .logo span { font-size: 1.6rem; }
-  .hero-content h1 { font-size: 2.5rem; }
-  .hero-content p.tagline { font-size: 1.2rem; }
-  .board-cell { font-size: 1.2rem; padding: 0.8rem; }
-  section h2 { font-size: 1.8rem; }
-}
+  <!-- External JavaScript -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
