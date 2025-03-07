@@ -22,6 +22,7 @@ window.addEventListener('scroll', () => {
 backToTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
 // Mobile Menu Toggle Functionality
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
@@ -32,19 +33,14 @@ menuToggle.addEventListener('click', () => {
 
 // Scroll Reveal Animation
 const scrollElements = document.querySelectorAll('.scroll-reveal');
+
 const elementInView = (el, dividend = 1.25) => {
   const elementTop = el.getBoundingClientRect().top;
-  return (
-    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-  );
+  return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
 };
 
 const displayScrollElement = (element) => {
   element.classList.add('visible');
-};
-
-const hideScrollElement = (element) => {
-  element.classList.remove('visible');
 };
 
 const handleScrollAnimation = () => {
@@ -55,9 +51,7 @@ const handleScrollAnimation = () => {
   });
 };
 
-window.addEventListener('scroll', () => {
-  handleScrollAnimation();
-});
+window.addEventListener('scroll', handleScrollAnimation);
 
 // Modal Functionality for Interactive Areas & Diseases
 const infoModal = document.getElementById("infoModal");
