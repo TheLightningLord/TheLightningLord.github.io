@@ -1,404 +1,250 @@
-/* ========== BASIC RESET & VARIABLES ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Olympian Health Solutions - In-home personal training, telehealth, and in-clinic services to help you move better, feel stronger, and live healthier." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olympian Health Solutions | Your Path to Better Health</title>
+  
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER & NAVIGATION -->
+  <header class="sticky-header">
+    <nav class="navbar container">
+      <div class="logo">Olympian Health Solutions</div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#services-overview">Services</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact-section">Contact</a></li>
+        <li><a href="#booking-section" class="cta-btn">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
 
-:root {
-  --gold: #C9A142; /* Adjust to your preferred gold shade */
-  --blue: #003366;
-  --silver: #C0C0C0;
-  --black: #000000;
-  --white: #ffffff;
-  --grey: #f8f8f8;
-  --dark-grey: #333333;
-  --container-width: 1200px;
-}
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>Exercise is Medicine, Let Us Prescribe It</h1>
+      <p>
+        Transform your life with in-home personal training, telehealth sessions, and in-clinic appointments. We bring clinical-grade exercise and nutrition guidance right to you.
+      </p>
+      <a href="#booking-section" class="btn-primary">Schedule Appointment</a>
+    </div>
+  </section>
 
-/* ========== GLOBAL STYLES ========== */
-body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  color: var(--dark-grey);
-  background-color: var(--white);
-  line-height: 1.6;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* ========== NAVBAR & HEADER ========== */
-.sticky-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background-color: var(--blue);
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-}
-
-.logo {
-  color: var(--gold);
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--silver);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
-  border-radius: 4px;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  background-color: var(--gold);
-  color: var(--black);
-}
-
-.nav-links .cta-btn {
-  background-color: var(--gold);
-  color: var(--black);
-  font-weight: bold;
-}
-
-/* ========== HERO SECTION ========== */
-.hero-section {
-  position: relative;
-  min-height: 60vh;
-  background: url("https://via.placeholder.com/1920x1080") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.hero-content {
-  position: relative;
-  text-align: center;
-  color: var(--white);
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.btn-primary {
-  background-color: var(--gold);
-  color: var(--black);
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
-  background-color: var(--silver);
-  color: var(--black);
-}
-
-/* ========== SERVICES OVERVIEW ========== */
-.services-overview {
-  padding: 3rem 0;
-  text-align: center;
-}
-
-.services-overview h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.section-intro {
-  max-width: 700px;
-  margin: 0.5rem auto 2rem auto;
-  font-size: 1rem;
-  color: var(--dark-grey);
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.service-card {
-  background-color: var(--grey);
-  padding: 2rem 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  transition: box-shadow 0.3s;
-}
-
-.service-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.service-card img {
-  width: 80px;
-  margin-bottom: 1rem;
-}
-
-.service-card h3 {
-  margin-bottom: 0.75rem;
-  color: var(--blue);
-}
-
-.service-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--blue);
-  text-decoration: underline;
-}
-
-/* ========== SPECIALTIES SECTION ========== */
-.specialties-section {
-  padding: 3rem 0;
-}
-
-.specialties-section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-.specialties-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-}
-
-.specialties-text {
-  flex: 1;
-}
-
-.specialties-text p {
-  margin-bottom: 1rem;
-}
-
-.specialties-text ul {
-  list-style: disc inside;
-  margin-left: 1rem;
-}
-
-.specialties-image {
-  flex: 1;
-  text-align: center;
-}
-
-/* ========== PHILOSOPHY SECTION ========== */
-.philosophy-section {
-  background-color: var(--blue);
-  color: var(--white);
-  padding: 3rem 1rem;
-  text-align: center;
-}
-
-.philosophy-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.philosophy-section .section-intro {
-  margin: 0 auto 2rem auto;
-  color: var(--silver);
-}
-
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.philosophy-item {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 2rem;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-}
-
-.philosophy-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.philosophy-item h3 {
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-
-.philosophy-link {
-  color: var(--gold);
-  text-decoration: underline;
-}
-
-/* ========== FAQ / ACCORDION SECTION ========== */
-<section id="faq" class="faq-section container">
-  <h2>Top 4 Common Questions</h2>
-  <div class="accordion">
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>1. What is my next step?</span>
-        <span class="accordion-icon">+</span>
-      </button>
-      <div class="accordion-content">
+  <!-- SERVICES OVERVIEW -->
+  <section id="services-overview" class="services-overview container">
+    <h2>Services We Provide</h2>
+    <p class="section-intro">
+      From busy professionals to elderly populations, from post-injury rehab to performance athletes, our programs cater to everyone seeking a healthier, stronger life.
+    </p>
+    <div class="services-grid">
+      <!-- Service Card 1 -->
+      <div class="service-card">
+        <img src="https://via.placeholder.com/100" alt="In-Home Personal Training Icon" />
+        <h3>In-Home Personal Training</h3>
         <p>
-          After a consultation, we’ll design a goal-based plan to address your specific needs. You’ll leave with clarity on scheduling, costs, and expectations.
+          Enjoy personalized workouts in the comfort of your home. Ideal for seniors, those with mobility challenges, or anyone who prefers a private setting.
         </p>
+        <a href="#booking-section" class="service-link">Learn More</a>
+      </div>
+      <!-- Service Card 2 -->
+      <div class="service-card">
+        <img src="https://via.placeholder.com/100" alt="Telehealth Sessions Icon" />
+        <h3>Telehealth Sessions</h3>
+        <p>
+          Connect virtually for holistic nutrition guidance, rehab advice, and exercise prescriptions from anywhere in the world.
+        </p>
+        <a href="#booking-section" class="service-link">Learn More</a>
+      </div>
+      <!-- Service Card 3 -->
+      <div class="service-card">
+        <img src="https://via.placeholder.com/100" alt="In-Clinic Appointments Icon" />
+        <h3>In-Clinic Appointments</h3>
+        <p>
+          Prefer a professional facility? Visit us in-clinic for hands-on sessions, specialized equipment, and collaborative care.
+        </p>
+        <a href="#booking-section" class="service-link">Learn More</a>
+      </div>
+      <!-- Service Card 4 -->
+      <div class="service-card">
+        <img src="https://via.placeholder.com/100" alt="Continuing Rehab Icon" />
+        <h3>Continuing Rehab & Injury Prevention</h3>
+        <p>
+          Work with our team and your existing healthcare providers to safely transition from rehab to independent exercise.
+        </p>
+        <a href="#booking-section" class="service-link">Learn More</a>
+      </div>
+      <!-- Service Card 5 -->
+      <div class="service-card">
+        <img src="https://via.placeholder.com/100" alt="Elderly & At-Risk Icon" />
+        <h3>Elderly & At-Risk Populations</h3>
+        <p>
+          Improve mobility, balance, and strength with tailored programs focusing on fall prevention and chronic disease management.
+        </p>
+        <a href="#booking-section" class="service-link">Learn More</a>
+      </div>
+      <!-- Service Card 6 -->
+      <div class="service-card">
+        <img src="https://via.placeholder.com/100" alt="Athlete Maintenance Icon" />
+        <h3>Athlete Maintenance & Performance</h3>
+        <p>
+          Maintain peak performance or safely return to sport with evidence-based exercise programming and periodization.
+        </p>
+        <a href="#booking-section" class="service-link">Learn More</a>
       </div>
     </div>
+  </section>
 
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>2. How long until I see real benefits?</span>
-        <span class="accordion-icon">+</span>
-      </button>
-      <div class="accordion-content">
+  <!-- SPECIALTIES SECTION -->
+  <section class="specialties-section container">
+    <h2>Areas We Specialize In</h2>
+    <div class="specialties-content">
+      <div class="specialties-text">
         <p>
-          Results vary, but most clients notice improved mobility, strength, or reduced pain within a few weeks of consistent exercise and guidance.
+          Whether it’s chronic pain, diabetes management, arthritis, or neurological conditions, our tailored programs help you move better, feel stronger, and enhance daily function.
         </p>
+        <ul>
+          <li>Back & Neck Pain</li>
+          <li>Arthritis & Joint Issues</li>
+          <li>Diabetes & Chronic Conditions</li>
+          <li>Neurological Disorders</li>
+          <li>Obesity & Weight Management</li>
+          <li>Sports Injuries</li>
+        </ul>
+      </div>
+      <div class="specialties-image">
+        <img src="https://via.placeholder.com/400x500" alt="Human Skeleton Diagram" />
       </div>
     </div>
+  </section>
 
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>3. What if I have never exercised before?</span>
-        <span class="accordion-icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <p>
-          No problem. We tailor each program to your baseline, gradually introducing you to safe and effective movements that build confidence and capability.
-        </p>
+  <!-- PHILOSOPHY SECTION -->
+  <section id="philosophy" class="philosophy-section">
+    <div class="container">
+      <h2>Our Philosophy</h2>
+      <p class="section-intro">
+        We combine clinical expertise, evidence-based practice, and a passion for improving lives to deliver results that truly matter.
+      </p>
+      <div class="philosophy-grid">
+        <div class="philosophy-item">
+          <h3>1. Accurate Assessment</h3>
+          <p>
+            We begin with a thorough evaluation of your fitness level, medical history, and personal goals to craft a targeted exercise plan.
+          </p>
+          <a href="#booking-section" class="philosophy-link">Learn About Assessment</a>
+        </div>
+        <div class="philosophy-item">
+          <h3>2. Evidence-Based Treatment</h3>
+          <p>
+            Our exercise prescriptions are grounded in the latest research, ensuring safe, effective interventions for pain relief, mobility, and strength.
+          </p>
+          <a href="#booking-section" class="philosophy-link">Explore Our Methods</a>
+        </div>
+        <div class="philosophy-item">
+          <h3>3. Ongoing Execution & Support</h3>
+          <p>
+            We guide you through every step, monitor progress, and adjust your program as needed to keep you on track.
+          </p>
+          <a href="#booking-section" class="philosophy-link">Meet Our Team</a>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span>4. Can I use insurance or HSA?</span>
-        <span class="accordion-icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <p>
-          Coverage depends on your plan and our collaboration with your healthcare provider. We’re happy to help you navigate possible reimbursement options.
-        </p>
+  <!-- FAQ / ACCORDION SECTION -->
+  <section id="faq" class="faq-section container">
+    <h2>Top 4 Common Questions</h2>
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>1. What is my next step?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>
+            After a consultation, we’ll design a goal-based plan to address your specific needs. You’ll leave with clarity on scheduling, costs, and expectations.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>2. How long until I see real benefits?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>
+            Results vary, but most clients notice improved mobility, strength, or reduced pain within a few weeks of consistent exercise and guidance.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>3. What if I have never exercised before?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>
+            No problem. We tailor each program to your baseline, gradually introducing you to safe and effective movements that build confidence and capability.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>4. Can I use insurance or HSA?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>
+            Coverage depends on your plan and our collaboration with your healthcare provider. We’re happy to help you navigate possible reimbursement options.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-/* ========== BOOKING CTA SECTION ========== */
-.booking-cta-section {
-  position: relative;
-  min-height: 40vh;
-  background: url("https://via.placeholder.com/1920x600") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  <!-- BOOKING / CALL TO ACTION SECTION -->
+  <section id="booking-section" class="booking-cta-section">
+    <div class="booking-overlay"></div>
+    <div class="booking-content container">
+      <h2>Ready to Transform Your Health?</h2>
+      <p>
+        Let’s get started with a brief questionnaire to understand your goals. We’ll follow up with a personalized plan and scheduling options.
+      </p>
+      <a href="booking.html" class="btn-primary">Begin Your Booking</a>
+    </div>
+  </section>
 
-.booking-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 51, 102, 0.6);
-}
+  <!-- CONTACT SECTION -->
+  <section id="contact-section" class="contact-section container">
+    <h2>Contact Us</h2>
+    <p>Have more questions or need further assistance? Reach out to us below.</p>
+    <div class="contact-details">
+      <p><strong>Email:</strong> <a href="mailto:info@olympianhealth.com">info@olympianhealth.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+      <p><strong>Address:</strong> 123 Wellness Ave, Suite 100, Your City, ST 00000</p>
+    </div>
+  </section>
 
-.booking-content {
-  position: relative;
-  text-align: center;
-  color: var(--white);
-}
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-container container">
+      <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
+      <p class="footer-disclaimer">
+        *Disclaimer: Olympian Health Solutions does not replace medical advice from your physician. Always consult your doctor before starting a new exercise program.
+      </p>
+    </div>
+  </footer>
 
-.booking-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.booking-content p {
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
-}
-
-/* ========== CONTACT SECTION & FOOTER ========== */
-.contact-section {
-  padding: 3rem 0;
-  text-align: center;
-}
-
-.contact-details {
-  margin-top: 1rem;
-}
-
-.contact-details p {
-  margin-bottom: 0.5rem;
-}
-
-.main-footer {
-  background-color: var(--blue);
-  color: var(--white);
-  padding: 2rem 1rem;
-}
-
-.footer-container {
-  text-align: center;
-}
-
-.footer-disclaimer {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--silver);
-}
-
-/* ========== MEDIA QUERIES ========== */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .specialties-content {
-    flex-direction: column;
-  }
-
-  .philosophy-grid,
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
+  <!-- Link to external JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>
