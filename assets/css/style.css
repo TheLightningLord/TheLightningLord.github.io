@@ -67,7 +67,7 @@ header .logo {
   align-items: center;
 }
 header .logo img {
-  height: 60px; /* increased logo size */
+  height: 120px; /* increased logo size */
   width: auto;
   margin-right: 0.5rem;
 }
@@ -158,7 +158,7 @@ header .logo span {
 .hero-section {
   position: relative;
   min-height: 70vh;
-  background: url("../images/landing.webp") center/cover no-repeat;
+  background: url("../images/landing1.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
