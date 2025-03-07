@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Mount Olympus Challenge: Fitness & Science Jeopardy – Test your knowledge and dispel common fitness myths in a strategic game with levels and increasing difficulty." />
+  <meta name="description" content="Mount Olympus Challenge: A strategic, interactive quiz to dispel fitness myths and provide lifestyle resources for managing conditions like diabetes and arthritis." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mount Olympus Challenge | Fitness & Science Jeopardy</title>
+  <title>Mount Olympus Challenge - Lifestyle Quiz</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Inline CSS for demonstration; you can move this to assets/css/style.css -->
   <style>
     /* ========== RESET & VARIABLES ========== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     :root {
       --gold: #C9A142;
       --blue: #003366;
@@ -23,28 +26,56 @@
     }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f2f2f2;
+      background: var(--white);
       color: var(--dark-grey);
       overflow-x: hidden;
-      padding-bottom: 2rem;
-    }
-    /* ========== HEADER ========== */
-    .header {
-      background: url("assets/images/olympus-banner.jpg") center/cover no-repeat;
       padding: 1rem;
       text-align: center;
+    }
+    h1, h2, h3, p {
+      margin-bottom: 1rem;
+    }
+    input, select, button {
+      padding: 0.7rem;
+      margin: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--silver);
+      font-size: 1rem;
+    }
+    button {
+      background: var(--gold);
+      color: var(--blue);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition-speed);
+    }
+    button:hover {
+      background: #FFD700;
+    }
+    /* ========== SETUP SCREEN ========== */
+    #setupScreen {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border: 2px solid var(--blue);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      background: var(--grey);
+    }
+    /* ========== GAME SCREEN HEADER ========== */
+    .game-header {
+      background: url("../images/olympus-banner.jpg") center/cover no-repeat;
+      padding: 1.5rem;
       color: var(--white);
       text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      margin-bottom: 1rem;
     }
-    .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .header p { font-size: 1.2rem; }
-    /* ========== GAME INFO ========== */
+    .game-header h2 {
+      font-size: 2rem;
+    }
     .game-info {
-      max-width: 800px;
-      margin: 1rem auto;
-      text-align: center;
       font-size: 1.2rem;
-      color: var(--blue);
+      margin-top: 0.5rem;
     }
     /* ========== GAME BOARD ========== */
     #gameBoard {
@@ -102,7 +133,10 @@
       transition: opacity 0.3s ease;
       z-index: 1000;
     }
-    .modal.open { opacity: 1; visibility: visible; }
+    .modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
     .modal-content {
       background: var(--white);
       padding: 2rem;
@@ -112,20 +146,13 @@
       text-align: center;
       position: relative;
     }
-    .modal-content h2 { margin-bottom: 1rem; color: var(--blue); }
-    .modal-content p { margin-bottom: 1.5rem; }
-    .modal-content button {
-      padding: 0.7rem 1.2rem;
-      margin: 0 0.5rem;
-      border: none;
-      border-radius: 5px;
-      background: var(--gold);
+    .modal-content h2 {
+      margin-bottom: 1rem;
       color: var(--blue);
-      font-weight: 700;
-      cursor: pointer;
-      transition: background var(--transition-speed);
     }
-    .modal-content button:hover { background: #FFD700; }
+    .modal-content p {
+      margin-bottom: 1.5rem;
+    }
     .close-modal {
       position: absolute;
       top: 10px;
@@ -136,29 +163,50 @@
     }
     /* ========== RESPONSIVE ========== */
     @media (max-width: 600px) {
-      .header h1 { font-size: 2rem; }
-      .header p { font-size: 1rem; }
-      .board-cell { font-size: 1.2rem; padding: 0.8rem; }
+      #setupScreen, .game-header, #gameBoard {
+        width: 90%;
+      }
+      .board-cell {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+      }
+      .game-header h2 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <div class="header">
-    <h1>Mount Olympus Challenge</h1>
-    <p>Fitness & Science Jeopardy: Master the Myths & Conquer the Knowledge</p>
+  <!-- SETUP SCREEN: Enter Name & Choose Condition -->
+  <div id="setupScreen">
+    <h1>Welcome to the Mount Olympus Challenge!</h1>
+    <p>Enter your name and choose a condition to focus on:</p>
+    <form id="setupForm">
+      <input type="text" id="playerName" placeholder="Your Name" required />
+      <select id="conditionSelect" required>
+        <option value="">Select Condition</option>
+        <option value="Diabetes">Diabetes</option>
+        <option value="Arthritis">Arthritis</option>
+      </select>
+      <br />
+      <button type="submit">Start Game</button>
+    </form>
   </div>
 
-  <!-- Game Info -->
-  <div class="game-info">
-    <p>Score: <span id="score">0</span></p>
-    <p>Level: <span id="level">1</span></p>
+  <!-- GAME SCREEN: Initially Hidden -->
+  <div id="gameScreen" style="display: none;">
+    <div class="game-header">
+      <h2 id="welcomeMessage"></h2>
+      <p>Condition: <span id="chosenCondition"></span></p>
+      <div class="game-info">
+        <span>Score: <span id="score">0</span></span> | 
+        <span>Level: <span id="level">1</span></span>
+      </div>
+    </div>
+    <div id="gameBoard"></div>
   </div>
 
-  <!-- Game Board -->
-  <div id="gameBoard"></div>
-
-  <!-- Modal for Questions -->
+  <!-- MODAL FOR QUESTIONS -->
   <div class="modal" id="questionModal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
@@ -175,60 +223,84 @@
     </div>
   </div>
 
-  <!-- JavaScript for the Game -->
   <script>
-    /* ========= Game Data ========= */
-    const categories = [
-      {
-        title: "Exercise Science",
-        questions: [
-          { value: 100, question: "What energy system fuels a 100m sprint?", answer: "The ATP-PC system" },
-          { value: 200, question: "What does HIIT stand for?", answer: "High-Intensity Interval Training" },
-          { value: 300, question: "Name a benefit of resistance training.", answer: "Increased metabolic rate and muscle strength" }
+    /* ========= Data for Conditions ========= */
+    const conditionsData = {
+      "Diabetes": {
+        categories: [
+          {
+            title: "Exercise",
+            questions: [
+              { value: 100, question: "What type of exercise improves insulin sensitivity?", answer: "Aerobic exercise" },
+              { value: 200, question: "Name one benefit of strength training for diabetes.", answer: "Improved muscle glucose uptake" },
+              { value: 300, question: "What is the recommended frequency of exercise for diabetes management?", answer: "At least 150 minutes per week" }
+            ]
+          },
+          {
+            title: "Nutrition",
+            questions: [
+              { value: 100, question: "Which nutrient is important for blood sugar control?", answer: "Fiber" },
+              { value: 200, question: "Name a dietary approach effective for diabetes.", answer: "Low glycemic index diet" },
+              { value: 300, question: "How do healthy fats benefit metabolic health?", answer: "They stabilize blood sugar and reduce inflammation." }
+            ]
+          },
+          {
+            title: "Lifestyle",
+            questions: [
+              { value: 100, question: "How does stress affect blood sugar levels?", answer: "It increases cortisol, which raises blood sugar." },
+              { value: 200, question: "Name one benefit of regular physical activity.", answer: "Improved mood and energy" },
+              { value: 300, question: "Why is sleep important for managing diabetes?", answer: "It regulates hormones affecting appetite and glucose metabolism." }
+            ]
+          }
         ]
       },
-      {
-        title: "Nutrition",
-        questions: [
-          { value: 100, question: "Which macronutrient is essential for muscle repair?", answer: "Protein" },
-          { value: 200, question: "What role does fiber play in nutrition?", answer: "Aids in digestion and stabilizes blood sugar" },
-          { value: 300, question: "Name a vitamin crucial for bone health.", answer: "Vitamin D" }
-        ]
-      },
-      {
-        title: "Rehabilitation",
-        questions: [
-          { value: 100, question: "What exercise is commonly used in knee rehab?", answer: "Quadriceps strengthening" },
-          { value: 200, question: "What does RICE stand for in injury treatment?", answer: "Rest, Ice, Compression, Elevation" },
-          { value: 300, question: "Name a benefit of early mobilization after surgery.", answer: "Prevents joint stiffness" }
-        ]
-      },
-      {
-        title: "Pain Science",
-        questions: [
-          { value: 100, question: "True or False: 'No pain, no gain' is a healthy mantra.", answer: "False" },
-          { value: 200, question: "What does 'exercise is medicine' imply?", answer: "That exercise can prevent and treat many conditions" },
-          { value: 300, question: "Name one way exercise reduces chronic pain.", answer: "By releasing endorphins" }
-        ]
-      },
-      {
-        title: "Chronic Diseases",
-        questions: [
-          { value: 100, question: "Which condition is managed with regular aerobic exercise?", answer: "Diabetes" },
-          { value: 200, question: "Name one benefit of exercise for arthritis.", answer: "Improved joint mobility" },
-          { value: 300, question: "How does exercise improve mood in depression?", answer: "By boosting endorphin levels and reducing stress" }
+      "Arthritis": {
+        categories: [
+          {
+            title: "Exercise",
+            questions: [
+              { value: 100, question: "What type of exercise is most beneficial for arthritis?", answer: "Low-impact aerobic exercise" },
+              { value: 200, question: "Why is strength training recommended for arthritis?", answer: "It supports joints by building surrounding muscle." },
+              { value: 300, question: "Name an exercise modification for arthritis.", answer: "Water aerobics to reduce joint stress" }
+            ]
+          },
+          {
+            title: "Rehab",
+            questions: [
+              { value: 100, question: "What does RICE stand for?", answer: "Rest, Ice, Compression, Elevation" },
+              { value: 200, question: "Name one benefit of physical therapy for arthritis.", answer: "Improved joint mobility" },
+              { value: 300, question: "Why is early mobilization important in arthritis care?", answer: "It helps maintain joint flexibility." }
+            ]
+          },
+          {
+            title: "Nutrition & Lifestyle",
+            questions: [
+              { value: 100, question: "Name a nutrient that reduces inflammation.", answer: "Omega-3 fatty acids" },
+              { value: 200, question: "How does weight management affect arthritis?", answer: "Less weight means less joint stress." },
+              { value: 300, question: "What lifestyle change can help manage arthritis?", answer: "Regular exercise and a balanced diet." }
+            ]
+          }
         ]
       }
-    ];
+    };
 
+    /* ========= Global Game Variables ========= */
+    let playerName = "";
+    let chosenCondition = "";
     let score = 0;
     let level = 1;
     let currentQuestion = null;
+    let currentCategories = [];
 
     /* ========= DOM Elements ========= */
-    const gameBoard = document.getElementById('gameBoard');
+    const setupScreen = document.getElementById('setupScreen');
+    const setupForm = document.getElementById('setupForm');
+    const gameScreen = document.getElementById('gameScreen');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const chosenConditionEl = document.getElementById('chosenCondition');
     const scoreEl = document.getElementById('score');
     const levelEl = document.getElementById('level');
+    const gameBoard = document.getElementById('gameBoard');
     const modal = document.getElementById('questionModal');
     const closeModalBtn = document.getElementById('closeModal');
     const questionTitleEl = document.getElementById('questionTitle');
@@ -241,33 +313,43 @@
     const pointsCorrectEl = document.getElementById('pointsCorrect');
     const pointsWrongEl = document.getElementById('pointsWrong');
 
-    /* ========= Scoring ========= */
-    function updateScoringValues(value) {
-      pointsCorrectEl.textContent = value;
-      pointsWrongEl.textContent = value;
-    }
-    function initScoring(questionValue) {
-      updateScoringValues(questionValue);
-    }
+    /* ========= Setup Form Submission ========= */
+    setupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      playerName = document.getElementById('playerName').value;
+      chosenCondition = document.getElementById('conditionSelect').value;
+      if (playerName && chosenCondition) {
+        setupScreen.style.display = "none";
+        gameScreen.style.display = "block";
+        welcomeMessage.textContent = "Welcome, " + playerName + "!";
+        chosenConditionEl.textContent = chosenCondition;
+        score = 0;
+        level = 1;
+        scoreEl.textContent = score;
+        levelEl.textContent = level;
+        currentCategories = conditionsData[chosenCondition].categories;
+        buildBoard();
+      }
+    });
 
     /* ========= Build Game Board ========= */
     function buildBoard() {
       gameBoard.innerHTML = "";
-      // Header row with category titles
+      // Header row: category titles
       const headerRow = document.createElement('div');
       headerRow.className = "board-row";
-      categories.forEach(category => {
+      currentCategories.forEach(category => {
         const cell = document.createElement('div');
         cell.className = "board-cell category-cell";
         cell.textContent = category.title;
         headerRow.appendChild(cell);
       });
       gameBoard.appendChild(headerRow);
-      // Build rows for questions (3 rows for 3 difficulties)
+      // Build rows for questions (assuming 3 questions per category)
       for (let i = 0; i < 3; i++) {
         const row = document.createElement('div');
         row.className = "board-row";
-        categories.forEach((category, catIndex) => {
+        currentCategories.forEach((category, catIndex) => {
           const question = category.questions[i];
           const cell = document.createElement('div');
           cell.className = "board-cell";
@@ -281,15 +363,15 @@
       }
     }
 
-    /* ========= Handle Cell Click ========= */
+    /* ========= Handle Board Cell Click ========= */
     function handleCellClick(e) {
       const cell = e.currentTarget;
       if (cell.classList.contains('disabled')) return;
       const catIndex = cell.dataset.category;
       const qIndex = cell.dataset.index;
-      currentQuestion = categories[catIndex].questions[qIndex];
+      currentQuestion = currentCategories[catIndex].questions[qIndex];
       initScoring(currentQuestion.value);
-      questionTitleEl.textContent = categories[catIndex].title + " - $" + currentQuestion.value;
+      questionTitleEl.textContent = currentCategories[catIndex].title + " - $" + currentQuestion.value;
       questionTextEl.textContent = currentQuestion.question;
       answerSection.style.display = "none";
       showAnswerBtn.style.display = "inline-block";
@@ -297,14 +379,21 @@
       modal.classList.add('open');
     }
 
-    /* ========= Modal Answer Display ========= */
+    /* ========= Show Answer ========= */
     showAnswerBtn.addEventListener('click', function() {
       answerTextEl.textContent = "Answer: " + currentQuestion.answer;
       answerSection.style.display = "block";
       showAnswerBtn.style.display = "none";
     });
 
-    /* ========= Score Handling ========= */
+    /* ========= Scoring ========= */
+    function updateScoringValues(value) {
+      pointsCorrectEl.textContent = value;
+      pointsWrongEl.textContent = value;
+    }
+    function initScoring(questionValue) {
+      updateScoringValues(questionValue);
+    }
     correctBtn.addEventListener('click', function() {
       score += currentQuestion.value;
       scoreEl.textContent = score;
@@ -328,8 +417,8 @@
       if (remaining.length === 0) {
         level++;
         levelEl.textContent = level;
-        // Increase question values for next level (e.g., by 50%)
-        categories.forEach(category => {
+        // Increase question values for next level by 50%
+        currentCategories.forEach(category => {
           category.questions.forEach(question => {
             question.value = Math.floor(question.value * 1.5);
           });
@@ -337,9 +426,48 @@
         buildBoard();
       }
     }
-
-    /* ========= Initialize Game ========= */
-    buildBoard();
   </script>
+  <style>
+    /* ========= Game Board Styles ========= */
+    #gameBoard {
+      max-width: 800px;
+      margin: 2rem auto;
+      border: 3px solid var(--blue);
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .board-row {
+      display: flex;
+    }
+    .board-cell {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid var(--blue);
+      text-align: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: var(--gold);
+      color: var(--blue);
+      transition: background var(--transition-speed);
+    }
+    .board-cell:hover {
+      background: #FFD700;
+    }
+    .board-cell.disabled {
+      background: #ddd;
+      cursor: default;
+      color: #999;
+    }
+    .category-cell {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      cursor: default;
+      font-size: 1.2rem;
+      padding: 1rem;
+    }
+  </style>
 </body>
 </html>
