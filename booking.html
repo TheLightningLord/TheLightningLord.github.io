@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Consultation | Olympian Health Solutions</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Olympian Health Solutions</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="telehealth.html">Telehealth</a></li>
+        <li><a href="in-home.html">In-Home</a></li>
+        <li><a href="in-clinic.html">In-Clinic</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="booking.html" class="cta-btn active">Book Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h1>Book a Consultation</h1>
+    <p>Please fill out our brief questionnaire to help us understand your goals and needs. We’ll follow up with a personalized plan.</p>
+
+    <form id="multiStepForm" class="multi-step-form">
+      <!-- Step 1 -->
+      <div class="form-step active">
+        <h2>Step 1: Contact Information</h2>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required/>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required/>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required/>
+
+        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step">
+        <h2>Step 2: Services & Goals</h2>
+        <label for="serviceType">Which service are you interested in?</label>
+        <select id="serviceType" name="serviceType">
+          <option value="telehealth">Telehealth</option>
+          <option value="inHome">In-Home Training</option>
+          <option value="inClinic">In-Clinic Session</option>
+          <option value="nutrition">Nutrition Coaching</option>
+        </select>
+
+        <label for="goals">Your Primary Goals:</label>
+        <textarea id="goals" name="goals" rows="4"></textarea>
+
+        <button type="button" class="btn-secondary" onclick="prevStep()">Back</button>
+        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step">
+        <h2>Step 3: Medical/Health Details</h2>
+        <p>Please share any relevant medical conditions or physical limitations.</p>
+        <textarea id="medicalDetails" name="medicalDetails" rows="4"></textarea>
+
+        <button type="button" class="btn-secondary" onclick="prevStep()">Back</button>
+        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step">
+        <h2>Final Step: Motivation & Scheduling</h2>
+        <label for="motivation">What motivates you to make this change now?</label>
+        <textarea id="motivation" name="motivation" rows="4"></textarea>
+
+        <label for="availability">Preferred Days/Times:</label>
+        <input type="text" id="availability" name="availability"/>
+
+        <button type="button" class="btn-secondary" onclick="prevStep()">Back</button>
+        <button type="submit" class="btn-primary">Submit</button>
+      </div>
+    </form>
+
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Olympian Health Solutions. All rights reserved.</p>
+  </footer>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
