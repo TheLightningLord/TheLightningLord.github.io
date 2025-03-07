@@ -137,7 +137,7 @@ img {
 .hero-section {
   position: relative;
   min-height: 70vh;
-  background: url("assets/images/landing.webp") center/cover no-repeat;
+  background: url("../images/landing.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
