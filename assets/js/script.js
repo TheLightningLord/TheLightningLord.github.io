@@ -22,6 +22,13 @@ window.addEventListener('scroll', () => {
 backToTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+// Mobile Menu Toggle Functionality
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
 
 // Scroll Reveal Animation
 const scrollElements = document.querySelectorAll('.scroll-reveal');
