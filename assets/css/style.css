@@ -137,7 +137,7 @@ img {
 .hero-section {
   position: relative;
   min-height: 70vh;
-  background: url("https://via.placeholder.com/1920x1080") center/cover no-repeat;
+  background: url("assets/images/landing.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
