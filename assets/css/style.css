@@ -26,8 +26,13 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
-a { text-decoration: none; }
-img { max-width: 100%; display: block; }
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
 
 /* ========== CONTAINER ========== */
 .container {
@@ -40,20 +45,22 @@ img { max-width: 100%; display: block; }
 header {
   position: sticky;
   top: 0;
+  z-index: 1000;
   background: var(--blue);
   color: var(--white);
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
 }
+
+/* Main flex container inside the header */
 .header-container {
   display: flex;
   align-items: center;
-  width: 100%;
   justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
 }
+
+/* Logo styles */
 header .logo {
   display: flex;
   align-items: center;
@@ -67,6 +74,8 @@ header .logo span {
   font-size: 1.8rem;
   font-weight: 700;
 }
+
+/* Navigation styles */
 .nav-links {
   list-style: none;
   display: flex;
@@ -83,6 +92,13 @@ header .logo span {
   background: var(--gold);
   color: var(--black);
 }
+.nav-links .cta-btn {
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* Hamburger menu (hidden on desktop) */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -97,21 +113,38 @@ header .logo span {
   background: var(--silver);
   transition: background var(--transition-speed);
 }
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100%;
-    background: var(--blue);
-    flex-direction: column;
-    padding: 2rem 1rem;
-    transition: right 0.3s ease-in-out;
-    z-index: 999;
-  }
-  .nav-links.active { right: 0; }
-  .menu-toggle { display: flex; }
+
+/* ========== DROPDOWN MENU ========== */
+.dropdown {
+  position: relative; /* Needed for submenu positioning */
+}
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--blue);
+  min-width: 150px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
+}
+.dropdown-content li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-content li a:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+/* Reveal on hover (desktop) */
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ========== HERO SECTION ========== */
@@ -227,15 +260,17 @@ section h2 {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity var(--transition-speed);
+  visibility: hidden;
+  transition: opacity var(--transition-speed), visibility var(--transition-speed);
   padding: 1rem;
   text-align: center;
 }
 .card:hover .card-overlay {
   opacity: 1;
+  visibility: visible;
 }
 
-/* ========== TESTIMONIALS CAROUSEL ========== */
+/* ========== TESTIMONIALS & TEAM CAROUSELS ========== */
 .carousel {
   position: relative;
   max-width: 800px;
@@ -251,7 +286,8 @@ section h2 {
   box-sizing: border-box;
   padding: 1rem;
 }
-.testimonial, .team-member {
+.testimonial,
+.team-member {
   background: var(--grey);
   padding: 1.5rem;
   border-radius: 8px;
@@ -356,9 +392,42 @@ footer p {
 }
 
 /* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    background: var(--blue);
+    flex-direction: column;
+    padding: 2rem 1rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+  }
+  .nav-links.active {
+    right: 0;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  /* Keep dropdown visible in mobile nav if desired */
+  .dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 @media (max-width: 600px) {
-  header .logo span { font-size: 1.6rem; }
-  .hero-content h1 { font-size: 2.5rem; }
-  .hero-content p.tagline { font-size: 1.2rem; }
-  section h2 { font-size: 1.8rem; }
+  header .logo span {
+    font-size: 1.6rem;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p.tagline {
+    font-size: 1.2rem;
+  }
+  section h2 {
+    font-size: 1.8rem;
+  }
 }
