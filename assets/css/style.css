@@ -389,7 +389,122 @@ img {
   font-size: 0.8rem;
   color: var(--silver);
 }
+/* ========== NEW SECTIONS: AREAS WE TREAT & CHRONIC DISEASES ========== */
+.areas-we-treat,
+.chronic-diseases {
+  padding: 3rem 0;
+}
 
+.areas-we-treat h2,
+.chronic-diseases h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.areas-we-treat .section-intro,
+.chronic-diseases .section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0.5rem auto 2rem auto;
+}
+
+.areas-grid,
+.diseases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.area-button,
+.disease-button {
+  background-color: var(--grey);
+  color: var(--dark-grey);
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.area-button:hover,
+.disease-button:hover {
+  background-color: var(--gold);
+  color: var(--black);
+}
+
+/* ========== MODAL STYLES ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--white);
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: var(--blue);
+}
+
+/* Title & Content in Modal */
+#modalTitle {
+  margin-bottom: 1rem;
+  color: var(--blue);
+  font-size: 1.5rem;
+}
+
+#modalContent {
+  line-height: 1.5;
+}
+
+/* ========== RESPONSIVE TWEAKS ========== */
+@media (max-width: 768px) {
+  .areas-grid,
+  .diseases-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .areas-grid,
+  .diseases-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* ========== MEDIA QUERIES ========== */
 @media (max-width: 768px) {
   .nav-links {
