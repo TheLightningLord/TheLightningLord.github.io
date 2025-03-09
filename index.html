@@ -2,222 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – End pain, and start thriving. Transform your life with expert exercise medicine, personalized care, and holistic lifestyle adjustments." />
+  <meta name="description" content="Olympian Health Solutions – End pain, and start thriving. Transform your life with personalized, science-based exercise medicine and holistic care." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | End pain, Start thriving</title>
+  <title>Olympian Health Solutions | End pain, and start thriving</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- External CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <!-- JSON-LD Structured Data for SEO -->
+  <!-- JSON-LD Structured Data (update URL if needed) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Olympian Health Solutions",
-    "image": "https://yourdomain.github.io/olympian-health-solutions/assets/images/logo.png",
-    "telephone": "+1-234-567-890",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "123 Wellness Ave, Suite 100",
-      "addressLocality": "Your City",
-      "addressRegion": "ST",
-      "postalCode": "00000",
-      "addressCountry": "US"
-    },
-    "url": "https://yourdomain.github.io/olympian-health-solutions/"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Olympian Health Solutions",
+      "image": "https://yourdomain.github.io/olympian-health-solutions/assets/images/logo.png",
+      "telephone": "+1-234-567-890",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Wellness Ave, Suite 100",
+        "addressLocality": "Your City",
+        "addressRegion": "ST",
+        "postalCode": "00000",
+        "addressCountry": "US"
+      },
+      "url": "https://yourdomain.github.io/olympian-health-solutions/"
+    }
   </script>
 </head>
 <body>
   <!-- HEADER -->
-<header role="banner">
-  <div class="header-container">
-    <!-- Logo -->
-    <div class="logo">
-      <img src="assets/images/logo.webp" alt="Olympian Health Solutions Logo" loading="lazy" />
-      <span>Olympian Health Solutions</span>
+  <header role="banner">
+    <div class="header-container">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Olympian Health Solutions Logo" loading="lazy">
+        <span>Olympian Health Solutions</span>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav role="navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="dropdown">
+            <a href="services.html">Services</a>
+            <ul class="dropdown-content">
+              <li><a href="telehealth.html">Telehealth</a></li>
+              <li><a href="in-home.html">In-Home</a></li>
+              <li><a href="in-clinic.html">In-Clinic</a></li>
+            </ul>
+          </li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="booking.html" class="cta-btn">Book Now</a></li>
+          <li><a href="learn.html">Learn How We Help</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    
-    <!-- Hamburger Toggle for Mobile -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    
-    <!-- Navigation -->
-    <nav role="navigation">
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
-        
-        <!-- Dropdown Menu for Services -->
-        <li class="dropdown">
-          <a href="services.html">Services</a>
-          <ul class="dropdown-content">
-            <li><a href="telehealth.html">Telehealth</a></li>
-            <li><a href="in-home.html">In-Home</a></li>
-            <li><a href="in-clinic.html">In-Clinic</a></li>
-          </ul>
-        </li>
-        
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-        <li><a href="learn.html">Learn How We Help</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION (Reduced height) -->
   <section class="hero-section">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
-      <h1>End pain, Start thriving</h1>
-      <p class="tagline">
-        Revitalize your life with our advanced strategies to exercise medicine methods and careful application of holistic care.
-      </p>
+      <h1>End pain, and start thriving</h1>
+      <p class="tagline">Transform your life with personalized, science-based exercise medicine and holistic care.</p>
       <div class="hero-buttons">
         <a href="booking.html">Schedule Now</a>
         <a href="learn.html">Learn How We Help</a>
       </div>
     </div>
   </section>
-<!-- OUR PROVEN SOLUTIONS SECTION -->
-<section class="solutions-section scroll-reveal">
-  <div class="container">
-    <h2>Our Proven Solutions</h2>
-    <p class="section-intro">
-      At Olympian Health Solutions, we've harnessed the restorative power of exercise. Our innovative approach uses movement as medicine to transform lives. Our tailored programs are designed to reduce chronic pain, improve mobility, and enhance overall well-being. Whether you need personalized in-home training, dynamic telehealth sessions, or cutting-edge in-clinic care, our holistic approach delivers lasting results.
-    </p>
-    <div class="solutions-cards">
-      <div class="solution-card">
-        <h3>We Travel to You!</h3>
-        <p>
-          Customized exercise plans developed by experts that target your unique needs to reduce pain and build strength.
-        </p>
-      </div>
-      <div class="solution-card">
-        <h3>Holistic Telehealth</h3>
-        <p>
-          Comprehensive virtual consultations offering exercise, nutrition, and lifestyle guidance—right from your home.
-        </p>
-      </div>
-      <div class="solution-card">
-        <h3>In-Clinic Excellence</h3>
-        <p>
-          Hands-on care in our modern facility, where state-of-the-art equipment and collaborative therapy ensure optimal recovery.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- OUR RESEARCH PUBLICATIONS SECTION -->
-<section class="research-publications scroll-reveal">
-  <div class="container">
-    <h2>Our Published Research</h2>
+  <!-- WHO WE HELP SECTION -->
+  <section class="who-we-help container">
+    <h2>Who We Help</h2>
     <p class="section-intro">
-      We are pioneers in exercise medicine. Our research offers groundbreaking insights into optimal exercise dosage and effective pain-relief strategies—providing a scientific foundation for all our innovative programs.
+      Our expert programs are tailored for every need. Whether you're a busy professional, continuing post-injury rehab, an elderly or at-risk individual, or managing chronic conditions, we have the perfect solution.
     </p>
-    <div class="research-cards">
-      <div class="research-card">
-        <img src="assets/images/research1.jpg" alt="Optimizing Exercise Dosage for Pain Relief" loading="lazy">
-        <div class="card-content">
-          <div class="card-title">Optimizing Exercise Dosage for Pain Relief</div>
-          <div class="card-description">
-            This study reveals the minimal effective dose of exercise required for maximal pain relief, offering actionable guidelines for personalized rehabilitation and wellness.
-          </div>
-          <a href="assets/research/ExerciseDosage.pdf" target="_blank">Read Full Article</a>
-        </div>
-      </div>
-      <div class="research-card">
-        <img src="assets/images/research2.jpg" alt="Minimal Exercise, Maximum Benefit" loading="lazy">
-        <div class="card-content">
-          <div class="card-title">Minimal Exercise, Maximum Benefit</div>
-          <div class="card-description">
-            Explore how a strategically calibrated exercise regimen can yield significant improvements in mobility and pain management—redefining prescriptive exercise medicine.
-          </div>
-          <a href="assets/research/MinimalExercise.pdf" target="_blank">Read Full Article</a>
-        </div>
-      </div>
+    <div class="help-buttons">
+      <a href="#busy-professionals" class="help-btn">Busy Professionals</a>
+      <a href="#post-injury" class="help-btn">Post-Injury Rehab</a>
+      <a href="#elderly" class="help-btn">Elderly & At-Risk</a>
+      <a href="#chronic" class="help-btn">Chronic Conditions</a>
     </div>
-  </div>
-</section>
-  
-  <!-- PROBLEM & SOLUTION SECTION -->
-  <section class="container scroll-reveal">
-    <h2>We know your problems - We Have the Solutions</h2>
-    <p class="section-intro">
-      Whether you suffer from pain, chronic illness, limited mobility, or post-surgical rehab, our expert strategies are designed to help you overcome obstacles and achieve optimal health.
-    </p>
-    <!-- Additional problem/solution content can go here -->
   </section>
 
-  <!-- INTERACTIVE "LEARN HOW WE HELP" CARD GRID -->
-  <section class="container scroll-reveal">
-    <h2>Learn How We Help</h2>
-    <p class="section-intro">
-      Explore our science-based solutions to common conditions. Hover over each card for a quick overview.
-    </p>
-    <div class="card-grid">
-      <div class="card">
-        <img src="assets/images/arthritis.jpg" alt="Joint Pain & Arthritis">
-        <div class="card-content">
-          <div class="card-title">Joint Pain & Arthritis</div>
+  <!-- OUR SOLUTIONS SECTION -->
+  <section class="solutions-section">
+    <div class="container">
+      <h2>Our Proven Solutions</h2>
+      <p class="section-intro">
+        At Olympian Health Solutions, we use evidence-based strategies to transform pain into power. Our personalized approach encompasses in-home training, telehealth, and in-clinic excellence.
+      </p>
+      <div class="solutions-cards">
+        <div class="solution-card">
+          <h3>Personalized Training</h3>
+          <p>Custom exercise programs designed by experts to reduce pain and build strength based on your unique needs.</p>
         </div>
-        <div class="card-overlay">
-          Our expert programs combine low-impact exercises, strength training, and personalized rehabilitation to reduce joint inflammation and improve mobility.
+        <div class="solution-card">
+          <h3>Holistic Telehealth</h3>
+          <p>Virtual consultations that integrate exercise, nutrition, and lifestyle guidance for comprehensive care.</p>
         </div>
-      </div>
-      <div class="card">
-        <img src="assets/images/back-pain.jpg" alt="Chronic Back & Neck Pain">
-        <div class="card-content">
-          <div class="card-title">Chronic Back & Neck Pain</div>
-        </div>
-        <div class="card-overlay">
-          Experience customized routines that target muscular imbalances and promote spinal health to alleviate persistent discomfort.
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/images/rehab.jpg" alt="Post-Injury Rehabilitation">
-        <div class="card-content">
-          <div class="card-title">Post-Injury Rehab</div>
-        </div>
-        <div class="card-overlay">
-          Our rehabilitation strategies ensure a seamless transition from clinical therapy to independent exercise for safe recovery and lasting strength.
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/images/diabetes.jpg" alt="Diabetes & Metabolic Health">
-        <div class="card-content">
-          <div class="card-title">Diabetes & Metabolic Health</div>
-        </div>
-        <div class="card-overlay">
-          Discover how tailored exercise programs combined with nutritional guidance can boost insulin sensitivity and balance metabolism.
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/images/mental-health.jpg" alt="Mental Health & Mood Disorders">
-        <div class="card-content">
-          <div class="card-title">Mental Health & Mood</div>
-        </div>
-        <div class="card-overlay">
-          Learn how our holistic approach integrates exercise and mindfulness to support mental well-being and manage depression and stress.
+        <div class="solution-card">
+          <h3>In-Clinic Excellence</h3>
+          <p>Hands-on care in our state-of-the-art clinic with advanced equipment and collaborative therapy.</p>
         </div>
       </div>
     </div>
-    <p>
-      <a href="learn.html" class="cta-btn">Read More on How We Help</a>
-    </p>
+  </section>
+
+  <!-- OUR RESEARCH PUBLICATIONS SECTION -->
+  <section class="research-publications">
+    <div class="container">
+      <h2>Our Research Publications</h2>
+      <p class="section-intro">
+        Our pioneering research provides groundbreaking insights into optimal exercise dosage and innovative pain-relief strategies. Explore our studies that form the scientific backbone of our programs.
+      </p>
+      <div class="research-cards">
+        <div class="research-card">
+          <img src="assets/images/research1.jpg" alt="Optimizing Exercise Dosage for Pain Relief" loading="lazy">
+          <div class="card-content">
+            <div class="card-title">Optimizing Exercise Dosage for Pain Relief</div>
+            <div class="card-description">
+              Discover the minimal effective dose of exercise for maximal pain reduction, with actionable guidelines for personalized rehabilitation.
+            </div>
+            <a href="assets/research/ExerciseDosage.pdf" target="_blank">Read Full Article</a>
+          </div>
+        </div>
+        <div class="research-card">
+          <img src="assets/images/research2.jpg" alt="Minimal Exercise, Maximum Benefit" loading="lazy">
+          <div class="card-content">
+            <div class="card-title">Minimal Exercise, Maximum Benefit</div>
+            <div class="card-description">
+              Learn how a strategically calibrated exercise regimen can yield significant improvements in mobility and pain management.
+            </div>
+            <a href="assets/research/MinimalExercise.pdf" target="_blank">Read Full Article</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- TESTIMONIALS CAROUSEL -->
-  <section class="carousel scroll-reveal">
+  <section class="carousel">
     <div class="carousel-inner" id="carouselInner">
       <div class="carousel-item">
         <div class="testimonial">
@@ -238,81 +170,86 @@
         </div>
       </div>
     </div>
-    <div class="carousel-controls">
+    <div class="carousel-controls" id="carouselControls">
       <button id="prevBtn" aria-label="Previous testimonial">&#10094;</button>
       <button id="nextBtn" aria-label="Next testimonial">&#10095;</button>
     </div>
   </section>
 
- <!-- MEET THE TEAM CAROUSEL -->
-<section class="carousel scroll-reveal">
-  <h2>The Experts</h2>
-  <div class="carousel-inner" id="teamCarouselInner">
-    <div class="carousel-item">
-      <div class="team-member">
-        <img src="assets/images/team1.jpg" alt="Zeuse Valentine" loading="lazy">
-        <h3>Zeuse Valentine</h3>
-        <p>
-          <strong>Doctor of Physical Therapy Student</strong><br>
-          Certified Personal Trainer & Exercise Physiologist<br>
-          <em>Specializes in evidence-based rehabilitation programs</em><br>
-          Zeuse focuses on designing personalized, science-driven exercise protocols to alleviate pain, improve mobility, and foster long-term functional independence.
-        </p>
+  <!-- MEET THE TEAM CAROUSEL -->
+  <section class="carousel">
+    <h2>The Experts</h2>
+    <div class="carousel-inner" id="teamCarouselInner">
+      <div class="carousel-item">
+        <div class="team-member">
+          <img src="assets/images/team1.jpg" alt="Zeuse Valentine" loading="lazy">
+          <h3>Zeuse Valentine</h3>
+          <p>
+            <strong>Doctor of Physical Therapy Student</strong><br>
+            Certified Personal Trainer & Exercise Physiologist<br>
+            <em>Specializes in evidence-based rehabilitation programs</em><br>
+            Zeuse focuses on designing personalized exercise protocols that alleviate pain and enhance mobility.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="team-member">
+          <img src="assets/images/team2.jpg" alt="Jordan Lee" loading="lazy">
+          <h3>Jordan Lee</h3>
+          <p>
+            <strong>Certified Personal Trainer</strong><br>
+            Expert in dynamic strength and endurance training<br>
+            <em>Innovative, safe, and sustainable workout solutions</em><br>
+            Jordan leverages cutting-edge techniques to develop customized fitness plans for optimal performance.
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="team-member">
+          <img src="assets/images/team3.jpg" alt="Maria Garcia" loading="lazy">
+          <h3>Maria Garcia</h3>
+          <p>
+            <strong>Nutrition Coach & Wellness Advisor</strong><br>
+            Integrates holistic nutrition with lifestyle strategies<br>
+            <em>Focused on metabolic health and wellness</em><br>
+            Maria empowers clients with personalized nutritional guidance to support overall health and well-being.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="carousel-item">
-      <div class="team-member">
-        <img src="assets/images/team2.jpg" alt="Jordan Lee" loading="lazy">
-        <h3>Jordan Lee</h3>
-        <p>
-          <strong>Certified Personal Trainer</strong><br>
-          Expert in dynamic strength and endurance training<br>
-          <em>Innovative, safe, and sustainable workout solutions</em><br>
-          Jordan leverages cutting-edge training techniques to develop customized fitness plans that maximize results while ensuring long-term safety and effectiveness.
-        </p>
-      </div>
+    <div class="carousel-controls" id="teamCarouselControls">
+      <button id="teamPrevBtn" aria-label="Previous team member">&#10094;</button>
+      <button id="teamNextBtn" aria-label="Next team member">&#10095;</button>
     </div>
-    <div class="carousel-item">
-      <div class="team-member">
-        <img src="assets/images/team3.jpg" alt="Maria Garcia" loading="lazy">
-        <h3>Maria Garcia</h3>
-        <p>
-          <strong>Nutrition Coach & Wellness Advisor</strong><br>
-          Integrates holistic nutrition with lifestyle strategies<br>
-          <em>Focused on metabolic health and wellness</em><br>
-          Maria empowers clients with comprehensive nutritional guidance and personalized wellness plans that support overall health and improve quality of life.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="carousel-controls" id="teamCarouselControls">
-    <button id="teamPrevBtn" aria-label="Previous team member">&#10094;</button>
-    <button id="teamNextBtn" aria-label="Next team member">&#10095;</button>
-  </div>
-</section>
+  </section>
 
   <!-- CERTIFICATIONS SECTION -->
-  <section class="container scroll-reveal">
-    <h2>Nationally Accreddited Certifications & Partnerships</h2>
+  <section class="container">
+    <h2>Our Certifications & Partnerships</h2>
     <div class="certifications">
-      <img src="assets/images/nasm.webp" alt="Certification 1" loading="lazy">
-      <img src="assets/images/nasm2.webp" alt="Certification 2" loading="lazy">
-      <img src="assets/images/afaa.png" alt="Certification 3" loading="lazy">
+      <img src="assets/images/cert1.png" alt="Certification 1" loading="lazy">
+      <img src="assets/images/cert2.png" alt="Certification 2" loading="lazy">
+      <img src="assets/images/cert3.png" alt="Certification 3" loading="lazy">
     </div>
   </section>
 
   <!-- Back to Top Button -->
   <button id="backToTop" title="Back to top" aria-label="Back to top">&#8679;</button>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
-      <p class="footer-disclaimer">*Disclaimer: Our services do not replace professional medical advice. Always consult your physician before starting any new exercise program.</p>
+      <p class="footer-disclaimer">
+        *Disclaimer: Our services do not replace professional medical advice. Always consult your physician before starting any new exercise program.
+      </p>
     </div>
   </footer>
 
   <!-- External JavaScript -->
   <script src="assets/js/script.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
