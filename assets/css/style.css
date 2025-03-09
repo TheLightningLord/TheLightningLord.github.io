@@ -50,13 +50,11 @@ header {
   color: var(--white);
   width: 100%;
 }
-
-/* Main flex container inside the header */
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Removed max-width so it can stretch fully */
+  /* Removed max-width so header spans full width */
   width: 100%;
   padding: 0.5rem 2rem; /* increased horizontal padding */
 }
@@ -99,6 +97,38 @@ header .logo span {
   font-weight: 700;
 }
 
+/* Dropdown Menu for Services */
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--blue);
+  min-width: 150px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
+}
+.dropdown-content li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-content li a:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Hamburger menu (hidden on desktop) */
 .menu-toggle {
   display: none;
@@ -115,46 +145,7 @@ header .logo span {
   transition: background var(--transition-speed);
 }
 
-/* ========== DROPDOWN MENU ========== */
-.dropdown {
-  position: relative; /* needed to position the submenu */
-}
-/* The hidden submenu */
-.dropdown-content {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--blue);
-  min-width: 150px;
-  padding: 0.5rem 0;
-  
-  /* Fade-in approach */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 999;
-}
-
-/* Submenu items */
-.dropdown-content li a {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: var(--white);
-  border-radius: 0;
-  white-space: nowrap;
-}
-.dropdown-content li a:hover {
-  background: var(--gold);
-  color: var(--black);
-}
-/* Reveal the submenu on hover (desktop) */
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-}
-
 /* ========== HERO SECTION ========== */
-/* (No scroll-reveal class here so it's visible immediately) */
 .hero-section {
   position: relative;
   min-height: 70vh;
@@ -222,6 +213,53 @@ section h2 {
   color: var(--dark-grey);
 }
 
+/* ========== SOLUTIONS SECTION ========== */
+.solutions-section {
+  background: var(--grey);
+  padding: 3rem 0;
+}
+.solutions-section .container {
+  text-align: center;
+}
+.solutions-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--blue);
+}
+.solutions-section .section-intro {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: var(--dark-grey);
+}
+.solutions-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+.solution-card {
+  background: var(--white);
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.solution-card:hover {
+  transform: translateY(-5px);
+}
+.solution-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+.solution-card p {
+  font-size: 1rem;
+  color: var(--dark-grey);
+}
+
 /* ========== INTERACTIVE CARD GRID (Learn How We Help) ========== */
 .card-grid {
   display: grid;
@@ -275,6 +313,77 @@ section h2 {
 .card:hover .card-overlay {
   opacity: 1;
   visibility: visible;
+}
+
+/* ========== SOLUTIONS & RESEARCH PUBLICATIONS SECTIONS ========== */
+/* (Solutions section already defined above; now add Research Publications) */
+.research-publications {
+  padding: 3rem 0;
+}
+.research-publications .container {
+  text-align: center;
+}
+.research-publications h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--blue);
+}
+.research-publications .section-intro {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: var(--dark-grey);
+}
+.research-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+.research-card {
+  background: var(--white);
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.research-card:hover {
+  transform: translateY(-5px);
+}
+.research-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.research-card .card-content {
+  padding: 1rem;
+  text-align: left;
+}
+.research-card .card-title {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+.research-card .card-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark-grey);
+  line-height: 1.4;
+}
+.research-card a {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--white);
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+.research-card a:hover {
+  background: var(--gold);
+  color: var(--black);
 }
 
 /* ========== TESTIMONIALS & TEAM CAROUSELS ========== */
@@ -377,7 +486,6 @@ section h2 {
 }
 
 /* ========== SCROLL REVEAL ANIMATION ========== */
-/* Keep this for other sections if desired, but not for the hero */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -420,8 +528,7 @@ footer p {
     display: flex;
   }
   
-  /* For mobile, the entire nav slides in (including the submenu).
-     If you'd like a click-based approach for submenus, additional JS is required. */
+  /* For mobile, the entire nav slides in (including dropdown) */
   .dropdown:hover .dropdown-content {
     opacity: 1;
     visibility: visible;
