@@ -228,57 +228,54 @@
       </div>
     </div>
   </section>
-<!-- ================== TRANSFORMATION & GRAPH SECTION ================== -->
-<section class="transformation-section">
+<!-- ================== HEALTH IMPACT & TRANSFORMATION SECTION ================== -->
+<section class="health-impact">
   <div class="container">
-    <h2>Transform Your Health with In‑Home Training</h2>
+    <h2>Transform Your Health with Expert In‑Home Training</h2>
     <p class="intro">
-      WHO identifies physical inactivity as the top risk factor for premature death. Just 150 minutes of guided exercise per week can:
+      The World Health Organization (WHO) confirms that physical inactivity is a leading risk factor for premature death. Research shows that just 150 minutes of guided, moderate exercise per week can:
     </p>
     <ul class="facts">
       <li><strong>30%</strong> reduction in heart disease risk</li>
       <li><strong>27%</strong> lower risk of type 2 diabetes</li>
-      <li><strong>50%</strong> boost in life expectancy</li>
-      <li><strong>40%</strong> cut in premature death risk</li>
+      <li><strong>30%</strong> reduction in premature death risk</li>
     </ul>
     <div class="graphs">
       <!-- Progress Bar Graph -->
       <div class="progress-graph">
-        <h3>150 Minutes = 100% Health Boost</h3>
+        <h3>150 Minutes = 100% Health Impact</h3>
         <div class="progress-container">
           <div class="progress-bar" data-target="100"></div>
         </div>
       </div>
       <!-- Inline SVG Bar Chart -->
       <div class="svg-chart">
-        <h3>Risk Reduction Impact</h3>
-        <svg width="300" height="150">
+        <h3>Risk Reduction Breakdown</h3>
+        <svg width="320" height="120">
           <rect x="10" y="10" width="0" height="20" fill="#003366" data-target="30"></rect>
-          <rect x="10" y="40" width="0" height="20" fill="#003366" data-target="27"></rect>
-          <rect x="10" y="70" width="0" height="20" fill="#003366" data-target="50"></rect>
-          <rect x="10" y="100" width="0" height="20" fill="#003366" data-target="40"></rect>
-          <text x="320" y="25" fill="#333" font-size="14">Heart Disease - 30%</text>
-          <text x="320" y="55" fill="#333" font-size="14">Diabetes - 27%</text>
-          <text x="320" y="85" fill="#333" font-size="14">Life Exp. - 50%</text>
-          <text x="320" y="115" fill="#333" font-size="14">Premature Death - 40%</text>
+          <rect x="10" y="45" width="0" height="20" fill="#003366" data-target="27"></rect>
+          <rect x="10" y="80" width="0" height="20" fill="#003366" data-target="30"></rect>
+          <text x="130" y="25" fill="#333" font-size="14">Heart Disease - 30%</text>
+          <text x="130" y="60" fill="#333" font-size="14">Diabetes - 27%</text>
+          <text x="130" y="95" fill="#333" font-size="14">Premature Death - 30%</text>
         </svg>
       </div>
     </div>
     <div class="cta">
-      <p>
-        Hire an in‑home trainer for expert, safe guidance—helping you reach your 150-minute weekly goal and change your life.
+      <p class="cta-text">
+        With an expert in‑home trainer guiding you safely, reaching 150 minutes a week is easier than you think.
       </p>
-      <a href="booking.html" class="btn">Hire Your Trainer Now</a>
+      <a href="booking.html" class="btn hire-btn">Hire Your In‑Home Trainer Now</a>
     </div>
   </div>
 </section>
 
 <!-- ================== INLINE CSS ================== -->
 <style>
-  .transformation-section { background: #eef6fc; padding: 60px 0; text-align: center; }
-  .transformation-section .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
-  .transformation-section h2 { font-size: 2.5rem; color: #003366; margin-bottom: 15px; }
-  .transformation-section .intro { font-size: 1.2rem; color: #333; margin-bottom: 20px; }
+  .health-impact { background: #eef6fc; padding: 60px 0; text-align: center; }
+  .health-impact .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+  .health-impact h2 { font-size: 2.5rem; color: #003366; margin-bottom: 15px; }
+  .health-impact .intro { font-size: 1.2rem; color: #333; margin-bottom: 20px; }
   .facts { list-style: none; padding: 0; margin-bottom: 30px; font-size: 1.1rem; color: #333; }
   .facts li { margin: 5px 0; }
   .facts li strong { color: #003366; font-size: 1.2rem; }
@@ -288,7 +285,7 @@
   .progress-container { background: #ccc; border-radius: 25px; height: 25px; max-width: 300px; margin: 0 auto; overflow: hidden; }
   .progress-bar { height: 100%; width: 0; background: #B0B0B0; transition: width 2s ease; }
   .cta { margin-top: 30px; }
-  .cta p { font-size: 1.2rem; color: #333; margin-bottom: 15px; }
+  .cta-text { font-size: 1.2rem; color: #333; margin-bottom: 15px; }
   .btn { display: inline-block; padding: 10px 20px; background: #B0B0B0; color: #000; text-decoration: none; border-radius: 5px; transition: background 0.3s ease; }
   .btn:hover { background: #ccc; }
 </style>
@@ -298,250 +295,14 @@
   // Animate Progress Bar to 100%
   document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
-    if(progressBar) {
+    if (progressBar) {
       setTimeout(() => { progressBar.style.width = progressBar.getAttribute('data-target') + '%'; }, 500);
     }
     // Animate SVG Bar Chart
     document.querySelectorAll('.svg-chart rect').forEach(rect => {
       const target = +rect.getAttribute('data-target');
-      // Scale: 1% = 2px width (adjust as needed)
+      // Set scale: 1% = 2px width (adjust as needed)
       setTimeout(() => { rect.setAttribute('width', target * 2); }, 500);
-    });
-  });
-</script>
-<!-- ================== FAQ SECTION ================== -->
-<section class="faq-section container">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <button class="faq-question">What is the billing process?</button>
-    <div class="faq-answer">
-      <p>Our billing process is straightforward and transparent. We offer multiple payment options and provide detailed invoicing immediately after each session.</p>
-    </div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question">How long are the sessions?</button>
-    <div class="faq-answer">
-      <p>Sessions typically last between 45 minutes to 1 hour, with extended sessions available for specialized care.</p>
-    </div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question">Do you accept insurance?</button>
-    <div class="faq-answer">
-      <p>Yes, we work with a wide range of insurance providers. Our team is here to assist with all necessary documentation and pre-authorization procedures.</p>
-    </div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question">What are the cancellation policies?</button>
-    <div class="faq-answer">
-      <p>We require a 24-hour notice for cancellations to avoid charges. We understand emergencies happen and offer flexibility where possible.</p>
-    </div>
-  </div>
-  <div class="faq-item">
-    <button class="faq-question">How do I schedule an appointment?</button>
-    <div class="faq-answer">
-      <p>You can easily schedule appointments via our online booking system or by contacting our customer support team directly.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================== INLINE CSS FOR THE SECTION ================== -->
-<style>
-  /* SHOCKING HEALTH STATISTICS & TRANSFORMATION SECTION */
-  .health-stats {
-    background: #f7f7f7;
-    padding: 80px 0;
-    text-align: center;
-  }
-  .health-stats h2 {
-    font-size: 2.8rem;
-    color: var(--blue);
-    margin-bottom: 20px;
-  }
-  .health-stats .intro {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--dark-grey);
-  }
-  .stats-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-  .stats-card {
-    background: var(--white);
-    border: 1px solid var(--silver);
-    border-radius: 8px;
-    padding: 20px;
-    width: 200px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .stats-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  .stat-percentage {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--blue);
-    display: block;
-    margin-bottom: 10px;
-  }
-  .bar-graph {
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-  .bar-graph h3 {
-    font-size: 1.8rem;
-    color: var(--blue);
-    margin-bottom: 15px;
-  }
-  .bar-container {
-    background: var(--silver);
-    border-radius: 25px;
-    height: 25px;
-    max-width: 500px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-  }
-  .bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    background: var(--gold);
-    transition: width 2s ease;
-  }
-  .bar-caption {
-    margin-top: 10px;
-    font-size: 1rem;
-    color: var(--dark-grey);
-  }
-  .cta-btn {
-    display: inline-block;
-    padding: 0.8rem 1.6rem;
-    background: var(--gold);
-    color: var(--black);
-    border-radius: 5px;
-    font-size: 1.2rem;
-    transition: background 0.3s ease;
-  }
-  .cta-btn:hover {
-    background: var(--silver);
-  }
-
-  /* FAQ SECTION */
-  .faq-section {
-    background: var(--grey);
-    padding: 60px 0;
-  }
-  .faq-section h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    color: var(--blue);
-  }
-  .faq-item {
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--silver);
-    padding-bottom: 15px;
-  }
-  .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    text-align: left;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: var(--dark-grey);
-    padding: 10px 0;
-    cursor: pointer;
-    position: relative;
-  }
-  .faq-question:after {
-    content: "+";
-    font-size: 1.5rem;
-    position: absolute;
-    right: 0;
-    top: 10px;
-    transition: transform 0.3s ease;
-  }
-  .faq-question.active:after {
-    transform: rotate(45deg);
-  }
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    color: var(--dark-grey);
-    font-size: 1.1rem;
-  }
-  .faq-answer p {
-    padding: 0.5rem 0;
-    line-height: 1.5;
-  }
-</style>
-
-<!-- ================== INLINE JAVASCRIPT FOR ANIMATIONS & INTERACTIONS ================== -->
-<script>
-  // ---------- Animated Stat Counters ----------
-  function animateStatCounters() {
-    const statElements = document.querySelectorAll('.stat-percentage');
-    statElements.forEach(el => {
-      const target = +el.getAttribute('data-target');
-      let count = 0;
-      const increment = target / 100;
-      const updateCount = () => {
-        count += increment;
-        if(count < target) {
-          el.innerText = Math.ceil(count) + '%';
-          setTimeout(updateCount, 20);
-        } else {
-          el.innerText = target + '%';
-        }
-      };
-      updateCount();
-    });
-  }
-
-  // ---------- Animate Bar Graph ----------
-  function animateBarGraph() {
-    const bar = document.querySelector('.bar');
-    if(bar) {
-      bar.style.width = bar.getAttribute('data-percent') + '%';
-    }
-  }
-
-  // ---------- Intersection Observer to Trigger Animations ----------
-  const healthStatsSection = document.querySelector('.health-stats');
-  const statsObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        animateStatCounters();
-        animateBarGraph();
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  if(healthStatsSection) statsObserver.observe(healthStatsSection);
-
-  // ---------- FAQ Accordion Toggle ----------
-  const faqQuestions = document.querySelectorAll('.faq-question');
-  faqQuestions.forEach(question => {
-    question.addEventListener('click', () => {
-      question.classList.toggle('active');
-      const answer = question.nextElementSibling;
-      if(answer.style.maxHeight) {
-        answer.style.maxHeight = null;
-      } else {
-        answer.style.maxHeight = answer.scrollHeight + "px";
-      }
     });
   });
 </script>
@@ -950,6 +711,11 @@
       <p class="footer-disclaimer">
         *Disclaimer: Our services do not replace professional medical advice. Always consult your physician before starting any new exercise program.
       </p>
+      <footer class="who-citation">
+  <p style="font-size: 0.9rem; text-align: center; color: #333;">
+    Source: World Health Organization. (2020). <em>Guidelines on Physical Activity and Sedentary Behaviour</em>. Retrieved from 
+    <a href="https://www.who.int/publications/i/item/9789240015128" target="_blank">https://www.who.int/publications/i/item/9789240015128</a>
+  </p>
     </div>
   </footer>
 
