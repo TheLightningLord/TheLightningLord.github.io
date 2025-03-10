@@ -228,6 +228,122 @@
       </div>
     </div>
   </section>
+  <!-- ================== WE TRAVEL TO YOU SECTION ================== -->
+<section class="we-travel">
+  <div class="container">
+    <h2>We Travel to You</h2>
+    <p class="section-intro">
+      Experience the convenience of personalized in‑home training. Our expert team comes directly to your doorstep, delivering safe and effective workouts tailored to your needs.
+    </p>
+    <!-- Interactive Map -->
+    <div class="travel-map-container">
+      <img src="assets/images/map-placeholder.jpg" alt="Service Map" class="map-image">
+      <div class="map-pin" data-location="Downtown" style="top: 30%; left: 40%;">
+        <span class="pin-icon">📍</span>
+        <div class="pin-tooltip">
+          <strong>Downtown</strong><br>
+          <a href="booking.html">Book Now</a>
+        </div>
+      </div>
+      <div class="map-pin" data-location="Suburbs" style="top: 60%; left: 20%;">
+        <span class="pin-icon">📍</span>
+        <div class="pin-tooltip">
+          <strong>Suburbs</strong><br>
+          <a href="booking.html">Book Now</a>
+        </div>
+      </div>
+      <div class="map-pin" data-location="City Center" style="top: 45%; left: 70%;">
+        <span class="pin-icon">📍</span>
+        <div class="pin-tooltip">
+          <strong>City Center</strong><br>
+          <a href="booking.html">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <!-- Process Timeline -->
+    <div class="process-timeline">
+      <h3>Our Process</h3>
+      <div class="timeline-cards">
+        <div class="timeline-card">
+          <h4>Consultation</h4>
+          <p>We assess your needs to create a tailored plan.</p>
+        </div>
+        <div class="timeline-card">
+          <h4>Customization</h4>
+          <p>Your workout program is uniquely designed for you.</p>
+        </div>
+        <div class="timeline-card">
+          <h4>In‑Home Training</h4>
+          <p>Our expert trainer comes directly to you for safe sessions.</p>
+        </div>
+        <div class="timeline-card">
+          <h4>Ongoing Support</h4>
+          <p>We monitor your progress and adjust your plan accordingly.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cta">
+      <a href="booking.html" class="btn cta-btn">Get Started – We Travel to You</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================== INLINE CSS FOR WE TRAVEL TO YOU SECTION ================== -->
+<style>
+  .we-travel { background: #f9f9f9; padding: 60px 0; text-align: center; }
+  .we-travel .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+  .we-travel h2 { font-size: 2.8rem; color: #003366; margin-bottom: 20px; }
+  .section-intro { font-size: 1.2rem; color: #333; margin-bottom: 40px; max-width: 800px; margin: 0 auto; }
+  /* Interactive Map */
+  .travel-map-container { position: relative; margin-bottom: 50px; }
+  .map-image { width: 100%; height: auto; border-radius: 8px; }
+  .map-pin { position: absolute; cursor: pointer; }
+  .pin-icon { font-size: 2rem; }
+  .pin-tooltip {
+    display: none;
+    position: absolute;
+    top: -50px;
+    left: -20px;
+    background: rgba(0, 51, 102, 0.9);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .map-pin:hover .pin-tooltip,
+  .map-pin.active .pin-tooltip { display: block; }
+  .pin-tooltip a { color: #FFD700; text-decoration: underline; }
+  /* Process Timeline */
+  .process-timeline { margin-bottom: 40px; }
+  .process-timeline h3 { font-size: 2rem; color: #003366; margin-bottom: 20px; }
+  .timeline-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+  .timeline-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .timeline-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .timeline-card h4 { font-size: 1.4rem; color: #003366; margin-bottom: 10px; }
+  .timeline-card p { font-size: 1rem; color: #333; }
+  /* Call to Action */
+  .cta { margin-top: 30px; }
+  .cta-btn { display: inline-block; padding: 12px 24px; background: #B0B0B0; color: #000; text-decoration: none; border-radius: 5px; font-size: 1.2rem; transition: background 0.3s ease; }
+  .cta-btn:hover { background: #ccc; }
+</style>
+
+<!-- ================== INLINE JAVASCRIPT FOR INTERACTIVITY ================== -->
+<script>
+  // For mobile devices: toggle tooltip display on click.
+  document.querySelectorAll('.map-pin').forEach(pin => {
+    pin.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+</script>
 <!-- ================== HEALTH IMPACT SECTION ================== -->
 <section class="health-impact">
   <div class="container">
