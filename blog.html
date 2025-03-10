@@ -1,49 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog | Olympian Health Solutions</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zeuse Valentine | Personal Training & Consultation</title>
+  <!-- Calendly Widget CSS -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <style>
+    /* Basic Page Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    header {
+      background: #66bb6a;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 60px 20px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 20px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    /* Process Timeline Styles */
+    #process-timeline {
+      background: #f5f5f5;
+    }
+    #process-timeline h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+    .timeline-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #ddd;
+    }
+    .timeline-stage {
+      position: relative;
+      margin-bottom: 40px;
+      opacity: 0.5;
+      transform: translateX(-20px);
+      transition: all 0.5s ease;
+    }
+    .timeline-stage.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .timeline-stage::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: background 0.5s ease;
+    }
+    .timeline-stage.active::before {
+      background: #66bb6a;
+    }
+    /* Scheduling Widget Section */
+    #schedule {
+      background: #fff;
+      text-align: center;
+    }
+    #schedule h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    #schedule p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+    .calendly-inline-widget {
+      margin: 0 auto;
+    }
+    /* Additional Embeds Section */
+    #additional-embeds {
+      background: #f9f9f9;
+      text-align: center;
+    }
+    #additional-embeds h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    #additional-embeds .embed-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .timeline-container {
+        padding-left: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">Olympian Health Solutions</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="telehealth.html">Telehealth</a></li>
-        <li><a href="in-home.html">In-Home</a></li>
-        <li><a href="in-clinic.html">In-Clinic</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main class="page-content">
-    <h1>Health & Wellness Blog</h1>
-    <p>Explore the latest insights, tips, and best practices from our experts.</p>
+<header>
+  <h1>Zeuse Valentine Personal Training</h1>
+  <p>Transform Your Health with Expert Guidance</p>
+</header>
 
-    <section class="blog-posts">
-      <!-- Sample Blog Post -->
-      <article class="blog-post">
-        <h2>5 Essential Exercises for Busy Professionals</h2>
-        <p class="date">March 1, 2025</p>
-        <p>Learn how to maximize your limited time with these evidence-based movements that boost strength and energy.</p>
-        <a href="#" class="read-more">Read More</a>
-      </article>
-      <!-- Add more blog posts as needed -->
-    </section>
-  </main>
+<!-- Process Timeline Section -->
+<section id="process-timeline">
+  <h2>Our Process</h2>
+  <div class="timeline-container">
+    <div class="timeline-stage">
+      <h3>Step 1: Consultation</h3>
+      <p>We begin with an in-depth consultation to understand your needs and goals.</p>
+    </div>
+    <div class="timeline-stage">
+      <h3>Step 2: Customization</h3>
+      <p>Based on our discussion, we design a personalized training plan just for you.</p>
+    </div>
+    <div class="timeline-stage">
+      <h3>Step 3: Training</h3>
+      <p>Experience hands-on training sessions that cater to your individual abilities.</p>
+    </div>
+    <div class="timeline-stage">
+      <h3>Step 4: Ongoing Support</h3>
+      <p>We continuously monitor your progress and adjust your plan for optimal results.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; <span id="year"></span> Olympian Health Solutions. All rights reserved.</p>
-  </footer>
-  <script src="assets/js/script.js"></script>
+<!-- Scheduling Widget Section -->
+<section id="schedule">
+  <h2>Schedule Your Free Consultation</h2>
+  <p>Book a session directly using our integrated calendar below.</p>
+  <div class="calendly-inline-widget" data-url="https://calendly.com/zeusevalentine" style="min-width:320px;height:630px;"></div>
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+</section>
+
+<!-- Additional Embeds Section -->
+<section id="additional-embeds">
+  <h2>Additional Interactive Features</h2>
+  <div class="embed-container">
+    <p><strong>Google Maps:</strong> Embed a map to show your business location and help clients find you easily.</p>
+    <!-- Google Maps Embed Example (Replace with your own location as needed) -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.957724487145!2d-122.08560838469184!3d37.421999779825596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb0b5fbcf3f3d%3A0x3c3c7c00f6a7b9a!2sGoogleplex!5e0!3m2!1sen!2sus!4v1596580450842!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <br><br>
+    <p><strong>Twitter Feed:</strong> Keep visitors updated by displaying your latest tweets.</p>
+    <!-- Twitter Timeline Embed Example -->
+    <a class="twitter-timeline" data-width="600" data-height="450" href="https://twitter.com/TwitterDev">Tweets by TwitterDev</a> 
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</section>
+
+<script>
+  // Scroll-activated timeline animation using Intersection Observer
+  document.addEventListener("DOMContentLoaded", function(){
+    const stages = document.querySelectorAll('.timeline-stage');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    stages.forEach(stage => observer.observe(stage));
+  });
+</script>
+
 </body>
 </html>
