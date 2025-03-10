@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="description" content="Olympian Health Solutions – End pain, and start thriving. Transform your life with personalized, science-based exercise medicine and holistic care." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | End pain, Start thriving</title>
+  <title>Olympian Health Solutions | End pain, Start Thriving</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- External CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <!-- JSON-LD Structured Data (update URL if needed) -->
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -19,15 +19,166 @@
       "telephone": "+1-234-567-890",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "123 Wellness Ave, Suite 100",
-        "addressLocality": "Your City",
+        "Battle Ground Main Street": "123 Wellness Ave, Suite 100",
+        "addressLocality": "Battle Ground",
         "addressRegion": "ST",
-        "postalCode": "00000",
+        "postalCode": "98604",
         "addressCountry": "US"
       },
       "url": "https://yourdomain.github.io/olympian-health-solutions/"
     }
   </script>
+  <!-- Inline CSS for demo purposes (advanced effects can be refined in style.css) -->
+  <style>
+    /* Sticky header and animated hamburger */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+    .menu-toggle {
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      width: 25px;
+      background: #333;
+      transition: transform 0.3s ease;
+    }
+    /* Pricing Section */
+    .pricing-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #f9f9f9, #eaeaea);
+      text-align: center;
+    }
+    .pricing-section h2 {
+      margin-bottom: 10px;
+      font-size: 2.5em;
+    }
+    .pricing-section p {
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      color: #555;
+    }
+    .pricing-toggle {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .pricing-toggle .toggle-label {
+      margin: 0 10px;
+      font-weight: 500;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 25px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 25px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 19px;
+      width: 19px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #66bb6a;
+    }
+    input:checked + .slider:before {
+      transform: translateX(25px);
+    }
+    .pricing-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .pricing-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 280px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pricing-card.featured {
+      border: 2px solid #66bb6a;
+      transform: scale(1.05);
+    }
+    .pricing-card:hover {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transform: translateY(-5px);
+    }
+    .pricing-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.8em;
+    }
+    .pricing-card .price {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+    }
+    .pricing-card .price span {
+      font-size: 0.6em;
+      color: #777;
+    }
+    .pricing-card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .pricing-card ul li {
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .pricing-card ul li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #66bb6a;
+    }
+    .pricing-card .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #66bb6a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    .pricing-card .btn:hover {
+      background: #57a05a;
+    }
+  </style>
 </head>
 <body>
   <!-- HEADER -->
@@ -65,12 +216,11 @@
     </div>
   </header>
 
-  <!-- HERO SECTION (Reduced height) -->
+  <!-- HERO SECTION -->
   <section class="hero-section">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
-      <h1>Movement is Medicine. 
-        Revitalize with Exercise.  Experts Prescribe. Experience the Joy of Exercise. Experience End pain, Start thriving</h1>
+      <h1>Movement is Medicine. Revitalize with Exercise. Experts Prescribe. Experience End pain, Start Thriving.</h1>
       <p class="tagline">Transform your life with personalized, science-based exercise medicine and holistic care.</p>
       <div class="hero-buttons">
         <a href="booking.html">Schedule Now</a>
@@ -94,63 +244,55 @@
   </section>
 
   <!-- OUR SOLUTIONS SECTION -->
-  <section class="solutions-section">
-    <div class="container">
-      <h2>Our Healing Solution Philosophy</h2>
-      <p class="section-intro">
-        Our Scientific Research efforts in the field of Exercise Physiology, Physical Therapy and Pain Science, Olympian Health & Wellness Solutions is comitted to providing you with results. We are committed to the community  identify the most effective physical activity interventions innovative  on the belief of providing results. , we use evidence-based exercise intervention strategies to provide solutions.transform pain into power. Our personalized approach encompasses in-home training, telehealth, and in-clinic excellence.
-      </p>
-      <div class="solutions-cards">
-        <div class="solution-card">
-          <h3>In-Your-Home Health Sessions</h3>
-          <p>Custom exercise programs designed by experts to reduce pain and build strength based on your unique needs.</p>
-        </div>
-        <div class="solution-card">
-          <h3>Holistic Telehealth</h3>
-          <p>Virtual consultations to address your health & wellness goals. Integrate exercise, nutrition, and lifestyle guidance for comprehensive care.</p>
-        </div>
-        <div class="solution-card">
-          <h3>In-Clinic Excellence</h3>
-          <p>Hands-on care in our state-of-the-art clinic with advanced equipment and collaborative therapy.</p>
-        </div>
+  <section class="solutions-section container">
+    <h2>Our Healing Solution Philosophy</h2>
+    <p class="section-intro">
+      At Olympian Health Solutions, our evidence-based exercise intervention strategies transform pain into power. We integrate in-home training, telehealth, and in-clinic excellence into personalized programs designed to help you thrive.
+    </p>
+    <div class="solutions-cards">
+      <div class="solution-card">
+        <h3>In-Your-Home Health Sessions</h3>
+        <p>Custom exercise programs designed by experts to reduce pain and build strength based on your unique needs.</p>
+      </div>
+      <div class="solution-card">
+        <h3>Holistic Telehealth</h3>
+        <p>Virtual consultations to address your health and wellness goals with integrated exercise, nutrition, and lifestyle guidance.</p>
+      </div>
+      <div class="solution-card">
+        <h3>In-Clinic Excellence</h3>
+        <p>Hands-on care in our state-of-the-art clinic with advanced equipment and collaborative therapy.</p>
       </div>
     </div>
   </section>
 
-  <!-- OUR RESEARCH PUBLICATIONS SECTION -->
-  <section class="research-publications">
-    <div class="container">
-      <h2>Our Research Publications</h2>
-      <p class="section-intro">
-        Our pioneering research provides groundbreaking insights into optimal exercise dosage and innovative pain-relief strategies. Explore our studies that form the scientific backbone of our programs.
-      </p>
-      <div class="research-cards">
-        <div class="research-card">
-          <img src="assets/images/research1.jpg" alt="Optimizing Exercise Dosage for Pain Relief" loading="lazy">
-          <div class="card-content">
-            <div class="card-title">Optimizing Exercise Dosage for Pain Relief</div>
-            <div class="card-description">
-              Discover the minimal effective dose of exercise for maximal pain reduction, with actionable guidelines for personalized rehabilitation.
-            </div>
-            <a href="assets/images/research2.webp" target="_blank">Read Full Article</a>
-          </div>
+  <!-- RESEARCH PUBLICATIONS SECTION -->
+  <section class="research-publications container">
+    <h2>Our Research Publications</h2>
+    <p class="section-intro">
+      Our pioneering research delivers groundbreaking insights into exercise dosage and pain-relief strategies. Discover the studies that support our innovative approach.
+    </p>
+    <div class="research-cards">
+      <div class="research-card">
+        <img src="assets/images/research1.jpg" alt="Optimizing Exercise Dosage for Pain Relief" loading="lazy">
+        <div class="card-content">
+          <h3>Optimizing Exercise Dosage for Pain Relief</h3>
+          <p>Discover the minimal effective dose of exercise for maximal pain reduction with actionable guidelines for personalized rehabilitation.</p>
+          <a href="assets/images/research2.webp" target="_blank">Read Full Article</a>
         </div>
-        <div class="research-card">
-          <img src="assets/images/research2.jpg" alt="Minimal Exercise, Maximum Benefit" loading="lazy">
-          <div class="card-content">
-            <div class="card-title">Minimal Exercise, Maximum Benefit</div>
-            <div class="card-description">
-              Learn how a strategically calibrated exercise regimen can yield significant improvements in mobility and pain management.
-            </div>
-            <a href="assets/images/research1.webp" target="_blank">Read Full Article</a>
-          </div>
+      </div>
+      <div class="research-card">
+        <img src="assets/images/research2.jpg" alt="Minimal Exercise, Maximum Benefit" loading="lazy">
+        <div class="card-content">
+          <h3>Minimal Exercise, Maximum Benefit</h3>
+          <p>Learn how a strategically calibrated exercise regimen can yield significant improvements in mobility and pain management.</p>
+          <a href="assets/images/research1.webp" target="_blank">Read Full Article</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIALS CAROUSEL -->
-  <section class="carousel">
+  <section class="carousel testimonials">
     <div class="carousel-inner" id="carouselInner">
       <div class="carousel-item">
         <div class="testimonial">
@@ -178,7 +320,7 @@
   </section>
 
   <!-- MEET THE TEAM CAROUSEL -->
-  <section class="carousel">
+  <section class="carousel team-section container">
     <h2>The Experts</h2>
     <div class="carousel-inner" id="teamCarouselInner">
       <div class="carousel-item">
@@ -224,8 +366,58 @@
     </div>
   </section>
 
+  <!-- TURBO MEGA AESTHETIC PRICING SECTION -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <h2>Turbo Mega Aesthetic Pricing</h2>
+      <p>Choose your plan and transform your life with Olympian Health Solutions. Enjoy premium services with dynamic pricing options.</p>
+      <div class="pricing-toggle">
+        <span class="toggle-label">Monthly</span>
+        <label class="switch">
+          <input type="checkbox" id="pricingToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label">Yearly</span>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <h3>Basic</h3>
+          <div class="price" data-monthly="29" data-yearly="290">$29<span>/mo</span></div>
+          <ul class="features">
+            <li>Personalized Consultation</li>
+            <li>Access to Basic Programs</li>
+            <li>Email Support</li>
+          </ul>
+          <a href="booking.html" class="btn">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Pro</h3>
+          <div class="price" data-monthly="49" data-yearly="490">$49<span>/mo</span></div>
+          <ul class="features">
+            <li>All Basic Features</li>
+            <li>Advanced Telehealth Sessions</li>
+            <li>Personalized Exercise Plan</li>
+            <li>Priority Support</li>
+          </ul>
+          <a href="booking.html" class="btn">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Premium</h3>
+          <div class="price" data-monthly="79" data-yearly="790">$79<span>/mo</span></div>
+          <ul class="features">
+            <li>All Pro Features</li>
+            <li>In-Clinic Priority Booking</li>
+            <li>Exclusive Workshops</li>
+            <li>24/7 VIP Support</li>
+          </ul>
+          <a href="booking.html" class="btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CERTIFICATIONS SECTION -->
-  <section class="container">
+  <section class="container certifications-section">
     <h2>Our Certifications & Partnerships</h2>
     <div class="certifications">
       <img src="assets/nasm1.png" alt="Certification 1" loading="lazy">
@@ -250,8 +442,46 @@
 
   <!-- External JavaScript -->
   <script src="assets/js/script.js"></script>
+  <!-- Inline JavaScript for dynamic elements -->
   <script>
+    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      // Animate hamburger spans (optional)
+      menuToggle.children[0].classList.toggle('rotate1');
+      menuToggle.children[1].classList.toggle('fade');
+      menuToggle.children[2].classList.toggle('rotate2');
+    });
+
+    // Pricing toggle for monthly/yearly pricing
+    const pricingToggle = document.getElementById('pricingToggle');
+    const priceElements = document.querySelectorAll('.price');
+
+    pricingToggle.addEventListener('change', function() {
+      priceElements.forEach(el => {
+        const monthlyPrice = el.getAttribute('data-monthly');
+        const yearlyPrice = el.getAttribute('data-yearly');
+        if(pricingToggle.checked) {
+          el.innerHTML = '$' + yearlyPrice + '<span>/yr</span>';
+        } else {
+          el.innerHTML = '$' + monthlyPrice + '<span>/mo</span>';
+        }
+      });
+    });
+
+    // Back to Top button functionality
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
