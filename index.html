@@ -228,30 +228,125 @@
       </div>
     </div>
   </section>
-<!-- ================== TRANSFORMATION JOURNEY & WOW FACTOR SECTION ================== -->
-<section class="transformation-journey">
-  <div class="tj-overlay">
-    <div class="tj-content container">
-      <h2>Experience the Transformation</h2>
-      <p class="tj-tagline">Unleash your body's full potential with our revolutionary exercise science and physical therapy solutions. Transform pain into power and live life without limits.</p>
-      <div class="tj-stats">
-        <div class="tj-stat">
-          <span class="stat-number" data-target="95">0</span>%
-          <p>Pain Relief Achieved</p>
-        </div>
-        <div class="tj-stat">
-          <span class="stat-number" data-target="80">0</span>%
-          <p>Increased Mobility</p>
-        </div>
-        <div class="tj-stat">
-          <span class="stat-number" data-target="120">0</span>%
-          <p>Improved Strength</p>
-        </div>
+<!-- ================== SHOCKING TRUTH: MOVE TO LIVE! SECTION ================== -->
+<section class="shocking-facts">
+  <div class="container">
+    <h2>Shocking Truth: Move to Live!</h2>
+    <p class="intro">
+      According to the World Health Organization (WHO), physical inactivity is a leading contributing risk factor for premature death. Yet, it only takes a small commitment to regular exercise to drastically improve your health.
+    </p>
+    <ul class="facts-list">
+      <li><strong>3.2 million</strong> lives are lost annually due to inactivity worldwide.</li>
+      <li><strong>150 minutes</strong> per week of moderate exercise can significantly reduce chronic disease risks.</li>
+      <li>Regular physical activity lowers heart disease risk by nearly <strong>30%</strong>.</li>
+      <li>Engaging in exercise can reduce type 2 diabetes risk by up to <strong>27%</strong>.</li>
+      <li>Active lifestyles can boost life expectancy by up to <strong>50%</strong> compared to sedentary habits.</li>
+    </ul>
+    <div class="activity-scale">
+      <h3>Your Weekly Activity Challenge</h3>
+      <div class="scale">
+        <div class="scale-bar" data-target="150"></div>
+        <span class="scale-label">Aim for 150 minutes of moderate activity per week</span>
       </div>
-      <a href="booking.html" class="btn tj-btn">Start Your Journey</a>
+      <a href="booking.html" class="btn activity-btn">Start Moving Now</a>
     </div>
   </div>
 </section>
+
+<!-- ================== INLINE CSS FOR SHOCKING FACTS SECTION ================== -->
+<style>
+  .shocking-facts {
+    background: #f0f0f0;
+    padding: 80px 0;
+    text-align: center;
+  }
+  .shocking-facts h2 {
+    font-size: 2.8rem;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+  .shocking-facts .intro {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: var(--dark-grey);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .facts-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  .facts-list li {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: var(--dark-grey);
+  }
+  .facts-list li strong {
+    color: var(--blue);
+  }
+  .activity-scale {
+    margin-top: 40px;
+  }
+  .activity-scale h3 {
+    font-size: 1.8rem;
+    color: var(--blue);
+    margin-bottom: 15px;
+  }
+  .scale {
+    position: relative;
+    background: var(--silver);
+    border-radius: 25px;
+    height: 25px;
+    margin: 20px auto;
+    max-width: 500px;
+    overflow: hidden;
+  }
+  .scale-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: var(--gold);
+    border-radius: 25px;
+    transition: width 2s ease;
+  }
+  .scale-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--dark-grey);
+  }
+  .activity-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 0.8rem 1.6rem;
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+  }
+  .activity-btn:hover {
+    background: var(--silver);
+  }
+</style>
+
+<!-- ================== INLINE JAVASCRIPT FOR ACTIVITY SCALE ANIMATION ================== -->
+<script>
+  // Animate the activity scale bar to fill up to represent 150 minutes per week
+  document.addEventListener('DOMContentLoaded', () => {
+    const scaleBar = document.querySelector('.scale-bar');
+    const target = scaleBar.getAttribute('data-target');
+    // Calculate the percentage based on 150 minutes being 100%
+    const percentage = (target / 150) * 100;
+    setTimeout(() => {
+      scaleBar.style.width = percentage + '%';
+    }, 500);
+  });
+</script>
 
 <!-- ================== FAQ SECTION ================== -->
 <section class="faq-section container">
