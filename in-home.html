@@ -2,54 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>In-Home Services | Olympian Health Solutions</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In‑Home Training | Olympian Health Solutions</title>
+  <meta name="description" content="Experience personalized, expert in‑home training. We travel to you to deliver safe and effective workouts right at your doorstep." />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Inline CSS -->
+  <style>
+    /* Base Reset & Typography */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Playfair Display', serif; background: #fff; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* Header */
+    header {
+      background: #003366;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+    }
+    header .logo img { height: 60px; margin-right: 10px; }
+    nav ul { list-style: none; display: flex; gap: 15px; }
+    nav ul li a { color: #fff; padding: 5px 10px; transition: background 0.3s; }
+    nav ul li a:hover { background: #B0B0B0; border-radius: 4px; }
+
+    /* Hero Section */
+    .hero {
+      background: url('assets/images/in-home-banner.jpg') center/cover no-repeat;
+      height: 60vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #B0B0B0;
+      color: #000;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+    }
+    .cta-btn:hover { background: #ccc; }
+
+    /* We Travel to You Section */
+    .we-travel { background: #f9f9f9; padding: 60px 0; text-align: center; }
+    .we-travel .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+    .we-travel h2 { font-size: 2.8rem; color: #003366; margin-bottom: 20px; }
+    .section-intro { font-size: 1.2rem; color: #333; margin-bottom: 40px; max-width: 800px; margin: 0 auto; }
+
+    /* Interactive Map */
+    .travel-map-container { position: relative; margin-bottom: 50px; }
+    .travel-map-container img { width: 100%; height: auto; border-radius: 8px; }
+    .map-pin { position: absolute; cursor: pointer; }
+    .map-pin .pin-icon { font-size: 2rem; }
+    .map-pin .pin-tooltip {
+      display: none;
+      position: absolute;
+      top: -50px;
+      left: -20px;
+      background: rgba(0, 51, 102, 0.9);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .map-pin:hover .pin-tooltip,
+    .map-pin.active .pin-tooltip { display: block; }
+    .map-pin .pin-tooltip a { color: #FFD700; text-decoration: underline; }
+
+    /* Process Timeline */
+    .process-timeline { margin-bottom: 40px; }
+    .process-timeline h3 { font-size: 2rem; color: #003366; margin-bottom: 20px; }
+    .timeline-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .timeline-card {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      width: 220px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .timeline-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+    .timeline-card h4 { font-size: 1.4rem; color: #003366; margin-bottom: 10px; }
+    .timeline-card p { font-size: 1rem; color: #333; }
+
+    /* Footer */
+    footer {
+      background: #003366;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer a { color: #FFD700; text-decoration: underline; }
+  </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <nav class="navbar">
-      <div class="logo">Olympian Health Solutions</div>
-      <ul class="nav-links">
+    <div class="logo">
+      <img src="assets/images/logo2.png" alt="Olympian Health Solutions Logo">
+      <span>Olympian Health Solutions</span>
+    </div>
+    <nav>
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
+        <li><a href="in-home.html">In‑Home</a></li>
         <li><a href="telehealth.html">Telehealth</a></li>
-        <li><a href="in-home.html" class="active">In-Home</a></li>
-        <li><a href="in-clinic.html">In-Clinic</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
+        <li><a href="in-clinic.html">In‑Clinic</a></li>
+        <li><a href="booking.html">Book Now</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="page-content">
-    <h1>In-Home Personal Training</h1>
-    <p>
-      Receive professional, clinical-grade exercise guidance right in your living room. Perfect for seniors, post-rehab clients, or busy individuals who prefer the convenience of home.
-    </p>
-    
-    <section>
-      <h2>Customized Workouts</h2>
-      <p>Each session is tailored to your abilities, goals, and any medical considerations.</p>
-    </section>
-    
-    <section>
-      <h2>Equipment & Safety</h2>
-      <p>We provide or recommend minimal equipment, focusing on safe and effective progressions.</p>
-    </section>
-
-    <div class="cta-section">
-      <h2>Ready for Your First In-Home Session?</h2>
-      <a href="booking.html" class="btn-primary">Book In-Home Training</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>In‑Home Training That Comes to You</h1>
+      <p>Experience personalized, expert training in the comfort and safety of your own home.</p>
+      <a href="booking.html" class="cta-btn">Book Your Session</a>
     </div>
-  </main>
+  </section>
 
+  <!-- We Travel to You Section -->
+  <section class="we-travel">
+    <div class="container">
+      <h2>We Travel to You</h2>
+      <p class="section-intro">
+        Our expert team delivers personalized in‑home training right to your doorstep, ensuring convenience, safety, and results.
+      </p>
+      <!-- Interactive Map -->
+      <div class="travel-map-container">
+        <img src="assets/images/map-placeholder.jpg" alt="Service Area Map">
+        <div class="map-pin" style="top: 30%; left: 40%;">
+          <span class="pin-icon">📍</span>
+          <div class="pin-tooltip">
+            <strong>Downtown</strong><br>
+            <a href="booking.html">Book Now</a>
+          </div>
+        </div>
+        <div class="map-pin" style="top: 60%; left: 20%;">
+          <span class="pin-icon">📍</span>
+          <div class="pin-tooltip">
+            <strong>Suburbs</strong><br>
+            <a href="booking.html">Book Now</a>
+          </div>
+        </div>
+        <div class="map-pin" style="top: 45%; left: 70%;">
+          <span class="pin-icon">📍</span>
+          <div class="pin-tooltip">
+            <strong>City Center</strong><br>
+            <a href="booking.html">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Process Timeline -->
+      <div class="process-timeline">
+        <h3>Our Process</h3>
+        <div class="timeline-cards">
+          <div class="timeline-card">
+            <h4>Consultation</h4>
+            <p>We assess your needs to create a tailored training plan.</p>
+          </div>
+          <div class="timeline-card">
+            <h4>Customization</h4>
+            <p>Your workout program is uniquely designed for you.</p>
+          </div>
+          <div class="timeline-card">
+            <h4>In‑Home Training</h4>
+            <p>Our expert trainer visits you for safe, effective sessions.</p>
+          </div>
+          <div class="timeline-card">
+            <h4>Ongoing Support</h4>
+            <p>We monitor your progress and adjust your plan as needed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cta">
+        <a href="booking.html" class="cta-btn">Get Started – We Travel to You</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with WHO Citation -->
   <footer>
-    <p>&copy; <span id="year"></span> Olympian Health Solutions. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> Olympian Health Solutions. All Rights Reserved.</p>
+    <p>
+      Source: World Health Organization. (2020). <em>Guidelines on Physical Activity and Sedentary Behaviour</em>. 
+      <a href="https://www.who.int/publications/i/item/9789240015128" target="_blank">Learn More</a>
+    </p>
   </footer>
-  <script src="assets/js/script.js"></script>
+
+  <!-- Inline JavaScript -->
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Toggle map-pin tooltip for mobile devices
+    document.querySelectorAll('.map-pin').forEach(pin => {
+      pin.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+  </script>
 </body>
 </html>
