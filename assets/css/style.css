@@ -6,8 +6,8 @@
 }
 :root {
   /* New color palette */
-  --primary: #2C3E50;    /* Trustworthy dark blue */
-  --accent: #F39C12;     /* Warm, inviting gold */
+  --primary: #4169E1;    /* Trustworthy dark blue */
+  --accent: #FFD464;     /* Warm, inviting gold */
   --light: #ECF0F1;      /* Light background */
   --dark: #7F8C8D;       /* Soft dark grey */
   --white: #ffffff;
