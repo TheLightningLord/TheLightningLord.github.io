@@ -228,7 +228,219 @@
       </div>
     </div>
   </section>
+<!-- ================== TRANSFORMATION JOURNEY & WOW FACTOR SECTION ================== -->
+<section class="transformation-journey">
+  <div class="tj-overlay">
+    <div class="tj-content container">
+      <h2>Experience the Transformation</h2>
+      <p class="tj-tagline">Unleash your body's full potential with our revolutionary exercise science and physical therapy solutions. Transform pain into power and live life without limits.</p>
+      <div class="tj-stats">
+        <div class="tj-stat">
+          <span class="stat-number" data-target="95">0</span>%
+          <p>Pain Relief Achieved</p>
+        </div>
+        <div class="tj-stat">
+          <span class="stat-number" data-target="80">0</span>%
+          <p>Increased Mobility</p>
+        </div>
+        <div class="tj-stat">
+          <span class="stat-number" data-target="120">0</span>%
+          <p>Improved Strength</p>
+        </div>
+      </div>
+      <a href="booking.html" class="btn tj-btn">Start Your Journey</a>
+    </div>
+  </div>
+</section>
 
+<!-- ================== FAQ SECTION ================== -->
+<section class="faq-section container">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <button class="faq-question">What is the billing process?</button>
+    <div class="faq-answer">
+      <p>Our billing process is simple and transparent. We offer multiple payment options and detailed invoicing, ensuring complete clarity. Payment is due at the time of service, with flexible plans available.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">How long are the sessions?</button>
+    <div class="faq-answer">
+      <p>Session lengths vary based on your personalized plan, but most sessions last between 45 minutes to 1 hour. Extended sessions are available for specialized care.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">Do you accept insurance?</button>
+    <div class="faq-answer">
+      <p>Yes, we work with a wide range of insurance providers. Our team will assist you with all necessary documentation and pre-authorizations to make the process as smooth as possible.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">What are the cancellation policies?</button>
+    <div class="faq-answer">
+      <p>We require a 24-hour notice for cancellations to avoid any charges. Exceptions are made in cases of emergencies or unforeseen circumstances.</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">How do I schedule an appointment?</button>
+    <div class="faq-answer">
+      <p>Appointments can be scheduled directly through our online booking system or by contacting our customer service team. We offer flexible scheduling to fit your busy life.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== INLINE CSS FOR TRANSFORMATION & FAQ SECTION ================== -->
+<style>
+  /* Transformation Journey Section */
+  .transformation-journey {
+    position: relative;
+    background: url('../images/transformation-bg.jpg') center/cover no-repeat;
+    padding: 80px 0;
+    color: var(--white);
+    text-align: center;
+    overflow: hidden;
+  }
+  .transformation-journey .tj-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 60px 0;
+  }
+  .transformation-journey .tj-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-out;
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .transformation-journey .tj-tagline {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: fadeIn 1.2s ease-out;
+  }
+  .tj-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  .tj-stat {
+    font-size: 1.8rem;
+  }
+  .tj-stat .stat-number {
+    font-size: 3rem;
+    display: block;
+    font-weight: bold;
+  }
+  ..tj-btn {
+    padding: 1rem 2rem;
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+  }
+  .tj-btn:hover {
+    background: var(--silver);
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    background: var(--grey);
+    padding: 60px 0;
+  }
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--blue);
+  }
+  .faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--silver);
+    padding-bottom: 15px;
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+    padding: 10px 0;
+    cursor: pointer;
+    position: relative;
+  }
+  .faq-question:after {
+    content: "+";
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    transition: transform 0.3s ease;
+  }
+  .faq-question.active:after {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    color: var(--dark-grey);
+    font-size: 1.1rem;
+  }
+  .faq-answer p {
+    padding: 0.5rem 0;
+    line-height: 1.5;
+  }
+</style>
+
+<!-- ================== INLINE JAVASCRIPT FOR STATS & FAQ INTERACTIONS ================== -->
+<script>
+  // ---------- Animated Stat Counters ----------
+  function animateStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+      const updateCount = () => {
+        const target = +stat.getAttribute('data-target');
+        const current = +stat.innerText;
+        const increment = target / 200; // Adjust for speed
+        if (current < target) {
+          stat.innerText = Math.ceil(current + increment);
+          setTimeout(updateCount, 10);
+        } else {
+          stat.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  }
+  // Trigger stat animation when section is visible
+  const statsSection = document.querySelector('.transformation-journey');
+  const statsObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateStats();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // ---------- FAQ Accordion Toggle ----------
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      question.classList.toggle('active');
+      const answer = question.nextElementSibling;
+      if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+</script>
   <!-- WHO WE HELP SECTION -->
   <section class="who-we-help container">
     <h2>We Help</h2>
