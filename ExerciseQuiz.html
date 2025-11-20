@@ -7,11 +7,11 @@
   <style>
     :root {
       --bg: #020617;
-      --card-bg: #020617;
+      --quiz-surface: #020617;
       --panel-bg: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --accent-strong: #06b6d4;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.12);
+      --accent-strong: #4ade80;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
       --danger: #f97373;
@@ -45,54 +45,74 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      padding: 30px 12px 48px;
+      padding: 18px 10px 32px;
     }
 
     .app-wrapper {
-      max-width: 980px;
+      max-width: 1100px;
       width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: flex-start;
     }
 
+    @media (max-width: 900px) {
+      .app-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ========== QUIZ CARD ========== */
+
     .quiz-card {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), #020617);
-      border-radius: 26px;
-      padding: 24px 18px 26px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.78);
-      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: radial-gradient(circle at top left, #020617, #020617 55%, #020617 100%);
+      border-radius: 20px;
+      padding: 16px 14px 18px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.25);
       position: relative;
       overflow: hidden;
+      min-height: 380px;
     }
 
     .quiz-card::before {
       content: "";
       position: absolute;
-      width: 360px;
-      height: 360px;
+      width: 280px;
+      height: 280px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 60%);
-      top: -140px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.18), transparent 60%);
+      top: -130px;
       right: -140px;
       pointer-events: none;
       z-index: 0;
     }
 
     /* INTRO SCREEN */
+
     .intro-screen {
       position: relative;
       z-index: 2;
-      padding: 16px 14px 18px;
-      border-radius: 20px;
+      padding: 12px 10px 14px;
+      border-radius: 16px;
       background: rgba(15, 23, 42, 0.96);
       border: 1px solid rgba(148, 163, 184, 0.4);
+      animation: slideIn 0.35s ease;
     }
 
     .intro-title {
-      margin: 0 0 6px;
-      font-size: 1.3rem;
+      margin: 4px 0 4px;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .intro-title span {
+      color: var(--accent);
     }
 
     .intro-subtitle {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
@@ -102,9 +122,9 @@
     }
 
     .intro-list {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       padding-left: 18px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
     }
 
@@ -115,39 +135,38 @@
     .intro-cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .intro-note {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     .quiz-body {
       position: relative;
       z-index: 1;
-      margin-top: 16px;
-      display: none; /* shown after Start */
+      margin-top: 12px;
+      display: none;
+      animation: fadeUp 0.4s ease;
     }
 
     .quiz-header {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 5px 11px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.92);
+      letter-spacing: 0.11em;
+      padding: 4px 9px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(148, 163, 184, 0.45);
       color: var(--text-muted);
     }
@@ -157,8 +176,8 @@
     }
 
     h1 {
-      margin: 12px 0 6px;
-      font-size: clamp(1.9rem, 4vw, 2.5rem);
+      margin: 10px 0 4px;
+      font-size: clamp(1.7rem, 3.6vw, 2.2rem);
       letter-spacing: -0.03em;
     }
 
@@ -167,11 +186,11 @@
     }
 
     .subtitle {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      max-width: 720px;
+      max-width: 640px;
       margin: 0;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .subtitle strong {
@@ -181,32 +200,32 @@
     .micro-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 0.78rem;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 0.75rem;
       color: var(--text-muted);
     }
 
     .micro-pill {
       border-radius: 999px;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border: 1px solid rgba(148, 163, 184, 0.25);
       background: rgba(15, 23, 42, 0.9);
     }
 
+    /* PROGRESS */
+
     .progress {
-      position: relative;
-      z-index: 1;
-      margin: 18px 0 20px;
+      margin: 14px 0 14px;
     }
 
     .progress-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .progress-top strong {
@@ -215,9 +234,9 @@
 
     .progress-bar-outer {
       width: 100%;
-      height: 10px;
+      height: 8px;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(15, 23, 42, 0.8), #020617);
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(31, 41, 55, 0.9);
       overflow: hidden;
     }
@@ -228,32 +247,44 @@
       border-radius: 999px;
       background: linear-gradient(
         90deg,
-        rgba(56, 189, 248, 0.3),
+        rgba(34, 197, 94, 0.2),
         var(--accent),
         var(--accent-strong)
       );
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.65);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.6);
       transition: width 0.35s ease;
     }
 
+    /* STEPS */
+
     .steps {
-      position: relative;
-      z-index: 1;
+      margin-top: 4px;
     }
 
     .step {
       display: none;
-      animation: fadeIn 0.25s ease;
+      animation: fadeUp 0.25s ease;
     }
 
     .step.active {
       display: block;
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(4px);
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
       }
       to {
         opacity: 1;
@@ -262,62 +293,64 @@
     }
 
     .step-title {
-      font-size: 1.12rem;
-      margin: 0 0 4px;
+      font-size: 1.02rem;
+      margin: 0 0 2px;
     }
 
     .step-hint {
-      margin: 0 0 14px;
+      margin: 0 0 8px;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.82rem;
     }
 
     .question-group {
-      margin-bottom: 14px;
-      padding: 10px 11px 11px;
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.92);
+      margin-bottom: 10px;
+      padding: 8px 8px 8px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(31, 41, 55, 0.9);
     }
 
     .question-label {
-      font-size: 0.94rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: block;
     }
 
     .question-note {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .options-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 9px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 6px;
     }
 
     .option-card {
       position: relative;
-      border-radius: 12px;
-      padding: 9px 10px;
-      border: 1px solid rgba(31, 41, 55, 0.8);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.92), #020617);
+      border-radius: 10px;
+      padding: 7px 8px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: linear-gradient(135deg, #020617, #020617);
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       color: var(--text-main);
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       align-items: flex-start;
-      gap: 8px;
+      column-gap: 7px;
+      row-gap: 2px;
       transition: border-color 0.16s ease, box-shadow 0.16s ease,
-        transform 0.1s ease, background 0.2s ease;
+        transform 0.08s ease, background 0.18s ease;
     }
 
     .option-card:hover {
-      border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12);
+      border-color: rgba(34, 197, 94, 0.7);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.14);
       transform: translateY(-1px);
     }
 
@@ -328,48 +361,52 @@
     }
 
     .indicator {
-      width: 19px;
-      height: 19px;
-      border-radius: 999px;
-      border: 2px solid rgba(148, 163, 184, 0.8);
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
       margin-top: 2px;
-      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
-      color: var(--accent);
+      color: #0f172a;
+      background: transparent;
     }
 
     .option-content {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 1px;
     }
 
     .option-title {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
     }
 
     .option-sub {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     .option-card[data-checked="true"] {
       border-color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), #020617);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.16), #020617);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.45);
     }
 
     .option-card[data-checked="true"] .indicator {
-      border-color: rgba(56, 189, 248, 0.9);
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent);
+      background: var(--accent);
+      border-color: rgba(21, 128, 61, 0.9);
+      color: #022c22;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
     }
 
+    /* NAV BUTTONS */
+
     .nav-row {
-      margin-top: 20px;
+      margin-top: 12px;
       display: flex;
       justify-content: space-between;
       gap: 10px;
@@ -378,51 +415,56 @@
     }
 
     .nav-left {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      min-height: 20px;
+      min-height: 18px;
     }
 
     .nav-buttons {
       display: flex;
-      gap: 9px;
+      gap: 6px;
     }
 
     .btn {
-      border-radius: 999px;
+      border-radius: 8px;
       border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 8px 16px;
-      background: rgba(15, 23, 42, 0.95);
+      padding: 7px 14px;
+      background: rgba(15, 23, 42, 0.98);
       color: var(--text-main);
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease,
+        box-shadow 0.15s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn.primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      border-color: rgba(8, 47, 73, 0.9);
-      color: #0b1120;
+      border-color: rgba(22, 163, 74, 0.9);
+      color: #022c22;
       font-weight: 600;
-      box-shadow: 0 10px 24px rgba(8, 47, 73, 0.6);
+      box-shadow: 0 8px 18px rgba(5, 46, 22, 0.85);
     }
 
     .btn.primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(8, 47, 73, 0.8);
+      box-shadow: 0 10px 22px rgba(5, 46, 22, 0.95);
     }
 
     .btn.secondary {
-      opacity: 0.85;
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
     }
 
     .btn.secondary:hover {
       background: rgba(15, 23, 42, 1);
-      border-color: rgba(148, 163, 184, 0.9);
+      border-color: rgba(148, 163, 184, 0.95);
+      transform: translateY(-1px);
     }
 
     .btn:disabled {
@@ -433,21 +475,61 @@
     }
 
     .btn-large {
-      padding: 9px 20px;
-      font-size: 0.96rem;
+      padding: 8px 18px;
+      font-size: 0.94rem;
     }
 
-    /* RESULTS SECTION */
+    /* ========== RESULTS SIDE (LIGHT THEME) ========== */
 
     .results-wrapper {
-      margin-top: 22px;
+      background: #f3f4f6;
+      border-radius: 18px;
+      padding: 12px 12px 14px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.45);
+      color: #111827;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .results-wrapper::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.15), transparent 65%);
+      top: -140px;
+      left: -100px;
+      pointer-events: none;
     }
 
     .results-card {
-      background: radial-gradient(circle at top, #020617, #020617 60%, #0b1120 100%);
-      border-radius: 20px;
-      padding: 14px 14px 16px;
-      border: 1px solid rgba(15, 23, 42, 0.95);
+      position: relative;
+      z-index: 1;
+      border-radius: 14px;
+      padding: 10px 10px 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      transform-origin: top;
+      opacity: 0.85;
+    }
+
+    .results-card.results-visible {
+      animation: resultsPop 0.45s ease;
+      opacity: 1;
+    }
+
+    @keyframes resultsPop {
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .results-header {
@@ -455,7 +537,7 @@
       justify-content: space-between;
       gap: 8px;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       flex-wrap: wrap;
     }
 
@@ -467,24 +549,25 @@
 
     .results-header-left h2 {
       margin: 0;
-      font-size: 1.04rem;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+      color: #0f172a;
     }
 
     .results-header-left span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      color: #6b7280;
     }
 
     .print-btn {
-      font-size: 0.8rem;
-      padding-inline: 12px;
-      white-space: nowrap;
+      font-size: 0.78rem;
+      padding-inline: 10px;
     }
 
     .results-intro {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin: 0 0 10px;
+      font-size: 0.84rem;
+      color: #4b5563;
+      margin: 0 0 8px;
     }
 
     .results-tags {
@@ -495,12 +578,12 @@
     }
 
     .results-tag {
-      font-size: 0.78rem;
-      padding: 3px 8px;
+      font-size: 0.76rem;
+      padding: 3px 7px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid rgba(34, 197, 94, 0.4);
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -528,39 +611,40 @@
     .results-tag--overall .results-tag-dot { background: var(--overall); }
 
     .personal-plan {
-      margin-bottom: 10px;
-      padding: 9px 11px;
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px dashed rgba(148, 163, 184, 0.6);
-      font-size: 0.84rem;
-      color: var(--text-main);
+      margin-bottom: 8px;
+      padding: 8px 9px;
+      border-radius: 10px;
+      background: #ecfdf3;
+      border: 1px dashed rgba(22, 163, 74, 0.7);
+      font-size: 0.82rem;
+      color: #064e3b;
     }
 
     /* Headline stat graphics */
+
     .headline-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 8px;
-      margin-bottom: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 6px;
+      margin-bottom: 8px;
     }
 
     .headline-card {
-      border-radius: 14px;
-      padding: 9px 10px;
+      border-radius: 10px;
+      padding: 7px 8px;
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
-      font-size: 0.8rem;
+      gap: 2px;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+      font-size: 0.78rem;
     }
 
     .headline-label {
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: 0.72rem;
-      color: var(--text-muted);
+      font-size: 0.68rem;
+      color: #9ca3af;
     }
 
     .headline-main {
@@ -568,39 +652,41 @@
       align-items: baseline;
       gap: 4px;
       font-weight: 600;
+      color: #0f172a;
     }
 
     .headline-value {
-      font-size: 1.1rem;
+      font-size: 1.04rem;
     }
 
     .headline-detail {
-      color: var(--text-muted);
+      color: #6b7280;
       font-size: 0.78rem;
     }
 
-    .headline-card--cardio { border-color: rgba(249, 115, 115, 0.7); }
-    .headline-card--metabolic { border-color: rgba(34, 197, 94, 0.7); }
-    .headline-card--brain { border-color: rgba(168, 85, 247, 0.7); }
-    .headline-card--balance { border-color: rgba(45, 212, 191, 0.7); }
-    .headline-card--overall { border-color: rgba(110, 231, 183, 0.7); }
+    .headline-card--cardio { border-left: 3px solid rgba(249, 115, 115, 0.9); }
+    .headline-card--metabolic { border-left: 3px solid rgba(34, 197, 94, 0.9); }
+    .headline-card--brain { border-left: 3px solid rgba(168, 85, 247, 0.9); }
+    .headline-card--balance { border-left: 3px solid rgba(45, 212, 191, 0.9); }
+    .headline-card--overall { border-left: 3px solid rgba(110, 231, 183, 0.9); }
 
     .focus-summary,
     .micro-habits,
     .doctor-questions {
-      margin-bottom: 10px;
-      padding: 9px 11px;
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      font-size: 0.84rem;
+      margin-bottom: 8px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      font-size: 0.82rem;
     }
 
     .focus-summary h3,
     .micro-habits h3,
     .doctor-questions h3 {
-      margin: 0 0 6px;
-      font-size: 0.9rem;
+      margin: 0 0 5px;
+      font-size: 0.88rem;
+      color: #111827;
     }
 
     .focus-summary ul,
@@ -608,8 +694,8 @@
     .doctor-questions ul {
       margin: 0;
       padding-left: 18px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      font-size: 0.8rem;
+      color: #4b5563;
     }
 
     .focus-summary li + li,
@@ -619,56 +705,57 @@
     }
 
     .benefit-card {
-      border-radius: 14px;
-      border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), #020617);
-      padding: 10px 11px 9px;
-      margin-bottom: 8px;
-      font-size: 0.84rem;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 8px 9px 7px;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
     }
 
-    .benefit-card[data-main-tag="cardio"] { border-color: rgba(249, 115, 115, 0.7); }
-    .benefit-card[data-main-tag="metabolic"] { border-color: rgba(34, 197, 94, 0.7); }
-    .benefit-card[data-main-tag="brain"] { border-color: rgba(168, 85, 247, 0.7); }
-    .benefit-card[data-main-tag="mood"] { border-color: rgba(251, 191, 36, 0.7); }
-    .benefit-card[data-main-tag="balance"] { border-color: rgba(45, 212, 191, 0.7); }
-    .benefit-card[data-main-tag="independence"] { border-color: rgba(250, 204, 21, 0.7); }
-    .benefit-card[data-main-tag="joints"] { border-color: rgba(249, 115, 22, 0.7); }
-    .benefit-card[data-main-tag="overall"] { border-color: rgba(110, 231, 183, 0.7); }
+    .benefit-card[data-main-tag="cardio"] { border-left: 3px solid rgba(249, 115, 115, 0.9); }
+    .benefit-card[data-main-tag="metabolic"] { border-left: 3px solid rgba(34, 197, 94, 0.9); }
+    .benefit-card[data-main-tag="brain"] { border-left: 3px solid rgba(168, 85, 247, 0.9); }
+    .benefit-card[data-main-tag="mood"] { border-left: 3px solid rgba(251, 191, 36, 0.9); }
+    .benefit-card[data-main-tag="balance"] { border-left: 3px solid rgba(45, 212, 191, 0.9); }
+    .benefit-card[data-main-tag="independence"] { border-left: 3px solid rgba(250, 204, 21, 0.9); }
+    .benefit-card[data-main-tag="joints"] { border-left: 3px solid rgba(249, 115, 22, 0.9); }
+    .benefit-card[data-main-tag="overall"] { border-left: 3px solid rgba(110, 231, 183, 0.9); }
 
     .benefit-header {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 4px;
     }
 
     .benefit-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
+      width: 20px;
+      height: 20px;
+      border-radius: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 14px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
     }
 
     .benefit-title {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.84rem;
+      color: #111827;
     }
 
     .benefit-summary {
-      margin: 0 0 4px;
-      color: var(--text-main);
+      margin: 0 0 3px;
+      color: #111827;
     }
 
     .benefit-tagline {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      margin-bottom: 5px;
+      color: #6b7280;
+      font-size: 0.78rem;
+      margin-bottom: 4px;
     }
 
     .benefit-meta {
@@ -682,8 +769,8 @@
     .science-toggle {
       border: none;
       background: transparent;
-      color: var(--accent);
-      font-size: 0.78rem;
+      color: #15803d;
+      font-size: 0.76rem;
       padding: 0;
       cursor: pointer;
       display: inline-flex;
@@ -699,21 +786,21 @@
 
     .science-body {
       display: none;
-      margin-top: 6px;
-      border-top: 1px dashed rgba(31, 41, 55, 0.9);
-      padding-top: 6px;
+      margin-top: 5px;
+      border-top: 1px dashed #e5e7eb;
+      padding-top: 5px;
       font-size: 0.76rem;
-      color: var(--text-muted);
+      color: #4b5563;
     }
 
     .science-body strong {
-      color: #e5e7eb;
+      color: #111827;
     }
 
     .results-footer {
-      margin-top: 10px;
-      font-size: 0.76rem;
-      color: var(--text-muted);
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: #6b7280;
     }
 
     .results-footer p {
@@ -726,55 +813,57 @@
     }
 
     /* EXIT / NEXT STEPS SCREEN */
+
     .exit-panel {
-      margin-top: 18px;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .exit-inner {
-      border-radius: 18px;
-      padding: 14px 14px 15px;
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), #020617);
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 14px;
+      padding: 9px 10px 10px;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      font-size: 0.82rem;
+      color: #111827;
     }
 
     .exit-inner h3 {
-      margin: 0 0 6px;
-      font-size: 1rem;
+      margin: 0 0 5px;
+      font-size: 0.9rem;
     }
 
     .exit-inner p {
-      margin: 4px 0;
-      font-size: 0.86rem;
-      color: var(--text-muted);
+      margin: 3px 0;
+      font-size: 0.82rem;
+      color: #4b5563;
     }
 
     .exit-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
+      gap: 6px;
+      margin-top: 6px;
     }
 
     .exit-btn {
-      font-size: 0.85rem;
-    }
-
-    .exit-inner a {
-      color: var(--accent);
+      font-size: 0.8rem;
+      padding-block: 6px;
     }
 
     @media (max-width: 720px) {
       body {
-        padding-top: 20px;
+        padding-top: 16px;
       }
       .quiz-card {
-        padding-inline: 14px;
+        padding-inline: 11px;
       }
       .options-grid {
         grid-template-columns: 1fr;
       }
-      .results-header {
-        align-items: flex-start;
+      .results-wrapper {
+        order: 2;
       }
     }
 
@@ -794,9 +883,13 @@
       }
       .app-wrapper {
         max-width: 100%;
+        display: block;
       }
       .results-wrapper {
         margin-top: 0;
+        background: #ffffff;
+        border: none;
+        box-shadow: none;
       }
       .results-card {
         border-radius: 0;
@@ -830,14 +923,14 @@
 </head>
 <body>
   <div class="app-wrapper">
-    <!-- QUIZ -->
+    <!-- QUIZ SIDE -->
     <div class="quiz-card" aria-label="Exercise benefits quiz">
       <!-- INTRO SCREEN -->
       <div class="intro-screen" id="introScreen">
         <div class="badge">
           <span>🧬</span> Science-Based Movement Snapshot
         </div>
-        <h2 class="intro-title">How Exercise Will Help <span style="color:var(--accent);">YOU</span></h2>
+        <h2 class="intro-title">How Exercise Will Help <span>YOU</span></h2>
         <p class="intro-subtitle">
           In just a few calm steps, you’ll see how the right amount of movement can support your
           <strong>heart, brain, blood sugar, pain, balance, mood, and independence</strong> —
@@ -856,7 +949,7 @@
         </div>
       </div>
 
-      <!-- QUIZ BODY (hidden until intro is dismissed) -->
+      <!-- QUIZ BODY -->
       <div class="quiz-body" id="quizBody">
         <div class="quiz-header">
           <div class="badge">
@@ -889,7 +982,7 @@
 
         <!-- STEPS -->
         <div class="steps">
-          <!-- STEP 1: AGE + ACTIVITY -->
+          <!-- STEP 1 -->
           <section class="step active" data-step="1">
             <h2 class="step-title">Step 1 – About You</h2>
             <p class="step-hint">Just the basics so we can anchor the science to your age and activity level.</p>
@@ -979,7 +1072,7 @@
             </div>
           </section>
 
-          <!-- STEP 2: HOW YOU FEEL -->
+          <!-- STEP 2 -->
           <section class="step" data-step="2">
             <h2 class="step-title">Step 2 – How You Feel Day to Day</h2>
             <p class="step-hint">This frames the benefits around how your body feels right now.</p>
@@ -1061,7 +1154,7 @@
             </div>
           </section>
 
-          <!-- STEP 3: PT STATUS -->
+          <!-- STEP 3 -->
           <section class="step" data-step="3">
             <h2 class="step-title">Step 3 – Physical Therapy Status</h2>
             <p class="step-hint">This helps frame exercise as a “bridge” after PT when appropriate.</p>
@@ -1098,7 +1191,7 @@
             </div>
           </section>
 
-          <!-- STEP 4: HEALTH FOCUS -->
+          <!-- STEP 4 -->
           <section class="step" data-step="4">
             <h2 class="step-title">Step 4 – Health Areas You Care About</h2>
             <p class="step-hint">Select everything that feels important. This drives most of your report.</p>
@@ -1206,7 +1299,7 @@
             </div>
           </section>
 
-          <!-- STEP 5: PRIORITY STYLE -->
+          <!-- STEP 5 -->
           <section class="step" data-step="5">
             <h2 class="step-title">Step 5 – What Matters Most Right Now</h2>
             <p class="step-hint">This shapes whether we emphasize symptoms, risk, performance, or independence.</p>
@@ -1251,7 +1344,7 @@
             </div>
           </section>
 
-          <!-- STEP 6: DIAGNOSES -->
+          <!-- STEP 6 -->
           <section class="step" data-step="6">
             <h2 class="step-title">Step 6 – Diagnoses</h2>
             <p class="step-hint">Optional but helpful. This connects the science to specific conditions.</p>
@@ -1359,7 +1452,7 @@
             </div>
           </section>
 
-          <!-- STEP 7: DAILY TASKS -->
+          <!-- STEP 7 -->
           <section class="step" data-step="7">
             <h2 class="step-title">Step 7 – Daily Activities</h2>
             <p class="step-hint">These are exactly the kinds of tasks we train for in a “real life” program.</p>
@@ -1419,7 +1512,7 @@
             </div>
           </section>
 
-          <!-- STEP 8: GOALS + PRACTICAL -->
+          <!-- STEP 8 -->
           <section class="step" data-step="8">
             <h2 class="step-title">Step 8 – Goals & Practical Details</h2>
             <p class="step-hint">This turns the science into a realistic, minimum-effective-dose plan.</p>
@@ -1629,9 +1722,9 @@
       </div>
     </div>
 
-    <!-- RESULTS -->
+    <!-- RESULTS SIDE -->
     <div class="results-wrapper" id="resultsWrapper">
-      <div class="results-card">
+      <div class="results-card" id="resultsCard">
         <div class="results-header">
           <div class="results-header-left">
             <h2>Your Personalized Movement Report</h2>
@@ -1693,7 +1786,6 @@
     startQuizBtn.addEventListener("click", () => {
       introScreen.style.display = "none";
       quizBody.style.display = "block";
-      // Scroll to top of quiz body on small screens
       if (window.innerWidth < 860) {
         document.querySelector(".quiz-card").scrollIntoView({
           behavior: "smooth",
@@ -1726,6 +1818,7 @@
     const microHabitsEl = document.getElementById("microHabits");
     const doctorQuestionsEl = document.getElementById("doctorQuestions");
     const printBtn = document.getElementById("printBtn");
+    const resultsCard = document.getElementById("resultsCard");
 
     progressTotalEl.textContent = totalSteps;
 
@@ -1831,7 +1924,7 @@
       });
     });
 
-    // ===== BENEFIT ENGINE (same as before) =====
+    // ===== BENEFIT ENGINE =====
     const benefitBank = [
       {
         id: "cardio1",
@@ -2692,7 +2785,10 @@
       resultsIntro.textContent =
         "Here’s how appropriately dosed exercise can support the areas you care about most. These are evidence-informed summaries for education, not individualized medical advice.";
 
-      if (window.innerWidth < 860) {
+      // animate results card
+      resultsCard.classList.add("results-visible");
+
+      if (window.innerWidth < 900) {
         document.getElementById("resultsWrapper").scrollIntoView({
           behavior: "smooth",
           block: "start"
