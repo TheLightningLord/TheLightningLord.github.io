@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://olympiansolutions.net/ExerciseQuiz.html" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Quiz-specific styling (scoped to quiz classes only) -->
+  <!-- Quiz-specific styling (scoped) -->
   <style>
     .quiz-page-wrapper {
       padding: 2rem 0 3rem;
@@ -68,7 +68,7 @@
       margin: 0;
       font-size: 0.92rem;
       color: var(--text-muted);
-      max-width: 620px;
+      max-width: 640px;
     }
     .quiz-header .subtitle strong {
       color: #e5e7eb;
@@ -115,19 +115,11 @@
     .quiz-main {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr);
-      gap: 18px;
-    }
-    @media (min-width: 860px) {
-      .quiz-main {
-        grid-template-columns: minmax(0, 3.2fr) minmax(0, 2fr);
-      }
     }
 
     .quiz-step {
       display: none;
-      animation: quizFadeIn 0.3s ease;
+      animation: quizFadeIn 0.25s ease;
     }
     .quiz-step.active {
       display: block;
@@ -285,57 +277,17 @@
       transform: none;
     }
 
-    .quiz-sidebar {
-      display: none;
-      padding-left: 4px;
-    }
-    @media (min-width: 860px) {
-      .quiz-sidebar {
-        display: block;
-      }
-    }
-
-    .quiz-side-card {
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
-      border-radius: 18px;
-      padding: 12px 14px 14px;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .quiz-side-card h3 {
-      margin-top: 0;
-      font-size: 0.86rem;
-      color: #e5e7eb;
-    }
-    .quiz-pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .quiz-pill {
-      border-radius: 999px;
-      padding: 3px 8px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.7rem;
-      color: var(--text-main);
-      background: rgba(15, 23, 42, 0.9);
-      white-space: nowrap;
-    }
-    .quiz-pill.pill-safe {
-      color: #22c55e;
+    .quiz-results-wrapper {
+      margin-top: 1.8rem;
     }
 
     .quiz-results-panel {
-      margin-top: 14px;
       padding: 14px 14px 16px;
       border-radius: 18px;
       border: 1px solid rgba(15, 23, 42, 0.95);
       background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
-      max-height: 520px;
-      overflow-y: auto;
     }
+
     .quiz-results-header {
       display: flex;
       justify-content: space-between;
@@ -370,6 +322,17 @@
       color: var(--accent);
       border: 1px solid rgba(56, 189, 248, 0.4);
     }
+
+    .quiz-personal-plan {
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      font-size: 0.82rem;
+      color: var(--text-main);
+    }
+
     .quiz-benefit-card {
       border-radius: 14px;
       border: 1px solid var(--border-subtle);
@@ -442,11 +405,13 @@
     .quiz-science-body strong {
       color: #e5e7eb;
     }
+
     .quiz-results-footer {
       margin-top: 10px;
       font-size: 0.75rem;
       color: var(--text-muted);
     }
+
     .quiz-results-footer p {
       margin: 2px 0;
     }
@@ -506,10 +471,10 @@
           </div>
           <h1>How Exercise Will Help <span style="color: var(--accent)">YOU</span></h1>
           <p class="subtitle">
-            Answer a few questions about your health and goals. We’ll highlight
-            how the right kind of movement can support your
-            <strong>heart, brain, blood sugar, pain, balance, and independence</strong> —
-            using evidence from the CDC, WHO, and major research studies.
+            Answer a few quick questions about your health, worries, and goals. We’ll show how
+            appropriately dosed movement can help your <strong>heart, brain, blood sugar, pain,
+            balance, bones, and independence</strong> — based on major guidelines and research,
+            translated into plain language.
           </p>
         </div>
 
@@ -525,464 +490,601 @@
         </div>
 
         <div class="quiz-main">
-          <!-- Left: steps -->
-          <div>
-            <!-- STEP 1 -->
-            <section class="quiz-step active" data-step="1">
-              <h2 class="quiz-step-title">Step 1 – About You</h2>
-              <p class="quiz-step-hint">This helps tailor the science and examples to people like you.</p>
+          <!-- STEP 1 -->
+          <section class="quiz-step active" data-step="1">
+            <h2 class="quiz-step-title">Step 1 – About You</h2>
+            <p class="quiz-step-hint">Helps us frame the evidence to people like you.</p>
 
-              <div class="quiz-question-group">
-                <span class="quiz-question-label">Age range</span>
-                <div class="quiz-options-grid">
-                  <label class="quiz-option-card" data-type="single" data-name="age">
-                    <input type="radio" name="age" value="under40" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Under 40</div>
-                      <div class="quiz-option-sub">Planning ahead for long-term health.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="age">
-                    <input type="radio" name="age" value="40to54" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">40–54</div>
-                      <div class="quiz-option-sub">Building resilience for midlife and beyond.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="age">
-                    <input type="radio" name="age" value="55to64" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">55–64</div>
-                      <div class="quiz-option-sub">Prime time for protecting future independence.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="age">
-                    <input type="radio" name="age" value="65to74" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">65–74</div>
-                      <div class="quiz-option-sub">Staying strong, steady, and confident.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="age">
-                    <input type="radio" name="age" value="75plus" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">75+</div>
-                      <div class="quiz-option-sub">Maximizing independence and quality of life.</div>
-                    </div>
-                  </label>
-                </div>
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">Age range</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="under40" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Under 40</div>
+                    <div class="quiz-option-sub">Planning ahead for long-term health.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="40to54" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">40–54</div>
+                    <div class="quiz-option-sub">Building resilience for midlife and beyond.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="55to64" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">55–64</div>
+                    <div class="quiz-option-sub">Prime time for protecting future independence.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="65to74" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">65–74</div>
+                    <div class="quiz-option-sub">Staying strong, steady, and confident.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="75plus" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">75+</div>
+                    <div class="quiz-option-sub">Maximizing independence and quality of life.</div>
+                  </div>
+                </label>
               </div>
+            </div>
 
-              <div class="quiz-question-group">
-                <span class="quiz-question-label">How active are you right now?</span>
-                <div class="quiz-options-grid">
-                  <label class="quiz-option-card" data-type="single" data-name="activity">
-                    <input type="radio" name="activity" value="mostlySitting" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Mostly sitting</div>
-                      <div class="quiz-option-sub">I rarely exercise on purpose.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="activity">
-                    <input type="radio" name="activity" value="someWalking" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Some walking</div>
-                      <div class="quiz-option-sub">I move a bit but not regularly.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="activity">
-                    <input type="radio" name="activity" value="regularExercise" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Regular exercise</div>
-                      <div class="quiz-option-sub">I exercise consistently most weeks.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="single" data-name="activity">
-                    <input type="radio" name="activity" value="veryActive" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Very active</div>
-                      <div class="quiz-option-sub">I’m highly active or athletic.</div>
-                    </div>
-                  </label>
-                </div>
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">How active are you right now?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="mostlySitting" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Mostly sitting</div>
+                    <div class="quiz-option-sub">I rarely exercise on purpose.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="someWalking" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Some walking</div>
+                    <div class="quiz-option-sub">I move a bit but not regularly.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="regularExercise" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Regular exercise</div>
+                    <div class="quiz-option-sub">I exercise consistently most weeks.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="veryActive" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Very active</div>
+                    <div class="quiz-option-sub">I’m highly active or athletic.</div>
+                  </div>
+                </label>
               </div>
-            </section>
+            </div>
 
-            <!-- STEP 2 -->
-            <section class="quiz-step" data-step="2">
-              <h2 class="quiz-step-title">Step 2 – Your Health Priorities</h2>
-              <p class="quiz-step-hint">Select everything that matters to you right now.</p>
-
-              <div class="quiz-question-group">
-                <span class="quiz-question-label">Which areas do you most want to support?</span>
-                <div class="quiz-options-grid">
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="cardio">
-                    <input type="checkbox" name="healthFocus" value="heart" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Heart & blood pressure</div>
-                      <div class="quiz-option-sub">Heart disease, blood pressure, cholesterol.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="metabolic">
-                    <input type="checkbox" name="healthFocus" value="bloodSugar" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Blood sugar & diabetes</div>
-                      <div class="quiz-option-sub">Type 2 diabetes, prediabetes, insulin resistance.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="brain">
-                    <input type="checkbox" name="healthFocus" value="brain" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Brain & memory</div>
-                      <div class="quiz-option-sub">Cognitive decline, focus, staying sharp.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="mood">
-                    <input type="checkbox" name="healthFocus" value="mood" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Mood, stress & anxiety</div>
-                      <div class="quiz-option-sub">Feeling low, worried, or “on edge.”</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="joints">
-                    <input type="checkbox" name="healthFocus" value="joints" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Joints & pain</div>
-                      <div class="quiz-option-sub">Arthritis, stiffness, chronic aches.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="bones">
-                    <input type="checkbox" name="healthFocus" value="bones" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Bones & osteoporosis</div>
-                      <div class="quiz-option-sub">Preventing fractures and bone loss.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="balance">
-                    <input type="checkbox" name="healthFocus" value="balance" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Balance & falls</div>
-                      <div class="quiz-option-sub">Staying steady and confident on your feet.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="weight">
-                    <input type="checkbox" name="healthFocus" value="weight" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Weight & waistline</div>
-                      <div class="quiz-option-sub">Managing weight in a healthy way.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="cancer">
-                    <input type="checkbox" name="healthFocus" value="cancer" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Cancer recovery & prevention</div>
-                      <div class="quiz-option-sub">Before, during, or after treatment.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="lungs">
-                    <input type="checkbox" name="healthFocus" value="lungs" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Breathing & lungs</div>
-                      <div class="quiz-option-sub">COPD, shortness of breath, stamina.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="sleepEnergy">
-                    <input type="checkbox" name="healthFocus" value="sleepEnergy" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Sleep & energy</div>
-                      <div class="quiz-option-sub">Insomnia, fatigue, daytime slump.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="independence">
-                    <input type="checkbox" name="healthFocus" value="independence" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Independence in daily life</div>
-                      <div class="quiz-option-sub">Staying in your home and doing what you love.</div>
-                    </div>
-                  </label>
-                </div>
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">How would you rate your health overall?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="excellent" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Excellent</div>
+                    <div class="quiz-option-sub">I feel strong and capable most days.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="good" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Good</div>
+                    <div class="quiz-option-sub">Some issues, but mostly okay.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="fair" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Fair</div>
+                    <div class="quiz-option-sub">A few things really limit me.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="poor" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Poor</div>
+                    <div class="quiz-option-sub">Most days feel like a struggle.</div>
+                  </div>
+                </label>
               </div>
-            </section>
+            </div>
 
-            <!-- STEP 3 -->
-            <section class="quiz-step" data-step="3">
-              <h2 class="quiz-step-title">Step 3 – Any Diagnoses or Issues?</h2>
-              <p class="quiz-step-hint">
-                Completely optional. This helps us connect the dots between your
-                conditions and movement. (This is educational, not medical advice.)
-              </p>
-
-              <div class="quiz-question-group">
-                <span class="quiz-question-label">Check anything that applies:</span>
-                <div class="quiz-options-grid">
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
-                    <input type="checkbox" name="diagnosis" value="highBP" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">High blood pressure / cholesterol</div>
-                      <div class="quiz-option-sub">You’ve been told these are elevated.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="metabolic">
-                    <input type="checkbox" name="diagnosis" value="t2d" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Type 2 diabetes / prediabetes</div>
-                      <div class="quiz-option-sub">Blood sugar or A1c concerns.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
-                    <input type="checkbox" name="diagnosis" value="heartDisease" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Heart disease</div>
-                      <div class="quiz-option-sub">Heart attack, stents, or other cardiac issues.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="joints">
-                    <input type="checkbox" name="diagnosis" value="osteoarthritis" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Osteoarthritis</div>
-                      <div class="quiz-option-sub">Knees, hips, spine, or other joints.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="bones">
-                    <input type="checkbox" name="diagnosis" value="osteoporosis" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Osteoporosis / low bone density</div>
-                      <div class="quiz-option-sub">History of low bone density or fractures.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="balance">
-                    <input type="checkbox" name="diagnosis" value="falls" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Falls or fear of falling</div>
-                      <div class="quiz-option-sub">You’ve fallen or feel unsteady.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="chronicPain">
-                    <input type="checkbox" name="diagnosis" value="chronicPain" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Chronic pain</div>
-                      <div class="quiz-option-sub">Pain most days of the week for 3+ months.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="brain">
-                    <input type="checkbox" name="diagnosis" value="cognitive" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Mild memory / thinking changes</div>
-                      <div class="quiz-option-sub">“Brain fog,” forgetfulness, slower thinking.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="mood">
-                    <input type="checkbox" name="diagnosis" value="depressionAnxiety" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Depression or anxiety</div>
-                      <div class="quiz-option-sub">Diagnosed or strongly suspected.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="cancer">
-                    <input type="checkbox" name="diagnosis" value="cancerHistory" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Cancer history</div>
-                      <div class="quiz-option-sub">Before, during, or after treatment.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="lungs">
-                    <input type="checkbox" name="diagnosis" value="lungDisease" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Chronic lung issues</div>
-                      <div class="quiz-option-sub">COPD, emphysema, chronic bronchitis, etc.</div>
-                    </div>
-                  </label>
-                </div>
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">How worried are you about falling?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="not" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Not worried</div>
+                    <div class="quiz-option-sub">I rarely think about falling.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="aLittle" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">A little worried</div>
+                    <div class="quiz-option-sub">It crosses my mind sometimes.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="quite" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Quite worried</div>
+                    <div class="quiz-option-sub">I avoid certain activities.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="very" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Very worried</div>
+                    <div class="quiz-option-sub">Falling is one of my biggest fears.</div>
+                  </div>
+                </label>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <!-- STEP 4 -->
-            <section class="quiz-step" data-step="4">
-              <h2 class="quiz-step-title">Step 4 – What Do You Want Most From Exercise?</h2>
-              <p class="quiz-step-hint">This lets us connect the science directly to your goals.</p>
+          <!-- STEP 2 -->
+          <section class="quiz-step" data-step="2">
+            <h2 class="quiz-step-title">Step 2 – Your Health Priorities</h2>
+            <p class="quiz-step-hint">Select everything that matters to you right now.</p>
 
-              <div class="quiz-question-group">
-                <span class="quiz-question-label">Choose all that fit:</span>
-                <div class="quiz-options-grid">
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="independence">
-                    <input type="checkbox" name="goals" value="independence" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Stay independent</div>
-                      <div class="quiz-option-sub">Live in my home and do daily tasks on my own.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="balance">
-                    <input type="checkbox" name="goals" value="avoidFalls" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Avoid falls</div>
-                      <div class="quiz-option-sub">Feel steady and confident on my feet.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="joints,chronicPain">
-                    <input type="checkbox" name="goals" value="lessPain" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Feel less stiff or sore</div>
-                      <div class="quiz-option-sub">Move with more ease and less discomfort.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="sleepEnergy,mood">
-                    <input type="checkbox" name="goals" value="energy" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Have more energy</div>
-                      <div class="quiz-option-sub">Sleep better and feel less drained.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="brain">
-                    <input type="checkbox" name="goals" value="protectBrain" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Protect my brain</div>
-                      <div class="quiz-option-sub">Memory, focus, and staying “sharp.”</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="cardio,metabolic">
-                    <input type="checkbox" name="goals" value="supportDoctorPlan" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Support my doctor’s plan</div>
-                      <div class="quiz-option-sub">Use exercise alongside my medical care.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="weight,metabolic">
-                    <input type="checkbox" name="goals" value="healthyWeight" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Move toward a healthier weight</div>
-                      <div class="quiz-option-sub">In a sustainable, realistic way.</div>
-                    </div>
-                  </label>
-                  <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="overall">
-                    <input type="checkbox" name="goals" value="longevity" />
-                    <div class="quiz-option-indicator"></div>
-                    <div class="quiz-option-content">
-                      <div class="quiz-option-title">Live longer and better</div>
-                      <div class="quiz-option-sub">Add years to life and life to years.</div>
-                    </div>
-                  </label>
-                </div>
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">Which areas do you most want to support?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="cardio">
+                  <input type="checkbox" name="healthFocus" value="heart" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Heart & blood pressure</div>
+                    <div class="quiz-option-sub">Heart disease, blood pressure, cholesterol.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="metabolic">
+                  <input type="checkbox" name="healthFocus" value="bloodSugar" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Blood sugar & diabetes</div>
+                    <div class="quiz-option-sub">Type 2 diabetes, prediabetes, insulin resistance.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="brain">
+                  <input type="checkbox" name="healthFocus" value="brain" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Brain & memory</div>
+                    <div class="quiz-option-sub">Cognitive decline, focus, staying sharp.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="mood">
+                  <input type="checkbox" name="healthFocus" value="mood" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Mood, stress & anxiety</div>
+                    <div class="quiz-option-sub">Feeling low, worried, or “on edge.”</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="joints">
+                  <input type="checkbox" name="healthFocus" value="joints" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Joints & pain</div>
+                    <div class="quiz-option-sub">Arthritis, stiffness, chronic aches.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="bones">
+                  <input type="checkbox" name="healthFocus" value="bones" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Bones & osteoporosis</div>
+                    <div class="quiz-option-sub">Preventing fractures and bone loss.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="balance">
+                  <input type="checkbox" name="healthFocus" value="balance" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Balance & falls</div>
+                    <div class="quiz-option-sub">Staying steady and confident on your feet.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="weight">
+                  <input type="checkbox" name="healthFocus" value="weight" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Weight & waistline</div>
+                    <div class="quiz-option-sub">Managing weight in a healthy way.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="cancer">
+                  <input type="checkbox" name="healthFocus" value="cancer" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Cancer recovery & prevention</div>
+                    <div class="quiz-option-sub">Before, during, or after treatment.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="lungs">
+                  <input type="checkbox" name="healthFocus" value="lungs" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Breathing & lungs</div>
+                    <div class="quiz-option-sub">COPD, shortness of breath, stamina.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="sleepEnergy">
+                  <input type="checkbox" name="healthFocus" value="sleepEnergy" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Sleep & energy</div>
+                    <div class="quiz-option-sub">Insomnia, fatigue, daytime slump.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="healthFocus" data-tags="independence">
+                  <input type="checkbox" name="healthFocus" value="independence" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Independence in daily life</div>
+                    <div class="quiz-option-sub">Staying in your home and doing what you love.</div>
+                  </div>
+                </label>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <!-- Navigation -->
-            <div class="quiz-nav-row">
-              <div class="quiz-nav-left">
-                <span id="validation-msg"></span>
+          <!-- STEP 3 -->
+          <section class="quiz-step" data-step="3">
+            <h2 class="quiz-step-title">Step 3 – Diagnoses & Daily Challenges</h2>
+            <p class="quiz-step-hint">
+              Optional but helpful. This connects the science to your real-world situation.
+            </p>
+
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">Check anything that applies:</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
+                  <input type="checkbox" name="diagnosis" value="highBP" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">High blood pressure / cholesterol</div>
+                    <div class="quiz-option-sub">You’ve been told these are elevated.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="metabolic">
+                  <input type="checkbox" name="diagnosis" value="t2d" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Type 2 diabetes / prediabetes</div>
+                    <div class="quiz-option-sub">Blood sugar or A1c concerns.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
+                  <input type="checkbox" name="diagnosis" value="heartDisease" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Heart disease</div>
+                    <div class="quiz-option-sub">Heart attack, stents, or other cardiac issues.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="joints">
+                  <input type="checkbox" name="diagnosis" value="osteoarthritis" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Osteoarthritis</div>
+                    <div class="quiz-option-sub">Knees, hips, spine, or other joints.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="bones">
+                  <input type="checkbox" name="diagnosis" value="osteoporosis" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Osteoporosis / low bone density</div>
+                    <div class="quiz-option-sub">History of low bone density or fractures.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="balance">
+                  <input type="checkbox" name="diagnosis" value="falls" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Falls or fear of falling</div>
+                    <div class="quiz-option-sub">You’ve fallen or feel unsteady.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="chronicPain">
+                  <input type="checkbox" name="diagnosis" value="chronicPain" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Chronic pain</div>
+                    <div class="quiz-option-sub">Pain most days of the week for 3+ months.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="brain">
+                  <input type="checkbox" name="diagnosis" value="cognitive" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Mild memory / thinking changes</div>
+                    <div class="quiz-option-sub">“Brain fog,” forgetfulness, slower thinking.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="mood">
+                  <input type="checkbox" name="diagnosis" value="depressionAnxiety" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Depression or anxiety</div>
+                    <div class="quiz-option-sub">Diagnosed or strongly suspected.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="cancer">
+                  <input type="checkbox" name="diagnosis" value="cancerHistory" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Cancer history</div>
+                    <div class="quiz-option-sub">Before, during, or after treatment.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="lungs">
+                  <input type="checkbox" name="diagnosis" value="lungDisease" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Chronic lung issues</div>
+                    <div class="quiz-option-sub">COPD, emphysema, chronic bronchitis, etc.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="diagnosis" data-tags="overall">
+                  <input type="checkbox" name="diagnosis" value="frailtyWeak" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">General frailty / weakness</div>
+                    <div class="quiz-option-sub">Getting out of chairs, bed, or stairs is hard.</div>
+                  </div>
+                </label>
               </div>
-              <div class="quiz-nav-buttons">
-                <button class="quiz-nav-btn secondary" id="back-btn" type="button" disabled>
-                  ← Back
-                </button>
-                <button class="quiz-nav-btn primary" id="next-btn" type="button">
-                  Next step →
-                </button>
+            </div>
+          </section>
+
+          <!-- STEP 4 -->
+          <section class="quiz-step" data-step="4">
+            <h2 class="quiz-step-title">Step 4 – Goals & Practical Details</h2>
+            <p class="quiz-step-hint">This helps turn the science into a realistic starting plan.</p>
+
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">What do you want most from exercise?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="independence">
+                  <input type="checkbox" name="goals" value="independence" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Stay independent</div>
+                    <div class="quiz-option-sub">Live in my home and do daily tasks on my own.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="balance">
+                  <input type="checkbox" name="goals" value="avoidFalls" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Avoid falls</div>
+                    <div class="quiz-option-sub">Feel steady and confident on my feet.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="joints,chronicPain">
+                  <input type="checkbox" name="goals" value="lessPain" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Feel less stiff or sore</div>
+                    <div class="quiz-option-sub">Move with more ease and less discomfort.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="sleepEnergy,mood">
+                  <input type="checkbox" name="goals" value="energy" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Have more energy</div>
+                    <div class="quiz-option-sub">Sleep better and feel less drained.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="brain">
+                  <input type="checkbox" name="goals" value="protectBrain" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Protect my brain</div>
+                    <div class="quiz-option-sub">Memory, focus, and staying “sharp.”</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="cardio,metabolic">
+                  <input type="checkbox" name="goals" value="supportDoctorPlan" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Support my doctor’s plan</div>
+                    <div class="quiz-option-sub">Use exercise alongside my medical care.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="weight,metabolic">
+                  <input type="checkbox" name="goals" value="healthyWeight" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Move toward a healthier weight</div>
+                    <div class="quiz-option-sub">In a sustainable, realistic way.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="multi" data-name="goals" data-tags="overall">
+                  <input type="checkbox" name="goals" value="longevity" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Live longer and better</div>
+                    <div class="quiz-option-sub">Add years to life and life to years.</div>
+                  </div>
+                </label>
               </div>
+            </div>
+
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">How much time can you realistically commit per week?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="under1h" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Under 1 hour</div>
+                    <div class="quiz-option-sub">Tiny doses only.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="1to2h" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">1–2 hours</div>
+                    <div class="quiz-option-sub">Short sessions a few days a week.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="2to3h" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">2–3 hours</div>
+                    <div class="quiz-option-sub">Most guideline-style programs fit here.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="3plus" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">3+ hours</div>
+                    <div class="quiz-option-sub">I enjoy being active often.</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="quiz-question-group">
+              <span class="quiz-question-label">What type of movement sounds most realistic right now?</span>
+              <div class="quiz-options-grid">
+                <label class="quiz-option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="walking" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Mostly walking</div>
+                    <div class="quiz-option-sub">Short walks inside or outside.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="strength" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Strength with bands/weights</div>
+                    <div class="quiz-option-sub">Chair stands, dumbbells, resistance bands.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="chair" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">Mostly chair-based</div>
+                    <div class="quiz-option-sub">Sit-to-stand, seated marches, gentle mobility.</div>
+                  </div>
+                </label>
+                <label class="quiz-option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="mixed" />
+                  <div class="quiz-option-indicator"></div>
+                  <div class="quiz-option-content">
+                    <div class="quiz-option-title">A mix of everything</div>
+                    <div class="quiz-option-sub">Walking, strength, balance, and breathing work.</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <!-- Navigation -->
+          <div class="quiz-nav-row">
+            <div class="quiz-nav-left">
+              <span id="validation-msg"></span>
+            </div>
+            <div class="quiz-nav-buttons">
+              <button class="quiz-nav-btn secondary" id="back-btn" type="button" disabled>
+                ← Back
+              </button>
+              <button class="quiz-nav-btn primary" id="next-btn" type="button">
+                Next step →
+              </button>
             </div>
           </div>
-
-          <!-- Right: sidebar + results -->
-          <aside class="quiz-sidebar">
-            <div class="quiz-side-card">
-              <h3>What this quiz does</h3>
-              <p>
-                We’ll take your answers and generate a personalized snapshot of
-                how exercise can support your health — backed by
-                <strong>major guidelines and research</strong>.
-              </p>
-              <div class="quiz-pill-list">
-                <span class="quiz-pill">CDC & WHO-aligned</span>
-                <span class="quiz-pill">Evidence-based claims</span>
-                <span class="quiz-pill pill-safe">Not medical advice</span>
-              </div>
-            </div>
-
-            <div style="height: 10px;"></div>
-
-            <div class="quiz-results-panel" id="results-panel">
-              <div class="quiz-results-header">
-                <h2>Your Personalized Movement Report</h2>
-                <span id="results-status">Complete the quiz to view.</span>
-              </div>
-              <p class="quiz-results-intro" id="results-intro">
-                Once you finish all steps, this panel will highlight how movement
-                can help with your specific priorities — plus optional “show me
-                the science” details.
-              </p>
-              <div class="quiz-results-tags" id="results-tags"></div>
-              <div id="results-benefits"></div>
-              <div class="quiz-results-footer">
-                <p>
-                  This information is for education only and does not replace
-                  medical care. Always follow your healthcare provider’s advice.
-                </p>
-                <small>
-                  Key sources: U.S. Physical Activity Guidelines (2018), WHO
-                  Guidelines on Physical Activity (2020), and major reviews in
-                  cardiology, endocrinology, neurology, and gerontology.
-                </small>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
 
-      <!-- CTA Under Quiz -->
-      <section style="margin-top: 1.8rem;">
-        <div class="solutions-cards">
-          <article class="solution-card">
-            <h3>What’s Next After Your Results?</h3>
+      <!-- RESULTS -->
+      <section class="quiz-results-wrapper" id="results-section">
+        <div class="quiz-results-panel" id="results-panel">
+          <div class="quiz-results-header">
+            <h2>Your Personalized Movement Report</h2>
+            <span id="results-status">Complete the quiz to view.</span>
+          </div>
+          <p class="quiz-results-intro" id="results-intro">
+            Once you finish all steps, this section will highlight how exercise can support the areas you care about most,
+            with bite-sized science notes and a realistic starter plan you could follow with a coach like Zeuse.
+          </p>
+          <div class="quiz-results-tags" id="results-tags"></div>
+          <div class="quiz-personal-plan" id="personal-plan" style="display:none;"></div>
+          <div id="results-benefits"></div>
+          <div class="quiz-results-footer">
             <p>
-              Once you’ve seen how exercise can help your specific situation,
-              the next step is simple: we bring a compact, senior-friendly
-              “micro-gym” to your home or facility and build your first
-              movement plan together.
+              This information is for education only and does not replace medical care.
+              Always follow your healthcare provider’s advice.
             </p>
-            <p>
-              You don’t have to figure out the “how” alone — that’s my job.
-              Your job is to show up as you are, and we’ll start from there.
-            </p>
-            <p><a href="index.html#contact">📅 Talk with Zeuse about your results →</a></p>
-          </article>
+            <small>
+              Evidence informed by: U.S. Physical Activity Guidelines (2018), WHO Guidelines on Physical Activity (2020),
+              and major reviews in cardiology, endocrinology, neurology, oncology, and gerontology.
+            </small>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <div class="solutions-cards">
+            <article class="solution-card">
+              <h3>What to Do With These Results</h3>
+              <p>
+                If this report resonates with you, you don’t have to turn it into a plan alone.
+                Olympian Health Solutions specializes in bringing a small, smart “micro-gym” to your home or facility and
+                turning this science into <strong>short, doable sessions</strong> that fit your realities.
+              </p>
+              <p>
+                You show up as you are. We’ll handle the progression, the safety, and the details of how much, how often,
+                and what to adjust.
+              </p>
+              <p><a href="index.html#contact">📅 Talk with Zeuse about these results →</a></p>
+            </article>
+          </div>
         </div>
       </section>
     </div>
@@ -1003,6 +1105,7 @@
 
   <!-- QUIZ LOGIC SCRIPT -->
   <script>
+    // ===== STATE & NAVIGATION =====
     const steps = Array.from(document.querySelectorAll(".quiz-step"));
     const totalSteps = steps.length;
     let currentStep = 1;
@@ -1015,19 +1118,19 @@
     const nextBtn = document.getElementById("next-btn");
     const validationMsg = document.getElementById("validation-msg");
 
-    const resultsPanel = document.getElementById("results-panel");
     const resultsStatus = document.getElementById("results-status");
     const resultsIntro = document.getElementById("results-intro");
     const resultsTagsEl = document.getElementById("results-tags");
     const resultsBenefitsEl = document.getElementById("results-benefits");
+    const personalPlanEl = document.getElementById("personal-plan");
 
     progressTotalEl.textContent = totalSteps;
 
     const stepLabels = {
       1: "About you",
       2: "Health priorities",
-      3: "Diagnoses & issues",
-      4: "Your goals",
+      3: "Diagnoses & challenges",
+      4: "Goals & practical details",
     };
 
     function updateProgress() {
@@ -1084,9 +1187,12 @@
           return false;
         }
       }
+
+      // steps 3 and 4 have no strict min requirements (but we'll still use what they provide)
       return true;
     }
 
+    // ===== OPTION-CARD BEHAVIOR =====
     document.querySelectorAll(".quiz-option-card").forEach((card) => {
       card.addEventListener("click", (e) => {
         if (e.target.tagName.toLowerCase() === "input") return;
@@ -1113,6 +1219,7 @@
       });
     });
 
+    // ===== BENEFIT ENGINE =====
     const benefitBank = [
       {
         id: "cardio1",
@@ -1122,21 +1229,33 @@
         summary:
           "Regular movement helps your heart pump more efficiently and lowers your risk of heart disease and stroke.",
         tagline:
-          "Even brisk walking most days of the week can make a real difference.",
+          "Even brisk walking most days of the week can make a real difference over years.",
         science:
-          "Adults who meet recommended activity levels have about 20–30% lower risk of heart disease and stroke compared to inactive adults (PAGAC 2018; WHO 2020; Warburton 2006).",
+          "Large guideline reports show that adults who meet recommended activity levels have about 20–30% lower risk of heart disease and stroke compared to inactive adults (U.S. PAGAC 2018; WHO 2020; Warburton et al.).",
       },
       {
         id: "cardio2",
         tags: ["cardio"],
         icon: "🩸",
-        title: "Helps improve blood pressure and cholesterol",
+        title: "Improved blood pressure and cholesterol patterns",
         summary:
-          "Aerobic exercise can help bring blood pressure down and support healthier cholesterol patterns.",
+          "Aerobic exercise can help bring blood pressure down and support healthier cholesterol (more HDL, lower triglycerides).",
         tagline:
           "This is one reason doctors so often recommend walking programs.",
         science:
-          "Endurance-type activities reduce both systolic and diastolic blood pressure and improve HDL cholesterol while lowering triglycerides.",
+          "Endurance activities like walking and cycling reduce systolic and diastolic blood pressure and improve lipid profiles in many trials (Cornelissen & Smart; PAGAC 2018).",
+      },
+      {
+        id: "cardio3",
+        tags: ["cardio"],
+        icon: "📈",
+        title: "Cardiorespiratory fitness as a ‘vital sign’",
+        summary:
+          "Better fitness is strongly linked to living longer and avoiding hospitalizations.",
+        tagline:
+          "Small gains in fitness carry big gains in health risk reduction.",
+        science:
+          "VO₂max and related fitness measures predict cardiovascular and all-cause mortality more strongly than many traditional lab tests (e.g., Myers et al., Circulation).",
       },
       {
         id: "metabolic1",
@@ -1144,59 +1263,71 @@
         icon: "🩺",
         title: "Better blood sugar control",
         summary:
-          "Exercise helps your muscles absorb sugar from the bloodstream, improving blood sugar control.",
+          "Exercise helps your muscles absorb sugar from the bloodstream, improving blood sugar control and insulin sensitivity.",
         tagline:
           "Think of your muscles as a sponge for extra glucose.",
         science:
-          "In people with or at risk for type 2 diabetes, both aerobic and resistance training improve insulin sensitivity and HbA1c; movement after meals can blunt blood sugar spikes (Colberg 2010; Dunstan 2012).",
+          "In people with or at risk for type 2 diabetes, both aerobic and resistance training improve insulin sensitivity and HbA1c; short activity bouts after meals blunt glucose spikes (Colberg et al.; Dunstan et al.).",
       },
       {
         id: "metabolic2",
         tags: ["metabolic", "weight"],
         icon: "⚖️",
-        title: "Support for a healthier weight & waistline",
+        title: "Healthier waistline & metabolic markers",
         summary:
-          "Regular movement helps burn calories, protect muscle, and support a healthier body composition over time.",
+          "Movement helps reduce harmful deep belly fat and improve blood markers, even if the scale barely moves.",
         tagline:
-          "Exercise is one pillar alongside nutrition and sleep.",
+          "You can get metabolically healthier without chasing a specific weight.",
         science:
-          "Physical activity helps reduce visceral fat and improves metabolic health markers even without dramatic weight loss, reducing risk of type 2 diabetes and cardiovascular disease.",
+          "Physical activity reduces visceral adiposity and improves triglycerides, HDL, and blood pressure, lowering metabolic syndrome risk.",
+      },
+      {
+        id: "metabolic3",
+        tags: ["metabolic"],
+        icon: "🍽️",
+        title: "Helps the body handle meals better",
+        summary:
+          "Light walking or simple movements after eating can reduce the height of blood sugar spikes.",
+        tagline:
+          "Even 10 minutes after meals can be meaningful over time.",
+        science:
+          "Breaking up sitting time with short walking breaks improves post-prandial glucose and insulin responses (Dunstan et al., Diabetes Care).",
       },
       {
         id: "brain1",
         tags: ["brain"],
         icon: "🧠",
-        title: "Protects memory and thinking skills",
+        title: "Supports memory and thinking skills",
         summary:
-          "Exercise improves blood flow to the brain and supports the parts involved in memory and learning.",
+          "Exercise improves blood flow to the brain and supports areas involved in memory and learning.",
         tagline:
           "Moving your body regularly is one of the best things you can do for your brain.",
         science:
-          "Aerobic training can increase the size of the hippocampus (memory center) in older adults and is associated with lower risk of cognitive decline and dementia (Erickson 2011; WHO Dementia 2019).",
+          "Aerobic training can increase hippocampal volume in older adults and is associated with lower risk of cognitive decline and dementia (Erickson et al., PNAS; WHO Dementia guidelines).",
       },
       {
         id: "brain2",
         tags: ["brain", "mood"],
-        icon: "📈",
-        title: "Supports brain plasticity and resilience",
+        icon: "🔁",
+        title: "Boosts brain plasticity and resilience",
         summary:
-          "Movement boosts chemicals that help brain cells grow, connect, and adapt.",
+          "Movement boosts chemicals like BDNF that help brain cells grow, connect, and adapt.",
         tagline:
           "This helps your brain stay flexible as you age.",
         science:
-          "Exercise increases brain-derived neurotrophic factor (BDNF) and other growth factors that support neuroplasticity.",
+          "Exercise increases brain-derived neurotrophic factor and other growth factors, improving executive function and processing speed (Voss et al., Nat. Rev. Neurosci.).",
       },
       {
         id: "mood1",
         tags: ["mood"],
         icon: "😊",
-        title: "Improves mood and reduces symptoms of depression",
+        title: "Reduces symptoms of depression",
         summary:
-          "Regular physical activity can reduce feelings of sadness and low mood in many people.",
+          "Regular physical activity can reduce low mood and improve overall well-being.",
         tagline:
-          "Movement can act like a natural antidepressant for some individuals.",
+          "For some people, movement acts like a powerful add-on to standard care.",
         science:
-          "Meta-analyses show that exercise reduces symptoms of mild to moderate depression, with effect sizes similar to some standard treatments in many trials (Schuch 2016).",
+          "Meta-analyses show that exercise reduces symptoms of mild to moderate depression, with effect sizes similar to some standard treatments in many trials (Schuch et al., Am J Psychiatry).",
       },
       {
         id: "mood2",
@@ -1204,23 +1335,23 @@
         icon: "😌",
         title: "Helps manage stress and anxiety",
         summary:
-          "Movement can calm your body’s stress systems and help you feel more grounded.",
+          "Movement can calm your body’s stress systems and help you feel more grounded and resilient.",
         tagline:
-          "Even short bouts of activity can make a noticeable difference.",
+          "Even short bouts can change how your body processes stress.",
         science:
-          "Exercise modulates the stress response and has been shown to reduce anxiety symptoms and improve overall stress resilience.",
+          "Exercise modulates the HPA axis and autonomic nervous system, lowering anxiety symptoms and improving stress resilience (PAGAC 2018).",
       },
       {
         id: "sleep1",
         tags: ["sleepEnergy"],
         icon: "🌙",
-        title: "Better sleep and daytime energy",
+        title: "Improves sleep quality and daytime energy",
         summary:
-          "Regular movement helps you fall asleep faster and sleep more deeply.",
+          "Regular movement helps you fall asleep faster, sleep more deeply, and feel more alert in the day.",
         tagline:
-          "Over time, this often translates into better daytime energy.",
+          "Better sleep is one of the most underrated exercise benefits.",
         science:
-          "Consistent physical activity improves sleep quality, sleep onset, and sleep efficiency, which in turn supports daytime alertness and mood.",
+          "Reviews show that structured physical activity improves sleep onset latency, sleep efficiency, and perceived sleep quality (Kredlow et al., J Behav Med).",
       },
       {
         id: "joints1",
@@ -1228,11 +1359,23 @@
         icon: "🧩",
         title: "Less joint stiffness and better function",
         summary:
-          "Strength and mobility work can reduce stiffness and improve how your joints move.",
+          "Strength and mobility work can reduce stiffness and improve how your joints move, even with arthritis.",
         tagline:
           "The right dose of movement often helps joints feel better, not worse.",
         science:
-          "For osteoarthritis, exercise programs (especially strengthening and aerobic training) reduce pain and improve function (Fransen 2015).",
+          "For osteoarthritis, exercise reduces pain and improves function, with effects comparable to many medications for some people (Fransen et al., Cochrane Review).",
+      },
+      {
+        id: "joints2",
+        tags: ["joints"],
+        icon: "🪑",
+        title: "Easier everyday movements",
+        summary:
+          "Chair rises, stair climbing, and carrying groceries all improve with targeted leg and trunk strength.",
+        tagline:
+          "You’re training for life tasks, not just gym numbers.",
+        science:
+          "Functional strengthening improves chair-rise performance and gait speed, which are linked to independent living and survival.",
       },
       {
         id: "pain1",
@@ -1242,9 +1385,9 @@
         summary:
           "Gentle, progressive movement can teach an over-protective nervous system that you’re safer than it thinks.",
         tagline:
-          "Think of it as retraining your body’s “alarm system.”",
+          "Think of it as retraining your body’s alarm system, not ‘pushing through’ pain blindly.",
         science:
-          "In chronic pain, education plus graded activity can reduce fear and pain sensitivity, helping the nervous system respond less dramatically to movement.",
+          "In chronic pain, education plus graded activity can reduce fear and pain sensitivity, helping the nervous system respond less dramatically to movement (Moseley & Butler; Louw et al.).",
       },
       {
         id: "bones1",
@@ -1254,9 +1397,9 @@
         summary:
           "Weight-bearing and resistance exercises tell your bones to stay dense and strong.",
         tagline:
-          "This is key for hips, spine, and wrists as we age.",
+          "This is especially important for hips, spine, and wrists as we age.",
         science:
-          "Resistance and impact-style training can maintain or modestly increase bone mineral density and reduce fracture risk in older adults.",
+          "Resistance and impact-style training can maintain or modestly increase bone mineral density and reduce fracture risk in older adults (Howe et al.; Kohrt et al.).",
       },
       {
         id: "balance1",
@@ -1264,11 +1407,11 @@
         icon: "🦶",
         title: "Reduces fall risk and builds confidence on your feet",
         summary:
-          "Targeted strength and balance work improves steadiness and reaction time.",
+          "Targeted strength and balance work improves steadiness, reaction time, and confidence.",
         tagline:
           "Every balance exercise is a fall you’re less likely to have in the future.",
         science:
-          "Multicomponent programs (strength + balance + functional training) reduce falls in older adults by roughly 20–30%.",
+          "Multicomponent programs (strength + balance + functional tasks) reduce falls by roughly 20–30% in older adults (Sherrington et al., BJSM; CDC STEADI).",
       },
       {
         id: "independence1",
@@ -1276,23 +1419,23 @@
         icon: "🏡",
         title: "Protects independence in daily life",
         summary:
-          "Exercise helps you keep doing everyday things—getting up from chairs, climbing stairs, carrying groceries.",
+          "Exercise helps you keep doing everyday things—getting out of chairs, climbing stairs, carrying groceries.",
         tagline:
-          "You’re training specifically for the life you want to live.",
+          "You’re training specifically for the life you want to live, not just for the gym.",
         science:
-          "Gait speed and chair-rise ability are strong predictors of survival and independence. Exercise that targets these functions improves performance and long-term outcomes.",
+          "Gait speed, chair-rise ability, and grip strength are powerful predictors of independence and survival; all improve with targeted exercise.",
       },
       {
-        id: "cancer1",
-        tags: ["cancer"],
-        icon: "🎗️",
-        title: "Supports people during and after cancer treatment",
+        id: "frailty1",
+        tags: ["overall"],
+        icon: "💪",
+        title: "Counters frailty and muscle loss with age",
         summary:
-          "Appropriate exercise can fight fatigue, support strength, and improve quality of life before, during, and after treatment.",
+          "Strength training can slow or partly reverse age-related muscle loss and frailty.",
         tagline:
-          "Movement can be a key part of recovery, alongside medical care.",
+          "It’s never “too late” for muscles to respond to the right challenge.",
         science:
-          "In cancer survivors, exercise improves fatigue, physical function, and quality of life; higher activity levels are linked with better outcomes in some cancers.",
+          "Even in adults in their 70s–90s, resistance training increases muscle strength and mass, improving walking speed and functional capacity (Cruz-Jentoft et al.; Fiatarone et al.).",
       },
       {
         id: "lungs1",
@@ -1300,23 +1443,47 @@
         icon: "🌬️",
         title: "Improves breathing efficiency and stamina",
         summary:
-          "Movement can train your lungs and muscles to use oxygen more efficiently.",
+          "Movement can train your lungs and muscles to use oxygen more efficiently, so daily tasks feel less breathless.",
         tagline:
-          "Over time, everyday tasks may feel less breathless.",
+          "Over time, climbing stairs or walking halls can feel more doable.",
         science:
-          "Pulmonary rehabilitation and structured exercise improve exercise tolerance, breathlessness, and quality of life in people with chronic lung disease.",
+          "Pulmonary rehabilitation and structured exercise improve exercise tolerance, dyspnea, and quality of life in chronic lung disease (PAGAC 2018).",
       },
       {
         id: "immune1",
         tags: ["overall"],
         icon: "🛡️",
-        title: "Supports immune health and reduces chronic inflammation",
+        title: "Supports immune balance and lowers chronic inflammation",
         summary:
-          "Regular, moderate exercise can help keep your immune system balanced and reduce low-grade inflammation.",
+          "Regular, moderate exercise can reduce low-grade inflammation and support immune defenses.",
         tagline:
-          "This underlies many chronic diseases, so it’s a big deal.",
+          "This may help protect against a range of chronic conditions over time.",
         science:
-          "Chronic physical activity is associated with reduced inflammatory markers and a more robust, well-regulated immune response compared with inactivity.",
+          "Active people often show lower inflammatory markers (like CRP) and more robust, well-regulated immune responses than inactive peers (Petersen & Pedersen; Nieman).",
+      },
+      {
+        id: "cancer1",
+        tags: ["cancer"],
+        icon: "🎗️",
+        title: "Helps during and after cancer treatment",
+        summary:
+          "Appropriate exercise can fight fatigue, support strength, and improve quality of life before, during, and after treatment.",
+        tagline:
+          "Movement becomes a supportive teammate to your medical care.",
+        science:
+          "In cancer survivors, exercise improves fatigue, physical function, and quality of life; higher activity levels are linked with better outcomes in some cancers (Buffart et al.; McTiernan).",
+      },
+      {
+        id: "weight1",
+        tags: ["weight"],
+        icon: "📉",
+        title: "Helps stabilize weight in a healthy way",
+        summary:
+          "Exercise helps preserve muscle while you adjust nutrition, which is key for healthy weight changes.",
+        tagline:
+          "Losing weight without losing muscle makes real-world movement easier.",
+        science:
+          "Combining resistance training with modest dietary changes preserves lean mass better than diet alone in weight management programs.",
       },
       {
         id: "longevity1",
@@ -1328,8 +1495,20 @@
         tagline:
           "Even small increases in activity are better than doing nothing.",
         science:
-          "Meeting physical activity guidelines is consistently linked with lower all-cause mortality and better quality of life, with strong benefits even when starting later in life.",
+          "Meeting physical activity guidelines is consistently linked with lower all-cause mortality and better quality of life, with benefits even when starting later in life (Lee et al.; WHO 2020).",
       },
+      {
+        id: "hospital1",
+        tags: ["overall"],
+        icon: "🏥",
+        title: "Reduces hospitalization risk and speeds recovery",
+        summary:
+          "Fitter, stronger people tend to recover faster from surgeries, illnesses, and hospital stays.",
+        tagline:
+          "Pre-hab and re-hab both benefit from muscle and aerobic capacity.",
+        science:
+          "Higher pre-event physical activity is associated with shorter hospital stays and better post-hospital function in older adults.",
+      }
     ];
 
     const tagLabels = {
@@ -1362,7 +1541,105 @@
       return tags;
     }
 
+    function getSelectedValue(name) {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : null;
+    }
+
+    function getSelectedValues(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(
+        (el) => el.value
+      );
+    }
+
+    function describeAge(val) {
+      switch (val) {
+        case "under40": return "under 40";
+        case "40to54": return "40–54";
+        case "55to64": return "55–64";
+        case "65to74": return "65–74";
+        case "75plus": return "75+";
+        default: return null;
+      }
+    }
+
+    function describeActivity(val) {
+      switch (val) {
+        case "mostlySitting": return "mostly sitting and not exercising on purpose";
+        case "someWalking": return "doing some walking but not regularly";
+        case "regularExercise": return "already exercising most weeks";
+        case "veryActive": return "very active or athletic";
+        default: return null;
+      }
+    }
+
+    function describeTime(val) {
+      switch (val) {
+        case "under1h": return "short sessions adding up to under an hour per week";
+        case "1to2h": return "a few short sessions adding up to 1–2 hours per week";
+        case "2to3h": return "a more typical program of 2–3 hours per week";
+        case "3plus": return "frequent activity, 3+ hours each week";
+        default: return null;
+      }
+    }
+
+    function describeStyle(val) {
+      switch (val) {
+        case "walking": return "short walks";
+        case "strength": return "simple strength work with bands or dumbbells";
+        case "chair": return "chair-based movements and sit-to-stand practice";
+        case "mixed": return "a mix of walking, strength, balance, and gentle breathing work";
+        default: return null;
+      }
+    }
+
+    function buildStarterPlanText() {
+      const ageVal = getSelectedValue("age");
+      const actVal = getSelectedValue("activity");
+      const timeVal = getSelectedValue("time");
+      const styleVal = getSelectedValue("style");
+      const goals = getSelectedValues("goals");
+
+      const ageDesc = describeAge(ageVal);
+      const actDesc = describeActivity(actVal);
+      const timeDesc = describeTime(timeVal);
+      const styleDesc = describeStyle(styleVal);
+
+      let line1 = "Based on your answers, a realistic starting approach might look like ";
+      if (timeDesc && styleDesc) {
+        line1 += timeDesc + " focused on " + styleDesc + ".";
+      } else if (timeDesc) {
+        line1 += timeDesc + " of gentle, progressive movement that fits your schedule.";
+      } else if (styleDesc) {
+        line1 += "short, manageable sessions built around " + styleDesc + ".";
+      } else {
+        line1 += "short, manageable sessions 2–3 times per week.";
+      }
+
+      let line2 = "";
+      if (goals.includes("independence")) {
+        line2 += " We’d emphasize getting up from chairs, stairs, and carrying tasks that keep you independent.";
+      }
+      if (goals.includes("avoidFalls") || getSelectedValue("fallWorry") === "quite" || getSelectedValue("fallWorry") === "very") {
+        line2 += " Balance and leg strength would be a priority to help you feel steadier and less worried about falling.";
+      }
+      if (goals.includes("lessPain")) {
+        line2 += " We’d use a ‘minimum effective dose’ approach to gently challenge your body without overwhelming your pain system.";
+      }
+      if (goals.includes("protectBrain") || goals.includes("supportDoctorPlan")) {
+        line2 += " Aerobic-style activities at a level that feels sustainable would support your heart, brain, and doctor’s plan.";
+      }
+
+      let line3 = "";
+      if (ageDesc || actDesc) {
+        line3 = ` This plan would be built for someone who is ${ageDesc ? ageDesc + "," : ""} ${actDesc || "starting from where you are now"}.`;
+      }
+
+      return line1 + line2 + line3;
+    }
+
     function generateResults() {
+      // Tags
       let tags = [];
       tags = tags.concat(collectTagsFromInputs('input[name="healthFocus"]'));
       tags = tags.concat(collectTagsFromInputs('input[name="diagnosis"]'));
@@ -1380,6 +1657,7 @@
           ? matchedBenefits
           : benefitBank.filter((b) => b.tags.includes("overall"));
 
+      // Tag chips
       resultsTagsEl.innerHTML = "";
       uniqueTags.forEach((tag) => {
         const label = tagLabels[tag] || tag;
@@ -1389,6 +1667,16 @@
         resultsTagsEl.appendChild(chip);
       });
 
+      // Personal plan blurb
+      const planText = buildStarterPlanText();
+      if (planText) {
+        personalPlanEl.style.display = "block";
+        personalPlanEl.textContent = planText;
+      } else {
+        personalPlanEl.style.display = "none";
+      }
+
+      // Benefit cards
       resultsBenefitsEl.innerHTML = "";
       finalBenefits.forEach((benefit) => {
         const card = document.createElement("article");
@@ -1449,13 +1737,16 @@
 
       resultsStatus.textContent = "Based on your answers:";
       resultsIntro.textContent =
-        "Here’s how appropriately dosed exercise can support the areas you care about most. These are general educational summaries, not individualized medical advice.";
+        "Here’s how appropriately dosed exercise can support the areas you care about most. These summaries are evidence-informed but meant for education, not individual medical advice.";
 
-      if (window.innerWidth < 860) {
-        resultsPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Scroll to results on mobile
+      const resultsSection = document.getElementById("results-section");
+      if (window.innerWidth < 860 && resultsSection) {
+        resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
 
+    // Initial progress render
     updateProgress();
   </script>
 </body>
