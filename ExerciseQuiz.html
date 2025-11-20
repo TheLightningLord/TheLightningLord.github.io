@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+head>
   <meta charset="UTF-8" />
   <title>How Exercise Will Help YOU – Science-Based Quiz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,7 +8,7 @@
     :root {
       --bg: #020617;
       --card-bg: #020617;
-      --panel-bg: #0b1120;
+      --panel-bg: #020617;
       --accent: #38bdf8;
       --accent-soft: rgba(56, 189, 248, 0.12);
       --accent-strong: #06b6d4;
@@ -16,6 +16,21 @@
       --text-muted: #9ca3af;
       --danger: #f97373;
       --border-subtle: rgba(148, 163, 184, 0.35);
+
+      /* Category color hints */
+      --cardio: #f97373;
+      --metabolic: #22c55e;
+      --brain: #a855f7;
+      --mood: #fbbf24;
+      --sleep: #38bdf8;
+      --joints: #f97316;
+      --bones: #e5e7eb;
+      --balance: #2dd4bf;
+      --weight: #fb7185;
+      --cancer: #f9a8d4;
+      --lungs: #60a5fa;
+      --independence: #facc15;
+      --overall: #6ee7b7;
     }
 
     * {
@@ -30,11 +45,11 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      padding: 32px 12px 48px;
+      padding: 30px 12px 48px;
     }
 
     .app-wrapper {
-      max-width: 960px;
+      max-width: 980px;
       width: 100%;
     }
 
@@ -87,7 +102,7 @@
 
     h1 {
       margin: 12px 0 6px;
-      font-size: clamp(1.9rem, 4vw, 2.4rem);
+      font-size: clamp(1.9rem, 4vw, 2.5rem);
       letter-spacing: -0.03em;
     }
 
@@ -98,13 +113,29 @@
     .subtitle {
       font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 700px;
+      max-width: 720px;
       margin: 0;
       line-height: 1.5;
     }
 
     .subtitle strong {
       color: #e5e7eb;
+    }
+
+    .micro-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .micro-pill {
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.9);
     }
 
     .progress {
@@ -194,6 +225,12 @@
       font-weight: 600;
       margin-bottom: 8px;
       display: block;
+    }
+
+    .question-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
     }
 
     .options-grid {
@@ -294,7 +331,7 @@
     .btn {
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 8px 18px;
+      padding: 8px 16px;
       background: rgba(15, 23, 42, 0.95);
       color: var(--text-main);
       font-size: 0.9rem;
@@ -310,12 +347,16 @@
       border-color: rgba(8, 47, 73, 0.9);
       color: #0b1120;
       font-weight: 600;
-      box-shadow: 0 12px 30px rgba(8, 47, 73, 0.7);
+      box-shadow: 0 10px 24px rgba(8, 47, 73, 0.6);
     }
 
     .btn.primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(8, 47, 73, 0.85);
+      box-shadow: 0 12px 28px rgba(8, 47, 73, 0.8);
+    }
+
+    .btn.secondary {
+      opacity: 0.8;
     }
 
     .btn.secondary:hover {
@@ -347,18 +388,31 @@
       display: flex;
       justify-content: space-between;
       gap: 8px;
-      align-items: baseline;
+      align-items: center;
       margin-bottom: 8px;
+      flex-wrap: wrap;
     }
 
-    .results-header h2 {
+    .results-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .results-header-left h2 {
       margin: 0;
-      font-size: 1.02rem;
+      font-size: 1.04rem;
     }
 
-    .results-header span {
+    .results-header-left span {
       font-size: 0.8rem;
       color: var(--text-muted);
+    }
+
+    .print-btn {
+      font-size: 0.8rem;
+      padding-inline: 12px;
+      white-space: nowrap;
     }
 
     .results-intro {
@@ -371,7 +425,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .results-tag {
@@ -381,7 +435,31 @@
       background: var(--accent-soft);
       color: var(--accent);
       border: 1px solid rgba(56, 189, 248, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
+
+    .results-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .results-tag--cardio .results-tag-dot { background: var(--cardio); }
+    .results-tag--metabolic .results-tag-dot { background: var(--metabolic); }
+    .results-tag--brain .results-tag-dot { background: var(--brain); }
+    .results-tag--mood .results-tag-dot { background: var(--mood); }
+    .results-tag--sleepEnergy .results-tag-dot { background: var(--sleep); }
+    .results-tag--joints .results-tag-dot { background: var(--joints); }
+    .results-tag--chronicPain .results-tag-dot { background: var(--joints); }
+    .results-tag--bones .results-tag-dot { background: var(--bones); }
+    .results-tag--balance .results-tag-dot { background: var(--balance); }
+    .results-tag--weight .results-tag-dot { background: var(--weight); }
+    .results-tag--cancer .results-tag-dot { background: var(--cancer); }
+    .results-tag--lungs .results-tag-dot { background: var(--lungs); }
+    .results-tag--independence .results-tag-dot { background: var(--independence); }
+    .results-tag--overall .results-tag-dot { background: var(--overall); }
 
     .personal-plan {
       margin-bottom: 10px;
@@ -393,6 +471,88 @@
       color: var(--text-main);
     }
 
+    /* Headline stat graphics */
+    .headline-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .headline-card {
+      border-radius: 14px;
+      padding: 9px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
+      font-size: 0.8rem;
+    }
+
+    .headline-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .headline-main {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      font-weight: 600;
+    }
+
+    .headline-value {
+      font-size: 1.1rem;
+    }
+
+    .headline-detail {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .headline-card--cardio { border-color: rgba(249, 115, 115, 0.7); }
+    .headline-card--metabolic { border-color: rgba(34, 197, 94, 0.7); }
+    .headline-card--brain { border-color: rgba(168, 85, 247, 0.7); }
+    .headline-card--balance { border-color: rgba(45, 212, 191, 0.7); }
+    .headline-card--overall { border-color: rgba(110, 231, 183, 0.7); }
+
+    /* Focus summary and micro-habits */
+    .focus-summary,
+    .micro-habits,
+    .doctor-questions {
+      margin-bottom: 10px;
+      padding: 9px 11px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.84rem;
+    }
+
+    .focus-summary h3,
+    .micro-habits h3,
+    .doctor-questions h3 {
+      margin: 0 0 6px;
+      font-size: 0.9rem;
+    }
+
+    .focus-summary ul,
+    .micro-habits ul,
+    .doctor-questions ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .focus-summary li + li,
+    .micro-habits li + li,
+    .doctor-questions li + li {
+      margin-top: 2px;
+    }
+
     .benefit-card {
       border-radius: 14px;
       border: 1px solid var(--border-subtle);
@@ -401,6 +561,15 @@
       margin-bottom: 8px;
       font-size: 0.84rem;
     }
+
+    .benefit-card[data-main-tag="cardio"] { border-color: rgba(249, 115, 115, 0.7); }
+    .benefit-card[data-main-tag="metabolic"] { border-color: rgba(34, 197, 94, 0.7); }
+    .benefit-card[data-main-tag="brain"] { border-color: rgba(168, 85, 247, 0.7); }
+    .benefit-card[data-main-tag="mood"] { border-color: rgba(251, 191, 36, 0.7); }
+    .benefit-card[data-main-tag="balance"] { border-color: rgba(45, 212, 191, 0.7); }
+    .benefit-card[data-main-tag="independence"] { border-color: rgba(250, 204, 21, 0.7); }
+    .benefit-card[data-main-tag="joints"] { border-color: rgba(249, 115, 22, 0.7); }
+    .benefit-card[data-main-tag="overall"] { border-color: rgba(110, 231, 183, 0.7); }
 
     .benefit-header {
       display: flex;
@@ -491,7 +660,6 @@
       margin-top: 4px;
     }
 
-    /* Bottom CTA */
     .cta-panel {
       margin-top: 18px;
     }
@@ -533,11 +701,63 @@
       .options-grid {
         grid-template-columns: 1fr;
       }
+      .results-header {
+        align-items: flex-start;
+      }
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .quiz-card,
+      .cta-panel,
+      .nav-row,
+      .badge,
+      .micro-row {
+        display: none !important;
+      }
+      .app-wrapper {
+        max-width: 100%;
+      }
+      .results-wrapper {
+        margin-top: 0;
+      }
+      .results-card {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        background: #ffffff;
+        color: #000000;
+      }
+      .results-header-left h2 {
+        font-size: 1.2rem;
+      }
+      .results-intro,
+      .personal-plan,
+      .focus-summary,
+      .micro-habits,
+      .doctor-questions,
+      .benefit-summary,
+      .benefit-tagline,
+      .science-body {
+        color: #000000;
+      }
+      .print-btn,
+      .science-toggle {
+        display: none !important;
+      }
+      .science-body {
+        display: block !important;
+      }
     }
   </style>
 </head>
 <body>
   <div class="app-wrapper">
+    <!-- QUIZ -->
     <div class="quiz-card" aria-label="Exercise benefits quiz">
       <div class="quiz-header">
         <div class="badge">
@@ -550,11 +770,17 @@
           <strong>heart, brain, blood sugar, pain, balance, bones, mood, and independence</strong> —
           based on major guidelines and research, translated into plain language.
         </p>
+        <div class="micro-row">
+          <div class="micro-pill">✔ Evidence-informed</div>
+          <div class="micro-pill">✔ Senior-friendly language</div>
+          <div class="micro-pill">✔ “Minimum effective dose” philosophy</div>
+        </div>
       </div>
 
+      <!-- PROGRESS -->
       <div class="progress">
         <div class="progress-top">
-          <span>Step <strong id="progressStep">1</strong> of <strong id="progressTotal">4</strong></span>
+          <span>Step <strong id="progressStep">1</strong> of <strong id="progressTotal">5</strong></span>
           <span id="progressLabel">About you</span>
         </div>
         <div class="progress-bar-outer">
@@ -562,8 +788,8 @@
         </div>
       </div>
 
+      <!-- STEPS -->
       <div class="steps">
-
         <!-- STEP 1 -->
         <section class="step active" data-step="1">
           <h2 class="step-title">Step 1 – About You</h2>
@@ -728,6 +954,37 @@
               </label>
             </div>
           </div>
+
+          <div class="question-group">
+            <span class="question-label">Have you recently finished or are you currently in physical therapy?</span>
+            <span class="question-note">This helps us think about “post-PT” style exercise coaching. This quiz doesn’t replace PT.</span>
+            <div class="options-grid">
+              <label class="option-card" data-type="single" data-name="ptStatus">
+                <input type="radio" name="ptStatus" value="recentlyFinished" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">I recently finished PT</div>
+                  <div class="option-sub">Now I want to keep progressing safely.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="ptStatus">
+                <input type="radio" name="ptStatus" value="currentlyIn" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">I’m currently in PT</div>
+                  <div class="option-sub">I want ideas for later follow-through.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="ptStatus">
+                <input type="radio" name="ptStatus" value="noPT" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">No PT right now</div>
+                  <div class="option-sub">I’m starting from regular life.</div>
+                </div>
+              </label>
+            </div>
+          </div>
         </section>
 
         <!-- STEP 2 -->
@@ -836,6 +1093,45 @@
               </label>
             </div>
           </div>
+
+          <div class="question-group">
+            <span class="question-label">When you think about “getting healthier,” what matters most right now?</span>
+            <span class="question-note">There’s no wrong answer — this just shapes how we frame the benefits.</span>
+            <div class="options-grid">
+              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                <input type="radio" name="healthPriorityStyle" value="symptomsNow" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">How I feel right now</div>
+                  <div class="option-sub">Pain, stiffness, energy, mood today or this week.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                <input type="radio" name="healthPriorityStyle" value="longTermRisk" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Long-term risk</div>
+                  <div class="option-sub">Heart disease, dementia, diabetes later in life.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                <input type="radio" name="healthPriorityStyle" value="performance" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Performance</div>
+                  <div class="option-sub">Walking distance, strength, stairs, recreation.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                <input type="radio" name="healthPriorityStyle" value="independence" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Independence</div>
+                  <div class="option-sub">Staying in my home and needing less help.</div>
+                </div>
+              </label>
+            </div>
+          </div>
         </section>
 
         <!-- STEP 3 -->
@@ -844,7 +1140,7 @@
           <p class="step-hint">Optional but helpful. This connects the science to your real world.</p>
 
           <div class="question-group">
-            <span class="question-label">Check anything that applies:</span>
+            <span class="question-label">Check any medical conditions you’re managing:</span>
             <div class="options-grid">
               <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
                 <input type="checkbox" name="diagnosis" value="highBP" />
@@ -944,11 +1240,66 @@
               </label>
             </div>
           </div>
+
+          <div class="question-group">
+            <span class="question-label">Which daily activities are currently difficult?</span>
+            <span class="question-note">These are exactly the kinds of tasks we train for in a “real life” program.</span>
+            <div class="options-grid">
+              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,balance">
+                <input type="checkbox" name="adlChallenges" value="stairs" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Stairs or curbs</div>
+                  <div class="option-sub">You avoid them or need rails every time.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,joints">
+                <input type="checkbox" name="adlChallenges" value="chairs" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Getting out of chairs</div>
+                  <div class="option-sub">You need to push with your arms or rock several times.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,joints">
+                <input type="checkbox" name="adlChallenges" value="floor" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Getting up from the floor</div>
+                  <div class="option-sub">You worry about getting back up if you go down.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,cardio">
+                <input type="checkbox" name="adlChallenges" value="walkingDistance" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Walking distance</div>
+                  <div class="option-sub">Stores, parking lots, or hallways feel far.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence">
+                <input type="checkbox" name="adlChallenges" value="carryingGroceries" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Carrying groceries or laundry</div>
+                  <div class="option-sub">You need extra trips or lots of breaks.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="overall">
+                <input type="checkbox" name="adlChallenges" value="householdTasks" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Household chores</div>
+                  <div class="option-sub">Cleaning, yard work, or cooking wipe you out.</div>
+                </div>
+              </label>
+            </div>
+          </div>
         </section>
 
         <!-- STEP 4 -->
         <section class="step" data-step="4">
-          <h2 class="step-title">Step 4 – Goals & Practical Details</h2>
+          <h2 class="step-title">Step 4 – Goals</h2>
           <p class="step-hint">This helps turn the science into a realistic starting plan.</p>
 
           <div class="question-group">
@@ -1020,6 +1371,12 @@
               </label>
             </div>
           </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step" data-step="5">
+          <h2 class="step-title">Step 5 – Practical Details</h2>
+          <p class="step-hint">This shapes how small and realistic your starting dose can be.</p>
 
           <div class="question-group">
             <span class="question-label">How much time can you realistically commit per week?</span>
@@ -1096,15 +1453,61 @@
               </label>
             </div>
           </div>
-        </section>
 
+          <div class="question-group">
+            <span class="question-label">What feels like your biggest barrier to exercising regularly?</span>
+            <div class="options-grid">
+              <label class="option-card" data-type="single" data-name="barrier">
+                <input type="radio" name="barrier" value="time" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Time & schedule</div>
+                  <div class="option-sub">Busy days, appointments, or caregiving.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="barrier">
+                <input type="radio" name="barrier" value="painFear" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Pain or fear of injury</div>
+                  <div class="option-sub">Worried about “making things worse.”</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="barrier">
+                <input type="radio" name="barrier" value="confidence" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Not sure what’s safe</div>
+                  <div class="option-sub">I want clear guidance and supervision.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="barrier">
+                <input type="radio" name="barrier" value="motivation" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Motivation</div>
+                  <div class="option-sub">Hard to get started or stay consistent.</div>
+                </div>
+              </label>
+              <label class="option-card" data-type="single" data-name="barrier">
+                <input type="radio" name="barrier" value="access" />
+                <div class="indicator"></div>
+                <div class="option-content">
+                  <div class="option-title">Access to equipment / gym</div>
+                  <div class="option-sub">I’d prefer home-based or on-site sessions.</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </section>
       </div>
 
+      <!-- NAV -->
       <div class="nav-row">
         <div class="nav-left" id="validationMsg"></div>
         <div class="nav-buttons">
-          <button class="btn secondary" id="backBtn" type="button" disabled>← Back</button>
-          <button class="btn primary" id="nextBtn" type="button">Next step →</button>
+          <button class="btn secondary" id="backBtn" type="button" disabled>Back</button>
+          <button class="btn primary" id="nextBtn" type="button">Next</button>
         </div>
       </div>
     </div>
@@ -1113,8 +1516,11 @@
     <div class="results-wrapper" id="resultsWrapper">
       <div class="results-card">
         <div class="results-header">
-          <h2>Your Personalized Movement Report</h2>
-          <span id="resultsStatus">Complete the quiz to view.</span>
+          <div class="results-header-left">
+            <h2>Your Personalized Movement Report</h2>
+            <span id="resultsStatus">Complete the quiz to view.</span>
+          </div>
+          <button class="btn secondary print-btn" id="printBtn" type="button">Print report</button>
         </div>
         <p class="results-intro" id="resultsIntro">
           Once you finish all steps, this section will highlight how exercise can support the areas you care about most,
@@ -1122,6 +1528,10 @@
         </p>
         <div class="results-tags" id="resultsTags"></div>
         <div class="personal-plan" id="personalPlan" style="display:none;"></div>
+        <div class="focus-summary" id="focusSummary" style="display:none;"></div>
+        <div class="headline-stats" id="headlineStats"></div>
+        <div class="micro-habits" id="microHabits" style="display:none;"></div>
+        <div class="doctor-questions" id="doctorQuestions" style="display:none;"></div>
         <div id="resultsBenefits"></div>
         <div class="results-footer">
           <p>
@@ -1177,14 +1587,20 @@
     const resultsTagsEl = document.getElementById("resultsTags");
     const resultsBenefitsEl = document.getElementById("resultsBenefits");
     const personalPlanEl = document.getElementById("personalPlan");
+    const headlineStatsEl = document.getElementById("headlineStats");
+    const focusSummaryEl = document.getElementById("focusSummary");
+    const microHabitsEl = document.getElementById("microHabits");
+    const doctorQuestionsEl = document.getElementById("doctorQuestions");
+    const printBtn = document.getElementById("printBtn");
 
     progressTotalEl.textContent = totalSteps;
 
     const stepLabels = {
       1: "About you",
       2: "Health priorities",
-      3: "Diagnoses & challenges",
-      4: "Goals & practical details"
+      3: "Diagnoses & daily challenges",
+      4: "Goals",
+      5: "Practical details"
     };
 
     function updateProgress() {
@@ -1195,7 +1611,7 @@
 
       backBtn.disabled = currentStep === 1;
       nextBtn.textContent =
-        currentStep === totalSteps ? "See my science-backed results →" : "Next step →";
+        currentStep === totalSteps ? "See my results" : "Next";
     }
 
     function showStep(step) {
@@ -1208,9 +1624,7 @@
     }
 
     backBtn.addEventListener("click", () => {
-      if (currentStep > 1) {
-        showStep(currentStep - 1);
-      }
+      if (currentStep > 1) showStep(currentStep - 1);
     });
 
     nextBtn.addEventListener("click", () => {
@@ -1245,9 +1659,14 @@
         }
       }
 
-      // Steps 3 and 4 are optional but useful
+      // Other steps: optional details are allowed
       return true;
     }
+
+    // Print button
+    printBtn.addEventListener("click", () => {
+      window.print();
+    });
 
     // ===== OPTION CARD INTERACTION =====
     document.querySelectorAll(".option-card").forEach((card) => {
@@ -1303,6 +1722,18 @@
           "Endurance activities like walking and cycling reduce systolic and diastolic blood pressure and improve HDL cholesterol and triglycerides in many trials (e.g., Cornelissen & Smart; summarized in U.S. PAGAC 2018)."
       },
       {
+        id: "cardio3",
+        tags: ["cardio"],
+        icon: "📈",
+        title: "Cardiorespiratory fitness as a ‘vital sign’",
+        summary:
+          "Better fitness is strongly linked to living longer and avoiding hospitalizations.",
+        tagline:
+          "Small improvements in fitness carry big reductions in health risk.",
+        science:
+          "CRF (like VO₂max) is a powerful predictor of cardiovascular and all-cause mortality, often stronger than traditional risk factors (Myers et al., Circulation; PAGAC 2018)."
+      },
+      {
         id: "metabolic1",
         tags: ["metabolic", "weight"],
         icon: "🩺",
@@ -1312,7 +1743,7 @@
         tagline:
           "Think of your muscles as a sponge for extra glucose.",
         science:
-          "In people with or at risk for type 2 diabetes, both aerobic and resistance training improve insulin sensitivity and HbA1c; short bouts after meals blunt glucose spikes (Colberg et al., 2010; Dunstan et al., Diabetes Care)."
+          "In people with or at risk for type 2 diabetes, both aerobic and resistance training improve insulin sensitivity and HbA1c; brief activity after meals blunts glucose spikes (Colberg et al., Diabetes Care; Dunstan et al.)."
       },
       {
         id: "metabolic2",
@@ -1324,7 +1755,19 @@
         tagline:
           "You can get metabolically healthier without chasing a specific number on the scale.",
         science:
-          "Physical activity reduces visceral adiposity and improves metabolic syndrome markers (HDL, triglycerides, blood pressure), lowering type 2 diabetes and cardiovascular risk (summarized in major guideline reports)."
+          "Physical activity reduces visceral adiposity and improves metabolic syndrome markers (HDL, triglycerides, blood pressure), lowering type 2 diabetes and cardiovascular risk in large cohorts and trials."
+      },
+      {
+        id: "metabolic3",
+        tags: ["metabolic"],
+        icon: "🍽️",
+        title: "Helps the body handle meals better",
+        summary:
+          "Light walking or simple movements after eating can reduce the height of blood sugar spikes.",
+        tagline:
+          "Even 10 minutes after meals can be meaningful over time.",
+        science:
+          "Breaking up sitting time with short walking breaks improves post-prandial glucose and insulin responses (Dunstan et al., Diabetes Care; PAGAC 2018)."
       },
       {
         id: "brain1",
@@ -1336,7 +1779,7 @@
         tagline:
           "Moving your body regularly is one of the best things you can do for your brain.",
         science:
-          "In older adults, aerobic training can increase hippocampal volume (a key memory region) and slow cognitive decline; higher activity is linked with lower dementia risk (Erickson et al., PNAS; WHO dementia risk guidelines)."
+          "In older adults, aerobic training can increase hippocampal volume (a key memory region) and slow cognitive decline; higher activity is linked with lower dementia risk (Erickson et al., PNAS; WHO dementia guidelines)."
       },
       {
         id: "brain2",
@@ -1348,7 +1791,19 @@
         tagline:
           "This helps your brain stay flexible and adaptable with age.",
         science:
-          "Exercise increases brain-derived neurotrophic factor (BDNF) and other growth factors, supporting neuroplasticity and executive function (Voss et al., Nat Rev Neurosci; U.S. PAGAC 2018 cognition chapter)."
+          "Exercise increases brain-derived neurotrophic factor (BDNF) and other growth factors, supporting neuroplasticity and executive function (Voss et al., Nat Rev Neurosci; PAGAC 2018)."
+      },
+      {
+        id: "brain3",
+        tags: ["brain"],
+        icon: "🧩",
+        title: "Supports attention and processing speed",
+        summary:
+          "Regular physical activity can help you think a bit faster and stay focused longer.",
+        tagline:
+          "Small changes in brain speed can make daily tasks feel easier.",
+        science:
+          "Trials show improvements in executive function, processing speed, and attention with structured exercise programs in older adults (Colcombe & Kramer, Psychol Sci; PAGAC 2018 cognition chapter)."
       },
       {
         id: "mood1",
@@ -1360,7 +1815,7 @@
         tagline:
           "For some people, movement acts like a powerful add-on to standard care.",
         science:
-          "Meta-analyses show exercise reduces symptoms of mild to moderate depression, with effect sizes similar to some standard treatments in many trials (Schuch et al., Am J Psychiatry)."
+          "Meta-analyses show exercise reduces symptoms of mild to moderate depression, with effect sizes comparable to some usual treatments in many trials (Schuch et al., Am J Psychiatry)."
       },
       {
         id: "mood2",
@@ -1372,7 +1827,7 @@
         tagline:
           "Even short bouts can change how your body processes stress.",
         science:
-          "Exercise modulates the stress response (HPA axis and autonomic nervous system) and is associated with reduced anxiety symptoms and improved stress resilience (summarized in PAGAC 2018)."
+          "Exercise modulates the stress response (HPA axis and autonomic nervous system) and is associated with reduced anxiety symptoms and improved stress resilience (PAGAC 2018)."
       },
       {
         id: "sleep1",
@@ -1384,7 +1839,7 @@
         tagline:
           "Better sleep is one of the most underrated exercise benefits.",
         science:
-          "Structured physical activity improves sleep onset latency, sleep efficiency, and perceived sleep quality (Kredlow et al., J Behav Med; WHO 2020)."
+          "Physical activity improves sleep onset, efficiency, and perceived quality in many populations (Kredlow et al., J Behav Med; WHO 2020)."
       },
       {
         id: "joints1",
@@ -1399,6 +1854,18 @@
           "For osteoarthritis, exercise (especially strengthening and aerobic training) reduces pain and improves function (Fransen et al., Cochrane Review; PAGAC 2018)."
       },
       {
+        id: "joints2",
+        tags: ["joints", "independence"],
+        icon: "🪑",
+        title: "Easier everyday movements",
+        summary:
+          "Chair rises, stair climbing, and carrying groceries all improve with targeted leg and trunk strength.",
+        tagline:
+          "You’re training for life tasks, not just gym numbers.",
+        science:
+          "Functional strengthening improves chair-rise performance and gait speed, which are closely linked to independent living and survival (gerontology research summarized in PAGAC 2018)."
+      },
+      {
         id: "pain1",
         tags: ["chronicPain"],
         icon: "🌤️",
@@ -1408,7 +1875,7 @@
         tagline:
           "This is retraining your body’s alarm system, not just “pushing through” pain blindly.",
         science:
-          "In chronic pain conditions, pain neuroscience education plus graded activity can reduce fear, catastrophizing, and pain intensity (Moseley & Butler; Louw et al., Physiother Theory Pract)."
+          "In chronic pain, pain neuroscience education plus graded activity can reduce fear, catastrophizing, and pain intensity (Moseley & Butler; Louw et al., Physiother Theory Pract)."
       },
       {
         id: "bones1",
@@ -1432,7 +1899,7 @@
         tagline:
           "Every balance exercise is a fall you’re less likely to have in the future.",
         science:
-          "Multicomponent programs (strength + balance + functional tasks) reduce falls by roughly 20–30% in older adults (Sherrington et al., Br J Sports Med; CDC STEADI materials)."
+          "Multicomponent programs (strength + balance + functional tasks) reduce falls by roughly 20–30% in older adults (Sherrington et al., Br J Sports Med; CDC STEADI)."
       },
       {
         id: "independence1",
@@ -1444,7 +1911,7 @@
         tagline:
           "You’re training specifically for the life you want to live.",
         science:
-          "Measures like gait speed, chair-rise ability, and grip strength are strong predictors of independence and survival, and they all improve with targeted exercise (summarized in gerontology research and PAGAC 2018)."
+          "Measures like gait speed, chair-rise ability, and grip strength predict independence and survival; all improve with targeted exercise (gerontology literature; PAGAC 2018)."
       },
       {
         id: "frailty1",
@@ -1456,7 +1923,7 @@
         tagline:
           "It’s never “too late” for muscles to respond to the right challenge.",
         science:
-          "Even adults in their 70s–90s can gain strength and muscle with resistance training, improving walking speed and functional capacity (Fiatarone et al., NEJM; Cruz-Jentoft et al., sarcopenia consensus)."
+          "Even adults in their 70s–90s can gain strength and muscle with resistance training, improving walking speed and function (Fiatarone et al., NEJM; Cruz-Jentoft et al., sarcopenia consensus)."
       },
       {
         id: "lungs1",
@@ -1468,7 +1935,7 @@
         tagline:
           "Over time, climbing stairs or walking halls can feel more doable.",
         science:
-          "Pulmonary rehabilitation and structured exercise improve exercise tolerance, dyspnea, and quality of life in chronic lung disease (summarized in PAGAC 2018 and respiratory society guidelines)."
+          "Pulmonary rehabilitation and structured exercise improve exercise tolerance, dyspnea, and quality of life in chronic lung disease (PAGAC 2018; respiratory society guidelines)."
       },
       {
         id: "immune1",
@@ -1480,7 +1947,7 @@
         tagline:
           "This under-the-hood shift affects many chronic conditions over time.",
         science:
-          "Active people tend to have lower inflammatory markers (like CRP) and more robust, well-regulated immune responses than inactive peers (Petersen & Pedersen, Nat Rev Immunol; Nieman, J Sport Health Sci)."
+          "Active people tend to have lower inflammatory markers (like CRP) and more robust immune responses than inactive peers (Petersen & Pedersen, Nat Rev Immunol; Nieman, J Sport Health Sci)."
       },
       {
         id: "cancer1",
@@ -1492,7 +1959,7 @@
         tagline:
           "Movement becomes a supportive teammate alongside your medical care.",
         science:
-          "In cancer survivors, exercise improves fatigue, physical function, and quality of life; higher activity levels are associated with better outcomes in several cancers (Buffart et al., BMJ; McTiernan, Nat Rev Cancer)."
+          "In cancer survivors, exercise improves fatigue, physical function, and quality of life; higher activity levels are associated with better outcomes for several cancers (Buffart et al., BMJ; McTiernan, Nat Rev Cancer)."
       },
       {
         id: "weight1",
@@ -1504,7 +1971,19 @@
         tagline:
           "Losing weight without losing muscle makes real-world movement easier.",
         science:
-          "Combining resistance training with dietary changes preserves lean mass better than diet alone in weight management programs (summarized in obesity and exercise guidelines)."
+          "Combining resistance training with dietary changes preserves lean mass better than diet alone in weight management programs (obesity and exercise guidelines)."
+      },
+      {
+        id: "qol1",
+        tags: ["overall", "mood"],
+        icon: "🌈",
+        title: "Improves overall quality of life",
+        summary:
+          "People who move regularly tend to report better physical function, mood, and life satisfaction.",
+        tagline:
+          "It’s not just about years of life, but life in your years.",
+        science:
+          "Across many conditions (heart disease, diabetes, arthritis, cancer), exercise programs improve health-related quality of life scores (summarized in PAGAC 2018 and condition-specific guidelines)."
       },
       {
         id: "longevity1",
@@ -1517,6 +1996,18 @@
           "Even small increases in activity are better than doing nothing.",
         science:
           "Meeting physical activity guidelines is consistently linked with lower all-cause mortality, with benefits even when starting later in life (Lee et al., Lancet; WHO 2020)."
+      },
+      {
+        id: "social1",
+        tags: ["mood", "overall"],
+        icon: "👥",
+        title: "Builds social connection and routine",
+        summary:
+          "Regular movement sessions can add structure to your week and create social contact, even with a 1:1 coach.",
+        tagline:
+          "Feeling connected is part of feeling healthy.",
+        science:
+          "Social isolation and loneliness are linked with worse health outcomes; activities that combine movement and connection can improve quality of life (various gerontology and mental health reviews)."
       }
     ];
 
@@ -1535,6 +2026,94 @@
       lungs: "Lungs & breathing",
       independence: "Independence & daily function",
       overall: "Whole-body health & longevity"
+    };
+
+    const tagHighlightStats = {
+      cardio: {
+        label: "Heart & circulation",
+        stat: "20–30%",
+        detail: "Approximate lower risk of heart disease and stroke for adults who meet activity guidelines compared with inactive adults."
+      },
+      metabolic: {
+        label: "Blood sugar & diabetes",
+        stat: "Better HbA1c",
+        detail: "Regular aerobic + strength training can improve long-term blood sugar markers in people with type 2 diabetes."
+      },
+      brain: {
+        label: "Brain & memory",
+        stat: "Brain volume",
+        detail: "Aerobic exercise can increase the size of key memory areas and slow age-related decline in some older adults."
+      },
+      balance: {
+        label: "Balance & falls",
+        stat: "≈25% ↓",
+        detail: "Multicomponent exercise can cut fall risk by about a quarter in older adults in many trials."
+      },
+      overall: {
+        label: "Overall survival",
+        stat: "Lower risk",
+        detail: "Meeting guidelines is linked with meaningfully lower risk of early death from any cause."
+      }
+    };
+
+    const tagStories = {
+      cardio:
+        "We’d frame exercise as a daily heart medicine — gradually training your blood vessels and heart muscle to work more efficiently.",
+      metabolic:
+        "For blood sugar and diabetes, we’d use movement like a flexible tool that helps your body handle meals and medications better.",
+      brain:
+        "For brain health, we’d lean into steady, oxygen-boosting activity that supports memory, focus, and long-term brain resilience.",
+      mood:
+        "For mood and stress, we’d use small, repeatable sessions that help your nervous system shift out of “fight or flight” more easily.",
+      joints:
+        "For joints, we’d treat strength and mobility as lubrication — teaching joints to move with more support and less stiffness.",
+      bones:
+        "For bones, we’d add safe, progressive loading so your skeleton gets the message to stay dense and strong.",
+      balance:
+        "For balance, we’d practice mini challenges in safe ways — training your legs, eyes, and inner ear to coordinate better.",
+      weight:
+        "For weight and waistline, we’d guard your muscle mass while we gently increase energy use and support your metabolism.",
+      cancer:
+        "During or after cancer care, we’d treat movement as one of your teammates, focused on energy, strength, and daily functioning.",
+      lungs:
+        "For lungs, we’d progress very gradually, letting breathing muscles and leg strength catch up to each other.",
+      sleepEnergy:
+        "For sleep and energy, we’d time activity to support better nighttime rest and steadier daytime energy.",
+      independence:
+        "For independence, we’d train the exact tasks that matter to you: chairs, stairs, carrying, and getting around comfortably.",
+      chronicPain:
+        "For chronic pain, we’d respect your symptoms and teach your nervous system that safe movement is not a threat.",
+      overall:
+        "Overall, we’d keep the focus on adding “good years” to your life — more capacity, less risk, and more of what you enjoy."
+    };
+
+    const doctorQuestionTemplates = {
+      cardio: [
+        "“Are there any reasons I should avoid a gentle walking and strength program right now?”",
+        "“Can you help me understand safe heart rate and blood pressure ranges for exercise?”"
+      ],
+      metabolic: [
+        "“How should I time exercise around my meals or diabetes medications?”",
+        "“Are there any blood sugar levels where you’d want me to pause or modify exercise?”"
+      ],
+      brain: [
+        "“Would you see any concerns with me doing regular walking and strength work to support my memory and thinking?”"
+      ],
+      mood: [
+        "“Could we treat exercise as part of my plan for mood and anxiety, alongside any other treatments?”"
+      ],
+      chronicPain: [
+        "“Are there any movements you want me to avoid with my pain condition, or should I just stay in a comfortable range?”"
+      ],
+      lungs: [
+        "“Is there a safe level of breathlessness I should aim for or avoid during exercise?”"
+      ],
+      bones: [
+        "“Are there any precautions for my spine or hips that you want me to follow during strength exercises?”"
+      ],
+      overall: [
+        "“Is there any medical reason I should not start a gentle, progressive exercise program focused on daily activities?”"
+      ]
     };
 
     function collectTagsFromInputs(selector) {
@@ -1613,6 +2192,9 @@
       const styleVal = getSelectedValue("style");
       const goals = getSelectedValues("goals");
       const fallWorry = getSelectedValue("fallWorry");
+      const ptStatus = getSelectedValue("ptStatus");
+      const barrier = getSelectedValue("barrier");
+      const healthPriorityStyle = getSelectedValue("healthPriorityStyle");
 
       const ageDesc = describeAge(ageVal);
       const actDesc = describeActivity(actVal);
@@ -1633,7 +2215,7 @@
 
       let line2 = "";
       if (goals.indexOf("independence") !== -1) {
-        line2 += " We’d emphasize your “daily life strength” — chair rises, stairs, and carrying tasks that keep you independent.";
+        line2 += " We’d emphasize “daily life strength” — chair rises, stairs, and carrying tasks that keep you independent.";
       }
       if (goals.indexOf("avoidFalls") !== -1 || fallWorry === "quite" || fallWorry === "very") {
         line2 += " Balance and leg strength would be a priority so you feel steadier and less worried about falling.";
@@ -1654,7 +2236,110 @@
           ".";
       }
 
-      return line1 + line2 + line3;
+      let line4 = "";
+      if (ptStatus === "recentlyFinished") {
+        line4 += " Because you recently finished physical therapy, sessions could act as a bridge — keeping gains you’ve made and gradually expanding what you can do, without trying to replace your therapist.";
+      } else if (ptStatus === "currentlyIn") {
+        line4 += " Because you are currently in PT, this style of plan would be most useful as a future step, once your healthcare team feels you’re ready for more general exercise coaching.";
+      }
+
+      if (barrier === "time") {
+        line4 += " We’d likely use short, focused “micro-sessions” that can be layered into your week rather than long workouts.";
+      } else if (barrier === "painFear") {
+        line4 += " We would progress slowly, using your symptoms as information rather than forcing you to push through pain.";
+      } else if (barrier === "confidence") {
+        line4 += " Clear instruction and supervision would be central, so you always know what’s safe and why you’re doing it.";
+      } else if (barrier === "motivation") {
+        line4 += " Setting small, specific goals and scheduled check-ins can help movement become a simple habit instead of a huge project.";
+      } else if (barrier === "access") {
+        line4 += " A mobile “micro-gym” style setup would allow you to train at home or on-site with minimal equipment.";
+      }
+
+      let line5 = "";
+      if (healthPriorityStyle === "symptomsNow") {
+        line5 =
+          " The first focus would be on how you feel in the next few weeks — stiffness, energy, and confidence in movement.";
+      } else if (healthPriorityStyle === "longTermRisk") {
+        line5 =
+          " We’d also highlight the long-term benefits — blood pressure, blood sugar, heart and brain protection over years.";
+      } else if (healthPriorityStyle === "performance") {
+        line5 =
+          " Performance markers like walking distance, number of chair rises, and balance time could be tracked as simple “scoreboard” measures.";
+      } else if (healthPriorityStyle === "independence") {
+        line5 =
+          " The core question would be: “What do you want to still be able to do 5–10 years from now?” and we would train specifically for that.";
+      }
+
+      return line1 + line2 + line3 + line4 + " " + line5;
+    }
+
+    function computeTagCounts(tags) {
+      const counts = {};
+      tags.forEach((t) => {
+        counts[t] = (counts[t] || 0) + 1;
+      });
+      return counts;
+    }
+
+    function buildFocusSummary(uniqueTags, tagCounts) {
+      if (!uniqueTags.length) return null;
+      const sorted = uniqueTags
+        .slice()
+        .sort((a, b) => (tagCounts[b] || 0) - (tagCounts[a] || 0));
+      const top = sorted.slice(0, 3);
+
+      const items = top.map((tag) => {
+        const label = tagLabels[tag] || tag;
+        const story = tagStories[tag] || "We’d keep this as a key pillar of your plan.";
+        return { label, story };
+      });
+
+      return items;
+    }
+
+    function buildMicroHabits(barrier, styleVal) {
+      const habits = [];
+
+      if (styleVal === "walking") {
+        habits.push("Start with two 5–10 minute walks on most days you feel up to it. Indoors around your home or hallway counts.");
+      } else if (styleVal === "strength") {
+        habits.push("Choose 3–5 simple strength moves (like sit-to-stand, wall push-ups, and band rows) and do 1–2 sets a few days per week.");
+      } else if (styleVal === "chair") {
+        habits.push("Use chair-based movements (marching in place, gentle twists, ankle pumps) during TV breaks or phone calls.");
+      } else if (styleVal === "mixed") {
+        habits.push("Alternate “walking days” with short strength-and-balance days so no single session feels overwhelming.");
+      } else {
+        habits.push("Use short bouts of movement (even 5 minutes at a time) and build slowly as your body and schedule allow.");
+      }
+
+      if (barrier === "time") {
+        habits.push("Attach movement to things you already do: a few exercises after brushing your teeth, after coffee, or after meals.");
+      } else if (barrier === "painFear") {
+        habits.push("Use a 0–10 scale for symptoms and aim to keep exercise in a “safe but challenging” zone (about 0–3 out of 10), easing back if it lingers or spikes.");
+      } else if (barrier === "confidence") {
+        habits.push("Make your first few sessions supervised or guided, so you can learn what feels safe and how to adjust on “good” and “bad” days.");
+      } else if (barrier === "motivation") {
+        habits.push("Schedule movement the way you’d schedule an appointment, and consider pairing it with something enjoyable (music, a favorite show, or conversation).");
+      } else if (barrier === "access") {
+        habits.push("Focus on movements that use your body weight, a sturdy chair, and simple tools like bands — things that can happen entirely at home or in your facility.");
+      }
+
+      return habits;
+    }
+
+    function buildDoctorQuestionsFromTags(topTags) {
+      const qs = [];
+      topTags.forEach((tag) => {
+        const templates = doctorQuestionTemplates[tag];
+        if (templates) {
+          templates.forEach((q) => qs.push(q));
+        }
+      });
+      if (!qs.length && doctorQuestionTemplates.overall) {
+        doctorQuestionTemplates.overall.forEach((q) => qs.push(q));
+      }
+      // Limit to a few
+      return qs.slice(0, 4);
     }
 
     function generateResults() {
@@ -1663,10 +2348,12 @@
       tags = tags.concat(collectTagsFromInputs('input[name="healthFocus"]'));
       tags = tags.concat(collectTagsFromInputs('input[name="diagnosis"]'));
       tags = tags.concat(collectTagsFromInputs('input[name="goals"]'));
+      tags = tags.concat(collectTagsFromInputs('input[name="adlChallenges"]'));
 
       if (tags.length === 0) {
         tags.push("overall");
       }
+      const tagCounts = computeTagCounts(tags);
       const uniqueTags = Array.from(new Set(tags));
 
       const matchedBenefits = benefitBank.filter(function (benefit) {
@@ -1687,8 +2374,13 @@
       uniqueTags.forEach(function (tag) {
         const label = tagLabels[tag] || tag;
         const chip = document.createElement("div");
-        chip.className = "results-tag";
-        chip.textContent = label;
+        chip.className = "results-tag results-tag--" + tag;
+        const dot = document.createElement("span");
+        dot.className = "results-tag-dot";
+        const text = document.createElement("span");
+        text.textContent = label;
+        chip.appendChild(dot);
+        chip.appendChild(text);
         resultsTagsEl.appendChild(chip);
       });
 
@@ -1701,11 +2393,111 @@
         personalPlanEl.style.display = "none";
       }
 
+      // focus summary
+      const focusItems = buildFocusSummary(uniqueTags, tagCounts);
+      if (focusItems && focusItems.length) {
+        focusSummaryEl.style.display = "block";
+        focusSummaryEl.innerHTML = "<h3>Your top focus areas</h3>";
+        const ul = document.createElement("ul");
+        focusItems.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item.label + " – " + item.story;
+          ul.appendChild(li);
+        });
+        focusSummaryEl.appendChild(ul);
+      } else {
+        focusSummaryEl.style.display = "none";
+      }
+
+      // headline stats (visual graphic-style cards)
+      headlineStatsEl.innerHTML = "";
+      const statsToShow = [];
+      uniqueTags.forEach(function (tag) {
+        if (tagHighlightStats[tag] && statsToShow.length < 3) {
+          statsToShow.push({ tag: tag, data: tagHighlightStats[tag] });
+        }
+      });
+      if (statsToShow.length === 0 && tagHighlightStats.overall) {
+        statsToShow.push({ tag: "overall", data: tagHighlightStats.overall });
+      }
+
+      statsToShow.forEach(function (entry) {
+        const statCard = document.createElement("div");
+        statCard.className = "headline-card headline-card--" + entry.tag;
+
+        const label = document.createElement("div");
+        label.className = "headline-label";
+        label.textContent = entry.data.label;
+
+        const main = document.createElement("div");
+        main.className = "headline-main";
+        const value = document.createElement("span");
+        value.className = "headline-value";
+        value.textContent = entry.data.stat;
+        const suffix = document.createElement("span");
+        suffix.textContent = "benefit signal";
+        main.appendChild(value);
+        main.appendChild(suffix);
+
+        const detail = document.createElement("div");
+        detail.className = "headline-detail";
+        detail.textContent = entry.data.detail;
+
+        statCard.appendChild(label);
+        statCard.appendChild(main);
+        statCard.appendChild(detail);
+
+        headlineStatsEl.appendChild(statCard);
+      });
+
+      // micro-habits
+      const barrier = getSelectedValue("barrier");
+      const styleVal = getSelectedValue("style");
+      const habits = buildMicroHabits(barrier, styleVal);
+      if (habits && habits.length) {
+        microHabitsEl.style.display = "block";
+        microHabitsEl.innerHTML =
+          "<h3>Micro-habits you could start this week</h3>";
+        const ul = document.createElement("ul");
+        habits.forEach((h) => {
+          const li = document.createElement("li");
+          li.textContent = h;
+          ul.appendChild(li);
+        });
+        microHabitsEl.appendChild(ul);
+      } else {
+        microHabitsEl.style.display = "none";
+      }
+
+      // doctor questions
+      const sortedTags = uniqueTags
+        .slice()
+        .sort((a, b) => (tagCounts[b] || 0) - (tagCounts[a] || 0));
+      const topTags = sortedTags.slice(0, 4);
+      const docQs = buildDoctorQuestionsFromTags(topTags);
+      if (docQs && docQs.length) {
+        doctorQuestionsEl.style.display = "block";
+        doctorQuestionsEl.innerHTML =
+          "<h3>Questions to ask your doctor about exercise</h3>";
+        const ul = document.createElement("ul");
+        docQs.forEach((q) => {
+          const li = document.createElement("li");
+          li.textContent = q;
+          ul.appendChild(li);
+        });
+        doctorQuestionsEl.appendChild(ul);
+      } else {
+        doctorQuestionsEl.style.display = "none";
+      }
+
       // benefit cards
       resultsBenefitsEl.innerHTML = "";
       finalBenefits.forEach(function (benefit) {
+        const mainTag = benefit.tags[0] || "overall";
+
         const card = document.createElement("article");
         card.className = "benefit-card";
+        card.setAttribute("data-main-tag", mainTag);
 
         const header = document.createElement("div");
         header.className = "benefit-header";
