@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-head>
+<head>
   <meta charset="UTF-8" />
   <title>How Exercise Will Help YOU – Science-Based Quiz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -74,6 +74,62 @@ head>
       right: -140px;
       pointer-events: none;
       z-index: 0;
+    }
+
+    /* INTRO SCREEN */
+    .intro-screen {
+      position: relative;
+      z-index: 2;
+      padding: 16px 14px 18px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .intro-title {
+      margin: 0 0 6px;
+      font-size: 1.3rem;
+    }
+
+    .intro-subtitle {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .intro-subtitle strong {
+      color: var(--text-main);
+    }
+
+    .intro-list {
+      margin: 0 0 12px;
+      padding-left: 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .intro-list li + li {
+      margin-top: 2px;
+    }
+
+    .intro-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .intro-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .quiz-body {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      display: none; /* shown after Start */
     }
 
     .quiz-header {
@@ -217,7 +273,11 @@ head>
     }
 
     .question-group {
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+      padding: 10px 11px 11px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(31, 41, 55, 0.9);
     }
 
     .question-label {
@@ -241,10 +301,10 @@ head>
 
     .option-card {
       position: relative;
-      border-radius: 14px;
-      padding: 11px 12px;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.88), #020617);
+      border-radius: 12px;
+      padding: 9px 10px;
+      border: 1px solid rgba(31, 41, 55, 0.8);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.92), #020617);
       cursor: pointer;
       font-size: 0.9rem;
       color: var(--text-main);
@@ -268,8 +328,8 @@ head>
     }
 
     .indicator {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       border-radius: 999px;
       border: 2px solid rgba(148, 163, 184, 0.8);
       margin-top: 2px;
@@ -277,7 +337,7 @@ head>
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--accent);
     }
 
@@ -299,13 +359,13 @@ head>
 
     .option-card[data-checked="true"] {
       border-color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), #020617);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.32);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), #020617);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25);
     }
 
     .option-card[data-checked="true"] .indicator {
       border-color: rgba(56, 189, 248, 0.9);
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.23), transparent);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent);
     }
 
     .nav-row {
@@ -340,6 +400,7 @@ head>
       align-items: center;
       gap: 6px;
       transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      text-decoration: none;
     }
 
     .btn.primary {
@@ -356,7 +417,7 @@ head>
     }
 
     .btn.secondary {
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .btn.secondary:hover {
@@ -371,6 +432,11 @@ head>
       transform: none;
     }
 
+    .btn-large {
+      padding: 9px 20px;
+      font-size: 0.96rem;
+    }
+
     /* RESULTS SECTION */
 
     .results-wrapper {
@@ -378,7 +444,7 @@ head>
     }
 
     .results-card {
-      background: var(--panel-bg);
+      background: radial-gradient(circle at top, #020617, #020617 60%, #0b1120 100%);
       border-radius: 20px;
       padding: 14px 14px 16px;
       border: 1px solid rgba(15, 23, 42, 0.95);
@@ -519,7 +585,6 @@ head>
     .headline-card--balance { border-color: rgba(45, 212, 191, 0.7); }
     .headline-card--overall { border-color: rgba(110, 231, 183, 0.7); }
 
-    /* Focus summary and micro-habits */
     .focus-summary,
     .micro-habits,
     .doctor-questions {
@@ -660,35 +725,42 @@ head>
       margin-top: 4px;
     }
 
-    .cta-panel {
+    /* EXIT / NEXT STEPS SCREEN */
+    .exit-panel {
       margin-top: 18px;
     }
 
-    .cta-inner {
+    .exit-inner {
       border-radius: 18px;
       padding: 14px 14px 15px;
       background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), #020617);
       border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
-    .cta-inner h3 {
+    .exit-inner h3 {
       margin: 0 0 6px;
       font-size: 1rem;
     }
 
-    .cta-inner p {
+    .exit-inner p {
       margin: 4px 0;
       font-size: 0.86rem;
       color: var(--text-muted);
     }
 
-    .cta-inner a {
-      color: var(--accent);
-      text-decoration: none;
+    .exit-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
     }
 
-    .cta-inner a:hover {
-      text-decoration: underline;
+    .exit-btn {
+      font-size: 0.85rem;
+    }
+
+    .exit-inner a {
+      color: var(--accent);
     }
 
     @media (max-width: 720px) {
@@ -713,10 +785,11 @@ head>
         padding: 0;
       }
       .quiz-card,
-      .cta-panel,
+      .exit-panel,
       .nav-row,
       .badge,
-      .micro-row {
+      .micro-row,
+      .intro-screen {
         display: none !important;
       }
       .app-wrapper {
@@ -759,755 +832,799 @@ head>
   <div class="app-wrapper">
     <!-- QUIZ -->
     <div class="quiz-card" aria-label="Exercise benefits quiz">
-      <div class="quiz-header">
+      <!-- INTRO SCREEN -->
+      <div class="intro-screen" id="introScreen">
         <div class="badge">
           <span>🧬</span> Science-Based Movement Snapshot
         </div>
-        <h1>How Exercise Will Help <span>YOU</span></h1>
-        <p class="subtitle">
-          Answer a few questions about your health, worries, and goals. You’ll get a personalized summary
-          of how appropriately dosed movement can support your
-          <strong>heart, brain, blood sugar, pain, balance, bones, mood, and independence</strong> —
+        <h2 class="intro-title">How Exercise Will Help <span style="color:var(--accent);">YOU</span></h2>
+        <p class="intro-subtitle">
+          In just a few calm steps, you’ll see how the right amount of movement can support your
+          <strong>heart, brain, blood sugar, pain, balance, mood, and independence</strong> —
           based on major guidelines and research, translated into plain language.
         </p>
-        <div class="micro-row">
-          <div class="micro-pill">✔ Evidence-informed</div>
-          <div class="micro-pill">✔ Senior-friendly language</div>
-          <div class="micro-pill">✔ “Minimum effective dose” philosophy</div>
+        <ul class="intro-list">
+          <li>✅ Designed with seniors and medical conditions in mind.</li>
+          <li>✅ Focused on “minimum effective dose” — not bootcamp.</li>
+          <li>✅ Creates a report you can share with family or your doctor.</li>
+        </ul>
+        <div class="intro-cta-row">
+          <button class="btn primary btn-large" id="startQuizBtn" type="button">
+            Start the quiz
+          </button>
+          <span class="intro-note">Takes about 2–4 minutes. No login, no pressure.</span>
         </div>
       </div>
 
-      <!-- PROGRESS -->
-      <div class="progress">
-        <div class="progress-top">
-          <span>Step <strong id="progressStep">1</strong> of <strong id="progressTotal">5</strong></span>
-          <span id="progressLabel">About you</span>
+      <!-- QUIZ BODY (hidden until intro is dismissed) -->
+      <div class="quiz-body" id="quizBody">
+        <div class="quiz-header">
+          <div class="badge">
+            <span>🧬</span> Science-Based Movement Snapshot
+          </div>
+          <h1>How Exercise Will Help <span>YOU</span></h1>
+          <p class="subtitle">
+            Answer a few short pages about your health, worries, and goals. You’ll get a personalized summary
+            of how appropriately dosed movement can support your
+            <strong>heart, brain, blood sugar, pain, balance, bones, mood, and independence</strong> —
+            based on major guidelines and research, translated into plain language.
+          </p>
+          <div class="micro-row">
+            <div class="micro-pill">✔ Evidence-informed</div>
+            <div class="micro-pill">✔ Senior-friendly language</div>
+            <div class="micro-pill">✔ “Minimum effective dose” philosophy</div>
+          </div>
         </div>
-        <div class="progress-bar-outer">
-          <div class="progress-bar-inner" id="progressBar"></div>
+
+        <!-- PROGRESS -->
+        <div class="progress">
+          <div class="progress-top">
+            <span>Step <strong id="progressStep">1</strong> of <strong id="progressTotal">8</strong></span>
+            <span id="progressLabel">About you</span>
+          </div>
+          <div class="progress-bar-outer">
+            <div class="progress-bar-inner" id="progressBar"></div>
+          </div>
         </div>
-      </div>
 
-      <!-- STEPS -->
-      <div class="steps">
-        <!-- STEP 1 -->
-        <section class="step active" data-step="1">
-          <h2 class="step-title">Step 1 – About You</h2>
-          <p class="step-hint">This helps us frame the evidence for people in a similar situation.</p>
+        <!-- STEPS -->
+        <div class="steps">
+          <!-- STEP 1: AGE + ACTIVITY -->
+          <section class="step active" data-step="1">
+            <h2 class="step-title">Step 1 – About You</h2>
+            <p class="step-hint">Just the basics so we can anchor the science to your age and activity level.</p>
 
-          <div class="question-group">
-            <span class="question-label">Age range</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="age">
-                <input type="radio" name="age" value="under40" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Under 40</div>
-                  <div class="option-sub">Planning ahead for long-term health.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="age">
-                <input type="radio" name="age" value="40to54" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">40–54</div>
-                  <div class="option-sub">Building resilience for midlife and beyond.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="age">
-                <input type="radio" name="age" value="55to64" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">55–64</div>
-                  <div class="option-sub">Prime time for protecting future independence.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="age">
-                <input type="radio" name="age" value="65to74" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">65–74</div>
-                  <div class="option-sub">Staying strong, steady, and confident.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="age">
-                <input type="radio" name="age" value="75plus" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">75+</div>
-                  <div class="option-sub">Maximizing independence and quality of life.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">Age range</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="under40" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Under 40</div>
+                    <div class="option-sub">Planning ahead for long-term health.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="40to54" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">40–54</div>
+                    <div class="option-sub">Building resilience for midlife and beyond.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="55to64" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">55–64</div>
+                    <div class="option-sub">Prime time for protecting future independence.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="65to74" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">65–74</div>
+                    <div class="option-sub">Staying strong, steady, and confident.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="age">
+                  <input type="radio" name="age" value="75plus" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">75+</div>
+                    <div class="option-sub">Maximizing independence and quality of life.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="question-group">
-            <span class="question-label">How active are you right now?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="activity">
-                <input type="radio" name="activity" value="mostlySitting" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Mostly sitting</div>
-                  <div class="option-sub">I rarely exercise on purpose.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="activity">
-                <input type="radio" name="activity" value="someWalking" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Some walking</div>
-                  <div class="option-sub">I move a bit but not regularly.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="activity">
-                <input type="radio" name="activity" value="regularExercise" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Regular exercise</div>
-                  <div class="option-sub">I exercise consistently most weeks.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="activity">
-                <input type="radio" name="activity" value="veryActive" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Very active</div>
-                  <div class="option-sub">I’m highly active or athletic.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">How active are you right now?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="mostlySitting" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Mostly sitting</div>
+                    <div class="option-sub">I rarely exercise on purpose.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="someWalking" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Some walking</div>
+                    <div class="option-sub">I move a bit but not regularly.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="regularExercise" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Regular exercise</div>
+                    <div class="option-sub">I exercise consistently most weeks.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="activity">
+                  <input type="radio" name="activity" value="veryActive" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Very active</div>
+                    <div class="option-sub">I’m highly active or athletic.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div class="question-group">
-            <span class="question-label">How would you rate your health overall?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="selfHealth">
-                <input type="radio" name="selfHealth" value="excellent" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Excellent</div>
-                  <div class="option-sub">I feel strong and capable most days.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="selfHealth">
-                <input type="radio" name="selfHealth" value="good" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Good</div>
-                  <div class="option-sub">Some issues, but mostly okay.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="selfHealth">
-                <input type="radio" name="selfHealth" value="fair" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Fair</div>
-                  <div class="option-sub">A few things really limit me.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="selfHealth">
-                <input type="radio" name="selfHealth" value="poor" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Poor</div>
-                  <div class="option-sub">Most days feel like a struggle.</div>
-                </div>
-              </label>
+          <!-- STEP 2: HOW YOU FEEL -->
+          <section class="step" data-step="2">
+            <h2 class="step-title">Step 2 – How You Feel Day to Day</h2>
+            <p class="step-hint">This frames the benefits around how your body feels right now.</p>
+
+            <div class="question-group">
+              <span class="question-label">How would you rate your health overall?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="excellent" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Excellent</div>
+                    <div class="option-sub">I feel strong and capable most days.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="good" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Good</div>
+                    <div class="option-sub">Some issues, but mostly okay.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="fair" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Fair</div>
+                    <div class="option-sub">A few things really limit me.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="selfHealth">
+                  <input type="radio" name="selfHealth" value="poor" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Poor</div>
+                    <div class="option-sub">Most days feel like a struggle.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="question-group">
-            <span class="question-label">How worried are you about falling?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="fallWorry">
-                <input type="radio" name="fallWorry" value="not" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Not worried</div>
-                  <div class="option-sub">I rarely think about falling.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="fallWorry">
-                <input type="radio" name="fallWorry" value="aLittle" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">A little worried</div>
-                  <div class="option-sub">It crosses my mind sometimes.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="fallWorry">
-                <input type="radio" name="fallWorry" value="quite" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Quite worried</div>
-                  <div class="option-sub">I avoid certain activities.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="fallWorry">
-                <input type="radio" name="fallWorry" value="very" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Very worried</div>
-                  <div class="option-sub">Falling is one of my biggest fears.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">How worried are you about falling?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="not" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Not worried</div>
+                    <div class="option-sub">I rarely think about falling.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="aLittle" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">A little worried</div>
+                    <div class="option-sub">It crosses my mind sometimes.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="quite" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Quite worried</div>
+                    <div class="option-sub">I avoid certain activities.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="fallWorry">
+                  <input type="radio" name="fallWorry" value="very" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Very worried</div>
+                    <div class="option-sub">Falling is one of my biggest fears.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div class="question-group">
-            <span class="question-label">Have you recently finished or are you currently in physical therapy?</span>
-            <span class="question-note">This helps us think about “post-PT” style exercise coaching. This quiz doesn’t replace PT.</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="ptStatus">
-                <input type="radio" name="ptStatus" value="recentlyFinished" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">I recently finished PT</div>
-                  <div class="option-sub">Now I want to keep progressing safely.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="ptStatus">
-                <input type="radio" name="ptStatus" value="currentlyIn" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">I’m currently in PT</div>
-                  <div class="option-sub">I want ideas for later follow-through.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="ptStatus">
-                <input type="radio" name="ptStatus" value="noPT" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">No PT right now</div>
-                  <div class="option-sub">I’m starting from regular life.</div>
-                </div>
-              </label>
+          <!-- STEP 3: PT STATUS -->
+          <section class="step" data-step="3">
+            <h2 class="step-title">Step 3 – Physical Therapy Status</h2>
+            <p class="step-hint">This helps frame exercise as a “bridge” after PT when appropriate.</p>
+
+            <div class="question-group">
+              <span class="question-label">Have you recently finished or are you currently in physical therapy?</span>
+              <span class="question-note">This doesn’t replace PT. It just helps us see where exercise coaching could fit.</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="ptStatus">
+                  <input type="radio" name="ptStatus" value="recentlyFinished" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">I recently finished PT</div>
+                    <div class="option-sub">Now I want to keep progressing safely.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="ptStatus">
+                  <input type="radio" name="ptStatus" value="currentlyIn" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">I’m currently in PT</div>
+                    <div class="option-sub">I want ideas for later follow-through.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="ptStatus">
+                  <input type="radio" name="ptStatus" value="noPT" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">No PT right now</div>
+                    <div class="option-sub">I’m starting from regular life.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- STEP 2 -->
-        <section class="step" data-step="2">
-          <h2 class="step-title">Step 2 – Health Areas You Care About</h2>
-          <p class="step-hint">Select everything that feels important right now.</p>
+          <!-- STEP 4: HEALTH FOCUS -->
+          <section class="step" data-step="4">
+            <h2 class="step-title">Step 4 – Health Areas You Care About</h2>
+            <p class="step-hint">Select everything that feels important. This drives most of your report.</p>
 
-          <div class="question-group">
-            <span class="question-label">Which areas do you most want to support?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="cardio">
-                <input type="checkbox" name="healthFocus" value="heart" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Heart & blood pressure</div>
-                  <div class="option-sub">Heart disease, blood pressure, cholesterol.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="metabolic">
-                <input type="checkbox" name="healthFocus" value="bloodSugar" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Blood sugar & diabetes</div>
-                  <div class="option-sub">Type 2 diabetes, prediabetes, insulin resistance.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="brain">
-                <input type="checkbox" name="healthFocus" value="brain" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Brain & memory</div>
-                  <div class="option-sub">Cognitive decline, focus, staying sharp.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="mood">
-                <input type="checkbox" name="healthFocus" value="mood" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Mood, stress & anxiety</div>
-                  <div class="option-sub">Feeling low, worried, or “on edge.”</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="joints">
-                <input type="checkbox" name="healthFocus" value="joints" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Joints & pain</div>
-                  <div class="option-sub">Arthritis, stiffness, chronic aches.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="bones">
-                <input type="checkbox" name="healthFocus" value="bones" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Bones & osteoporosis</div>
-                  <div class="option-sub">Preventing fractures and bone loss.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="balance">
-                <input type="checkbox" name="healthFocus" value="balance" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Balance & falls</div>
-                  <div class="option-sub">Staying steady and confident on your feet.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="weight">
-                <input type="checkbox" name="healthFocus" value="weight" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Weight & waistline</div>
-                  <div class="option-sub">Managing weight in a healthy way.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="cancer">
-                <input type="checkbox" name="healthFocus" value="cancer" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Cancer recovery & prevention</div>
-                  <div class="option-sub">Before, during, or after treatment.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="lungs">
-                <input type="checkbox" name="healthFocus" value="lungs" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Breathing & lungs</div>
-                  <div class="option-sub">COPD, shortness of breath, stamina.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="sleepEnergy">
-                <input type="checkbox" name="healthFocus" value="sleepEnergy" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Sleep & energy</div>
-                  <div class="option-sub">Insomnia, fatigue, daytime slump.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="independence">
-                <input type="checkbox" name="healthFocus" value="independence" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Independence in daily life</div>
-                  <div class="option-sub">Staying in your home and doing what you love.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">Which areas do you most want to support?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="cardio">
+                  <input type="checkbox" name="healthFocus" value="heart" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Heart & blood pressure</div>
+                    <div class="option-sub">Heart disease, blood pressure, cholesterol.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="metabolic">
+                  <input type="checkbox" name="healthFocus" value="bloodSugar" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Blood sugar & diabetes</div>
+                    <div class="option-sub">Type 2 diabetes, prediabetes, insulin resistance.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="brain">
+                  <input type="checkbox" name="healthFocus" value="brain" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Brain & memory</div>
+                    <div class="option-sub">Cognitive decline, focus, staying sharp.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="mood">
+                  <input type="checkbox" name="healthFocus" value="mood" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Mood, stress & anxiety</div>
+                    <div class="option-sub">Feeling low, worried, or “on edge.”</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="joints">
+                  <input type="checkbox" name="healthFocus" value="joints" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Joints & pain</div>
+                    <div class="option-sub">Arthritis, stiffness, chronic aches.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="bones">
+                  <input type="checkbox" name="healthFocus" value="bones" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Bones & osteoporosis</div>
+                    <div class="option-sub">Preventing fractures and bone loss.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="balance">
+                  <input type="checkbox" name="healthFocus" value="balance" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Balance & falls</div>
+                    <div class="option-sub">Staying steady and confident on your feet.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="weight">
+                  <input type="checkbox" name="healthFocus" value="weight" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Weight & waistline</div>
+                    <div class="option-sub">Managing weight in a healthy way.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="cancer">
+                  <input type="checkbox" name="healthFocus" value="cancer" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Cancer recovery & prevention</div>
+                    <div class="option-sub">Before, during, or after treatment.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="lungs">
+                  <input type="checkbox" name="healthFocus" value="lungs" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Breathing & lungs</div>
+                    <div class="option-sub">COPD, shortness of breath, stamina.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="sleepEnergy">
+                  <input type="checkbox" name="healthFocus" value="sleepEnergy" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Sleep & energy</div>
+                    <div class="option-sub">Insomnia, fatigue, daytime slump.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="healthFocus" data-tags="independence">
+                  <input type="checkbox" name="healthFocus" value="independence" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Independence in daily life</div>
+                    <div class="option-sub">Staying in your home and doing what you love.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div class="question-group">
-            <span class="question-label">When you think about “getting healthier,” what matters most right now?</span>
-            <span class="question-note">There’s no wrong answer — this just shapes how we frame the benefits.</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
-                <input type="radio" name="healthPriorityStyle" value="symptomsNow" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">How I feel right now</div>
-                  <div class="option-sub">Pain, stiffness, energy, mood today or this week.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
-                <input type="radio" name="healthPriorityStyle" value="longTermRisk" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Long-term risk</div>
-                  <div class="option-sub">Heart disease, dementia, diabetes later in life.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
-                <input type="radio" name="healthPriorityStyle" value="performance" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Performance</div>
-                  <div class="option-sub">Walking distance, strength, stairs, recreation.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="healthPriorityStyle">
-                <input type="radio" name="healthPriorityStyle" value="independence" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Independence</div>
-                  <div class="option-sub">Staying in my home and needing less help.</div>
-                </div>
-              </label>
+          <!-- STEP 5: PRIORITY STYLE -->
+          <section class="step" data-step="5">
+            <h2 class="step-title">Step 5 – What Matters Most Right Now</h2>
+            <p class="step-hint">This shapes whether we emphasize symptoms, risk, performance, or independence.</p>
+
+            <div class="question-group">
+              <span class="question-label">When you think about “getting healthier,” what matters most right now?</span>
+              <span class="question-note">There’s no wrong answer — this just shapes how we frame the benefits.</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                  <input type="radio" name="healthPriorityStyle" value="symptomsNow" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">How I feel right now</div>
+                    <div class="option-sub">Pain, stiffness, energy, mood today or this week.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                  <input type="radio" name="healthPriorityStyle" value="longTermRisk" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Long-term risk</div>
+                    <div class="option-sub">Heart disease, dementia, diabetes later in life.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                  <input type="radio" name="healthPriorityStyle" value="performance" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Performance</div>
+                    <div class="option-sub">Walking distance, strength, stairs, recreation.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="healthPriorityStyle">
+                  <input type="radio" name="healthPriorityStyle" value="independence" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Independence</div>
+                    <div class="option-sub">Staying in my home and needing less help.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- STEP 3 -->
-        <section class="step" data-step="3">
-          <h2 class="step-title">Step 3 – Diagnoses & Daily Challenges</h2>
-          <p class="step-hint">Optional but helpful. This connects the science to your real world.</p>
+          <!-- STEP 6: DIAGNOSES -->
+          <section class="step" data-step="6">
+            <h2 class="step-title">Step 6 – Diagnoses</h2>
+            <p class="step-hint">Optional but helpful. This connects the science to specific conditions.</p>
 
-          <div class="question-group">
-            <span class="question-label">Check any medical conditions you’re managing:</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
-                <input type="checkbox" name="diagnosis" value="highBP" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">High blood pressure / cholesterol</div>
-                  <div class="option-sub">You’ve been told these are elevated.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="metabolic">
-                <input type="checkbox" name="diagnosis" value="t2d" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Type 2 diabetes / prediabetes</div>
-                  <div class="option-sub">Blood sugar or A1c concerns.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
-                <input type="checkbox" name="diagnosis" value="heartDisease" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Heart disease</div>
-                  <div class="option-sub">Heart attack, stents, or other cardiac issues.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="joints">
-                <input type="checkbox" name="diagnosis" value="osteoarthritis" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Osteoarthritis</div>
-                  <div class="option-sub">Knees, hips, spine, or other joints.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="bones">
-                <input type="checkbox" name="diagnosis" value="osteoporosis" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Osteoporosis / low bone density</div>
-                  <div class="option-sub">History of low bone density or fractures.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="balance">
-                <input type="checkbox" name="diagnosis" value="falls" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Falls or fear of falling</div>
-                  <div class="option-sub">You’ve fallen or feel unsteady.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="chronicPain">
-                <input type="checkbox" name="diagnosis" value="chronicPain" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Chronic pain</div>
-                  <div class="option-sub">Pain most days of the week for 3+ months.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="brain">
-                <input type="checkbox" name="diagnosis" value="cognitive" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Mild memory / thinking changes</div>
-                  <div class="option-sub">“Brain fog,” forgetfulness, slower thinking.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="mood">
-                <input type="checkbox" name="diagnosis" value="depressionAnxiety" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Depression or anxiety</div>
-                  <div class="option-sub">Diagnosed or strongly suspected.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cancer">
-                <input type="checkbox" name="diagnosis" value="cancerHistory" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Cancer history</div>
-                  <div class="option-sub">Before, during, or after treatment.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="lungs">
-                <input type="checkbox" name="diagnosis" value="lungDisease" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Chronic lung issues</div>
-                  <div class="option-sub">COPD, emphysema, chronic bronchitis, etc.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="overall">
-                <input type="checkbox" name="diagnosis" value="frailtyWeak" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">General frailty / weakness</div>
-                  <div class="option-sub">Getting out of chairs, bed, or stairs is hard.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">Check any medical conditions you’re managing:</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
+                  <input type="checkbox" name="diagnosis" value="highBP" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">High blood pressure / cholesterol</div>
+                    <div class="option-sub">You’ve been told these are elevated.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="metabolic">
+                  <input type="checkbox" name="diagnosis" value="t2d" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Type 2 diabetes / prediabetes</div>
+                    <div class="option-sub">Blood sugar or A1c concerns.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cardio">
+                  <input type="checkbox" name="diagnosis" value="heartDisease" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Heart disease</div>
+                    <div class="option-sub">Heart attack, stents, or other cardiac issues.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="joints">
+                  <input type="checkbox" name="diagnosis" value="osteoarthritis" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Osteoarthritis</div>
+                    <div class="option-sub">Knees, hips, spine, or other joints.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="bones">
+                  <input type="checkbox" name="diagnosis" value="osteoporosis" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Osteoporosis / low bone density</div>
+                    <div class="option-sub">History of low bone density or fractures.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="balance">
+                  <input type="checkbox" name="diagnosis" value="falls" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Falls or fear of falling</div>
+                    <div class="option-sub">You’ve fallen or feel unsteady.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="chronicPain">
+                  <input type="checkbox" name="diagnosis" value="chronicPain" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Chronic pain</div>
+                    <div class="option-sub">Pain most days of the week for 3+ months.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="brain">
+                  <input type="checkbox" name="diagnosis" value="cognitive" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Mild memory / thinking changes</div>
+                    <div class="option-sub">“Brain fog,” forgetfulness, slower thinking.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="mood">
+                  <input type="checkbox" name="diagnosis" value="depressionAnxiety" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Depression or anxiety</div>
+                    <div class="option-sub">Diagnosed or strongly suspected.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="cancer">
+                  <input type="checkbox" name="diagnosis" value="cancerHistory" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Cancer history</div>
+                    <div class="option-sub">Before, during, or after treatment.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="lungs">
+                  <input type="checkbox" name="diagnosis" value="lungDisease" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Chronic lung issues</div>
+                    <div class="option-sub">COPD, emphysema, chronic bronchitis, etc.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="diagnosis" data-tags="overall">
+                  <input type="checkbox" name="diagnosis" value="frailtyWeak" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">General frailty / weakness</div>
+                    <div class="option-sub">Getting out of chairs, bed, or stairs is hard.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
+          </section>
 
-          <div class="question-group">
-            <span class="question-label">Which daily activities are currently difficult?</span>
-            <span class="question-note">These are exactly the kinds of tasks we train for in a “real life” program.</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,balance">
-                <input type="checkbox" name="adlChallenges" value="stairs" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Stairs or curbs</div>
-                  <div class="option-sub">You avoid them or need rails every time.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,joints">
-                <input type="checkbox" name="adlChallenges" value="chairs" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Getting out of chairs</div>
-                  <div class="option-sub">You need to push with your arms or rock several times.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,joints">
-                <input type="checkbox" name="adlChallenges" value="floor" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Getting up from the floor</div>
-                  <div class="option-sub">You worry about getting back up if you go down.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,cardio">
-                <input type="checkbox" name="adlChallenges" value="walkingDistance" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Walking distance</div>
-                  <div class="option-sub">Stores, parking lots, or hallways feel far.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence">
-                <input type="checkbox" name="adlChallenges" value="carryingGroceries" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Carrying groceries or laundry</div>
-                  <div class="option-sub">You need extra trips or lots of breaks.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="overall">
-                <input type="checkbox" name="adlChallenges" value="householdTasks" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Household chores</div>
-                  <div class="option-sub">Cleaning, yard work, or cooking wipe you out.</div>
-                </div>
-              </label>
+          <!-- STEP 7: DAILY TASKS -->
+          <section class="step" data-step="7">
+            <h2 class="step-title">Step 7 – Daily Activities</h2>
+            <p class="step-hint">These are exactly the kinds of tasks we train for in a “real life” program.</p>
+
+            <div class="question-group">
+              <span class="question-label">Which daily activities are currently difficult?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,balance">
+                  <input type="checkbox" name="adlChallenges" value="stairs" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Stairs or curbs</div>
+                    <div class="option-sub">You avoid them or need rails every time.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,joints">
+                  <input type="checkbox" name="adlChallenges" value="chairs" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Getting out of chairs</div>
+                    <div class="option-sub">You need to push with your arms or rock several times.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,joints">
+                  <input type="checkbox" name="adlChallenges" value="floor" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Getting up from the floor</div>
+                    <div class="option-sub">You worry about getting back up if you go down.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence,cardio">
+                  <input type="checkbox" name="adlChallenges" value="walkingDistance" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Walking distance</div>
+                    <div class="option-sub">Stores, parking lots, or hallways feel far.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="independence">
+                  <input type="checkbox" name="adlChallenges" value="carryingGroceries" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Carrying groceries or laundry</div>
+                    <div class="option-sub">You need extra trips or lots of breaks.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="adlChallenges" data-tags="overall">
+                  <input type="checkbox" name="adlChallenges" value="householdTasks" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Household chores</div>
+                    <div class="option-sub">Cleaning, yard work, or cooking wipe you out.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- STEP 4 -->
-        <section class="step" data-step="4">
-          <h2 class="step-title">Step 4 – Goals</h2>
-          <p class="step-hint">This helps turn the science into a realistic starting plan.</p>
+          <!-- STEP 8: GOALS + PRACTICAL -->
+          <section class="step" data-step="8">
+            <h2 class="step-title">Step 8 – Goals & Practical Details</h2>
+            <p class="step-hint">This turns the science into a realistic, minimum-effective-dose plan.</p>
 
-          <div class="question-group">
-            <span class="question-label">What do you want most from exercise?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="independence">
-                <input type="checkbox" name="goals" value="independence" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Stay independent</div>
-                  <div class="option-sub">Live in my home and do daily tasks on my own.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="balance">
-                <input type="checkbox" name="goals" value="avoidFalls" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Avoid falls</div>
-                  <div class="option-sub">Feel steady and confident on my feet.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="joints,chronicPain">
-                <input type="checkbox" name="goals" value="lessPain" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Feel less stiff or sore</div>
-                  <div class="option-sub">Move with more ease and less discomfort.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="sleepEnergy,mood">
-                <input type="checkbox" name="goals" value="energy" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Have more energy</div>
-                  <div class="option-sub">Sleep better and feel less drained.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="brain">
-                <input type="checkbox" name="goals" value="protectBrain" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Protect my brain</div>
-                  <div class="option-sub">Memory, focus, and staying “sharp.”</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="cardio,metabolic">
-                <input type="checkbox" name="goals" value="supportDoctorPlan" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Support my doctor’s plan</div>
-                  <div class="option-sub">Use exercise alongside my medical care.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="weight,metabolic">
-                <input type="checkbox" name="goals" value="healthyWeight" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Move toward a healthier weight</div>
-                  <div class="option-sub">In a sustainable, realistic way.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="multi" data-name="goals" data-tags="overall">
-                <input type="checkbox" name="goals" value="longevity" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Live longer and better</div>
-                  <div class="option-sub">Add years to life and life to years.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">What do you want most from exercise?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="independence">
+                  <input type="checkbox" name="goals" value="independence" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Stay independent</div>
+                    <div class="option-sub">Live in my home and do daily tasks on my own.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="balance">
+                  <input type="checkbox" name="goals" value="avoidFalls" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Avoid falls</div>
+                    <div class="option-sub">Feel steady and confident on my feet.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="joints,chronicPain">
+                  <input type="checkbox" name="goals" value="lessPain" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Feel less stiff or sore</div>
+                    <div class="option-sub">Move with more ease and less discomfort.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="sleepEnergy,mood">
+                  <input type="checkbox" name="goals" value="energy" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Have more energy</div>
+                    <div class="option-sub">Sleep better and feel less drained.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="brain">
+                  <input type="checkbox" name="goals" value="protectBrain" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Protect my brain</div>
+                    <div class="option-sub">Memory, focus, and staying “sharp.”</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="cardio,metabolic">
+                  <input type="checkbox" name="goals" value="supportDoctorPlan" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Support my doctor’s plan</div>
+                    <div class="option-sub">Use exercise alongside my medical care.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="weight,metabolic">
+                  <input type="checkbox" name="goals" value="healthyWeight" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Move toward a healthier weight</div>
+                    <div class="option-sub">In a sustainable, realistic way.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="multi" data-name="goals" data-tags="overall">
+                  <input type="checkbox" name="goals" value="longevity" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Live longer and better</div>
+                    <div class="option-sub">Add years to life and life to years.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
-        </section>
 
-        <!-- STEP 5 -->
-        <section class="step" data-step="5">
-          <h2 class="step-title">Step 5 – Practical Details</h2>
-          <p class="step-hint">This shapes how small and realistic your starting dose can be.</p>
-
-          <div class="question-group">
-            <span class="question-label">How much time can you realistically commit per week?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="time">
-                <input type="radio" name="time" value="under1h" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Under 1 hour total</div>
-                  <div class="option-sub">Tiny doses only (great place to start).</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="time">
-                <input type="radio" name="time" value="1to2h" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">1–2 hours per week</div>
-                  <div class="option-sub">Short sessions a few days a week.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="time">
-                <input type="radio" name="time" value="2to3h" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">2–3 hours per week</div>
-                  <div class="option-sub">Common guideline-style programs.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="time">
-                <input type="radio" name="time" value="3plus" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">3+ hours per week</div>
-                  <div class="option-sub">I like being active often.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">How much time can you realistically commit per week?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="under1h" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Under 1 hour total</div>
+                    <div class="option-sub">Tiny doses only (great place to start).</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="1to2h" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">1–2 hours per week</div>
+                    <div class="option-sub">Short sessions a few days a week.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="2to3h" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">2–3 hours per week</div>
+                    <div class="option-sub">Common guideline-style programs.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="time">
+                  <input type="radio" name="time" value="3plus" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">3+ hours per week</div>
+                    <div class="option-sub">I like being active often.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="question-group">
-            <span class="question-label">What type of movement sounds most realistic right now?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="style">
-                <input type="radio" name="style" value="walking" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Mostly walking</div>
-                  <div class="option-sub">Short walks inside or outside.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="style">
-                <input type="radio" name="style" value="strength" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Strength with bands/weights</div>
-                  <div class="option-sub">Chair stands, dumbbells, resistance bands.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="style">
-                <input type="radio" name="style" value="chair" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Mostly chair-based</div>
-                  <div class="option-sub">Sit-to-stand, seated marches, gentle mobility.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="style">
-                <input type="radio" name="style" value="mixed" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">A mix of everything</div>
-                  <div class="option-sub">Walking, strength, balance, breathing work.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">What type of movement sounds most realistic right now?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="walking" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Mostly walking</div>
+                    <div class="option-sub">Short walks inside or outside.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="strength" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Strength with bands/weights</div>
+                    <div class="option-sub">Chair stands, dumbbells, resistance bands.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="chair" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Mostly chair-based</div>
+                    <div class="option-sub">Sit-to-stand, seated marches, gentle mobility.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="style">
+                  <input type="radio" name="style" value="mixed" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">A mix of everything</div>
+                    <div class="option-sub">Walking, strength, balance, breathing work.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="question-group">
-            <span class="question-label">What feels like your biggest barrier to exercising regularly?</span>
-            <div class="options-grid">
-              <label class="option-card" data-type="single" data-name="barrier">
-                <input type="radio" name="barrier" value="time" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Time & schedule</div>
-                  <div class="option-sub">Busy days, appointments, or caregiving.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="barrier">
-                <input type="radio" name="barrier" value="painFear" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Pain or fear of injury</div>
-                  <div class="option-sub">Worried about “making things worse.”</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="barrier">
-                <input type="radio" name="barrier" value="confidence" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Not sure what’s safe</div>
-                  <div class="option-sub">I want clear guidance and supervision.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="barrier">
-                <input type="radio" name="barrier" value="motivation" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Motivation</div>
-                  <div class="option-sub">Hard to get started or stay consistent.</div>
-                </div>
-              </label>
-              <label class="option-card" data-type="single" data-name="barrier">
-                <input type="radio" name="barrier" value="access" />
-                <div class="indicator"></div>
-                <div class="option-content">
-                  <div class="option-title">Access to equipment / gym</div>
-                  <div class="option-sub">I’d prefer home-based or on-site sessions.</div>
-                </div>
-              </label>
+            <div class="question-group">
+              <span class="question-label">What feels like your biggest barrier to exercising regularly?</span>
+              <div class="options-grid">
+                <label class="option-card" data-type="single" data-name="barrier">
+                  <input type="radio" name="barrier" value="time" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Time & schedule</div>
+                    <div class="option-sub">Busy days, appointments, or caregiving.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="barrier">
+                  <input type="radio" name="barrier" value="painFear" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Pain or fear of injury</div>
+                    <div class="option-sub">Worried about “making things worse.”</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="barrier">
+                  <input type="radio" name="barrier" value="confidence" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Not sure what’s safe</div>
+                    <div class="option-sub">I want clear guidance and supervision.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="barrier">
+                  <input type="radio" name="barrier" value="motivation" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Motivation</div>
+                    <div class="option-sub">Hard to get started or stay consistent.</div>
+                  </div>
+                </label>
+                <label class="option-card" data-type="single" data-name="barrier">
+                  <input type="radio" name="barrier" value="access" />
+                  <div class="indicator"></div>
+                  <div class="option-content">
+                    <div class="option-title">Access to equipment / gym</div>
+                    <div class="option-sub">I’d prefer home-based or on-site sessions.</div>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
 
-      <!-- NAV -->
-      <div class="nav-row">
-        <div class="nav-left" id="validationMsg"></div>
-        <div class="nav-buttons">
-          <button class="btn secondary" id="backBtn" type="button" disabled>Back</button>
-          <button class="btn primary" id="nextBtn" type="button">Next</button>
+        <!-- NAV -->
+        <div class="nav-row">
+          <div class="nav-left" id="validationMsg"></div>
+          <div class="nav-buttons">
+            <button class="btn secondary" id="backBtn" type="button" disabled>Back</button>
+            <button class="btn primary" id="nextBtn" type="button">Next</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1546,28 +1663,45 @@ head>
         </div>
       </div>
 
-      <div class="cta-panel">
-        <div class="cta-inner">
-          <h3>What to Do With These Results</h3>
+      <!-- EXIT / NEXT STEPS SCREEN -->
+      <div class="exit-panel">
+        <div class="exit-inner">
+          <h3>Next steps with Olympian Health Solutions</h3>
           <p>
-            If this report resonates with you, you don’t have to turn it into a plan alone.
-            Olympian Health Solutions specializes in bringing a small, smart “micro-gym” to your home or facility and
-            turning this science into <strong>short, doable sessions</strong> that fit your realities.
+            If this report resonates with you, you don’t have to figure out the details alone.
+            Olympian Health Solutions brings a small, smart “micro-gym” to your home or senior community and turns
+            this science into <strong>short, doable sessions</strong> that fit your real life.
           </p>
-          <p>
-            You show up as you are. We’ll handle the progression, safety, and details of how much, how often,
-            and what to adjust.
-          </p>
-          <p>
-            📅 Curious what this would look like for you?
-            <a href="index.html#contact">Talk with Zeuse about these results →</a>
-          </p>
+          <p>Choose where you’d like to go next:</p>
+          <div class="exit-actions">
+            <a class="btn primary exit-btn" href="index.html#services">View 1:1 & small-group services</a>
+            <a class="btn secondary exit-btn" href="index.html#senior-communities">Programs for senior communities</a>
+            <a class="btn secondary exit-btn" href="index.html#contact">Book a free movement consult</a>
+            <a class="btn secondary exit-btn" href="index.html">Back to main site</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
+    // ===== INTRO HANDLING =====
+    const introScreen = document.getElementById("introScreen");
+    const quizBody = document.getElementById("quizBody");
+    const startQuizBtn = document.getElementById("startQuizBtn");
+
+    startQuizBtn.addEventListener("click", () => {
+      introScreen.style.display = "none";
+      quizBody.style.display = "block";
+      // Scroll to top of quiz body on small screens
+      if (window.innerWidth < 860) {
+        document.querySelector(".quiz-card").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+
     // ===== BASIC STATE & NAVIGATION =====
     const steps = Array.from(document.querySelectorAll(".step"));
     const totalSteps = steps.length;
@@ -1597,10 +1731,13 @@ head>
 
     const stepLabels = {
       1: "About you",
-      2: "Health priorities",
-      3: "Diagnoses & daily challenges",
-      4: "Goals",
-      5: "Practical details"
+      2: "How you feel",
+      3: "Therapy status",
+      4: "Health areas",
+      5: "What matters most",
+      6: "Diagnoses",
+      7: "Daily tasks",
+      8: "Practical details"
     };
 
     function updateProgress() {
@@ -1650,7 +1787,7 @@ head>
         }
       }
 
-      if (step === 2) {
+      if (step === 4) {
         const anyFocus = document.querySelector('input[name="healthFocus"]:checked');
         if (!anyFocus) {
           validationMsg.textContent =
@@ -1659,7 +1796,6 @@ head>
         }
       }
 
-      // Other steps: optional details are allowed
       return true;
     }
 
@@ -1695,7 +1831,7 @@ head>
       });
     });
 
-    // ===== BENEFIT ENGINE =====
+    // ===== BENEFIT ENGINE (same as before) =====
     const benefitBank = [
       {
         id: "cardio1",
@@ -2338,7 +2474,6 @@ head>
       if (!qs.length && doctorQuestionTemplates.overall) {
         doctorQuestionTemplates.overall.forEach((q) => qs.push(q));
       }
-      // Limit to a few
       return qs.slice(0, 4);
     }
 
@@ -2409,7 +2544,7 @@ head>
         focusSummaryEl.style.display = "none";
       }
 
-      // headline stats (visual graphic-style cards)
+      // headline stats
       headlineStatsEl.innerHTML = "";
       const statsToShow = [];
       uniqueTags.forEach(function (tag) {
@@ -2557,7 +2692,6 @@ head>
       resultsIntro.textContent =
         "Here’s how appropriately dosed exercise can support the areas you care about most. These are evidence-informed summaries for education, not individualized medical advice.";
 
-      // scroll to results on smaller screens
       if (window.innerWidth < 860) {
         document.getElementById("resultsWrapper").scrollIntoView({
           behavior: "smooth",
