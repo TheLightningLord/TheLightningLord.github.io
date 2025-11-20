@@ -2,646 +2,639 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Olympian Health Solutions | Mobile, Evidence-Based Exercise for Older Adults</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Olympian Health Solutions LLC provides mobile, evidence-based strength, balance, and pain-informed exercise coaching for older adults and senior living communities in Battle Ground, Washington."
-  />
-  <link rel="canonical" href="https://olympiansolutions.net/index.html" />
+  <meta name="description" content="Olympian Health Solutions – mobile, evidence-based personal training for older adults in Battle Ground, WA. Minimal effective dose exercise for pain, balance, strength, blood sugar, mood, and independence." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olympian Health Solutions | Evidence-Based Movement for Seniors</title>
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Olympian Health Solutions | Movement is Medicine for Aging Bodies & Brains" />
-  <meta
-    property="og:description"
-    content="Mobile, research-backed exercise for seniors in Battle Ground, WA. Strength, balance, and pain-informed training delivered right to your door."
-  />
-  <!-- <meta property="og:image" content="https://olympiansolutions.net/assets/images/og-image.jpg" /> -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Main CSS (existing) -->
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Olympian Health Solutions | Movement is Medicine" />
-  <meta
-    name="twitter:description"
-    content="Minimal effective dose exercise for pain, balance, blood sugar, and independence — delivered to your home or senior living community."
-  />
-
-  <!-- Structured Data (simplified Person schema) -->
+  <!-- Simple JSON-LD for local business -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Zeuse Valentine",
-    "jobTitle": "Student Doctor of Physical Therapy",
-    "description": "Founder of Olympian Health Solutions LLC, specializing in minimal effective dose exercise for pain, balance, and healthy aging in older adults.",
-    "alumniOf": [
-      {
-        "@type": "EducationalOrganization",
-        "name": "Oregon State University"
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Olympian Health Solutions LLC",
+      "description": "Mobile, evidence-based personal training and movement coaching for older adults in Battle Ground, Washington and surrounding areas.",
+      "areaServed": "Battle Ground, WA",
+      "url": "https://olympiansolutions.net/index.html",
+      "serviceType": [
+        "Mobile senior fitness",
+        "Post-physical-therapy exercise coaching",
+        "Balance and fall-prevention training",
+        "Pain-sensitive strength training"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Zeuse Valentine",
+        "jobTitle": "Student Doctor of Physical Therapy, CSCS, NASM Personal Trainer",
+        "alumniOf": [
+          "Oregon State University (Honors College, B.S. Kinesiology)",
+          "Mt. Hood Community College"
+        ]
       }
-    ],
-    "hasCredential": [
-      {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Professional Certification",
-        "name": "Certified Strength and Conditioning Specialist (CSCS)"
-      },
-      {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Professional Certification",
-        "name": "NASM Certified Personal Trainer"
-      }
-    ],
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Olympian Health Solutions LLC"
     }
-  }
   </script>
-
-  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- ================= HEADER ================ -->
   <header role="banner">
     <div class="header-container">
       <div class="logo">
         <img src="assets/images/logo2.png" alt="Olympian Health Solutions Logo" loading="lazy" />
         <span>Olympian Health Solutions</span>
       </div>
+
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <nav role="navigation" aria-label="Main navigation">
+
+      <nav role="navigation">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li class="dropdown">
-            <a href="#services">Services</a>
-            <ul class="dropdown-content">
-              <li><a href="#seniors">1:1 Senior Sessions</a></li>
-              <li><a href="#alf-partnerships">Senior Living Partnerships</a></li>
-              <li><a href="#plans">Packages & Memberships</a></li>
-            </ul>
-          </li>
-          <li><a href="ExerciseQuiz.html">Exercise Science Quiz</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#plans" class="cta-btn">Get Started</a></li>
+          <li><a href="ExerciseQuiz.html">Exercise Quiz</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#benefits">Why Exercise Works</a></li>
+          <li><a href="#senior-communities">Senior Communities</a></li>
+          <li><a href="#about">About Zeuse</a></li>
+          <li><a href="#contact" class="btn-primary-nav">Get Started</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero-section" id="top">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
-      <div class="hero-badge-row">
-        <span class="hero-badge">
-          DPT Student • CSCS • NASM-CPT • Honors Pain Science Researcher
-        </span>
-        <span class="hero-badge">
-          Mobile sessions in Battle Ground, WA & nearby communities
-        </span>
+      <div class="hero-text">
+        <h1>
+          Evidence-Based Movement<br />
+          <span>For Seniors Who Want More Life in Their Years</span>
+        </h1>
+        <p class="hero-subtitle">
+          Mobile, science-driven personal training that comes to you in Battle Ground, WA.
+          Designed by a Student Doctor of Physical Therapy and strength coach, specializing in
+          <strong>minimal effective dose exercise</strong> for <strong>pain, balance, blood sugar, mood, and independence</strong>.
+        </p>
+
+        <div class="hero-cta">
+          <a href="ExerciseQuiz.html" class="btn btn-primary">
+            🧬 Take the “How Exercise Will Help YOU” Quiz
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            📅 Book a free movement consult
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>📍 Battle Ground & surrounding areas</span>
+          <span>🎯 Seniors • Post-PT grads • Assisted living residents</span>
+          <span>🧠 Pain science + nervous system-friendly training</span>
+        </div>
       </div>
 
-      <h1>
-        Movement is Medicine for
-        <span class="highlight">Pain, Balance & Independence.</span>
-      </h1>
-
-      <p class="tagline">
-        Olympian Health Solutions LLC delivers science-based, portable personal training for older adults —
-        right in your living room or senior living community. Minimal equipment. Minimal time. Maximum impact on
-        strength, confidence, and quality of life.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="ExerciseQuiz.html" class="primary">
-          🔍 How Will Exercise Help YOU? Take the Quiz
-        </a>
-        <a href="#easy-start" class="secondary">
-          🚚 How In-Home Sessions Work
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHO WE HELP -->
-  <section class="who-we-help scroll-reveal" id="seniors">
-    <div class="container">
-      <h2>Who We Help</h2>
-      <p class="section-intro">
-        Olympian Health Solutions focuses on adults 55+ who want to stay strong, steady, and independent —
-        without feeling like they’ve been thrown into a bootcamp. Every plan is built from a clinical lens,
-        but delivered as friendly, portable personal training.
-      </p>
-
-      <div class="help-cards">
-        <article class="help-card">
-          <h3>Independent Seniors at Home</h3>
+      <div class="hero-side-panel">
+        <div class="hero-card">
+          <h2>Micro-Gym in the Back of a Tacoma.</h2>
           <p>
-            You want to keep living in your home, going up your stairs, carrying groceries, getting off the floor,
-            and playing with grandkids. We bring a compact “micro-gym” to your space and build a plan
-            around the exact tasks that matter in your real life.
+            No crowded gym. No complicated machines. I bring a compact, medical-informed training setup to
+            your <strong>home, driveway, or senior living community</strong> — you bring your body and your goals.
           </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Graduates of Physical Therapy</h3>
-          <p>
-            You finished PT, but you’re not where you want to be yet. We take over from there:
-            pain-informed strength and balance progression that respects your history but doesn’t
-            leave you stuck in fear of movement.
+          <ul class="hero-list">
+            <li>✅ Short, doable sessions (often 30–45 minutes)</li>
+            <li>✅ Safe progressions for pain, arthritis, and fatigue</li>
+            <li>✅ Balance + strength + walking confidence in one plan</li>
+          </ul>
+          <p class="hero-microcopy">
+            <em>Think of this as “exercise medicine” — just without the scary clinic vibe.</em>
           </p>
-        </article>
+        </div>
 
-        <article class="help-card">
-          <h3>Assisted & Independent Living Residents</h3>
-          <p>
-            Senior living communities partner with us for on-site classes and 1:1 sessions that reduce falls,
-            improve strength, and give residents a sense of agency over their bodies again.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Older Adults with Chronic Pain</h3>
-          <p>
-            If your nervous system feels “extra sensitive,” we use a less-is-more approach:
-            small, tolerable movement doses that gently retrain your system over time instead of
-            overwhelming it in one go.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW EASY IT IS TO GET STARTED (PORTABLE TRAINING FOCUS) -->
-  <section class="solutions-section scroll-reveal" id="easy-start">
-    <div class="container">
-      <h2>Portable Personal Training, Made Easy</h2>
-      <p class="section-intro">
-        You don’t need a gym membership, complicated machines, or an hour-long commute.
-        Olympian Health Solutions is built around <strong>portable, high-yield sessions</strong> that fit into the
-        realities of your life — not the other way around.
-      </p>
-
-      <div class="solutions-cards">
-        <article class="solution-card">
-          <h3>Step 1: Quick Discovery</h3>
-          <p>
-            Start with a short conversation or take the interactive quiz. We’ll get clear on your
-            priorities: pain, balance, energy, blood sugar, brain health, or just staying in your home
-            as long as possible.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Step 2: We Come to You</h3>
-          <p>
-            Your coach (Zeuse) arrives in a Toyota Tacoma with a compact set of tools:
-            dumbbells, bands, a step, a balance pad, and simple props.
-            Everything is chosen for safety in tight spaces — living rooms, facility common areas, and more.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Step 3: Minimal Dose, Maximum Return</h3>
-          <p>
-            Sessions are focused, practical, and doable.
-            Think 30–60 minutes of targeted strength, balance, and mobility work —
-            not endless circuits or punishing routines.
-            The goal is <em>consistency</em>, not exhaustion.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Step 4: Simple Home Plan & Check-Ins</h3>
-          <p>
-            You’ll always know your “next 3–5 moves” — a short list of exercises you can safely repeat between visits.
-            We adjust load, volume, and difficulty based on how your body responds, not on a generic template.
-          </p>
-        </article>
-      </div>
-
-      <div style="margin-top: 1.8rem;">
-        <a href="#contact" class="hero-buttons primary" style="text-decoration:none; display:inline-block;">
-          📅 See How Fast You Can Get Started →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCIENCE OF MOVEMENT -->
-  <section class="who-we-help scroll-reveal" id="science">
-    <div class="container">
-      <h2>The Science Behind What We Do</h2>
-      <p class="section-intro">
-        Exercise is one of the most powerful “medicines” we have — especially for older adults.
-        Our programming is aligned with major guidelines and research in cardiology, endocrinology,
-        neurology, and gerontology, translated into realistic, senior-friendly plans.
-      </p>
-
-      <div class="help-cards">
-        <article class="help-card">
-          <h3>Heart & Blood Pressure</h3>
-          <p>
-            Regular, moderate movement helps lower blood pressure and improves cholesterol patterns,
-            reducing your risk of heart disease and stroke when practiced consistently over time.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Blood Sugar & Metabolism</h3>
-          <p>
-            Simple post-meal walks and gentle resistance exercises help your muscles soak up blood sugar,
-            supporting better A1c and long-term metabolic health in people with or at risk for type 2 diabetes.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Brain & Mood</h3>
-          <p>
-            Movement increases blood flow and growth factors like BDNF in the brain, supporting memory,
-            attention, and mood. Exercise is strongly linked with lower risk of cognitive decline and
-            depression over time.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Balance, Falls & Bones</h3>
-          <p>
-            Strength, power, and balance training together can reduce fall risk, support bone density,
-            and make everyday tasks like getting out of a chair or stepping onto a curb feel more secure.
-          </p>
-        </article>
-      </div>
-
-      <div style="margin-top: 1.6rem;">
-        <a href="ExerciseQuiz.html" class="hero-buttons primary" style="text-decoration:none; display:inline-block;">
-          🔍 See How This Science Applies to YOU →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICE AREA / MOBILE MODEL -->
-  <section class="solutions-section scroll-reveal" id="service-area">
-    <div class="container">
-      <h2>Mobile Sessions in Battle Ground, Washington</h2>
-      <p class="section-intro">
-        Olympian Health Solutions is a mobile service — we meet you where you are.
-        That means fewer barriers, more follow-through, and less stress trying to fit your health into someone
-        else’s schedule or building.
-      </p>
-
-      <div class="solutions-cards">
-        <article class="solution-card">
-          <h3>Primary Service Area</h3>
-          <p>
-            Battle Ground, WA and nearby neighborhoods, with select availability in Brush Prairie,
-            Ridgefield, and parts of North/East Vancouver.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Facility-Friendly Setup</h3>
-          <p>
-            All equipment is compact, quiet, and appropriate for senior living environments — no loud machines,
-            no space-hogging gear, just smart tools and better movement.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Travel Made Transparent</h3>
-          <p>
-            Travel is included within a core radius of Battle Ground. For outlying areas,
-            small travel fees are discussed upfront so there are no surprises.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Safety-First Mindset</h3>
-          <p>
-            As a DPT student and strength specialist, Zeuse balances ambition with safety:
-            clear spotting, appropriate progressions, and constant form coaching for every exercise.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESEARCH / CREDIBILITY -->
-  <section class="research-publications scroll-reveal" id="research">
-    <div class="container">
-      <h2>Rooted in Research, Not Fitness Fads</h2>
-      <p class="section-intro">
-        You’re not getting random workouts from social media.
-        You’re working with someone actively involved in pain science and exercise dosage research —
-        and translating that work into real-world coaching for older adults.
-      </p>
-
-      <div class="research-cards">
-        <article class="research-card">
-          <img src="assets/images/research1.webp" alt="Minimal effective dose research" loading="lazy" />
-          <div class="card-content">
-            <h3>Minimal Effective Dose for Pain</h3>
-            <p class="card-description">
-              Honors research examining how small, targeted amounts of exercise can lead to meaningful
-              improvements in pain and function — especially for people who feel overwhelmed by traditional prescriptions.
-            </p>
-            <a href="assets/images/research1.webp" target="_blank" rel="noopener">View Poster Snapshot</a>
+        <div class="hero-badges">
+          <div class="badge">
+            <span class="badge-label">DPT Student</span>
+            <span class="badge-text">Doctor of Physical Therapy in training</span>
           </div>
-        </article>
-
-        <article class="research-card">
-          <img src="assets/images/research2.jpg" alt="Pain science and exercise integration" loading="lazy" />
-          <div class="card-content">
-            <h3>Pain Science Meets Daily Movement</h3>
-            <p class="card-description">
-              Integrating simple pain neuroscience education with gradual, confidence-building movement —
-              helping clients reinterpret pain signals and rebuild trust in their bodies.
-            </p>
-            <a href="assets/images/research2.jpg" target="_blank" rel="noopener">View Research Snapshot</a>
+          <div class="badge">
+            <span class="badge-label">CSCS & NASM CPT</span>
+            <span class="badge-text">Strength & conditioning + senior-friendly coaching</span>
           </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="carousel testimonials scroll-reveal">
-    <div class="carousel-inner" id="carouselInner">
-      <div class="carousel-item">
-        <div class="testimonial">
-          <p class="quote">
-            “I was terrified of falling again. Zeuse started with movements I could actually do,
-            and built from there. Now I’m walking further and standing longer without feeling like I’ll tip over.”
-          </p>
-          <p class="author">— M., 78, Battle Ground</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="testimonial">
-          <p class="quote">
-            “The idea of exercise scared me because of my pain. With his ‘minimum effective dose’ approach,
-            I finally feel like I’m not fighting my body — we’re working with it.”
-          </p>
-          <p class="author">— L., 67, chronic low back pain</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="testimonial">
-          <p class="quote">
-            “Our residents look forward to movement days. The way he explains the brain and pain makes
-            them feel respected and hopeful, not broken.”
-          </p>
-          <p class="author">— Wellness Director, Senior Living Community</p>
+          <div class="badge">
+            <span class="badge-label">Pain Science Research</span>
+            <span class="badge-text">Minimal-dose, nervous-system informed exercise</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="carousel-controls" id="carouselControls">
-      <button id="prevBtn" aria-label="Previous testimonial">&#10094;</button>
-      <button id="nextBtn" aria-label="Next testimonial">&#10095;</button>
-    </div>
   </section>
 
-  <!-- PRICING / PLANS -->
-  <section class="pricing-section scroll-reveal" id="plans">
-    <div class="container">
-      <h2>Simple Plans for Real Lives</h2>
-      <p>
-        No long-term contracts. No hidden fees. Just clear session options that respect your time,
-        energy, and budget — whether you’re an individual client or a senior living community.
-      </p>
-
-      <div class="pricing-toggle">
-        <span class="toggle-label">Per Visit</span>
-        <label class="switch">
-          <input type="checkbox" id="pricingToggle" />
-          <span class="slider"></span>
-        </label>
-        <span class="toggle-label">Monthly</span>
-      </div>
-
-      <div class="pricing-cards">
-        <article class="pricing-card">
-          <h3>Starter Assessment</h3>
-          <div class="price" data-monthly="135" data-yearly="540">$135<span>/visit</span></div>
-          <ul>
-            <li>60-minute in-home or on-site session</li>
-            <li>Strength, balance & movement screening</li>
-            <li>Clear, written 3–5 exercise starter plan</li>
-            <li>Ideal for trying things out with no commitment</li>
-          </ul>
-          <a href="#contact" class="btn">Book Starter Session</a>
-        </article>
-
-        <article class="pricing-card featured">
-          <h3>Momentum Plan</h3>
-          <div class="price" data-monthly="360" data-yearly="680">$360<span>/mo</span></div>
-          <ul>
-            <li>Up to 4 mobile visits per month (weekly)</li>
-            <li>Progressive strength & balance program</li>
-            <li>Text/email support between sessions</li>
-            <li>Perfect for building habits & confidence over time</li>
-          </ul>
-          <a href="#contact" class="btn">Build Momentum</a>
-        </article>
-
-        <article class="pricing-card">
-          <h3>Senior Living Partnership</h3>
-          <div class="price" data-monthly="540" data-yearly="960">$540<span>/mo</span></div>
-          <ul>
-            <li>Custom mix of classes and 1:1 sessions</li>
-            <li>On-site fall-prevention & movement programs</li>
-            <li>Optional pain science / movement seminars</li>
-            <li>Ideal for assisted & independent living communities</li>
-          </ul>
-          <a href="#alf-partnerships" class="btn">Explore Partnerships</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ALF PARTNERSHIPS -->
-  <section class="who-we-help scroll-reveal" id="alf-partnerships">
-    <div class="container">
-      <h2>Senior Living: Hybrid Movement Programs</h2>
-      <p class="section-intro">
-        For senior living communities, we offer hybrid wellness models that combine group classes,
-        resident-specific 1:1 visits, and staff education — all designed to reduce falls, support independence,
-        and make your community stand out.
-      </p>
-
-      <div class="help-cards">
-        <article class="help-card">
-          <h3>Evidence-Based Classes</h3>
-          <p>
-            Weekly or bi-weekly strength, balance, and cardiovascular classes tailored to resident
-            abilities and safety needs. Seated and standing options available.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>1:1 Resident Sessions</h3>
-          <p>
-            For residents who need extra support after rehab, surgery, or illness,
-            we offer 1:1 coaching with clear goals and progress tracking.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Pain & Movement Education</h3>
-          <p>
-            Short, accessible talks on chronic pain, fear of movement, and how small amounts of activity
-            can be safely reintroduced — helping residents feel less fragile and more empowered.
-          </p>
-        </article>
-
-        <article class="help-card">
-          <h3>Staff-Friendly Collaboration</h3>
-          <p>
-            We communicate clearly with your team, operate independently with our own equipment and insurance,
-            and adapt to your schedule and space constraints.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="solutions-section scroll-reveal" id="about">
-    <div class="container">
-      <h2>Meet Your Coach: Zeuse Valentine</h2>
-      <p class="section-intro">
-        I’m a Student Doctor of Physical Therapy, Certified Strength and Conditioning Specialist (CSCS),
-        NASM personal trainer with 7+ years of experience, and an honors researcher in pain science and
-        minimal effective exercise dosage. Olympian Health Solutions is where all of that comes together
-        for one goal: <strong>helping older adults move better with less fear.</strong>
-      </p>
-
-      <div class="solutions-cards">
-        <article class="solution-card">
-          <h3>Clinical Brain, Human Heart</h3>
-          <p>
-            I think like a clinician — about nervous systems, load tolerance, joints, and fall risk —
-            but I coach like a human: simple language, zero judgment, and plans built around your real life,
-            not an idealized version of it.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Less Pain, More Capacity</h3>
-          <p>
-            Instead of chasing “no pain ever,” we focus on gradually expanding what you can do:
-            more time on your feet, smoother transfers, longer walks, more confidence in your body.
-            Pain often follows progress, not the other way around.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>From Lab to Living Room</h3>
-          <p>
-            I bridge the gap between what research shows and what your living room allows.
-            That means minimal equipment, clear explanations, and exercises that fit around furniture,
-            oxygen tubing, pets, and everyday life.
-          </p>
-        </article>
-
-        <article class="solution-card">
-          <h3>Local & Accessible</h3>
-          <p>
-            As a Battle Ground local, I’m invested in the health and independence of this community —
-            not just as clients, but as neighbors. If you’re not sure you’re “ready” yet, that’s okay.
-            We’ll start from where you are.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section class="research-publications scroll-reveal">
-    <div class="container">
-      <h2>Certifications & Background</h2>
-      <p class="section-intro">
-        You deserve to know who’s guiding your movement. Here’s a snapshot of the education and
-        certifications behind Olympian Health Solutions.
-      </p>
-      <div class="certifications">
-        <img src="assets/nasm1.png" alt="NASM Certification" loading="lazy" />
-        <img src="assets/images/nasm2.png" alt="CSCS / Strength & Conditioning" loading="lazy" />
-        <img src="assets/images/nasm3.webp" alt="Kinesiology & Exercise Science" loading="lazy" />
-        <img src="assets/images/nasm4.webp" alt="Evidence-Based Practice" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / CTA -->
-  <section class="who-we-help scroll-reveal" id="contact">
-    <div class="container">
-      <h2>Ready to See How Movement Can Help You?</h2>
-      <p class="section-intro">
-        Whether you’re an individual, a family member, or a senior living community leader,
-        getting started is simple. You don’t have to be “fit enough” first —
-        that’s what we’ll work on together.
-      </p>
-
-      <div class="help-cards">
-        <article class="help-card">
-          <h3>Option 1: Take the Quiz</h3>
-          <p>
-            Get a personalized, science-backed breakdown of how exercise can help your specific situation
-            — pain, falls, blood sugar, brain health, and more.
-          </p>
-          <p><a href="ExerciseQuiz.html">🔍 Take the “How Exercise Will Help YOU” Quiz →</a></p>
-        </article>
-
-        <article class="help-card">
-          <h3>Option 2: Request a Call</h3>
-          <p>
-            Send a quick email with your name, location, and what you’re hoping to change.
-            We’ll schedule a short call to discuss fit, logistics, and next steps.
-          </p>
-          <p><strong>Email:</strong> <a href="mailto:info@olympiansolutions.net">info@olympiansolutions.net</a></p>
-        </article>
-
-        <article class="help-card">
-          <h3>Option 3: Book Your First Visit</h3>
-          <p>
-            Ready to start? Book a Starter Assessment visit.
-            We’ll come to you, assess your needs, and leave you with a clear, written plan.
-          </p>
-          <p><a href="#plans">📅 View Starter Assessment Details →</a></p>
-        </article>
-
-        <article class="help-card">
-          <h3>For Senior Living Communities</h3>
-          <p>
-            Email with your community name, location, and what type of movement support you’re looking for.
-            We’ll design a pilot program (classes + 1:1s + education) that fits your residents and budget.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Back to Top Button -->
-  <button id="backToTop" title="Back to top" aria-label="Back to top">&#8679;</button>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      &copy; <span id="year"></span> Olympian Health Solutions LLC · Mobile movement health for older adults in
-      Battle Ground, Washington. This site provides educational information only and is not medical advice.
+  <!-- ============ “HOW I CAN HELP YOU” TABS ============ -->
+  <section class="section container" id="how-it-works">
+    <h2 class="section-title">How Olympian Health Solutions Helps You Move Better</h2>
+    <p class="section-intro">
+      One size fits nobody. Below, choose the option that sounds most like you and see how a
+      <strong>portable, science-based</strong> program might look.
     </p>
+
+    <div class="tabs">
+      <div class="tab-buttons" role="tablist">
+        <button class="tab-button active" data-target="tab-1" role="tab" aria-selected="true">
+          🧍 1:1 Mobile Personal Training
+        </button>
+        <button class="tab-button" data-target="tab-2" role="tab" aria-selected="false">
+          🏡 Assisted Living & Senior Communities
+        </button>
+        <button class="tab-button" data-target="tab-3" role="tab" aria-selected="false">
+          🩺 After Physical Therapy “Bridge”
+        </button>
+      </div>
+
+      <div class="tab-panels">
+        <!-- Tab 1 -->
+        <div class="tab-panel active" id="tab-1" role="tabpanel">
+          <h3>1:1 Mobile Personal Training (I Come to You)</h3>
+          <p>
+            Ideal if you’re an older adult who wants <strong>personal coaching in your home, garage,
+            or driveway</strong> with minimal equipment and maximal brain power behind it.
+          </p>
+          <ul class="tab-list">
+            <li>🪑 <strong>Daily-life strength:</strong> getting out of chairs, stairs, carrying groceries, getting off the floor.</li>
+            <li>🦴 <strong>Joint-friendly loading:</strong> arthritis-aware strength training for hips, knees, back, and shoulders.</li>
+            <li>🧠 <strong>Pain-science informed progress:</strong> gradually teaching your nervous system that safe movement is okay again.</li>
+            <li>❤️ <strong>Cardio “micro-doses”:</strong> short walking intervals or indoor circuits to build stamina without wipe-out fatigue.</li>
+          </ul>
+          <p>
+            <em>Sessions are designed to feel surprisingly doable — even if you’ve “failed” exercise programs before.</em>
+          </p>
+        </div>
+
+        <!-- Tab 2 -->
+        <div class="tab-panel" id="tab-2" role="tabpanel">
+          <h3>Senior Living & Assisted Living Programs</h3>
+          <p>
+            Perfect for administrators, activity directors, or wellness teams wanting
+            <strong>real fall-prevention and health benefits</strong> without turning your community into a bootcamp.
+          </p>
+          <ul class="tab-list">
+            <li>👥 <strong>Small-group classes:</strong> balance, strength, and mobility sessions tailored to your residents’ abilities.</li>
+            <li>🎓 <strong>Education talks:</strong> 20–40 minute, plain-language seminars on pain, balance, blood sugar, and brain health.</li>
+            <li>🧍 <strong>1:1 add-ons:</strong> follow-up sessions for residents who need extra support post-PT or after falls.</li>
+            <li>📊 <strong>Trackable progress:</strong> simple measures like chair stands and walking tests to show real improvement over time.</li>
+          </ul>
+          <p>
+            <em>We can design a hybrid model: classes + 1:1 visits so your residents get both community energy and individualized attention.</em>
+          </p>
+        </div>
+
+        <!-- Tab 3 -->
+        <div class="tab-panel" id="tab-3" role="tabpanel">
+          <h3>After Physical Therapy: The “Bridge” Program</h3>
+          <p>
+            Many people “graduate” from PT but feel like they’re dropped off a cliff. I focus on the space between
+            <strong>“I’m cleared” and “I genuinely feel strong and confident again.”</strong>
+          </p>
+          <ul class="tab-list">
+            <li>🔁 <strong>Continue your gains:</strong> keep building on what your PT started (without pretending to be PT).</li>
+            <li>📈 <strong>Return to real life goals:</strong> walking the dog, traveling, gardening, or playing with grandkids.</li>
+            <li>🧩 <strong>Pain-sensitive progression:</strong> adjust intensity based on your symptoms, not a rigid template.</li>
+            <li>📄 <strong>Doctor/therapist-friendly:</strong> you receive a simple written plan you can share with your providers.</li>
+          </ul>
+          <p>
+            <em>Physical therapy addresses medical rehab. This “bridge” training helps you safely reclaim the rest of your life.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== “TOO GOOD TO BE TRUE?” BENEFITS =========== -->
+  <section class="section section-alt" id="benefits">
+    <div class="container">
+      <h2 class="section-title">Exercise Benefits That Sound Too Good to Be True (But Aren’t)</h2>
+      <p class="section-intro">
+        Decades of research from organizations like the <strong>CDC</strong>, the
+        <strong>U.S. Physical Activity Guidelines Advisory Committee (2018)</strong>, and the
+        <strong>World Health Organization (2020)</strong> all say the same thing:
+        <strong>appropriate movement is one of the most powerful “medicines” we have.</strong>
+      </p>
+
+      <div class="benefit-grid">
+        <!-- Heart & Circulation -->
+        <details class="benefit-card" open>
+          <summary>
+            <span>❤️ Heart & Circulation</span>
+            <span class="benefit-tag">Risk reduction that seems unreal</span>
+          </summary>
+          <div class="benefit-body">
+            <ul>
+              <li><strong>20–30% lower risk</strong> of heart disease and stroke in adults who move regularly compared with those who sit most of the day.</li>
+              <li>Helps improve <strong>blood pressure</strong> and <strong>cholesterol</strong>, so your heart does the same work with less strain.</li>
+              <li>Improves “cardiorespiratory fitness” — a vital sign that strongly predicts how long and how well you live.</li>
+            </ul>
+            <p class="benefit-evidence">
+              <strong>Evidence snapshot:</strong> Large guideline reviews show that meeting basic activity targets (often as little as
+              150 minutes per week of moderate activity like brisk walking) meaningfully reduces cardiovascular risk.
+            </p>
+          </div>
+        </details>
+
+        <!-- Blood Sugar -->
+        <details class="benefit-card">
+          <summary>
+            <span>🩸 Blood Sugar & Diabetes</span>
+            <span class="benefit-tag">Muscles as a glucose sponge</span>
+          </summary>
+          <div class="benefit-body">
+            <ul>
+              <li>Exercise makes your muscles act like a <strong>“glucose sponge,”</strong> soaking up sugar from your bloodstream.</li>
+              <li>Can improve <strong>HbA1c</strong> (your long-term blood sugar marker) in people with type 2 diabetes.</li>
+              <li>Just <strong>light walking after meals</strong> can stabilize blood sugar spikes over the day.</li>
+            </ul>
+            <p class="benefit-evidence">
+              <strong>Evidence snapshot:</strong> Guidelines for type 2 diabetes consistently recommend both
+              <strong>aerobic activity + resistance training</strong> because together they improve insulin sensitivity and blood sugar control.
+            </p>
+          </div>
+        </details>
+
+        <!-- Brain & Mood -->
+        <details class="benefit-card">
+          <summary>
+            <span>🧠 Brain, Memory & Mood</span>
+            <span class="benefit-tag">Your brain’s favorite habit</span>
+          </summary>
+          <div class="benefit-body">
+            <ul>
+              <li>Boosts chemicals like <strong>BDNF</strong> that help brain cells grow, connect, and adapt (“neuroplasticity”).</li>
+              <li>Linked with a <strong>lower risk of cognitive decline and dementia</strong> in later life.</li>
+              <li>Can reduce symptoms of <strong>depression and anxiety</strong> — sometimes with effects similar to common treatments in mild–moderate cases.</li>
+            </ul>
+            <p class="benefit-evidence">
+              <strong>Evidence snapshot:</strong> Trials in older adults show that regular aerobic exercise improves memory,
+              thinking speed, and executive function, while large reviews show lower dementia and depression risk among active people.
+            </p>
+          </div>
+        </details>
+
+        <!-- Pain & Joints -->
+        <details class="benefit-card">
+          <summary>
+            <span>🦴 Joints, Arthritis & Chronic Pain</span>
+            <span class="benefit-tag">Move more, hurt less</span>
+          </summary>
+          <div class="benefit-body">
+            <ul>
+              <li>Appropriate strengthening often <strong>reduces pain</strong> and improves function in knee, hip, and spine arthritis.</li>
+              <li>For chronic pain, gradual movement helps retrain an <strong>overprotective nervous system</strong> to feel safer.</li>
+              <li>Strong muscles and better movement control <strong>offload stressed joints</strong> so daily tasks feel easier.</li>
+            </ul>
+            <p class="benefit-evidence">
+              <strong>Evidence snapshot:</strong> Exercise is a first-line recommendation in most osteoarthritis and chronic pain
+              guidelines. When combined with pain education and gradual exposure, it can improve pain, fear, and function.
+            </p>
+          </div>
+        </details>
+
+        <!-- Balance & Independence -->
+        <details class="benefit-card">
+          <summary>
+            <span>🦶 Balance, Falls & Independence</span>
+            <span class="benefit-tag">Train today’s steps & tomorrow’s freedom</span>
+          </summary>
+          <div class="benefit-body">
+            <ul>
+              <li>Targeted strength and balance work can <strong>lower fall risk by roughly 20–30%</strong> in older adults.</li>
+              <li>Improves walking speed, chair-stand ability, and confidence — all strong predictors of independence.</li>
+              <li>Helps you <strong>stay in your own home longer</strong> and rely less on others for daily tasks.</li>
+            </ul>
+            <p class="benefit-evidence">
+              <strong>Evidence snapshot:</strong> Multicomponent programs (strength + balance + mobility) are a cornerstone of
+              fall-prevention guidelines worldwide.
+            </p>
+          </div>
+        </details>
+
+        <!-- Longevity -->
+        <details class="benefit-card">
+          <summary>
+            <span>📅 Longevity & “Healthspan”</span>
+            <span class="benefit-tag">More life in your years</span>
+          </summary>
+          <div class="benefit-body">
+            <ul>
+              <li>Active people tend to live longer — and spend <strong>more years able to do what matters to them.</strong></li>
+              <li>Risk of early death drops as you move from “inactive” to “somewhat active,” even before you hit guidelines.</li>
+              <li>Exercise supports nearly every system: heart, lungs, blood vessels, muscles, metabolism, and mood.</li>
+            </ul>
+            <p class="benefit-evidence">
+              <strong>Evidence snapshot:</strong> Large population studies show that doing even half the recommended weekly
+              movement is much better than doing none, with benefits continuing to increase up to and beyond guideline levels.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <div class="cta-row">
+        <a href="ExerciseQuiz.html" class="btn btn-primary">
+          🧬 See how these benefits map onto YOUR health → Take the Quiz
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== SENIOR COMMUNITIES SECTION =========== -->
+  <section class="section" id="senior-communities">
+    <div class="container">
+      <h2 class="section-title">For Senior Communities & Assisted Living</h2>
+      <p class="section-intro">
+        Bring a <strong>portable, science-backed movement program</strong> into your community without a huge gym build-out.
+        I arrive with a compact setup and a clear plan; your residents get <strong>safer, stronger, and more confident.</strong>
+      </p>
+
+      <div class="community-layout">
+        <div class="community-column">
+          <h3>What We Offer</h3>
+          <ul class="feature-list">
+            <li><strong>Balance & Strength Classes:</strong> multi-level sessions that fit walkers, canes, and more independent residents.</li>
+            <li><strong>Fall-Prevention Tracks:</strong> progressive blocks focusing on leg strength, stepping reactions, and confidence.</li>
+            <li><strong>“Exercise as Medicine” Seminars:</strong> short talks on heart health, blood sugar, brain health, and pain.</li>
+            <li><strong>1:1 Follow-ups:</strong> residents can book personal sessions for extra support (optional add-on).</li>
+          </ul>
+        </div>
+
+        <div class="community-column">
+          <h3>Why It Works</h3>
+          <ul class="feature-list">
+            <li>Built on <strong>major movement guidelines</strong> (CDC, WHO, U.S. PAG), but taught in normal language.</li>
+            <li>Respects medical complexity: <strong>PT-informed</strong> but not pretending to be physical therapy.</li>
+            <li>Designed for <strong>low equipment + high impact</strong> — easy for your staff to support between visits.</li>
+            <li>Supports your goals: <strong>falls, hospitalizations, quality of life, and family satisfaction.</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-secondary">
+          🏡 Schedule a senior community strategy call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== ABOUT ZEUSE =========== -->
+  <section class="section section-alt" id="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2 class="section-title">Meet Zeuse – Your Movement-Obsessed Coach</h2>
+        <p class="section-intro">
+          I’m a <strong>Student Doctor of Physical Therapy (DPT)</strong>, Certified Strength & Conditioning Specialist (CSCS),
+          NASM personal trainer, and Honors student researcher in pain science and <strong>minimal exercise dosage</strong>.
+        </p>
+
+        <ul class="feature-list">
+          <li><strong>7+ years of coaching:</strong> from general fitness to performance and rehab-adjacent training.</li>
+          <li><strong>Research focus:</strong> how little exercise you can do and still get meaningful health and pain benefits.</li>
+          <li><strong>Older adult centered:</strong> I’m most excited about making exercise feel <em>doable, safe, and worth it</em> for seniors.</li>
+          <li><strong>Brain-first approach:</strong> using pain science, nervous system regulation, and gradual exposure to build confidence.</li>
+        </ul>
+
+        <p>
+          My goal isn’t to turn you into an Olympic athlete. It’s to make sure your <strong>future self</strong> can still
+          do the little things that matter: get off the floor, walk with your friends, climb your own stairs, carry your own groceries,
+          and say “yes” to the life in front of you.
+        </p>
+        <div class="cta-row">
+          <a href="ExerciseQuiz.html" class="btn btn-primary">Start with the Exercise Quiz</a>
+          <a href="#contact" class="btn btn-secondary">Or request a free movement consult</a>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <h3>What Working Together Looks Like</h3>
+        <ol class="about-steps">
+          <li><strong>1. Conversation & Screening</strong><br />We talk about your goals, medical history, PT experiences, and daily life.</li>
+          <li><strong>2. Gentle Baseline Testing</strong><br />Simple tests like chair stands, balance, and short walks — no “gym class hero” stuff.</li>
+          <li><strong>3. Minimal-Dose Plan</strong><br />Short, targeted sessions that respect pain, fatigue, and your schedule.</li>
+          <li><strong>4. Adjust & Progress</strong><br />We tweak the plan based on real-world feedback from your body and your week.</li>
+        </ol>
+        <p class="about-note">
+          <em>Everything is optional, collaborative, and coach-guided — you stay in charge of your body, always.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== FAQ (DROPDOWNS) =========== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Questions You Might Be Asking</h2>
+      <p class="section-intro">
+        Click any question to open it. These are the kinds of conversations I have with clients and families every week.
+      </p>
+
+      <div class="faq-grid">
+        <details class="faq-item">
+          <summary>Is this physical therapy?</summary>
+          <div class="faq-body">
+            <p>
+              No. I’m a Student Doctor of Physical Therapy, but what I offer through Olympian Health Solutions is
+              <strong>exercise coaching, not medical rehabilitation.</strong>
+            </p>
+            <p>
+              I don’t diagnose, bill insurance, or replace your PT or physician. Instead, I help you apply
+              <strong>evidence-based exercise</strong> to your life after (or alongside) your medical care.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What if I have pain, arthritis, or multiple health conditions?</summary>
+          <div class="faq-body">
+            <p>
+              You’re exactly who I design for. The goal is not “no pain ever” but
+              <strong>safe, gradual progress</strong> that respects your nervous system, your joints, and your medical reality.
+            </p>
+            <p>
+              We use a “minimum effective dose” mindset: start small, listen to your body, and let confidence build over time.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do I need any equipment?</summary>
+          <div class="faq-body">
+            <p>
+              No. I bring a <strong>compact micro-gym</strong> out of my truck — bands, light weights, balance tools, and simple supports.
+              A sturdy chair, a bit of floor space, and your body are usually enough.
+            </p>
+            <p>
+              If you already own equipment, we can absolutely incorporate it.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How long are sessions, and how often do we meet?</summary>
+          <div class="faq-body">
+            <p>
+              Most seniors do well with <strong>30–45 minute sessions</strong>, 1–2 times per week, plus tiny “home doses” in between.
+            </p>
+            <p>
+              We’ll decide together what fits your schedule, energy, and budget — the plan is always tailored, never templated.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can you work with my senior living facility?</summary>
+          <div class="faq-body">
+            <p>
+              Yes. I can partner with assisted living, independent living, and memory care communities for
+              <strong>classes, seminars, and 1:1 add-on sessions</strong>.
+            </p>
+            <p>
+              Scroll up to the <a href="#senior-communities">Senior Communities section</a> for details,
+              then use the contact form below to set up a conversation.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do payments work?</summary>
+          <div class="faq-body">
+            <p>
+              I typically work in <strong>session packs or monthly agreements</strong> so we can build momentum instead of
+              “one-off” workouts. Pricing depends on travel, frequency, and whether you’re 1:1 or in a small group.
+            </p>
+            <p>
+              In our consult, I’ll outline transparent options — no surprise fees, no pressure.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== CONTACT / GET STARTED =========== -->
+  <section class="section section-alt" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-text">
+        <h2 class="section-title">Ready to See What Movement Could Do for You?</h2>
+        <p class="section-intro">
+          Whether you’re an individual, a family member, or a senior living community,
+          the best place to start is a <strong>zero-pressure conversation</strong>.
+        </p>
+        <ul class="feature-list">
+          <li>🧾 We’ll review your goals, health conditions, and current activity level.</li>
+          <li>🧠 You’ll get a simple explanation of how exercise could realistically help <strong>your</strong> situation.</li>
+          <li>🧭 If it’s a fit, we’ll map out a starter plan. If not, you’ll still leave with clarity and ideas.</li>
+        </ul>
+
+        <div class="cta-row">
+          <a href="ExerciseQuiz.html" class="btn btn-secondary">
+            Or start with the Exercise Quiz →
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3>Contact Olympian Health Solutions</h3>
+        <form
+          action="https://formspree.io/f/your-form-id"
+          method="POST"
+          class="contact-form"
+        >
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            Phone (optional)
+            <input type="tel" name="phone" />
+          </label>
+          <label>
+            I’m reaching out as a...
+            <select name="role">
+              <option value="senior">Senior / older adult</option>
+              <option value="family">Family member or caregiver</option>
+              <option value="community">Senior living / facility staff</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>
+            What would you like help with?
+            <textarea name="message" rows="4" placeholder="Example: balance, pain, walking confidence, blood sugar, or a program for our community." required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <p class="form-note">
+            By submitting, you agree to be contacted about services. This is not a medical emergency service.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== FOOTER =========== -->
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; <span id="yearSpan"></span> Olympian Health Solutions LLC. All rights reserved.</p>
+      <p class="footer-note">
+        Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
+      </p>
+      <p class="footer-links">
+        <a href="ExerciseQuiz.html">Exercise Quiz</a> ·
+        <a href="#faq">FAQ</a> ·
+        <a href="#contact">Contact</a>
+      </p>
+    </div>
   </footer>
 
-  <script src="assets/js/script.js" defer></script>
+  <!-- =========== SCRIPT =========== -->
+  <script>
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('open');
+      });
+    }
+
+    // Tabs: "How I Can Help You"
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+
+        tabButtons.forEach((b) => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+
+        tabPanels.forEach((panel) => {
+          panel.classList.toggle('active', panel.id === targetId);
+        });
+      });
+    });
+
+    // Dynamic year
+    const yearSpan = document.getElementById('yearSpan');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  </script>
 </body>
 </html>
