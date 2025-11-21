@@ -90,30 +90,75 @@
     }
     .nav-back:hover { text-decoration: underline; }
 
-    /* ================= HERO SECTION ================= */
+    /* ================= HERO SECTION & SEARCH ================= */
     .edu-hero {
       background: radial-gradient(circle at 70% 30%, #1e293b, #020617);
       color: #fff;
-      padding: 5rem 1rem 6rem;
-      text-align: center;
+      padding: 5rem 1rem 4rem; /* Reduced bottom padding */
+      text-align: left;
       position: relative;
       overflow: hidden;
     }
     
     .edu-hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
       color: #fff;
       margin-bottom: 1rem;
     }
     
     .edu-hero p {
       max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.2rem;
+      margin: 0 0 2rem 0;
+      font-size: 1.1rem;
       color: #cbd5e1;
     }
 
-    /* ================= STICKY FILTER BAR ================= */
+    /* SEARCH BAR STYLES */
+    .search-container {
+      max-width: 600px;
+      margin-top: 2rem;
+      position: relative;
+    }
+    
+    .search-label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #94a3b8;
+    }
+    
+    .search-input-wrapper {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border-radius: 99px;
+      border: 2px solid transparent;
+      font-size: 1rem;
+      background: #fff;
+      color: var(--text-dark);
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 25px rgba(56, 189, 248, 0.3);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      pointer-events: none;
+    }
+
+    /* ================= STICKY FILTER BAR (PILLS) ================= */
     .filter-bar {
       background: #fff;
       border-bottom: 1px solid #e2e8f0;
@@ -123,33 +168,42 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      padding: 1rem 0;
     }
     
     .filter-container {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start; /* Align left like screenshot */
       gap: 0.8rem;
-      padding: 1rem;
-      min-width: max-content; /* Ensures horizontal scroll on mobile */
+      padding: 0 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-width: max-content;
     }
     
     .filter-btn {
       background: transparent;
-      border: 2px solid #e2e8f0;
-      padding: 0.5rem 1.2rem;
+      border: 1px solid #cbd5e1;
+      padding: 0.6rem 1.2rem;
       border-radius: 99px;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-weight: 500;
+      color: var(--text-dark);
       cursor: pointer;
       transition: var(--transition-smooth);
       font-size: 0.9rem;
       white-space: nowrap;
     }
     
-    .filter-btn:hover, .filter-btn.active {
+    .filter-btn:hover {
+      border-color: var(--mid-blue);
+      background: #f1f5f9;
+    }
+
+    .filter-btn.active {
       background: var(--mid-blue);
       color: #fff;
       border-color: var(--mid-blue);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
     }
 
     /* ================= GRID LAYOUT ================= */
@@ -160,6 +214,9 @@
     }
     .content-section.active { display: block; }
     
+    /* Class to hide items during search */
+    .hidden-by-search { display: none !important; }
+
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     
     .section-title {
@@ -183,6 +240,11 @@
     }
 
     /* ================= CARDS & TOOLS ================= */
+    /* General Card Base for Search Targeting */
+    .searchable-item {
+      /* No specific styles, just a hook for JS */
+    }
+
     .article-card {
       background: #fff;
       border-radius: var(--radius-lg);
@@ -297,9 +359,10 @@
     @media (max-width: 768px) {
       .interactive-box, .cup-visual { grid-template-columns: 1fr; width: 100%; }
       .calc-box { grid-column: span 1; }
-      .filter-container { justify-content: flex-start; }
       .chart-bars { gap: 0.5rem; }
       .bar-visual { width: 100%; }
+      .edu-hero { text-align: center; }
+      .search-container { margin: 2rem auto 0; }
     }
   </style>
 </head>
@@ -317,23 +380,31 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO & SEARCH SECTION -->
   <section class="edu-hero">
     <div class="container">
-      <h1>The Knowledge Lab</h1>
-      <p>Movement is medicine, but knowledge is the prescription. Explore our database of tools, articles, and resources designed to empower you.</p>
+      <h1>Evidence-Based Guides for<br>Real People, Not Athletes Only.</h1>
+      <p>Explore clear, practical articles on nutrition, pain science, exercise, and senior health. Everything is written to be approachable for adults 55+, family members, and caregivers.</p>
+      
+      <!-- SEARCH BAR -->
+      <div class="search-container">
+        <span class="search-label">Search topics</span>
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" id="globalSearch" class="search-input" placeholder="Search topics like 'knee pain', 'balance', 'diabetes'..." onkeyup="performSearch()">
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FILTER BAR -->
   <div class="filter-bar">
     <div class="filter-container">
-      <button class="filter-btn active" onclick="filterContent('seniors')">Seniors & Longevity</button>
-      <button class="filter-btn" onclick="filterContent('supplements')">Supplementation</button>
-      <button class="filter-btn" onclick="filterContent('library')">Library (PDFs)</button>
-      <button class="filter-btn" onclick="filterContent('pain')">Pain Science</button>
-      <button class="filter-btn" onclick="filterContent('nutrition')">Nutrition</button>
-      <button class="filter-btn" onclick="filterContent('performance')">Performance</button>
+      <button class="filter-btn active" onclick="filterContent('seniors')">Senior Health & Independence</button>
+      <button class="filter-btn" onclick="filterContent('supplements')">Nutrition & Supplements</button>
+      <button class="filter-btn" onclick="filterContent('pain')">Pain Science & Rehab</button>
+      <button class="filter-btn" onclick="filterContent('performance')">Exercise & Performance</button>
+      <button class="filter-btn" onclick="filterContent('library')">Resource Library</button>
     </div>
   </div>
 
@@ -341,12 +412,12 @@
   <section id="seniors" class="content-section active">
     <div class="container">
       <div class="section-title">
-        <h2>The Longevity Blueprint</h2>
+        <h2>Senior Health & Independence</h2>
         <p>Evidence-based benefits of exercise for the aging body, far beyond just "getting stronger."</p>
       </div>
 
       <!-- Sarcopenia Tool -->
-      <div class="sarcopenia-tool" style="margin-bottom: 3rem;">
+      <div class="sarcopenia-tool searchable-item" style="margin-bottom: 3rem;">
         <h3>Interactive: The Cost of Inactivity</h3>
         <p>Drag the slider to see how muscle mass declines with age if you remain sedentary vs. active.</p>
         <div class="slider-container">
@@ -374,7 +445,7 @@
       <h3 style="text-align:center; margin-bottom:1.5rem;">Why We Train: The 6 Pillars</h3>
       <div class="value-matrix-grid">
         <!-- 1. Diabetes -->
-        <div class="value-card">
+        <div class="value-card searchable-item">
           <span class="value-icon">🩸</span>
           <h4>Type 2 Diabetes</h4>
           <p>Muscle contraction moves glucose from the blood into cells without insulin via GLUT4 translocation. Walking after meals can reduce blood sugar spikes by up to 22%.</p>
@@ -382,7 +453,7 @@
         </div>
         
         <!-- 2. Mental Health -->
-        <div class="value-card">
+        <div class="value-card searchable-item">
           <span class="value-icon">🧠</span>
           <h4>Cognitive Function</h4>
           <p>Aerobic exercise triggers the release of BDNF (Brain-Derived Neurotrophic Factor), which acts like "fertilizer" for new neurons in the hippocampus (memory center).</p>
@@ -390,7 +461,7 @@
         </div>
 
         <!-- 3. Balance -->
-        <div class="value-card">
+        <div class="value-card searchable-item">
           <span class="value-icon">⚖️</span>
           <h4>Fall Prevention</h4>
           <p>Falls are often due to a lack of power (speed of movement). Power training reduces fall risk by improving the reactive step strategy needed to catch yourself.</p>
@@ -398,7 +469,7 @@
         </div>
 
         <!-- 4. Mortality -->
-        <div class="value-card">
+        <div class="value-card searchable-item">
           <span class="value-icon">❤️</span>
           <h4>Premature Mortality</h4>
           <p>Just 150 minutes of moderate activity per week is associated with a 31% reduction in all-cause mortality risk compared to sedentary individuals.</p>
@@ -406,7 +477,7 @@
         </div>
 
         <!-- 5. Bone Density -->
-        <div class="value-card">
+        <div class="value-card searchable-item">
           <span class="value-icon">🦴</span>
           <h4>Bone Density</h4>
           <p>Bones respond to force (Wolff's Law). Axial loading (weights) stimulates osteoblasts to lay down new bone matrix, combating osteoporosis.</p>
@@ -414,7 +485,7 @@
         </div>
 
         <!-- 6. Quality of Life -->
-        <div class="value-card">
+        <div class="value-card searchable-item">
           <span class="value-icon">🏡</span>
           <h4>Independence (ADLs)</h4>
           <p>Strength correlates directly with the ability to perform Activities of Daily Living (ADLs) like toileting, dressing, and rising from a chair unassisted.</p>
@@ -423,7 +494,7 @@
       </div>
 
       <!-- Mortality Interactive -->
-      <div class="mortality-chart">
+      <div class="mortality-chart searchable-item">
         <h3>The Activity Advantage</h3>
         <p>Reduction in all-cause mortality risk based on weekly activity levels.</p>
         <div class="chart-bars">
@@ -452,118 +523,75 @@
     </div>
   </section>
 
-  <!-- SECTION 2: SUPPLEMENTATION (NEW) -->
+  <!-- SECTION 2: SUPPLEMENTATION (Merged Nutrition) -->
   <section id="supplements" class="content-section">
     <div class="container">
       <div class="section-title">
-        <h2>Evidence-Based Supplementation</h2>
-        <p>We focus only on supplements with strong clinical data for aging adults. <strong>Always consult your physician before starting new supplements.</strong></p>
+        <h2>Nutrition & Supplementation</h2>
+        <p>Fueling recovery and combating anabolic resistance. <strong>Always consult your physician before starting new supplements.</strong></p>
       </div>
 
       <div class="card-grid">
+        <!-- Protein Calc -->
+        <div class="calc-box searchable-item">
+          <h3>Senior Protein Estimator</h3>
+          <p style="margin-bottom: 1.5rem; color: #64748b;">Evidence suggests seniors need 1.2g - 1.6g of protein per kg of bodyweight to fight sarcopenia.</p>
+          <div class="form-group">
+            <label>Weight (lbs)</label>
+            <input type="number" id="weightInput" placeholder="150">
+          </div>
+          <div class="form-group">
+            <label>Activity Level</label>
+            <select id="activityInput">
+              <option value="1.2">Sedentary / Light Movement</option>
+              <option value="1.4">Active (Walking/Gardening)</option>
+              <option value="1.6">Training (Lifting Weights)</option>
+            </select>
+          </div>
+          <button class="filter-btn active" style="width:100%; text-align:center;" onclick="calcProtein()">Calculate Target</button>
+          <div class="calc-result" id="proteinResult">
+            <span>Daily Target:</span><br>
+            <span class="result-val" id="proteinVal">0g</span>
+          </div>
+        </div>
+
         <!-- Creatine -->
-        <div class="supp-card">
+        <div class="supp-card searchable-item">
           <span class="supp-badge">Grade A Evidence</span>
           <h3>Creatine Monohydrate</h3>
           <p><strong>Why:</strong> Often misunderstood as just for bodybuilders. In seniors, creatine helps retain muscle mass, improves cognitive function, and may support bone health.</p>
           <p><strong>Dose:</strong> Typically 3-5g daily. No loading phase needed.</p>
           <hr style="border:0; border-top:1px solid #f1f5f9; margin:1rem 0;">
-          <small><em>Source: Chilibeck et al. (2017) - Effect of creatine during resistance training in older adults.</em></small>
+          <small><em>Source: Chilibeck et al. (2017)</em></small>
         </div>
 
         <!-- Vitamin D -->
-        <div class="supp-card">
+        <div class="supp-card searchable-item">
           <span class="supp-badge">Essential</span>
           <h3>Vitamin D3 + K2</h3>
           <p><strong>Why:</strong> Critical for calcium absorption. Deficiency is linked to higher fall risk and fractures. K2 ensures calcium goes to bones, not arteries.</p>
           <p><strong>Dose:</strong> Depends on blood work. Common is 1000-2000 IU daily.</p>
-          <hr style="border:0; border-top:1px solid #f1f5f9; margin:1rem 0;">
-          <small><em>Source: Bischoff-Ferrari et al. (2009) - Fall prevention with supplemental and active forms of vitamin D.</em></small>
         </div>
 
         <!-- Omega 3 -->
-        <div class="supp-card">
+        <div class="supp-card searchable-item">
           <span class="supp-badge">Anti-Inflammatory</span>
           <h3>Omega-3 (Fish Oil)</h3>
           <p><strong>Why:</strong> Supports brain health and combats anabolic resistance (helping your muscles use protein better). Lowers systemic inflammation.</p>
-          <p><strong>Dose:</strong> Look for high EPA/DHA content (approx 2g combined).</p>
-          <hr style="border:0; border-top:1px solid #f1f5f9; margin:1rem 0;">
-          <small><em>Source: Smith et al. (2011) - Omega-3 supplementation augments muscle protein synthesis.</em></small>
         </div>
         
-        <!-- Magnesium -->
-        <div class="supp-card">
-          <span class="supp-badge">Sleep & Muscle</span>
-          <h3>Magnesium Glycinate</h3>
-          <p><strong>Why:</strong> Many seniors are deficient. Helps with muscle cramps, sleep quality, and blood pressure regulation.</p>
-          <p><strong>Dose:</strong> 200-400mg before bed.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: LIBRARY (PDFs & Articles) -->
-  <section id="library" class="content-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Resource Library</h2>
-        <p>Downloadable guides, checklists, and deep-dive articles.</p>
-      </div>
-
-      <h3 style="margin-bottom:1.5rem;">Downloadable Resources</h3>
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin-bottom: 3rem;">
-        
-        <div class="pdf-card">
-          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
-          <div class="pdf-info">
-            <h4>The Fall Proof Home Checklist</h4>
-            <p>A room-by-room guide to removing hazards.</p>
-          </div>
-          <button class="btn-download">Download PDF</button>
-        </div>
-
-        <div class="pdf-card">
-          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
-          <div class="pdf-info">
-            <h4>Protein Guide for Seniors</h4>
-            <p>Simple food swaps to hit your daily targets.</p>
-          </div>
-          <button class="btn-download">Download PDF</button>
-        </div>
-
-        <div class="pdf-card">
-          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
-          <div class="pdf-info">
-            <h4>Morning Mobility Routine</h4>
-            <p>A 5-minute routine to wake up stiff joints.</p>
-          </div>
-          <button class="btn-download">Download PDF</button>
-        </div>
-      </div>
-
-      <h3 style="margin-bottom:1.5rem;">Featured Articles</h3>
-      <div class="card-grid">
-        <article class="article-card">
-          <div class="card-tag">Deep Dive</div>
+         <article class="article-card searchable-item">
+          <div class="card-tag">Hydration</div>
           <div class="card-body">
-            <h3>Understanding Anabolic Resistance</h3>
-            <p>Why you need more protein at 70 than you did at 30 to get the same result, and how to overcome it.</p>
-            <a href="#" class="read-more">Read Article &#8594;</a>
-          </div>
-        </article>
-        <article class="article-card">
-          <div class="card-tag">Pain Science</div>
-          <div class="card-body">
-            <h3>Motion is Lotion: The Synovial Fluid Effect</h3>
-            <p>How movement lubricates arthritic joints and why "rest" is often the wrong prescription for arthritis.</p>
-            <a href="#" class="read-more">Read Article &#8594;</a>
+            <h3>The Thirst Mechanism</h3>
+            <p>As we age, our thirst signal blunts. Why drinking on a schedule is more important than drinking when thirsty.</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 4: PAIN SCIENCE -->
+  <!-- SECTION 3: PAIN SCIENCE -->
   <section id="pain" class="content-section">
     <div class="container">
       <div class="section-title">
@@ -573,7 +601,7 @@
 
       <div class="card-grid">
         <!-- Tool: Pain Cup -->
-        <div class="interactive-box">
+        <div class="interactive-box searchable-item">
           <div>
             <h3>The "Threat Bucket" Simulator</h3>
             <p>Pain isn't just about injury. It's about your nervous system's total load. Add stressors to the cup. When the water crosses the line, the brain triggers a pain alarm.</p>
@@ -592,7 +620,7 @@
           </div>
         </div>
 
-        <article class="article-card">
+        <article class="article-card searchable-item">
           <div class="card-tag">Neuroscience</div>
           <div class="card-body">
             <h3>Hurt vs. Harm</h3>
@@ -600,62 +628,26 @@
           </div>
         </article>
 
-        <article class="article-card">
+        <article class="article-card searchable-item">
           <div class="card-tag">Rehab Strategy</div>
           <div class="card-body">
             <h3>The "Sweet Spot"</h3>
             <p>Finding the Goldilocks zone of loading: enough to stimulate healing, but not enough to trigger a threat response.</p>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 5: NUTRITION -->
-  <section id="nutrition" class="content-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Nutrition for Recovery</h2>
-        <p>You can't build muscle out of thin air. As we age, our protein efficiency drops, meaning we need <em>more</em> to maintain what we have.</p>
-      </div>
-
-      <div class="card-grid">
-        <div class="calc-box">
-          <h3>Senior Protein Estimator</h3>
-          <p style="margin-bottom: 1.5rem; color: #64748b;">Evidence suggests seniors need 1.2g - 1.6g of protein per kg of bodyweight to fight sarcopenia.</p>
-          
-          <div class="form-group">
-            <label>Weight (lbs)</label>
-            <input type="number" id="weightInput" placeholder="150">
-          </div>
-          <div class="form-group">
-            <label>Activity Level</label>
-            <select id="activityInput">
-              <option value="1.2">Sedentary / Light Movement</option>
-              <option value="1.4">Active (Walking/Gardening)</option>
-              <option value="1.6">Training (Lifting Weights)</option>
-            </select>
-          </div>
-          <button class="filter-btn active" style="width:100%; text-align:center;" onclick="calcProtein()">Calculate Target</button>
-          
-          <div class="calc-result" id="proteinResult">
-            <span>Daily Target:</span><br>
-            <span class="result-val" id="proteinVal">0g</span>
-          </div>
-        </div>
-
-        <article class="article-card">
-          <div class="card-tag">Hydration</div>
+        
+        <article class="article-card searchable-item">
+          <div class="card-tag">Arthritis</div>
           <div class="card-body">
-            <h3>The Thirst Mechanism</h3>
-            <p>As we age, our thirst signal blunts. Why drinking on a schedule is more important than drinking when thirsty.</p>
+            <h3>Motion is Lotion</h3>
+            <p>How movement lubricates arthritic joints (synovial fluid) and why "rest" is often the wrong prescription for arthritis.</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 6: PERFORMANCE -->
+  <!-- SECTION 4: PERFORMANCE -->
   <section id="performance" class="content-section">
     <div class="container">
       <div class="section-title">
@@ -663,7 +655,7 @@
         <p>Understanding intensity. To change the body, we must give it a reason to adapt.</p>
       </div>
 
-      <div class="rpe-grid">
+      <div class="rpe-grid searchable-item">
         <div style="padding:1rem; background:#f1f5f9; font-weight:bold; display:grid; grid-template-columns:1fr 2fr 1fr;">
           <span>RPE (1-10)</span>
           <span>Feeling</span>
@@ -695,6 +687,57 @@
           <span class="rir-val">4-6</span>
         </div>
       </div>
+      
+      <div class="card-grid" style="margin-top: 2rem;">
+        <article class="article-card searchable-item">
+            <div class="card-tag">Deep Dive</div>
+            <div class="card-body">
+              <h3>Understanding Anabolic Resistance</h3>
+              <p>Why you need more protein at 70 than you did at 30 to get the same result, and how to overcome it.</p>
+            </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <!-- SECTION 5: LIBRARY (PDFs) -->
+  <section id="library" class="content-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Resource Library</h2>
+        <p>Downloadable guides, checklists, and deep-dive articles.</p>
+      </div>
+
+      <h3 style="margin-bottom:1.5rem;">Downloadable Resources</h3>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+        
+        <div class="pdf-card searchable-item">
+          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
+          <div class="pdf-info">
+            <h4>The Fall Proof Home Checklist</h4>
+            <p>A room-by-room guide to removing hazards.</p>
+          </div>
+          <button class="btn-download">Download PDF</button>
+        </div>
+
+        <div class="pdf-card searchable-item">
+          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
+          <div class="pdf-info">
+            <h4>Protein Guide for Seniors</h4>
+            <p>Simple food swaps to hit your daily targets.</p>
+          </div>
+          <button class="btn-download">Download PDF</button>
+        </div>
+
+        <div class="pdf-card searchable-item">
+          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
+          <div class="pdf-info">
+            <h4>Morning Mobility Routine</h4>
+            <p>A 5-minute routine to wake up stiff joints.</p>
+          </div>
+          <button class="btn-download">Download PDF</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -705,8 +748,18 @@
   <script>
     // 1. Filter Logic
     function filterContent(category) {
+      // Reset search if user clicks a filter manually
+      const searchInput = document.getElementById('globalSearch');
+      if (searchInput.value !== "") {
+        searchInput.value = "";
+        performSearch(); // Resets all visibility
+      }
+
       document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      // Highlight clicked button (if event triggered by click)
+      if (event && event.target.classList.contains('filter-btn')) {
+        event.target.classList.add('active');
+      }
       
       document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(category).classList.add('active');
@@ -715,7 +768,55 @@
       window.scrollTo({ top: 350, behavior: 'smooth' });
     }
 
-    // 2. Pain Cup Logic
+    // 2. SEARCH ENGINE LOGIC
+    function performSearch() {
+      const input = document.getElementById('globalSearch');
+      const filter = input.value.toUpperCase();
+      const allSections = document.querySelectorAll('.content-section');
+      const allItems = document.querySelectorAll('.searchable-item');
+      
+      // If search is empty, revert to default view (Seniors active)
+      if (filter === "") {
+         allItems.forEach(item => item.classList.remove('hidden-by-search'));
+         allSections.forEach(sec => sec.classList.remove('active'));
+         document.getElementById('seniors').classList.add('active');
+         // Reset buttons
+         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+         document.querySelector('.filter-btn').classList.add('active'); // First one
+         return;
+      }
+
+      // Otherwise, search EVERYTHING
+      
+      // 1. Unhide all sections so we can find items inside them
+      allSections.forEach(sec => sec.classList.add('active'));
+      
+      let hasResults = false;
+
+      // 2. Hide/Show individual items based on text match
+      allItems.forEach(item => {
+        const text = item.innerText || item.textContent;
+        if (text.toUpperCase().indexOf(filter) > -1) {
+          item.classList.remove('hidden-by-search');
+          hasResults = true;
+        } else {
+          item.classList.add('hidden-by-search');
+        }
+      });
+      
+      // 3. Hide sections that have NO visible items to clean up UI
+      allSections.forEach(sec => {
+        const visibleItems = sec.querySelectorAll('.searchable-item:not(.hidden-by-search)');
+        if (visibleItems.length === 0) {
+          sec.classList.remove('active');
+        }
+      });
+      
+      // Deselect filter buttons to indicate "Search Mode"
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    }
+
+    // 3. Pain Cup Logic
     let currentLevel = 0;
     const threshold = 80; 
     const waterEl = document.getElementById('cupWater');
@@ -741,14 +842,12 @@
       }
     }
 
-    // 3. Sarcopenia Slider
+    // 4. Sarcopenia Slider
     function updateSarcopenia() {
       const age = document.getElementById('ageSlider').value;
       document.getElementById('ageDisplay').textContent = age;
       
-      // Logic: 1% loss/year after 30 for sedentary
       let yearsPast30 = Math.max(0, age - 30);
-      
       let sedentaryMuscle = 100 - (yearsPast30 * 1.2); 
       let activeMuscle = 100 - (yearsPast30 * 0.3);
       
@@ -758,14 +857,13 @@
       document.getElementById('activeBar').style.height = activeMuscle + '%';
     }
 
-    // 4. Protein Calc
+    // 5. Protein Calc
     function calcProtein() {
       const weight = parseFloat(document.getElementById('weightInput').value);
       const factor = parseFloat(document.getElementById('activityInput').value);
       
       if (!weight) return;
       
-      // Convert lbs to kg
       const kg = weight / 2.2;
       const grams = Math.round(kg * factor);
       
