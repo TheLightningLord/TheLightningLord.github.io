@@ -2,96 +2,389 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book a Consultation | Olympian Health Solutions</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Session | Olympian Health Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --dark-blue: #020617;
+      --mid-blue: #0f172a;
+      --accent-blue: #38bdf8;
+      --gold: #facc15;
+      --text-dark: #111827;
+      --text-muted: #4b5563;
+      --white: #ffffff;
+      --soft-blue: #eff6ff;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Roboto", sans-serif; color: var(--text-dark); background: #f8fafc; line-height: 1.6; }
+    
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HEADER */
+    header { background: var(--dark-blue); padding: 1rem 0; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .header-container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .logo { font-weight: 700; color: #fff; text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; }
+    .nav-links a:hover { color: #fff; }
+
+    /* HERO */
+    .booking-hero {
+      background: radial-gradient(circle at center, #1e293b, #020617);
+      color: #fff;
+      padding: 6rem 1rem 8rem;
+      text-align: center;
+    }
+    .booking-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0 0 1rem; }
+    .booking-hero p { max-width: 700px; margin: 0 auto; font-size: 1.2rem; color: #cbd5e1; }
+
+    /* ================= PRICING: THE $20 PROMO ================= */
+    .promo-section { margin-top: -6rem; padding-bottom: 4rem; position: relative; z-index: 10; }
+    
+    .promo-card {
+      background: #fff; border-radius: 16px; max-width: 900px; margin: 0 auto;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 2px solid var(--gold);
+      display: grid; grid-template-columns: 1.5fr 1fr; overflow: hidden;
+    }
+    
+    .promo-content { padding: 2.5rem; }
+    .promo-tag { background: var(--gold); color: var(--dark-blue); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; display: inline-block; margin-bottom: 1rem; }
+    .promo-title { font-size: 2rem; color: var(--dark-blue); margin: 0 0 0.5rem; line-height: 1.1; }
+    .promo-desc { color: var(--text-muted); margin-bottom: 1.5rem; }
+    
+    .value-stack { margin-bottom: 1.5rem; }
+    .stack-item { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px; }
+    .stack-name { font-weight: 500; color: var(--text-dark); }
+    .stack-val { color: var(--text-muted); text-decoration: line-through; }
+    
+    .promo-pricing { background: var(--dark-blue); color: #fff; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; }
+    .promo-pricing::before { content:''; position:absolute; top:-20px; left:-20px; width:40px; height:40px; background:var(--gold); border-radius:50%; z-index:0; opacity:0.2; }
+    
+    .old-price { font-size: 1.2rem; color: #94a3b8; text-decoration: line-through; margin-bottom: 5px; }
+    .new-price { font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+    .price-sub { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 2rem; }
+    
+    .btn-promo { background: var(--gold); color: var(--dark-blue); font-weight: 800; text-decoration: none; padding: 1rem 2rem; border-radius: 8px; width: 100%; display: block; transition: transform 0.2s; border: none; cursor: pointer; font-size: 1.1rem; }
+    .btn-promo:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(250, 204, 21, 0.3); }
+
+    /* ================= MONTHLY MEMBERSHIPS (SLIDER) ================= */
+    .membership-section { padding: 4rem 1rem; background: #fff; }
+    
+    .calculator-card {
+      max-width: 800px; margin: 0 auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.5rem;
+    }
+    
+    .calc-header { text-align: center; margin-bottom: 2rem; }
+    .calc-title { font-size: 1.8rem; color: var(--dark-blue); margin: 0 0 0.5rem; }
+    
+    .frequency-selector {
+      display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem;
+    }
+    
+    .freq-btn {
+      background: #fff; border: 2px solid #e2e8f0; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; text-align: center; transition: 0.2s; flex: 1; max-width: 200px;
+    }
+    .freq-btn:hover { border-color: var(--accent-blue); }
+    .freq-btn.active { border-color: var(--dark-blue); background: var(--dark-blue); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    
+    .freq-label { font-size: 1.2rem; font-weight: 800; display: block; }
+    .freq-sub { font-size: 0.8rem; opacity: 0.8; }
+
+    .calc-output {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 2rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    
+    .output-price { font-size: 2.5rem; font-weight: 900; color: var(--dark-blue); }
+    .output-per-session { color: var(--success); font-weight: 700; font-size: 0.9rem; background: #dcfce7; padding: 4px 10px; border-radius: 99px; margin-left: 10px; }
+    
+    /* ================= A LA CARTE ================= */
+    .alacarte-section { padding: 4rem 1rem; background: #f1f5f9; }
+    .alacarte-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto; }
+    
+    .simple-card { background: #fff; padding: 2rem; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; transition: 0.2s; }
+    .simple-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
+    .simple-title { font-size: 1.2rem; font-weight: 700; color: var(--dark-blue); margin-bottom: 0.5rem; }
+    .simple-price { font-size: 1.8rem; font-weight: 900; color: var(--text-dark); margin-bottom: 1rem; }
+    .simple-btn { background: transparent; border: 2px solid var(--dark-blue); color: var(--dark-blue); padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .simple-btn:hover { background: var(--dark-blue); color: #fff; }
+
+    /* SCHEDULER WIDGET */
+    .scheduler-section { padding: 4rem 1rem; background: #fff; border-top: 1px solid #e2e8f0; }
+    .scheduler-container {
+      max-width: 900px; margin: 0 auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1.5fr;
+    }
+    .scheduler-info { padding: 2rem; background: #fff; border-right: 1px solid #e2e8f0; }
+    .calendar-wrapper { padding: 2rem; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; }
+    .cal-day { padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .cal-day:hover:not(.disabled) { background: var(--soft-blue); color: var(--mid-blue); font-weight: 700; }
+    .cal-day.selected { background: var(--dark-blue); color: #fff; }
+    .cal-day.disabled { color: #cbd5e1; cursor: not-allowed; }
+    .time-slots { margin-top: 2rem; display: none; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; animation: fadeIn 0.5s ease; }
+    .time-slots.active { display: grid; }
+    .time-btn { padding: 0.8rem; border: 1px solid var(--accent-blue); background: #fff; color: var(--mid-blue); border-radius: 6px; cursor: pointer; font-weight: 500; }
+    .time-btn:hover { background: var(--accent-blue); color: #fff; }
+    
+    /* Form */
+    .booking-form { display: none; padding: 2rem; animation: fadeIn 0.5s ease; }
+    .booking-form.active { display: block; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+    .btn-submit { background: var(--gold); color: var(--dark-blue); width: 100%; padding: 1rem; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1.1rem; }
+
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    @media (max-width: 768px) {
+      .promo-card { grid-template-columns: 1fr; }
+      .scheduler-container { grid-template-columns: 1fr; }
+      .scheduler-info { border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .alacarte-grid { grid-template-columns: 1fr; }
+      .frequency-selector { flex-direction: column; align-items: center; }
+      .calc-output { flex-direction: column; text-align: center; gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <nav class="navbar">
-      <div class="logo">Olympian Health Solutions</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="telehealth.html">Telehealth</a></li>
-        <li><a href="in-home.html">In-Home</a></li>
-        <li><a href="in-clinic.html">In-Clinic</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="booking.html" class="cta-btn active">Book Now</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <svg width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 20 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#38BDF8"/><path d="M11 20L17 26L29 14" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Olympian Health
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+      </div>
+    </div>
   </header>
 
-  <main class="page-content">
-    <h1>Book a Consultation</h1>
-    <p>Please fill out our brief questionnaire to help us understand your goals and needs. We’ll follow up with a personalized plan.</p>
+  <!-- HERO -->
+  <section class="booking-hero">
+    <div class="container">
+      <h1>Invest in Your Independence</h1>
+      <p>Simple, transparent pricing. No contracts, no hidden gym fees. Just expert care in the comfort of your own home.</p>
+    </div>
+  </section>
 
-    <form id="multiStepForm" class="multi-step-form">
-      <!-- Step 1 -->
-      <div class="form-step active">
-        <h2>Step 1: Contact Information</h2>
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" required/>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required/>
-
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required/>
-
-        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+  <!-- 1. THE $20 PROMO (Value Anchor) -->
+  <section class="promo-section">
+    <div class="container">
+      <div class="promo-card">
+        <div class="promo-content">
+          <span class="promo-tag">New Client Special</span>
+          <h2 class="promo-title">The "Blueprint" Consultation</h2>
+          <p class="promo-desc">This is not a sales call. It is a comprehensive 90-minute safety audit and physiological assessment to build your custom roadmap.</p>
+          
+          <div class="value-stack">
+            <div class="stack-item">
+              <span class="stack-name">Home Safety Audit</span>
+              <span class="stack-val">$100.00</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-name">Gait & Balance Screen</span>
+              <span class="stack-val">$75.00</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-name">Medical History Review</span>
+              <span class="stack-val">$50.00</span>
+            </div>
+            <div class="stack-item">
+              <span class="stack-name">Custom Action Plan</span>
+              <span class="stack-val">$75.00</span>
+            </div>
+            <div class="stack-item" style="border:none; padding-top:10px; margin-top:5px;">
+              <span class="stack-name" style="font-weight:900; font-size:1.1rem;">Total Value</span>
+              <span class="stack-val" style="text-decoration:none; font-weight:900; color:var(--dark-blue); font-size:1.1rem;">$300.00</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="promo-pricing">
+          <div class="old-price">$300</div>
+          <div class="new-price">$20</div>
+          <div class="price-sub">One-Time Introductory Offer</div>
+          <button class="btn-promo" onclick="scrollToScheduler('Blueprint Consultation ($20)')">Claim This Offer</button>
+          <p style="font-size:0.75rem; margin-top:1rem; opacity:0.7;">*Limit one per household.</p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Step 2 -->
-      <div class="form-step">
-        <h2>Step 2: Services & Goals</h2>
-        <label for="serviceType">Which service are you interested in?</label>
-        <select id="serviceType" name="serviceType">
-          <option value="telehealth">Telehealth</option>
-          <option value="inHome">In-Home Training</option>
-          <option value="inClinic">In-Clinic Session</option>
-          <option value="nutrition">Nutrition Coaching</option>
-        </select>
+  <!-- 2. MONTHLY MEMBERSHIP (Interactive) -->
+  <section class="membership-section">
+    <div class="container">
+      <div class="calculator-card">
+        <div class="calc-header">
+          <h2 class="calc-title">Monthly Independence Plans</h2>
+          <p style="color:var(--text-muted);">Consistency is the key to results. Save money by committing to a weekly schedule.</p>
+        </div>
 
-        <label for="goals">Your Primary Goals:</label>
-        <textarea id="goals" name="goals" rows="4"></textarea>
+        <div class="frequency-selector">
+          <div class="freq-btn" onclick="updateCalc(1)" id="btn-1x">
+            <span class="freq-label">1x / Week</span>
+            <span class="freq-sub">Maintenance</span>
+          </div>
+          <div class="freq-btn active" onclick="updateCalc(2)" id="btn-2x">
+            <span class="freq-label">2x / Week</span>
+            <span class="freq-sub">Progress</span>
+          </div>
+          <div class="freq-btn" onclick="updateCalc(3)" id="btn-3x">
+            <span class="freq-label">3x / Week</span>
+            <span class="freq-sub">Transformation</span>
+          </div>
+        </div>
 
-        <button type="button" class="btn-secondary" onclick="prevStep()">Back</button>
-        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+        <div class="calc-output">
+          <div>
+            <div style="font-size:0.9rem; color:var(--text-muted); margin-bottom:5px;">Monthly Total</div>
+            <div class="output-price" id="totalPrice">$640</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Billed monthly. Cancel anytime.</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="output-per-session" id="pricePerSession">$80 per session</span>
+            <button class="btn-submit" style="margin-top:1rem; width:auto; padding:0.8rem 2rem;" onclick="scrollToScheduler('Monthly Membership')">Select Plan</button>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Step 3 -->
-      <div class="form-step">
-        <h2>Step 3: Medical/Health Details</h2>
-        <p>Please share any relevant medical conditions or physical limitations.</p>
-        <textarea id="medicalDetails" name="medicalDetails" rows="4"></textarea>
-
-        <button type="button" class="btn-secondary" onclick="prevStep()">Back</button>
-        <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+  <!-- 3. A LA CARTE -->
+  <section class="alacarte-section">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:2rem; color:var(--dark-blue);">Pay As You Go</h2>
+      <div class="alacarte-grid">
+        <div class="simple-card">
+          <div class="simple-title">30-Minute Express</div>
+          <div class="simple-price">$60</div>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem;">Focused attention on one issue (e.g., Balance only). Good for maintenance.</p>
+          <button class="simple-btn" onclick="scrollToScheduler('30-Min Session')">Book Session</button>
+        </div>
+        <div class="simple-card">
+          <div class="simple-title">60-Minute Comprehensive</div>
+          <div class="simple-price">$100</div>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem;">Full body strength, mobility, and manual therapy. Our standard session.</p>
+          <button class="simple-btn" onclick="scrollToScheduler('60-Min Session')">Book Session</button>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Step 4 -->
-      <div class="form-step">
-        <h2>Final Step: Motivation & Scheduling</h2>
-        <label for="motivation">What motivates you to make this change now?</label>
-        <textarea id="motivation" name="motivation" rows="4"></textarea>
+  <!-- SCHEDULER -->
+  <section class="scheduler-section" id="scheduler">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:2rem; color:var(--dark-blue);">Schedule Your Visit</h2>
+      
+      <div class="scheduler-container">
+        <!-- Left: Info -->
+        <div class="scheduler-info">
+          <h3 id="selectedServiceTitle">Select a Service above</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">
+            Battle Ground, WA & Surrounding Areas
+          </p>
+          <hr style="border:0; border-top:1px solid #e2e8f0; margin:1.5rem 0;">
+          <p style="font-size:0.85rem; color:var(--text-muted);">We will arrive at your home at the scheduled time. Please wear comfortable clothing and have water ready.</p>
+        </div>
 
-        <label for="availability">Preferred Days/Times:</label>
-        <input type="text" id="availability" name="availability"/>
+        <!-- Right: Calendar UI -->
+        <div class="calendar-wrapper" id="calendarView">
+          <div style="display:flex; justify-content:space-between; margin-bottom:1rem; font-weight:700;">
+            <span>November 2025</span>
+            <span>&gt;</span>
+          </div>
+          <div class="cal-grid" style="margin-bottom:10px; font-weight:700; color:var(--text-muted); font-size:0.8rem;">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+          </div>
+          <div class="cal-grid" id="datesGrid"></div>
+          <div class="time-slots" id="timeSlots">
+            <button class="time-btn" onclick="selectTime('09:00 AM')">09:00 AM</button>
+            <button class="time-btn" onclick="selectTime('11:00 AM')">11:00 AM</button>
+            <button class="time-btn" onclick="selectTime('01:30 PM')">01:30 PM</button>
+            <button class="time-btn" onclick="selectTime('03:00 PM')">03:00 PM</button>
+          </div>
+        </div>
 
-        <button type="button" class="btn-secondary" onclick="prevStep()">Back</button>
-        <button type="submit" class="btn-primary">Submit</button>
+        <!-- Form View -->
+        <div class="booking-form" id="bookingForm">
+          <h3 style="margin-top:0;">Confirm Details</h3>
+          <p id="confirmTimeDisplay" style="color:var(--accent-blue); font-weight:600; margin-bottom:1.5rem;"></p>
+          <form onsubmit="event.preventDefault(); alert('Request Sent! We will call you shortly to confirm.');">
+            <div class="form-group"><label>Name</label><input type="text" required></div>
+            <div class="form-group"><label>Phone</label><input type="tel" required></div>
+            <div class="form-group"><label>Address</label><input type="text" required></div>
+            <button type="submit" class="btn-submit">Confirm Appointment</button>
+            <button type="button" style="background:none; border:none; color:var(--text-muted); text-decoration:underline; width:100%; margin-top:1rem; cursor:pointer;" onclick="resetCalendar()">Back</button>
+          </form>
+        </div>
       </div>
-    </form>
+    </div>
+  </section>
 
-  </main>
-
-  <footer>
-    <p>&copy; <span id="year"></span> Olympian Health Solutions. All rights reserved.</p>
+  <footer style="background:var(--dark-blue); color:#64748b; padding:3rem 1rem; text-align:center;">
+    <p>&copy; 2025 Olympian Health Solutions.</p>
   </footer>
-  <script src="assets/js/script.js"></script>
+
+  <script>
+    // --- Pricing Calculator Logic ---
+    const pricing = {
+      1: { total: 360, per: 90 }, // 4 sessions
+      2: { total: 640, per: 80 }, // 8 sessions
+      3: { total: 840, per: 70 }  // 12 sessions
+    };
+
+    function updateCalc(freq) {
+      // Visuals
+      document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-'+freq+'x').classList.add('active');
+      
+      // Data
+      const data = pricing[freq];
+      document.getElementById('totalPrice').textContent = '$' + data.total;
+      document.getElementById('pricePerSession').textContent = '$' + data.per + ' per session';
+    }
+
+    // --- Calendar Logic ---
+    function scrollToScheduler(serviceName) {
+      document.getElementById('selectedServiceTitle').textContent = serviceName;
+      document.getElementById('scheduler').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const datesGrid = document.getElementById('datesGrid');
+    for (let i = 0; i < 5; i++) datesGrid.appendChild(document.createElement('div')); // Spacers
+    for (let i = 1; i <= 30; i++) {
+      const day = document.createElement('div');
+      day.className = 'cal-day';
+      day.textContent = i;
+      if (i % 7 === 0 || i === 12) day.className += ' disabled';
+      else day.onclick = () => selectDay(day);
+      datesGrid.appendChild(day);
+    }
+
+    function selectDay(el) {
+      document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('timeSlots').classList.add('active');
+    }
+
+    function selectTime(time) {
+      document.getElementById('calendarView').style.display = 'none';
+      document.getElementById('bookingForm').classList.add('active');
+      const day = document.querySelector('.cal-day.selected').textContent;
+      document.getElementById('confirmTimeDisplay').textContent = `November ${day}, 2025 at ${time}`;
+    }
+
+    function resetCalendar() {
+      document.getElementById('bookingForm').classList.remove('active');
+      document.getElementById('calendarView').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
