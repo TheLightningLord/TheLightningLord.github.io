@@ -2,555 +2,776 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="description" content="Olympian Health Solutions Education Hub - Evidence-based articles, PDFs, and interactive tools for senior fitness, pain science, and nutrition." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Education Hub | Olympian Health Solutions</title>
-  <meta name="description" content="Evidence-based articles on nutrition, pain science, exercise, chronic illness, and senior health from Olympian Health Solutions." />
+  <title>Olympian Education Hub | The Science of Movement</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet" />
+  
   <style>
-    /* ===== Education Hub Page-Specific Styles ===== */
-    main {
-      padding-bottom: 3rem;
+    :root {
+      /* Brand Colors */
+      --dark-blue: #020617;
+      --mid-blue: #0f172a;
+      --accent-blue: #38bdf8;
+      --gold: #facc15;
+      --text-dark: #111827;
+      --text-muted: #4b5563;
+      --white: #ffffff;
+      --soft-blue: #eff6ff;
+      --danger: #ef4444;
+      --success: #10b981;
+      
+      /* UI Variables */
+      --radius-lg: 16px;
+      --radius-md: 8px;
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .hub-hero {
-      background: linear-gradient(135deg, #001b3d, #003a6b);
-      color: #f4f7ff;
-      padding: 4rem 1.5rem 3rem;
-      text-align: left;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      color: var(--text-dark);
+      background: #f8fafc;
+      line-height: 1.6;
     }
-    .hub-hero-inner {
-      max-width: 1050px;
+
+    h1, h2, h3, h4 { line-height: 1.2; color: var(--dark-blue); }
+    
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
-    }
-    .hub-hero .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.78rem;
-      opacity: 0.9;
-      margin-bottom: 0.5rem;
-    }
-    .hub-hero h1 {
-      font-size: clamp(2.1rem, 4vw, 2.6rem);
-      margin-bottom: 0.75rem;
-    }
-    .hub-hero p.lede {
-      max-width: 700px;
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-    .hub-hero-note {
-      font-size: 0.85rem;
-      max-width: 650px;
-      opacity: 0.9;
+      padding: 0 1.5rem;
     }
 
-    .hub-quick-links {
-      margin-top: 1.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    /* ================= HEADER ================= */
+    header {
+      background: var(--dark-blue);
+      color: #f9fafb;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .hub-pill {
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.55);
-      padding: 0.4rem 0.9rem;
-      font-size: 0.85rem;
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
       text-decoration: none;
-      color: #f9fbff;
-      background: rgba(0,0,0,0.18);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .logo img { height: 32px; width: auto; }
+
+    .nav-back {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-back:hover { text-decoration: underline; }
+
+    /* ================= HERO SECTION ================= */
+    .edu-hero {
+      background: radial-gradient(circle at 70% 30%, #1e293b, #020617);
+      color: #fff;
+      padding: 5rem 1rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .edu-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    
+    .edu-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    /* ================= STICKY FILTER BAR ================= */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 60px; 
+      z-index: 90;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      min-width: max-content; /* Ensures horizontal scroll on mobile */
+    }
+    
+    .filter-btn {
+      background: transparent;
+      border: 2px solid #e2e8f0;
+      padding: 0.5rem 1.2rem;
+      border-radius: 99px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-size: 0.9rem;
       white-space: nowrap;
     }
-    .hub-pill:hover {
-      background: rgba(255,255,255,0.08);
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--mid-blue);
+      color: #fff;
+      border-color: var(--mid-blue);
     }
 
-    .hub-section {
-      padding: 3rem 1.5rem 1rem;
+    /* ================= GRID LAYOUT ================= */
+    .content-section {
+      padding: 4rem 1rem;
+      display: none; /* Hidden by default */
+      animation: fadeIn 0.5s ease;
     }
-    .hub-section-inner {
-      max-width: 1050px;
-      margin: 0 auto;
+    .content-section.active { display: block; }
+    
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
     }
-    .hub-section h2 {
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-    }
-    .hub-section p.section-intro {
-      max-width: 700px;
-      margin-bottom: 1.4rem;
-      color: #4b5563;
-    }
+    .section-title h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .section-title p { color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
 
-    .hub-card-grid {
+    .card-grid {
       display: grid;
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
-    @media (min-width: 768px) {
-      .hub-card-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    
+    .value-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
+    /* ================= CARDS & TOOLS ================= */
     .article-card {
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid #e5e7eb;
-      padding: 1rem 1.1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition-smooth);
+      border: 1px solid #e2e8f0;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 180px;
     }
-    .article-card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.35rem;
-      color: #111827;
+    .article-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
+    
+    .card-tag {
+      background: var(--soft-blue); color: var(--mid-blue); font-size: 0.75rem; font-weight: 700; padding: 0.5rem 1rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
-    .article-card p {
-      font-size: 0.9rem;
-      color: #4b5563;
-      margin-bottom: 0.6rem;
+    .card-body { padding: 1.5rem; flex-grow: 1; }
+    .card-body h3 { font-size: 1.25rem; margin: 0 0 0.75rem; color: var(--dark-blue); }
+    .card-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    
+    /* Value Card (for Seniors Grid) */
+    .value-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-blue);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
     }
-    .article-meta {
+    .value-card:hover { transform: translateY(-3px); }
+    .value-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+    .value-card h4 { font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--dark-blue); }
+    .value-card small { display: block; color: #64748b; margin-top: 0.5rem; font-size: 0.85rem; font-style: italic; border-top: 1px solid #f1f5f9; padding-top: 0.5rem; }
+
+    /* Supplement Card */
+    .supp-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+    }
+    .supp-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: #dcfce7; color: #166534; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 99px;
+    }
+
+    /* PDF Resource Card */
+    .pdf-card {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.75rem;
-    }
-    .tag-pill {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 0.15rem 0.55rem;
-      font-size: 0.75rem;
-      color: #374151;
-      background: #f9fafb;
-    }
-    .article-link {
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: #003a6b;
-    }
-    .article-link span {
-      font-size: 0.9rem;
-    }
-
-    .hub-highlight-box {
-      margin-top: 1.5rem;
-      padding: 0.9rem 1rem;
-      border-radius: 10px;
-      border: 1px dashed #d1d5db;
-      background: #f9fafb;
-      font-size: 0.9rem;
-      color: #374151;
-    }
-
-    .senior-callout {
-      background: #f3f4ff;
-      border-color: #c7d2fe;
-    }
-
-    .hub-feature-strip {
-      padding: 2.5rem 1.5rem 1rem;
-      background: #f3f4f6;
-    }
-    .hub-feature-inner {
-      max-width: 1050px;
-      margin: 0 auto;
-    }
-    .hub-feature-grid {
-      display: grid;
+      align-items: center;
       gap: 1rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid #e2e8f0;
+      transition: 0.2s;
     }
-    @media (min-width: 768px) {
-      .hub-feature-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    .hub-feature-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.4rem;
-    }
+    .pdf-card:hover { border-color: var(--mid-blue); background: #f8fafc; }
+    .pdf-icon { width: 40px; height: 40px; fill: var(--danger); flex-shrink: 0; }
+    .pdf-info h4 { margin: 0 0 0.25rem; font-size: 1.1rem; }
+    .pdf-info p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+    .btn-download { margin-left: auto; background: var(--mid-blue); color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; white-space: nowrap; }
+    .btn-download:hover { background: var(--accent-blue); }
 
-    .hub-search-bar {
-      margin-top: 1.3rem;
-      max-width: 420px;
-    }
-    .hub-search-bar input[type="search"] {
-      width: 100%;
-      padding: 0.55rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 0.9rem;
+    /* ================= INTERACTIVE TOOLS ================= */
+    /* Sarcopenia Tool */
+    .sarcopenia-tool { background: var(--mid-blue); color: #fff; padding: 2rem; border-radius: var(--radius-lg); grid-column: 1 / -1; }
+    .slider-container { margin: 2rem 0; }
+    input[type=range] { width: 100%; height: 8px; background: rgba(255,255,255,0.2); border-radius: 5px; outline: none; -webkit-appearance: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--accent-blue); cursor: pointer; border: 2px solid #fff; }
+    .muscle-comparison { display: flex; justify-content: space-around; margin-top: 2rem; text-align: center; }
+    .muscle-bar-group { display: flex; flex-direction: column-reverse; height: 200px; width: 60px; background: rgba(0,0,0,0.3); border-radius: 4px; position: relative; }
+    .muscle-bar { width: 100%; background: var(--accent-blue); transition: height 0.3s; }
+    .muscle-bar.sedentary { background: #94a3b8; }
+    
+    /* Pain Cup */
+    .interactive-box { background: #fff; border: 2px solid var(--accent-blue); border-radius: var(--radius-lg); padding: 2rem; grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .cup-visual { height: 300px; width: 200px; border: 4px solid var(--mid-blue); border-top: none; border-radius: 0 0 20px 20px; margin: 0 auto; position: relative; background: #f1f5f9; overflow: hidden; }
+    .cup-water { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: var(--accent-blue); transition: height 0.5s ease; }
+    .cup-water.overflow { background: var(--danger); }
+    .cup-line { position: absolute; top: 20%; left: 0; width: 100%; border-top: 2px dashed var(--danger); z-index: 2; }
+    .cup-label { position: absolute; top: 18%; right: -60px; font-size: 0.8rem; font-weight: 700; color: var(--danger); }
+    .cup-controls { display: flex; flex-direction: column; gap: 1rem; }
+    .cup-btn { padding: 0.8rem; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; transition: 0.2s; }
+    .cup-btn:hover { background: #f1f5f9; }
+    
+    /* Mortality Chart */
+    .mortality-chart { background: #fff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid #e2e8f0; grid-column: 1 / -1; margin-top: 2rem; }
+    .chart-bars { display: flex; gap: 2rem; height: 200px; align-items: flex-end; margin-top: 1rem; padding-bottom: 2rem; border-bottom: 1px solid #cbd5e1; }
+    .chart-col { flex: 1; text-align: center; position: relative; }
+    .bar-visual { width: 60px; margin: 0 auto; background: var(--danger); border-radius: 4px 4px 0 0; transition: height 1s; position: relative; }
+    .bar-visual.active-life { background: var(--success); }
+    .bar-val { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-weight: 700; font-size: 0.9rem; }
+    .chart-label { margin-top: 10px; font-size: 0.9rem; font-weight: 600; }
+    
+    /* Protein Calc */
+    .calc-box { background: #fff; border: 1px solid #e2e8f0; padding: 2rem; border-radius: var(--radius-lg); grid-column: span 2; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+    .form-group input, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+    .calc-result { background: var(--soft-blue); padding: 1rem; border-radius: 6px; margin-top: 1.5rem; text-align: center; display: none; }
+    .calc-result.show { display: block; }
+    .result-val { font-size: 2rem; font-weight: 900; color: var(--dark-blue); }
+
+    /* RPE Grid */
+    .rpe-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: #e2e8f0; border: 1px solid #e2e8f0; grid-column: 1 / -1; }
+    .rpe-row { display: grid; grid-template-columns: 1fr 2fr 1fr; background: #fff; padding: 1rem; align-items: center; transition: 0.2s; }
+    .rpe-row:hover { background: var(--soft-blue); transform: scale(1.01); box-shadow: 0 4px 12px rgba(0,0,0,0.05); z-index: 1; }
+    .rpe-val { font-weight: 900; color: var(--dark-blue); font-size: 1.2rem; }
+    .rir-val { font-weight: 700; color: var(--accent-blue); text-align: right; }
+
+    @media (max-width: 768px) {
+      .interactive-box, .cup-visual { grid-template-columns: 1fr; width: 100%; }
+      .calc-box { grid-column: span 1; }
+      .filter-container { justify-content: flex-start; }
+      .chart-bars { gap: 0.5rem; }
+      .bar-visual { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <!-- ================= HEADER (matches main site) ================= -->
-  <header role="banner">
+
+  <!-- HEADER -->
+  <header>
     <div class="header-container">
-      <div class="logo">
-        <img src="assets/images/logo2.png" alt="Olympian Health Solutions Logo" loading="lazy" />
-        <span>Olympian Health Solutions</span>
-      </div>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav role="navigation">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="education.html" class="active">Education</a></li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="dropdown">
-            <a href="services.html">Services</a>
-            <ul class="dropdown-content">
-              <li><a href="in-home.html">In-Home</a></li>
-              <li><a href="telehealth.html">Telehealth</a></li>
-              <li><a href="in-clinic.html">In-Clinic</a></li>
-            </ul>
-          </li>
-          <li><a href="ExerciseQuiz.html">Exercise Quiz</a></li>
-          <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-        </ul>
-      </nav>
+      <a href="index.html" class="logo">
+        Olympian Health
+      </a>
+      <a href="index.html" class="nav-back">
+        &#8592; Back to Home
+      </a>
     </div>
   </header>
 
-  <main>
-    <!-- ================= HUB HERO ================= -->
-    <section class="hub-hero">
-      <div class="hub-hero-inner">
-        <div class="eyebrow">Education Hub</div>
-        <h1>Evidence-Based Guides for Real People, Not Athletes Only.</h1>
-        <p class="lede">
-          Explore clear, practical articles on nutrition, pain science, exercise, chronic illness, and senior health.
-          Everything is written to be <strong>approachable for adults 55+</strong>, family members, and caregivers.
-        </p>
-        <p class="hub-hero-note">
-          This hub is for education only and doesn’t replace medical care. Always follow the advice of your
-          healthcare providers.
-        </p>
-
-        <div class="hub-quick-links">
-          <a class="hub-pill" href="#nutrition">Nutrition</a>
-          <a class="hub-pill" href="#pain-rehab">Pain Science &amp; Rehab</a>
-          <a class="hub-pill" href="#exercise-performance">Exercise &amp; Performance</a>
-          <a class="hub-pill" href="#chronic-illness">Illness &amp; Chronic Conditions</a>
-          <a class="hub-pill" href="#senior-health">Senior Health &amp; Independence</a>
-        </div>
-
-        <div class="hub-search-bar">
-          <label for="hub-search" style="display:block;font-size:0.8rem;margin-bottom:0.25rem;color:#e5e7eb;">(Coming soon) Search topics</label>
-          <input id="hub-search" type="search" placeholder="Search topics like ‘knee pain’, ‘balance’, ‘diabetes’..." aria-label="Search education articles" />
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FEATURE STRIP ================= -->
-    <section class="hub-feature-strip">
-      <div class="hub-feature-inner">
-        <h2 class="hub-feature-title">Start With These Big-Picture Guides</h2>
-        <p class="section-intro" style="max-width:700px;color:#4b5563;">
-          These cornerstone articles connect many of the topics below. They’re a great starting point if you’re not
-          sure where to begin.
-        </p>
-        <div class="hub-feature-grid">
-          <div class="article-card">
-            <h3>Movement as Medicine: How Little Bouts Add Up</h3>
-            <p>
-              Learn why even small, gentle amounts of movement can improve blood sugar, mood, sleep, and joint comfort
-              over time.
-            </p>
-            <div class="article-meta">
-              <span class="tag-pill">Big Picture</span>
-              <span class="tag-pill">Beginner-Friendly</span>
-            </div>
-            <a href="#" class="article-link">Read guide <span>→</span></a>
-          </div>
-
-          <div class="article-card">
-            <h3>Understanding Pain: A Friendly Intro to Pain Science</h3>
-            <p>
-              A simple explanation of how pain is made in the nervous system, and why gradually moving more can make
-              things feel safer and less painful.
-            </p>
-            <div class="article-meta">
-              <span class="tag-pill">Pain Science</span>
-              <span class="tag-pill">Chronic Pain</span>
-            </div>
-            <a href="#" class="article-link">Read guide <span>→</span></a>
-          </div>
-
-          <div class="article-card">
-            <h3>Building a Senior-Safe Exercise Routine</h3>
-            <p>
-              A walkthrough of how to combine strength, balance, and walking into a realistic weekly routine for older
-              adults.
-            </p>
-            <div class="article-meta">
-              <span class="tag-pill">Seniors</span>
-              <span class="tag-pill">Safety</span>
-            </div>
-            <a href="#" class="article-link">Read guide <span>→</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= NUTRITION ================= -->
-    <section class="hub-section" id="nutrition">
-      <div class="hub-section-inner">
-        <h2>Nutrition</h2>
-        <p class="section-intro">
-          Simple, realistic nutrition principles that support joint health, energy, blood sugar, and recovery—without
-          strict dieting.
-        </p>
-
-        <div class="hub-card-grid">
-          <article class="article-card">
-            <h3>Protein Basics for Adults 55+</h3>
-            <p>Why protein matters for muscle, bone, and recovery—and easy ways to get enough without overcomplicating it.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Muscle</span>
-              <span class="tag-pill">Aging</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Anti-Inflammatory Eating (Without a Perfect Diet)</h3>
-            <p>How small shifts—like more color on your plate—can support joint comfort and overall health.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Joints</span>
-              <span class="tag-pill">Practical Tips</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Smart Snacks for Blood Sugar &amp; Energy</h3>
-            <p>Snack ideas that keep you steady between meals and pair well with a walking or strength routine.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Blood Sugar</span>
-              <span class="tag-pill">Energy</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PAIN SCIENCE & REHAB ================= -->
-    <section class="hub-section" id="pain-rehab">
-      <div class="hub-section-inner">
-        <h2>Pain Science &amp; Rehab Concepts</h2>
-        <p class="section-intro">
-          Gentle explanations of modern pain science and rehab ideas—designed to reduce fear and help you feel more in
-          control of your body.
-        </p>
-
-        <div class="hub-card-grid">
-          <article class="article-card">
-            <h3>Why Pain Doesn’t Always Mean Damage</h3>
-            <p>How the nervous system can get “extra protective,” and what that means for moving safely with arthritis or old injuries.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Nervous System</span>
-              <span class="tag-pill">Arthritis</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>The Traffic Light System for Flare-Ups</h3>
-            <p>A simple red–yellow–green framework to adjust activity when symptoms change, instead of stopping completely.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Flare-Ups</span>
-              <span class="tag-pill">Self-Management</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Graded Exposure: Building Confidence One Step at a Time</h3>
-            <p>How gradually reintroducing feared movements can help your body and brain feel safer again.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Confidence</span>
-              <span class="tag-pill">Back &amp; Knee Pain</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-        </div>
-
-        <div class="hub-highlight-box">
-          These articles are educational only and are not a replacement for physical therapy or medical evaluation.
-          If your pain is new, worsening, or worrying, please talk with your healthcare provider.
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= EXERCISE & PERFORMANCE ================= -->
-    <section class="hub-section" id="exercise-performance">
-      <div class="hub-section-inner">
-        <h2>Exercise &amp; Performance</h2>
-        <p class="section-intro">
-          Build strength, stamina, and confidence with programs focused on the <strong>minimum effective dose</strong>
-          for busy, real lives.
-        </p>
-
-        <div class="hub-card-grid">
-          <article class="article-card">
-            <h3>How Much Exercise Do I Actually Need?</h3>
-            <p>A plain-language tour of the major guidelines and what they look like in minutes per week.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Guidelines</span>
-              <span class="tag-pill">Time-Crunched</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Strength Training Without a Gym</h3>
-            <p>How to use bands, household items, and bodyweight to build muscle and bone at home.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Strength</span>
-              <span class="tag-pill">Home-Friendly</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Better Walking: From Winded to Comfortable</h3>
-            <p>Step-by-step progressions to build walking tolerance without feeling wiped out.
-            </p>
-            <div class="article-meta">
-              <span class="tag-pill">Endurance</span>
-              <span class="tag-pill">Cardio</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= ILLNESS & CHRONIC CONDITIONS ================= -->
-    <section class="hub-section" id="chronic-illness">
-      <div class="hub-section-inner">
-        <h2>Illness &amp; Chronic Conditions</h2>
-        <p class="section-intro">
-          How to think about movement and basic lifestyle habits when you’re juggling conditions like diabetes, heart
-          disease, arthritis, or long-term pain.
-        </p>
-
-        <div class="hub-card-grid">
-          <article class="article-card">
-            <h3>Moving With Type 2 Diabetes</h3>
-            <p>Why short walks and light strength work can help blood sugar control—and how to start safely.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Blood Sugar</span>
-              <span class="tag-pill">Walking</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Heart-Smart Movement for Beginners</h3>
-            <p>Practical tips for building activity after a heart-related diagnosis, in partnership with your care team.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Heart Health</span>
-              <span class="tag-pill">Low-Impact</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Exercising With Arthritis</h3>
-            <p>How to balance joint protection with the joint-strengthening benefits of regular movement.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Arthritis</span>
-              <span class="tag-pill">Joint-Friendly</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-        </div>
-
-        <div class="hub-highlight-box">
-          Always consult with your physician or healthcare team before changing your exercise routine, especially after
-          a new diagnosis, surgery, or hospital stay.
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SENIOR HEALTH & INDEPENDENCE ================= -->
-    <section class="hub-section" id="senior-health">
-      <div class="hub-section-inner">
-        <h2>Senior Health &amp; Independence</h2>
-        <p class="section-intro">
-          Articles written specifically for older adults, family members, and senior living communities—focused on
-          balance, falls, daily function, and quality of life.
-        </p>
-
-        <div class="hub-card-grid">
-          <article class="article-card">
-            <h3>Balance Basics: Why We Feel Unsteady</h3>
-            <p>Understand how vision, inner ear, and strength all work together—and what you can do to support them.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Balance</span>
-              <span class="tag-pill">Falls</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Making Everyday Tasks Easier</h3>
-            <p>Simple strength and mobility exercises that make stairs, getting off the floor, and carrying groceries more manageable.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Daily Life</span>
-              <span class="tag-pill">Function</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-
-          <article class="article-card">
-            <h3>Quality of Life, Not Just Longevity</h3>
-            <p>How movement, social connection, and purpose weave together in later life—and ideas to gently build all three.</p>
-            <div class="article-meta">
-              <span class="tag-pill">Wellbeing</span>
-              <span class="tag-pill">Aging</span>
-            </div>
-            <a href="#" class="article-link">Read article <span>→</span></a>
-          </article>
-        </div>
-
-        <div class="hub-highlight-box senior-callout">
-          For senior living communities, these topics can be turned into <strong>group education sessions, workshops,
-          or printed handouts</strong> to support residents and families.
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <div class="container footer-content">
-      <p>&copy; <span id="year"></span> Olympian Health Solutions LLC. All rights reserved.</p>
-      <p class="footer-note">
-        Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
-      </p>
+  <!-- HERO -->
+  <section class="edu-hero">
+    <div class="container">
+      <h1>The Knowledge Lab</h1>
+      <p>Movement is medicine, but knowledge is the prescription. Explore our database of tools, articles, and resources designed to empower you.</p>
     </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-container">
+      <button class="filter-btn active" onclick="filterContent('seniors')">Seniors & Longevity</button>
+      <button class="filter-btn" onclick="filterContent('supplements')">Supplementation</button>
+      <button class="filter-btn" onclick="filterContent('library')">Library (PDFs)</button>
+      <button class="filter-btn" onclick="filterContent('pain')">Pain Science</button>
+      <button class="filter-btn" onclick="filterContent('nutrition')">Nutrition</button>
+      <button class="filter-btn" onclick="filterContent('performance')">Performance</button>
+    </div>
+  </div>
+
+  <!-- SECTION 1: SENIORS (EXPANDED) -->
+  <section id="seniors" class="content-section active">
+    <div class="container">
+      <div class="section-title">
+        <h2>The Longevity Blueprint</h2>
+        <p>Evidence-based benefits of exercise for the aging body, far beyond just "getting stronger."</p>
+      </div>
+
+      <!-- Sarcopenia Tool -->
+      <div class="sarcopenia-tool" style="margin-bottom: 3rem;">
+        <h3>Interactive: The Cost of Inactivity</h3>
+        <p>Drag the slider to see how muscle mass declines with age if you remain sedentary vs. active.</p>
+        <div class="slider-container">
+          <label for="ageSlider" style="display:block; margin-bottom:0.5rem;">Age: <span id="ageDisplay">50</span></label>
+          <input type="range" id="ageSlider" min="30" max="90" value="50" oninput="updateSarcopenia()">
+        </div>
+        <div class="muscle-comparison">
+          <div>
+            <div class="muscle-bar-group">
+              <div class="muscle-bar sedentary" id="sedentaryBar" style="height: 90%;"></div>
+            </div>
+            <div class="bar-label">Sedentary Muscle</div>
+          </div>
+          <div>
+            <div class="muscle-bar-group">
+              <div class="muscle-bar" id="activeBar" style="height: 98%;"></div>
+            </div>
+            <div class="bar-label">Active Muscle</div>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem; font-size:0.85rem; opacity:0.8;">*Based on average 1% annual loss after age 30 for sedentary adults (Lexell et al, 1988).</p>
+      </div>
+
+      <!-- Value Matrix -->
+      <h3 style="text-align:center; margin-bottom:1.5rem;">Why We Train: The 6 Pillars</h3>
+      <div class="value-matrix-grid">
+        <!-- 1. Diabetes -->
+        <div class="value-card">
+          <span class="value-icon">🩸</span>
+          <h4>Type 2 Diabetes</h4>
+          <p>Muscle contraction moves glucose from the blood into cells without insulin via GLUT4 translocation. Walking after meals can reduce blood sugar spikes by up to 22%.</p>
+          <small>Mechanism: Non-insulin mediated glucose uptake.</small>
+        </div>
+        
+        <!-- 2. Mental Health -->
+        <div class="value-card">
+          <span class="value-icon">🧠</span>
+          <h4>Cognitive Function</h4>
+          <p>Aerobic exercise triggers the release of BDNF (Brain-Derived Neurotrophic Factor), which acts like "fertilizer" for new neurons in the hippocampus (memory center).</p>
+          <small>Mechanism: Neurogenesis & Increased Hippocampal Volume.</small>
+        </div>
+
+        <!-- 3. Balance -->
+        <div class="value-card">
+          <span class="value-icon">⚖️</span>
+          <h4>Fall Prevention</h4>
+          <p>Falls are often due to a lack of power (speed of movement). Power training reduces fall risk by improving the reactive step strategy needed to catch yourself.</p>
+          <small>Mechanism: Type II Fiber Recruitment & Proprioception.</small>
+        </div>
+
+        <!-- 4. Mortality -->
+        <div class="value-card">
+          <span class="value-icon">❤️</span>
+          <h4>Premature Mortality</h4>
+          <p>Just 150 minutes of moderate activity per week is associated with a 31% reduction in all-cause mortality risk compared to sedentary individuals.</p>
+          <small>Source: Arem et al., JAMA Internal Medicine (2015).</small>
+        </div>
+
+        <!-- 5. Bone Density -->
+        <div class="value-card">
+          <span class="value-icon">🦴</span>
+          <h4>Bone Density</h4>
+          <p>Bones respond to force (Wolff's Law). Axial loading (weights) stimulates osteoblasts to lay down new bone matrix, combating osteoporosis.</p>
+          <small>Mechanism: Mechanotransduction via Osteocytes.</small>
+        </div>
+
+        <!-- 6. Quality of Life -->
+        <div class="value-card">
+          <span class="value-icon">🏡</span>
+          <h4>Independence (ADLs)</h4>
+          <p>Strength correlates directly with the ability to perform Activities of Daily Living (ADLs) like toileting, dressing, and rising from a chair unassisted.</p>
+          <small>Outcome: Reduced risk of institutionalization.</small>
+        </div>
+      </div>
+
+      <!-- Mortality Interactive -->
+      <div class="mortality-chart">
+        <h3>The Activity Advantage</h3>
+        <p>Reduction in all-cause mortality risk based on weekly activity levels.</p>
+        <div class="chart-bars">
+          <div class="chart-col">
+            <div class="bar-visual" style="height: 100%; background:#94a3b8;"></div>
+            <div class="chart-label">Sedentary</div>
+          </div>
+          <div class="chart-col">
+            <div class="bar-val">-20%</div>
+            <div class="bar-visual active-life" style="height: 80%;"></div>
+            <div class="chart-label">Some Activity</div>
+          </div>
+          <div class="chart-col">
+            <div class="bar-val">-31%</div>
+            <div class="bar-visual active-life" style="height: 69%;"></div>
+            <div class="chart-label">Recommended</div>
+          </div>
+          <div class="chart-col">
+            <div class="bar-val">-39%</div>
+            <div class="bar-visual active-life" style="height: 61%;"></div>
+            <div class="chart-label">High Activity</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: SUPPLEMENTATION (NEW) -->
+  <section id="supplements" class="content-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Evidence-Based Supplementation</h2>
+        <p>We focus only on supplements with strong clinical data for aging adults. <strong>Always consult your physician before starting new supplements.</strong></p>
+      </div>
+
+      <div class="card-grid">
+        <!-- Creatine -->
+        <div class="supp-card">
+          <span class="supp-badge">Grade A Evidence</span>
+          <h3>Creatine Monohydrate</h3>
+          <p><strong>Why:</strong> Often misunderstood as just for bodybuilders. In seniors, creatine helps retain muscle mass, improves cognitive function, and may support bone health.</p>
+          <p><strong>Dose:</strong> Typically 3-5g daily. No loading phase needed.</p>
+          <hr style="border:0; border-top:1px solid #f1f5f9; margin:1rem 0;">
+          <small><em>Source: Chilibeck et al. (2017) - Effect of creatine during resistance training in older adults.</em></small>
+        </div>
+
+        <!-- Vitamin D -->
+        <div class="supp-card">
+          <span class="supp-badge">Essential</span>
+          <h3>Vitamin D3 + K2</h3>
+          <p><strong>Why:</strong> Critical for calcium absorption. Deficiency is linked to higher fall risk and fractures. K2 ensures calcium goes to bones, not arteries.</p>
+          <p><strong>Dose:</strong> Depends on blood work. Common is 1000-2000 IU daily.</p>
+          <hr style="border:0; border-top:1px solid #f1f5f9; margin:1rem 0;">
+          <small><em>Source: Bischoff-Ferrari et al. (2009) - Fall prevention with supplemental and active forms of vitamin D.</em></small>
+        </div>
+
+        <!-- Omega 3 -->
+        <div class="supp-card">
+          <span class="supp-badge">Anti-Inflammatory</span>
+          <h3>Omega-3 (Fish Oil)</h3>
+          <p><strong>Why:</strong> Supports brain health and combats anabolic resistance (helping your muscles use protein better). Lowers systemic inflammation.</p>
+          <p><strong>Dose:</strong> Look for high EPA/DHA content (approx 2g combined).</p>
+          <hr style="border:0; border-top:1px solid #f1f5f9; margin:1rem 0;">
+          <small><em>Source: Smith et al. (2011) - Omega-3 supplementation augments muscle protein synthesis.</em></small>
+        </div>
+        
+        <!-- Magnesium -->
+        <div class="supp-card">
+          <span class="supp-badge">Sleep & Muscle</span>
+          <h3>Magnesium Glycinate</h3>
+          <p><strong>Why:</strong> Many seniors are deficient. Helps with muscle cramps, sleep quality, and blood pressure regulation.</p>
+          <p><strong>Dose:</strong> 200-400mg before bed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: LIBRARY (PDFs & Articles) -->
+  <section id="library" class="content-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Resource Library</h2>
+        <p>Downloadable guides, checklists, and deep-dive articles.</p>
+      </div>
+
+      <h3 style="margin-bottom:1.5rem;">Downloadable Resources</h3>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin-bottom: 3rem;">
+        
+        <div class="pdf-card">
+          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
+          <div class="pdf-info">
+            <h4>The Fall Proof Home Checklist</h4>
+            <p>A room-by-room guide to removing hazards.</p>
+          </div>
+          <button class="btn-download">Download PDF</button>
+        </div>
+
+        <div class="pdf-card">
+          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
+          <div class="pdf-info">
+            <h4>Protein Guide for Seniors</h4>
+            <p>Simple food swaps to hit your daily targets.</p>
+          </div>
+          <button class="btn-download">Download PDF</button>
+        </div>
+
+        <div class="pdf-card">
+          <svg class="pdf-icon" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"></path></svg>
+          <div class="pdf-info">
+            <h4>Morning Mobility Routine</h4>
+            <p>A 5-minute routine to wake up stiff joints.</p>
+          </div>
+          <button class="btn-download">Download PDF</button>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:1.5rem;">Featured Articles</h3>
+      <div class="card-grid">
+        <article class="article-card">
+          <div class="card-tag">Deep Dive</div>
+          <div class="card-body">
+            <h3>Understanding Anabolic Resistance</h3>
+            <p>Why you need more protein at 70 than you did at 30 to get the same result, and how to overcome it.</p>
+            <a href="#" class="read-more">Read Article &#8594;</a>
+          </div>
+        </article>
+        <article class="article-card">
+          <div class="card-tag">Pain Science</div>
+          <div class="card-body">
+            <h3>Motion is Lotion: The Synovial Fluid Effect</h3>
+            <p>How movement lubricates arthritic joints and why "rest" is often the wrong prescription for arthritis.</p>
+            <a href="#" class="read-more">Read Article &#8594;</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: PAIN SCIENCE -->
+  <section id="pain" class="content-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Pain Science & Rehab</h2>
+        <p>Pain is an output of the brain designed to protect you. It does not always equal tissue damage.</p>
+      </div>
+
+      <div class="card-grid">
+        <!-- Tool: Pain Cup -->
+        <div class="interactive-box">
+          <div>
+            <h3>The "Threat Bucket" Simulator</h3>
+            <p>Pain isn't just about injury. It's about your nervous system's total load. Add stressors to the cup. When the water crosses the line, the brain triggers a pain alarm.</p>
+            <div class="cup-controls">
+              <button class="cup-btn" onclick="addToCup(15)">Stress at Work <span>+15%</span></button>
+              <button class="cup-btn" onclick="addToCup(20)">Poor Sleep <span>+20%</span></button>
+              <button class="cup-btn" onclick="addToCup(30)">Old Injury Flare <span>+30%</span></button>
+              <button class="cup-btn" onclick="addToCup(-100)" style="color:var(--accent-blue)">Clear Cup (Relaxation) <span>Reset</span></button>
+            </div>
+            <div class="pain-readout" id="painReadout">Status: Safe</div>
+          </div>
+          <div class="cup-visual">
+            <div class="cup-line"></div>
+            <div class="cup-label">PAIN THRESHOLD</div>
+            <div class="cup-water" id="cupWater"></div>
+          </div>
+        </div>
+
+        <article class="article-card">
+          <div class="card-tag">Neuroscience</div>
+          <div class="card-body">
+            <h3>Hurt vs. Harm</h3>
+            <p>Why you can have pain without injury (phantom limb) and injury without pain (bruises you don't remember getting).</p>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="card-tag">Rehab Strategy</div>
+          <div class="card-body">
+            <h3>The "Sweet Spot"</h3>
+            <p>Finding the Goldilocks zone of loading: enough to stimulate healing, but not enough to trigger a threat response.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: NUTRITION -->
+  <section id="nutrition" class="content-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nutrition for Recovery</h2>
+        <p>You can't build muscle out of thin air. As we age, our protein efficiency drops, meaning we need <em>more</em> to maintain what we have.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="calc-box">
+          <h3>Senior Protein Estimator</h3>
+          <p style="margin-bottom: 1.5rem; color: #64748b;">Evidence suggests seniors need 1.2g - 1.6g of protein per kg of bodyweight to fight sarcopenia.</p>
+          
+          <div class="form-group">
+            <label>Weight (lbs)</label>
+            <input type="number" id="weightInput" placeholder="150">
+          </div>
+          <div class="form-group">
+            <label>Activity Level</label>
+            <select id="activityInput">
+              <option value="1.2">Sedentary / Light Movement</option>
+              <option value="1.4">Active (Walking/Gardening)</option>
+              <option value="1.6">Training (Lifting Weights)</option>
+            </select>
+          </div>
+          <button class="filter-btn active" style="width:100%; text-align:center;" onclick="calcProtein()">Calculate Target</button>
+          
+          <div class="calc-result" id="proteinResult">
+            <span>Daily Target:</span><br>
+            <span class="result-val" id="proteinVal">0g</span>
+          </div>
+        </div>
+
+        <article class="article-card">
+          <div class="card-tag">Hydration</div>
+          <div class="card-body">
+            <h3>The Thirst Mechanism</h3>
+            <p>As we age, our thirst signal blunts. Why drinking on a schedule is more important than drinking when thirsty.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PERFORMANCE -->
+  <section id="performance" class="content-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Exercise Performance</h2>
+        <p>Understanding intensity. To change the body, we must give it a reason to adapt.</p>
+      </div>
+
+      <div class="rpe-grid">
+        <div style="padding:1rem; background:#f1f5f9; font-weight:bold; display:grid; grid-template-columns:1fr 2fr 1fr;">
+          <span>RPE (1-10)</span>
+          <span>Feeling</span>
+          <span style="text-align:right">Reps Left</span>
+        </div>
+        <div class="rpe-row">
+          <span class="rpe-val">10</span>
+          <span>Max Effort. No reps left.</span>
+          <span class="rir-val">0</span>
+        </div>
+        <div class="rpe-row">
+          <span class="rpe-val">9</span>
+          <span>Extremely Hard. Could do 1 more.</span>
+          <span class="rir-val">1</span>
+        </div>
+        <div class="rpe-row">
+          <span class="rpe-val">8</span>
+          <span>Hard. Could do 2 more. (Strength Zone)</span>
+          <span class="rir-val">2</span>
+        </div>
+        <div class="rpe-row">
+          <span class="rpe-val">7</span>
+          <span>Vigorous. Moving fast but heavy.</span>
+          <span class="rir-val">3</span>
+        </div>
+        <div class="rpe-row">
+          <span class="rpe-val">5-6</span>
+          <span>Moderate. Warm-up weight.</span>
+          <span class="rir-val">4-6</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--dark-blue); color:#64748b; padding:3rem 1rem; text-align:center; margin-top:4rem;">
+    <p>&copy; 2023 Olympian Health Solutions. Educational use only. Consult a physician before starting any program or supplement.</p>
   </footer>
 
-  <!-- Main JS -->
-  <script src="assets/js/script.js"></script>
+  <script>
+    // 1. Filter Logic
+    function filterContent(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(category).classList.add('active');
+      
+      // Smooth scroll to top of content
+      window.scrollTo({ top: 350, behavior: 'smooth' });
+    }
+
+    // 2. Pain Cup Logic
+    let currentLevel = 0;
+    const threshold = 80; 
+    const waterEl = document.getElementById('cupWater');
+    const readout = document.getElementById('painReadout');
+
+    function addToCup(amount) {
+      if (amount === -100) currentLevel = 0;
+      else currentLevel += amount;
+      
+      if (currentLevel < 0) currentLevel = 0;
+      if (currentLevel > 100) currentLevel = 100;
+      
+      waterEl.style.height = currentLevel + '%';
+      
+      if (currentLevel >= threshold) {
+        waterEl.classList.add('overflow');
+        readout.textContent = "⚠️ THRESHOLD EXCEEDED: PAIN TRIGGERED";
+        readout.style.color = "#ef4444";
+      } else {
+        waterEl.classList.remove('overflow');
+        readout.textContent = "Status: Below Threshold (Safe)";
+        readout.style.color = "#111827";
+      }
+    }
+
+    // 3. Sarcopenia Slider
+    function updateSarcopenia() {
+      const age = document.getElementById('ageSlider').value;
+      document.getElementById('ageDisplay').textContent = age;
+      
+      // Logic: 1% loss/year after 30 for sedentary
+      let yearsPast30 = Math.max(0, age - 30);
+      
+      let sedentaryMuscle = 100 - (yearsPast30 * 1.2); 
+      let activeMuscle = 100 - (yearsPast30 * 0.3);
+      
+      if (sedentaryMuscle < 20) sedentaryMuscle = 20; 
+      
+      document.getElementById('sedentaryBar').style.height = sedentaryMuscle + '%';
+      document.getElementById('activeBar').style.height = activeMuscle + '%';
+    }
+
+    // 4. Protein Calc
+    function calcProtein() {
+      const weight = parseFloat(document.getElementById('weightInput').value);
+      const factor = parseFloat(document.getElementById('activityInput').value);
+      
+      if (!weight) return;
+      
+      // Convert lbs to kg
+      const kg = weight / 2.2;
+      const grams = Math.round(kg * factor);
+      
+      document.getElementById('proteinVal').textContent = grams + "g";
+      document.getElementById('proteinResult').classList.add('show');
+    }
+  </script>
 </body>
 </html>
