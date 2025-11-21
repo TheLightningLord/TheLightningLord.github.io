@@ -53,6 +53,7 @@
       --text-muted: #4b5563;
       --white: #ffffff;
       --soft-blue: #eff6ff;
+      --card-bg: #0b1220;
     }
 
     * {
@@ -263,12 +264,12 @@
       }
     }
 
-    /* ================= HERO ================= */
+    /* ================= HERO (SLIGHTLY SMALLER) ================= */
     .hero-section {
       position: relative;
       background: radial-gradient(circle at top left, #0b1120, #020617);
       color: #e5e7eb;
-      padding: 4.5rem 1rem 4rem;
+      padding: 3.2rem 1rem 2.7rem;
       text-align: center;
     }
     .hero-overlay {
@@ -282,8 +283,8 @@
       z-index: 1;
     }
     .hero-section h1 {
-      font-size: clamp(2.4rem, 4vw, 3.2rem);
-      margin: 0 0 1rem;
+      font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+      margin: 0 0 0.75rem;
       color: #f9fafb;
     }
     .hero-section h1 span {
@@ -291,8 +292,8 @@
     }
     .hero-section .tagline {
       max-width: 700px;
-      margin: 0 auto 1.5rem;
-      font-size: 1.05rem;
+      margin: 0 auto 1.1rem;
+      font-size: 0.98rem;
       color: #d1d5db;
     }
     .hero-buttons {
@@ -300,16 +301,16 @@
       flex-wrap: wrap;
       gap: 0.85rem;
       justify-content: center;
-      margin-top: 1.25rem;
+      margin-top: 1rem;
     }
     .hero-buttons a {
       border-radius: 999px;
-      padding: 0.7rem 1.4rem;
+      padding: 0.6rem 1.3rem;
       border: 1px solid rgba(148, 163, 184, 0.7);
       color: #e5e7eb;
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       background: transparent;
       transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
         box-shadow 0.15s ease;
@@ -337,10 +338,10 @@
       100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
     }
 
-    /* ================= HOW WE HELP (VERY SIMPLE) ================= */
+    /* ================= HOW WE HELP (STRAIGHTFORWARD) ================= */
     .mission-section {
       background: #ffffff;
-      padding: 2.5rem 1rem;
+      padding: 2.4rem 1rem 2.2rem;
       color: var(--text-dark);
     }
     .mission-simple {
@@ -360,8 +361,8 @@
     }
     .mission-points {
       display: grid;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      gap: 0.55rem;
+      margin-bottom: 1.05rem;
     }
     .mission-point {
       display: flex;
@@ -377,80 +378,7 @@
     .mission-note {
       font-size: 0.9rem;
       color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    /* ================= EDUCATION HIGHLIGHTS ================= */
-    .edu-highlight {
-      background: #0f172a;
-      color: #e5e7eb;
-      padding: 3rem 1rem;
-    }
-    .edu-highlight h2 {
-      text-align: left;
-      margin-bottom: 0.5rem;
-      color: #f9fafb;
-    }
-    .edu-highlight .section-intro {
-      text-align: left;
-      margin-bottom: 1.25rem;
-      color: #cbd5ff;
-    }
-    .edu-accordion {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      gap: 0.75rem;
-    }
-    .edu-group {
-      background: #020617;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.7rem 0.9rem;
-    }
-    .edu-group summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #e5e7eb;
-    }
-    .edu-group summary::-webkit-details-marker {
-      display: none;
-    }
-    .edu-tagline {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #a5b4fc;
-      margin-right: 0.5rem;
-    }
-    .edu-chevron {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-left: 0.5rem;
-      transition: transform 0.2s ease;
-    }
-    .edu-group[open] .edu-chevron {
-      transform: rotate(180deg);
-    }
-    .edu-list {
-      margin: 0.4rem 0 0;
-      padding-left: 1rem;
-      font-size: 0.88rem;
-    }
-    .edu-list li {
       margin-bottom: 0.2rem;
-    }
-    .edu-list a {
-      text-decoration: none;
-      color: #fde68a;
-    }
-    .edu-list a:hover {
-      text-decoration: underline;
     }
 
     /* ================= QUIZ HIGHLIGHT ================= */
@@ -615,7 +543,159 @@
       margin: 0.1rem 0 0;
     }
 
-    /* ================= FAQ (DETAILS-BASED, NO JS REQUIRED) ================= */
+    /* ================= EDUCATION HIGHLIGHTS ================= */
+    .edu-highlight {
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 3rem 1rem;
+    }
+    .edu-highlight h2 {
+      text-align: left;
+      margin-bottom: 0.5rem;
+      color: #f9fafb;
+    }
+    .edu-highlight .section-intro {
+      text-align: left;
+      margin-bottom: 1.25rem;
+      color: #cbd5ff;
+    }
+    .edu-accordion {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .edu-group {
+      background: #020617;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.7rem 0.9rem;
+    }
+    .edu-group summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+    .edu-group summary::-webkit-details-marker {
+      display: none;
+    }
+    .edu-tagline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a5b4fc;
+      margin-right: 0.5rem;
+    }
+    .edu-chevron {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-left: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .edu-group[open] .edu-chevron {
+      transform: rotate(180deg);
+    }
+    .edu-list {
+      margin: 0.4rem 0 0;
+      padding-left: 1rem;
+      font-size: 0.88rem;
+    }
+    .edu-list li {
+      margin-bottom: 0.2rem;
+    }
+    .edu-list a {
+      text-decoration: none;
+      color: #fde68a;
+    }
+    .edu-list a:hover {
+      text-decoration: underline;
+    }
+
+    /* ================= RESULTS YOU CAN FEEL (ADVANCED FEATURE) ================= */
+    .results-section {
+      padding: 3rem 1rem;
+      background: radial-gradient(circle at top left, #020617, #020617 55%, #020617);
+      color: #e5e7eb;
+    }
+    .results-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .results-header {
+      max-width: 620px;
+      margin-bottom: 1.5rem;
+    }
+    .results-header h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.7rem;
+    }
+    .results-header p {
+      margin: 0;
+      font-size: 0.96rem;
+      color: #cbd5e1;
+    }
+    .results-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .results-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .result-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 1rem;
+      padding: 0.9rem 0.9rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .result-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 0.35rem;
+    }
+    .result-number {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.1rem;
+    }
+    .result-caption {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      margin-bottom: 0.5rem;
+    }
+    .result-footnote {
+      font-size: 0.7rem;
+      color: #9ca3af;
+      margin-top: 0.25rem;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(30, 64, 175, 0.35);
+      overflow: hidden;
+    }
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #a5b4fc);
+      transition: width 1.2s ease-out;
+    }
+
+    /* ================= FAQ (DETAILS-BASED) ================= */
     .faq-section {
       padding: 3rem 1rem;
       background: #ffffff;
@@ -746,7 +826,7 @@
 
     @media (max-width: 640px) {
       .hero-section {
-        padding-top: 4rem;
+        padding-top: 3.5rem;
       }
     }
   </style>
@@ -833,53 +913,7 @@
     </div>
   </section>
 
-  <!-- ================= EDUCATION HIGHLIGHTS ================= -->
-  <section class="edu-highlight">
-    <div class="container-narrow">
-      <h2>From the Learning Hub</h2>
-      <p class="section-intro">
-        Prefer to understand the "why" first? Explore calm, plain-language articles on pain, strength, balance,
-        and chronic illness before you ever book a session.
-      </p>
-      <div class="edu-accordion">
-        <details class="edu-group" open>
-          <summary>
-            <span class="edu-tagline">Pain &amp; Rehab</span>
-            <span>Understanding pain and rebuilding trust in your body</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#pain-science">Why pain can linger even after tissues heal</a></li>
-            <li><a href="education.html#gentle-progressions">Gentle progressions instead of "no pain, no gain"</a></li>
-          </ul>
-        </details>
-        <details class="edu-group">
-          <summary>
-            <span class="edu-tagline">Heart &amp; Illness</span>
-            <span>Movement for blood pressure, blood sugar &amp; heart health</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#chronic-conditions">Movement for diabetes, heart disease &amp; more</a></li>
-            <li><a href="education.html#tiny-doses">Tiny "exercise snacks" that still help your health</a></li>
-          </ul>
-        </details>
-        <details class="edu-group">
-          <summary>
-            <span class="edu-tagline">Balance &amp; Independence</span>
-            <span>Staying steady, strong, and confident at home</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#falls">Simple ways to train balance and prevent falls</a></li>
-            <li><a href="education.html#everyday-strength">Strength for stairs, curbs, &amp; daily tasks</a></li>
-          </ul>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= QUIZ HIGHLIGHT ================= -->
+  <!-- ================= QUIZ HIGHLIGHT (NOW DIRECTLY UNDER HOW WE HELP) ================= -->
   <section class="quiz-highlight">
     <div class="quiz-highlight-inner">
       <div class="quiz-badge">Interactive Tool</div>
@@ -989,7 +1023,97 @@
     </div>
   </section>
 
-  <!-- ================= FAQ (NOW FULLY FUNCTIONAL VIA <details>) ================= -->
+  <!-- ================= EDUCATION HIGHLIGHTS ================= -->
+  <section class="edu-highlight">
+    <div class="container-narrow">
+      <h2>From the Learning Hub</h2>
+      <p class="section-intro">
+        Prefer to understand the “why” first? Explore calm, plain-language articles on pain, strength, balance,
+        and chronic illness before you ever book a session.
+      </p>
+      <div class="edu-accordion">
+        <details class="edu-group" open>
+          <summary>
+            <span class="edu-tagline">Pain &amp; Rehab</span>
+            <span>Understanding pain and rebuilding trust in your body</span>
+            <span class="edu-chevron">▾</span>
+          </summary>
+          <ul class="edu-list">
+            <li><a href="education.html#pain-science">Why pain can linger even after tissues heal</a></li>
+            <li><a href="education.html#gentle-progressions">Gentle progressions instead of “no pain, no gain”</a></li>
+          </ul>
+        </details>
+        <details class="edu-group">
+          <summary>
+            <span class="edu-tagline">Heart &amp; Illness</span>
+            <span>Movement for blood pressure, blood sugar &amp; heart health</span>
+            <span class="edu-chevron">▾</span>
+          </summary>
+          <ul class="edu-list">
+            <li><a href="education.html#chronic-conditions">Movement for diabetes, heart disease &amp; more</a></li>
+            <li><a href="education.html#tiny-doses">Tiny “exercise snacks” that still help your health</a></li>
+          </ul>
+        </details>
+        <details class="edu-group">
+          <summary>
+            <span class="edu-tagline">Balance &amp; Independence</span>
+            <span>Staying steady, strong, and confident at home</span>
+            <span class="edu-chevron">▾</span>
+          </summary>
+          <ul class="edu-list">
+            <li><a href="education.html#falls">Simple ways to train balance and prevent falls</a></li>
+            <li><a href="education.html#everyday-strength">Strength for stairs, curbs, &amp; daily tasks</a></li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESULTS YOU CAN FEEL (ADVANCED FEATURE) ================= -->
+  <section class="results-section">
+    <div class="results-inner">
+      <div class="results-header">
+        <h2>Results You Can Feel in Daily Life</h2>
+        <p>
+          These numbers are based on large research reviews of older adults doing regular, moderate movement. Your exact
+          results will vary, but they show how powerful small, consistent steps can be over time.
+        </p>
+      </div>
+      <div class="results-grid">
+        <article class="result-card" data-target="30">
+          <p class="result-label">Fall Risk</p>
+          <p class="result-number"><span class="result-value">0</span>%</p>
+          <p class="result-caption">Potential reduction in falls in many strength + balance programs.</p>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+          <p class="result-footnote">Based on multi-exercise fall-prevention programs for older adults.</p>
+        </article>
+
+        <article class="result-card" data-target="20">
+          <p class="result-label">Daily Energy</p>
+          <p class="result-number"><span class="result-value">0</span>%</p>
+          <p class="result-caption">Average improvement in reported energy and fatigue in some studies.</p>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+          <p class="result-footnote">Improved stamina from regular, moderate activity and strength work.</p>
+        </article>
+
+        <article class="result-card" data-target="40">
+          <p class="result-label">Confidence</p>
+          <p class="result-number"><span class="result-value">0</span>%</p>
+          <p class="result-caption">Increase in confidence with walking and stairs in certain programs.</p>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+          <p class="result-footnote">Often linked with better leg strength and balance practice over time.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
   <section class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-list">
@@ -1017,7 +1141,7 @@
         </summary>
         <div class="faq-answer">
           <p>
-            That’s exactly who we design for. The goal is not "no pain ever," but
+            That’s exactly who we design for. The goal is not “no pain ever,” but
             <strong>safe, gradual progress</strong> that respects your nervous system, joints, and medical reality.
           </p>
           <p>
@@ -1049,7 +1173,7 @@
         </summary>
         <div class="faq-answer">
           <p>
-            Most clients do <strong>30–45 minute sessions</strong>, 1–2 times per week, plus micro "home doses" in between.
+            Most clients do <strong>30–45 minute sessions</strong>, 1–2 times per week, plus micro “home doses” in between.
             We typically work with <strong>session packs or monthly plans</strong> so you can build momentum instead of
             one-off visits.
           </p>
@@ -1136,7 +1260,7 @@
   <!-- Main JS -->
   <script src="assets/js/script.js"></script>
 
-  <!-- Page-specific JS: mobile nav, footer year (FAQ now uses <details> so no JS needed) -->
+  <!-- Page-specific JS: mobile nav, animated results, footer year -->
   <script>
     // Mobile nav toggle
     const menuToggle = document.getElementById('menuToggle');
@@ -1146,6 +1270,39 @@
       menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('nav-open');
       });
+    }
+
+    // Animated "Results You Can Feel" counters
+    const resultCards = document.querySelectorAll('.result-card');
+    if ('IntersectionObserver' in window && resultCards.length) {
+      const animateCard = (card) => {
+        const target = Number(card.getAttribute('data-target')) || 0;
+        const valueEl = card.querySelector('.result-value');
+        const bar = card.querySelector('.progress-fill');
+        let current = 0;
+        const duration = 1000; // ms
+        const start = performance.now();
+
+        const step = (timestamp) => {
+          const progress = Math.min((timestamp - start) / duration, 1);
+          current = Math.round(target * progress);
+          if (valueEl) valueEl.textContent = current.toString();
+          if (bar) bar.style.width = target + '%';
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = 'true';
+            animateCard(entry.target);
+          }
+        });
+      }, { threshold: 0.35 });
+
+      resultCards.forEach(card => observer.observe(card));
     }
 
     // Footer year
