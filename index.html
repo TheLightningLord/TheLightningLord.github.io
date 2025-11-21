@@ -53,7 +53,6 @@
       --text-muted: #4b5563;
       --white: #ffffff;
       --soft-blue: #eff6ff;
-      --card-bg: #0b1220;
     }
 
     * {
@@ -78,9 +77,9 @@
       padding: 0 1rem;
     }
 
-    /* ================= HEADER (REBUILT & STABLE) ================= */
+    /* ================= HEADER (STABLE) ================= */
     header {
-      background: #020617 !important; /* always dark */
+      background: #020617 !important;
       color: #f9fafb;
       position: sticky;
       top: 0;
@@ -264,12 +263,12 @@
       }
     }
 
-    /* ================= HERO ================= */
+    /* ================= HERO (slightly smaller than original) ================= */
     .hero-section {
       position: relative;
       background: radial-gradient(circle at top left, #0b1120, #020617);
       color: #e5e7eb;
-      padding: 4.5rem 1rem 4rem;
+      padding: 3.5rem 1rem 3rem;
       text-align: center;
     }
     .hero-overlay {
@@ -283,8 +282,8 @@
       z-index: 1;
     }
     .hero-section h1 {
-      font-size: clamp(2.4rem, 4vw, 3.2rem);
-      margin: 0 0 1rem;
+      font-size: clamp(2.3rem, 3.6vw, 3rem);
+      margin: 0 0 0.9rem;
       color: #f9fafb;
     }
     .hero-section h1 span {
@@ -292,8 +291,8 @@
     }
     .hero-section .tagline {
       max-width: 700px;
-      margin: 0 auto 1.5rem;
-      font-size: 1.05rem;
+      margin: 0 auto 1.2rem;
+      font-size: 1rem;
       color: #d1d5db;
     }
     .hero-buttons {
@@ -301,7 +300,7 @@
       flex-wrap: wrap;
       gap: 0.85rem;
       justify-content: center;
-      margin-top: 1.25rem;
+      margin-top: 1rem;
     }
     .hero-buttons a {
       border-radius: 999px;
@@ -338,24 +337,22 @@
       100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
     }
 
-    /* ================= MISSION (HOW WE HELP - MORE VISUAL) ================= */
+    /* ================= HOW WE HELP (faint color boxes) ================= */
     .mission-section {
       background: #f3f4f6;
       padding: 2.5rem 1rem;
       color: var(--text-dark);
     }
-    .mission-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: #ffffff;
-      border-radius: 1rem;
-      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
-      padding: 1.75rem 1.5rem;
-    }
     .mission-grid {
+      max-width: 900px;
+      margin: 0 auto;
       display: grid;
       gap: 1.5rem;
       align-items: stretch;
+      background: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      padding: 1.6rem 1.4rem;
     }
     @media (min-width: 900px) {
       .mission-grid {
@@ -367,15 +364,15 @@
       padding-left: 1rem;
     }
     .mission-text h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.6rem;
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
       color: var(--text-dark);
     }
     .friendly-highlight {
       color: var(--gold);
     }
     .mission-tagline {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 0.75rem;
     }
@@ -407,7 +404,7 @@
     .mission-stat {
       flex: 1 1 130px;
       border-radius: 0.75rem;
-      background: #f9fafb;
+      background: linear-gradient(135deg, #f9fafb, #eef2ff);
       border: 1px solid #e5e7eb;
       padding: 0.6rem 0.8rem;
       font-size: 0.82rem;
@@ -424,11 +421,11 @@
       font-size: 0.9rem;
     }
     .mission-card {
-      background: #f9fafb;
+      background: linear-gradient(135deg, #f9fafb, #ecfeff);
       border-radius: 10px;
-      border: 1px solid #e0e0e0;
+      border: 1px solid #e0f2fe;
       padding: 0.75rem 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
       font-size: 0.88rem;
       color: var(--text-dark);
       line-height: 1.5;
@@ -437,199 +434,6 @@
       font-size: 0.95rem;
       margin-bottom: 0.25rem;
       color: var(--text-dark);
-    }
-    .mission-card-stack .cta-btn {
-      text-align: center;
-      display: inline-block;
-      margin-top: 0.25rem;
-    }
-
-    /* ================= EDUCATION HIGHLIGHTS ================= */
-    .edu-highlight {
-      background: #0f172a;
-      color: #e5e7eb;
-      padding: 3rem 1rem;
-    }
-    .edu-highlight h2 {
-      text-align: left;
-      margin-bottom: 0.5rem;
-      color: #f9fafb;
-    }
-    .edu-highlight .section-intro {
-      text-align: left;
-      margin-bottom: 1.25rem;
-      color: #cbd5ff;
-    }
-    .edu-accordion {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      gap: 0.75rem;
-    }
-    .edu-group {
-      background: #020617;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.7rem 0.9rem;
-    }
-    .edu-group summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #e5e7eb;
-    }
-    .edu-group summary::-webkit-details-marker {
-      display: none;
-    }
-    .edu-tagline {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #a5b4fc;
-      margin-right: 0.5rem;
-    }
-    .edu-chevron {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-left: 0.5rem;
-      transition: transform 0.2s ease;
-    }
-    .edu-group[open] .edu-chevron {
-      transform: rotate(180deg);
-    }
-    .edu-list {
-      margin: 0.4rem 0 0;
-      padding-left: 1rem;
-      font-size: 0.88rem;
-    }
-    .edu-list li {
-      margin-bottom: 0.2rem;
-    }
-    .edu-list a {
-      text-decoration: none;
-      color: #fde68a;
-    }
-    .edu-list a:hover {
-      text-decoration: underline;
-    }
-
-    /* ================= WHO WE HELP ================= */
-    .who-we-help {
-      padding: 3rem 1rem;
-      background: #ffffff;
-      color: var(--text-dark);
-    }
-    .who-we-help h2 {
-      text-align: left;
-      margin-bottom: 0.5rem;
-    }
-    .who-we-help .section-intro {
-      text-align: left;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      color: var(--text-muted);
-    }
-    .who-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1rem;
-    }
-    .who-card {
-      background: #f9fafb;
-      border-radius: 0.8rem;
-      border: 1px solid #e5e7eb;
-      padding: 0.9rem 1rem;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-      line-height: 1.5;
-    }
-    .who-card h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1rem;
-      color: var(--text-dark);
-    }
-    .who-card p {
-      margin: 0;
-      color: var(--text-muted);
-    }
-    @media (min-width: 900px) {
-      .who-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    /* ================= HOW IT WORKS ================= */
-    .solutions-section {
-      padding: 3rem 1rem;
-      background: #ffffff;
-      color: var(--text-dark);
-    }
-    .solutions-section h2 {
-      text-align: left;
-    }
-    .solutions-section .section-intro {
-      text-align: left;
-      max-width: 700px;
-      margin: 0.5rem auto 1.5rem;
-      color: var(--text-muted);
-    }
-    .simple-steps {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      position: relative;
-    }
-    .simple-steps::before {
-      content: "";
-      position: absolute;
-      left: 0.5rem;
-      right: 0.5rem;
-      top: 1.6rem;
-      height: 2px;
-      background: linear-gradient(to right, #e5e7eb, #d1d5db);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-    .step-card {
-      position: relative;
-      background: #f9fafb;
-      border-radius: 0.9rem;
-      border: 1px solid #e5e7eb;
-      padding: 0.9rem 0.9rem 0.9rem 1.1rem;
-      flex: 1 1 220px;
-      font-size: 0.9rem;
-      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03);
-      color: var(--text-dark);
-    }
-    .step-badge {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: #0f172a;
-      color: #f9fafb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-    .step-card h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1rem;
-      color: var(--text-dark);
-    }
-    .step-card p {
-      margin: 0;
-      color: var(--text-muted);
-      line-height: 1.5;
     }
 
     /* ================= QUIZ HIGHLIGHT ================= */
@@ -872,60 +676,80 @@
       transition: width 1.2s ease-out;
     }
 
-    /* ================= TESTIMONIALS CAROUSEL ================= */
-    .carousel.testimonials {
+    /* ================= EDUCATION HIGHLIGHTS ================= */
+    .edu-highlight {
+      background: #0f172a;
+      color: #e5e7eb;
       padding: 3rem 1rem;
-      background: #f9fafb;
     }
-    .carousel-inner {
-      display: flex;
-      overflow: hidden;
-      max-width: 900px;
-      margin: 0 auto;
-      transition: transform 0.5s ease;
-    }
-    .carousel-item {
-      min-width: 100%;
-      padding: 0 1rem;
-      box-sizing: border-box;
-    }
-    .testimonial {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .testimonial .quote {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: var(--text-dark);
+    .edu-highlight h2 {
+      text-align: left;
       margin-bottom: 0.5rem;
+      color: #f9fafb;
     }
-    .testimonial .author {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+    .edu-highlight .section-intro {
+      text-align: left;
+      margin-bottom: 1.25rem;
+      color: #cbd5ff;
     }
-    .carousel-controls {
-      display: flex;
-      justify-content: center;
+    .edu-accordion {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
       gap: 0.75rem;
-      margin-top: 1.25rem;
     }
-    .carousel-controls button {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: #ffffff;
-      padding: 0.35rem 0.9rem;
+    .edu-group {
+      background: #020617;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.7rem 0.9rem;
+    }
+    .edu-group summary {
+      list-style: none;
       cursor: pointer;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-      transition: background 0.15s ease, box-shadow 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e5e7eb;
     }
-    .carousel-controls button:hover {
-      background: #e5e7eb;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+    .edu-group summary::-webkit-details-marker {
+      display: none;
+    }
+    .edu-tagline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a5b4fc;
+      margin-right: 0.5rem;
+    }
+    .edu-chevron {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-left: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .edu-group[open] .edu-chevron {
+      transform: rotate(180deg);
+    }
+    .edu-list {
+      margin: 0.4rem 0 0;
+      padding-left: 1rem;
+      font-size: 0.88rem;
+    }
+    .edu-list li {
+      margin-bottom: 0.2rem;
+    }
+    .edu-list a {
+      text-decoration: none;
+      color: #fde68a;
+    }
+    .edu-list a:hover {
+      text-decoration: underline;
     }
 
-    /* ================= FAQ ================= */
+    /* ================= FAQ (details-based, no JS needed) ================= */
     .faq-section {
       padding: 3rem 1rem;
       background: #ffffff;
@@ -936,45 +760,48 @@
       margin-bottom: 1rem;
       color: var(--text-dark);
     }
-    .faq-item {
-      border-bottom: 1px solid #e0e0e0;
-      padding: 0.4rem 0.75rem;
+    .faq-list {
       max-width: 800px;
-      margin: 0.4rem auto;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .faq-item {
       background: #ffffff;
       border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
       box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+      padding: 0.4rem 0.75rem;
     }
-    .faq-question {
-      width: 100%;
-      background: transparent;
-      border: none;
-      padding: 0.75rem 0;
-      text-align: left;
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
       font-size: 0.98rem;
       font-weight: 500;
+      padding: 0.75rem 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
-      color: var(--text-dark);
     }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease;
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-arrow {
       font-size: 0.9rem;
-      color: var(--text-muted);
-      padding-right: 0.25rem;
-    }
-    .faq-answer p {
-      margin: 0.25rem 0 0.75rem;
-    }
-    .faq-question .faq-arrow {
+      color: #9ca3af;
+      margin-left: 0.5rem;
       transition: transform 0.2s ease;
     }
-    .faq-question.active .faq-arrow {
+    .faq-item[open] .faq-arrow {
       transform: rotate(180deg);
+    }
+    .faq-answer {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 0 0 0.75rem;
+    }
+    .faq-answer p {
+      margin: 0.25rem 0;
     }
 
     /* ================= CONTACT ================= */
@@ -1054,7 +881,7 @@
 
     @media (max-width: 640px) {
       .hero-section {
-        padding-top: 4rem;
+        padding-top: 3.7rem;
       }
     }
   </style>
@@ -1113,153 +940,51 @@
     </div>
   </section>
 
-  <!-- ================= HOW WE HELP (COMPACT + VISUAL) ================= -->
+  <!-- ================= HOW WE HELP ================= -->
   <section class="mission-section">
-    <div class="mission-inner">
-      <div class="mission-grid">
-        <div class="mission-text">
-          <h2>How We <span class="friendly-highlight">Help</span></h2>
-          <p class="mission-tagline">
-            We help older adults and medically complex adults use tiny, realistic doses of movement to get real wins in daily life.
-          </p>
-          <div class="mission-highlight">
-            <span>Low-pressure, high-support coaching</span>
-            <span>Respect for pain &amp; medical realities</span>
+    <div class="mission-grid">
+      <div class="mission-text">
+        <h2>How We <span class="friendly-highlight">Help</span></h2>
+        <p class="mission-tagline">
+          We help older adults and medically complex adults use tiny, realistic doses of movement to get real wins in daily life.
+        </p>
+        <div class="mission-highlight">
+          <span>Low-pressure, high-support coaching</span>
+          <span>Respect for pain &amp; medical realities</span>
+        </div>
+        <p>
+          You don’t need a bootcamp or a gym membership. You need a calm plan that fits your energy, your schedule,
+          and your nervous system — so you can move without fear and slowly rebuild trust in your body.
+        </p>
+        <div class="mission-stats">
+          <div class="mission-stat">
+            <strong>1–3x/week</strong>
+            Short sessions focused on what matters most to you.
           </div>
-          <p>
-            You don’t need a bootcamp or a gym membership. You need a calm plan that fits your energy, your schedule,
-            and your nervous system — so you can move without fear and slowly rebuild trust in your body.
-          </p>
-          <div class="mission-stats">
-            <div class="mission-stat">
-              <strong>1–3x/week</strong>
-              Short sessions focused on what matters most to you.
-            </div>
-            <div class="mission-stat">
-              <strong>Home &amp; Community</strong>
-              We come to your home or senior community with everything you need.
-            </div>
+          <div class="mission-stat">
+            <strong>Home &amp; Community</strong>
+            We come to your home or senior community with everything you need.
           </div>
         </div>
-        <div class="mission-card-stack">
-          <div class="mission-card">
-            <h3>Gentle, Nervous-System Friendly</h3>
-            <p>We start below your limits and slowly build up so your joints and nervous system feel safe.</p>
-          </div>
-          <div class="mission-card">
-            <h3>Evidence-Based, Real-World</h3>
-            <p>Sessions are built from physical therapy, strength training, and pain science research — translated into plain language.</p>
-          </div>
-          <div class="mission-card">
-            <h3>Designed for Real Life</h3>
-            <p>We work around grandkids, appointments, and bad days, not against them.</p>
-          </div>
-          <a href="education.html" class="cta-btn" style="margin-top:0.25rem;">Visit the Education Hub</a>
+      </div>
+      <div class="mission-card-stack">
+        <div class="mission-card">
+          <h3>Gentle, Nervous-System Friendly</h3>
+          <p>We start below your limits and slowly build up so your joints and nervous system feel safe.</p>
+        </div>
+        <div class="mission-card">
+          <h3>Evidence-Based, Real-World</h3>
+          <p>Sessions are built from physical therapy, strength training, and pain science research — translated into plain language.</p>
+        </div>
+        <div class="mission-card">
+          <h3>Designed for Real Life</h3>
+          <p>We work around grandkids, appointments, and bad days, not against them.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= EDUCATION HIGHLIGHTS ================= -->
-  <section class="edu-highlight">
-    <div class="container-narrow">
-      <h2>From the Learning Hub</h2>
-      <p class="section-intro">
-        Prefer to understand the “why” first? Explore calm, plain-language articles on pain, strength, balance,
-        and chronic illness before you ever book a session.
-      </p>
-      <div class="edu-accordion">
-        <details class="edu-group" open>
-          <summary>
-            <span class="edu-tagline">Pain &amp; Rehab</span>
-            <span>Understanding pain and rebuilding trust in your body</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#pain-science">Why pain can linger even after tissues heal</a></li>
-            <li><a href="education.html#gentle-progressions">Gentle progressions instead of “no pain, no gain”</a></li>
-          </ul>
-        </details>
-        <details class="edu-group">
-          <summary>
-            <span class="edu-tagline">Heart &amp; Illness</span>
-            <span>Movement for blood pressure, blood sugar &amp; heart health</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#chronic-conditions">Movement for diabetes, heart disease &amp; more</a></li>
-            <li><a href="education.html#tiny-doses">Tiny “exercise snacks” that still help your health</a></li>
-          </ul>
-        </details>
-        <details class="edu-group">
-          <summary>
-            <span class="edu-tagline">Balance &amp; Independence</span>
-            <span>Staying steady, strong, and confident at home</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#falls">Simple ways to train balance and prevent falls</a></li>
-            <li><a href="education.html#everyday-strength">Strength for stairs, curbs, &amp; daily tasks</a></li>
-          </ul>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= WHO WE HELP ================= -->
-  <section class="who-we-help">
-    <div class="container-narrow">
-      <h2>Who We Serve</h2>
-      <p class="section-intro">
-        We work with older adults and medically complex adults who want simple, safe support to move more and worry less.
-      </p>
-      <div class="who-grid">
-        <article class="who-card">
-          <h3>Independent Older Adults</h3>
-          <p>Living at home and want to stay strong, steady, and independent with everyday tasks.</p>
-        </article>
-        <article class="who-card">
-          <h3>After Physical Therapy</h3>
-          <p>You finished PT but still feel unsure. We help you keep the progress going in real life.</p>
-        </article>
-        <article class="who-card">
-          <h3>Senior Communities</h3>
-          <p>Independent and assisted living communities that want gentle, effective movement classes.</p>
-        </article>
-        <article class="who-card">
-          <h3>Chronic Conditions &amp; Pain</h3>
-          <p>Arthritis, diabetes, heart issues, or long-term pain — with a plan that respects your limits.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= HOW IT WORKS ================= -->
-  <section class="solutions-section">
-    <div class="container-narrow">
-      <h2>How It Works</h2>
-      <p class="section-intro">Just three simple steps to get started.</p>
-      <div class="simple-steps">
-        <div class="step-card">
-          <div class="step-badge">1</div>
-          <h3>We talk</h3>
-          <p>We listen to your story, your goals, and your medical realities in calm, simple language.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-badge">2</div>
-          <h3>We try a plan</h3>
-          <p>We start with a few gentle movements you can safely test at home or in your community.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-badge">3</div>
-          <h3>We adjust together</h3>
-          <p>We slowly add or change exercises based on how your body and confidence respond.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= QUIZ HIGHLIGHT ================= -->
+  <!-- ================= QUIZ HIGHLIGHT (immediately after How We Help) ================= -->
   <section class="quiz-highlight">
     <div class="quiz-highlight-inner">
       <div class="quiz-badge">Interactive Tool</div>
@@ -1413,120 +1138,131 @@
     </div>
   </section>
 
-  <!-- ================= TESTIMONIALS ================= -->
-  <section class="carousel testimonials">
-    <div class="carousel-inner" id="carouselInner">
-      <div class="carousel-item">
-        <div class="testimonial">
-          <p class="quote">
-            “I never imagined that a few simple exercises in my living room could make stairs feel this easy again.”
-          </p>
-          <p class="author">– Client, Age 72</p>
-        </div>
+  <!-- ================= EDUCATION HIGHLIGHTS (now after results) ================= -->
+  <section class="edu-highlight">
+    <div class="container-narrow">
+      <h2>From the Learning Hub</h2>
+      <p class="section-intro">
+        Prefer to understand the “why” first? Explore calm, plain-language articles on pain, strength, balance,
+        and chronic illness before you ever book a session.
+      </p>
+      <div class="edu-accordion">
+        <details class="edu-group" open>
+          <summary>
+            <span class="edu-tagline">Pain &amp; Rehab</span>
+            <span>Understanding pain and rebuilding trust in your body</span>
+            <span class="edu-chevron">▾</span>
+          </summary>
+          <ul class="edu-list">
+            <li><a href="education.html#pain-science">Why pain can linger even after tissues heal</a></li>
+            <li><a href="education.html#gentle-progressions">Gentle progressions instead of “no pain, no gain”</a></li>
+          </ul>
+        </details>
+        <details class="edu-group">
+          <summary>
+            <span class="edu-tagline">Heart &amp; Illness</span>
+            <span>Movement for blood pressure, blood sugar &amp; heart health</span>
+            <span class="edu-chevron">▾</span>
+          </summary>
+          <ul class="edu-list">
+            <li><a href="education.html#chronic-conditions">Movement for diabetes, heart disease &amp; more</a></li>
+            <li><a href="education.html#tiny-doses">Tiny “exercise snacks” that still help your health</a></li>
+          </ul>
+        </details>
+        <details class="edu-group">
+          <summary>
+            <span class="edu-tagline">Balance &amp; Independence</span>
+            <span>Staying steady, strong, and confident at home</span>
+            <span class="edu-chevron">▾</span>
+          </summary>
+          <ul class="edu-list">
+            <li><a href="education.html#falls">Simple ways to train balance and prevent falls</a></li>
+            <li><a href="education.html#everyday-strength">Strength for stairs, curbs, &amp; daily tasks</a></li>
+          </ul>
+        </details>
       </div>
-      <div class="carousel-item">
-        <div class="testimonial">
-          <p class="quote">
-            “After PT ended I felt stuck. These sessions gave me a bridge back to the life I actually want.”
-          </p>
-          <p class="author">– Client, Age 64</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="testimonial">
-          <p class="quote">
-            “Our residents look forward to the classes every week. We’ve seen fewer falls and more smiles.”
-          </p>
-          <p class="author">
-            – Assisted Living Director
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-controls">
-      <button id="prevBtn" aria-label="Previous testimonial">&lt;</button>
-      <button id="nextBtn" aria-label="Next testimonial">&gt;</button>
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
+  <!-- ================= FAQ (details-based, actually clickable) ================= -->
   <section class="faq-section">
     <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>
+          <span>Is this physical therapy?</span>
+          <span class="faq-arrow">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            No. Olympian Health Solutions provides exercise coaching and movement training — not medical rehabilitation.
+            We don’t diagnose, bill insurance, or replace your healthcare providers.
+          </p>
+          <p>
+            Instead, we help you <strong>apply evidence-based exercise</strong> alongside your medical care so you can
+            rebuild strength, confidence, and independence.
+          </p>
+        </div>
+      </details>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        <span>Is this physical therapy?</span>
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          No. Olympian Health Solutions provides exercise coaching and movement training — not medical rehabilitation.
-          We don’t diagnose, bill insurance, or replace your healthcare providers.
-        </p>
-        <p>
-          Instead, we help you <strong>apply evidence-based exercise</strong> alongside your medical care so you can
-          rebuild strength, confidence, and independence.
-        </p>
-      </div>
-    </div>
+      <details class="faq-item">
+        <summary>
+          <span>What if I have pain, arthritis, or several health conditions?</span>
+          <span class="faq-arrow">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            That’s exactly who we design for. The goal is not “no pain ever,” but
+            <strong>safe, gradual progress</strong> that respects your nervous system, joints, and medical reality.
+          </p>
+          <p>
+            We start with low doses, check in constantly, and adjust the plan so your body and confidence can catch up.
+          </p>
+        </div>
+      </details>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        <span>What if I have pain, arthritis, or several health conditions?</span>
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          That’s exactly who we design for. The goal is not “no pain ever,” but
-          <strong>safe, gradual progress</strong> that respects your nervous system, joints, and medical reality.
-        </p>
-        <p>
-          We start with low doses, check in constantly, and adjust the plan so your body and confidence can catch up.
-        </p>
-      </div>
-    </div>
+      <details class="faq-item">
+        <summary>
+          <span>Do you come to assisted living and senior communities?</span>
+          <span class="faq-arrow">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            Yes. We partner with independent and assisted living communities for
+            <strong>small-group classes, education sessions, and optional 1:1 visits</strong>.
+          </p>
+          <p>
+            These can be structured as recurring programs or seasonal offerings depending on your community’s needs.
+          </p>
+        </div>
+      </details>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        <span>Do you come to assisted living and senior communities?</span>
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Yes. We partner with independent and assisted living communities for
-          <strong>small-group classes, education sessions, and optional 1:1 visits</strong>.
-        </p>
-        <p>
-          These can be structured as recurring programs or seasonal offerings depending on your community’s needs.
-        </p>
-      </div>
-    </div>
+      <details class="faq-item">
+        <summary>
+          <span>How often are sessions, and how do payments work?</span>
+          <span class="faq-arrow">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            Most clients do <strong>30–45 minute sessions</strong>, 1–2 times per week, plus micro “home doses” in between.
+            We typically work with <strong>session packs or monthly plans</strong> so you can build momentum instead of
+            one-off visits.
+          </p>
+        </div>
+      </details>
 
-    <div class="faq-item">
-      <button class="faq-question">
-        <span>How often are sessions, and how do payments work?</span>
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          Most clients do <strong>30–45 minute sessions</strong>, 1–2 times per week, plus micro “home doses” in between.
-          We typically work with <strong>session packs or monthly plans</strong> so you can build momentum instead of
-          one-off visits.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        <span>How should I start?</span>
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-answer">
-        <p>
-          A great starting point is the <strong>Exercise Impact Quiz</strong> to see how movement could help your
-          specific concerns. From there, you can book a no-pressure consultation to talk through options.
-        </p>
-      </div>
+      <details class="faq-item">
+        <summary>
+          <span>How should I start?</span>
+          <span class="faq-arrow">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            A great starting point is the <strong>Exercise Impact Quiz</strong> to see how movement could help your
+            specific concerns. From there, you can book a no-pressure consultation to talk through options.
+          </p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1595,38 +1331,8 @@
   <!-- Main JS -->
   <script src="assets/js/script.js"></script>
 
-  <!-- Page-specific JS: FAQ accordion, mobile nav, testimonials carousel, animated results, footer year -->
+  <!-- Page-specific JS: mobile nav, animated results, footer year -->
   <script>
-    // FAQ accordion
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    if (faqQuestions.length) {
-      const faqAnswers = document.querySelectorAll('.faq-answer');
-
-      // Start collapsed
-      faqAnswers.forEach(answer => {
-        answer.style.maxHeight = '0px';
-      });
-
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-          const answer = question.nextElementSibling;
-          const isOpen = question.classList.contains('active');
-
-          // Close all
-          faqAnswers.forEach(a => {
-            a.style.maxHeight = '0px';
-          });
-          faqQuestions.forEach(q => q.classList.remove('active'));
-
-          // Open the selected one
-          if (!isOpen) {
-            question.classList.add('active');
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-          }
-        });
-      });
-    }
-
     // Mobile nav toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
@@ -1637,39 +1343,9 @@
       });
     }
 
-    // Testimonials carousel
-    const carouselInner = document.getElementById('carouselInner');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    if (carouselInner && prevBtn && nextBtn) {
-      const items = carouselInner.querySelectorAll('.carousel-item');
-      let currentIndex = 0;
-
-      function updateCarousel() {
-        carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }
-
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
-        updateCarousel();
-      });
-
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % items.length;
-        updateCarousel();
-      });
-
-      // Auto-rotate every 8 seconds
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % items.length;
-        updateCarousel();
-      }, 8000);
-    }
-
     // Animated "Results You Can Feel" counters
     const resultCards = document.querySelectorAll('.result-card');
-    if ('IntersectionObserver' in window && resultCards.length) {
+    if (resultCards.length) {
       const animateCard = (card) => {
         const target = Number(card.getAttribute('data-target')) || 0;
         const valueEl = card.querySelector('.result-value');
@@ -1683,22 +1359,29 @@
           current = Math.round(target * progress);
           if (valueEl) valueEl.textContent = current.toString();
           if (bar) bar.style.width = target + '%';
-          if (progress < 1) requestAnimationFrame(step);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
         };
 
         requestAnimationFrame(step);
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !entry.target.dataset.animated) {
-            entry.target.dataset.animated = 'true';
-            animateCard(entry.target);
-          }
-        });
-      }, { threshold: 0.35 });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+              entry.target.dataset.animated = 'true';
+              animateCard(entry.target);
+            }
+          });
+        }, { threshold: 0.35 });
 
-      resultCards.forEach(card => observer.observe(card));
+        resultCards.forEach(card => observer.observe(card));
+      } else {
+        // Fallback: animate immediately
+        resultCards.forEach(card => animateCard(card));
+      }
     }
 
     // Footer year
