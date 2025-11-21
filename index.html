@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="description" content="Olympian Health Solutions – mobile, evidence-based movement coaching for seniors and post-therapy graduates in Battle Ground, WA." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | Movement is Medicine</title>
+  <title>Olympian Health Solutions | Mobile Senior Fitness</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet" />
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -16,22 +16,22 @@
       "@type": "LocalBusiness",
       "name": "Olympian Health Solutions",
       "url": "https://yourdomain.github.io/olympian-health-solutions/",
-      "description": "Mobile, evidence-based movement and exercise coaching for seniors and post-physical-therapy clients in Battle Ground, Washington.",
+      "description": "Mobile personal training and movement coaching specifically for seniors in assisted living and private homes in Battle Ground, Washington.",
       "areaServed": {
         "@type": "Place",
-        "name": "Battle Ground, WA and surrounding areas"
+        "name": "Battle Ground, WA"
       },
       "founder": {
         "@type": "Person",
         "name": "Zeuse Valentine",
-        "jobTitle": "Student Doctor of Physical Therapy, CSCS, NASM CPT"
+        "jobTitle": "Student Doctor of Physical Therapy"
       }
     }
   </script>
 
   <style>
     :root {
-      /* Brand Colors - Kept Exact */
+      /* Brand Colors */
       --dark-blue: #020617;
       --mid-blue: #0f172a;
       --accent-blue: #38bdf8;
@@ -44,30 +44,30 @@
       /* UI Variables */
       --radius-lg: 16px;
       --radius-md: 10px;
-      --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-      --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
+      --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.12);
       --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: "Roboto", system-ui, -apple-system, sans-serif;
+      font-family: "Roboto", sans-serif;
       color: var(--text-dark);
       background: #ffffff;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    h1, h2, h3 {
-      line-height: 1.2;
+    h1, h2, h3, h4 { line-height: 1.2; }
+    
+    /* Typography for Scientific Sections */
+    .scientific-text {
+      font-family: "Merriweather", serif;
+      font-style: italic;
+      color: #334155;
     }
 
     .container {
@@ -76,27 +76,20 @@
       padding: 0 1.5rem;
     }
     
-    /* ================= ANIMATION UTILITIES ================= */
-    /* Elements with this class will fade in when scrolled into view */
+    /* Animation Utilities */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(30px);
       transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
     }
-    
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Staggered delays for groups of elements */
+    .reveal.active { opacity: 1; transform: translateY(0); }
     .delay-100 { transition-delay: 0.1s; }
     .delay-200 { transition-delay: 0.2s; }
     .delay-300 { transition-delay: 0.3s; }
 
     /* ================= HEADER ================= */
     header {
-      background: rgba(2, 6, 23, 0.85) !important;
+      background: rgba(2, 6, 23, 0.9) !important;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: #f9fafb;
@@ -104,15 +97,9 @@
       top: 0;
       z-index: 100;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: box-shadow 0.3s ease, padding 0.3s ease;
+      transition: padding 0.3s ease;
     }
     
-    header.scrolled {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
     .header-container {
       max-width: 1100px;
       margin: 0 auto;
@@ -129,18 +116,8 @@
       gap: 0.75rem;
       text-decoration: none;
     }
-    
-    .logo img {
-      height: 40px;
-      width: auto;
-    }
-    
-    .logo span {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #f9fafb;
-      letter-spacing: -0.02em;
-    }
+    .logo img { height: 40px; width: auto; }
+    .logo span { font-weight: 700; font-size: 1.1rem; color: #f9fafb; letter-spacing: -0.02em; }
 
     .nav-links {
       list-style: none;
@@ -159,50 +136,15 @@
       font-size: 0.95rem;
       font-weight: 500;
       transition: var(--transition-smooth);
-      position: relative;
     }
-
-    .nav-links a:not(.nav-pill)::after {
-      content: '';
-      position: absolute;
-      bottom: 6px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--accent-blue);
-      transition: var(--transition-smooth);
-      transform: translateX(-50%);
-    }
-
-    .nav-links a:not(.nav-pill):hover::after {
-      width: 60%;
-    }
-
-    .nav-links a:hover {
-      color: var(--white);
-    }
-
-    .nav-pill {
-      font-weight: 600 !important;
-    }
-    
-    .nav-edu {
-      background: rgba(255,255,255,0.1) !important;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    
-    .nav-book {
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+    .nav-pill.nav-book {
       background: var(--gold) !important;
       color: var(--dark-blue) !important;
-      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
-    }
-    
-    .nav-book:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(250, 204, 21, 0.4);
+      font-weight: 700;
     }
 
-    /* Mobile Menu */
+    /* Mobile Menu Toggle */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -213,36 +155,26 @@
       padding: 5px;
       z-index: 101;
     }
-    
-    .menu-toggle span {
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      transition: 0.3s;
-    }
+    .menu-toggle span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
 
-    /* ================= HERO SECTION (CANVAS) ================= */
+    /* ================= HERO SECTION ================= */
     .hero-section {
       position: relative;
       background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
       color: #fff;
-      padding: 6rem 1rem 8rem;
+      /* Increased bottom padding to prevent overlap with scroll button */
+      padding: 8rem 1rem 12rem; 
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 90vh;
+      min-height: 95vh;
     }
 
-    /* The Canvas sits behind content */
     #hero-canvas {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      opacity: 0.6;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 1; opacity: 0.5;
     }
 
     .hero-content {
@@ -271,11 +203,11 @@
     h1 {
       font-size: clamp(2.8rem, 6vw, 4.5rem);
       margin: 0 0 1.5rem;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: -0.02em;
+      line-height: 1.1;
       animation: fadeInUp 1s ease-out 0.2s backwards;
     }
-    
     h1 span {
       background: linear-gradient(135deg, var(--accent-blue), #a5f3fc);
       -webkit-background-clip: text;
@@ -285,7 +217,7 @@
     .tagline {
       font-size: 1.25rem;
       color: #cbd5e1;
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
       animation: fadeInUp 1s ease-out 0.4s backwards;
@@ -303,43 +235,38 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.9rem 2rem;
+      padding: 1rem 2.2rem;
       border-radius: 99px;
       font-weight: 600;
       text-decoration: none;
       transition: var(--transition-smooth);
-      font-size: 1rem;
+      font-size: 1.05rem;
       cursor: pointer;
     }
-
     .btn-primary {
       background: var(--accent-blue);
       color: var(--dark-blue);
       border: 2px solid var(--accent-blue);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
     }
-    
     .btn-primary:hover {
       background: #0ea5e9;
       transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
     }
-
     .btn-outline {
       background: transparent;
       color: #fff;
       border: 2px solid rgba(255,255,255,0.3);
     }
-    
     .btn-outline:hover {
       border-color: #fff;
       background: rgba(255,255,255,0.1);
     }
 
-    /* Scroll Indicator */
     .scroll-indicator {
       position: absolute;
-      bottom: 30px;
+      bottom: 40px; /* Moved up slightly */
       left: 50%;
       transform: translateX(-50%);
       color: rgba(255,255,255,0.5);
@@ -347,117 +274,130 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       z-index: 2;
       animation: bounce 2s infinite;
+      pointer-events: none; /* Ensures clicks pass through if overlaps occur */
     }
-
     @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
-
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ================= SERVICES SECTION ================= */
+    /* ================= "HOW IT WORKS" (EASY START) ================= */
+    .steps-section {
+      padding: 4rem 1rem;
+      background: #fff;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .step-card {
+      text-align: center;
+      padding: 1.5rem;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--mid-blue);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .step-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--dark-blue); }
+    .step-card p { font-size: 0.95rem; color: var(--text-muted); }
+
+    /* ================= SERVICES (REVISED) ================= */
     .services-section {
       padding: 6rem 1rem;
-      background: #ffffff;
+      background: #f8fafc;
     }
+    
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    .section-header h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 1rem; }
+    .section-header p { color: var(--text-muted); font-size: 1.1rem; }
     
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
-      margin-top: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
     
     .service-card {
       background: #fff;
-      border: 1px solid #e2e8f0;
       border-radius: var(--radius-lg);
-      padding: 2rem;
-      transition: var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
+      padding: 2.5rem;
       box-shadow: var(--shadow-card);
-    }
-    
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+      transition: var(--transition-smooth);
+      border-top: 4px solid transparent;
     }
     
     .service-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-10px);
       box-shadow: var(--shadow-hover);
-      border-color: var(--gold);
-    }
-    
-    .service-card:hover::before {
-      transform: scaleX(1);
+      border-top-color: var(--gold);
     }
     
     .service-icon {
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
       background: var(--soft-blue);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 1.5rem;
-      color: var(--mid-blue);
-      transition: all 0.3s;
+      color: var(--accent-blue);
     }
     
-    .service-card:hover .service-icon {
-      background: var(--mid-blue);
-      color: var(--gold);
+    .service-card h3 { margin: 0 0 0.75rem; font-size: 1.5rem; color: var(--dark-blue); }
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
     }
-    
-    .service-card h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.35rem;
-      color: var(--dark-blue);
-    }
-    
-    .service-card p {
-      color: var(--text-muted);
+    .service-list li {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 0.8rem;
       font-size: 0.95rem;
-    }
-
-    /* ================= NEW VISUAL BENEFITS SECTION ================= */
-    .visual-benefits {
-      padding: 6rem 1rem;
-      background: #f8fafc;
-      position: relative;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 4rem;
-    }
-    
-    .section-header h2 {
-      font-size: 2.5rem;
-      color: var(--dark-blue);
-      margin-bottom: 1rem;
-    }
-    
-    .section-header p {
       color: var(--text-muted);
-      font-size: 1.1rem;
+    }
+    .service-list li svg {
+      color: var(--accent-blue);
+      flex-shrink: 0;
+      margin-top: 4px;
     }
 
-    .benefits-dashboard {
+    /* ================= PHYSIOLOGY (SCIENTIFIC) ================= */
+    .physiology-section {
+      padding: 6rem 1rem;
+      background: #fff;
+    }
+
+    .science-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
@@ -465,338 +405,121 @@
       margin: 0 auto;
     }
 
-    .dash-card {
+    .science-card {
       background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: var(--radius-lg);
       padding: 2rem;
-      border: 1px solid #e2e8f0;
       transition: var(--transition-smooth);
       position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-card);
     }
-
-    .dash-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    
+    .science-card:hover {
       border-color: var(--accent-blue);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
     }
 
-    .icon-wrapper {
-      width: 64px;
-      height: 64px;
-      background: var(--soft-blue);
+    .science-tag {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .science-stat {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--dark-blue);
+      margin: 0.5rem 0;
+      line-height: 1;
+    }
+
+    .citation-box {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .citation-icon {
+      background: #f1f5f9;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .icon-svg {
-      width: 32px;
-      height: 32px;
-      fill: var(--mid-blue);
-      transition: fill 0.3s;
-    }
-
-    /* Specific Animations */
-    .heart-beat { animation: heartbeat 1.5s ease-in-out infinite; }
-    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.15); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } 60% { transform: scale(1); } }
-    
-    .brain-glow { animation: brainPulse 3s infinite alternate; }
-    @keyframes brainPulse { 0% { filter: drop-shadow(0 0 0 rgba(56,189,248,0)); } 100% { filter: drop-shadow(0 0 8px rgba(56,189,248,0.8)); } }
-    
-    .blood-flow { animation: flow 2s infinite ease-in-out; transform-origin: center; }
-    @keyframes flow { 0% { transform: translateY(0); } 50% { transform: translateY(-3px); } 100% { transform: translateY(0); } }
-
-    .dash-card h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.4rem;
-      color: var(--dark-blue);
-    }
-    
-    .dash-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-
-    /* Data Visualizations */
-    .data-viz {
-      background: #f1f5f9;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-top: auto;
-    }
-    
-    .viz-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #64748b;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    .bar-chart {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    
-    .bar-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .bar-label {
-      width: 60px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--mid-blue);
-    }
-    
-    .bar-track {
-      flex: 1;
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .bar-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: var(--accent-blue);
-      width: 0; /* Animated via JS */
-      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    
-    .bar-fill.danger { background: #cbd5e1; } 
-    
-    .viz-stat {
-      text-align: right;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dark-blue);
-      line-height: 1;
-      margin-top: 0.5rem;
-    }
-
-    /* ================= GAUGE RESULTS SECTION ================= */
-    .results-section {
-      background: var(--dark-blue);
-      color: #fff;
-      padding: 6rem 1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Subtle background pattern for results */
-    .results-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.05), transparent 70%);
-      pointer-events: none;
-    }
-    
-    .gauges-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 3rem auto 0;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .gauge-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1rem;
-      padding: 2rem 1rem;
-      position: relative;
-      backdrop-filter: blur(5px);
-    }
-    
-    .gauge-wrapper {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 1.5rem;
-      position: relative;
-    }
-    
-    .gauge-svg {
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
-    }
-    
-    .gauge-bg {
-      fill: none;
-      stroke: rgba(255,255,255,0.1);
-      stroke-width: 8;
-    }
-    
-    .gauge-progress {
-      fill: none;
-      stroke: var(--accent-blue);
-      stroke-width: 8;
-      stroke-dasharray: 339.292; 
-      stroke-dashoffset: 339.292;
-      transition: stroke-dashoffset 2s ease-out;
-      stroke-linecap: round;
-    }
-    
-    .gauge-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    
-    .gauge-label {
-      font-size: 1.1rem;
-      color: #94a3b8;
-      margin-bottom: 0.5rem;
-      display: block;
+      font-weight: bold;
+      font-family: serif;
     }
 
     /* ================= TESTIMONIALS ================= */
     .testimonial-section {
       padding: 6rem 1rem;
-      background: #ffffff;
+      background: #f8fafc;
       text-align: center;
     }
-
-    .testimonial-slider {
-      max-width: 800px;
-      margin: 3rem auto 0;
-      position: relative;
-      overflow: hidden;
-      min-height: 250px;
-    }
-
-    .testimonial-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
     
-    .testimonial-slide.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
+    .testimonial-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 3rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
     }
 
     .quote-text {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--text-dark);
       margin-bottom: 1.5rem;
-      line-height: 1.6;
     }
 
-    .quote-author {
-      font-weight: 700;
-      color: var(--dark-blue);
-    }
-
-    .quote-role {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #e2e8f0;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .dot.active {
-      background: var(--accent-blue);
-    }
-
-    /* ================= CONTACT SECTION ================= */
+    /* ================= CONTACT ================= */
     .contact-section {
-      background: #f1f5f9;
-      padding: 5rem 1rem;
-    }
-    
-    .contact-card {
-      background: #fff;
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-    }
-    
-    .contact-info {
       background: var(--mid-blue);
+      padding: 5rem 1rem;
       color: #fff;
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
     
-    .contact-form-wrapper {
-      padding: 3rem;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .contact-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .contact-content p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
+    
+    .contact-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      color: var(--text-dark);
     }
     
     input, textarea {
       width: 100%;
       padding: 0.9rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       font-family: inherit;
       background: #f8fafc;
-      transition: border-color 0.2s;
-    }
-    
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-      background: #fff;
     }
     
     button[type="submit"] {
@@ -809,64 +532,34 @@
       font-weight: 600;
       width: 100%;
       transition: 0.2s;
-      font-size: 1rem;
     }
-    
-    button[type="submit"]:hover {
-      background: var(--accent-blue);
+    button[type="submit"]:hover { background: var(--accent-blue); }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--gold);
       color: var(--dark-blue);
-    }
-
-    /* Footer */
-    footer {
-      background: #020617;
-      color: #64748b;
-      padding: 3rem 1rem;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .footer-links a {
-      color: #94a3b8;
+      padding: 1rem 1.5rem;
+      border-radius: 99px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       text-decoration: none;
-      font-size: 0.9rem;
+      z-index: 999;
+      transform: translateY(100px);
+      transition: transform 0.4s ease;
     }
-    
-    .footer-links a:hover { color: #fff; }
+    .floating-cta.visible { transform: translateY(0); }
+    .floating-cta:hover { transform: scale(1.05); }
 
-    /* Responsive */
     @media (max-width: 768px) {
-      .grid-2, .contact-card {
-        grid-template-columns: 1fr;
-      }
-      
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--mid-blue);
-        flex-direction: column;
-        padding: 1rem;
-        align-items: stretch;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      }
-      
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--mid-blue); flex-direction: column; padding: 1rem; }
       .nav-links.active { display: flex; }
       .menu-toggle { display: flex; }
-      
-      .contact-info { padding: 2rem; }
-      .contact-form-wrapper { padding: 2rem; }
-      
-      h1 { font-size: 2.5rem; }
+      .hero-section { padding-bottom: 8rem; } /* Adjust for mobile */
     }
   </style>
 </head>
@@ -876,45 +569,38 @@
   <header id="header">
     <div class="header-container">
       <a href="#" class="logo">
-        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 20 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#38BDF8"/>
           <path d="M11 20L17 26L29 14" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span>Olympian Health</span>
       </a>
-
-      <button class="menu-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-
+      <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
       <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#benefits">Benefits</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="booking.html" class="nav-pill nav-book">Book Now</a></li>
+        <li><a href="#science">The Science</a></li>
+        <li><a href="#contact" class="nav-pill nav-book">Book Consult</a></li>
       </ul>
     </div>
   </header>
 
   <!-- HERO SECTION -->
   <section class="hero-section">
-    <!-- CANVAS BACKGROUND -->
     <canvas id="hero-canvas"></canvas>
-    
     <div class="hero-content">
-      <div class="hero-badge">Now Serving Battle Ground, WA</div>
+      <div class="hero-badge">Serving Battle Ground & Vancouver, WA</div>
       <h1>
-        Movement is Medicine.<br>
-        <span>End Pain. Start Thriving.</span>
+        We Bring the Clinic<br>
+        <span>To Your Living Room.</span>
       </h1>
       <p class="tagline">
-        We bring evidence-based physical training directly to your living room. 
-        Rebuild strength, balance, and confidence in the comfort of home.
+        Specialized mobile personal training for seniors in Assisted Living and Private Homes. 
+        Reclaim your strength and independence without the hassle of travel.
       </p>
       <div class="hero-buttons">
-        <a href="booking.html" class="btn btn-primary">Book Free Consult</a>
-        <a href="#services" class="btn btn-outline">View Services</a>
+        <a href="#contact" class="btn btn-primary">Book Free Consultation</a>
+        <a href="#process" class="btn btn-outline">See How It Works</a>
       </div>
       
       <div class="scroll-indicator">
@@ -924,12 +610,39 @@
     </div>
   </section>
 
-  <!-- SERVICES SECTION -->
+  <!-- HOW IT WORKS (EASY START) -->
+  <section class="steps-section" id="process">
+    <div class="container">
+      <div class="section-header">
+        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">It’s Easier Than You Think</h2>
+        <p>Getting started takes three simple steps. We handle the details.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <h3>Book a Free Chat</h3>
+          <p>We schedule a quick phone call or visit to discuss your goals and medical history.</p>
+        </div>
+        <div class="step-card reveal delay-100">
+          <div class="step-number">2</div>
+          <h3>We Come to You</h3>
+          <p>We meet you in your apartment or home. We bring all necessary equipment.</p>
+        </div>
+        <div class="step-card reveal delay-200">
+          <div class="step-number">3</div>
+          <h3>Start Thriving</h3>
+          <p>Follow a gentle, evidence-based plan designed specifically for your body.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVISED SERVICES -->
   <section class="services-section" id="services">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Tailored Services for Your Needs</h2>
-        <p>We don't do cookie-cutter programs. Everything is adapted to your home environment and medical history.</p>
+        <h2>Designed for Assisted Living & Home Care</h2>
+        <p>We specialize in working within senior communities. We coordinate with your care team to ensure safety.</p>
       </div>
       
       <div class="services-grid">
@@ -938,464 +651,229 @@
           <div class="service-icon">
             <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
           </div>
-          <h3>In-Home Training</h3>
-          <p>We come to you. We bring the equipment, the expertise, and the plan. You provide the living room.</p>
+          <h3>In-Home & Assisted Living</h3>
+          <p>No gym required. We are experts at modifying exercises for small spaces, utilizing chairs, walkers, and bed-side techniques if needed.</p>
+          <ul class="service-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> We travel to your facility</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Coordination with nursing staff</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Safety-first protocols</li>
+          </ul>
         </div>
         
         <!-- Service 2 -->
         <div class="service-card reveal delay-200">
           <div class="service-icon">
-            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <h3>Telehealth Coaching</h3>
-          <p>Perfect for independent seniors or those traveling. High-quality coaching via secure video call.</p>
-        </div>
-        
-        <!-- Service 3 -->
-        <div class="service-card reveal delay-300">
-          <div class="service-icon">
-            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-          </div>
-          <h3>Senior Communities</h3>
-          <p>Group classes and 1-on-1 specialized sessions for residents of Assisted and Independent Living.</p>
+          <h3>We Bring The Equipment</h3>
+          <p>Don't worry about buying weights. We arrive with a sanitized kit of resistance bands, light weights, and balance tools tailored to you.</p>
+          <ul class="service-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Sanitized before every visit</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Low-impact resistance tools</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Balance pads & safety rails</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VISUAL BENEFITS SECTION -->
-  <section class="visual-benefits" id="benefits">
+  <!-- EXPANDED PHYSIOLOGY SECTION -->
+  <section class="physiology-section" id="science">
     <div class="container">
       <div class="section-header reveal">
-        <h2>The Physiology of Movement</h2>
-        <p>See exactly how evidence-based exercise transforms your body at the cellular level.</p>
+        <h2>The Science of Aging Backwards</h2>
+        <p>Exercise isn't just "good for you." It triggers specific, measurable physiological changes that reverse aging markers. Here is the data.</p>
       </div>
 
-      <div class="benefits-dashboard">
-        
-        <!-- CARD 1: HEART -->
-        <div class="dash-card reveal observer-target">
-          <div class="icon-wrapper">
-            <svg class="icon-svg heart-beat" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-          </div>
-          <h3>Heart Health</h3>
-          <p>Regular activity strengthens the heart muscle, allowing it to pump more efficiently with less strain.</p>
-          
-          <div class="data-viz">
-            <span class="viz-title">Mortality Risk Reduction</span>
-            <div class="bar-chart">
-              <div class="bar-group">
-                <span class="bar-label">Inactive</span>
-                <div class="bar-track"><div class="bar-fill danger" style="width: 90%"></div></div>
-              </div>
-              <div class="bar-group">
-                <span class="bar-label">Active</span>
-                <div class="bar-track"><div class="bar-fill" data-width="60%"></div></div>
-              </div>
-            </div>
-            <div class="viz-stat">
-              -30%
-              <small>Lower risk of early death</small>
-            </div>
+      <div class="science-grid">
+        <!-- Stat 1: Muscle Mass -->
+        <div class="science-card reveal">
+          <span class="science-tag">Sarcopenia Reversal</span>
+          <div class="science-stat">113%</div>
+          <p>Increase in muscle strength observed in 90-year-old nursing home residents after just 8 weeks of high-intensity resistance training.</p>
+          <div class="citation-box">
+            <div class="citation-icon">i</div>
+            <span>Fiatarone et al. <em>JAMA</em>, 1990.</span>
           </div>
         </div>
 
-        <!-- CARD 2: METABOLISM -->
-        <div class="dash-card reveal observer-target delay-100">
-          <div class="icon-wrapper">
-            <svg class="icon-svg blood-flow" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-              <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-            </svg>
-          </div>
-          <h3>Blood Sugar</h3>
-          <p>Muscles act as a "sponge" for glucose. A simple 10-minute walk after meals can significantly blunt sugar spikes.</p>
-          
-          <div class="data-viz">
-            <span class="viz-title">Type 2 Diabetes Risk</span>
-            <div class="bar-chart">
-              <div class="bar-group">
-                <span class="bar-label">Inactive</span>
-                <div class="bar-track"><div class="bar-fill danger" style="width: 80%"></div></div>
-              </div>
-              <div class="bar-group">
-                <span class="bar-label">Active</span>
-                <div class="bar-track"><div class="bar-fill" data-width="40%"></div></div>
-              </div>
-            </div>
-            <div class="viz-stat">
-              -40%
-              <small>Lower development risk</small>
-            </div>
+        <!-- Stat 2: Fall Risk -->
+        <div class="science-card reveal delay-100">
+          <span class="science-tag">Fall Prevention</span>
+          <div class="science-stat">-23%</div>
+          <p>Reduction in the rate of falls among older adults who participated in exercise programs compared to controls.</p>
+          <div class="citation-box">
+            <div class="citation-icon">i</div>
+            <span>Sherrington et al. <em>Cochrane Database Syst Rev</em>, 2019.</span>
           </div>
         </div>
 
-        <!-- CARD 3: BRAIN/FALLS -->
-        <div class="dash-card reveal observer-target delay-200">
-          <div class="icon-wrapper">
-            <svg class="icon-svg brain-glow" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M3.343 15.657l-.707.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-          </div>
-          <h3>Independence</h3>
-          <p>Strength + Balance training is the #1 way to prevent falls and maintain your ability to live at home.</p>
-          
-          <div class="data-viz">
-            <span class="viz-title">Fall Risk Reduction</span>
-            <div class="bar-chart">
-              <div class="bar-group">
-                <span class="bar-label">No Train</span>
-                <div class="bar-track"><div class="bar-fill danger" style="width: 85%"></div></div>
-              </div>
-              <div class="bar-group">
-                <span class="bar-label">Trained</span>
-                <div class="bar-track"><div class="bar-fill" data-width="55%"></div></div>
-              </div>
-            </div>
-            <div class="viz-stat">
-              -30%
-              <small>Fewer falls recorded</small>
-            </div>
+        <!-- Stat 3: Brain Health -->
+        <div class="science-card reveal delay-200">
+          <span class="science-tag">Cognitive Health</span>
+          <div class="science-stat">+2%</div>
+          <p>Increase in hippocampal volume (memory center) after one year of aerobic exercise, effectively reversing age-related loss by 1-2 years.</p>
+          <div class="citation-box">
+            <div class="citation-icon">i</div>
+            <span>Erickson et al. <em>PNAS</em>, 2011.</span>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- GAUGE RESULTS SECTION -->
-  <section class="results-section">
-    <div class="container">
-      <h2 class="reveal">Projected 12-Week Outcomes</h2>
-      
-      <div class="gauges-grid reveal delay-100">
-        <!-- Gauge 1 -->
-        <div class="gauge-card">
-          <div class="gauge-wrapper">
-            <svg class="gauge-svg" viewBox="0 0 120 120">
-              <circle class="gauge-bg" cx="60" cy="60" r="54" />
-              <circle class="gauge-progress" cx="60" cy="60" r="54" data-target="30" />
-            </svg>
-            <div class="gauge-text">0%</div>
+        <!-- Stat 4: Bone Density -->
+        <div class="science-card reveal delay-300">
+          <span class="science-tag">Bone Density</span>
+          <div class="science-stat">Stop Loss</div>
+          <p>Resistance training is proven to halt the age-related decline in bone mineral density and can increase density by 1-3%.</p>
+          <div class="citation-box">
+            <div class="citation-icon">i</div>
+            <span>Zhao et al. <em>Sports Medicine</em>, 2014.</span>
           </div>
-          <span class="gauge-label">Balance</span>
-          <span class="gauge-desc">Improvement in stability</span>
-        </div>
-
-        <!-- Gauge 2 -->
-        <div class="gauge-card">
-          <div class="gauge-wrapper">
-            <svg class="gauge-svg" viewBox="0 0 120 120">
-              <circle class="gauge-bg" cx="60" cy="60" r="54" />
-              <circle class="gauge-progress" cx="60" cy="60" r="54" data-target="40" />
-            </svg>
-            <div class="gauge-text">0%</div>
-          </div>
-          <span class="gauge-label">Strength</span>
-          <span class="gauge-desc">Increase in leg power</span>
-        </div>
-
-        <!-- Gauge 3 -->
-        <div class="gauge-card">
-          <div class="gauge-wrapper">
-            <svg class="gauge-svg" viewBox="0 0 120 120">
-              <circle class="gauge-bg" cx="60" cy="60" r="54" />
-              <circle class="gauge-progress" cx="60" cy="60" r="54" data-target="80" />
-            </svg>
-            <div class="gauge-text">0%</div>
-          </div>
-          <span class="gauge-label">Confidence</span>
-          <span class="gauge-desc">Report feeling "safer"</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="testimonial-section" id="reviews">
-    <div class="container">
-      <h2 class="reveal">Stories of Movement</h2>
-      <div class="testimonial-slider reveal delay-100">
-        <!-- Slide 1 -->
-        <div class="testimonial-slide active">
-          <p class="quote-text">"I was afraid to walk to the mailbox after my fall. Zeuse helped me rebuild my confidence step by step. Now I'm gardening again!"</p>
-          <p class="quote-author">Martha S.</p>
-          <p class="quote-role">Battle Ground Resident, 78</p>
-        </div>
-        <!-- Slide 2 -->
-        <div class="testimonial-slide">
-          <p class="quote-text">"The scientific approach made sense to me. It wasn't just 'exercise,' it was a prescription for my specific pain. Highly recommended."</p>
-          <p class="quote-author">Robert T.</p>
-          <p class="quote-role">Retired Engineer, 82</p>
-        </div>
-        <!-- Slide 3 -->
-        <div class="testimonial-slide">
-          <p class="quote-text">"Having a professional come to the house makes all the difference. It's safe, convenient, and I actually look forward to the sessions."</p>
-          <p class="quote-author">Eleanor D.</p>
-          <p class="quote-role">Telehealth Client, 74</p>
-        </div>
-      </div>
-      
-      <div class="dots reveal delay-100">
-        <div class="dot active" onclick="showSlide(0)"></div>
-        <div class="dot" onclick="showSlide(1)"></div>
-        <div class="dot" onclick="showSlide(2)"></div>
-      </div>
+  <section class="testimonial-section">
+    <div class="testimonial-wrapper reveal">
+      <p class="quote-text">"I was afraid I would have to leave my assisted living apartment because I couldn't get out of my chair easily. Zeuse worked with me right in my living room, and now I walk to dinner every night."</p>
+      <p style="font-weight: 700; color: var(--dark-blue);">— Martha S., Battle Ground</p>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="container">
-      <div class="contact-card reveal">
-        <div class="contact-info">
-          <h3>Let's Get Moving</h3>
-          <p style="margin-bottom: 2rem; color: #e2e8f0;">Ready to see how we can help? Fill out the form or give us a call to schedule your free consultation.</p>
-          <div>
-            <p><strong>Phone:</strong> (123) 456-7890</p>
-            <p><strong>Email:</strong> info@olympianhealth.com</p>
-            <p><strong>Area:</strong> Battle Ground, WA</p>
-          </div>
+      <div class="contact-grid">
+        <div class="contact-content">
+          <h2>Reclaim Your Independence</h2>
+          <p>You don't have to accept frailty as a normal part of aging. Let's build a plan that works for you.</p>
+          <p><strong>Call or Text:</strong> (360) 555-0123</p>
+          <p><strong>Email:</strong> info@olympianhealth.com</p>
         </div>
-        <div class="contact-form-wrapper">
+        <div class="contact-form">
+          <h3 style="margin-top: 0; color: var(--dark-blue);">Request Free Consult</h3>
           <form>
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your Name">
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="email@address.com">
-            
-            <label for="msg">How can we help?</label>
-            <textarea id="msg" rows="4" placeholder="Tell us about your goals..."></textarea>
-            
-            <button type="submit">Send Message</button>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email or Phone Number">
+            <textarea rows="4" placeholder="How can we help you?"></textarea>
+            <button type="submit">Send Request</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Floating CTA -->
+  <a href="#contact" class="floating-cta" id="floatingCTA">Book Consult</a>
+
   <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Privacy Policy</a>
-      </div>
+    <div class="container" style="text-align: center; color: #94a3b8; padding: 2rem 0;">
       <p>&copy; <span id="year">2023</span> Olympian Health Solutions. All rights reserved.</p>
-      <p style="font-size:0.8rem; opacity:0.6;">Not a substitute for medical advice. Consult your doctor before starting new exercises.</p>
     </div>
   </footer>
 
   <script>
-    // ================= 1. HEADER & NAV =================
+    // ================= 1. HEADER & SCROLL =================
+    const header = document.getElementById('header');
+    const cta = document.getElementById('floatingCTA');
+    
     window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      if (window.scrollY > 50) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
+      if (window.scrollY > 50) {
+        header.style.padding = '0.5rem 1.5rem';
+        header.style.background = 'rgba(2, 6, 23, 0.95)';
+      } else {
+        header.style.padding = '0.75rem 1.5rem';
+        header.style.background = 'rgba(2, 6, 23, 0.9)';
+      }
+      
+      // Show Floating CTA after hero
+      if (window.scrollY > 600) {
+        cta.classList.add('visible');
+      } else {
+        cta.classList.remove('visible');
+      }
     });
 
+    // Mobile Menu
     const menuBtn = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
 
-    // ================= 2. CANVAS HERO ANIMATION =================
+    // ================= 2. CANVAS ANIMATION =================
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
+    let width, height, particles = [];
     
-    let width, height;
-    let particles = [];
-    
-    // Mouse interaction
-    let mouse = { x: null, y: null, radius: 150 };
-    window.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-
     function resize() {
-      width = canvas.width = canvas.parentElement.offsetWidth;
+      width = canvas.width = window.innerWidth;
       height = canvas.height = canvas.parentElement.offsetHeight;
       initParticles();
     }
-
+    
     class Particle {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5; // slow speed
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 3 + 1;
-        this.color = '#38bdf8'; // Brand blue
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.density = (Math.random() * 30) + 1;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 2 + 1;
       }
-
       update() {
-        // Movement
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Mouse interaction (repulse)
-        if (mouse.x != null) {
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let distance = Math.sqrt(dx*dx + dy*dy);
-          if (distance < mouse.radius) {
-            const forceDirectionX = dx / distance;
-            const forceDirectionY = dy / distance;
-            const force = (mouse.radius - distance) / mouse.radius;
-            const directionX = forceDirectionX * force * this.density;
-            const directionY = forceDirectionY * force * this.density;
-            this.x -= directionX;
-            this.y -= directionY;
-          }
-        }
-
-        // Wrap around screen
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
       }
-
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(56, 189, 248, ${this.size/5})`; // faded opacity
+        ctx.fillStyle = `rgba(56, 189, 248, 0.3)`;
         ctx.fill();
       }
     }
 
     function initParticles() {
       particles = [];
-      const particleCount = Math.min(Math.floor(width * 0.1), 100); // Responsive count
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
+      for(let i=0; i<60; i++) particles.push(new Particle());
     }
 
-    function animateCanvas() {
-      ctx.clearRect(0, 0, width, height);
-      
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        
-        // Draw connections (Neural Network look)
+    function animate() {
+      ctx.clearRect(0,0,width,height);
+      particles.forEach((p, i) => {
+        p.update();
+        p.draw();
+        // Connections
         for (let j = i; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx*dx + dy*dy);
-          
-          if (distance < 100) {
+          let dx = p.x - particles[j].x;
+          let dy = p.y - particles[j].y;
+          let dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(56, 189, 248, ${1 - distance/100})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.1 - dist/1200})`;
+            ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
           }
         }
-      }
-      requestAnimationFrame(animateCanvas);
+      });
+      requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', resize);
     resize();
-    animateCanvas();
+    animate();
 
-
-    // ================= 3. SCROLL REVEAL ANIMATION =================
-    const revealElements = document.querySelectorAll('.reveal');
+    // ================= 3. SCROLL REVEAL =================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
     
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-
-    // ================= 4. DATA VIZ ANIMATION =================
-    const observerOptions = { threshold: 0.3 };
-    const vizObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bars = entry.target.querySelectorAll('.bar-fill');
-          bars.forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            if(width) bar.style.width = width;
-          });
-          vizObserver.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.observer-target').forEach(el => {
-      vizObserver.observe(el);
-    });
-
-    // ================= 5. GAUGE ANIMATION =================
-    const gaugeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const progress = entry.target;
-          const targetVal = parseInt(progress.getAttribute('data-target'));
-          const card = progress.closest('.gauge-card');
-          const textVal = card.querySelector('.gauge-text');
-          
-          const circumference = 339.292;
-          const offset = circumference - (circumference * targetVal / 100);
-          
-          progress.style.strokeDashoffset = offset;
-          
-          let count = 0;
-          const interval = setInterval(() => {
-            if (count >= targetVal) clearInterval(interval);
-            else {
-              count++;
-              textVal.textContent = count + "%";
-            }
-          }, 2000 / targetVal); 
-          
-          gaugeObserver.unobserve(progress);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.gauge-progress').forEach(el => {
-      gaugeObserver.observe(el);
-    });
-
-    // ================= 6. TESTIMONIAL SLIDER =================
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.dot');
-
-    function showSlide(n) {
-      slides[currentSlide].classList.remove('active');
-      dots[currentSlide].classList.remove('active');
-      currentSlide = (n + slides.length) % slides.length;
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
-    }
-
-    // Auto advance
-    setInterval(() => {
-      showSlide(currentSlide + 1);
-    }, 6000);
-
-    // Footer Year
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
