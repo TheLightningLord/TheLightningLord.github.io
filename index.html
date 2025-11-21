@@ -46,7 +46,7 @@
       --radius-md: 10px;
       --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
       --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
-      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     * {
@@ -66,7 +66,6 @@
       overflow-x: hidden;
     }
 
-    /* Typography Enhancements */
     h1, h2, h3 {
       line-height: 1.2;
     }
@@ -77,27 +76,41 @@
       padding: 0 1.5rem;
     }
     
-    .container-narrow {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+    /* ================= ANIMATION UTILITIES ================= */
+    /* Elements with this class will fade in when scrolled into view */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
     }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered delays for groups of elements */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
 
     /* ================= HEADER ================= */
     header {
-      background: rgba(2, 6, 23, 0.95) !important;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(2, 6, 23, 0.85) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       color: #f9fafb;
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      transition: box-shadow 0.3s ease;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: box-shadow 0.3s ease, padding 0.3s ease;
     }
     
     header.scrolled {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      padding-top: 0;
+      padding-bottom: 0;
     }
 
     .header-container {
@@ -129,7 +142,6 @@
       letter-spacing: -0.02em;
     }
 
-    /* Navigation Links */
     .nav-links {
       list-style: none;
       margin: 0;
@@ -147,19 +159,29 @@
       font-size: 0.95rem;
       font-weight: 500;
       transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .nav-links a:not(.nav-pill)::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-blue);
+      transition: var(--transition-smooth);
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:not(.nav-pill):hover::after {
+      width: 60%;
     }
 
     .nav-links a:hover {
       color: var(--white);
-      background: rgba(255,255,255,0.1);
     }
 
-    .nav-links a.active {
-      color: var(--white);
-      background: rgba(255,255,255,0.15);
-    }
-
-    /* Featured Pills in Nav */
     .nav-pill {
       font-weight: 600 !important;
     }
@@ -189,6 +211,7 @@
       border: none;
       cursor: pointer;
       padding: 5px;
+      z-index: 101;
     }
     
     .menu-toggle span {
@@ -198,69 +221,28 @@
       transition: 0.3s;
     }
 
-    /* Dropdown */
-    .dropdown { position: relative; }
-    .dropdown-content {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: var(--mid-blue);
-      min-width: 180px;
-      border-radius: var(--radius-md);
-      padding: 0.5rem;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: var(--transition-smooth);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .dropdown:hover .dropdown-content {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .dropdown-content li { list-style: none; }
-    .dropdown-content a {
-      display: block;
-      border-radius: 6px;
-    }
-
-    /* ================= HERO SECTION ================= */
+    /* ================= HERO SECTION (CANVAS) ================= */
     .hero-section {
       position: relative;
-      background: radial-gradient(circle at 20% 50%, #1e293b, #020617);
+      background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
       color: #fff;
-      padding: 5rem 1rem 6rem;
+      padding: 6rem 1rem 8rem;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 85vh;
+      min-height: 90vh;
     }
 
-    /* Animated Background Particles */
-    .hero-particles {
+    /* The Canvas sits behind content */
+    #hero-canvas {
       position: absolute;
-      inset: 0;
-      z-index: 0;
-      opacity: 0.4;
-    }
-    
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--accent-blue);
-      animation: floatUp 20s infinite linear;
-    }
-    
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      20% { opacity: 0.5; }
-      80% { opacity: 0.5; }
-      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.6;
     }
 
     .hero-content {
@@ -283,13 +265,15 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       backdrop-filter: blur(4px);
+      animation: fadeInDown 1s ease-out;
     }
 
     h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
       margin: 0 0 1.5rem;
       font-weight: 800;
       letter-spacing: -0.02em;
+      animation: fadeInUp 1s ease-out 0.2s backwards;
     }
     
     h1 span {
@@ -299,11 +283,12 @@
     }
 
     .tagline {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       color: #cbd5e1;
       max-width: 650px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
+      animation: fadeInUp 1s ease-out 0.4s backwards;
     }
 
     .hero-buttons {
@@ -311,18 +296,20 @@
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.9rem 1.8rem;
+      padding: 0.9rem 2rem;
       border-radius: 99px;
       font-weight: 600;
       text-decoration: none;
       transition: var(--transition-smooth);
       font-size: 1rem;
+      cursor: pointer;
     }
 
     .btn-primary {
@@ -349,65 +336,107 @@
       background: rgba(255,255,255,0.1);
     }
 
-    /* ================= HOW WE HELP (Cards) ================= */
-    .mission-section {
-      background: #f8fafc;
-      padding: 5rem 1rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .mission-content h2 {
-      font-size: 2.5rem;
-      color: var(--dark-blue);
-      margin-bottom: 1.5rem;
-    }
-
-    .mission-content p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-
-    .feature-cards {
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+      animation: bounce 2s infinite;
     }
 
-    .feature-card {
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ================= SERVICES SECTION ================= */
+    .services-section {
+      padding: 6rem 1rem;
+      background: #ffffff;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .service-card {
       background: #fff;
-      padding: 1.5rem;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-card);
-      border-left: 5px solid var(--gold);
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
       transition: var(--transition-smooth);
-      cursor: default;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
     }
-
-    .feature-card:hover {
-      transform: translateX(10px);
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
       box-shadow: var(--shadow-hover);
+      border-color: var(--gold);
     }
-
-    .feature-card h3 {
-      margin: 0 0 0.5rem;
-      color: var(--mid-blue);
-      font-size: 1.1rem;
+    
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--soft-blue);
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--mid-blue);
+      transition: all 0.3s;
+    }
+    
+    .service-card:hover .service-icon {
+      background: var(--mid-blue);
+      color: var(--gold);
+    }
+    
+    .service-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      color: var(--dark-blue);
+    }
+    
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
     /* ================= NEW VISUAL BENEFITS SECTION ================= */
     .visual-benefits {
       padding: 6rem 1rem;
-      background: #fff;
+      background: #f8fafc;
       position: relative;
     }
 
@@ -428,7 +457,6 @@
       font-size: 1.1rem;
     }
 
-    /* The Dashboard Grid */
     .benefits-dashboard {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -438,7 +466,7 @@
     }
 
     .dash-card {
-      background: #f8fafc;
+      background: #ffffff;
       border-radius: var(--radius-lg);
       padding: 2rem;
       border: 1px solid #e2e8f0;
@@ -447,26 +475,24 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      box-shadow: var(--shadow-card);
     }
 
     .dash-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(2, 6, 23, 0.08);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
       border-color: var(--accent-blue);
-      background: #fff;
     }
 
-    /* Icons & Animations */
     .icon-wrapper {
       width: 64px;
       height: 64px;
-      background: #fff;
+      background: var(--soft-blue);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       position: relative;
       z-index: 2;
     }
@@ -553,7 +579,7 @@
       transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
     
-    .bar-fill.danger { background: #cbd5e1; } /* Gray for inactive/high risk */
+    .bar-fill.danger { background: #cbd5e1; } 
     
     .viz-stat {
       text-align: right;
@@ -563,13 +589,6 @@
       line-height: 1;
       margin-top: 0.5rem;
     }
-    
-    .viz-stat small {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      display: block;
-    }
 
     /* ================= GAUGE RESULTS SECTION ================= */
     .results-section {
@@ -577,6 +596,20 @@
       color: #fff;
       padding: 6rem 1rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Subtle background pattern for results */
+    .results-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.05), transparent 70%);
+      pointer-events: none;
     }
     
     .gauges-grid {
@@ -585,6 +618,8 @@
       gap: 2rem;
       max-width: 1000px;
       margin: 3rem auto 0;
+      position: relative;
+      z-index: 2;
     }
     
     .gauge-card {
@@ -593,9 +628,9 @@
       border-radius: 1rem;
       padding: 2rem 1rem;
       position: relative;
+      backdrop-filter: blur(5px);
     }
     
-    /* Circular Gauge CSS */
     .gauge-wrapper {
       width: 140px;
       height: 140px;
@@ -619,7 +654,7 @@
       fill: none;
       stroke: var(--accent-blue);
       stroke-width: 8;
-      stroke-dasharray: 339.292; /* 2 * PI * 54 */
+      stroke-dasharray: 339.292; 
       stroke-dashoffset: 339.292;
       transition: stroke-dashoffset 2s ease-out;
       stroke-linecap: round;
@@ -641,10 +676,80 @@
       margin-bottom: 0.5rem;
       display: block;
     }
+
+    /* ================= TESTIMONIALS ================= */
+    .testimonial-section {
+      padding: 6rem 1rem;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .testimonial-slider {
+      max-width: 800px;
+      margin: 3rem auto 0;
+      position: relative;
+      overflow: hidden;
+      min-height: 250px;
+    }
+
+    .testimonial-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
     
-    .gauge-desc {
-      font-size: 0.85rem;
-      color: #64748b;
+    .testimonial-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .quote-text {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .quote-author {
+      font-weight: 700;
+      color: var(--dark-blue);
+    }
+
+    .quote-role {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent-blue);
     }
 
     /* ================= CONTACT SECTION ================= */
@@ -655,7 +760,7 @@
     
     .contact-card {
       background: #fff;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -667,32 +772,44 @@
     .contact-info {
       background: var(--mid-blue);
       color: #fff;
-      padding: 2.5rem;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
     .contact-form-wrapper {
-      padding: 2.5rem;
+      padding: 3rem;
     }
     
-    input, textarea, select {
+    input, textarea {
       width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 1rem;
+      padding: 0.9rem;
+      margin-bottom: 1.2rem;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       font-family: inherit;
+      background: #f8fafc;
+      transition: border-color 0.2s;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      background: #fff;
     }
     
     button[type="submit"] {
       background: var(--dark-blue);
       color: #fff;
       border: none;
-      padding: 0.8rem 1.5rem;
+      padding: 1rem 2rem;
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
       width: 100%;
       transition: 0.2s;
+      font-size: 1rem;
     }
     
     button[type="submit"]:hover {
@@ -740,26 +857,16 @@
         flex-direction: column;
         padding: 1rem;
         align-items: stretch;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       }
       
       .nav-links.active { display: flex; }
       .menu-toggle { display: flex; }
       
-      .feature-card:hover { transform: none; }
+      .contact-info { padding: 2rem; }
+      .contact-form-wrapper { padding: 2rem; }
       
-      .benefits-dashboard {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    /* Accessibility */
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
@@ -769,8 +876,7 @@
   <header id="header">
     <div class="header-container">
       <a href="#" class="logo">
-        <!-- Placeholder Logo -->
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 20 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#38BDF8"/>
           <path d="M11 20L17 26L29 14" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -783,9 +889,9 @@
 
       <ul class="nav-links">
         <li><a href="#" class="active">Home</a></li>
-        <li><a href="#benefits">Benefits</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="education.html" class="nav-pill nav-edu">Education Hub</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#reviews">Reviews</a></li>
         <li><a href="booking.html" class="nav-pill nav-book">Book Now</a></li>
       </ul>
     </div>
@@ -793,85 +899,82 @@
 
   <!-- HERO SECTION -->
   <section class="hero-section">
-    <!-- Animation Layer -->
-    <div class="hero-particles" id="particles"></div>
+    <!-- CANVAS BACKGROUND -->
+    <canvas id="hero-canvas"></canvas>
     
     <div class="hero-content">
-      <div class="hero-badge">Now Accepting New Clients in Battle Ground</div>
+      <div class="hero-badge">Now Serving Battle Ground, WA</div>
       <h1>
         Movement is Medicine.<br>
         <span>End Pain. Start Thriving.</span>
       </h1>
       <p class="tagline">
-        Evidence-based movement coaching for seniors. 
-        We bring the clinic to your living room, helping you rebuild strength and confidence without the commute.
+        We bring evidence-based physical training directly to your living room. 
+        Rebuild strength, balance, and confidence in the comfort of home.
       </p>
       <div class="hero-buttons">
         <a href="booking.html" class="btn btn-primary">Book Free Consult</a>
-        <a href="#visual-benefits" class="btn btn-outline">Why It Works</a>
+        <a href="#services" class="btn btn-outline">View Services</a>
+      </div>
+      
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
       </div>
     </div>
   </section>
 
-  <!-- HOW WE HELP -->
-  <section class="mission-section">
+  <!-- SERVICES SECTION -->
+  <section class="services-section" id="services">
     <div class="container">
-      <div class="grid-2">
-        <div class="mission-content">
-          <h2>Small Steps. <br>Giant Leaps in Quality of Life.</h2>
-          <p>
-            You don't need a gym membership or intense bootcamps. You need a plan that respects your joints, your energy levels, and your medical history.
-          </p>
-          <p>
-            We focus on the "Minimal Effective Dose"—finding the exact right amount of movement to trigger healing without causing flare-ups.
-          </p>
+      <div class="section-header reveal">
+        <h2>Tailored Services for Your Needs</h2>
+        <p>We don't do cookie-cutter programs. Everything is adapted to your home environment and medical history.</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card reveal delay-100">
+          <div class="service-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          </div>
+          <h3>In-Home Training</h3>
+          <p>We come to you. We bring the equipment, the expertise, and the plan. You provide the living room.</p>
         </div>
-        <div class="feature-cards">
-          <div class="feature-card">
-            <h3>
-              <!-- Icon -->
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-              We Come To You
-            </h3>
-            <p style="margin:0; font-size:0.9rem; color:#64748b;">
-              Private, safe sessions in your home or assisted living community.
-            </p>
+        
+        <!-- Service 2 -->
+        <div class="service-card reveal delay-200">
+          <div class="service-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
           </div>
-          <div class="feature-card">
-            <h3>
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              Evidence Based
-            </h3>
-            <p style="margin:0; font-size:0.9rem; color:#64748b;">
-              Protocols derived from clinical research, not fitness trends.
-            </p>
+          <h3>Telehealth Coaching</h3>
+          <p>Perfect for independent seniors or those traveling. High-quality coaching via secure video call.</p>
+        </div>
+        
+        <!-- Service 3 -->
+        <div class="service-card reveal delay-300">
+          <div class="service-icon">
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
           </div>
-          <div class="feature-card">
-            <h3>
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              Pain Science
-            </h3>
-            <p style="margin:0; font-size:0.9rem; color:#64748b;">
-              We re-train your nervous system to feel safe moving again.
-            </p>
-          </div>
+          <h3>Senior Communities</h3>
+          <p>Group classes and 1-on-1 specialized sessions for residents of Assisted and Independent Living.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NEW VISUAL BENEFITS SECTION -->
-  <section class="visual-benefits" id="visual-benefits">
+  <!-- VISUAL BENEFITS SECTION -->
+  <section class="visual-benefits" id="benefits">
     <div class="container">
-      <div class="section-header">
-        <h2>See the Power of Movement</h2>
-        <p>Exercise affects every system in your body. Here is what the science says happens when you move regularly.</p>
+      <div class="section-header reveal">
+        <h2>The Physiology of Movement</h2>
+        <p>See exactly how evidence-based exercise transforms your body at the cellular level.</p>
       </div>
 
       <div class="benefits-dashboard">
         
         <!-- CARD 1: HEART -->
-        <div class="dash-card observer-target">
+        <div class="dash-card reveal observer-target">
           <div class="icon-wrapper">
             <svg class="icon-svg heart-beat" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
               <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -900,7 +1003,7 @@
         </div>
 
         <!-- CARD 2: METABOLISM -->
-        <div class="dash-card observer-target">
+        <div class="dash-card reveal observer-target delay-100">
           <div class="icon-wrapper">
             <svg class="icon-svg blood-flow" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
               <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -929,7 +1032,7 @@
         </div>
 
         <!-- CARD 3: BRAIN/FALLS -->
-        <div class="dash-card observer-target">
+        <div class="dash-card reveal observer-target delay-200">
           <div class="icon-wrapper">
             <svg class="icon-svg brain-glow" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
               <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M3.343 15.657l-.707.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -964,10 +1067,9 @@
   <!-- GAUGE RESULTS SECTION -->
   <section class="results-section">
     <div class="container">
-      <h2>Projected Outcomes</h2>
-      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">Based on 12 weeks of consistent, evidence-based training.</p>
+      <h2 class="reveal">Projected 12-Week Outcomes</h2>
       
-      <div class="gauges-grid">
+      <div class="gauges-grid reveal delay-100">
         <!-- Gauge 1 -->
         <div class="gauge-card">
           <div class="gauge-wrapper">
@@ -978,7 +1080,7 @@
             <div class="gauge-text">0%</div>
           </div>
           <span class="gauge-label">Balance</span>
-          <span class="gauge-desc">Improvement in stability scores</span>
+          <span class="gauge-desc">Improvement in stability</span>
         </div>
 
         <!-- Gauge 2 -->
@@ -1004,8 +1106,41 @@
             <div class="gauge-text">0%</div>
           </div>
           <span class="gauge-label">Confidence</span>
-          <span class="gauge-desc">Report feeling "safer" at home</span>
+          <span class="gauge-desc">Report feeling "safer"</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonial-section" id="reviews">
+    <div class="container">
+      <h2 class="reveal">Stories of Movement</h2>
+      <div class="testimonial-slider reveal delay-100">
+        <!-- Slide 1 -->
+        <div class="testimonial-slide active">
+          <p class="quote-text">"I was afraid to walk to the mailbox after my fall. Zeuse helped me rebuild my confidence step by step. Now I'm gardening again!"</p>
+          <p class="quote-author">Martha S.</p>
+          <p class="quote-role">Battle Ground Resident, 78</p>
+        </div>
+        <!-- Slide 2 -->
+        <div class="testimonial-slide">
+          <p class="quote-text">"The scientific approach made sense to me. It wasn't just 'exercise,' it was a prescription for my specific pain. Highly recommended."</p>
+          <p class="quote-author">Robert T.</p>
+          <p class="quote-role">Retired Engineer, 82</p>
+        </div>
+        <!-- Slide 3 -->
+        <div class="testimonial-slide">
+          <p class="quote-text">"Having a professional come to the house makes all the difference. It's safe, convenient, and I actually look forward to the sessions."</p>
+          <p class="quote-author">Eleanor D.</p>
+          <p class="quote-role">Telehealth Client, 74</p>
+        </div>
+      </div>
+      
+      <div class="dots reveal delay-100">
+        <div class="dot active" onclick="showSlide(0)"></div>
+        <div class="dot" onclick="showSlide(1)"></div>
+        <div class="dot" onclick="showSlide(2)"></div>
       </div>
     </div>
   </section>
@@ -1013,11 +1148,11 @@
   <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="container">
-      <div class="contact-card">
+      <div class="contact-card reveal">
         <div class="contact-info">
-          <h3>Get in Touch</h3>
-          <p>Ready to see how we can help? Fill out the form or give us a call.</p>
-          <div style="margin-top: 2rem;">
+          <h3>Let's Get Moving</h3>
+          <p style="margin-bottom: 2rem; color: #e2e8f0;">Ready to see how we can help? Fill out the form or give us a call to schedule your free consultation.</p>
+          <div>
             <p><strong>Phone:</strong> (123) 456-7890</p>
             <p><strong>Email:</strong> info@olympianhealth.com</p>
             <p><strong>Area:</strong> Battle Ground, WA</p>
@@ -1055,66 +1190,162 @@
   </footer>
 
   <script>
-    // 1. Header Scroll Effect
+    // ================= 1. HEADER & NAV =================
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+      if (window.scrollY > 50) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
     });
 
-    // 2. Mobile Menu Toggle
     const menuBtn = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
 
-    // 3. Particle Generator for Hero
-    const particleContainer = document.getElementById('particles');
-    function createParticles() {
-      for (let i = 0; i < 15; i++) {
-        const p = document.createElement('div');
-        p.classList.add('particle');
-        // Randomize
-        p.style.left = Math.random() * 100 + '%';
-        p.style.width = Math.random() * 10 + 5 + 'px';
-        p.style.height = p.style.width;
-        p.style.animationDuration = Math.random() * 10 + 10 + 's';
-        p.style.animationDelay = Math.random() * 5 + 's';
-        particleContainer.appendChild(p);
+    // ================= 2. CANVAS HERO ANIMATION =================
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    let particles = [];
+    
+    // Mouse interaction
+    let mouse = { x: null, y: null, radius: 150 };
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    function resize() {
+      width = canvas.width = canvas.parentElement.offsetWidth;
+      height = canvas.height = canvas.parentElement.offsetHeight;
+      initParticles();
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5; // slow speed
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 3 + 1;
+        this.color = '#38bdf8'; // Brand blue
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 30) + 1;
+      }
+
+      update() {
+        // Movement
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Mouse interaction (repulse)
+        if (mouse.x != null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx*dx + dy*dy);
+          if (distance < mouse.radius) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const force = (mouse.radius - distance) / mouse.radius;
+            const directionX = forceDirectionX * force * this.density;
+            const directionY = forceDirectionY * force * this.density;
+            this.x -= directionX;
+            this.y -= directionY;
+          }
+        }
+
+        // Wrap around screen
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56, 189, 248, ${this.size/5})`; // faded opacity
+        ctx.fill();
       }
     }
-    createParticles();
 
-    // 4. Intersection Observer for Visualizations
-    const observerOptions = {
-      threshold: 0.3
-    };
+    function initParticles() {
+      particles = [];
+      const particleCount = Math.min(Math.floor(width * 0.1), 100); // Responsive count
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
 
-    const observer = new IntersectionObserver((entries) => {
+    function animateCanvas() {
+      ctx.clearRect(0, 0, width, height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        
+        // Draw connections (Neural Network look)
+        for (let j = i; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx*dx + dy*dy);
+          
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(56, 189, 248, ${1 - distance/100})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateCanvas);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animateCanvas();
+
+
+    // ================= 3. SCROLL REVEAL ANIMATION =================
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Animate Bar Charts
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+
+    // ================= 4. DATA VIZ ANIMATION =================
+    const observerOptions = { threshold: 0.3 };
+    const vizObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
           const bars = entry.target.querySelectorAll('.bar-fill');
           bars.forEach(bar => {
             const width = bar.getAttribute('data-width');
             if(width) bar.style.width = width;
           });
-          
-          // Stop observing once animated
-          observer.unobserve(entry.target);
+          vizObserver.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
     document.querySelectorAll('.observer-target').forEach(el => {
-      observer.observe(el);
+      vizObserver.observe(el);
     });
 
-    // 5. Gauge Animation
+    // ================= 5. GAUGE ANIMATION =================
     const gaugeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1123,14 +1354,11 @@
           const card = progress.closest('.gauge-card');
           const textVal = card.querySelector('.gauge-text');
           
-          // Calculate Offset (Circumference = ~339)
-          // Offset = 339 - (339 * percentage / 100)
           const circumference = 339.292;
           const offset = circumference - (circumference * targetVal / 100);
           
           progress.style.strokeDashoffset = offset;
           
-          // Animate Numbers
           let count = 0;
           const interval = setInterval(() => {
             if (count >= targetVal) clearInterval(interval);
@@ -1138,7 +1366,7 @@
               count++;
               textVal.textContent = count + "%";
             }
-          }, 2000 / targetVal); // dynamic speed
+          }, 2000 / targetVal); 
           
           gaugeObserver.unobserve(progress);
         }
@@ -1148,6 +1376,24 @@
     document.querySelectorAll('.gauge-progress').forEach(el => {
       gaugeObserver.observe(el);
     });
+
+    // ================= 6. TESTIMONIAL SLIDER =================
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    // Auto advance
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 6000);
 
     // Footer Year
     document.getElementById('year').textContent = new Date().getFullYear();
