@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Titan Protocol v4.0 | Iron Legacy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --panel-bg: rgba(10, 10, 12, 0.95);
+      --neon-blue: #00f3ff;
+      --neon-pink: #ff00ff;
+      --neon-green: #00ff9d;
+      --neon-gold: #ffd700;
+      --danger: #ff2a2a;
+      
+      --font-main: 'Rajdhani', sans-serif;
+      --font-tech: 'Orbitron', sans-serif;
+    }
+
+    body {
+      margin: 0; overflow: hidden; background: var(--bg-dark); color: #fff; font-family: var(--font-main);
+      user-select: none; -webkit-user-select: none;
+    }
+
+    #game-wrapper { position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); }
+    
+    canvas { box-shadow: 0 0 150px rgba(0, 243, 255, 0.05); border: 1px solid #222; }
+
+    /* --- HUD --- */
+    #hud-layer { position: absolute; inset: 0; pointer-events: none; }
+
+    .hud-panel {
+      position: absolute; background: var(--panel-bg); border: 1px solid #333; padding: 15px; border-radius: 6px; pointer-events: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+    }
+
+    /* Top Left Stats */
+    .profile-panel { top: 20px; left: 20px; width: 300px; border-left: 4px solid var(--neon-blue); }
+    
+    .char-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-tech); letter-spacing: 1px; }
+    .rank-badge { font-size: 10px; background: #222; padding: 2px 6px; border-radius: 4px; color: #888; border: 1px solid #444; }
+
+    .bar-group { margin-bottom: 8px; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 12px; color: #aaa; margin-bottom: 2px; }
+    .bar-track { height: 6px; background: #222; border-radius: 3px; overflow: hidden; position: relative; }
+    .bar-fill { height: 100%; width: 100%; transition: width 0.3s ease-out; position: relative; }
+    .bar-fill::after { content:''; position: absolute; top:0; right:0; bottom:0; width: 2px; background: #fff; box-shadow: 0 0 5px #fff; }
+    
+    .fill-hp { background: var(--danger); box-shadow: 0 0 10px var(--danger); }
+    .fill-energy { background: var(--neon-gold); box-shadow: 0 0 10px var(--neon-gold); }
+    .fill-rec { background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+    .fill-risk { background: linear-gradient(90deg, var(--neon-green), var(--danger)); }
+
+    .stat-row { display: flex; justify-content: space-between; margin-top: 10px; border-top: 1px solid #333; padding-top: 10px; font-size: 14px; }
+    .stat-val { font-family: var(--font-tech); color: var(--neon-blue); }
+
+    /* Bottom Log */
+    .log-panel { 
+      bottom: 20px; left: 20px; width: 350px; height: 150px; border-left: 4px solid var(--neon-gold);
+      display: flex; flex-direction: column-reverse; overflow: hidden; font-size: 13px; 
+      text-shadow: 0 1px 1px #000; pointer-events: none; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); border: none;
+    }
+    .log-msg { margin-bottom: 4px; padding: 2px 5px; border-radius: 2px; animation: fadeIn 0.2s ease-out; }
+    .log-info { color: #aaa; }
+    .log-gain { color: var(--neon-green); border-left: 2px solid var(--neon-green); background: rgba(0, 255, 157, 0.05); }
+    .log-warn { color: var(--danger); border-left: 2px solid var(--danger); background: rgba(255, 42, 42, 0.05); }
+    .log-pr { color: var(--neon-gold); font-weight: bold; border: 1px solid var(--neon-gold); text-align: center; background: rgba(255, 215, 0, 0.1); }
+
+    @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+
+    /* --- MINIGAME OVERLAYS --- */
+    .minigame-overlay {
+      display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 400px; background: rgba(10, 12, 16, 0.98); border: 2px solid var(--neon-blue); border-radius: 12px;
+      padding: 25px; text-align: center; pointer-events: auto; z-index: 50;
+      box-shadow: 0 0 50px rgba(0, 243, 255, 0.15);
+    }
+    
+    .mg-title { font-family: var(--font-tech); font-size: 24px; color: var(--neon-blue); margin-bottom: 5px; text-transform: uppercase; }
+    .mg-subtitle { font-size: 12px; color: #666; margin-bottom: 20px; letter-spacing: 1px; }
+    
+    /* Bench Press (Balance) */
+    .balance-track { width: 300px; height: 200px; background: #111; border: 1px solid #333; margin: 0 auto 20px; position: relative; overflow: hidden; border-radius: 4px; }
+    .balance-zone { width: 100%; height: 60px; background: rgba(0, 255, 157, 0.15); border-top: 2px solid var(--neon-green); border-bottom: 2px solid var(--neon-green); position: absolute; transition: top 0.1s; }
+    .balance-bar { width: 80%; height: 10px; background: var(--neon-gold); border-radius: 5px; position: absolute; left: 10%; transition: top 0.05s; box-shadow: 0 0 15px var(--neon-gold); }
+    
+    /* Squat (Timing) */
+    .timing-track { width: 300px; height: 40px; background: #111; border: 1px solid #333; margin: 0 auto 20px; position: relative; border-radius: 20px; overflow: hidden; }
+    .timing-zone { position: absolute; height: 100%; width: 40px; background: var(--neon-green); opacity: 0.3; left: 50%; transform: translateX(-50%); }
+    .timing-cursor { position: absolute; height: 100%; width: 4px; background: #fff; left: 0; box-shadow: 0 0 10px #fff; }
+
+    /* Deadlift (Mash) */
+    .mash-container { width: 300px; height: 40px; background: #111; border: 1px solid #333; margin: 0 auto 20px; position: relative; border-radius: 4px; }
+    .mash-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--danger), var(--neon-gold)); transition: width 0.05s; }
+
+    .game-btn {
+      background: var(--neon-blue); color: #000; border: none; padding: 15px 40px; 
+      font-family: var(--font-tech); font-weight: 900; font-size: 18px; cursor: pointer;
+      border-radius: 4px; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+      transition: 0.1s;
+    }
+    .game-btn:active { transform: scale(0.98); background: #fff; }
+    .game-btn.mash { background: var(--danger); color: #fff; }
+
+    /* --- PR MODAL --- */
+    #pr-modal {
+      display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+      background: rgba(0,0,0,0.9); z-index: 100; justify-content: center; align-items: center;
+      pointer-events: auto;
+    }
+    .pr-card {
+      background: #0a0a0a; border: 2px solid var(--neon-gold); padding: 40px; text-align: center;
+      border-radius: 12px; max-width: 500px; box-shadow: 0 0 100px rgba(255, 215, 0, 0.2);
+      animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    
+    .pr-plates { font-size: 60px; margin: 20px 0; text-shadow: 0 0 20px var(--neon-gold); }
+    .pr-title { font-family: var(--font-tech); color: var(--neon-gold); font-size: 32px; margin: 0; }
+    .pr-sub { color: #888; margin-bottom: 30px; }
+
+    /* --- INVENTORY --- */
+    .inventory-panel {
+      top: 20px; right: 20px; width: 200px; border-right: 4px solid var(--neon-green);
+    }
+    .inv-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 10px; }
+    .inv-slot { background: #1a1a1a; padding: 8px; border-radius: 4px; display: flex; justify-content: space-between; font-size: 12px; cursor: pointer; border: 1px solid #333; transition: 0.2s; }
+    .inv-slot:hover { border-color: var(--neon-green); background: #222; }
+    .inv-icon { font-size: 14px; margin-right: 5px; }
+
+  </style>
+</head>
+<body>
+
+<div id="game-wrapper">
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud-layer">
+    
+    <!-- Profile -->
+    <div class="hud-panel profile-panel">
+      <div class="char-header">
+        <span style="color:var(--neon-blue)">IRON LEGACY</span>
+        <span class="rank-badge" id="ui-rank">NOVICE</span>
+      </div>
+      
+      <div class="bar-group">
+        <div class="bar-label"><span>Energy (Glycogen)</span><span id="val-atp">100%</span></div>
+        <div class="bar-track"><div id="bar-atp" class="bar-fill fill-energy"></div></div>
+      </div>
+      
+      <div class="bar-group">
+        <div class="bar-label"><span>CNS Readiness</span><span id="val-cns">100%</span></div>
+        <div class="bar-track"><div id="bar-cns" class="bar-fill fill-rec"></div></div>
+      </div>
+
+      <div class="bar-group">
+        <div class="bar-label" style="color:var(--danger)"><span>Injury Risk</span><span id="val-risk">0%</span></div>
+        <div class="bar-track"><div id="bar-risk" class="bar-fill fill-risk" style="width:0%"></div></div>
+      </div>
+
+      <div class="stat-row">
+        <span>Strength Lvl <span id="ui-lvl" class="stat-val">1</span></span>
+        <span>XP <span id="ui-xp" class="stat-val">0</span></span>
+        <span>Credits <span id="ui-money" class="stat-val" style="color:var(--neon-gold)">$0</span></span>
+      </div>
+    </div>
+
+    <!-- Inventory -->
+    <div class="hud-panel inventory-panel">
+      <div style="font-family:var(--font-tech); color:var(--neon-green); border-bottom:1px solid #333; padding-bottom:5px;">SUPPLIES</div>
+      <div class="inv-grid">
+        <div class="inv-slot" onclick="game.consume('carb')">
+          <span>🍚 Carbs</span> <span id="inv-carb" style="color:var(--neon-gold)">x2</span>
+        </div>
+        <div class="inv-slot" onclick="game.consume('prot')">
+          <span>🥩 Protein</span> <span id="inv-prot" style="color:var(--neon-blue)">x0</span>
+        </div>
+      </div>
+      <div style="margin-top:10px; font-size:10px; color:#666; text-align:center;">Click to consume</div>
+    </div>
+
+    <!-- Logs -->
+    <div class="log-panel" id="game-log">
+      <div class="log-msg log-info">>> System Initialized.</div>
+      <div class="log-msg log-info">>> Welcome to the Iron Temple.</div>
+    </div>
+
+    <!-- MINIGAMES -->
+    
+    <!-- Bench Press (Stability) -->
+    <div id="mg-bench" class="minigame-overlay">
+      <div class="mg-title">BENCH PRESS</div>
+      <div class="mg-subtitle">Hold LIFT to float the bar in the green zone.</div>
+      <div class="balance-track">
+        <div id="bench-zone" class="balance-zone" style="top: 30%;"></div>
+        <div id="bench-bar" class="balance-bar" style="top: 80%;"></div>
+      </div>
+      <button class="game-btn" onmousedown="game.minigames.bench.pressing=true" onmouseup="game.minigames.bench.pressing=false" ontouchstart="game.minigames.bench.pressing=true" ontouchend="game.minigames.bench.pressing=false">PUSH</button>
+    </div>
+
+    <!-- Squat (Timing) -->
+    <div id="mg-squat" class="minigame-overlay">
+      <div class="mg-title">SQUAT</div>
+      <div class="mg-subtitle">Tap STOP when the bar aligns with the center.</div>
+      <div class="timing-track">
+        <div class="timing-zone"></div>
+        <div id="squat-cursor" class="timing-cursor"></div>
+      </div>
+      <button class="game-btn" onmousedown="game.minigames.squat.trigger()" ontouchstart="game.minigames.squat.trigger()">STOP</button>
+    </div>
+
+    <!-- Deadlift (Power) -->
+    <div id="mg-deadlift" class="minigame-overlay">
+      <div class="mg-title">DEADLIFT</div>
+      <div class="mg-subtitle">MASH the button to lock out the weight!</div>
+      <div class="mash-container">
+        <div id="dl-bar" class="mash-fill"></div>
+      </div>
+      <button class="game-btn mash" onmousedown="game.minigames.deadlift.tap()" ontouchstart="game.minigames.deadlift.tap()">PULL!</button>
+    </div>
+
+    <!-- PR Celebration -->
+    <div id="pr-modal">
+      <div class="pr-card">
+        <div class="pr-title">NEW PR!</div>
+        <div class="pr-plates">💿💿💿</div>
+        <h2 id="pr-weight" style="color:#fff; font-size:48px; font-family:var(--font-tech); margin:10px 0;">315 LBS</h2>
+        <p class="pr-sub">Strength Multiplier Increased</p>
+        <button class="game-btn" style="background:var(--neon-gold); color:#000;" onclick="game.closePR()">LIGHT WEIGHT!</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/**
+ * TITAN PROTOCOL v4.0 Engine
+ * Features: Unique Minigames, PR Boss System, Particle Effects
+ */
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+const CONFIG = { width: 1000, height: 700 };
+
+class Game {
+  constructor() {
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+    
+    this.player = {
+      x: CONFIG.width/2, y: CONFIG.height/2,
+      tx: CONFIG.width/2, ty: CONFIG.height/2,
+      state: 'idle',
+      
+      // Stats
+      lvl: 1, xp: 0, xpNext: 100,
+      str: 10, rank: 'NOVICE',
+      
+      // Resources
+      atp: 100, maxAtp: 100,
+      cns: 100, maxCns: 100,
+      fatigue: 0, // Injury risk
+      
+      // Inventory
+      protein: 0, carbs: 3, money: 0,
+      
+      // PR Progression (Bosses)
+      prTier: 0, // 0=Empty, 1=135, 2=225, 3=315, 4=405
+      prReady: false
+    };
+
+    this.stations = [
+      { id: 'bench', name: 'BENCH PRESS', x: 200, y: 200, w: 120, h: 80, color: '#2563eb', type: 'train', label: 'CHEST' },
+      { id: 'squat', name: 'SQUAT RACK', x: 200, y: 400, w: 100, h: 100, color: '#dc2626', type: 'train', label: 'LEGS' },
+      { id: 'deadlift', name: 'DEADLIFT PLATFORM', x: 700, y: 400, w: 140, h: 60, color: '#eab308', type: 'train', label: 'BACK' },
+      { id: 'shop', name: 'STORE', x: 700, y: 150, w: 100, h: 100, color: '#16a34a', type: 'shop', label: 'BUY' },
+      { id: 'pr', name: 'PR PLATFORM', x: 450, y: 50, w: 100, h: 100, color: '#fbbf24', type: 'boss', label: 'ATTEMPT PR' }
+    ];
+
+    // Minigame Engines
+    this.minigames = {
+      bench: {
+        active: false,
+        barPos: 80, // % from top (starts bottom)
+        targetPos: 30, // % from top
+        targetDir: 1,
+        pressing: false,
+        score: 0,
+        timer: 0,
+        duration: 300 // 5 seconds approx
+      },
+      squat: {
+        active: false,
+        cursorPos: 0,
+        speed: 2,
+        direction: 1,
+        trigger: () => {
+          if (!this.minigames.squat.active) return;
+          const pos = this.minigames.squat.cursorPos;
+          // Center is 150. Zone width 40. Range 130-170.
+          const success = (pos > 130 && pos < 170);
+          this.endMinigame(success, 30, 20);
+          document.getElementById('mg-squat').style.display = 'none';
+          this.minigames.squat.active = false;
+        }
+      },
+      deadlift: {
+        active: false,
+        power: 0,
+        decay: 0.8,
+        tap: () => {
+          if (!this.minigames.deadlift.active) return;
+          this.minigames.deadlift.power += 12;
+        }
+      }
+    };
+
+    this.particles = [];
+    this.floats = [];
+    
+    canvas.addEventListener('mousedown', (e) => this.click(e));
+    
+    this.loop = this.loop.bind(this);
+    requestAnimationFrame(this.loop);
+  }
+
+  resize() {
+    canvas.width = CONFIG.width;
+    canvas.height = CONFIG.height;
+  }
+
+  click(e) {
+    if (this.player.state !== 'idle' && this.player.state !== 'moving') return;
+
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    let target = null;
+    for(let s of this.stations) {
+      if(x > s.x && x < s.x + s.w && y > s.y && y < s.y + s.h) {
+        target = s;
+        break;
+      }
+    }
+
+    this.player.tx = x;
+    this.player.ty = y;
+    this.player.state = 'moving';
+    this.player.targetObj = target;
+  }
+
+  loop() {
+    // Update
+    this.updatePlayer();
+    this.updateMinigames();
+    this.updateFX();
+    
+    // Render
+    this.draw();
+    
+    requestAnimationFrame(this.loop);
+  }
+
+  updatePlayer() {
+    // Movement
+    if (this.player.state === 'moving') {
+      const dx = this.player.tx - this.player.x;
+      const dy = this.player.ty - this.player.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      
+      if (dist < 5) {
+        this.player.x = this.player.tx;
+        this.player.y = this.player.ty;
+        this.player.state = 'idle';
+        if (this.player.targetObj) this.interact(this.player.targetObj);
+      } else {
+        this.player.x += (dx/dist) * 8;
+        this.player.y += (dy/dist) * 8;
+      }
+    }
+  }
+
+  interact(obj) {
+    this.player.targetObj = null; // Clear target
+    
+    if (obj.type === 'train') {
+      if (this.player.atp < 15) { this.log("⚠️ Too hungry to lift.", "warn"); return; }
+      if (this.player.cns < 10) { this.log("⚠️ CNS Failure. Rest.", "warn"); return; }
+      
+      // Launch Specific Minigame
+      this.player.state = 'gaming';
+      if (obj.id === 'bench') this.startBench();
+      if (obj.id === 'squat') this.startSquat();
+      if (obj.id === 'deadlift') this.startDeadlift();
+    }
+    
+    if (obj.type === 'shop') {
+      this.buySupps();
+    }
+
+    if (obj.type === 'boss') {
+      if (this.player.prReady) {
+        this.attemptPR();
+      } else {
+        this.log("🔒 PR Locked. Train more.", "warn");
+      }
+    }
+  }
+
+  // --- MINIGAME LOGIC --- //
+
+  // 1. BENCH (Stability)
+  startBench() {
+    this.minigames.bench = { active: true, barPos: 80, targetPos: 50, targetDir: 1, pressing: false, score: 0, timer: 0, duration: 400 };
+    document.getElementById('mg-bench').style.display = 'block';
+  }
+  updateBench() {
+    const mg = this.minigames.bench;
+    // Target movement (oscillates)
+    mg.targetPos += 0.5 * mg.targetDir;
+    if (mg.targetPos > 70 || mg.targetPos < 20) mg.targetDir *= -1;
+    
+    // Bar movement (Physics)
+    if (mg.pressing) mg.barPos -= 1.5; // Push up
+    else mg.barPos += 2.0; // Gravity
+    if (mg.barPos > 90) mg.barPos = 90; // Floor
+    if (mg.barPos < 0) mg.barPos = 0; // Ceiling
+
+    // Scoring (Bar inside Target)
+    // Target is 60px high in CSS ~ 30% height. 
+    const dist = Math.abs(mg.barPos - mg.targetPos);
+    if (dist < 15) mg.score++;
+
+    // UI
+    document.getElementById('bench-bar').style.top = mg.barPos + '%';
+    document.getElementById('bench-zone').style.top = (mg.targetPos - 15) + '%'; // Center zone
+
+    // End Condition
+    mg.timer++;
+    if (mg.timer > mg.duration) {
+      this.endMinigame(mg.score > 200, 25, 15);
+      document.getElementById('mg-bench').style.display = 'none';
+    }
+  }
+
+  // 2. SQUAT (Timing)
+  startSquat() {
+    this.minigames.squat.active = true;
+    this.minigames.squat.cursorPos = 0;
+    this.minigames.squat.speed = 3 + (this.player.lvl * 0.5);
+    this.minigames.squat.direction = 1;
+    document.getElementById('mg-squat').style.display = 'block';
+  }
+  updateSquat() {
+    const mg = this.minigames.squat;
+    mg.cursorPos += mg.speed * mg.direction;
+    if (mg.cursorPos > 296 || mg.cursorPos < 0) mg.direction *= -1;
+    document.getElementById('squat-cursor').style.left = mg.cursorPos + 'px';
+  }
+  
+  // 3. DEADLIFT (Mash)
+  startDeadlift() {
+    this.minigames.deadlift.active = true;
+    this.minigames.deadlift.power = 0;
+    this.minigames.deadlift.decay = 0.8;
+    document.getElementById('mg-deadlift').style.display = 'block';
+  }
+  updateDeadlift() {
+    const mg = this.minigames.deadlift;
+    mg.power -= mg.decay;
+    if (mg.power < 0) mg.power = 0;
+    
+    document.getElementById('dl-bar').style.width = mg.power + '%';
+    
+    if (mg.power >= 100) {
+      this.endMinigame(true, 35, 25);
+      document.getElementById('mg-deadlift').style.display = 'none';
+      mg.active = false;
+    }
+  }
+
+  updateMinigames() {
+    if (this.minigames.bench && this.minigames.bench.active) this.updateBench();
+    if (this.minigames.squat && this.minigames.squat.active) this.updateSquat();
+    if (this.minigames.deadlift && this.minigames.deadlift.active) this.updateDeadlift();
+  }
+
+  endMinigame(success, xpBase, fatigueBase) {
+    this.player.state = 'idle';
+    
+    // Cost
+    this.player.atp -= 15;
+    this.player.cns -= 10;
+
+    if (success) {
+      this.player.xp += xpBase;
+      this.player.fatigue += fatigueBase;
+      this.player.money += 15;
+      this.log(`>> GOOD LIFT! +${xpBase} XP`, "gain");
+      this.spawnText("PERFECT REP", this.player.x, this.player.y - 50, '#00ff9d');
+      this.spawnParticles(this.player.x, this.player.y, '#00ff9d');
+    } else {
+      this.player.fatigue += fatigueBase * 2; // Penalty
+      this.log("⚠️ FAILED REP. High fatigue.", "warn");
+      this.spawnText("FAIL", this.player.x, this.player.y - 50, '#ff2a2a');
+    }
+
+    // Level Up Check
+    if (this.player.xp >= this.player.xpNext) {
+      this.player.lvl++;
+      this.player.xp = 0;
+      this.player.xpNext = Math.floor(this.player.xpNext * 1.2);
+      this.player.str += 2;
+      this.player.prReady = true; // Unlock PR Attempt
+      this.log("⭐ LEVEL UP! PR Attempt Available!", "log-pr");
+    }
+    
+    this.updateHUD();
+  }
+
+  // --- SYSTEMS ---
+  buySupps() {
+    if (this.player.money >= 20) {
+      this.player.money -= 20;
+      this.player.protein++;
+      this.player.carbs += 2;
+      this.log(">> Purchased Supplements.", "info");
+      this.spawnText("+$", this.player.x, this.player.y - 50, '#ffd700');
+    } else {
+      this.log("⚠️ Not enough Credits.", "warn");
+    }
+    this.updateHUD();
+  }
+
+  consume(type) {
+    if (type === 'carb' && this.player.carbs > 0) {
+      this.player.carbs--;
+      this.player.atp = Math.min(100, this.player.atp + 40);
+      this.log(">> Carbs: Energy Restored.", "gain");
+    }
+    if (type === 'prot' && this.player.protein > 0) {
+      this.player.protein--;
+      this.player.fatigue = Math.max(0, this.player.fatigue - 30);
+      this.player.cns = Math.min(100, this.player.cns + 30);
+      this.log(">> Protein: Recovery Boost.", "gain");
+    }
+    this.updateHUD();
+  }
+
+  attemptPR() {
+    // PR is just a harder deadlift game logic for now
+    // In a full build, this would be unique
+    const tiers = ["135 LBS", "225 LBS", "315 LBS", "405 LBS", "500 LBS"];
+    const nextWeight = tiers[this.player.prTier];
+    
+    document.getElementById('pr-weight').innerText = nextWeight;
+    document.getElementById('pr-modal').style.display = 'flex';
+    
+    this.player.prTier++;
+    this.player.prReady = false;
+    
+    // Rank Update
+    if(this.player.prTier === 1) this.player.rank = "INTERMEDIATE";
+    if(this.player.prTier === 3) this.player.rank = "ELITE";
+    if(this.player.prTier === 4) this.player.rank = "TITAN";
+  }
+
+  closePR() {
+    document.getElementById('pr-modal').style.display = 'none';
+    this.spawnParticles(CONFIG.width/2, CONFIG.height/2, '#ffd700', 50);
+    this.updateHUD();
+  }
+
+  updateHUD() {
+    // Bars
+    document.getElementById('bar-atp').style.width = this.player.atp + '%';
+    document.getElementById('bar-cns').style.width = this.player.cns + '%';
+    document.getElementById('bar-risk').style.width = this.player.fatigue + '%';
+    
+    // Stats
+    document.getElementById('ui-lvl').innerText = this.player.lvl;
+    document.getElementById('ui-xp').innerText = `${this.player.xp}/${this.player.xpNext}`;
+    document.getElementById('ui-money').innerText = this.player.money;
+    document.getElementById('ui-rank').innerText = this.player.rank;
+    
+    // Inv
+    document.getElementById('inv-carb').innerText = 'x' + this.player.carbs;
+    document.getElementById('inv-prot').innerText = 'x' + this.player.protein;
+    
+    // Text Values
+    document.getElementById('val-atp').innerText = Math.floor(this.player.atp) + '%';
+    document.getElementById('val-cns').innerText = Math.floor(this.player.cns) + '%';
+    document.getElementById('val-risk').innerText = Math.floor(this.player.fatigue) + '%';
+  }
+
+  log(msg, type) {
+    const log = document.getElementById('game-log');
+    const el = document.createElement('div');
+    el.className = `log-msg ${type}`;
+    el.innerText = msg;
+    log.prepend(el);
+    if (log.children.length > 6) log.lastChild.remove();
+  }
+
+  // --- DRAWING ---
+  draw() {
+    // Dark BG
+    ctx.fillStyle = '#050505';
+    ctx.fillRect(0, 0, CONFIG.width, CONFIG.height);
+
+    // Dynamic Floor Grid
+    ctx.strokeStyle = 'rgba(0, 243, 255, 0.05)';
+    ctx.lineWidth = 1;
+    const time = Date.now() / 1000;
+    const offset = (time * 10) % 40;
+    
+    for(let i=0; i<CONFIG.width; i+=40) { 
+      ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,CONFIG.height); ctx.stroke(); 
+    }
+    for(let i=0; i<CONFIG.height; i+=40) { 
+      ctx.beginPath(); ctx.moveTo(0,i + offset - 20); ctx.lineTo(CONFIG.width,i + offset - 20); ctx.stroke(); 
+    }
+
+    // Draw Stations (With Glow)
+    for(let s of this.stations) {
+      // Floor Glow
+      const g = ctx.createRadialGradient(s.x + s.w/2, s.y + s.h/2, 10, s.x + s.w/2, s.y + s.h/2, 80);
+      g.addColorStop(0, s.color);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(s.x-20, s.y-20, s.w+40, s.h+40);
+
+      // Base
+      ctx.fillStyle = '#111';
+      ctx.strokeStyle = s.color;
+      ctx.lineWidth = 2;
+      ctx.fillRect(s.x, s.y, s.w, s.h);
+      ctx.strokeRect(s.x, s.y, s.w, s.h);
+      
+      // Label
+      ctx.fillStyle = '#fff';
+      ctx.font = '12px "Orbitron"';
+      ctx.textAlign = 'center';
+      ctx.fillText(s.name, s.x + s.w/2, s.y - 10);
+      
+      // Icon Placeholder
+      ctx.font = '20px Arial';
+      ctx.fillStyle = s.color;
+      ctx.fillText(s.label, s.x + s.w/2, s.y + s.h/2 + 5);
+    }
+
+    // Draw Player
+    ctx.shadowBlur = 20; ctx.shadowColor = '#facc15';
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.arc(this.player.x, this.player.y, 12, 0, Math.PI*2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // FX
+    this.drawFX();
+  }
+
+  // --- FX SYSTEM ---
+  spawnText(text, x, y, color) {
+    this.floats.push({text, x, y, color, life: 1.0});
+  }
+  spawnParticles(x, y, color, count=20) {
+    for(let i=0; i<count; i++) {
+      this.particles.push({
+        x, y, color,
+        vx: (Math.random()-0.5)*8, vy: (Math.random()-0.5)*8,
+        life: 1.0
+      });
+    }
+  }
+  updateFX() {
+    // Move & Fade
+    for(let i=this.floats.length-1; i>=0; i--) {
+      this.floats[i].y -= 1;
+      this.floats[i].life -= 0.02;
+      if(this.floats[i].life <= 0) this.floats.splice(i, 1);
+    }
+    for(let i=this.particles.length-1; i>=0; i--) {
+      this.particles[i].x += this.particles[i].vx;
+      this.particles[i].y += this.particles[i].vy;
+      this.particles[i].life -= 0.05;
+      if(this.particles[i].life <= 0) this.particles.splice(i, 1);
+    }
+  }
+  drawFX() {
+    for(let t of this.floats) {
+      ctx.globalAlpha = t.life;
+      ctx.fillStyle = t.color;
+      ctx.font = 'bold 16px "Orbitron"';
+      ctx.fillText(t.text, t.x, t.y);
+    }
+    for(let p of this.particles) {
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+}
+
+const game = new Game();
+</script>
+</body>
+</html>
