@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="description" content="Olympian Health Solutions – mobile, evidence-based movement coaching for seniors and post-therapy graduates in Battle Ground, WA." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | Movement is Medicine for Seniors</title>
+  <title>Olympian Health Solutions | Movement is Medicine</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <!-- LocalBusiness Schema -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  
+  <!-- Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -31,20 +29,9 @@
     }
   </script>
 
-  <!-- Person Schema -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Zeuse Valentine",
-      "jobTitle": "Student Doctor of Physical Therapy",
-      "description": "Honors student and pain science researcher focused on minimal effective dose exercise for health and function."
-    }
-  </script>
-
-  <!-- Inline layout styles -->
   <style>
     :root {
+      /* Brand Colors - Kept Exact */
       --dark-blue: #020617;
       --mid-blue: #0f172a;
       --accent-blue: #38bdf8;
@@ -53,1342 +40,1117 @@
       --text-muted: #4b5563;
       --white: #ffffff;
       --soft-blue: #eff6ff;
+      
+      /* UI Variables */
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Roboto", system-ui, -apple-system, sans-serif;
       color: var(--text-dark);
       background: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Typography Enhancements */
+    h1, h2, h3 {
+      line-height: 1.2;
     }
 
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 1.5rem;
     }
+    
     .container-narrow {
       max-width: 900px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 1.5rem;
     }
 
-    /* ================= HEADER (STABLE) ================= */
+    /* ================= HEADER ================= */
     header {
-      background: #020617 !important;
+      background: rgba(2, 6, 23, 0.95) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #f9fafb;
       position: sticky;
       top: 0;
-      z-index: 50;
-      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.4);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: box-shadow 0.3s ease;
     }
+    
+    header.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
     .header-container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0.75rem 1rem;
+      padding: 0.75rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
-      position: relative;
     }
+
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      flex-shrink: 0;
+      gap: 0.75rem;
+      text-decoration: none;
     }
+    
     .logo img {
       height: 40px;
       width: auto;
-      display: block;
     }
+    
     .logo span {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #f9fafb;
-      white-space: nowrap;
+      letter-spacing: -0.02em;
     }
 
-    nav {
-      flex: 1;
-    }
+    /* Navigation Links */
     .nav-links {
-      list-style: none !important;
+      list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 0.75rem;
-      font-size: 0.9rem;
+      gap: 0.5rem;
     }
-    .nav-links li {
-      margin: 0;
-      padding: 0;
-    }
+
     .nav-links a {
       text-decoration: none;
-      padding: 0.35rem 0.6rem;
+      padding: 0.5rem 1rem;
       border-radius: 999px;
-      color: #f9fafb !important;
-      transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition-smooth);
     }
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      background: rgba(15, 23, 42, 0.6);
-      outline: none;
+
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.1);
     }
+
     .nav-links a.active {
-      font-weight: 600;
-      background: rgba(15, 23, 42, 0.7);
+      color: var(--white);
+      background: rgba(255,255,255,0.15);
     }
 
-    /* Header pills */
-    header .nav-links .nav-pill {
-      padding: 0.4rem 0.9rem;
-      font-weight: 600;
+    /* Featured Pills in Nav */
+    .nav-pill {
+      font-weight: 600 !important;
     }
-    header .nav-links .nav-edu {
-      background: linear-gradient(135deg, #e5e7eb, #9ca3af);
-      color: #111827 !important;
+    
+    .nav-edu {
+      background: rgba(255,255,255,0.1) !important;
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    header .nav-links .nav-quiz {
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: #0b1120 !important;
+    
+    .nav-book {
+      background: var(--gold) !important;
+      color: var(--dark-blue) !important;
+      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
     }
-    header .nav-links .nav-book {
-      background: linear-gradient(135deg, #facc15, #eab308);
-      color: #111827 !important;
-      box-shadow: 0 10px 24px rgba(234, 179, 8, 0.6);
-    }
-
-    /* Dropdown */
-    .dropdown {
-      position: relative;
-    }
-    .dropdown-content {
-      position: absolute;
-      top: 120%;
-      right: 0;
-      list-style: none;
-      margin: 0;
-      padding: 0.4rem 0;
-      background: #020617;
-      border-radius: 0.5rem;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
-      display: none;
-      min-width: 160px;
-      z-index: 40;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    .dropdown-content li a {
-      display: block;
-      padding: 0.35rem 0.8rem;
-      border-radius: 0;
-    }
-    .dropdown-content li a:hover {
-      background: rgba(15, 23, 42, 0.7);
+    
+    .nav-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(250, 204, 21, 0.4);
     }
 
-    /* Mobile nav */
+    /* Mobile Menu */
     .menu-toggle {
       display: none;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
+      padding: 5px;
     }
+    
     .menu-toggle span {
-      width: 20px;
+      width: 24px;
       height: 2px;
-      background: #f9fafb;
+      background: var(--white);
+      transition: 0.3s;
+    }
+
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--mid-blue);
+      min-width: 180px;
+      border-radius: var(--radius-md);
+      padding: 0.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: var(--transition-smooth);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .dropdown:hover .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .dropdown-content li { list-style: none; }
+    .dropdown-content a {
       display: block;
+      border-radius: 6px;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        flex: 0;
-      }
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        background: #020617;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.75rem 1rem 1rem;
-        gap: 0.5rem;
-        display: none;
-      }
-      .nav-links.nav-open {
-        display: flex;
-      }
-      .nav-links li {
-        width: 100%;
-      }
-      .nav-links a {
-        width: 100%;
-        justify-content: flex-start;
-      }
-      .dropdown:hover .dropdown-content {
-        position: static;
-        box-shadow: none;
-      }
-      .dropdown-content {
-        position: static;
-        display: block;
-        background: transparent;
-        box-shadow: none;
-        padding: 0;
-      }
-      .dropdown-content li a {
-        padding-left: 1.5rem;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    /* ================= HERO (slightly smaller than original) ================= */
+    /* ================= HERO SECTION ================= */
     .hero-section {
       position: relative;
-      background: radial-gradient(circle at top left, #0b1120, #020617);
-      color: #e5e7eb;
-      padding: 3.5rem 1rem 3rem;
-      text-align: center;
+      background: radial-gradient(circle at 20% 50%, #1e293b, #020617);
+      color: #fff;
+      padding: 5rem 1rem 6rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 85vh;
     }
-    .hero-overlay {
+
+    /* Animated Background Particles */
+    .hero-particles {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 55%);
-      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
     }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      animation: floatUp 20s infinite linear;
+    }
+    
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
     }
-    .hero-section h1 {
-      font-size: clamp(2.3rem, 3.6vw, 3rem);
-      margin: 0 0 0.9rem;
-      color: #f9fafb;
-    }
-    .hero-section h1 span {
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 99px;
       color: var(--accent-blue);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(4px);
     }
-    .hero-section .tagline {
-      max-width: 700px;
-      margin: 0 auto 1.2rem;
-      font-size: 1rem;
-      color: #d1d5db;
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin: 0 0 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
+    
+    h1 span {
+      background: linear-gradient(135deg, var(--accent-blue), #a5f3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
     .hero-buttons {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
       justify-content: center;
-      margin-top: 1rem;
-    }
-    .hero-buttons a {
-      border-radius: 999px;
-      padding: 0.7rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: #e5e7eb;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      background: transparent;
-      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-    .hero-buttons a:hover {
-      background: rgba(15, 23, 42, 0.9);
-      border-color: rgba(148, 163, 184, 1);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.6);
-    }
-
-    .hero-buttons .btn-hero-quiz {
-      position: relative;
-      z-index: 1;
-      border-radius: 999px;
-      font-weight: 600;
-      box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.6);
-      border-color: var(--accent-blue);
-      color: var(--accent-blue);
-      animation: heroQuizPulse 2s ease-out infinite;
-      background: rgba(15, 23, 42, 0.7);
-    }
-    @keyframes heroQuizPulse {
-      0% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.7); }
-      70% { box-shadow: 0 0 0 18px rgba(30, 64, 175, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
-    }
-
-    /* ================= HOW WE HELP (faint color boxes) ================= */
-    .mission-section {
-      background: #f3f4f6;
-      padding: 2.5rem 1rem;
-      color: var(--text-dark);
-    }
-    .mission-grid {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1.5rem;
-      align-items: stretch;
-      background: #ffffff;
-      border-radius: 1rem;
-      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
-      padding: 1.6rem 1.4rem;
-    }
-    @media (min-width: 900px) {
-      .mission-grid {
-        grid-template-columns: 3fr 2fr;
-      }
-    }
-    .mission-text {
-      border-left: 4px solid var(--gold);
-      padding-left: 1rem;
-    }
-    .mission-text h2 {
-      font-size: 1.7rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-dark);
-    }
-    .friendly-highlight {
-      color: var(--gold);
-    }
-    .mission-tagline {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-    .mission-highlight {
-      display: flex;
+      gap: 1rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-    .mission-highlight span {
-      font-size: 0.82rem;
-      background: #eef2ff;
-      color: #1d4ed8;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-    }
-    .mission-text p {
-      margin: 0 0 0.6rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-size: 0.93rem;
-    }
-    .mission-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.25rem;
-    }
-    .mission-stat {
-      flex: 1 1 130px;
-      border-radius: 0.75rem;
-      background: linear-gradient(135deg, #f9fafb, #eef2ff);
-      border: 1px solid #e5e7eb;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.82rem;
-    }
-    .mission-stat strong {
-      display: block;
-      font-size: 1.05rem;
-      color: #111827;
     }
 
-    .mission-card-stack {
-      display: grid;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-    }
-    .mission-card {
-      background: linear-gradient(135deg, #f9fafb, #ecfeff);
-      border-radius: 10px;
-      border: 1px solid #e0f2fe;
-      padding: 0.75rem 1rem;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
-      font-size: 0.88rem;
-      color: var(--text-dark);
-      line-height: 1.5;
-    }
-    .mission-card h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-      color: var(--text-dark);
-    }
-
-    /* ================= QUIZ HIGHLIGHT ================= */
-    .quiz-highlight {
-      background: linear-gradient(135deg, #001b3d, #003366);
-      color: var(--white);
-      padding: 3rem 1rem;
-    }
-    .quiz-highlight-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 1.75rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-      color: var(--white);
-    }
-    .quiz-highlight h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.4rem;
-      color: var(--white);
-    }
-    .quiz-highlight p {
-      margin-bottom: 0.6rem;
-      max-width: 680px;
-      line-height: 1.6;
-      color: #e5e7eb;
-    }
-    .quiz-badge {
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.8rem;
-      opacity: 0.9;
-      margin-bottom: 0.25rem;
-      color: #e5e7eb;
-    }
-    .quiz-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0.75rem 0 1.2rem;
-    }
-    .quiz-chip {
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 0.25rem 0.7rem;
-      font-size: 0.8rem;
-      background: rgba(0, 0, 0, 0.18);
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
-      color: #f9fafb;
-    }
-    .quiz-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .btn-quiz-pulse {
-      display: inline-block;
-      padding: 0.65rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, #b0b0b0, #ffffff);
-      color: #003366;
+      justify-content: center;
+      padding: 0.9rem 1.8rem;
+      border-radius: 99px;
       font-weight: 600;
       text-decoration: none;
-      font-size: 0.95rem;
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
-      animation: quizPulse 1.9s ease-out infinite;
-    }
-    .quiz-cta-caption {
-      font-size: 0.85rem;
-      opacity: 0.9;
-      color: #e5e7eb;
-    }
-    @keyframes quizPulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-      70% { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      transition: var(--transition-smooth);
+      font-size: 1rem;
     }
 
-    /* ================= BENEFITS (LEARN THE POWER OF MOVEMENT) ================= */
-    .benefits-section {
-      padding: 3rem 1rem;
-      background: var(--soft-blue);
-      color: var(--text-dark);
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--dark-blue);
+      border: 2px solid var(--accent-blue);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
     }
-    .benefits-section h2 {
-      text-align: center;
-      margin-bottom: 0.75rem;
+    
+    .btn-primary:hover {
+      background: #0ea5e9;
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
     }
-    .benefits-section .section-intro {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      color: var(--text-muted);
-      text-align: center;
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.3);
     }
-    .benefits-accordion {
-      max-width: 900px;
-      margin: 0 auto;
+    
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ================= HOW WE HELP (Cards) ================= */
+    .mission-section {
+      background: #f8fafc;
+      padding: 5rem 1rem;
+    }
+
+    .grid-2 {
       display: grid;
-      gap: 0.75rem;
-    }
-    .benefit-group {
-      background: #f9fafb;
-      border-radius: 0.9rem;
-      border: 1px solid #e5e7eb;
-      padding: 0.7rem 0.9rem;
-    }
-    .benefit-group summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
       align-items: center;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-dark);
-    }
-    .benefit-group summary::-webkit-details-marker {
-      display: none;
-    }
-    .benefit-heading {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-    .benefit-heading small {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-    }
-    .benefits-chevron {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-left: 0.5rem;
-      transition: transform 0.2s ease;
-    }
-    .benefit-group[open] .benefits-chevron {
-      transform: rotate(180deg);
-    }
-    .benefit-body {
-      margin-top: 0.4rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-    .benefit-stats {
-      margin: 0.35rem 0 0.35rem;
-      padding-left: 1.1rem;
-    }
-    .benefit-stats li {
-      margin-bottom: 0.25rem;
-    }
-    .benefit-note {
-      font-size: 0.78rem;
-      color: #6b7280;
-      margin: 0.1rem 0 0;
     }
 
-    /* ================= RESULTS YOU CAN FEEL (ANIMATED) ================= */
-    .results-section {
-      padding: 3rem 1rem;
-      background: radial-gradient(circle at top left, #020617, #020617 60%, #020617);
-      color: #e5e7eb;
-    }
-    .results-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .results-header {
-      max-width: 620px;
+    .mission-content h2 {
+      font-size: 2.5rem;
+      color: var(--dark-blue);
       margin-bottom: 1.5rem;
     }
-    .results-header h2 {
-      margin: 0 0 0.4rem;
-      font-size: 1.7rem;
-    }
-    .results-header p {
-      margin: 0;
-      font-size: 0.96rem;
-      color: #cbd5e1;
-    }
-    .results-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-    @media (min-width: 768px) {
-      .results-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    .result-card {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 1rem;
-      padding: 0.9rem 0.9rem 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      position: relative;
-      overflow: hidden;
-    }
-    .result-label {
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #a5b4fc;
-      margin-bottom: 0.35rem;
-    }
-    .result-number {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.1rem;
-    }
-    .result-caption {
-      font-size: 0.86rem;
-      color: #e5e7eb;
-      margin-bottom: 0.5rem;
-    }
-    .result-footnote {
-      font-size: 0.7rem;
-      color: #9ca3af;
-      margin-top: 0.25rem;
-    }
-    .progress-track {
-      width: 100%;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(30, 64, 175, 0.35);
-      overflow: hidden;
-    }
-    .progress-fill {
-      width: 0;
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #38bdf8, #a5b4fc);
-      transition: width 1.2s ease-out;
-    }
 
-    /* ================= EDUCATION HIGHLIGHTS ================= */
-    .edu-highlight {
-      background: #0f172a;
-      color: #e5e7eb;
-      padding: 3rem 1rem;
-    }
-    .edu-highlight h2 {
-      text-align: left;
-      margin-bottom: 0.5rem;
-      color: #f9fafb;
-    }
-    .edu-highlight .section-intro {
-      text-align: left;
-      margin-bottom: 1.25rem;
-      color: #cbd5ff;
-    }
-    .edu-accordion {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      gap: 0.75rem;
-    }
-    .edu-group {
-      background: #020617;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.7rem 0.9rem;
-    }
-    .edu-group summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #e5e7eb;
-    }
-    .edu-group summary::-webkit-details-marker {
-      display: none;
-    }
-    .edu-tagline {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #a5b4fc;
-      margin-right: 0.5rem;
-    }
-    .edu-chevron {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-left: 0.5rem;
-      transition: transform 0.2s ease;
-    }
-    .edu-group[open] .edu-chevron {
-      transform: rotate(180deg);
-    }
-    .edu-list {
-      margin: 0.4rem 0 0;
-      padding-left: 1rem;
-      font-size: 0.88rem;
-    }
-    .edu-list li {
-      margin-bottom: 0.2rem;
-    }
-    .edu-list a {
-      text-decoration: none;
-      color: #fde68a;
-    }
-    .edu-list a:hover {
-      text-decoration: underline;
-    }
-
-    /* ================= FAQ (details-based, no JS needed) ================= */
-    .faq-section {
-      padding: 3rem 1rem;
-      background: #ffffff;
-      color: var(--text-dark);
-    }
-    .faq-section h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: var(--text-dark);
-    }
-    .faq-list {
-      max-width: 800px;
-      margin: 0 auto;
-      display: grid;
-      gap: 0.75rem;
-    }
-    .faq-item {
-      background: #ffffff;
-      border-radius: 0.75rem;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
-      padding: 0.4rem 0.75rem;
-    }
-    .faq-item summary {
-      list-style: none;
-      cursor: pointer;
-      font-size: 0.98rem;
-      font-weight: 500;
-      padding: 0.75rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-    .faq-arrow {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-left: 0.5rem;
-      transition: transform 0.2s ease;
-    }
-    .faq-item[open] .faq-arrow {
-      transform: rotate(180deg);
-    }
-    .faq-answer {
-      font-size: 0.9rem;
+    .mission-content p {
       color: var(--text-muted);
-      padding: 0 0 0.75rem;
-    }
-    .faq-answer p {
-      margin: 0.25rem 0;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
     }
 
-    /* ================= CONTACT ================= */
-    .contact-section {
-      padding: 3rem 1rem;
-      background: #ffffff;
-      color: var(--text-dark);
-    }
-    .contact-section h2 {
-      text-align: center;
-      margin-bottom: 0.75rem;
-    }
-    .contact-section .section-intro {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      color: var(--text-muted);
-    }
-
-    /* ================= FOOTER ================= */
-    footer {
-      background: radial-gradient(circle at top left, #0b1120, #020617);
-      color: #e5e7eb;
-      padding: 2rem 1rem 2.5rem;
-    }
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
+    .feature-cards {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-    }
-    .footer-top {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
-    }
-    .footer-brand {
-      max-width: 420px;
-    }
-    .footer-title {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-    .footer-tagline {
-      font-size: 0.9rem;
-      color: #cbd5e1;
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.25rem;
-      align-items: center;
-    }
-    .footer-links a {
-      font-size: 0.85rem;
-      text-decoration: none;
-      color: #e5e7eb;
-    }
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-    .footer-bottom {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 0.75rem;
+      gap: 1rem;
     }
 
-    @media (max-width: 640px) {
-      .hero-section {
-        padding-top: 3.7rem;
+    .feature-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--gold);
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .feature-card:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--mid-blue);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ================= NEW VISUAL BENEFITS SECTION ================= */
+    .visual-benefits {
+      padding: 6rem 1rem;
+      background: #fff;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--dark-blue);
+      margin-bottom: 1rem;
+    }
+    
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* The Dashboard Grid */
+    .benefits-dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .dash-card {
+      background: #f8fafc;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid #e2e8f0;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dash-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(2, 6, 23, 0.08);
+      border-color: var(--accent-blue);
+      background: #fff;
+    }
+
+    /* Icons & Animations */
+    .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .icon-svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--mid-blue);
+      transition: fill 0.3s;
+    }
+
+    /* Specific Animations */
+    .heart-beat { animation: heartbeat 1.5s ease-in-out infinite; }
+    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.15); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } 60% { transform: scale(1); } }
+    
+    .brain-glow { animation: brainPulse 3s infinite alternate; }
+    @keyframes brainPulse { 0% { filter: drop-shadow(0 0 0 rgba(56,189,248,0)); } 100% { filter: drop-shadow(0 0 8px rgba(56,189,248,0.8)); } }
+    
+    .blood-flow { animation: flow 2s infinite ease-in-out; transform-origin: center; }
+    @keyframes flow { 0% { transform: translateY(0); } 50% { transform: translateY(-3px); } 100% { transform: translateY(0); } }
+
+    .dash-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+      color: var(--dark-blue);
+    }
+    
+    .dash-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    /* Data Visualizations */
+    .data-viz {
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: auto;
+    }
+    
+    .viz-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .bar-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .bar-label {
+      width: 60px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--mid-blue);
+    }
+    
+    .bar-track {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--accent-blue);
+      width: 0; /* Animated via JS */
+      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    .bar-fill.danger { background: #cbd5e1; } /* Gray for inactive/high risk */
+    
+    .viz-stat {
+      text-align: right;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-blue);
+      line-height: 1;
+      margin-top: 0.5rem;
+    }
+    
+    .viz-stat small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* ================= GAUGE RESULTS SECTION ================= */
+    .results-section {
+      background: var(--dark-blue);
+      color: #fff;
+      padding: 6rem 1rem;
+      text-align: center;
+    }
+    
+    .gauges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto 0;
+    }
+    
+    .gauge-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1rem;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+    
+    /* Circular Gauge CSS */
+    .gauge-wrapper {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    
+    .gauge-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    
+    .gauge-bg {
+      fill: none;
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 8;
+    }
+    
+    .gauge-progress {
+      fill: none;
+      stroke: var(--accent-blue);
+      stroke-width: 8;
+      stroke-dasharray: 339.292; /* 2 * PI * 54 */
+      stroke-dashoffset: 339.292;
+      transition: stroke-dashoffset 2s ease-out;
+      stroke-linecap: round;
+    }
+    
+    .gauge-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    
+    .gauge-label {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .gauge-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    /* ================= CONTACT SECTION ================= */
+    .contact-section {
+      background: #f1f5f9;
+      padding: 5rem 1rem;
+    }
+    
+    .contact-card {
+      background: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+    }
+    
+    .contact-info {
+      background: var(--mid-blue);
+      color: #fff;
+      padding: 2.5rem;
+    }
+    
+    .contact-form-wrapper {
+      padding: 2.5rem;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    
+    button[type="submit"] {
+      background: var(--dark-blue);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+      transition: 0.2s;
+    }
+    
+    button[type="submit"]:hover {
+      background: var(--accent-blue);
+      color: var(--dark-blue);
+    }
+
+    /* Footer */
+    footer {
+      background: #020617;
+      color: #64748b;
+      padding: 3rem 1rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .footer-links a:hover { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid-2, .contact-card {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--mid-blue);
+        flex-direction: column;
+        padding: 1rem;
+        align-items: stretch;
+      }
+      
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: flex; }
+      
+      .feature-card:hover { transform: none; }
+      
+      .benefits-dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 <body>
-  <!-- ================= HEADER ================= -->
-  <header role="banner">
-    <div class="header-container">
-      <div class="logo">
-        <img src="assets/images/logo2.png" alt="Olympian Health Solutions Logo" loading="lazy" />
-        <span>Olympian Health Solutions</span>
-      </div>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <!-- Placeholder Logo -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 20 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#38BDF8"/>
+          <path d="M11 20L17 26L29 14" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Olympian Health</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
 
-      <nav role="navigation">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="education.html" class="nav-pill nav-edu">Education</a></li>
-          <li><a href="ExerciseQuiz.html" class="nav-pill nav-quiz">Exercise Quiz</a></li>
-          <li class="dropdown">
-            <a href="services.html">Services</a>
-            <ul class="dropdown-content">
-              <li><a href="in-home.html">In-Home</a></li>
-              <li><a href="telehealth.html">Telehealth</a></li>
-              <li><a href="in-clinic.html">In-Clinic</a></li>
-            </ul>
-          </li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="booking.html" class="cta-btn nav-pill nav-book">Book Now</a></li>
-        </ul>
-      </nav>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="education.html" class="nav-pill nav-edu">Education Hub</a></li>
+        <li><a href="booking.html" class="nav-pill nav-book">Book Now</a></li>
+      </ul>
     </div>
   </header>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO SECTION -->
   <section class="hero-section">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
+    <!-- Animation Layer -->
+    <div class="hero-particles" id="particles"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">Now Accepting New Clients in Battle Ground</div>
       <h1>
-        Movement is Medicine.<br />
-        <span>End pain, start thriving.</span>
+        Movement is Medicine.<br>
+        <span>End Pain. Start Thriving.</span>
       </h1>
       <p class="tagline">
-        Mobile, evidence-based personal training for seniors and post-therapy graduates in Battle Ground, WA.
-        Minimal equipment, maximal science, all brought directly to your home or senior community.
+        Evidence-based movement coaching for seniors. 
+        We bring the clinic to your living room, helping you rebuild strength and confidence without the commute.
       </p>
       <div class="hero-buttons">
-        <a href="ExerciseQuiz.html" class="btn-hero-quiz">Take the Exercise Impact Quiz</a>
-        <a href="booking.html">Schedule a Free Consult</a>
+        <a href="booking.html" class="btn btn-primary">Book Free Consult</a>
+        <a href="#visual-benefits" class="btn btn-outline">Why It Works</a>
       </div>
     </div>
   </section>
 
-  <!-- ================= HOW WE HELP ================= -->
+  <!-- HOW WE HELP -->
   <section class="mission-section">
-    <div class="mission-grid">
-      <div class="mission-text">
-        <h2>How We <span class="friendly-highlight">Help</span></h2>
-        <p class="mission-tagline">
-          We help older adults and medically complex adults use tiny, realistic doses of movement to get real wins in daily life.
-        </p>
-        <div class="mission-highlight">
-          <span>Low-pressure, high-support coaching</span>
-          <span>Respect for pain &amp; medical realities</span>
+    <div class="container">
+      <div class="grid-2">
+        <div class="mission-content">
+          <h2>Small Steps. <br>Giant Leaps in Quality of Life.</h2>
+          <p>
+            You don't need a gym membership or intense bootcamps. You need a plan that respects your joints, your energy levels, and your medical history.
+          </p>
+          <p>
+            We focus on the "Minimal Effective Dose"—finding the exact right amount of movement to trigger healing without causing flare-ups.
+          </p>
         </div>
-        <p>
-          You don’t need a bootcamp or a gym membership. You need a calm plan that fits your energy, your schedule,
-          and your nervous system — so you can move without fear and slowly rebuild trust in your body.
-        </p>
-        <div class="mission-stats">
-          <div class="mission-stat">
-            <strong>1–3x/week</strong>
-            Short sessions focused on what matters most to you.
+        <div class="feature-cards">
+          <div class="feature-card">
+            <h3>
+              <!-- Icon -->
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+              We Come To You
+            </h3>
+            <p style="margin:0; font-size:0.9rem; color:#64748b;">
+              Private, safe sessions in your home or assisted living community.
+            </p>
           </div>
-          <div class="mission-stat">
-            <strong>Home &amp; Community</strong>
-            We come to your home or senior community with everything you need.
+          <div class="feature-card">
+            <h3>
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Evidence Based
+            </h3>
+            <p style="margin:0; font-size:0.9rem; color:#64748b;">
+              Protocols derived from clinical research, not fitness trends.
+            </p>
           </div>
-        </div>
-      </div>
-      <div class="mission-card-stack">
-        <div class="mission-card">
-          <h3>Gentle, Nervous-System Friendly</h3>
-          <p>We start below your limits and slowly build up so your joints and nervous system feel safe.</p>
-        </div>
-        <div class="mission-card">
-          <h3>Evidence-Based, Real-World</h3>
-          <p>Sessions are built from physical therapy, strength training, and pain science research — translated into plain language.</p>
-        </div>
-        <div class="mission-card">
-          <h3>Designed for Real Life</h3>
-          <p>We work around grandkids, appointments, and bad days, not against them.</p>
+          <div class="feature-card">
+            <h3>
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Pain Science
+            </h3>
+            <p style="margin:0; font-size:0.9rem; color:#64748b;">
+              We re-train your nervous system to feel safe moving again.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= QUIZ HIGHLIGHT (immediately after How We Help) ================= -->
-  <section class="quiz-highlight">
-    <div class="quiz-highlight-inner">
-      <div class="quiz-badge">Interactive Tool</div>
-      <h2>The Exercise Impact Quiz: How Could Movement Help <em>You</em>?</h2>
-      <p>
-        In just a few minutes, the quiz connects your concerns — pain, balance, blood sugar, mood, independence —
-        to <strong>specific, evidence-supported benefits of exercise</strong>, using plain language and research-informed claims.
-      </p>
-      <div class="quiz-tag-row">
-        <span class="quiz-chip">📨 Blood sugar &amp; type 2 diabetes</span>
-        <span class="quiz-chip">🧠 Brain, memory &amp; mood</span>
-        <span class="quiz-chip">🦴 Arthritis &amp; chronic pain</span>
-        <span class="quiz-chip">🧶 Balance &amp; fall risk</span>
-        <span class="quiz-chip">❤️ Heart &amp; blood pressure</span>
-        <span class="quiz-chip">🏡 Independence &amp; daily tasks</span>
+  <!-- NEW VISUAL BENEFITS SECTION -->
+  <section class="visual-benefits" id="visual-benefits">
+    <div class="container">
+      <div class="section-header">
+        <h2>See the Power of Movement</h2>
+        <p>Exercise affects every system in your body. Here is what the science says happens when you move regularly.</p>
       </div>
-      <div class="quiz-cta-row">
-        <a href="ExerciseQuiz.html" class="btn-quiz-pulse">Take the Exercise Impact Quiz</a>
-        <span class="quiz-cta-caption">
-          Free, educational, and senior-friendly — a clear starting point before we ever schedule a session.
-        </span>
+
+      <div class="benefits-dashboard">
+        
+        <!-- CARD 1: HEART -->
+        <div class="dash-card observer-target">
+          <div class="icon-wrapper">
+            <svg class="icon-svg heart-beat" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h3>Heart Health</h3>
+          <p>Regular activity strengthens the heart muscle, allowing it to pump more efficiently with less strain.</p>
+          
+          <div class="data-viz">
+            <span class="viz-title">Mortality Risk Reduction</span>
+            <div class="bar-chart">
+              <div class="bar-group">
+                <span class="bar-label">Inactive</span>
+                <div class="bar-track"><div class="bar-fill danger" style="width: 90%"></div></div>
+              </div>
+              <div class="bar-group">
+                <span class="bar-label">Active</span>
+                <div class="bar-track"><div class="bar-fill" data-width="60%"></div></div>
+              </div>
+            </div>
+            <div class="viz-stat">
+              -30%
+              <small>Lower risk of early death</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: METABOLISM -->
+        <div class="dash-card observer-target">
+          <div class="icon-wrapper">
+            <svg class="icon-svg blood-flow" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h3>Blood Sugar</h3>
+          <p>Muscles act as a "sponge" for glucose. A simple 10-minute walk after meals can significantly blunt sugar spikes.</p>
+          
+          <div class="data-viz">
+            <span class="viz-title">Type 2 Diabetes Risk</span>
+            <div class="bar-chart">
+              <div class="bar-group">
+                <span class="bar-label">Inactive</span>
+                <div class="bar-track"><div class="bar-fill danger" style="width: 80%"></div></div>
+              </div>
+              <div class="bar-group">
+                <span class="bar-label">Active</span>
+                <div class="bar-track"><div class="bar-fill" data-width="40%"></div></div>
+              </div>
+            </div>
+            <div class="viz-stat">
+              -40%
+              <small>Lower development risk</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: BRAIN/FALLS -->
+        <div class="dash-card observer-target">
+          <div class="icon-wrapper">
+            <svg class="icon-svg brain-glow" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M3.343 15.657l-.707.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3>Independence</h3>
+          <p>Strength + Balance training is the #1 way to prevent falls and maintain your ability to live at home.</p>
+          
+          <div class="data-viz">
+            <span class="viz-title">Fall Risk Reduction</span>
+            <div class="bar-chart">
+              <div class="bar-group">
+                <span class="bar-label">No Train</span>
+                <div class="bar-track"><div class="bar-fill danger" style="width: 85%"></div></div>
+              </div>
+              <div class="bar-group">
+                <span class="bar-label">Trained</span>
+                <div class="bar-track"><div class="bar-fill" data-width="55%"></div></div>
+              </div>
+            </div>
+            <div class="viz-stat">
+              -30%
+              <small>Fewer falls recorded</small>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ================= BENEFITS: LEARN THE POWER OF MOVEMENT ================= -->
-  <section class="benefits-section" id="exercise-benefits">
-    <div class="container-narrow">
-      <h2>Learn the Power of Movement</h2>
-      <p class="section-intro">
-        Exercise doesn’t have to be extreme to be powerful. Even small amounts, done consistently, are linked with
-        better health across almost every body system.
-      </p>
-    </div>
-
-    <div class="benefits-accordion">
-      <details class="benefit-group" open>
-        <summary>
-          <div class="benefit-heading">
-            <small>Heart &amp; Longevity</small>
-            <span>Blood pressure, heart disease &amp; living longer</span>
-          </div>
-          <span class="benefits-chevron">▾</span>
-        </summary>
-        <div class="benefit-body">
-          <p>
-            Regular moderate activity (like brisk walking or simple strength work) is linked with noticeable
-            improvements in heart and blood vessel health.
-          </p>
-          <ul class="benefit-stats">
-            <li><strong>About 20–30% lower</strong> risk of dying early in large population studies among people who move regularly versus those who are mostly inactive.</li>
-            <li><strong>Average 4–9 mmHg drop</strong> in systolic blood pressure is often seen with consistent aerobic exercise in people with high blood pressure.</li>
-            <li>Can help improve cholesterol patterns and reduce resting heart rate over time.</li>
-          </ul>
-          <p class="benefit-note">
-            Numbers are approximate and based on large research reviews of adults doing regular moderate exercise.
-          </p>
-        </div>
-      </details>
-
-      <details class="benefit-group">
-        <summary>
-          <div class="benefit-heading">
-            <small>Blood Sugar &amp; Metabolism</small>
-            <span>Type 2 diabetes, insulin resistance &amp; weight</span>
-          </div>
-          <span class="benefits-chevron">▾</span>
-        </summary>
-        <div class="benefit-body">
-          <p>
-            Muscles act like “sponges” for blood sugar. When you use them regularly, your body often doesn’t have to
-            work as hard to manage glucose.
-          </p>
-          <ul class="benefit-stats">
-            <li><strong>Roughly 25–40% lower</strong> risk of developing type 2 diabetes in adults who stay active compared to those who are inactive.</li>
-            <li>Even a <strong>10–15 minute walk</strong> after meals can help soften blood sugar spikes in many people.</li>
-            <li>Strength training can help preserve muscle mass, which supports metabolism as we age.</li>
-          </ul>
-          <p class="benefit-note">
-            Exercise is not a replacement for medications, but it is a powerful partner for blood sugar control.
-          </p>
-        </div>
-      </details>
-
-      <details class="benefit-group">
-        <summary>
-          <div class="benefit-heading">
-            <small>Brain, Mood &amp; Independence</small>
-            <span>Thinking clearly, feeling better &amp; staying steady</span>
-          </div>
-          <span class="benefits-chevron">▾</span>
-        </summary>
-        <div class="benefit-body">
-          <p>
-            Movement doesn’t just help muscles and heart — it also supports brain health, mood, and everyday function.
-          </p>
-          <ul class="benefit-stats">
-            <li><strong>About 20–30% lower</strong> risk of depression in people who meet basic activity guidelines versus those who are mostly inactive.</li>
-            <li>Regular strength + balance work can cut <strong>fall risk by roughly 20–30%</strong> in many older adult programs.</li>
-            <li>Improved leg strength and walking speed are both linked with better independence and lower hospitalizations in older adults.</li>
-          </ul>
-          <p class="benefit-note">
-            These effects grow over months and years — and often start with only a few short sessions each week.
-          </p>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= RESULTS YOU CAN FEEL (ANIMATED) ================= -->
+  <!-- GAUGE RESULTS SECTION -->
   <section class="results-section">
-    <div class="results-inner">
-      <div class="results-header">
-        <h2>Results You Can Feel in Daily Life</h2>
-        <p>
-          These aren’t guarantees, but they are realistic ranges from large studies of older adults who moved more.
-          Small, steady steps can add up to meaningful change over time.
-        </p>
-      </div>
-      <div class="results-grid">
-        <article class="result-card" data-target="30">
-          <p class="result-label">Fall Risk</p>
-          <p class="result-number"><span class="result-value">0</span>%</p>
-          <p class="result-caption">Potential reduction in falls with regular strength + balance work.</p>
-          <div class="progress-track">
-            <div class="progress-fill"></div>
+    <div class="container">
+      <h2>Projected Outcomes</h2>
+      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">Based on 12 weeks of consistent, evidence-based training.</p>
+      
+      <div class="gauges-grid">
+        <!-- Gauge 1 -->
+        <div class="gauge-card">
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 120 120">
+              <circle class="gauge-bg" cx="60" cy="60" r="54" />
+              <circle class="gauge-progress" cx="60" cy="60" r="54" data-target="30" />
+            </svg>
+            <div class="gauge-text">0%</div>
           </div>
-          <p class="result-footnote">Based on multi-exercise fall-prevention programs for older adults.</p>
-        </article>
+          <span class="gauge-label">Balance</span>
+          <span class="gauge-desc">Improvement in stability scores</span>
+        </div>
 
-        <article class="result-card" data-target="20">
-          <p class="result-label">Daily Energy</p>
-          <p class="result-number"><span class="result-value">0</span>%</p>
-          <p class="result-caption">Average improvement in reported fatigue and stamina in some studies.</p>
-          <div class="progress-track">
-            <div class="progress-fill"></div>
+        <!-- Gauge 2 -->
+        <div class="gauge-card">
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 120 120">
+              <circle class="gauge-bg" cx="60" cy="60" r="54" />
+              <circle class="gauge-progress" cx="60" cy="60" r="54" data-target="40" />
+            </svg>
+            <div class="gauge-text">0%</div>
           </div>
-          <p class="result-footnote">Often seen with regular, moderate walking and strength sessions.</p>
-        </article>
+          <span class="gauge-label">Strength</span>
+          <span class="gauge-desc">Increase in leg power</span>
+        </div>
 
-        <article class="result-card" data-target="40">
-          <p class="result-label">Confidence</p>
-          <p class="result-number"><span class="result-value">0</span>%</p>
-          <p class="result-caption">Increase in confidence with walking and stairs in certain programs.</p>
-          <div class="progress-track">
-            <div class="progress-fill"></div>
+        <!-- Gauge 3 -->
+        <div class="gauge-card">
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 120 120">
+              <circle class="gauge-bg" cx="60" cy="60" r="54" />
+              <circle class="gauge-progress" cx="60" cy="60" r="54" data-target="80" />
+            </svg>
+            <div class="gauge-text">0%</div>
           </div>
-          <p class="result-footnote">Linked to stronger legs, better balance, and practice in real-life tasks.</p>
-        </article>
+          <span class="gauge-label">Confidence</span>
+          <span class="gauge-desc">Report feeling "safer" at home</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= EDUCATION HIGHLIGHTS (now after results) ================= -->
-  <section class="edu-highlight">
-    <div class="container-narrow">
-      <h2>From the Learning Hub</h2>
-      <p class="section-intro">
-        Prefer to understand the “why” first? Explore calm, plain-language articles on pain, strength, balance,
-        and chronic illness before you ever book a session.
-      </p>
-      <div class="edu-accordion">
-        <details class="edu-group" open>
-          <summary>
-            <span class="edu-tagline">Pain &amp; Rehab</span>
-            <span>Understanding pain and rebuilding trust in your body</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#pain-science">Why pain can linger even after tissues heal</a></li>
-            <li><a href="education.html#gentle-progressions">Gentle progressions instead of “no pain, no gain”</a></li>
-          </ul>
-        </details>
-        <details class="edu-group">
-          <summary>
-            <span class="edu-tagline">Heart &amp; Illness</span>
-            <span>Movement for blood pressure, blood sugar &amp; heart health</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#chronic-conditions">Movement for diabetes, heart disease &amp; more</a></li>
-            <li><a href="education.html#tiny-doses">Tiny “exercise snacks” that still help your health</a></li>
-          </ul>
-        </details>
-        <details class="edu-group">
-          <summary>
-            <span class="edu-tagline">Balance &amp; Independence</span>
-            <span>Staying steady, strong, and confident at home</span>
-            <span class="edu-chevron">▾</span>
-          </summary>
-          <ul class="edu-list">
-            <li><a href="education.html#falls">Simple ways to train balance and prevent falls</a></li>
-            <li><a href="education.html#everyday-strength">Strength for stairs, curbs, &amp; daily tasks</a></li>
-          </ul>
-        </details>
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <p>Ready to see how we can help? Fill out the form or give us a call.</p>
+          <div style="margin-top: 2rem;">
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Email:</strong> info@olympianhealth.com</p>
+            <p><strong>Area:</strong> Battle Ground, WA</p>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your Name">
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="email@address.com">
+            
+            <label for="msg">How can we help?</label>
+            <textarea id="msg" rows="4" placeholder="Tell us about your goals..."></textarea>
+            
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= FAQ (details-based, actually clickable) ================= -->
-  <section class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <details class="faq-item" open>
-        <summary>
-          <span>Is this physical therapy?</span>
-          <span class="faq-arrow">▾</span>
-        </summary>
-        <div class="faq-answer">
-          <p>
-            No. Olympian Health Solutions provides exercise coaching and movement training — not medical rehabilitation.
-            We don’t diagnose, bill insurance, or replace your healthcare providers.
-          </p>
-          <p>
-            Instead, we help you <strong>apply evidence-based exercise</strong> alongside your medical care so you can
-            rebuild strength, confidence, and independence.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span>What if I have pain, arthritis, or several health conditions?</span>
-          <span class="faq-arrow">▾</span>
-        </summary>
-        <div class="faq-answer">
-          <p>
-            That’s exactly who we design for. The goal is not “no pain ever,” but
-            <strong>safe, gradual progress</strong> that respects your nervous system, joints, and medical reality.
-          </p>
-          <p>
-            We start with low doses, check in constantly, and adjust the plan so your body and confidence can catch up.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span>Do you come to assisted living and senior communities?</span>
-          <span class="faq-arrow">▾</span>
-        </summary>
-        <div class="faq-answer">
-          <p>
-            Yes. We partner with independent and assisted living communities for
-            <strong>small-group classes, education sessions, and optional 1:1 visits</strong>.
-          </p>
-          <p>
-            These can be structured as recurring programs or seasonal offerings depending on your community’s needs.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span>How often are sessions, and how do payments work?</span>
-          <span class="faq-arrow">▾</span>
-        </summary>
-        <div class="faq-answer">
-          <p>
-            Most clients do <strong>30–45 minute sessions</strong>, 1–2 times per week, plus micro “home doses” in between.
-            We typically work with <strong>session packs or monthly plans</strong> so you can build momentum instead of
-            one-off visits.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>
-          <span>How should I start?</span>
-          <span class="faq-arrow">▾</span>
-        </summary>
-        <div class="faq-answer">
-          <p>
-            A great starting point is the <strong>Exercise Impact Quiz</strong> to see how movement could help your
-            specific concerns. From there, you can book a no-pressure consultation to talk through options.
-          </p>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- ================= CONTACT ================= -->
-  <section class="contact-section">
-    <div class="container-narrow">
-      <h2>Ready to Explore What Movement Could Do for You?</h2>
-      <p class="section-intro">
-        Whether you’re an individual, a family member, or a senior living community, the first step is simply a
-        conversation. No pressure, no sales script — just clarity.
-      </p>
-    </div>
-    <div class="contact-grid container">
-      <div class="contact-info">
-        <h3>Get In Touch</h3>
-        <p><strong>Location:</strong> Battle Ground, Washington &amp; surrounding areas</p>
-        <p><strong>Email:</strong> <a href="mailto:info@olympianhealthsolutions.com">info@olympianhealthsolutions.com</a></p>
-        <p><strong>Phone:</strong> (123) 456-7890</p>
-        <p><strong>Service Type:</strong> Mobile, in-home, and senior community training</p>
-        <a href="ExerciseQuiz.html" class="cta-btn">Start with the Exercise Quiz</a>
-      </div>
-      <div class="contact-form">
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-          <label>
-            Name
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="4" placeholder="Tell me about your goals, your pain, or your community." required></textarea>
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
   <footer>
-    <div class="container footer-content">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <p class="footer-title">Olympian Health Solutions</p>
-          <p class="footer-tagline">Tiny doses of movement, big returns on life.</p>
-        </div>
-        <div class="footer-links">
-          <a href="education.html">Education Hub</a>
-          <a href="ExerciseQuiz.html">Exercise Quiz</a>
-          <a href="services.html">Services</a>
-          <a href="booking.html">Book a Consult</a>
-        </div>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Privacy Policy</a>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Olympian Health Solutions LLC. All rights reserved.</p>
-        <p class="footer-note">
-          Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
-        </p>
-      </div>
+      <p>&copy; <span id="year">2023</span> Olympian Health Solutions. All rights reserved.</p>
+      <p style="font-size:0.8rem; opacity:0.6;">Not a substitute for medical advice. Consult your doctor before starting new exercises.</p>
     </div>
   </footer>
 
-  <!-- Main JS -->
-  <script src="assets/js/script.js"></script>
-
-  <!-- Page-specific JS: mobile nav, animated results, footer year -->
   <script>
-    // Mobile nav toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-open');
-      });
-    }
-
-    // Animated "Results You Can Feel" counters
-    const resultCards = document.querySelectorAll('.result-card');
-    if (resultCards.length) {
-      const animateCard = (card) => {
-        const target = Number(card.getAttribute('data-target')) || 0;
-        const valueEl = card.querySelector('.result-value');
-        const bar = card.querySelector('.progress-fill');
-        let current = 0;
-        const duration = 1200;
-        const start = performance.now();
-
-        const step = (timestamp) => {
-          const progress = Math.min((timestamp - start) / duration, 1);
-          current = Math.round(target * progress);
-          if (valueEl) valueEl.textContent = current.toString();
-          if (bar) bar.style.width = target + '%';
-          if (progress < 1) {
-            requestAnimationFrame(step);
-          }
-        };
-
-        requestAnimationFrame(step);
-      };
-
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.dataset.animated) {
-              entry.target.dataset.animated = 'true';
-              animateCard(entry.target);
-            }
-          });
-        }, { threshold: 0.35 });
-
-        resultCards.forEach(card => observer.observe(card));
+    // 1. Header Scroll Effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
       } else {
-        // Fallback: animate immediately
-        resultCards.forEach(card => animateCard(card));
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // 2. Mobile Menu Toggle
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // 3. Particle Generator for Hero
+    const particleContainer = document.getElementById('particles');
+    function createParticles() {
+      for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        // Randomize
+        p.style.left = Math.random() * 100 + '%';
+        p.style.width = Math.random() * 10 + 5 + 'px';
+        p.style.height = p.style.width;
+        p.style.animationDuration = Math.random() * 10 + 10 + 's';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        particleContainer.appendChild(p);
       }
     }
+    createParticles();
 
-    // Footer year
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-      yearSpan.textContent = new Date().getFullYear();
-    }
+    // 4. Intersection Observer for Visualizations
+    const observerOptions = {
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate Bar Charts
+          const bars = entry.target.querySelectorAll('.bar-fill');
+          bars.forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            if(width) bar.style.width = width;
+          });
+          
+          // Stop observing once animated
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.observer-target').forEach(el => {
+      observer.observe(el);
+    });
+
+    // 5. Gauge Animation
+    const gaugeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const progress = entry.target;
+          const targetVal = parseInt(progress.getAttribute('data-target'));
+          const card = progress.closest('.gauge-card');
+          const textVal = card.querySelector('.gauge-text');
+          
+          // Calculate Offset (Circumference = ~339)
+          // Offset = 339 - (339 * percentage / 100)
+          const circumference = 339.292;
+          const offset = circumference - (circumference * targetVal / 100);
+          
+          progress.style.strokeDashoffset = offset;
+          
+          // Animate Numbers
+          let count = 0;
+          const interval = setInterval(() => {
+            if (count >= targetVal) clearInterval(interval);
+            else {
+              count++;
+              textVal.textContent = count + "%";
+            }
+          }, 2000 / targetVal); // dynamic speed
+          
+          gaugeObserver.unobserve(progress);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.gauge-progress').forEach(el => {
+      gaugeObserver.observe(el);
+    });
+
+    // Footer Year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
