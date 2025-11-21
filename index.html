@@ -162,7 +162,7 @@
       position: relative;
       background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
       color: #fff;
-      padding: 8rem 1rem 12rem; /* Extra padding for scroll btn */
+      padding: 8rem 1rem 14rem; /* Extra padding for scroll btn */
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -265,7 +265,7 @@
 
     .scroll-indicator {
       position: absolute;
-      bottom: 30px; 
+      bottom: 40px; 
       left: 50%;
       transform: translateX(-50%);
       color: rgba(255,255,255,0.5);
@@ -274,7 +274,7 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      z-index: 0; /* Lower z-index to stay behind content */
+      z-index: 0; 
       animation: bounce 2s infinite;
       pointer-events: none; 
     }
@@ -282,7 +282,7 @@
     /* ================= INTERACTIVE QUIZ TEASER ================= */
     .quiz-teaser-section {
       position: relative;
-      margin-top: -5rem; /* Overlap hero */
+      margin-top: -6rem; /* Overlap hero */
       z-index: 10;
       padding-bottom: 4rem;
     }
@@ -292,7 +292,7 @@
       backdrop-filter: blur(10px);
       border: 1px solid var(--accent-blue);
       border-radius: var(--radius-lg);
-      padding: 2.5rem;
+      padding: 3rem 2rem;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0,0,0,0.3);
       color: #fff;
@@ -330,33 +330,35 @@
       margin: 0 auto;
     }
     
-    .quiz-options {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    
-    .quiz-option-btn {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 1rem 1.5rem;
-      border-radius: var(--radius-md);
-      color: #fff;
+    /* Animated Pulse Button */
+    .btn-assessment {
+      background: linear-gradient(135deg, var(--accent-blue), #0ea5e9);
+      color: var(--white);
+      padding: 1.2rem 3rem;
+      border-radius: 99px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       text-decoration: none;
-      font-weight: 500;
-      transition: 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+      animation: pulse-blue 2s infinite;
+      transition: transform 0.2s;
+      display: inline-block;
+      margin-top: 1rem;
+      align-self: center;
     }
     
-    .quiz-option-btn:hover {
-      background: var(--accent-blue);
-      color: var(--dark-blue);
-      border-color: var(--accent-blue);
-      transform: translateY(-3px);
+    .btn-assessment:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+      animation: none; 
+    }
+    
+    @keyframes pulse-blue {
+      0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(56, 189, 248, 0); }
+      100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
     }
 
     @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
@@ -447,7 +449,7 @@
     }
     .equip-item svg { color: var(--accent-blue); }
 
-    /* ================= CLINICAL DASHBOARD (ACCORDION) ================= */
+    /* ================= CLINICAL DASHBOARD (MEDICAL STYLE) ================= */
     .physiology-section {
       padding: 6rem 1rem;
       background: #fff;
@@ -467,7 +469,7 @@
     .science-container {
       position: relative;
       z-index: 1;
-      max-width: 900px; /* Narrower for better readability */
+      max-width: 950px;
       margin: 0 auto;
     }
     
@@ -478,25 +480,26 @@
     .section-header h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 1rem; }
     .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 
-    /* Accordion Styles */
+    /* Medical Accordion */
     .clinical-accordion {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.8rem;
     }
     
     details.clinical-item {
       background: #fff;
       border: 1px solid #e2e8f0;
-      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-blue); /* Clinical File Look */
+      border-radius: 6px;
       overflow: hidden;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     
     details.clinical-item[open] {
-      border-color: var(--accent-blue);
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border-color: #cbd5e1;
+      border-left-color: var(--dark-blue);
     }
     
     summary.clinical-header {
@@ -506,45 +509,72 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 700;
-      color: var(--dark-blue);
-      font-size: 1.1rem;
     }
-    
     summary.clinical-header::-webkit-details-marker { display: none; }
+    
+    .condition-pill {
+      background: #f1f5f9;
+      color: var(--dark-blue);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 1.2rem;
+      border-radius: 99px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     
     .toggle-icon {
       font-size: 1.2rem;
-      color: var(--accent-blue);
+      color: var(--text-muted);
       transition: transform 0.3s;
     }
-    
-    details[open] .toggle-icon { transform: rotate(180deg); }
+    details[open] .toggle-icon { transform: rotate(180deg); color: var(--accent-blue); }
     
     .clinical-body {
-      padding: 0 1.5rem 1.5rem;
+      padding: 1.5rem 2rem;
       border-top: 1px solid #f1f5f9;
-      background: #fcfcfc;
+      background: #fff;
     }
     
-    .mechanism-tag {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.75rem;
+    /* Data Grid Layout inside Accordion */
+    .clinical-data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    
+    .clinical-mechanism h4 {
+      font-size: 0.7rem;
       text-transform: uppercase;
+      color: #94a3b8;
+      margin: 0 0 0.5rem 0;
       letter-spacing: 0.05em;
-      color: var(--accent-blue);
-      font-weight: 700;
+    }
+    .clinical-mechanism p {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin: 0;
     }
     
-    .clinical-text { margin: 0.5rem 0 1rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+    .clinical-stat-box {
+      background: #f8fafc;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
     
-    /* Bars inside accordion */
-    .bar-container { position: relative; height: 24px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; }
+    /* Bar Chart */
+    .bar-container { position: relative; height: 28px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 0.8rem; }
     .bar-active { height: 100%; background: linear-gradient(90deg, var(--mid-blue), var(--accent-blue)); border-radius: 4px; width: 0; transition: width 1s ease-out; position: relative; }
-    .bar-marker { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+    .bar-marker { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 0.75rem; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
     
-    .citation { font-size: 0.7rem; color: #94a3b8; font-style: italic; display: block; text-align: right; }
+    .citation { font-size: 0.75rem; color: #94a3b8; font-style: italic; display: block; text-align: right; }
 
     .edu-portal-cta {
       text-align: center;
@@ -649,6 +679,7 @@
       .menu-toggle { display: flex; }
       .clinic-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero-section { padding-bottom: 8rem; }
+      .clinical-data-grid { grid-template-columns: 1fr; gap: 1rem; }
     }
   </style>
 </head>
@@ -705,23 +736,12 @@
     <div class="container">
       <div class="quiz-teaser-card">
         <span class="quiz-badge">New Interactive Tool</span>
-        <h2 style="margin:0; font-size: 2rem;">Not sure where to start?</h2>
-        <p style="margin:0; opacity:0.9;">Select your primary goal to see exactly how exercise changes your physiology.</p>
+        <h2 style="margin:0; font-size: 2rem;">Not sure if exercise is worth it?</h2>
+        <p style="margin:0; opacity:0.9;">Learn what the evidence says about how exercise can improve YOUR life.</p>
         
-        <div class="quiz-options">
-          <a href="exercisequiz.html" class="quiz-option-btn">
-            <span style="font-size:1.2rem;">🦴</span> Stop Bone Loss
-          </a>
-          <a href="exercisequiz.html" class="quiz-option-btn">
-            <span style="font-size:1.2rem;">🩸</span> Manage Diabetes
-          </a>
-          <a href="exercisequiz.html" class="quiz-option-btn">
-            <span style="font-size:1.2rem;">⚖️</span> Improve Balance
-          </a>
-          <a href="exercisequiz.html" class="quiz-option-btn">
-            <span style="font-size:1.2rem;">🤕</span> Reduce Pain
-          </a>
-        </div>
+        <a href="exercisequiz.html" class="btn-assessment">
+          Take the Assessment Now
+        </a>
       </div>
     </div>
   </section>
@@ -772,85 +792,157 @@
     </div>
   </section>
 
-  <!-- CLINICAL DASHBOARD (ACCORDION) -->
+  <!-- CLINICAL DASHBOARD (PROFESSIONAL ACCORDION) -->
   <section class="physiology-section" id="science">
     <div class="container science-container">
       <div class="section-header reveal">
-        <h2>The Clinical Efficacy Dashboard</h2>
-        <p>We prescribe specific movement dosages to achieve measurable biological outcomes. Click a condition to see the data.</p>
+        <h2>Evidence-Based Clinical Outcomes</h2>
+        <p>We utilize targeted interventions for the specific physiological challenges of aging. Select a condition to review the clinical data.</p>
       </div>
 
       <div class="clinical-accordion reveal">
         
-        <!-- Item 1 -->
+        <!-- Item 1: Diabetes -->
         <details class="clinical-item">
           <summary class="clinical-header">
-            <span>Type 2 Diabetes</span>
+            <div class="condition-pill">🩸 DIABETES MELLITUS</div>
             <span class="toggle-icon">▼</span>
           </summary>
           <div class="clinical-body">
-            <span class="mechanism-tag">Mechanism: GLUT4 Translocation</span>
-            <p class="clinical-text">Muscle contraction moves glucose from the blood into cells without needing insulin. This "invisible insulin" effect lasts for up to 48 hours after a session.</p>
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="42%">
-                <span class="bar-marker">Risk -42%</span>
+            <div class="clinical-data-grid">
+              <div class="clinical-mechanism">
+                <h4>Mechanism of Action</h4>
+                <p><strong>GLUT4 Translocation:</strong> Muscle contraction acts as "invisible insulin," moving glucose from the blood into cells without insulin. This effect persists for up to 48 hours.</p>
+              </div>
+              <div class="clinical-stat-box">
+                <div class="bar-container">
+                  <div class="bar-active observer-bar" data-width="42%">
+                    <span class="bar-marker">Risk -42%</span>
+                  </div>
+                </div>
+                <span class="citation">Source: Sigal et al., Diabetes Care (2006)</span>
               </div>
             </div>
-            <span class="citation">Source: Sigal et al., Diabetes Care (2006)</span>
           </div>
         </details>
 
-        <!-- Item 2 -->
+        <!-- Item 2: Arthritis -->
         <details class="clinical-item">
           <summary class="clinical-header">
-            <span>Knee Osteoarthritis</span>
+            <div class="condition-pill">🦵 OSTEOARTHRITIS</div>
             <span class="toggle-icon">▼</span>
           </summary>
           <div class="clinical-body">
-            <span class="mechanism-tag">Mechanism: Synovial Fluid Dynamics</span>
-            <p class="clinical-text">Movement pumps nutrient-rich synovial fluid into the joint capsule, lubricating the cartilage. This mechanical action is more effective than painkillers for long-term management.</p>
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="40%">
-                <span class="bar-marker">Pain -40%</span>
+            <div class="clinical-data-grid">
+              <div class="clinical-mechanism">
+                <h4>Mechanism of Action</h4>
+                <p><strong>Synovial Fluid Dynamics:</strong> Movement creates a "sponge effect," pumping nutrient-rich fluid into the joint capsule to lubricate cartilage. Mechanical loading is superior to rest for pain management.</p>
+              </div>
+              <div class="clinical-stat-box">
+                <div class="bar-container">
+                  <div class="bar-active observer-bar" data-width="40%">
+                    <span class="bar-marker">Pain -40%</span>
+                  </div>
+                </div>
+                <span class="citation">Source: Moseng et al., BJSM (2017)</span>
               </div>
             </div>
-            <span class="citation">Source: Moseng et al., BJSM (2017)</span>
           </div>
         </details>
 
-        <!-- Item 3 -->
+        <!-- Item 3: Falls -->
         <details class="clinical-item">
           <summary class="clinical-header">
-            <span>Fall Risk</span>
+            <div class="condition-pill">⚖️ FALL RISK REDUCTION</div>
             <span class="toggle-icon">▼</span>
           </summary>
           <div class="clinical-body">
-            <span class="mechanism-tag">Mechanism: Type II Fiber Recruitment</span>
-            <p class="clinical-text">Falls happen when you can't move your feet fast enough to catch yourself. Power training targets fast-twitch fibers to improve reaction time and stability.</p>
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="34%">
-                <span class="bar-marker">Risk -34%</span>
+            <div class="clinical-data-grid">
+              <div class="clinical-mechanism">
+                <h4>Mechanism of Action</h4>
+                <p><strong>Type II Fiber Recruitment:</strong> Falls occur due to a lack of power (speed). Training fast-twitch fibers improves the "reactive step" needed to catch balance during a slip.</p>
+              </div>
+              <div class="clinical-stat-box">
+                <div class="bar-container">
+                  <div class="bar-active observer-bar" data-width="34%">
+                    <span class="bar-marker">Risk -34%</span>
+                  </div>
+                </div>
+                <span class="citation">Source: Sherrington et al., Cochrane Database (2019)</span>
               </div>
             </div>
-            <span class="citation">Source: Sherrington et al., Cochrane (2019)</span>
           </div>
         </details>
 
-        <!-- Item 4 -->
+        <!-- Item 4: Dementia -->
         <details class="clinical-item">
           <summary class="clinical-header">
-            <span>Cognitive Decline</span>
+            <div class="condition-pill">🧠 COGNITIVE DECLINE</div>
             <span class="toggle-icon">▼</span>
           </summary>
           <div class="clinical-body">
-            <span class="mechanism-tag">Mechanism: BDNF Release</span>
-            <p class="clinical-text">Aerobic exercise triggers Brain-Derived Neurotrophic Factor, which acts like fertilizer for new neurons in the hippocampus (memory center).</p>
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="100%">
-                <span class="bar-marker" style="left:10px; color:var(--dark-blue);">Volume +2% (Reverses Shrinkage)</span>
+            <div class="clinical-data-grid">
+              <div class="clinical-mechanism">
+                <h4>Mechanism of Action</h4>
+                <p><strong>BDNF Release:</strong> Aerobic activity triggers Brain-Derived Neurotrophic Factor, which promotes neurogenesis in the hippocampus (memory center), effectively reversing age-related shrinkage.</p>
+              </div>
+              <div class="clinical-stat-box">
+                <div class="bar-container">
+                  <div class="bar-active observer-bar" data-width="100%">
+                    <span class="bar-marker" style="left:10px; color:var(--dark-blue);">Volume +2% (Reverses Atrophy)</span>
+                  </div>
+                </div>
+                <span class="citation">Source: Erickson et al., PNAS (2011)</span>
               </div>
             </div>
-            <span class="citation">Source: Erickson et al., PNAS (2011)</span>
+          </div>
+        </details>
+
+        <!-- Item 5: Hypertension (New) -->
+        <details class="clinical-item">
+          <summary class="clinical-header">
+            <div class="condition-pill">❤️ HYPERTENSION</div>
+            <span class="toggle-icon">▼</span>
+          </summary>
+          <div class="clinical-body">
+            <div class="clinical-data-grid">
+              <div class="clinical-mechanism">
+                <h4>Mechanism of Action</h4>
+                <p><strong>Post-Exercise Hypotension:</strong> Shear stress on arterial walls releases Nitric Oxide, a potent vasodilator. This relaxes blood vessels and lowers resting blood pressure significantly.</p>
+              </div>
+              <div class="clinical-stat-box">
+                <div class="bar-container">
+                  <div class="bar-active observer-bar" data-width="65%">
+                    <span class="bar-marker">BP -8mmHg</span>
+                  </div>
+                </div>
+                <span class="citation">Source: Pescatello et al., ACSM (2004)</span>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Item 6: Sarcopenia (New) -->
+        <details class="clinical-item">
+          <summary class="clinical-header">
+            <div class="condition-pill">💪 SARCOPENIA</div>
+            <span class="toggle-icon">▼</span>
+          </summary>
+          <div class="clinical-body">
+            <div class="clinical-data-grid">
+              <div class="clinical-mechanism">
+                <h4>Mechanism of Action</h4>
+                <p><strong>Anabolic Signaling:</strong> Resistance training activates the mTOR pathway, stimulating muscle protein synthesis even in advanced age (90+), preserving functional independence.</p>
+              </div>
+              <div class="clinical-stat-box">
+                <div class="bar-container">
+                  <div class="bar-active observer-bar" data-width="100%" style="overflow:visible;">
+                    <span class="bar-marker" style="right:-70px; color:var(--dark-blue);">+113% Strength</span>
+                  </div>
+                </div>
+                <span class="citation">Source: Fiatarone et al., JAMA (1990)</span>
+              </div>
+            </div>
           </div>
         </details>
 
@@ -898,7 +990,7 @@
 
   <footer>
     <div class="container" style="text-align: center; color: #94a3b8; padding: 2rem 0;">
-      <p>&copy; <span id="year">2023</span> Olympian Health Solutions. All rights reserved.</p>
+      <p>&copy; <span id="year">2023</span> Olympian Health Solutions. Educational use only. Consult a physician before starting any program or supplement.</p>
     </div>
   </footer>
 
