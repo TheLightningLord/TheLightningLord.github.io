@@ -95,17 +95,20 @@
     .hero-section h1 span {
       color: var(--gold);
     }
-    .hero-buttons .btn-hero-quiz {
+        .hero-buttons .btn-hero-quiz {
       position: relative;
       z-index: 1;
       display: inline-block;
       border-radius: 999px;
       font-weight: 600;
-      box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.6);
+      box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.6);
       animation: heroQuizPulse 2s ease-out infinite;
     }
-    @keyframes heroQuizPulse {
-      0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); }
+        @keyframes heroQuizPulse {
+      0% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.7); }
+      70% { box-shadow: 0 0 0 18px rgba(30, 64, 175, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
+    }
       70% { box-shadow: 0 0 0 18px rgba(250, 204, 21, 0); }
       100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
     }
@@ -175,6 +178,13 @@
       .mission-grid {
         grid-template-columns: 3fr 2fr;
       }
+    }
+
+    .mission-section p {
+      color: #111827;
+    }
+    .mission-section .mission-card p {
+      color: #111827;
     }
 
     /* ============ QUIZ HIGHLIGHT SECTION ============ */
@@ -470,6 +480,111 @@
       text-decoration: underline;
     }
 
+    .solutions-section {
+      padding: 3rem 1rem;
+      background: #ffffff;
+    }
+    .solutions-section .section-intro {
+      text-align: left;
+      max-width: 700px;
+      margin: 0.5rem auto 1.5rem;
+    }
+    .simple-steps {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+    }
+    .simple-steps::before {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      right: 0.5rem;
+      top: 1.6rem;
+      height: 2px;
+      background: linear-gradient(to right, #e5e7eb, #d1d5db);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .step-card {
+      position: relative;
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.9rem 0.9rem 0.9rem 1.1rem;
+      flex: 1 1 220px;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 4px rgba(15,23,42,0.03);
+    }
+    .step-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .step-card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+    .step-card p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .who-we-help {
+      padding: 3rem 1rem;
+      background: #ffffff;
+    }
+    .who-we-help h2 {
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .who-we-help .section-intro {
+      text-align: left;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+    .who-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+    .who-card {
+      background: #f9fafb;
+      border-radius: 0.8rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      color: #111827;
+      line-height: 1.5;
+    }
+    .who-card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+    .who-card p {
+      margin: 0;
+      color: #4b5563;
+    }
+    @media (min-width: 900px) {
+      .who-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     /* ============ FUTURE SECTIONS ============ */
     /* Add any new homepage sections above the CONTACT block at the bottom of the file.
        Keep styles here scoped with clear comments so we can extend this file over time
@@ -612,71 +727,54 @@
   </section>
 
   <!-- ================= WHO WE HELP ================= -->
-  <section class="who-we-help container">
-    <h2>Who We Serve</h2>
-    <p class="section-intro">
-      Olympian Health Solutions is built for seniors and medically complex adults who want to
-      move with less pain, more confidence, and a plan that respects their reality.
-    </p>
-    <div class="help-cards">
-      <div class="help-card" id="independent-seniors">
-        <h3>Independent Older Adults</h3>
-        <p>
-          For seniors living at home who feel their balance, strength, or energy slipping. We use portable
-          tools and gentle progressions to keep you doing the things you love.
-        </p>
-      </div>
-      <div class="help-card" id="post-pt">
-        <h3>Post-Physical Therapy Graduates</h3>
-        <p>
-          You’ve finished PT but don’t feel "done." We bridge the gap from rehab to real-life strength and
-          independence — without pretending to be physical therapy.
-        </p>
-      </div>
-      <div class="help-card" id="senior-communities">
-        <h3>Senior & Assisted Living Communities</h3>
-        <p>
-          Activity directors and administrators who want real fall-prevention, improved mobility,
-          and engaging classes tailored to your residents.
-        </p>
-      </div>
-      <div class="help-card" id="chronic-conditions">
-        <h3>Chronic Conditions & Pain</h3>
-        <p>
-          For people managing arthritis, diabetes, heart disease, or long-term pain who need a
-          <strong>realistic, science-guided exercise plan</strong>, not just "go to the gym."
-        </p>
+  <section class="who-we-help">
+    <div class="container-narrow">
+      <h2>Who We Serve</h2>
+      <p class="section-intro">
+        We work with older adults and medically complex adults who want simple, safe support to move more and worry less.
+      </p>
+      <div class="who-grid">
+        <article class="who-card">
+          <h3>Independent Older Adults</h3>
+          <p>Living at home and want to stay strong, steady, and independent with everyday tasks.</p>
+        </article>
+        <article class="who-card">
+          <h3>After Physical Therapy</h3>
+          <p>You finished PT but still feel unsure. We help you keep the progress going in real life.</p>
+        </article>
+        <article class="who-card">
+          <h3>Senior Communities</h3>
+          <p>Independent and assisted living communities that want gentle, effective movement classes.</p>
+        </article>
+        <article class="who-card">
+          <h3>Chronic Conditions &amp; Pain</h3>
+          <p>Arthritis, diabetes, heart issues, or long-term pain—and you need a plan that respects your limits.</p>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- ================= HOW IT WORKS ================= -->
-  <section class="solutions-section container">
-    <h2>How It Works</h2>
-    <p class="section-intro">
-      A simple, calm process built around your goals, your medical reality, and your nervous system.
-    </p>
-    <div class="solutions-cards">
-      <div class="solution-card">
-        <h3>1. Conversation & Movement Screening</h3>
-        <p>
-          We learn about your goals, pain history, medical conditions, and daily life. Then we do
-          gentle, low-stress baseline tests like chair stands, balance, and short walks.
-        </p>
-      </div>
-      <div class="solution-card">
-        <h3>2. Minimal Effective Dose Plan</h3>
-        <p>
-          You get a simple plan focused on short, doable sessions. No bootcamps, no maximal lifts —
-          just targeted exercises that move the needle without wiping you out.
-        </p>
-      </div>
-      <div class="solution-card">
-        <h3>3. Mobile Coaching & Adjustments</h3>
-        <p>
-          We meet at your home or community, adjust based on your symptoms and week, and slowly expand
-          what you can do safely and confidently.
-        </p>
+  <section class="solutions-section">
+    <div class="container-narrow">
+      <h2>How It Works</h2>
+      <p class="section-intro">Just three simple steps to get started.</p>
+      <div class="simple-steps">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <h3>We talk</h3>
+          <p>We listen to your story, your goals, and your medical realities in calm, simple language.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <h3>We try a plan</h3>
+          <p>We start with a few gentle movements you can safely test at home or in your community.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <h3>We adjust together</h3>
+          <p>We slowly add or change exercises based on how your body and confidence respond.</p>
+        </div>
       </div>
     </div>
   </section>
