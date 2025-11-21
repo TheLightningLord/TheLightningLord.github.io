@@ -42,46 +42,117 @@
     }
   </script>
 
-  <!-- Minimal inline styles for NEW layout pieces only -->
+  <!-- Inline layout styles -->
   <style>
-    /* Generic layout helpers */
+    :root {
+      --dark-blue: #020617;
+      --mid-blue: #0f172a;
+      --accent-blue: #38bdf8;
+      --gold: #facc15;
+      --text-dark: #111827;
+      --text-muted: #4b5563;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-dark);
+      background: #ffffff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
     .container-narrow {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 1rem;
     }
 
-    /* HEADER NAV BUTTONS */
+    /* ================= HEADER (REBUILT) ================= */
     header {
-  background:#ffffff;
-  color:#111827;
-}
-header .nav-links a { color:#111827; }
-header .nav-links .nav-pill { color:#111827; }
-header .nav-links .nav-pill {
+      background: #ffffff;
+      color: var(--text-dark);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+    }
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .logo span {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+
+    nav {
+      flex: 1;
+    }
+    .nav-links {
+      list-style: none !important;
+      margin: 0;
+      padding: 0;
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .nav-links li {
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      padding: 0.35rem 0.6rem;
       border-radius: 999px;
-      padding: 0.4rem 0.9rem;
-      font-weight: 600;
+      color: var(--text-dark);
+      transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
       white-space: nowrap;
-      transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        background-color 0.18s ease,
-        color 0.18s ease;
     }
-    header .nav-links .nav-pill:hover,
-    header .nav-links .nav-pill:focus-visible {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25);
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: #e5e7eb;
       outline: none;
+    }
+    .nav-links a.active {
+      font-weight: 600;
+    }
+
+    /* Header pills */
+    header .nav-links .nav-pill {
+      padding: 0.4rem 0.9rem;
+      font-weight: 600;
     }
     header .nav-links .nav-edu {
       background: linear-gradient(135deg, #e5e7eb, #9ca3af);
-      color: #111827;
+      color: var(--text-dark);
     }
     header .nav-links .nav-quiz {
       background: linear-gradient(135deg, #38bdf8, #0ea5e9);
@@ -89,66 +160,160 @@ header .nav-links .nav-pill {
     }
     header .nav-links .nav-book {
       background: linear-gradient(135deg, #facc15, #eab308);
-      color: #111827;
+      color: var(--text-dark);
+      box-shadow: 0 10px 24px rgba(234, 179, 8, 0.55);
     }
 
-    /* ============ HERO (use existing base styles, just tweak text) ============ */
+    /* Basic dropdown styling (kept simple) */
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      position: absolute;
+      top: 120%;
+      right: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0.4rem 0;
+      background: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+      display: none;
+      min-width: 160px;
+      z-index: 40;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-content li a {
+      display: block;
+      padding: 0.35rem 0.8rem;
+      border-radius: 0;
+    }
+    .dropdown-content li a:hover {
+      background: #f3f4f6;
+    }
+
+    /* Hide burger on desktop (mobile styles likely handled in main CSS) */
+    .menu-toggle {
+      display: none;
+    }
+
+    /* ================= HERO ================= */
+    .hero-section {
+      position: relative;
+      background: radial-gradient(circle at top left, #0b1120, #020617);
+      color: #e5e7eb;
+      padding: 4.5rem 1rem 4rem;
+      text-align: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 55%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-section h1 {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      margin: 0 0 1rem;
+      color: #f9fafb;
+    }
+    .hero-section h1 span {
+      color: var(--accent-blue);
+    }
     .hero-section .tagline {
       max-width: 700px;
       margin: 0 auto 1.5rem;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      color: #d1d5db;
     }
-    .hero-section h1 span {
-      color: var(--gold);
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-top: 1.25rem;
     }
-        .hero-buttons .btn-hero-quiz {
+    .hero-buttons a {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      background: transparent;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+    .hero-buttons a:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 1);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.6);
+    }
+
+    /* Animated primary hero button */
+    .hero-buttons .btn-hero-quiz {
       position: relative;
       z-index: 1;
-      display: inline-block;
       border-radius: 999px;
       font-weight: 600;
       box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.6);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
       animation: heroQuizPulse 2s ease-out infinite;
     }
-        @keyframes heroQuizPulse {
+    @keyframes heroQuizPulse {
       0% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.7); }
       70% { box-shadow: 0 0 0 18px rgba(30, 64, 175, 0); }
       100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
     }
-      70% { box-shadow: 0 0 0 18px rgba(250, 204, 21, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
-    }
 
-    /* ============ MISSION SECTION ============ */
+    /* ================= MISSION ================= */
     .mission-section {
-  background:#ffffff;
-  color:#111827;
-}
-.mission-section p,
-.mission-section h2,
-.mission-section h3,
-.mission-card p,
-.mission-card h3 { color:#111827 !important; }
-.mission-card-stack {
+      background: #ffffff;
+      padding: 3rem 1rem;
+      color: var(--text-dark);
+    }
+    .mission-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .mission-text h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-dark);
+    }
+    .mission-text p {
+      margin-bottom: 0.75rem;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    .mission-card-stack {
       display: grid;
       gap: 0.75rem;
     }
     .mission-card {
-      background: #fff;
+      background: #f9fafb;
       border-radius: 10px;
       border: 1px solid #e0e0e0;
       padding: 0.9rem 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       font-size: 0.95rem;
+      color: var(--text-dark);
+      line-height: 1.6;
     }
     .mission-card h3 {
       font-size: 1rem;
       margin-bottom: 0.25rem;
-    }
-    .mission-footnote {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 0.5rem;
+      color: var(--text-dark);
     }
     @media (min-width: 900px) {
       .mission-grid {
@@ -156,231 +321,7 @@ header .nav-links .nav-pill {
       }
     }
 
-    .mission-section p {
-      color: #111827;
-    }
-    .mission-section .mission-card p {
-      color: #111827;
-    }
-
-    /* ============ QUIZ HIGHLIGHT SECTION ============ */
-    .quiz-highlight {
-      background: linear-gradient(135deg, #001b3d, #003366);
-      color: var(--white);
-      padding: 3rem 1rem;
-    }
-    .quiz-highlight-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 1.75rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .quiz-highlight-inner::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(176,176,176,0.4), transparent 60%);
-      top: -80px;
-      right: -60px;
-      pointer-events: none;
-    }
-    .quiz-badge {
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.8rem;
-      opacity: 0.9;
-      margin-bottom: 0.25rem;
-    }
-    .quiz-highlight h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.4rem;
-    }
-    .quiz-highlight p {
-      margin-bottom: 0.6rem;
-      max-width: 680px;
-      line-height: 1.6;
-    }
-    .quiz-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0.75rem 0 1.2rem;
-    }
-    .quiz-chip {
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.4);
-      padding: 0.25rem 0.7rem;
-      font-size: 0.8rem;
-      background: rgba(0,0,0,0.18);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-    .quiz-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .btn-quiz-pulse {
-      display: inline-block;
-      padding: 0.65rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, #b0b0b0, #ffffff);
-      color: #003366;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
-      box-shadow: 0 0 0 0 rgba(255,255,255,0.55);
-      animation: quizPulse 1.9s ease-out infinite;
-    }
-    .quiz-cta-caption {
-      font-size: 0.85rem;
-      opacity: 0.9;
-    }
-    @keyframes quizPulse {
-      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
-      70%  { box-shadow: 0 0 0 18px rgba(255,255,255,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-    }
-    @media (max-width: 640px) {
-      .quiz-highlight-inner {
-        padding: 1.4rem 1.1rem;
-      }
-      .quiz-highlight h2 {
-        font-size: 1.5rem;
-      }
-    }
-
-    /* ============ COMPACT BENEFITS LIST ============ */
-    .benefits-section {
-      padding: 3rem 1rem;
-    }
-    .benefits-section h2 {
-      text-align: center;
-      margin-bottom: 0.75rem;
-    }
-    .benefits-section .section-intro {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-    }
-    .benefit-grid-compact {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1.25rem;
-    }
-    .benefit-column {
-      background: #fff;
-      border-radius: 10px;
-      border: 1px solid #e5e5e5;
-      padding: 1rem 1.1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      font-size: 0.95rem;
-    }
-    .benefit-column h3 {
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-      color: #111;
-    }
-    .benefit-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    .benefit-list li {
-      margin-bottom: 0.45rem;
-      padding-left: 1.2rem;
-      position: relative;
-      color: #333;
-    }
-    .benefit-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0.1rem;
-      font-size: 0.9rem;
-      color: #003366;
-    }
-    .benefits-footnote {
-      font-size: 0.8rem;
-      color: #666;
-      margin-top: 0.75rem;
-      text-align: center;
-    }
-    @media (min-width: 900px) {
-      .benefit-grid-compact {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    /* ============ FAQ DROPDOWN ============ */
-    .faq-section {
-  background:#ffffff;
-  color:#111827;
-}
-.faq-section p,
-.faq-section h2,
-.faq-item,
-.faq-question,
-.faq-answer { color:#111827 !important; }
-.faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 0.75rem 0;
-      text-align: left;
-      font-size: 0.98rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      color: #111827;
-    }
-    .faq-question span {
-      display: inline-block;
-    }
-    .faq-arrow {
-      font-size: 0.9rem;
-      color: #6b7280;
-      transition: transform 0.2s ease;
-    }
-    .faq-question.active .faq-arrow {
-      transform: rotate(180deg);
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease;
-      font-size: 0.9rem;
-      color: #4b5563;
-    }
-    .faq-answer p {
-      margin: 0.25rem 0 0.75rem;
-    }
-
-    /* ============ CONTACT SECTION TWEAK ============ */
-    .contact-section {
-      padding: 3rem 1rem;
-    }
-    .contact-section h2 {
-      text-align: center;
-      margin-bottom: 0.75rem;
-    }
-    .contact-section .section-intro {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-    }
-
-    /* ============ EDUCATION HIGHLIGHTS ============ */
+    /* ================= EDUCATION HIGHLIGHTS (accordion) ================= */
     .edu-highlight {
       background: #0f172a;
       color: #e5e7eb;
@@ -389,6 +330,7 @@ header .nav-links .nav-pill {
     .edu-highlight h2 {
       text-align: left;
       margin-bottom: 0.5rem;
+      color: #f9fafb;
     }
     .edu-highlight .section-intro {
       text-align: left;
@@ -452,14 +394,66 @@ header .nav-links .nav-pill {
       text-decoration: underline;
     }
 
+    /* ================= WHO WE SERVE ================= */
+    .who-we-help {
+      padding: 3rem 1rem;
+      background: #ffffff;
+      color: var(--text-dark);
+    }
+    .who-we-help h2 {
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .who-we-help .section-intro {
+      text-align: left;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      color: var(--text-muted);
+    }
+    .who-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+    .who-card {
+      background: #f9fafb;
+      border-radius: 0.8rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+    .who-card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+    .who-card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+    @media (min-width: 900px) {
+      .who-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ================= HOW IT WORKS ================= */
     .solutions-section {
       padding: 3rem 1rem;
       background: #ffffff;
+      color: var(--text-dark);
+    }
+    .solutions-section h2 {
+      text-align: left;
     }
     .solutions-section .section-intro {
       text-align: left;
       max-width: 700px;
       margin: 0.5rem auto 1.5rem;
+      color: var(--text-muted);
     }
     .simple-steps {
       max-width: 900px;
@@ -488,7 +482,8 @@ header .nav-links .nav-pill {
       padding: 0.9rem 0.9rem 0.9rem 1.1rem;
       flex: 1 1 220px;
       font-size: 0.9rem;
-      box-shadow: 0 2px 4px rgba(15,23,42,0.03);
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03);
+      color: var(--text-dark);
     }
     .step-badge {
       width: 28px;
@@ -506,61 +501,268 @@ header .nav-links .nav-pill {
     .step-card h3 {
       margin: 0 0 0.25rem;
       font-size: 1rem;
-      color: #111827;
+      color: var(--text-dark);
     }
     .step-card p {
       margin: 0;
-      color: #4b5563;
+      color: var(--text-muted);
       line-height: 1.5;
     }
 
-    .who-we-help {
+    /* ================= QUIZ HIGHLIGHT ================= */
+    .quiz-highlight {
+      background: linear-gradient(135deg, #001b3d, #003366);
+      color: var(--white);
+      padding: 3rem 1rem;
+    }
+    .quiz-highlight-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+    }
+    .quiz-highlight h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: var(--white);
+    }
+    .quiz-highlight p {
+      margin-bottom: 0.6rem;
+      max-width: 680px;
+      line-height: 1.6;
+      color: #e5e7eb;
+    }
+    .quiz-badge {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-bottom: 0.25rem;
+      color: #e5e7eb;
+    }
+    .quiz-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1.2rem;
+    }
+    .quiz-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 0.25rem 0.7rem;
+      font-size: 0.8rem;
+      background: rgba(0, 0, 0, 0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: #f9fafb;
+    }
+    .quiz-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .btn-quiz-pulse {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #b0b0b0, #ffffff);
+      color: #003366;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+      animation: quizPulse 1.9s ease-out infinite;
+    }
+    .quiz-cta-caption {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      color: #e5e7eb;
+    }
+    @keyframes quizPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+      70% { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    /* ================= BENEFITS ================= */
+    .benefits-section {
       padding: 3rem 1rem;
       background: #ffffff;
+      color: var(--text-dark);
     }
-    .who-we-help h2 {
-      text-align: left;
-      margin-bottom: 0.5rem;
+    .benefits-section h2 {
+      text-align: center;
+      margin-bottom: 0.75rem;
     }
-    .who-we-help .section-intro {
-      text-align: left;
-      max-width: 700px;
+    .benefits-section .section-intro {
+      max-width: 800px;
       margin: 0 auto 1.5rem;
+      color: var(--text-muted);
     }
-    .who-grid {
+    .benefit-grid-compact {
       max-width: 1000px;
       margin: 0 auto;
       display: grid;
-      gap: 1rem;
+      gap: 1.25rem;
     }
-    .who-card {
+    .benefit-column {
       background: #f9fafb;
-      border-radius: 0.8rem;
-      border: 1px solid #e5e7eb;
-      padding: 0.9rem 1rem;
-      font-size: 0.9rem;
-      color: #111827;
-      line-height: 1.5;
+      border-radius: 10px;
+      border: 1px solid #e5e5e5;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      font-size: 0.95rem;
+      color: var(--text-dark);
     }
-    .who-card h3 {
-      margin: 0 0 0.25rem;
+    .benefit-column h3 {
       font-size: 1rem;
-      color: #111827;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
     }
-    .who-card p {
-      margin: 0;
-      color: #4b5563;
+    .benefits-footnote {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      text-align: center;
     }
     @media (min-width: 900px) {
-      .who-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .benefit-grid-compact {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    /* ============ FUTURE SECTIONS ============ */
-    /* Add any new homepage sections above the CONTACT block at the bottom of the file.
-       Keep styles here scoped with clear comments so we can extend this file over time
-       without breaking existing layout. */
+    /* ================= TESTIMONIALS (unchanged) ================= */
+    .carousel.testimonials {
+      padding: 3rem 1rem;
+      background: #f9fafb;
+    }
+
+    /* ================= FAQ ================= */
+    .faq-section {
+      padding: 3rem 1rem;
+      background: #ffffff;
+      color: var(--text-dark);
+    }
+    .faq-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    .faq-item {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0.4rem 0.75rem;
+      max-width: 800px;
+      margin: 0.4rem auto;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+    }
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 0.75rem 0;
+      text-align: left;
+      font-size: 0.98rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .faq-answer p {
+      margin: 0.25rem 0 0.75rem;
+    }
+
+    /* ================= CONTACT ================= */
+    .contact-section {
+      padding: 3rem 1rem;
+      background: #ffffff;
+      color: var(--text-dark);
+    }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .contact-section .section-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      color: var(--text-muted);
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      background: radial-gradient(circle at top left, #0b1120, #020617);
+      color: #e5e7eb;
+      padding: 2rem 1rem 2.5rem;
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-top {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+    }
+    .footer-brand {
+      max-width: 420px;
+    }
+    .footer-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: #e5e7eb;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 0.75rem;
+    }
   </style>
 </head>
 <body>
@@ -594,10 +796,6 @@ header .nav-links .nav-pill {
           <li><a href="about.html">About</a></li>
           <li><a href="booking.html" class="cta-btn nav-pill nav-book">Book Now</a></li>
         </ul>
-          </li>
-          <li><a href="ExerciseQuiz.html">Exercise Quiz</a></li>
-          <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-        </ul>
       </nav>
     </div>
   </header>
@@ -621,7 +819,7 @@ header .nav-links .nav-pill {
     </div>
   </section>
 
-  <!-- ================= MISSION: TINY DOSES, BIG IMPACT ================= -->
+  <!-- ================= MISSION ================= -->
   <section class="mission-section">
     <div class="mission-grid">
       <div class="mission-text">
@@ -631,21 +829,21 @@ header .nav-links .nav-pill {
           <strong>small, manageable doses of movement</strong> that create meaningful change over time.
         </p>
         <p>
-          No overwhelm. No pressure. Just science‑backed guidance designed for real life.
+          No overwhelm. No pressure. Just science-backed guidance designed for real life.
         </p>
         <a href="education.html" class="cta-btn">Learn More in Our Education Hub</a>
       </div>
       <div class="mission-card-stack">
         <div class="mission-card">
-          <h3>Confidence‑Building Movement</h3>
+          <h3>Confidence-Building Movement</h3>
           <p>Gentle, progressive steps that help your body and nervous system feel safe again.</p>
         </div>
         <div class="mission-card">
-          <h3>Evidence‑Based Coaching</h3>
+          <h3>Evidence-Based Coaching</h3>
           <p>Built on physical therapy research and strength training principles that help adults 55+ thrive.</p>
         </div>
         <div class="mission-card">
-          <h3>Designed for Home & Community</h3>
+          <h3>Designed for Home &amp; Community</h3>
           <p>All sessions are fully mobile—meaning we bring the gym and the science to you.</p>
         </div>
       </div>
@@ -761,12 +959,12 @@ header .nav-links .nav-pill {
         to <strong>specific, evidence-supported benefits of exercise</strong>, using plain language and research-informed claims.
       </p>
       <div class="quiz-tag-row">
-        <span class="quiz-chip">📨 Blood sugar & type 2 diabetes</span>
-        <span class="quiz-chip">🧠 Brain, memory & mood</span>
-        <span class="quiz-chip">🦴 Arthritis & chronic pain</span>
-        <span class="quiz-chip">🧶 Balance & fall risk</span>
-        <span class="quiz-chip">❤️ Heart & blood pressure</span>
-        <span class="quiz-chip">🏡 Independence & daily tasks</span>
+        <span class="quiz-chip">📨 Blood sugar &amp; type 2 diabetes</span>
+        <span class="quiz-chip">🧠 Brain, memory &amp; mood</span>
+        <span class="quiz-chip">🦴 Arthritis &amp; chronic pain</span>
+        <span class="quiz-chip">🧶 Balance &amp; fall risk</span>
+        <span class="quiz-chip">❤️ Heart &amp; blood pressure</span>
+        <span class="quiz-chip">🏡 Independence &amp; daily tasks</span>
       </div>
       <div class="quiz-cta-row">
         <a href="ExerciseQuiz.html" class="btn-quiz-pulse">Take the Exercise Impact Quiz</a>
@@ -777,7 +975,7 @@ header .nav-links .nav-pill {
     </div>
   </section>
 
-  <!-- ================= “TOO GOOD TO BE TRUE” BENEFITS ================= -->
+  <!-- ================= BENEFITS ================= -->
   <section class="benefits-section" id="exercise-benefits">
     <div class="container-narrow">
       <h2>Why Exercise Works Better Than You Think</h2>
@@ -797,7 +995,7 @@ header .nav-links .nav-pill {
       </div>
 
       <div class="benefit-column">
-        <h3>Stronger Joints & Less Pain</h3>
+        <h3>Stronger Joints &amp; Less Pain</h3>
         <ul class="benefit-list">
           <li>Strengthens muscles that support painful joints.</li>
           <li>Improves mobility and reduces stiffness.</li>
@@ -821,7 +1019,7 @@ header .nav-links .nav-pill {
     </p>
   </section>
 
-  <!-- ================= TESTIMONIALS CAROUSEL ================= -->
+  <!-- ================= TESTIMONIALS ================= -->
   <section class="carousel testimonials">
     <div class="carousel-inner" id="carouselInner">
       <div class="carousel-item">
@@ -855,7 +1053,7 @@ header .nav-links .nav-pill {
     </div>
   </section>
 
-  <!-- ================= FAQ (DROPDOWN) ================= -->
+  <!-- ================= FAQ ================= -->
   <section class="faq-section">
     <h2>Frequently Asked Questions</h2>
 
@@ -948,7 +1146,7 @@ header .nav-links .nav-pill {
     <div class="contact-grid container">
       <div class="contact-info">
         <h3>Get In Touch</h3>
-        <p><strong>Location:</strong> Battle Ground, Washington & surrounding areas</p>
+        <p><strong>Location:</strong> Battle Ground, Washington &amp; surrounding areas</p>
         <p><strong>Email:</strong> <a href="mailto:info@olympianhealthsolutions.com">info@olympianhealthsolutions.com</a></p>
         <p><strong>Phone:</strong> (123) 456-7890</p>
         <p><strong>Service Type:</strong> Mobile, in-home, and senior community training</p>
@@ -977,17 +1175,31 @@ header .nav-links .nav-pill {
   <!-- ================= FOOTER ================= -->
   <footer>
     <div class="container footer-content">
-      <p>&copy; <span id="year"></span> Olympian Health Solutions LLC. All rights reserved.</p>
-      <p class="footer-note">
-        Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
-      </p>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-title">Olympian Health Solutions</p>
+          <p class="footer-tagline">Tiny doses of movement, big returns on life.</p>
+        </div>
+        <div class="footer-links">
+          <a href="education.html">Education Hub</a>
+          <a href="ExerciseQuiz.html">Exercise Quiz</a>
+          <a href="services.html">Services</a>
+          <a href="booking.html">Book a Consult</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Olympian Health Solutions LLC. All rights reserved.</p>
+        <p class="footer-note">
+          Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
+        </p>
+      </div>
     </div>
   </footer>
 
   <!-- Main JS -->
   <script src="assets/js/script.js"></script>
 
-  <!-- Page-specific JS: FAQ + small safety checks -->
+  <!-- Page-specific JS: FAQ accordion -->
   <script>
     // FAQ accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -996,13 +1208,11 @@ header .nav-links .nav-pill {
         const answer = question.nextElementSibling;
         const isOpen = answer.style.maxHeight && answer.style.maxHeight !== "0px";
 
-        // Close all
         document.querySelectorAll('.faq-answer').forEach(a => {
           a.style.maxHeight = null;
         });
         document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
 
-        // Open this one if it was closed
         if (!isOpen) {
           answer.style.maxHeight = answer.scrollHeight + "px";
           question.classList.add('active');
