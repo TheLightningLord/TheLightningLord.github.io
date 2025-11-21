@@ -336,7 +336,13 @@
       100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
     }
 
-    /* ================= MISSION (COMPACT) ================= */
+    @media (max-width: 640px) {
+      .hero-section {
+        padding-top: 4rem;
+      }
+    }
+
+    /* ================= HOW WE CAN HELP YOU (MISSION REWORK) ================= */
     .mission-section {
       background: #ffffff;
       padding: 3rem 1rem;
@@ -359,42 +365,30 @@
       color: var(--text-muted);
       margin-bottom: 1rem;
     }
-    .mission-highlight {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-    .mission-highlight span {
-      font-size: 0.85rem;
-      background: #eef2ff;
-      color: #1d4ed8;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-    }
     .mission-text p {
       margin: 0 0 0.75rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
-    .mission-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
+    .mission-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.5rem 0 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
-    .mission-stat {
-      flex: 1 1 130px;
-      border-radius: 0.75rem;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 0.6rem 0.8rem;
-      font-size: 0.85rem;
+    .mission-list li {
+      margin-bottom: 0.35rem;
+      padding-left: 1.1rem;
+      position: relative;
     }
-    .mission-stat strong {
-      display: block;
-      font-size: 1.1rem;
-      color: #111827;
+    .mission-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      color: #2563eb;
+      font-size: 0.9rem;
     }
 
     .mission-card-stack {
@@ -416,10 +410,109 @@
       margin-bottom: 0.25rem;
       color: var(--text-dark);
     }
+    .mission-team-name {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .mission-team-roles {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .mission-team-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      font-size: 0.85rem;
+    }
+    .mission-team-list li {
+      margin-bottom: 0.25rem;
+    }
+
     @media (min-width: 900px) {
       .mission-grid {
         grid-template-columns: 3fr 2fr;
       }
+    }
+
+    /* ================= BENEFITS (POWER OF MOVEMENT) ================= */
+    .benefits-section {
+      padding: 3rem 1rem;
+      background: #ffffff;
+      color: var(--text-dark);
+    }
+    .benefits-section h2 {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .benefits-section .section-intro {
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .benefits-accordion {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .benefit-group {
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.7rem 0.9rem;
+    }
+    .benefit-group summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+    .benefit-group summary::-webkit-details-marker {
+      display: none;
+    }
+    .benefit-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .benefit-heading small {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .benefits-chevron {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-left: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .benefit-group[open] .benefits-chevron {
+      transform: rotate(180deg);
+    }
+    .benefit-body {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .benefit-stats {
+      margin: 0.35rem 0 0.35rem;
+      padding-left: 1.1rem;
+    }
+    .benefit-stats li {
+      margin-bottom: 0.25rem;
+    }
+    .benefit-note {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin: 0.1rem 0 0;
     }
 
     /* ================= EDUCATION HIGHLIGHTS ================= */
@@ -692,87 +785,7 @@
       100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
     }
 
-    /* ================= BENEFITS (NEW ACCORDION) ================= */
-    .benefits-section {
-      padding: 3rem 1rem;
-      background: #ffffff;
-      color: var(--text-dark);
-    }
-    .benefits-section h2 {
-      text-align: center;
-      margin-bottom: 0.75rem;
-    }
-    .benefits-section .section-intro {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      color: var(--text-muted);
-      text-align: center;
-    }
-    .benefits-accordion {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      gap: 0.75rem;
-    }
-    .benefit-group {
-      background: #f9fafb;
-      border-radius: 0.9rem;
-      border: 1px solid #e5e7eb;
-      padding: 0.7rem 0.9rem;
-    }
-    .benefit-group summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-dark);
-    }
-    .benefit-group summary::-webkit-details-marker {
-      display: none;
-    }
-    .benefit-heading {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-    .benefit-heading small {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-    }
-    .benefits-chevron {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-left: 0.5rem;
-      transition: transform 0.2s ease;
-    }
-    .benefit-group[open] .benefits-chevron {
-      transform: rotate(180deg);
-    }
-    .benefit-body {
-      margin-top: 0.4rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-    .benefit-stats {
-      margin: 0.35rem 0 0.35rem;
-      padding-left: 1.1rem;
-    }
-    .benefit-stats li {
-      margin-bottom: 0.25rem;
-    }
-    .benefit-note {
-      font-size: 0.78rem;
-      color: #6b7280;
-      margin: 0.1rem 0 0;
-    }
-
-    /* ================= TESTIMONIALS (unchanged structure) ================= */
+    /* ================= TESTIMONIALS ================= */
     .carousel.testimonials {
       padding: 3rem 1rem;
       background: #f9fafb;
@@ -897,12 +910,6 @@
       color: #9ca3af;
       margin-top: 0.75rem;
     }
-
-    @media (max-width: 640px) {
-      .hero-section {
-        padding-top: 4rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -959,48 +966,133 @@
     </div>
   </section>
 
-  <!-- ================= MISSION (COMPACT) ================= -->
+  <!-- ================= HOW WE CAN HELP YOU ================= -->
   <section class="mission-section">
     <div class="mission-grid">
       <div class="mission-text">
-        <h2>Our Mission: Small Steps, Real Change</h2>
+        <h2>How We Can Help You</h2>
         <p class="mission-tagline">
-          We help older adults and medically complex adults use tiny, realistic doses of movement to get real wins in daily life.
+          If you feel behind, fragile, or unsure where to start, our job is to give you calm, clear support so you can
+          move with less fear and more confidence.
         </p>
-        <div class="mission-highlight">
-          <span>Low-pressure, high-support coaching</span>
-          <span>Respect for pain & medical realities</span>
-        </div>
         <p>
-          You don’t need a bootcamp or a gym membership. You need a calm plan that fits your energy, your schedule,
-          and your nervous system — so you can move without fear and slowly rebuild trust in your body.
+          We meet you exactly where you are — pain history, medical conditions, and all — and build a gentle,
+          step-by-step plan that fits your real life, not an ideal one.
         </p>
-        <div class="mission-stats">
-          <div class="mission-stat">
-            <strong>1–3x/week</strong>
-            Short sessions focused on what matters most to you.
-          </div>
-          <div class="mission-stat">
-            <strong>Home &amp; Community</strong>
-            We come to your home or senior community with everything you need.
-          </div>
-        </div>
+        <ul class="mission-list">
+          <li>Short, realistic sessions you can recover from — not “no pain, no gain.”</li>
+          <li>Simple movements that protect joints and slowly build strength and balance.</li>
+          <li>Ongoing check-ins and adjustments so you never feel pushed past your limits.</li>
+        </ul>
       </div>
+
       <div class="mission-card-stack">
         <div class="mission-card">
-          <h3>Gentle, Nervous-System Friendly</h3>
-          <p>We start below your limits and slowly build up so your joints and nervous system feel safe.</p>
+          <h3>Meet the Team</h3>
+          <p class="mission-team-name">Zeuse Valentine</p>
+          <p class="mission-team-roles">
+            Student Doctor of Physical Therapy &bull; CSCS &bull; NASM-CPT
+          </p>
+          <ul class="mission-team-list">
+            <li>Honors student and pain science researcher focused on older adults and chronic pain.</li>
+            <li>Blends physical therapy research with gentle, practical strength training.</li>
+            <li>Committed to care that feels safe, respectful, and encouraging — never shaming or rushed.</li>
+          </ul>
         </div>
+
         <div class="mission-card">
-          <h3>Evidence-Based, Real-World</h3>
-          <p>Sessions are built from physical therapy, strength training, and pain science research — translated into plain language.</p>
+          <h3>What Sessions Feel Like</h3>
+          <ul class="mission-team-list">
+            <li>A short check-in on your pain, energy, and wins from the week.</li>
+            <li>Simple movements that we scale up or down together in real time.</li>
+            <li>Clear take-home steps so you know exactly what to do — and what is “enough” for now.</li>
+          </ul>
         </div>
-        <div class="mission-card">
-          <h3>Designed for Real Life</h3>
-          <p>We work around grandkids, appointments, and bad days, not against them.</p>
-        </div>
-        <a href="education.html" class="cta-btn" style="margin-top:0.25rem;">Visit the Education Hub</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= LEARN THE POWER OF MOVEMENT (BENEFITS) ================= -->
+  <section class="benefits-section" id="exercise-benefits">
+    <div class="container-narrow">
+      <h2>Learn the Power of Movement</h2>
+      <p class="section-intro">
+        Exercise doesn’t have to be extreme to be powerful. Even small amounts, done consistently, are linked with
+        better health across almost every body system.
+      </p>
+    </div>
+
+    <div class="benefits-accordion">
+      <details class="benefit-group" open>
+        <summary>
+          <div class="benefit-heading">
+            <small>Heart &amp; Longevity</small>
+            <span>Blood pressure, heart disease &amp; living longer</span>
+          </div>
+          <span class="benefits-chevron">▾</span>
+        </summary>
+        <div class="benefit-body">
+          <p>
+            Regular moderate activity (like brisk walking or simple strength work) is linked with noticeable
+            improvements in heart and blood vessel health.
+          </p>
+          <ul class="benefit-stats">
+            <li><strong>About 20–30% lower</strong> risk of dying early in large population studies among people who move regularly versus those who are mostly inactive.</li>
+            <li><strong>Average 4–9 mmHg drop</strong> in systolic blood pressure is often seen with consistent aerobic exercise in people with high blood pressure.</li>
+            <li>Can help improve cholesterol patterns and reduce resting heart rate over time.</li>
+          </ul>
+          <p class="benefit-note">
+            Numbers are approximate and based on large research reviews of adults doing regular moderate exercise.
+          </p>
+        </div>
+      </details>
+
+      <details class="benefit-group">
+        <summary>
+          <div class="benefit-heading">
+            <small>Blood Sugar &amp; Metabolism</small>
+            <span>Type 2 diabetes, insulin resistance &amp; weight</span>
+          </div>
+          <span class="benefits-chevron">▾</span>
+        </summary>
+        <div class="benefit-body">
+          <p>
+            Muscles act like “sponges” for blood sugar. When you use them regularly, your body often doesn’t have to
+            work as hard to manage glucose.
+          </p>
+          <ul class="benefit-stats">
+            <li><strong>Roughly 25–40% lower</strong> risk of developing type 2 diabetes in adults who stay active compared to those who are inactive.</li>
+            <li>Even a <strong>10–15 minute walk</strong> after meals can help soften blood sugar spikes in many people.</li>
+            <li>Strength training can help preserve muscle mass, which supports metabolism as we age.</li>
+          </ul>
+          <p class="benefit-note">
+            Exercise is not a replacement for medications, but it is a powerful partner for blood sugar control.
+          </p>
+        </div>
+      </details>
+
+      <details class="benefit-group">
+        <summary>
+          <div class="benefit-heading">
+            <small>Brain, Mood &amp; Independence</small>
+            <span>Thinking clearly, feeling better &amp; staying steady</span>
+          </div>
+          <span class="benefits-chevron">▾</span>
+        </summary>
+        <div class="benefit-body">
+          <p>
+            Movement doesn’t just help muscles and heart — it also supports brain health, mood, and everyday function.
+          </p>
+          <ul class="benefit-stats">
+            <li><strong>About 20–30% lower</strong> risk of depression in people who meet basic activity guidelines versus those who are mostly inactive.</li>
+            <li>Regular strength + balance work can cut <strong>fall risk by roughly 20–30%</strong> in many older adult programs.</li>
+            <li>Improved leg strength and walking speed are both linked with better independence and lower hospitalizations in older adults.</li>
+          </ul>
+          <p class="benefit-note">
+            These effects grow over months and years — and often start with only a few short sessions each week.
+          </p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1126,90 +1218,6 @@
           Free, educational, and senior-friendly — a clear starting point before we ever schedule a session.
         </span>
       </div>
-    </div>
-  </section>
-
-  <!-- ================= BENEFITS (NEW ACCORDION) ================= -->
-  <section class="benefits-section" id="exercise-benefits">
-    <div class="container-narrow">
-      <h2>Why Exercise Works Better Than You Think</h2>
-      <p class="section-intro">
-        Exercise doesn’t have to be extreme to be powerful. Even small amounts, done consistently, are linked with
-        better health across almost every body system.
-      </p>
-    </div>
-
-    <div class="benefits-accordion">
-      <details class="benefit-group" open>
-        <summary>
-          <div class="benefit-heading">
-            <small>Heart &amp; Longevity</small>
-            <span>Blood pressure, heart disease &amp; living longer</span>
-          </div>
-          <span class="benefits-chevron">▾</span>
-        </summary>
-        <div class="benefit-body">
-          <p>
-            Regular moderate activity (like brisk walking or simple strength work) is linked with noticeable
-            improvements in heart and blood vessel health.
-          </p>
-          <ul class="benefit-stats">
-            <li><strong>About 20–30% lower</strong> risk of dying early in large population studies among people who move regularly versus those who are mostly inactive.</li>
-            <li><strong>Average 4–9 mmHg drop</strong> in systolic blood pressure is often seen with consistent aerobic exercise in people with high blood pressure.</li>
-            <li>Can help improve cholesterol patterns and reduce resting heart rate over time.</li>
-          </ul>
-          <p class="benefit-note">
-            Numbers are approximate and based on large research reviews of adults doing regular moderate exercise.
-          </p>
-        </div>
-      </details>
-
-      <details class="benefit-group">
-        <summary>
-          <div class="benefit-heading">
-            <small>Blood Sugar &amp; Metabolism</small>
-            <span>Type 2 diabetes, insulin resistance &amp; weight</span>
-          </div>
-          <span class="benefits-chevron">▾</span>
-        </summary>
-        <div class="benefit-body">
-          <p>
-            Muscles act like “sponges” for blood sugar. When you use them regularly, your body often doesn’t have to
-            work as hard to manage glucose.
-          </p>
-          <ul class="benefit-stats">
-            <li><strong>Roughly 25–40% lower</strong> risk of developing type 2 diabetes in adults who stay active compared to those who are inactive.</li>
-            <li>Even a <strong>10–15 minute walk</strong> after meals can help soften blood sugar spikes in many people.</li>
-            <li>Strength training can help preserve muscle mass, which supports metabolism as we age.</li>
-          </ul>
-          <p class="benefit-note">
-            Exercise is not a replacement for medications, but it is a powerful partner for blood sugar control.
-          </p>
-        </div>
-      </details>
-
-      <details class="benefit-group">
-        <summary>
-          <div class="benefit-heading">
-            <small>Brain, Mood &amp; Independence</small>
-            <span>Thinking clearly, feeling better &amp; staying steady</span>
-          </div>
-          <span class="benefits-chevron">▾</span>
-        </summary>
-        <div class="benefit-body">
-          <p>
-            Movement doesn’t just help muscles and heart — it also supports brain health, mood, and everyday function.
-          </p>
-          <ul class="benefit-stats">
-            <li><strong>About 20–30% lower</strong> risk of depression in people who meet basic activity guidelines versus those who are mostly inactive.</li>
-            <li>Regular strength + balance work can cut <strong>fall risk by roughly 20–30%</strong> in many older adult programs.</li>
-            <li>Improved leg strength and walking speed are both linked with better independence and lower hospitalizations in older adults.</li>
-          </ul>
-          <p class="benefit-note">
-            These effects grow over months and years — and often start with only a few short sessions each week.
-          </p>
-        </div>
-      </details>
     </div>
   </section>
 
