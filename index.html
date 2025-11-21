@@ -162,7 +162,7 @@
       position: relative;
       background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
       color: #fff;
-      padding: 8rem 1rem 10rem; 
+      padding: 8rem 1rem 12rem; /* Extra padding for scroll btn */
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -262,20 +262,10 @@
       border-color: #fff;
       background: rgba(255,255,255,0.1);
     }
-    .btn-gold {
-      background: var(--gold);
-      color: var(--dark-blue);
-      border: 2px solid var(--gold);
-      box-shadow: 0 10px 20px rgba(250, 204, 21, 0.3);
-    }
-    .btn-gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(250, 204, 21, 0.4);
-    }
 
     .scroll-indicator {
       position: absolute;
-      bottom: 40px; 
+      bottom: 30px; 
       left: 50%;
       transform: translateX(-50%);
       color: rgba(255,255,255,0.5);
@@ -284,7 +274,7 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      z-index: 2;
+      z-index: 0; /* Lower z-index to stay behind content */
       animation: bounce 2s infinite;
       pointer-events: none; 
     }
@@ -375,161 +365,95 @@
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
 
-    /* ================= REVAMPED "HOW IT WORKS" ================= */
-    .steps-section {
+    /* ================= "WE COME TO YOU" (Mobile Clinic) ================= */
+    .mobile-clinic-section {
       padding: 6rem 1rem;
-      background: #fff;
+      background: #f8fafc;
       position: relative;
     }
     
-    .timeline-wrapper {
-      max-width: 900px;
-      margin: 4rem auto 0;
-      position: relative;
+    .clinic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
     }
     
-    /* Connecting line */
-    .timeline-wrapper::before {
+    .clinic-info h2 {
+      font-size: 2.5rem;
+      color: var(--dark-blue);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    
+    .timeline-list {
+      border-left: 2px solid var(--accent-blue);
+      padding-left: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    
+    .timeline-item::before {
       content: '';
       position: absolute;
-      top: 40px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #e2e8f0;
-      z-index: 0;
-    }
-
-    .timeline-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .timeline-step {
-      text-align: center;
-      background: #fff; /* hide line behind text */
-      padding: 0 1rem;
-    }
-
-    .step-icon-box {
-      width: 80px;
-      height: 80px;
-      background: var(--white);
-      border: 4px solid var(--accent-blue);
+      left: -2.6rem;
+      top: 0.4rem;
+      width: 16px;
+      height: 16px;
+      background: var(--gold);
+      border: 3px solid #f8fafc;
       border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--accent-blue);
-      font-weight: 700;
-      box-shadow: 0 0 0 8px #fff; /* Clear space around circle */
-      transition: transform 0.3s ease;
     }
     
-    .timeline-step:hover .step-icon-box {
-      transform: scale(1.1);
-      background: var(--accent-blue);
-      color: #fff;
-    }
-
-    .timeline-step h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
+    .timeline-item h3 {
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem;
       color: var(--dark-blue);
     }
     
-    .timeline-step p {
+    .timeline-item p {
+      margin: 0;
       font-size: 0.95rem;
       color: var(--text-muted);
     }
     
-    .steps-cta-wrapper {
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    /* ================= SERVICES (REVISED) ================= */
-    .services-section {
-      padding: 6rem 1rem;
-      background: #f8fafc;
-    }
-    
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 4rem;
-    }
-    .section-header h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 1rem; }
-    .section-header p { color: var(--text-muted); font-size: 1.1rem; }
-    
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    
-    .service-card {
+    .equipment-card {
       background: #fff;
+      padding: 2rem;
       border-radius: var(--radius-lg);
-      padding: 2.5rem;
       box-shadow: var(--shadow-card);
-      transition: var(--transition-smooth);
-      border-top: 4px solid transparent;
+      border: 1px solid #e2e8f0;
     }
     
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
-      border-top-color: var(--gold);
+    .equip-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
     }
     
-    .service-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--soft-blue);
-      border-radius: 12px;
+    .equip-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      color: var(--accent-blue);
-    }
-    
-    .service-card h3 { margin: 0 0 0.75rem; font-size: 1.5rem; color: var(--dark-blue); }
-    .service-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0 0;
-    }
-    .service-list li {
-      display: flex;
-      align-items: start;
       gap: 10px;
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      font-size: 0.9rem;
+      color: var(--text-dark);
     }
-    .service-list li svg {
-      color: var(--accent-blue);
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
+    .equip-item svg { color: var(--accent-blue); }
 
-    /* ================= NEW: CLINICAL EFFICACY DASHBOARD ================= */
+    /* ================= CLINICAL DASHBOARD (ACCORDION) ================= */
     .physiology-section {
       padding: 6rem 1rem;
       background: #fff;
       position: relative;
     }
 
-    /* Background pattern specifically for science section */
     .physiology-section::before {
       content: '';
       position: absolute;
@@ -543,58 +467,84 @@
     .science-container {
       position: relative;
       z-index: 1;
-    }
-
-    /* Clinical Chart Styles */
-    .clinical-chart {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      box-shadow: var(--shadow-card);
-      max-width: 1000px;
+      max-width: 900px; /* Narrower for better readability */
       margin: 0 auto;
     }
     
-    .chart-header-row {
-      display: grid;
-      grid-template-columns: 2fr 3fr 1fr;
-      gap: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #f1f5f9;
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 1rem; }
+    .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+    /* Accordion Styles */
+    .clinical-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    details.clinical-item {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    details.clinical-item[open] {
+      border-color: var(--accent-blue);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
+    }
+    
+    summary.clinical-header {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-weight: 700;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      color: var(--dark-blue);
+      font-size: 1.1rem;
+    }
+    
+    summary.clinical-header::-webkit-details-marker { display: none; }
+    
+    .toggle-icon {
+      font-size: 1.2rem;
+      color: var(--accent-blue);
+      transition: transform 0.3s;
+    }
+    
+    details[open] .toggle-icon { transform: rotate(180deg); }
+    
+    .clinical-body {
+      padding: 0 1.5rem 1.5rem;
+      border-top: 1px solid #f1f5f9;
+      background: #fcfcfc;
+    }
+    
+    .mechanism-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      font-weight: 700;
     }
-
-    .chart-row {
-      display: grid;
-      grid-template-columns: 2fr 3fr 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #f1f5f9;
-      align-items: center;
-      transition: background-color 0.2s;
-    }
-    .chart-row:last-child { border-bottom: none; }
-    .chart-row:hover { background-color: #fcfcfc; }
     
-    .row-info h4 { margin: 0 0 0.35rem 0; font-size: 1.1rem; color: var(--dark-blue); }
-    .mechanism { font-size: 0.75rem; color: var(--accent-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
-    .claim-text { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4; display: block; }
+    .clinical-text { margin: 0.5rem 0 1rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
     
-    .bar-container { position: relative; height: 28px; background: #f1f5f9; border-radius: 6px; overflow: hidden; margin-bottom: 0.25rem; }
-    .bar-bg { position: absolute; top:0; left:0; width:100%; height:100%; }
-    .bar-active { height: 100%; background: linear-gradient(90deg, var(--mid-blue), var(--accent-blue)); border-radius: 6px; width: 0; transition: width 1.5s ease-out; position: relative; }
-    .bar-label { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 0.75rem; font-weight: 500; z-index: 2;}
-    .bar-active .bar-marker { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 0.75rem; font-weight: 700; }
+    /* Bars inside accordion */
+    .bar-container { position: relative; height: 24px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; }
+    .bar-active { height: 100%; background: linear-gradient(90deg, var(--mid-blue), var(--accent-blue)); border-radius: 4px; width: 0; transition: width 1s ease-out; position: relative; }
+    .bar-marker { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
     
-    .row-stat { text-align: right; }
-    .stat-highlight { display: block; font-size: 1.6rem; font-weight: 900; color: var(--dark-blue); line-height: 1; }
-    .stat-desc { font-size: 0.8rem; color: #10b981; font-weight: 600; }
-    .citation { font-size: 0.7rem; color: #94a3b8; font-style: italic; margin-top: 0.4rem; display: block; }
+    .citation { font-size: 0.7rem; color: #94a3b8; font-style: italic; display: block; text-align: right; }
 
     .edu-portal-cta {
       text-align: center;
@@ -697,16 +647,8 @@
       .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--mid-blue); flex-direction: column; padding: 1rem; }
       .nav-links.active { display: flex; }
       .menu-toggle { display: flex; }
-      .hero-section { padding-bottom: 8rem; } 
-      
-      /* Timeline Mobile Adjustment */
-      .timeline-wrapper::before { display: none; }
-      .timeline-steps { grid-template-columns: 1fr; gap: 3rem; }
-
-      /* Chart Mobile */
-      .chart-header-row { display: none; }
-      .chart-row { grid-template-columns: 1fr; gap: 1rem; }
-      .row-stat { text-align: left; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+      .clinic-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-section { padding-bottom: 8rem; }
     }
   </style>
 </head>
@@ -747,7 +689,7 @@
         Reclaim your strength and independence without the hassle of travel.
       </p>
       <div class="hero-buttons">
-        <a href="booking.html" class="btn btn-primary">Book Free Consultation</a>
+        <a href="booking.html" class="btn btn-primary">Book Now</a>
         <a href="#process" class="btn btn-outline">See How It Works</a>
       </div>
       
@@ -784,271 +726,136 @@
     </div>
   </section>
 
-  <!-- REVAMPED HOW IT WORKS -->
-  <section class="steps-section" id="process">
+  <!-- MOBILE CLINIC (WE COME TO YOU) -->
+  <section class="mobile-clinic-section" id="process">
     <div class="container">
-      <div class="section-header">
-        <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Your Path to Strength</h2>
-        <p>We've simplified the process so you can focus on feeling better.</p>
-      </div>
-      
-      <div class="timeline-wrapper">
-        <div class="timeline-steps">
-          <!-- Step 1 -->
-          <div class="timeline-step reveal">
-            <div class="step-icon-box">1</div>
-            <h3>Free Consult</h3>
-            <p>We schedule a no-pressure visit to discuss your medical history, pain points, and personal goals.</p>
+      <div class="clinic-grid">
+        <div class="clinic-info reveal">
+          <h2>The Mobile Clinic Advantage</h2>
+          <p style="font-size:1.1rem; color:var(--text-muted); margin-bottom:2rem;">We eliminate the biggest barrier to health: getting there. We bring a complete gym and rehab center to your door.</p>
+          
+          <div class="timeline-list">
+            <div class="timeline-item">
+              <h3>1. Book Online or Call</h3>
+              <p>Schedule a time that works for you. No complex intake forms.</p>
+            </div>
+            <div class="timeline-item">
+              <h3>2. We Drive to You</h3>
+              <p>Our clinicians serve private homes and assisted living facilities across Battle Ground.</p>
+            </div>
+            <div class="timeline-item">
+              <h3>3. Setup in Minutes</h3>
+              <p>We need just 6ft of space. We transform your living room into a safe training zone.</p>
+            </div>
+            <div class="timeline-item">
+              <h3>4. Safe, Guided Movement</h3>
+              <p>You exercise under expert supervision, then we pack up and leave you feeling stronger.</p>
+            </div>
           </div>
-          <!-- Step 2 -->
-          <div class="timeline-step reveal delay-100">
-            <div class="step-icon-box">2</div>
-            <h3>Home Assessment</h3>
-            <p>We design a safety-first plan tailored to your specific living space, furniture, and abilities.</p>
-          </div>
-          <!-- Step 3 -->
-          <div class="timeline-step reveal delay-200">
-            <div class="step-icon-box">3</div>
-            <h3>Reclaim Life</h3>
-            <p>Follow a guided, evidence-based program to build strength, reduce pain, and stay independent.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="steps-cta-wrapper reveal delay-300">
-        <a href="booking.html" class="btn btn-gold">Start Your Journey Today</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services-section" id="services">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Designed for Assisted Living & Home Care</h2>
-        <p>We specialize in working within senior communities. We coordinate with your care team to ensure safety.</p>
-      </div>
-      
-      <div class="services-grid">
-        <!-- Service 1 -->
-        <div class="service-card reveal delay-100">
-          <div class="service-icon">
-            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          </div>
-          <h3>In-Home & Assisted Living</h3>
-          <p>No gym required. We are experts at modifying exercises for small spaces, utilizing chairs, walkers, and bed-side techniques if needed.</p>
-          <ul class="service-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> We travel to your facility</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Coordination with nursing staff</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Safety-first protocols</li>
-          </ul>
         </div>
         
-        <!-- Service 2 -->
-        <div class="service-card reveal delay-200">
-          <div class="service-icon">
-            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div class="clinic-card reveal delay-100">
+          <div class="equipment-card">
+            <h3 style="margin-top:0; color:var(--dark-blue);">Zero Equipment Needed</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted);">We bring a sanitized kit tailored to your strength level.</p>
+            <div class="equip-list">
+              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Resistance Bands</div>
+              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Light Dumbbells</div>
+              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Balance Pads</div>
+              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Safety Rails</div>
+              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Massage Tools</div>
+              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Blood Pressure Cuff</div>
+            </div>
           </div>
-          <h3>We Bring The Equipment</h3>
-          <p>Don't worry about buying weights. We arrive with a sanitized kit of resistance bands, light weights, and balance tools tailored to you.</p>
-          <ul class="service-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Sanitized before every visit</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Low-impact resistance tools</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"></path></svg> Balance pads & safety rails</li>
-          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REPLACED PHYSIOLOGY SECTION (DASHBOARD) -->
+  <!-- CLINICAL DASHBOARD (ACCORDION) -->
   <section class="physiology-section" id="science">
     <div class="container science-container">
       <div class="section-header reveal">
         <h2>The Clinical Efficacy Dashboard</h2>
-        <p>We don't just "exercise." We prescribe specific movement dosages to achieve measurable biological outcomes. Compare the clinical data below.</p>
+        <p>We prescribe specific movement dosages to achieve measurable biological outcomes. Click a condition to see the data.</p>
       </div>
 
-      <div class="clinical-chart reveal">
+      <div class="clinical-accordion reveal">
         
-        <!-- Header Row (Hidden on mobile via CSS) -->
-        <div class="chart-header-row">
-          <div>Target Condition</div>
-          <div>Clinical Outcome (Active vs. Sedentary)</div>
-          <div style="text-align:right;">Effect Size</div>
-        </div>
-
-        <!-- Row 1: Diabetes -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Type 2 Diabetes</h4>
-            <span class="mechanism">Mech: GLUT4 Translocation</span>
-            <span class="claim-text">Walking post-meal reduces glucose spikes significantly.</span>
-          </div>
-          <div class="row-viz">
+        <!-- Item 1 -->
+        <details class="clinical-item">
+          <summary class="clinical-header">
+            <span>Type 2 Diabetes</span>
+            <span class="toggle-icon">▼</span>
+          </summary>
+          <div class="clinical-body">
+            <span class="mechanism-tag">Mechanism: GLUT4 Translocation</span>
+            <p class="clinical-text">Muscle contraction moves glucose from the blood into cells without needing insulin. This "invisible insulin" effect lasts for up to 48 hours after a session.</p>
             <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="58%">
+              <div class="bar-active observer-bar" data-width="42%">
                 <span class="bar-marker">Risk -42%</span>
               </div>
-              <span class="bar-label">Baseline Risk</span>
             </div>
+            <span class="citation">Source: Sigal et al., Diabetes Care (2006)</span>
           </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">-42%</span>
-              <span class="stat-desc">Risk Reduction</span>
-            </div>
-            <span class="citation">Sigal et al. (2006)</span>
-          </div>
-        </div>
+        </details>
 
-        <!-- Row 2: Knee Pain -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Knee Osteoarthritis</h4>
-            <span class="mechanism">Mech: Synovial Fluid Pumping</span>
-            <span class="claim-text">Movement lubricates joints. More effective than NSAIDs long-term.</span>
-          </div>
-          <div class="row-viz">
+        <!-- Item 2 -->
+        <details class="clinical-item">
+          <summary class="clinical-header">
+            <span>Knee Osteoarthritis</span>
+            <span class="toggle-icon">▼</span>
+          </summary>
+          <div class="clinical-body">
+            <span class="mechanism-tag">Mechanism: Synovial Fluid Dynamics</span>
+            <p class="clinical-text">Movement pumps nutrient-rich synovial fluid into the joint capsule, lubricating the cartilage. This mechanical action is more effective than painkillers for long-term management.</p>
             <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="60%">
+              <div class="bar-active observer-bar" data-width="40%">
                 <span class="bar-marker">Pain -40%</span>
               </div>
-              <span class="bar-label">Baseline Pain</span>
             </div>
+            <span class="citation">Source: Moseng et al., BJSM (2017)</span>
           </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">-40%</span>
-              <span class="stat-desc">Pain Reduction</span>
-            </div>
-            <span class="citation">Moseng et al. (2017)</span>
-          </div>
-        </div>
+        </details>
 
-        <!-- Row 3: Fall Risk -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Fall Risk</h4>
-            <span class="mechanism">Mech: Type II Fiber Power</span>
-            <span class="claim-text">Power training improves the "reactive step" needed to catch a fall.</span>
-          </div>
-          <div class="row-viz">
+        <!-- Item 3 -->
+        <details class="clinical-item">
+          <summary class="clinical-header">
+            <span>Fall Risk</span>
+            <span class="toggle-icon">▼</span>
+          </summary>
+          <div class="clinical-body">
+            <span class="mechanism-tag">Mechanism: Type II Fiber Recruitment</span>
+            <p class="clinical-text">Falls happen when you can't move your feet fast enough to catch yourself. Power training targets fast-twitch fibers to improve reaction time and stability.</p>
             <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="66%">
+              <div class="bar-active observer-bar" data-width="34%">
                 <span class="bar-marker">Risk -34%</span>
               </div>
-              <span class="bar-label">Baseline Risk</span>
             </div>
+            <span class="citation">Source: Sherrington et al., Cochrane (2019)</span>
           </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">-34%</span>
-              <span class="stat-desc">Fewer Falls</span>
-            </div>
-            <span class="citation">Sherrington (2019)</span>
-          </div>
-        </div>
+        </details>
 
-        <!-- Row 4: Dementia -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Cognitive Decline</h4>
-            <span class="mechanism">Mech: Hippocampal Growth (BDNF)</span>
-            <span class="claim-text">Reverses age-related brain shrinkage by 1-2 years.</span>
-          </div>
-          <div class="row-viz">
+        <!-- Item 4 -->
+        <details class="clinical-item">
+          <summary class="clinical-header">
+            <span>Cognitive Decline</span>
+            <span class="toggle-icon">▼</span>
+          </summary>
+          <div class="clinical-body">
+            <span class="mechanism-tag">Mechanism: BDNF Release</span>
+            <p class="clinical-text">Aerobic exercise triggers Brain-Derived Neurotrophic Factor, which acts like fertilizer for new neurons in the hippocampus (memory center).</p>
             <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="102%">
-                <span class="bar-marker">Volume +2%</span>
+              <div class="bar-active observer-bar" data-width="100%">
+                <span class="bar-marker" style="left:10px; color:var(--dark-blue);">Volume +2% (Reverses Shrinkage)</span>
               </div>
-              <span class="bar-label">Normal Shrinkage</span>
             </div>
+            <span class="citation">Source: Erickson et al., PNAS (2011)</span>
           </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">+2%</span>
-              <span class="stat-desc">Brain Volume</span>
-            </div>
-            <span class="citation">Erickson et al. (2011)</span>
-          </div>
-        </div>
-
-        <!-- Row 5: Inflammation -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Systemic Inflammation</h4>
-            <span class="mechanism">Mech: Myokine Release</span>
-            <span class="claim-text">Muscles release anti-inflammatory signaling proteins when contracted.</span>
-          </div>
-          <div class="row-viz">
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="65%">
-                <span class="bar-marker">CRP -35%</span>
-              </div>
-              <span class="bar-label">Baseline CRP</span>
-            </div>
-          </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">-35%</span>
-              <span class="stat-desc">CRP Levels</span>
-            </div>
-            <span class="citation">Petersen (2005)</span>
-          </div>
-        </div>
-
-        <!-- Row 6: Depression -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Depression & Mood</h4>
-            <span class="mechanism">Mech: Serotonin/Dopamine</span>
-            <span class="claim-text">Effect size comparable to antidepressants for mild-moderate cases.</span>
-          </div>
-          <div class="row-viz">
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="50%">
-                <span class="bar-marker">Symptoms -50%</span>
-              </div>
-              <span class="bar-label">Baseline</span>
-            </div>
-          </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">Equal</span>
-              <span class="stat-desc">to SSRIs</span>
-            </div>
-            <span class="citation">Blumenthal (1999)</span>
-          </div>
-        </div>
-
-        <!-- Row 7: Muscle Mass -->
-        <div class="chart-row">
-          <div class="row-info">
-            <h4>Sarcopenia (Muscle Loss)</h4>
-            <span class="mechanism">Mech: Protein Synthesis</span>
-            <span class="claim-text">Even 90-year-olds can increase strength by over 100% in 8 weeks.</span>
-          </div>
-          <div class="row-viz">
-            <div class="bar-container">
-              <div class="bar-active observer-bar" data-width="100%" style="width: 10%; overflow: visible;"> <!-- Start low to animate high -->
-                 <span class="bar-marker" style="color:var(--dark-blue); right:-60px;">+113% Strength</span>
-              </div>
-              <span class="bar-label">Baseline</span>
-            </div>
-          </div>
-          <div class="row-stat">
-            <div>
-              <span class="stat-highlight">+113%</span>
-              <span class="stat-desc">Strength Gain</span>
-            </div>
-            <span class="citation">Fiatarone (1990)</span>
-          </div>
-        </div>
+        </details>
 
       </div>
 
-      <!-- Education Portal Button -->
       <div class="edu-portal-cta reveal">
         <a href="education.html" class="btn btn-outline" style="border-color: var(--mid-blue); color: var(--mid-blue);">Explore the Evidence Library</a>
       </div>
@@ -1193,23 +1000,28 @@
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
           
-          // Special animation for bars in the clinical chart
-          const bars = entry.target.querySelectorAll('.observer-bar');
-          bars.forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            // Special handling for the Sarcopenia bar (grow > 100%)
-            if (width === '100%') {
-               bar.style.width = '100%';
-               bar.style.background = 'linear-gradient(90deg, var(--mid-blue), var(--gold))';
-            } else {
-               bar.style.width = width;
-            }
-          });
+          // Special animation for bars inside accordions when they appear
+          // Note: Bars inside closed details elements won't animate until opened
+          // This handles bars visible on scroll if details are open by default or opened
         }
       });
     }, { threshold: 0.1 });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Add listener for details toggle to animate bars on open
+    document.querySelectorAll('details.clinical-item').forEach(detail => {
+      detail.addEventListener('toggle', (e) => {
+        if (detail.open) {
+          const bar = detail.querySelector('.observer-bar');
+          const width = bar.getAttribute('data-width');
+          // Small delay to allow render
+          setTimeout(() => {
+             bar.style.width = width;
+          }, 50);
+        }
+      });
+    });
     
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
