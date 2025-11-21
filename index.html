@@ -54,6 +54,10 @@
       --white: #ffffff;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -72,14 +76,14 @@
       padding: 0 1rem;
     }
 
-    /* ================= HEADER (REBUILT) ================= */
+    /* ================= HEADER (REBUILT & STABLE) ================= */
     header {
-      background: #ffffff;
-      color: var(--text-dark);
+      background: #020617 !important; /* always dark */
+      color: #f9fafb;
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.4);
     }
     .header-container {
       max-width: 1100px;
@@ -89,6 +93,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
+      position: relative;
     }
     .logo {
       display: flex;
@@ -104,7 +109,7 @@
     .logo span {
       font-weight: 700;
       font-size: 1rem;
-      color: var(--text-dark);
+      color: #f9fafb;
       white-space: nowrap;
     }
 
@@ -115,7 +120,7 @@
       list-style: none !important;
       margin: 0;
       padding: 0;
-      display: flex !important;
+      display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 0.75rem;
@@ -129,7 +134,7 @@
       text-decoration: none;
       padding: 0.35rem 0.6rem;
       border-radius: 999px;
-      color: var(--text-dark);
+      color: #f9fafb !important;
       transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
       display: inline-flex;
       align-items: center;
@@ -138,11 +143,12 @@
     }
     .nav-links a:hover,
     .nav-links a:focus-visible {
-      background: #e5e7eb;
+      background: rgba(15, 23, 42, 0.6);
       outline: none;
     }
     .nav-links a.active {
       font-weight: 600;
+      background: rgba(15, 23, 42, 0.7);
     }
 
     /* Header pills */
@@ -152,19 +158,19 @@
     }
     header .nav-links .nav-edu {
       background: linear-gradient(135deg, #e5e7eb, #9ca3af);
-      color: var(--text-dark);
+      color: #111827 !important;
     }
     header .nav-links .nav-quiz {
       background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: #0b1120;
+      color: #0b1120 !important;
     }
     header .nav-links .nav-book {
       background: linear-gradient(135deg, #facc15, #eab308);
-      color: var(--text-dark);
-      box-shadow: 0 10px 24px rgba(234, 179, 8, 0.55);
+      color: #111827 !important;
+      box-shadow: 0 10px 24px rgba(234, 179, 8, 0.6);
     }
 
-    /* Basic dropdown styling (kept simple) */
+    /* Dropdown */
     .dropdown {
       position: relative;
     }
@@ -175,9 +181,9 @@
       list-style: none;
       margin: 0;
       padding: 0.4rem 0;
-      background: #ffffff;
+      background: #020617;
       border-radius: 0.5rem;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
       display: none;
       min-width: 160px;
       z-index: 40;
@@ -191,12 +197,69 @@
       border-radius: 0;
     }
     .dropdown-content li a:hover {
-      background: #f3f4f6;
+      background: rgba(15, 23, 42, 0.7);
     }
 
-    /* Hide burger on desktop (mobile styles likely handled in main CSS) */
+    /* Mobile nav */
     .menu-toggle {
       display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
+      background: #f9fafb;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex: 0;
+      }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: #020617;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.75rem 1rem 1rem;
+        gap: 0.5rem;
+        display: none;
+      }
+      .nav-links.nav-open {
+        display: flex;
+      }
+      .nav-links li {
+        width: 100%;
+      }
+      .nav-links a {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .dropdown:hover .dropdown-content {
+        position: static;
+        box-shadow: none;
+      }
+      .dropdown-content {
+        position: static;
+        display: block;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+      }
+      .dropdown-content li a {
+        padding-left: 1.5rem;
+      }
+      .menu-toggle {
+        display: flex;
+      }
     }
 
     /* ================= HERO ================= */
@@ -256,7 +319,6 @@
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.6);
     }
 
-    /* Animated primary hero button */
     .hero-buttons .btn-hero-quiz {
       position: relative;
       z-index: 1;
@@ -266,6 +328,7 @@
       border-color: var(--accent-blue);
       color: var(--accent-blue);
       animation: heroQuizPulse 2s ease-out infinite;
+      background: rgba(15, 23, 42, 0.7);
     }
     @keyframes heroQuizPulse {
       0% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.7); }
@@ -273,7 +336,7 @@
       100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
     }
 
-    /* ================= MISSION ================= */
+    /* ================= MISSION (COMPACT) ================= */
     .mission-section {
       background: #ffffff;
       padding: 3rem 1rem;
@@ -283,19 +346,57 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      gap: 2rem;
-      align-items: flex-start;
+      gap: 1.75rem;
+      align-items: stretch;
     }
     .mission-text h2 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
       color: var(--text-dark);
+    }
+    .mission-tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .mission-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .mission-highlight span {
+      font-size: 0.85rem;
+      background: #eef2ff;
+      color: #1d4ed8;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
     }
     .mission-text p {
-      margin-bottom: 0.75rem;
-      color: var(--text-dark);
+      margin: 0 0 0.75rem;
+      color: var(--text-muted);
       line-height: 1.6;
     }
+    .mission-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .mission-stat {
+      flex: 1 1 130px;
+      border-radius: 0.75rem;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.85rem;
+    }
+    .mission-stat strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #111827;
+    }
+
     .mission-card-stack {
       display: grid;
       gap: 0.75rem;
@@ -304,14 +405,14 @@
       background: #f9fafb;
       border-radius: 10px;
       border: 1px solid #e0e0e0;
-      padding: 0.9rem 1rem;
+      padding: 0.8rem 1rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-dark);
-      line-height: 1.6;
+      line-height: 1.5;
     }
     .mission-card h3 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       margin-bottom: 0.25rem;
       color: var(--text-dark);
     }
@@ -321,7 +422,7 @@
       }
     }
 
-    /* ================= EDUCATION HIGHLIGHTS (accordion) ================= */
+    /* ================= EDUCATION HIGHLIGHTS ================= */
     .edu-highlight {
       background: #0f172a;
       color: #e5e7eb;
@@ -591,7 +692,7 @@
       100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
     }
 
-    /* ================= BENEFITS ================= */
+    /* ================= BENEFITS (NEW ACCORDION) ================= */
     .benefits-section {
       padding: 3rem 1rem;
       background: #ffffff;
@@ -605,40 +706,73 @@
       max-width: 800px;
       margin: 0 auto 1.5rem;
       color: var(--text-muted);
-    }
-    .benefit-grid-compact {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1.25rem;
-    }
-    .benefit-column {
-      background: #f9fafb;
-      border-radius: 10px;
-      border: 1px solid #e5e5e5;
-      padding: 1rem 1.1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-      font-size: 0.95rem;
-      color: var(--text-dark);
-    }
-    .benefit-column h3 {
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-      color: var(--text-dark);
-    }
-    .benefits-footnote {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.75rem;
       text-align: center;
     }
-    @media (min-width: 900px) {
-      .benefit-grid-compact {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    .benefits-accordion {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .benefit-group {
+      background: #f9fafb;
+      border-radius: 0.9rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.7rem 0.9rem;
+    }
+    .benefit-group summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+    .benefit-group summary::-webkit-details-marker {
+      display: none;
+    }
+    .benefit-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .benefit-heading small {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .benefits-chevron {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-left: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .benefit-group[open] .benefits-chevron {
+      transform: rotate(180deg);
+    }
+    .benefit-body {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .benefit-stats {
+      margin: 0.35rem 0 0.35rem;
+      padding-left: 1.1rem;
+    }
+    .benefit-stats li {
+      margin-bottom: 0.25rem;
+    }
+    .benefit-note {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin: 0.1rem 0 0;
     }
 
-    /* ================= TESTIMONIALS (unchanged) ================= */
+    /* ================= TESTIMONIALS (unchanged structure) ================= */
     .carousel.testimonials {
       padding: 3rem 1rem;
       background: #f9fafb;
@@ -763,6 +897,12 @@
       color: #9ca3af;
       margin-top: 0.75rem;
     }
+
+    @media (max-width: 640px) {
+      .hero-section {
+        padding-top: 4rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -819,33 +959,47 @@
     </div>
   </section>
 
-  <!-- ================= MISSION ================= -->
+  <!-- ================= MISSION (COMPACT) ================= -->
   <section class="mission-section">
     <div class="mission-grid">
       <div class="mission-text">
         <h2>Our Mission: Small Steps, Real Change</h2>
-        <p>
-          Our mission is simple: help older adults feel better, move better, and live better through
-          <strong>small, manageable doses of movement</strong> that create meaningful change over time.
+        <p class="mission-tagline">
+          We help older adults and medically complex adults use tiny, realistic doses of movement to get real wins in daily life.
         </p>
+        <div class="mission-highlight">
+          <span>Low-pressure, high-support coaching</span>
+          <span>Respect for pain & medical realities</span>
+        </div>
         <p>
-          No overwhelm. No pressure. Just science-backed guidance designed for real life.
+          You don’t need a bootcamp or a gym membership. You need a calm plan that fits your energy, your schedule,
+          and your nervous system — so you can move without fear and slowly rebuild trust in your body.
         </p>
-        <a href="education.html" class="cta-btn">Learn More in Our Education Hub</a>
+        <div class="mission-stats">
+          <div class="mission-stat">
+            <strong>1–3x/week</strong>
+            Short sessions focused on what matters most to you.
+          </div>
+          <div class="mission-stat">
+            <strong>Home &amp; Community</strong>
+            We come to your home or senior community with everything you need.
+          </div>
+        </div>
       </div>
       <div class="mission-card-stack">
         <div class="mission-card">
-          <h3>Confidence-Building Movement</h3>
-          <p>Gentle, progressive steps that help your body and nervous system feel safe again.</p>
+          <h3>Gentle, Nervous-System Friendly</h3>
+          <p>We start below your limits and slowly build up so your joints and nervous system feel safe.</p>
         </div>
         <div class="mission-card">
-          <h3>Evidence-Based Coaching</h3>
-          <p>Built on physical therapy research and strength training principles that help adults 55+ thrive.</p>
+          <h3>Evidence-Based, Real-World</h3>
+          <p>Sessions are built from physical therapy, strength training, and pain science research — translated into plain language.</p>
         </div>
         <div class="mission-card">
-          <h3>Designed for Home &amp; Community</h3>
-          <p>All sessions are fully mobile—meaning we bring the gym and the science to you.</p>
+          <h3>Designed for Real Life</h3>
+          <p>We work around grandkids, appointments, and bad days, not against them.</p>
         </div>
+        <a href="education.html" class="cta-btn" style="margin-top:0.25rem;">Visit the Education Hub</a>
       </div>
     </div>
   </section>
@@ -855,8 +1009,8 @@
     <div class="container-narrow">
       <h2>From the Learning Hub</h2>
       <p class="section-intro">
-        Prefer to learn first? Explore calm, plain-language articles on pain science, strength, balance, and
-        how a tiny dose of movement can start changing your health story.
+        Prefer to understand the “why” first? Explore calm, plain-language articles on pain, strength, balance,
+        and chronic illness before you ever book a session.
       </p>
       <div class="edu-accordion">
         <details class="edu-group" open>
@@ -867,7 +1021,7 @@
           </summary>
           <ul class="edu-list">
             <li><a href="education.html#pain-science">Why pain can linger even after tissues heal</a></li>
-            <li><a href="education.html#gentle-progressions">Gentle progressions instead of "no pain, no gain"</a></li>
+            <li><a href="education.html#gentle-progressions">Gentle progressions instead of “no pain, no gain”</a></li>
           </ul>
         </details>
         <details class="edu-group">
@@ -878,18 +1032,18 @@
           </summary>
           <ul class="edu-list">
             <li><a href="education.html#chronic-conditions">Movement for diabetes, heart disease &amp; more</a></li>
-            <li><a href="education.html#tiny-doses">Tiny "exercise snacks" that still help your health</a></li>
+            <li><a href="education.html#tiny-doses">Tiny “exercise snacks” that still help your health</a></li>
           </ul>
         </details>
         <details class="edu-group">
           <summary>
             <span class="edu-tagline">Balance &amp; Independence</span>
-            <span>Staying steady, strong and confident at home</span>
+            <span>Staying steady, strong, and confident at home</span>
             <span class="edu-chevron">▾</span>
           </summary>
           <ul class="edu-list">
             <li><a href="education.html#falls">Simple ways to train balance and prevent falls</a></li>
-            <li><a href="education.html#everyday-strength">Building strength for stairs, curbs &amp; daily tasks</a></li>
+            <li><a href="education.html#everyday-strength">Strength for stairs, curbs, &amp; daily tasks</a></li>
           </ul>
         </details>
       </div>
@@ -918,7 +1072,7 @@
         </article>
         <article class="who-card">
           <h3>Chronic Conditions &amp; Pain</h3>
-          <p>Arthritis, diabetes, heart issues, or long-term pain—and you need a plan that respects your limits.</p>
+          <p>Arthritis, diabetes, heart issues, or long-term pain — with a plan that respects your limits.</p>
         </article>
       </div>
     </div>
@@ -975,48 +1129,88 @@
     </div>
   </section>
 
-  <!-- ================= BENEFITS ================= -->
+  <!-- ================= BENEFITS (NEW ACCORDION) ================= -->
   <section class="benefits-section" id="exercise-benefits">
     <div class="container-narrow">
       <h2>Why Exercise Works Better Than You Think</h2>
       <p class="section-intro">
-        Exercise affects almost every system in the body. Here’s what the research consistently shows for adults 55+.
+        Exercise doesn’t have to be extreme to be powerful. Even small amounts, done consistently, are linked with
+        better health across almost every body system.
       </p>
     </div>
 
-    <div class="benefit-grid-compact">
-      <div class="benefit-column">
-        <h3>Better Daily Energy</h3>
-        <ul class="benefit-list">
-          <li>Improves oxygen delivery to your muscles and brain.</li>
-          <li>Helps regulate sleep cycles and daytime alertness.</li>
-          <li>Reduces chronic fatigue linked to inactivity.</li>
-        </ul>
-      </div>
+    <div class="benefits-accordion">
+      <details class="benefit-group" open>
+        <summary>
+          <div class="benefit-heading">
+            <small>Heart &amp; Longevity</small>
+            <span>Blood pressure, heart disease &amp; living longer</span>
+          </div>
+          <span class="benefits-chevron">▾</span>
+        </summary>
+        <div class="benefit-body">
+          <p>
+            Regular moderate activity (like brisk walking or simple strength work) is linked with noticeable
+            improvements in heart and blood vessel health.
+          </p>
+          <ul class="benefit-stats">
+            <li><strong>About 20–30% lower</strong> risk of dying early in large population studies among people who move regularly versus those who are mostly inactive.</li>
+            <li><strong>Average 4–9 mmHg drop</strong> in systolic blood pressure is often seen with consistent aerobic exercise in people with high blood pressure.</li>
+            <li>Can help improve cholesterol patterns and reduce resting heart rate over time.</li>
+          </ul>
+          <p class="benefit-note">
+            Numbers are approximate and based on large research reviews of adults doing regular moderate exercise.
+          </p>
+        </div>
+      </details>
 
-      <div class="benefit-column">
-        <h3>Stronger Joints &amp; Less Pain</h3>
-        <ul class="benefit-list">
-          <li>Strengthens muscles that support painful joints.</li>
-          <li>Improves mobility and reduces stiffness.</li>
-          <li>Helps the nervous system feel safe moving again.</li>
-        </ul>
-      </div>
+      <details class="benefit-group">
+        <summary>
+          <div class="benefit-heading">
+            <small>Blood Sugar &amp; Metabolism</small>
+            <span>Type 2 diabetes, insulin resistance &amp; weight</span>
+          </div>
+          <span class="benefits-chevron">▾</span>
+        </summary>
+        <div class="benefit-body">
+          <p>
+            Muscles act like “sponges” for blood sugar. When you use them regularly, your body often doesn’t have to
+            work as hard to manage glucose.
+          </p>
+          <ul class="benefit-stats">
+            <li><strong>Roughly 25–40% lower</strong> risk of developing type 2 diabetes in adults who stay active compared to those who are inactive.</li>
+            <li>Even a <strong>10–15 minute walk</strong> after meals can help soften blood sugar spikes in many people.</li>
+            <li>Strength training can help preserve muscle mass, which supports metabolism as we age.</li>
+          </ul>
+          <p class="benefit-note">
+            Exercise is not a replacement for medications, but it is a powerful partner for blood sugar control.
+          </p>
+        </div>
+      </details>
 
-      <div class="benefit-column">
-        <h3>Greater Independence</h3>
-        <ul class="benefit-list">
-          <li>Improves balance and reduces fall risk.</li>
-          <li>Makes stairs, walking, and daily tasks easier.</li>
-          <li>Helps maintain the freedom to live how you want.</li>
-        </ul>
-      </div>
+      <details class="benefit-group">
+        <summary>
+          <div class="benefit-heading">
+            <small>Brain, Mood &amp; Independence</small>
+            <span>Thinking clearly, feeling better &amp; staying steady</span>
+          </div>
+          <span class="benefits-chevron">▾</span>
+        </summary>
+        <div class="benefit-body">
+          <p>
+            Movement doesn’t just help muscles and heart — it also supports brain health, mood, and everyday function.
+          </p>
+          <ul class="benefit-stats">
+            <li><strong>About 20–30% lower</strong> risk of depression in people who meet basic activity guidelines versus those who are mostly inactive.</li>
+            <li>Regular strength + balance work can cut <strong>fall risk by roughly 20–30%</strong> in many older adult programs.</li>
+            <li>Improved leg strength and walking speed are both linked with better independence and lower hospitalizations in older adults.</li>
+          </ul>
+          <p class="benefit-note">
+            These effects grow over months and years — and often start with only a few short sessions each week.
+          </p>
+        </div>
+      </details>
     </div>
-
-    <p class="benefits-footnote">
-      These benefits come from small, consistent amounts of movement—often far less than people expect.
-      Your program will always match your body, your health, and your starting point.
-    </p>
   </section>
 
   <!-- ================= TESTIMONIALS ================= -->
@@ -1199,7 +1393,7 @@
   <!-- Main JS -->
   <script src="assets/js/script.js"></script>
 
-  <!-- Page-specific JS: FAQ accordion -->
+  <!-- Page-specific JS: FAQ accordion + mobile nav -->
   <script>
     // FAQ accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -1219,6 +1413,16 @@
         }
       });
     });
+
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-open');
+      });
+    }
   </script>
 </body>
 </html>
