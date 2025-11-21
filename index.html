@@ -51,6 +51,51 @@
       padding: 0 1rem;
     }
 
+    /* HEADER NAV HIGHLIGHT BUTTONS */
+    header .nav-links .nav-pill {
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 0.18s ease,
+        color 0.18s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    header .nav-links .nav-education {
+      background: linear-gradient(135deg, #facc15, #fde68a); /* golden */
+      color: #1f2933;
+      box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.55);
+      animation: headerPulseEdu 2.2s ease-out infinite;
+    }
+    header .nav-links .nav-quiz {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9); /* blue/cyan */
+      color: #0b1120;
+      box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
+      animation: headerPulseQuiz 2.2s ease-out infinite;
+    }
+    header .nav-links .nav-pill:hover,
+    header .nav-links .nav-pill:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25);
+      outline: none;
+    }
+    @keyframes headerPulseEdu {
+      0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(250, 204, 21, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
+    }
+    @keyframes headerPulseQuiz {
+      0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(56, 189, 248, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
+
     /* ============ HERO (use existing base styles, just tweak text) ============ */
     .hero-section .tagline {
       max-width: 700px;
@@ -63,8 +108,9 @@
 
     /* ============ MISSION SECTION ============ */
     .mission-section {
-      background: var(--grey);
+      background: #f3f4f6;
       padding: 3rem 1rem;
+      color: #111827;
     }
     .mission-grid {
       max-width: 1100px;
@@ -79,7 +125,7 @@
     }
     .mission-text p {
       margin-bottom: 0.75rem;
-      color: #444;
+      color: #374151;
       line-height: 1.6;
     }
     .mission-bullets {
@@ -106,16 +152,19 @@
       gap: 0.75rem;
     }
     .mission-card {
-      background: #fff;
+      background: #ffffff;
       border-radius: 10px;
       border: 1px solid #e0e0e0;
       padding: 0.9rem 1rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       font-size: 0.95rem;
+      color: #111827;
+      line-height: 1.6;
     }
     .mission-card h3 {
       font-size: 1rem;
       margin-bottom: 0.25rem;
+      color: #111827;
     }
     .mission-footnote {
       font-size: 0.85rem;
@@ -288,6 +337,8 @@
     /* ============ FAQ DROPDOWN ============ */
     .faq-section {
       padding: 3rem 1rem;
+      background: #f9fafb;
+      color: #111827;
     }
     .faq-section h2 {
       text-align: center;
@@ -295,13 +346,16 @@
     }
     .faq-item {
       border-bottom: 1px solid #e0e0e0;
-      padding: 0.4rem 0;
+      padding: 0.4rem 0.75rem;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0.4rem auto;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 4px rgba(15,23,42,0.04);
     }
     .faq-question {
       width: 100%;
-      background: none;
+      background: transparent;
       border: none;
       padding: 0.75rem 0;
       text-align: left;
@@ -349,6 +403,158 @@
       margin: 0 auto 1.5rem;
     }
 
+    /* ============ EDUCATION HIGHLIGHTS SECTION ============ */
+    .edu-highlight {
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 3rem 1rem;
+    }
+    .edu-highlight h2 {
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .edu-highlight .section-intro {
+      text-align: left;
+      margin-bottom: 1.25rem;
+      color: #cbd5ff;
+    }
+    .edu-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .edu-filter-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      padding: 0.35rem 0.9rem;
+      background: transparent;
+      color: #e5e7eb;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition:
+        background-color 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+    }
+    .edu-filter-btn.active {
+      background: #fbbf24;
+      color: #111827;
+      border-color: #fbbf24;
+      transform: translateY(-1px);
+    }
+    .edu-card-grid {
+      display: grid;
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .edu-card {
+      background: #020617;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1rem 1.1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      min-height: 180px;
+    }
+    .edu-card[data-topic="pain"] {
+      display: flex; /* default visible card */
+    }
+    .edu-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a5b4fc;
+    }
+    .edu-card h3 {
+      font-size: 1rem;
+      margin: 0.15rem 0;
+      color: #f9fafb;
+    }
+    .edu-card p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    .edu-link {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: #fbbf24;
+    }
+    .edu-link:hover {
+      text-decoration: underline;
+    }
+    @media (min-width: 900px) {
+      .edu-card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* ============ FOOTER REWORK ============ */
+    footer {
+      background: radial-gradient(circle at top left, #0b1120, #020617);
+      color: #e5e7eb;
+      padding: 2rem 1rem 2.5rem;
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-top {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+    }
+    .footer-brand {
+      max-width: 420px;
+    }
+    .footer-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: #e5e7eb;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 0.75rem;
+    }
+
     /* ============ FUTURE SECTIONS ============ */
     /* Add any new homepage sections above the CONTACT block at the bottom of the file.
        Keep styles here scoped with clear comments so we can extend this file over time
@@ -372,7 +578,7 @@
 
       <nav role="navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="education.html">Education</a></li>
+          <li><a href="education.html" class="nav-pill nav-education">Education</a></li>
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li class="dropdown">
@@ -383,7 +589,7 @@
               <li><a href="in-clinic.html">In-Clinic</a></li>
             </ul>
           </li>
-          <li><a href="ExerciseQuiz.html">Exercise Quiz</a></li>
+          <li><a href="ExerciseQuiz.html" class="nav-pill nav-quiz">Exercise Quiz</a></li>
           <li><a href="booking.html" class="cta-btn">Book Now</a></li>
         </ul>
       </nav>
@@ -419,23 +625,68 @@
           <strong>small, manageable doses of movement</strong> that create meaningful change over time.
         </p>
         <p>
-          No overwhelm. No pressure. Just science‑backed guidance designed for real life.
+          No overwhelm. No pressure. Just science-backed guidance designed for real life.
         </p>
         <a href="education.html" class="cta-btn">Learn More in Our Education Hub</a>
       </div>
       <div class="mission-card-stack">
         <div class="mission-card">
-          <h3>Confidence‑Building Movement</h3>
+          <h3>Confidence-Building Movement</h3>
           <p>Gentle, progressive steps that help your body and nervous system feel safe again.</p>
         </div>
         <div class="mission-card">
-          <h3>Evidence‑Based Coaching</h3>
+          <h3>Evidence-Based Coaching</h3>
           <p>Built on physical therapy research and strength training principles that help adults 55+ thrive.</p>
         </div>
         <div class="mission-card">
-          <h3>Designed for Home & Community</h3>
+          <h3>Designed for Home &amp; Community</h3>
           <p>All sessions are fully mobile—meaning we bring the gym and the science to you.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION HIGHLIGHTS ================= -->
+  <section class="edu-highlight">
+    <div class="container-narrow">
+      <h2>From the Learning Hub</h2>
+      <p class="section-intro">
+        Prefer to learn first? Explore calm, plain-language articles on pain science, strength, balance, and
+        how a tiny dose of movement can start changing your health story.
+      </p>
+      <div class="edu-filter" aria-label="Featured education topics">
+        <button class="edu-filter-btn active" data-topic="pain">Pain &amp; Rehab Basics</button>
+        <button class="edu-filter-btn" data-topic="chronic">Heart, Blood Sugar &amp; Illness</button>
+        <button class="edu-filter-btn" data-topic="seniors">Balance &amp; Independence</button>
+      </div>
+      <div class="edu-card-grid">
+        <article class="edu-card" data-topic="pain">
+          <p class="edu-tag">Pain Science</p>
+          <h3>Why “No Pain, No Gain” Fails Most Older Bodies</h3>
+          <p>
+            Learn how the nervous system can stay “on high alert” after years of pain—and how gentle, graded
+            movement can calm it down instead of flaring it up.
+          </p>
+          <a href="education.html#pain-science" class="edu-link">Read this article</a>
+        </article>
+        <article class="edu-card" data-topic="chronic">
+          <p class="edu-tag">Chronic Conditions</p>
+          <h3>Movement for Blood Pressure, Diabetes &amp; Heart Health</h3>
+          <p>
+            See how short bouts of walking and strength work can help support blood pressure, blood sugar,
+            and heart health—even if you feel “behind” right now.
+          </p>
+          <a href="education.html#chronic-illness" class="edu-link">Read this article</a>
+        </article>
+        <article class="edu-card" data-topic="seniors">
+          <p class="edu-tag">Seniors &amp; Falls</p>
+          <h3>Balance, Confidence &amp; Staying Independent Longer</h3>
+          <p>
+            Explore practical ways to train balance, leg strength, and reaction time so everyday tasks like
+            stairs, curbs, and grocery trips feel safer.
+          </p>
+          <a href="education.html#senior-balance" class="edu-link">Read this article</a>
+        </article>
       </div>
     </div>
   </section>
@@ -458,22 +709,22 @@
       <div class="help-card" id="post-pt">
         <h3>Post-Physical Therapy Graduates</h3>
         <p>
-          You’ve finished PT but don’t feel “done.” We bridge the gap from rehab to real-life strength and
+          You’ve finished PT but don’t feel "done." We bridge the gap from rehab to real-life strength and
           independence — without pretending to be physical therapy.
         </p>
       </div>
       <div class="help-card" id="senior-communities">
-        <h3>Senior & Assisted Living Communities</h3>
+        <h3>Senior &amp; Assisted Living Communities</h3>
         <p>
           Activity directors and administrators who want real fall-prevention, improved mobility,
           and engaging classes tailored to your residents.
         </p>
       </div>
       <div class="help-card" id="chronic-conditions">
-        <h3>Chronic Conditions & Pain</h3>
+        <h3>Chronic Conditions &amp; Pain</h3>
         <p>
           For people managing arthritis, diabetes, heart disease, or long-term pain who need a
-          <strong>realistic, science-guided exercise plan</strong>, not just “go to the gym.”
+          <strong>realistic, science-guided exercise plan</strong>, not just "go to the gym."
         </p>
       </div>
     </div>
@@ -487,7 +738,7 @@
     </p>
     <div class="solutions-cards">
       <div class="solution-card">
-        <h3>1. Conversation & Movement Screening</h3>
+        <h3>1. Conversation &amp; Movement Screening</h3>
         <p>
           We learn about your goals, pain history, medical conditions, and daily life. Then we do
           gentle, low-stress baseline tests like chair stands, balance, and short walks.
@@ -501,7 +752,7 @@
         </p>
       </div>
       <div class="solution-card">
-        <h3>3. Mobile Coaching & Adjustments</h3>
+        <h3>3. Mobile Coaching &amp; Adjustments</h3>
         <p>
           We meet at your home or community, adjust based on your symptoms and week, and slowly expand
           what you can do safely and confidently.
@@ -520,12 +771,12 @@
         to <strong>specific, evidence-supported benefits of exercise</strong>, using plain language and research-informed claims.
       </p>
       <div class="quiz-tag-row">
-        <span class="quiz-chip">📨 Blood sugar & type 2 diabetes</span>
-        <span class="quiz-chip">🧠 Brain, memory & mood</span>
-        <span class="quiz-chip">🦴 Arthritis & chronic pain</span>
-        <span class="quiz-chip">🧶 Balance & fall risk</span>
-        <span class="quiz-chip">❤️ Heart & blood pressure</span>
-        <span class="quiz-chip">🏡 Independence & daily tasks</span>
+        <span class="quiz-chip">📨 Blood sugar &amp; type 2 diabetes</span>
+        <span class="quiz-chip">🧠 Brain, memory &amp; mood</span>
+        <span class="quiz-chip">🦴 Arthritis &amp; chronic pain</span>
+        <span class="quiz-chip">🧶 Balance &amp; fall risk</span>
+        <span class="quiz-chip">❤️ Heart &amp; blood pressure</span>
+        <span class="quiz-chip">🏡 Independence &amp; daily tasks</span>
       </div>
       <div class="quiz-cta-row">
         <a href="ExerciseQuiz.html" class="btn-quiz-pulse">Take the Exercise Impact Quiz</a>
@@ -556,7 +807,7 @@
       </div>
 
       <div class="benefit-column">
-        <h3>Stronger Joints & Less Pain</h3>
+        <h3>Stronger Joints &amp; Less Pain</h3>
         <ul class="benefit-list">
           <li>Strengthens muscles that support painful joints.</li>
           <li>Improves mobility and reduces stiffness.</li>
@@ -707,7 +958,7 @@
     <div class="contact-grid container">
       <div class="contact-info">
         <h3>Get In Touch</h3>
-        <p><strong>Location:</strong> Battle Ground, Washington & surrounding areas</p>
+        <p><strong>Location:</strong> Battle Ground, Washington &amp; surrounding areas</p>
         <p><strong>Email:</strong> <a href="mailto:info@olympianhealthsolutions.com">info@olympianhealthsolutions.com</a></p>
         <p><strong>Phone:</strong> (123) 456-7890</p>
         <p><strong>Service Type:</strong> Mobile, in-home, and senior community training</p>
@@ -736,17 +987,31 @@
   <!-- ================= FOOTER ================= -->
   <footer>
     <div class="container footer-content">
-      <p>&copy; <span id="year"></span> Olympian Health Solutions LLC. All rights reserved.</p>
-      <p class="footer-note">
-        Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
-      </p>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <p class="footer-title">Olympian Health Solutions</p>
+          <p class="footer-tagline">Tiny doses of movement, big returns on life.</p>
+        </div>
+        <div class="footer-links">
+          <a href="education.html">Education Hub</a>
+          <a href="ExerciseQuiz.html">Exercise Quiz</a>
+          <a href="services.html">Services</a>
+          <a href="booking.html">Book a Consult</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Olympian Health Solutions LLC. All rights reserved.</p>
+        <p class="footer-note">
+          Educational only – does not replace medical care. Always follow the advice of your healthcare providers.
+        </p>
+      </div>
     </div>
   </footer>
 
   <!-- Main JS -->
   <script src="assets/js/script.js"></script>
 
-  <!-- Page-specific JS: FAQ + small safety checks -->
+  <!-- Page-specific JS: FAQ + Education filter -->
   <script>
     // FAQ accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -768,6 +1033,26 @@
         }
       });
     });
+
+    // Education highlights filter
+    const eduButtons = document.querySelectorAll('.edu-filter-btn');
+    const eduCards = document.querySelectorAll('.edu-card');
+
+    if (eduButtons.length && eduCards.length) {
+      eduButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const topic = btn.getAttribute('data-topic');
+
+          eduButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          eduCards.forEach(card => {
+            const cardTopic = card.getAttribute('data-topic');
+            card.style.display = cardTopic === topic ? 'flex' : 'none';
+          });
+        });
+      });
+    }
   </script>
 </body>
 </html>
