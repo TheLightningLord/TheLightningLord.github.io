@@ -16,6 +16,7 @@
       --text-light: #64748b;
       --bg-subtle: #f8fafc;
       --surface: #ffffff;
+      --success: #10b981;
       
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
@@ -60,8 +61,8 @@
     .hero p { color: #94a3b8; font-size: 1.25rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
     .hero strong { color: var(--brand-accent); font-weight: 400; font-style: italic; }
 
-    /* ================= SECTION 1: THE GOLDEN TICKET ($45) ================= */
-    .promo-section { margin-bottom: 6rem; margin-top: -3rem; position: relative; z-index: 10; } /* Pulled up slightly */
+    /* ================= SECTION 1: THE INTRO SESSION (GOLDEN TICKET) ================= */
+    .promo-section { margin-bottom: 6rem; margin-top: -3rem; position: relative; z-index: 10; } 
     .golden-ticket {
       background: var(--brand-primary); color: #fff; border-radius: 24px;
       max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr;
@@ -97,7 +98,7 @@
     .price-big { font-size: 4.5rem; font-weight: 900; line-height: 1; font-family: 'Plus Jakarta Sans', sans-serif; color: #fff; }
     .price-struck { font-size: 1.5rem; text-decoration: line-through; opacity: 0.6; font-weight: 500; }
 
-    /* ================= SECTION 2: THE PATIENT JOURNEY (ANIMATED) ================= */
+    /* ================= SECTION 2: THE PATIENT JOURNEY ================= */
     .journey-section { padding: 0 1rem; margin-bottom: 6rem; }
     .journey-card {
       background: #fff; border-radius: 24px; padding: 4rem 2rem;
@@ -138,47 +139,14 @@
     
     .step-node h3 { font-size: 1.2rem; margin-bottom: 0.75rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
     .step-node p { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
-    
-    /* ================= SECTION 3: PROTOCOLS (SESSIONS) ================= */
-    .protocol-section { margin-bottom: 6rem; }
-    .protocol-header { text-align: center; margin-bottom: 4rem; }
-    
-    .protocol-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto;
-    }
-    
-    /* 30 MINUTE CARD (Distinct Style) */
-    .protocol-card {
-      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden;
-      display: flex; flex-direction: column; transition: transform 0.2s;
-    }
-    .protocol-card:hover { transform: translateY(-5px); border-color: var(--brand-accent); }
-    
-    .pc-header { padding: 2.5rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
-    .pc-badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 0.5rem; display: block; }
-    .pc-title { font-size: 1.8rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; }
-    .pc-price { font-size: 2rem; font-weight: 700; color: var(--brand-primary); }
-    .pc-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
-    
-    .pc-body { padding: 2.5rem; flex-grow: 1; }
-    .pc-desc { margin-bottom: 2rem; color: var(--text-light); min-height: 60px; }
-    
-    .feature-row { display: flex; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; }
-    .fr-label { font-weight: 600; color: var(--text-main); }
-    .fr-val { color: var(--text-light); text-align: right; }
-    
-    /* Bundle Selector */
-    .bundle-ui { background: var(--bg-subtle); padding: 1.5rem; border-radius: 12px; margin-top: auto; }
-    .bundle-tabs { display: flex; gap: 5px; margin-bottom: 1rem; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid #e2e8f0; }
-    .b-tab { flex: 1; text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.2s; color: var(--text-light); }
-    .b-tab.active { background: var(--brand-primary); color: #fff; }
-    
-    .b-price-display { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .bp-final { font-size: 1.5rem; font-weight: 800; color: var(--brand-primary); }
-    .bp-save { color: var(--success); font-weight: 600; font-size: 0.9rem; }
 
-    /* ================= SECTION 4: MEMBERSHIPS ================= */
-    .membership-section { background: #fff; padding: 6rem 1rem; border-top: 1px solid #e2e8f0; }
+    /* ================= SECTION 3: PRICING HEADER ================= */
+    .pricing-title-section { text-align: center; margin-bottom: 4rem; }
+    .pricing-title-section h2 { font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 1rem; }
+    .pricing-title-section p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+
+    /* ================= SECTION 4: MONTHLY MEMBERSHIPS ================= */
+    .membership-section { margin-bottom: 6rem; }
     
     .mem-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -186,8 +154,8 @@
     }
     
     .mem-card {
-      border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem; text-align: center;
-      position: relative; transition: 0.2s;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem; text-align: center;
+      position: relative; transition: 0.2s; box-shadow: var(--shadow-sm);
     }
     .mem-card:hover { border-color: var(--brand-accent); box-shadow: var(--shadow-lg); }
     
@@ -206,9 +174,54 @@
     .mem-per { font-size: 0.9rem; color: var(--text-light); margin-bottom: 2rem; }
     
     .mem-list { list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; }
-    .mem-list li { margin-bottom: 0.8rem; display: flex; gap: 10px; }
+    .mem-list li { margin-bottom: 0.8rem; display: flex; gap: 10px; font-size: 0.9rem; }
     .mem-list li svg { width: 20px; height: 20px; color: var(--success); flex-shrink: 0; }
 
+    /* ================= SECTION 5: CLINICAL PROTOCOLS (PAY PER SESSION) ================= */
+    .protocol-section { margin-bottom: 6rem; }
+    
+    .protocol-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto;
+    }
+    
+    .protocol-card {
+      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden;
+      display: flex; flex-direction: column; transition: transform 0.2s; box-shadow: var(--shadow-sm);
+    }
+    .protocol-card:hover { transform: translateY(-5px); border-color: var(--brand-accent); }
+    
+    .pc-header { padding: 2rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+    .pc-badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 0.5rem; display: block; }
+    .pc-title { font-size: 1.5rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: var(--brand-primary); }
+    .pc-price { font-size: 2rem; font-weight: 700; color: var(--brand-primary); }
+    .pc-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+    
+    .pc-body { padding: 2rem; flex-grow: 1; }
+    .pc-desc { margin-bottom: 1.5rem; color: var(--text-light); min-height: 60px; font-size: 0.95rem; }
+    
+    .feature-row { display: flex; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; font-size: 0.9rem; }
+    .fr-label { font-weight: 600; color: var(--text-main); }
+    .fr-val { color: var(--text-light); text-align: right; }
+
+    /* ================= SCHEDULER SECTION (CALENDLY) ================= */
+    .scheduler-section {
+        margin-bottom: 6rem;
+        padding-top: 2rem;
+        background: #fff;
+        padding-bottom: 6rem;
+        border-top: 1px solid #e2e8f0;
+    }
+    
+    .scheduler-wrapper {
+        background: #fff;
+        max-width: 1000px; margin: 0 auto;
+    }
+
+    .scheduler-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
     /* STICKY BAR */
     .sticky-cta {
       position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
@@ -219,23 +232,6 @@
     }
     .sticky-info { color: #fff; font-size: 0.9rem; font-weight: 500; }
     .sticky-btn { background: var(--brand-gold); color: var(--brand-dark); padding: 8px 20px; border-radius: 99px; font-weight: 700; text-decoration: none; font-size: 0.9rem; }
-
-    /* MODAL */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000;
-      display: none; align-items: center; justify-content: center; padding: 1rem;
-    }
-    .modal-overlay.active { display: flex; }
-    .scheduler-card { background: #fff; width: 100%; max-width: 500px; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg); }
-    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; padding: 1rem; text-align: center; }
-    .cal-day { padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 500; }
-    .cal-day:hover { background: var(--bg-subtle); }
-    .cal-day.selected { background: var(--brand-primary); color: #fff; }
-    .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 1rem 1rem; display: none; }
-    .time-grid.show { display: grid; }
-    .time-slot { padding: 10px; border: 1px solid #e2e8f0; text-align: center; border-radius: 6px; cursor: pointer; }
-    .time-slot:hover { border-color: var(--brand-accent); background: #f0f9ff; }
 
     @media (max-width: 768px) {
       .steps-wrapper { grid-template-columns: 1fr; gap: 1rem; }
@@ -249,6 +245,7 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="container header-inner">
       <a href="index.html" class="logo">
@@ -265,17 +262,17 @@
   <section class="hero">
     <div class="container">
       <h1>Restore Your <strong>Vitality</strong> & Confidence.</h1>
-      <p>Expert physiological coaching delivered to your living room. No gym anxiety, no commute, just results.</p>
+      <p>Expert physiological coaching delivered to your living room. Start with a conversation, not a workout.</p>
     </div>
   </section>
 
-  <!-- 1. THE GOLDEN TICKET ($45 PROMO) - Now at Top -->
+  <!-- 1. THE GOLDEN TICKET ($45 PROMO) -->
   <section class="promo-section container">
     <div class="golden-ticket">
       <div class="ticket-content">
-        <span class="ticket-tag">Start Here</span>
+        <span class="ticket-tag">Step 1: Start Here</span>
         <h2 class="ticket-title">The Introductory Session</h2>
-        <p class="ticket-desc">Start with a conversation, not a workout. This 90-minute comprehensive safety and physiological audit uncovers your specific needs and builds a custom roadmap to health.</p>
+        <p class="ticket-desc">Meet your clinician, discuss your goals, and get a comprehensive safety audit of your home and movement patterns. No commitment required.</p>
         
         <div style="margin-bottom:2rem;">
           <div class="value-check"><div class="check-circle">✓</div> <strong>Home Safety Audit</strong> (Risk Identification)</div>
@@ -284,7 +281,7 @@
           <div class="value-check"><div class="check-circle">✓</div> <strong>Custom Roadmap</strong> (Written Plan)</div>
         </div>
         
-        <button class="btn btn-primary" onclick="openScheduler('Introductory Session')">Book Intro Session</button>
+        <button class="btn btn-primary" onclick="scrollToScheduler()">Book Intro Session</button>
         <p style="font-size:0.8rem; opacity:0.7; margin-top:1rem;">100% Money-Back Satisfaction Guarantee.</p>
       </div>
       
@@ -296,7 +293,7 @@
     </div>
   </section>
 
-  <!-- 2. THE PATIENT JOURNEY (VISUAL ROADMAP) -->
+  <!-- 2. THE PATIENT JOURNEY -->
   <section class="journey-section container">
     <div class="journey-card">
       <div class="journey-header">
@@ -331,15 +328,16 @@
     </div>
   </section>
 
+  <div class="pricing-title-section container">
+    <h2>Pathways for Ongoing Care</h2>
+    <p>After your introductory session, choose the path that fits your goals. Whether you want consistent weekly coaching or flexible sessions, we have a plan.</p>
+  </div>
+
   <!-- 3. MONTHLY MEMBERSHIPS -->
   <section class="membership-section">
     <div class="container">
-      <div style="text-align:center; margin-bottom:3rem;">
-        <h2>Build a Habit, Not Just Muscle</h2>
-        <p style="color:#64748b;">Consistency is the medicine. Choose your pace.</p>
-      </div>
-
       <div class="mem-grid">
+        
         <div class="mem-card">
           <div class="mem-title">Maintenance</div>
           <div class="mem-price">$360<span style="font-size:1rem; font-weight:400; color:#94a3b8;">/mo</span></div>
@@ -348,7 +346,7 @@
             <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 4 Sessions (1x/Week)</li>
             <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Weekly Check-in</li>
           </ul>
-          <button class="btn btn-outline" style="width:100%" onclick="openScheduler('Monthly: Maintenance')">Select Plan</button>
+          <button class="btn btn-outline" style="width:100%" onclick="scrollToScheduler()">Select Plan</button>
         </div>
 
         <div class="mem-card popular">
@@ -361,7 +359,7 @@
             <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Priority Scheduling</li>
             <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Accountability Texts</li>
           </ul>
-          <button class="btn btn-primary" style="width:100%" onclick="openScheduler('Monthly: Growth')">Select Plan</button>
+          <button class="btn btn-primary" style="width:100%" onclick="scrollToScheduler()">Select Plan</button>
         </div>
 
         <div class="mem-card">
@@ -372,19 +370,15 @@
             <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 12 Sessions (3x/Week)</li>
             <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> VIP Scheduling</li>
           </ul>
-          <button class="btn btn-outline" style="width:100%" onclick="openScheduler('Monthly: Accelerator')">Select Plan</button>
+          <button class="btn btn-outline" style="width:100%" onclick="scrollToScheduler()">Select Plan</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. MEDICAL PROTOCOLS (PAY PER SESSION) -->
+  <!-- 4. CLINICAL PROTOCOLS (PAY PER SESSION) -->
   <section class="protocol-section container">
-    <div class="protocol-header">
-      <h2>Clinical Protocols</h2>
-      <p style="color:#64748b;">Purchase sessions as needed. No monthly commitment.</p>
-    </div>
-
+    <h3 style="text-align:center; margin-bottom:2rem; color:var(--text-light);">Flexible "Pay-As-You-Go" Options</h3>
     <div class="protocol-grid">
       
       <!-- 30 MIN -->
@@ -396,22 +390,9 @@
         </div>
         <div class="pc-body">
           <p class="pc-desc">A high-density, low-fatigue session designed for specific issues. Perfect if you have low energy reserves but need to keep moving.</p>
-          
           <div class="feature-row"><span class="fr-label">Focus</span><span class="fr-val">Balance / Vestibular / Pain</span></div>
           <div class="feature-row"><span class="fr-label">Intensity</span><span class="fr-val">Low - Moderate</span></div>
-          
-          <div class="bundle-ui">
-            <div class="bundle-tabs">
-              <div class="b-tab active" onclick="updateBundle('30', 1, 60, 0, this)">1</div>
-              <div class="b-tab" onclick="updateBundle('30', 5, 285, 15, this)">5</div>
-              <div class="b-tab" onclick="updateBundle('30', 10, 550, 50, this)">10</div>
-            </div>
-            <div class="b-price-display">
-              <div class="bp-final" id="price-30">$60</div>
-              <div class="bp-save" id="save-30"></div>
-            </div>
-            <button class="btn btn-outline" style="width:100%" onclick="openScheduler('30-Min Precision')">Book Session</button>
-          </div>
+          <button class="btn btn-outline" style="width:100%; margin-top:2rem;" onclick="scrollToScheduler()">Book Session</button>
         </div>
       </div>
 
@@ -424,99 +405,48 @@
         </div>
         <div class="pc-body">
           <p class="pc-desc">The full physiological upgrade. Includes neuromuscular re-education, multi-planar strength, and active mobility work.</p>
-          
           <div class="feature-row"><span class="fr-label">Focus</span><span class="fr-val">Full Body / Gait / Power</span></div>
           <div class="feature-row"><span class="fr-label">Intensity</span><span class="fr-val">Moderate - High</span></div>
-          
-          <div class="bundle-ui">
-            <div class="bundle-tabs">
-              <div class="b-tab active" onclick="updateBundle('60', 1, 100, 0, this)">1</div>
-              <div class="b-tab" onclick="updateBundle('60', 5, 475, 25, this)">5</div>
-              <div class="b-tab" onclick="updateBundle('60', 10, 900, 100, this)">10</div>
-            </div>
-            <div class="b-price-display">
-              <div class="bp-final" id="price-60">$100</div>
-              <div class="bp-save" id="save-60"></div>
-            </div>
-            <button class="btn btn-dark" style="width:100%" onclick="openScheduler('60-Min Comprehensive')">Book Session</button>
-          </div>
+          <button class="btn btn-dark" style="width:100%; margin-top:2rem;" onclick="scrollToScheduler()">Book Session</button>
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- 5. REAL SCHEDULER (Placeholder) -->
+  <section class="scheduler-section container" id="scheduler">
+      <div class="scheduler-wrapper">
+          <div class="scheduler-header">
+              <h2>Schedule Your Introductory Session</h2>
+              <p style="color:#64748b;">Select a time below to secure your spot.</p>
+          </div>
+          
+          <!-- CALENDLY PLACEHOLDER -->
+          <div style="text-align:center; padding:4rem; background:#f8fafc; border:2px dashed #cbd5e1; border-radius:12px;">
+              <h3 style="color:#64748b; margin-bottom:1rem;">📅 Calendar Loading...</h3>
+              <p style="color:#94a3b8;">(<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/zeustrength/30min" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->)</p>
+          </div>
+
+      </div>
+  </section>
+
   <!-- STICKY CTA -->
   <div class="sticky-cta">
     <span class="sticky-info">Ready to start?</span>
-    <a href="#" onclick="openScheduler('General Inquiry')" class="sticky-btn">Book Appointment</a>
+    <a href="#" onclick="scrollToScheduler()" class="sticky-btn">Book Appointment</a>
   </div>
 
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modal">
-    <div class="scheduler-card">
-      <div style="padding:1.5rem; background:#0f172a; color:#fff; display:flex; justify-content:space-between;">
-        <span style="font-weight:600;" id="modalTitle">Select Time</span>
-        <span style="cursor:pointer;" onclick="closeModal()">✕</span>
-      </div>
-      <div style="padding:1.5rem;">
-        <div class="cal-grid" id="calGrid"></div>
-        <div class="time-grid" id="timeGrid">
-          <div class="time-slot" onclick="confirmBooking('9:00 AM')">9:00 AM</div>
-          <div class="time-slot" onclick="confirmBooking('11:00 AM')">11:00 AM</div>
-          <div class="time-slot" onclick="confirmBooking('1:00 PM')">1:00 PM</div>
-          <div class="time-slot" onclick="confirmBooking('3:00 PM')">3:00 PM</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <footer style="background:var(--brand-dark); color:#64748b; padding:3rem 1rem; text-align:center;">
+    <p>&copy; 2025 Olympian Health Solutions. All rights reserved.</p>
+  </footer>
 
   <script>
-    // --- Bundle Logic ---
-    function updateBundle(type, count, price, save, btn) {
-      document.getElementById(`price-${type}`).innerText = `$${price}`;
-      document.getElementById(`save-${type}`).innerText = save > 0 ? `Save $${save}` : '';
-      
-      // Reset siblings
-      const parent = btn.parentElement;
-      parent.querySelectorAll('.b-tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    // --- Modal Logic ---
-    const modal = document.getElementById('modal');
-    const calGrid = document.getElementById('calGrid');
-    const timeGrid = document.getElementById('timeGrid');
-
-    function openScheduler(service) {
-      document.getElementById('modalTitle').innerText = service;
-      modal.classList.add('active');
-      renderCal();
-    }
-
-    function closeModal() {
-      modal.classList.remove('active');
-      timeGrid.classList.remove('show');
-    }
-
-    function renderCal() {
-      calGrid.innerHTML = '';
-      for(let i=1; i<=30; i++) {
-        const d = document.createElement('div');
-        d.className = 'cal-day';
-        d.innerText = i;
-        d.onclick = () => {
-          document.querySelectorAll('.cal-day').forEach(cd => cd.classList.remove('selected'));
-          d.classList.add('selected');
-          timeGrid.classList.add('show');
-        };
-        calGrid.appendChild(d);
-      }
-    }
-
-    function confirmBooking(time) {
-      alert(`Booking Request Sent for ${time}! We will contact you shortly.`);
-      closeModal();
+    function scrollToScheduler() {
+      document.getElementById('scheduler').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
