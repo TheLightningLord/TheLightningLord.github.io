@@ -66,6 +66,11 @@
 
     h1, h2, h3, h4 { line-height: 1.2; }
     
+    /* Fix for sticky header covering content on scroll */
+    section[id] {
+      scroll-margin-top: 100px;
+    }
+    
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -216,6 +221,7 @@
       position: relative;
       background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
       color: #fff;
+      /* Desktop Padding */
       padding: 8rem 1rem 14rem;
       overflow: hidden;
       display: flex;
@@ -423,6 +429,18 @@
         --header-height: 60px; /* Smaller header on mobile */
       }
       
+      /* 1. Pill Position Fix: Reduce top padding */
+      .hero-section {
+        padding-top: 5.5rem; /* Closer to header */
+        padding-bottom: 8rem;
+      }
+      .hero-badge {
+        margin-bottom: 1rem; /* Slightly tighter spacing */
+      }
+      h1 {
+        font-size: 2.5rem; /* Prevent massive text on phones */
+      }
+
       /* Disable Hanging Logo on Mobile */
       .logo { padding-left: 50px; }
       .logo img {
@@ -434,6 +452,8 @@
       .logo span { font-size: 1rem; }
       
       .contact-grid { grid-template-columns: 1fr; }
+      
+      /* Navigation Menu */
       .nav-links { 
         display: none; 
         position: absolute; 
@@ -448,12 +468,24 @@
       }
       .nav-links.active { display: flex; }
       .menu-toggle { display: flex; }
+      
       .clinic-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .hero-section { padding-bottom: 8rem; }
       .clinical-data-grid { grid-template-columns: 1fr; gap: 1rem; }
       
       /* Ensure form inputs are large enough for touch */
       input, textarea, button { font-size: 16px !important; }
+
+      /* 2. Content Visibility Fixes */
+      /* Center contact text and reduce size to prevent overflow */
+      .contact-content { text-align: center; }
+      .contact-content h2 { font-size: 2rem; line-height: 1.1; }
+      
+      /* Reduce padding in cards to create more space for content */
+      .contact-form { padding: 1.5rem; }
+      .equipment-card { padding: 1.5rem; }
+      
+      /* Ensure timeline bullets don't fall off screen */
+      .timeline-list { margin-left: 0.5rem; }
     }
 
     /* ================= "WE COME TO YOU" (Mobile Clinic) ================= */
