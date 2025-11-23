@@ -35,7 +35,7 @@
       --dark-blue: #020617;
       --mid-blue: #0f172a;
       --accent-blue: #38bdf8;
-      --gold: #facc15; /* Matches the gold in your logo */
+      --gold: #facc15;
       --text-dark: #111827;
       --text-muted: #4b5563;
       --white: #ffffff;
@@ -47,6 +47,9 @@
       --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
       --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.12);
       --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      
+      /* Header Config */
+      --header-height: 70px;
     }
 
     * { box-sizing: border-box; }
@@ -80,9 +83,9 @@
     .delay-200 { transition-delay: 0.2s; }
     .delay-300 { transition-delay: 0.3s; }
 
-    /* ================= HEADER ================= */
+    /* ================= HEADER (Optimized) ================= */
     header {
-      background: rgba(2, 6, 23, 0.95) !important;
+      background: rgba(2, 6, 23, 0.98) !important;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: #f9fafb;
@@ -90,45 +93,79 @@
       top: 0;
       z-index: 100;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: padding 0.3s ease;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      transition: height 0.3s ease;
     }
     
     .header-container {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0.75rem 1.5rem;
+      padding: 0 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
+      position: relative; /* Essential for absolute logo */
     }
 
     .logo {
+      text-decoration: none;
+      position: relative;
+      /* Push text over to make room for the absolute image */
+      padding-left: 120px; 
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
+      height: var(--header-height);
     }
     
-    /* Updated Logo CSS for Image */
+    /* The "Hanging" Logo */
     .logo img { 
-      height: 90px; /* Increased size to show it off */
+      height: 110px; /* Big & Bold */
       width: auto; 
-      border-radius: 50%; /* Ensures circular clip if needed */
+      border-radius: 50%;
       object-fit: contain;
-      /* Optional: add a subtle glow to pop against dark background */
-      box-shadow: 0 0 15px rgba(250, 204, 21, 0.3); 
-      transition: height 0.3s ease; /* Smooth resizing animation */
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
+      
+      /* Absolute positioning allows it to break out of the header */
+      position: absolute;
+      left: 0;
+      top: 10px; /* Starts slightly below top edge */
+      
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      z-index: 10;
+      background: radial-gradient(circle, rgba(2,6,23,1) 60%, transparent 100%); /* Prevents see-through behind logo */
     }
     
     .logo span { 
       font-weight: 700; 
-      font-size: 1.5rem; /* Increased text size to balance with larger logo */
+      font-size: 1.25rem; 
       color: #f9fafb; 
       letter-spacing: -0.02em;
-      white-space: nowrap; /* Keeps the full name on one line if possible */
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.2s;
     }
 
+    /* SCROLLED STATE (Triggered by JS) */
+    header.scrolled {
+      height: 60px; /* Compact bar */
+      background: rgba(2, 6, 23, 0.95) !important;
+    }
+    
+    header.scrolled .logo img {
+      height: 50px; /* Shrink perfectly */
+      top: 5px; /* Center vertically in 60px header */
+      box-shadow: none;
+      background: transparent;
+    }
+    
+    header.scrolled .logo {
+      padding-left: 60px; /* Adjust text spacing */
+    }
+
+    /* NAV LINKS */
     .nav-links {
       list-style: none;
       margin: 0;
@@ -179,7 +216,7 @@
       position: relative;
       background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
       color: #fff;
-      padding: 8rem 1rem 14rem; /* Extra padding for scroll btn */
+      padding: 8rem 1rem 14rem;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -217,7 +254,7 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       margin: 0 0 1.5rem;
       font-weight: 900;
       letter-spacing: -0.02em;
@@ -231,7 +268,7 @@
     }
 
     .tagline {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: #cbd5e1;
       max-width: 700px;
       margin: 0 auto 2.5rem;
@@ -347,7 +384,6 @@
       margin: 0 auto;
     }
     
-    /* Animated Pulse Button */
     .btn-assessment {
       background: linear-gradient(135deg, var(--accent-blue), #0ea5e9);
       color: var(--white);
@@ -365,7 +401,6 @@
       margin-top: 1rem;
       align-self: center;
     }
-    
     .btn-assessment:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
@@ -377,12 +412,49 @@
       70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(56, 189, 248, 0); }
       100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
     }
-
     @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
     @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* ================= MOBILE OPTIMIZATION ================= */
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 60px; /* Smaller header on mobile */
+      }
+      
+      /* Disable Hanging Logo on Mobile */
+      .logo { padding-left: 50px; }
+      .logo img {
+        height: 45px; /* Fit inside bar */
+        top: 7px;
+        box-shadow: none;
+        background: transparent;
+      }
+      .logo span { font-size: 1rem; }
+      
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { 
+        display: none; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%; 
+        background: var(--mid-blue); 
+        flex-direction: column; 
+        padding: 1.5rem; 
+        gap: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: flex; }
+      .clinic-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-section { padding-bottom: 8rem; }
+      .clinical-data-grid { grid-template-columns: 1fr; gap: 1rem; }
+      
+      /* Ensure form inputs are large enough for touch */
+      input, textarea, button { font-size: 16px !important; }
+    }
 
     /* ================= "WE COME TO YOU" (Mobile Clinic) ================= */
     .mobile-clinic-section {
@@ -390,7 +462,6 @@
       background: #f8fafc;
       position: relative;
     }
-    
     .clinic-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -399,48 +470,29 @@
       margin: 0 auto;
       align-items: center;
     }
-    
     .clinic-info h2 {
       font-size: 2.5rem;
       color: var(--dark-blue);
       margin-bottom: 1.5rem;
       line-height: 1.1;
     }
-    
     .timeline-list {
       border-left: 2px solid var(--accent-blue);
       padding-left: 2rem;
       margin: 2rem 0;
     }
-    
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
-    
+    .timeline-item { position: relative; margin-bottom: 2rem; }
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -2.6rem;
-      top: 0.4rem;
-      width: 16px;
-      height: 16px;
+      left: -2.6rem; top: 0.4rem;
+      width: 16px; height: 16px;
       background: var(--gold);
       border: 3px solid #f8fafc;
       border-radius: 50%;
     }
-    
-    .timeline-item h3 {
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem;
-      color: var(--dark-blue);
-    }
-    
-    .timeline-item p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
+    .timeline-item h3 { font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--dark-blue); }
+    .timeline-item p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
     
     .equipment-card {
       background: #fff;
@@ -449,30 +501,16 @@
       box-shadow: var(--shadow-card);
       border: 1px solid #e2e8f0;
     }
-    
-    .equip-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    
-    .equip-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-    }
+    .equip-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .equip-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--text-dark); }
     .equip-item svg { color: var(--accent-blue); }
 
-    /* ================= CLINICAL DASHBOARD (MEDICAL STYLE) ================= */
+    /* ================= CLINICAL DASHBOARD ================= */
     .physiology-section {
       padding: 6rem 1rem;
       background: #fff;
       position: relative;
     }
-
     .physiology-section::before {
       content: '';
       position: absolute;
@@ -482,43 +520,26 @@
       opacity: 0.3;
       z-index: 0;
     }
-    
-    .science-container {
-      position: relative;
-      z-index: 1;
-      max-width: 950px;
-      margin: 0 auto;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+    .science-container { position: relative; z-index: 1; max-width: 950px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
     .section-header h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 1rem; }
     .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 
     /* Medical Accordion */
-    .clinical-accordion {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    
+    .clinical-accordion { display: flex; flex-direction: column; gap: 0.8rem; }
     details.clinical-item {
       background: #fff;
       border: 1px solid #e2e8f0;
-      border-left: 4px solid var(--accent-blue); /* Clinical File Look */
+      border-left: 4px solid var(--accent-blue);
       border-radius: 6px;
       overflow: hidden;
       transition: all 0.3s ease;
     }
-    
     details.clinical-item[open] {
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       border-color: #cbd5e1;
       border-left-color: var(--dark-blue);
     }
-    
     summary.clinical-header {
       padding: 1.2rem 1.5rem;
       cursor: pointer;
@@ -543,100 +564,28 @@
       align-items: center;
       gap: 10px;
     }
-    
-    .toggle-icon {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      transition: transform 0.3s;
-    }
+    .toggle-icon { font-size: 1.2rem; color: var(--text-muted); transition: transform 0.3s; }
     details[open] .toggle-icon { transform: rotate(180deg); color: var(--accent-blue); }
     
-    .clinical-body {
-      padding: 1.5rem 2rem;
-      border-top: 1px solid #f1f5f9;
-      background: #fff;
-    }
-    
-    /* Data Grid Layout inside Accordion */
-    .clinical-data-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 2rem;
-      align-items: start;
-    }
-    
-    .clinical-mechanism h4 {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: #94a3b8;
-      margin: 0 0 0.5rem 0;
-      letter-spacing: 0.05em;
-    }
-    .clinical-mechanism p {
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      line-height: 1.6;
-      margin: 0;
-    }
-    
-    .clinical-stat-box {
-      background: #f8fafc;
-      padding: 1.2rem;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-    }
-    
-    /* Bar Chart */
+    .clinical-body { padding: 1.5rem 2rem; border-top: 1px solid #f1f5f9; background: #fff; }
+    .clinical-data-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start; }
+    .clinical-mechanism h4 { font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin: 0 0 0.5rem 0; letter-spacing: 0.05em; }
+    .clinical-mechanism p { font-size: 0.95rem; color: var(--text-dark); line-height: 1.6; margin: 0; }
+    .clinical-stat-box { background: #f8fafc; padding: 1.2rem; border-radius: 8px; border: 1px solid #e2e8f0; }
     .bar-container { position: relative; height: 28px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 0.8rem; }
     .bar-active { height: 100%; background: linear-gradient(90deg, var(--mid-blue), var(--accent-blue)); border-radius: 4px; width: 0; transition: width 1s ease-out; position: relative; }
     .bar-marker { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 0.75rem; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-    
     .citation { font-size: 0.75rem; color: #94a3b8; font-style: italic; display: block; text-align: right; }
-
-    .edu-portal-cta {
-      text-align: center;
-      margin-top: 4rem;
-    }
+    .edu-portal-cta { text-align: center; margin-top: 4rem; }
 
     /* ================= TESTIMONIALS ================= */
-    .testimonial-section {
-      padding: 6rem 1rem;
-      background: #f8fafc;
-      text-align: center;
-    }
-    
-    .testimonial-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 3rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-    }
+    .testimonial-section { padding: 6rem 1rem; background: #f8fafc; text-align: center; }
+    .testimonial-wrapper { max-width: 800px; margin: 0 auto; background: #fff; padding: 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
+    .quote-text { font-size: 1.2rem; font-style: italic; color: var(--text-dark); margin-bottom: 1.5rem; }
 
-    .quote-text {
-      font-size: 1.2rem;
-      font-style: italic;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-
-    /* ================= CONTACT ================= */
-    .contact-section {
-      background: var(--mid-blue);
-      padding: 5rem 1rem;
-      color: #fff;
-    }
-    
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
+    /* ================= CONTACT & FORM ================= */
+    .contact-section { background: var(--mid-blue); padding: 5rem 1rem; color: #fff; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 0 auto; align-items: center; }
     .contact-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
     .contact-content p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
     
@@ -646,7 +595,6 @@
       border-radius: var(--radius-lg);
       color: var(--text-dark);
     }
-    
     input, textarea {
       width: 100%;
       padding: 0.9rem;
@@ -656,7 +604,6 @@
       font-family: inherit;
       background: #f8fafc;
     }
-    
     button[type="submit"] {
       background: var(--dark-blue);
       color: #fff;
@@ -673,8 +620,7 @@
     /* Floating CTA */
     .floating-cta {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 20px; right: 20px;
       background: var(--gold);
       color: var(--dark-blue);
       padding: 1rem 1.5rem;
@@ -688,16 +634,6 @@
     }
     .floating-cta.visible { transform: translateY(0); }
     .floating-cta:hover { transform: scale(1.05); }
-
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--mid-blue); flex-direction: column; padding: 1rem; }
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: flex; }
-      .clinic-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .hero-section { padding-bottom: 8rem; }
-      .clinical-data-grid { grid-template-columns: 1fr; gap: 1rem; }
-    }
   </style>
 </head>
 <body>
@@ -706,7 +642,7 @@
   <header id="header">
     <div class="header-container">
       <a href="#" class="logo">
-        <!-- Replaced SVG with Image -->
+        <!-- Logo Image (Hangs over the edge on Desktop) -->
         <img src="assets/images/OHS Logo.png" alt="Olympian Health Solutions Logo" />
         <span>Olympian Health Solutions</span>
       </a>
@@ -768,7 +704,6 @@
         <div class="clinic-info reveal">
           <h2>The Mobile Clinic Advantage</h2>
           <p style="font-size:1.1rem; color:var(--text-muted); margin-bottom:2rem;">We eliminate the biggest barrier to health: getting there. We bring a complete gym and rehab center to your door.</p>
-          
           <div class="timeline-list">
             <div class="timeline-item">
               <h3>1. Book Online or Call</h3>
@@ -788,7 +723,6 @@
             </div>
           </div>
         </div>
-        
         <div class="clinic-card reveal delay-100">
           <div class="equipment-card">
             <h3 style="margin-top:0; color:var(--dark-blue);">Zero Equipment Needed</h3>
@@ -807,17 +741,15 @@
     </div>
   </section>
 
-  <!-- CLINICAL DASHBOARD (PROFESSIONAL ACCORDION) -->
+  <!-- CLINICAL DASHBOARD -->
   <section class="physiology-section" id="science">
     <div class="container science-container">
       <div class="section-header reveal">
         <h2>Evidence-Based Clinical Outcomes</h2>
         <p>We utilize targeted interventions for the specific physiological challenges of aging. Select a condition to review the clinical data.</p>
       </div>
-
       <div class="clinical-accordion reveal">
-        
-        <!-- Item 1: Diabetes -->
+        <!-- Diabetes -->
         <details class="clinical-item">
           <summary class="clinical-header">
             <div class="condition-pill">🩸 DIABETES MELLITUS</div>
@@ -840,8 +772,7 @@
             </div>
           </div>
         </details>
-
-        <!-- Item 2: Arthritis -->
+        <!-- Arthritis -->
         <details class="clinical-item">
           <summary class="clinical-header">
             <div class="condition-pill">🦵 OSTEOARTHRITIS</div>
@@ -864,8 +795,7 @@
             </div>
           </div>
         </details>
-
-        <!-- Item 3: Falls -->
+        <!-- Falls -->
         <details class="clinical-item">
           <summary class="clinical-header">
             <div class="condition-pill">⚖️ FALL RISK REDUCTION</div>
@@ -888,8 +818,7 @@
             </div>
           </div>
         </details>
-
-        <!-- Item 4: Dementia -->
+        <!-- Dementia -->
         <details class="clinical-item">
           <summary class="clinical-header">
             <div class="condition-pill">🧠 COGNITIVE DECLINE</div>
@@ -912,8 +841,7 @@
             </div>
           </div>
         </details>
-
-        <!-- Item 5: Hypertension (New) -->
+        <!-- Hypertension -->
         <details class="clinical-item">
           <summary class="clinical-header">
             <div class="condition-pill">❤️ HYPERTENSION</div>
@@ -936,8 +864,7 @@
             </div>
           </div>
         </details>
-
-        <!-- Item 6: Sarcopenia (New) -->
+        <!-- Sarcopenia -->
         <details class="clinical-item">
           <summary class="clinical-header">
             <div class="condition-pill">💪 SARCOPENIA</div>
@@ -960,9 +887,7 @@
             </div>
           </div>
         </details>
-
       </div>
-
       <div class="edu-portal-cta reveal">
         <a href="education.html" class="btn btn-outline" style="border-color: var(--mid-blue); color: var(--mid-blue);">Explore the Evidence Library</a>
       </div>
@@ -977,7 +902,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT FORM (Optimized for Functionality) -->
   <section class="contact-section" id="contact">
     <div class="container">
       <div class="contact-grid">
@@ -989,10 +914,23 @@
         </div>
         <div class="contact-form">
           <h3 style="margin-top: 0; color: var(--dark-blue);">Request Free Consult</h3>
-          <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email or Phone Number">
-            <textarea rows="4" placeholder="How can we help you?"></textarea>
+          
+          <!-- Formspree Integration Example -->
+          <!-- Replace "YOUR_FORM_ID_HERE" with your actual Formspree ID -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+            
+            <label for="name" style="display:none;">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required>
+            
+            <label for="email" style="display:none;">Email or Phone</label>
+            <input type="text" id="email" name="email" placeholder="Email or Phone Number" required>
+            
+            <label for="message" style="display:none;">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
+            
+            <!-- Spam Protection (Honeypot) -->
+            <input type="text" name="_gotcha" style="display:none">
+
             <button type="submit">Send Request</button>
           </form>
         </div>
@@ -1010,20 +948,15 @@
   </footer>
 
   <script>
-    // ================= 1. HEADER & SCROLL =================
+    // ================= 1. HEADER & SCROLL LOGIC (Optimized) =================
     const header = document.getElementById('header');
     const cta = document.getElementById('floatingCTA');
-    const logoImg = document.querySelector('.logo img');
     
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
-        header.style.padding = '0.5rem 1.5rem';
-        header.style.background = 'rgba(2, 6, 23, 0.95)';
-        logoImg.style.height = '60px'; // Shrink logo on scroll for better visibility
+        header.classList.add('scrolled');
       } else {
-        header.style.padding = '1rem 1.5rem'; // Larger padding at the top
-        header.style.background = 'rgba(2, 6, 23, 0.9)';
-        logoImg.style.height = '90px'; // Restore large size at top
+        header.classList.remove('scrolled');
       }
       
       // Show Floating CTA after hero
@@ -1039,6 +972,10 @@
     const navLinks = document.querySelector('.nav-links');
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
+      // Optional: Close menu when clicking a link
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+      });
     });
 
     // ================= 2. CANVAS ANIMATION =================
@@ -1083,7 +1020,6 @@
       particles.forEach((p, i) => {
         p.update();
         p.draw();
-        // Connections
         for (let j = i; j < particles.length; j++) {
           let dx = p.x - particles[j].x;
           let dy = p.y - particles[j].y;
@@ -1104,31 +1040,24 @@
     resize();
     animate();
 
-    // ================= 3. SCROLL REVEAL & BAR ANIMATION =================
+    // ================= 3. SCROLL REVEAL =================
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          
-          // Special animation for bars inside accordions when they appear
-          // Note: Bars inside closed details elements won't animate until opened
-          // This handles bars visible on scroll if details are open by default or opened
         }
       });
     }, { threshold: 0.1 });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     
-    // Add listener for details toggle to animate bars on open
+    // Accordion Animations
     document.querySelectorAll('details.clinical-item').forEach(detail => {
       detail.addEventListener('toggle', (e) => {
         if (detail.open) {
           const bar = detail.querySelector('.observer-bar');
           const width = bar.getAttribute('data-width');
-          // Small delay to allow render
-          setTimeout(() => {
-             bar.style.width = width;
-          }, 50);
+          setTimeout(() => { bar.style.width = width; }, 50);
         }
       });
     });
