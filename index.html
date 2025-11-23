@@ -112,17 +112,18 @@
     
     /* Updated Logo CSS for Image */
     .logo img { 
-      height: 50px; /* Slightly larger to show detail */
+      height: 90px; /* Increased size to show it off */
       width: auto; 
       border-radius: 50%; /* Ensures circular clip if needed */
       object-fit: contain;
       /* Optional: add a subtle glow to pop against dark background */
-      box-shadow: 0 0 10px rgba(250, 204, 21, 0.2); 
+      box-shadow: 0 0 15px rgba(250, 204, 21, 0.3); 
+      transition: height 0.3s ease; /* Smooth resizing animation */
     }
     
     .logo span { 
       font-weight: 700; 
-      font-size: 1.1rem; 
+      font-size: 1.5rem; /* Increased text size to balance with larger logo */
       color: #f9fafb; 
       letter-spacing: -0.02em;
       white-space: nowrap; /* Keeps the full name on one line if possible */
@@ -1012,14 +1013,17 @@
     // ================= 1. HEADER & SCROLL =================
     const header = document.getElementById('header');
     const cta = document.getElementById('floatingCTA');
+    const logoImg = document.querySelector('.logo img');
     
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         header.style.padding = '0.5rem 1.5rem';
         header.style.background = 'rgba(2, 6, 23, 0.95)';
+        logoImg.style.height = '60px'; // Shrink logo on scroll for better visibility
       } else {
-        header.style.padding = '0.75rem 1.5rem';
+        header.style.padding = '1rem 1.5rem'; // Larger padding at the top
         header.style.background = 'rgba(2, 6, 23, 0.9)';
+        logoImg.style.height = '90px'; // Restore large size at top
       }
       
       // Show Floating CTA after hero
