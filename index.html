@@ -35,7 +35,7 @@
       --dark-blue: #020617;
       --mid-blue: #0f172a;
       --accent-blue: #38bdf8;
-      --gold: #facc15;
+      --gold: #facc15; /* Matches the gold in your logo */
       --text-dark: #111827;
       --text-muted: #4b5563;
       --white: #ffffff;
@@ -109,8 +109,24 @@
       gap: 0.75rem;
       text-decoration: none;
     }
-    .logo img { height: 40px; width: auto; }
-    .logo span { font-weight: 700; font-size: 1.1rem; color: #f9fafb; letter-spacing: -0.02em; }
+    
+    /* Updated Logo CSS for Image */
+    .logo img { 
+      height: 50px; /* Slightly larger to show detail */
+      width: auto; 
+      border-radius: 50%; /* Ensures circular clip if needed */
+      object-fit: contain;
+      /* Optional: add a subtle glow to pop against dark background */
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.2); 
+    }
+    
+    .logo span { 
+      font-weight: 700; 
+      font-size: 1.1rem; 
+      color: #f9fafb; 
+      letter-spacing: -0.02em;
+      white-space: nowrap; /* Keeps the full name on one line if possible */
+    }
 
     .nav-links {
       list-style: none;
@@ -689,11 +705,9 @@
   <header id="header">
     <div class="header-container">
       <a href="#" class="logo">
-        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 20 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#38BDF8"/>
-          <path d="M11 20L17 26L29 14" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Olympian Health</span>
+        <!-- Replaced SVG with Image -->
+        <img src="assets/images/OHS Logo.png" alt="Olympian Health Solutions Logo" />
+        <span>Olympian Health Solutions</span>
       </a>
       <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
       <ul class="nav-links">
