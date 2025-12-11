@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguist: Study Station</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette */
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #4338ca;
+            --bg-app: #f1f5f9;
+            --bg-panel: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --gold: #f59e0b;
+            --gold-light: #fef3c7;
+            --success: #10b981;
+            --error: #ef4444;
+            
+            /* Dimensions */
+            --header-h: 64px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; 
+        }
+
+        /* --- Header --- */
+        header {
+            height: var(--header-h);
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 10;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-bar {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .stat-badge {
+            background: var(--gold-light);
+            color: #92400e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- Main Grid Layout --- */
+        main {
+            display: grid;
+            grid-template-columns: 320px 1fr 320px; /* Library | Reader | Vocab */
+            height: calc(100vh - var(--header-h));
+            overflow: hidden;
+        }
+
+        /* --- Generic Panel Styles --- */
+        .panel {
+            background: var(--bg-panel);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 65px;
+        }
+        
+        .panel-title {
+            margin: 0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: #f8fafc;
+        }
+        
+        /* --- Panel 1: Library & Input --- */
+        .tab-group {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Lesson Cards */
+        .lesson-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .lesson-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .lesson-card.active {
+            border-color: var(--primary);
+            background-color: #eef2ff;
+        }
+        .lesson-card.active::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--primary);
+        }
+        
+        .l-level {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .l-title {
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 4px 0;
+            display: block;
+        }
+        .l-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Custom Input Mode */
+        #custom-input-area {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+        #custom-input-area.visible { display: flex; }
+        
+        textarea {
+            width: 100%;
+            flex: 1;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            resize: none;
+            outline: none;
+            margin-bottom: 10px;
+        }
+        textarea:focus { border-color: var(--primary); }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+
+        /* --- Panel 2: The Reader & Center Tabs --- */
+        #reader-panel { 
+            background-color: #fff; 
+            position: relative;
+        }
+        
+        /* New Center Tabs */
+        .center-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 2px;
+        }
+        .c-tab {
+            border: none;
+            background: transparent;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .c-tab.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Mode Switcher (New) */
+        .mode-switcher {
+            display: flex;
+            gap: 5px;
+            background: #f1f5f9;
+            padding: 3px;
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+        .m-btn {
+            border: none;
+            background: transparent;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .m-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Reader Content */
+        .reader-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed #f1f5f9;
+        }
+        .current-level {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        .current-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+        
+        #reader-content {
+            font-family: 'Merriweather', serif;
+            font-size: 1.4rem;
+            line-height: 2.4;
+            color: #334155;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Interactive Words */
+        .word {
+            cursor: pointer;
+            border-radius: 4px;
+            padding: 2px 1px;
+            position: relative;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .word:hover {
+            background-color: #e0e7ff;
+            color: var(--primary);
+        }
+        /* Saved Word State */
+        .word.saved {
+            background-color: var(--gold-light);
+            border-bottom-color: var(--gold);
+            color: #92400e;
+        }
+        .word.saved:hover { background-color: #fde68a; }
+
+        /* Interactive Sentences (New) */
+        .sentence {
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 4px;
+            position: relative;
+        }
+        .sentence:hover {
+            background-color: #e0e7ff;
+        }
+
+        /* Tooltip */
+        .word::after, .sentence::after {
+            content: attr(data-trans);
+            position: absolute;
+            bottom: 135%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            white-space: normal; /* Allow wrap for long sentences */
+            min-width: 150px;
+            max-width: 300px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s, bottom 0.15s;
+            z-index: 100;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            line-height: 1.4;
+        }
+        .word:hover::after, .sentence:hover::after { opacity: 1; bottom: 125%; }
+        
+        /* Triangle */
+        .word::before, .sentence::before {
+            content: '';
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s, bottom 0.15s;
+        }
+        .word:hover::before, .sentence:hover::before { opacity: 1; bottom: 115%; }
+
+        /* Instructions */
+        .instructions-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.95);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* --- New Study View --- */
+        #view-study {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .vocab-table th, .vocab-table td {
+            padding: 12px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .vocab-table th {
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .vocab-table tr:last-child td { border-bottom: none; }
+        .vocab-table tr:hover { background: #f8fafc; }
+        
+        .study-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .study-header h3 { margin: 0 0 5px 0; color: var(--text-main); }
+        .study-header p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* --- New Grammar Lesson View --- */
+        #view-grammar {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .grammar-content {
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .grammar-content h3 { color: var(--primary); margin-top: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+        .grammar-content p { margin-bottom: 1rem; }
+        .grammar-content ul { padding-left: 20px; background: #f8fafc; padding: 15px 15px 15px 35px; border-radius: 8px; }
+        .grammar-content li { margin-bottom: 8px; }
+        .example-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .mistake-box {
+            background: #fef2f2;
+            border-left: 4px solid var(--error);
+            padding: 12px;
+            margin: 10px 0;
+        }
+
+        /* Quiz Styles */
+        .quiz-section {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .quiz-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .q-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .q-text { font-weight: 600; margin-bottom: 15px; display: block; font-size: 1.05rem; }
+        .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .q-btn {
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        .q-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+        
+        .q-btn.correct { background: #dcfce7; border-color: #22c55e; color: #14532d; font-weight: 600; }
+        .q-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; opacity: 0.7; }
+
+        .q-feedback {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+            line-height: 1.4;
+        }
+        .q-feedback.show { display: block; }
+        .q-feedback.success { background: #dcfce7; color: #14532d; }
+        .q-feedback.error { background: #fee2e2; color: #7f1d1d; }
+
+        /* --- Panel 3: Vocabulary Sidebar --- */
+        #vocab-panel { border-left: 1px solid var(--border); }
+        #vocab-panel .panel-content { background: white; }
+
+        .vocab-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn-toggle {
+            flex: 1;
+            padding: 8px;
+            font-size: 0.8rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .btn-toggle:hover { background: #f8fafc; }
+        .btn-toggle.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        #vocab-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .vocab-item {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .vocab-item:first-child { border-top: 1px solid var(--border); }
+        .vocab-item:hover { background: #f8fafc; }
+
+        .v-word {
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 2px;
+            font-size: 0.95rem;
+        }
+
+        .v-trans {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Quiz Mode */
+        .quiz-mode .v-trans {
+            filter: blur(6px);
+            opacity: 0.4;
+            cursor: pointer;
+            background: #e2e8f0;
+            border-radius: 4px;
+            user-select: none;
+        }
+        .quiz-mode .v-trans:hover {
+            filter: blur(0);
+            opacity: 1;
+            background: transparent;
+        }
+
+        .delete-btn {
+            opacity: 0;
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+        }
+        .vocab-item:hover .delete-btn { opacity: 1; }
+        .delete-btn:hover { background: #fee2e2; }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 60px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            padding: 0 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            main { grid-template-columns: 280px 1fr; }
+            #vocab-panel { display: none; } /* On tablet, hide vocab */
+        }
+        @media (max-width: 768px) {
+            main { grid-template-columns: 1fr; }
+            .panel { display: none; }
+            #reader-panel { display: flex; } /* Mobile: Only show reader */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            Linguist
+        </div>
+        <div class="stats-bar">
+            <span>Saved Words:</span>
+            <span class="stat-badge" id="stat-count">0</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Panel 1: Library/Input -->
+        <section id="library-panel" class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Curriculum</h2>
+            </div>
+            <div class="panel-content">
+                
+                <div class="tab-group">
+                    <button class="tab-btn active" onclick="switchTab('library')">Stories</button>
+                    <button class="tab-btn" onclick="switchTab('grammar')">Lessons</button>
+                    <button class="tab-btn" onclick="switchTab('custom')">Custom</button>
+                </div>
+
+                <!-- Story Library List -->
+                <div id="library-list">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Grammar Library List (New) -->
+                <div id="grammar-list" style="display:none;">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Custom Input Area -->
+                <div id="custom-input-area">
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Paste any text here:</div>
+                    <textarea id="input-text" placeholder="Había una vez...">Hola. Este es mi texto personalizado. Quiero aprender español a mi manera.</textarea>
+                    <button class="btn-primary" onclick="loadCustomText()">
+                        <span>Generate Reader</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Panel 2: The Reader -->
+        <section id="reader-panel" class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title" id="center-panel-title">Reader View</h2>
+                
+                <div style="display:flex; align-items:center;">
+                    <!-- Center Tabs -->
+                    <div class="center-tabs" id="reader-tabs">
+                        <button class="c-tab active" id="tab-read" onclick="setCenterMode('read')">Story</button>
+                        <button class="c-tab" id="tab-study" onclick="setCenterMode('study')">Vocab</button>
+                    </div>
+
+                    <!-- Translation Mode Toggle -->
+                    <div class="mode-switcher" id="mode-controls" style="display:flex;">
+                        <button class="m-btn active" id="btn-mode-word" onclick="setTranslationMode('word')" title="Translate individual words">Word</button>
+                        <button class="m-btn" id="btn-mode-sent" onclick="setTranslationMode('sentence')" title="Translate full sentences">Sentence</button>
+                    </div>
+                </div>
+
+                <div style="font-size:0.75rem; color:var(--text-muted); width: 80px; text-align:right;"></div>
+            </div>
+            
+            <div class="panel-content">
+                
+                <!-- View 1: Reading -->
+                <div id="view-reader">
+                    <div class="reader-header">
+                        <div class="current-level" id="display-level">Level 1</div>
+                        <h1 class="current-title" id="display-title">Welcome</h1>
+                    </div>
+                    <div id="reader-content">
+                        <div style="color:var(--text-muted); margin-top:40px; text-align:center;">Select a lesson to begin.</div>
+                    </div>
+                </div>
+
+                <!-- View 2: Study (Key Vocab) -->
+                <div id="view-study" style="display:none;">
+                    <div class="study-header">
+                        <h3 id="study-title">Introduction Vocabulary</h3>
+                        <p>Essential words used in this story</p>
+                    </div>
+                    
+                    <table class="vocab-table">
+                        <thead>
+                            <tr>
+                                <th>Spanish</th>
+                                <th>English</th>
+                            </tr>
+                        </thead>
+                        <tbody id="study-table-body">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- View 3: Grammar Lesson (New) -->
+                <div id="view-grammar" style="display:none;">
+                    <div class="reader-header">
+                        <div class="current-level" id="grammar-badge" style="background:#0891b2;">Grammar</div>
+                        <h1 class="current-title" id="grammar-title">Topic</h1>
+                    </div>
+                    <div id="grammar-body" class="grammar-content"></div>
+                    
+                    <div class="quiz-section">
+                        <div class="quiz-title">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Knowledge Check
+                        </div>
+                        <div id="grammar-quiz">
+                            <!-- Questions injected here -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="instructions-overlay" id="reader-overlay">
+                Hover: Translate • Click: Audio
+            </div>
+        </section>
+
+        <!-- Panel 3: Vocabulary Sidebar -->
+        <section id="vocab-panel" class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    Saved Words
+                </h2>
+            </div>
+            <div class="panel-content">
+                <div class="vocab-controls">
+                    <button class="btn-toggle" id="btn-quiz" onclick="toggleQuizMode()">Test Me</button>
+                    <button class="btn-toggle" onclick="clearVocab()">Clear</button>
+                </div>
+                <ul id="vocab-list">
+                    <!-- Vocab items injected here -->
+                </ul>
+                <div id="empty-msg" class="empty-state">
+                    <b>No saved words yet.</b><br>
+                    (Word Mode only)<br>
+                    Double-click words to save!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- 1. DATA: CURRICULUM & GRAMMAR ---
+        const curriculum = [
+            {
+                id: 'l1',
+                level: 'Level 1: Basics',
+                title: 'Introduction',
+                desc: 'Greetings, basic verbs, introductions, and hobbies.',
+                text: 'Hola. Me llamo Juan. Soy de España, específicamente de Madrid. Madrid es una ciudad muy grande y bonita. Tengo veinticinco años y trabajo como profesor. Vivo en un apartamento pequeño con mi gato. El gato se llama Luna. A Luna le gusta dormir mucho en el sofá. Hoy es un buen día porque tengo tiempo libre. Me gusta leer libros interesantes y escuchar música tranquila. Por la tarde, voy a caminar por el parque con mis amigos.',
+                keyTerms: [ { es: "Hola", en: "Hello" }, { es: "Me llamo", en: "My name is" }, { es: "Soy de", en: "I am from" }, { es: "Trabajo", en: "I work" } ]
+            },
+            {
+                id: 'l2',
+                level: 'Level 1: Basics',
+                title: 'My House',
+                desc: 'Describing rooms, furniture, colors, and family habits.',
+                text: 'Vivo en una casa blanca y cómoda. La casa tiene tres ventanas grandes y una puerta roja brillante. Cuando entras, ves el salón. En el salón hay un sofá azul y una televisión moderna. Mi padre lee el periódico en el sofá todas las mañanas. La cocina es mi lugar favorito. En la cocina, mi madre cocina una sopa deliciosa con verduras frescas. Tenemos una mesa de madera donde comemos juntos.',
+                keyTerms: [ { es: "Casa", en: "House" }, { es: "Ventanas", en: "Windows" }, { es: "Puerta", en: "Door" }, { es: "Cocina", en: "Kitchen" } ]
+            },
+            {
+                id: 'travel',
+                level: 'Level 3: Travel',
+                title: 'At the Airport',
+                desc: 'Logistics, security, boarding, and flying.',
+                text: 'El aeropuerto es un lugar muy grande y ocupado. Tengo mi pasaporte y mi billete de avión en la mano. Primero, voy al mostrador para facturar mi maleta grande. La empleada pesa mi equipaje y me da la tarjeta de embarque. "El vuelo sale a las tres y media," me dice. Luego, paso por el control de seguridad. Tengo que quitarme los zapatos y el cinturón. Es un proceso lento, pero es por seguridad. Finalmente, anuncian el embarque.',
+                keyTerms: [ { es: "Aeropuerto", en: "Airport" }, { es: "Pasaporte", en: "Passport" }, { es: "Billete", en: "Ticket" }, { es: "Maleta", en: "Suitcase" } ]
+            }
+        ];
+
+        const grammarLessons = [
+            {
+                id: 'g1',
+                title: 'Ser vs Estar',
+                desc: 'The two ways to say "To Be".',
+                content: `
+                    <h3>The Core Difference</h3>
+                    <p>In English, we just say "I am". In Spanish, you must choose between <b>Ser</b> and <b>Estar</b>. The choice depends on context, not just the word you are translating.</p>
+                    
+                    <h3>1. Ser (Permanent / Identity)</h3>
+                    <p>Think of the acronym <b>DOCTOR</b>:</p>
+                    <ul>
+                        <li><b>D</b>ate: Hoy es lunes.</li>
+                        <li><b>O</b>ccupation: Soy profesor.</li>
+                        <li><b>C</b>haracteristic: Ella es inteligente.</li>
+                        <li><b>T</b>ime: Son las tres.</li>
+                        <li><b>O</b>rigin: Soy de México.</li>
+                        <li><b>R</b>elation: Él es mi hermano.</li>
+                    </ul>
+
+                    <h3>2. Estar (Temporary / State)</h3>
+                    <p>Think of the acronym <b>PLACE</b>:</p>
+                    <ul>
+                        <li><b>P</b>osition: Estoy sentado (sitting).</li>
+                        <li><b>L</b>ocation: Madrid está en España.</li>
+                        <li><b>A</b>ction: Estoy comiendo (eating).</li>
+                        <li><b>C</b>ondition: Estoy cansado (tired).</li>
+                        <li><b>E</b>motion: Estoy feliz (happy).</li>
+                    </ul>
+
+                    <div class="mistake-box">
+                        <b>Common Pitfall:</b> Never use "Ser" for location, even if the building is permanent! <br>
+                        Wrong: <s>La casa es en Madrid.</s> <br>
+                        Right: La casa <b>está</b> en Madrid.
+                    </div>
+                `,
+                quiz: [
+                    {
+                        q: "How would you translate: 'I am tired'?",
+                        options: ["Soy cansado", "Estoy cansado"],
+                        correct: 1,
+                        explain: "Tiredness is a temporary condition/state, so we use Estar."
+                    },
+                    {
+                        q: "How would you translate: 'She is a doctor'?",
+                        options: ["Ella es doctora", "Ella está doctora"],
+                        correct: 0,
+                        explain: "Occupation is a defining characteristic/identity, so we use Ser."
+                    },
+                    {
+                        q: "Where is the library?",
+                        options: ["¿Dónde es la biblioteca?", "¿Dónde está la biblioteca?"],
+                        correct: 1,
+                        explain: "For Location, always use Estar."
+                    }
+                ]
+            },
+            {
+                id: 'g2',
+                title: 'Por vs Para',
+                desc: 'Two words for "For".',
+                content: `
+                    <h3>Why is this hard?</h3>
+                    <p>Both words often translate to "for" in English, but they have distinct uses in Spanish.</p>
+                    
+                    <h3>1. Para (Destination / Goal)</h3>
+                    <p>Think of <b>Para</b> as an arrow hitting a target 🎯.</p>
+                    <ul>
+                        <li><b>Destination:</b> Voy para Madrid. (I'm going to Madrid)</li>
+                        <li><b>Recipient:</b> El regalo es para ti. (The gift is for you)</li>
+                        <li><b>Deadline:</b> La tarea es para mañana. (Homework is for tomorrow)</li>
+                        <li><b>Goal/Purpose:</b> Estudio para aprender. (I study in order to learn)</li>
+                    </ul>
+
+                    <h3>2. Por (Motion / Cause)</h3>
+                    <p>Think of <b>Por</b> as passing through or an exchange 🔄.</p>
+                    <ul>
+                        <li><b>Cause/Reason:</b> Gracias por la ayuda. (Thanks for the help)</li>
+                        <li><b>Motion through:</b> Camino por el parque. (I walk through the park)</li>
+                        <li><b>Duration:</b> Dormí por 8 horas. (I slept for 8 hours)</li>
+                        <li><b>Exchange:</b> Te doy $10 por el libro. (I give you $10 for the book)</li>
+                    </ul>
+                `,
+                quiz: [
+                    {
+                        q: "This gift is ___ you.",
+                        options: ["Por", "Para"],
+                        correct: 1,
+                        explain: "You are the recipient (target) of the gift."
+                    },
+                    {
+                        q: "I lived there ___ three years.",
+                        options: ["Por", "Para"],
+                        correct: 0,
+                        explain: "For duration of time, we use Por."
+                    },
+                    {
+                        q: "I run ___ the park.",
+                        options: ["Para", "Por"],
+                        correct: 1,
+                        explain: "Movement 'through' a place uses Por."
+                    }
+                ]
+            }
+        ];
+
+        // --- 2. STATE & CONFIG ---
+        const dictionary = {
+            "el": "the", "la": "the", "de": "of", "que": "that", "y": "and", "a": "to", "en": "in",
+            "un": "a", "ser": "to be", "se": "himself", "no": "no", "haber": "to have", "por": "by",
+            "con": "with", "su": "his/her", "para": "for", "como": "like/as", "estaba": "was",
+            "pero": "but", "más": "more", "o": "or", "todo": "all", "sus": "their/his", "le": "him",
+            "había": "there was", "vez": "time", "soy": "I am", "tengo": "I have", "gato": "cat",
+            "hoy": "today", "buen": "good", "día": "day", "casa": "house", "blanca": "white",
+            "cocina": "kitchen", "madre": "mother", "padre": "father", "gimnasio": "gym", 
+            "pesas": "weights", "agua": "water", "sed": "thirst", "playa": "beach", "sol": "sun",
+            "arena": "sand", "mar": "sea", "azul": "blue", "mesa": "table", "dos": "two",
+            "pollo": "chicken", "cuenta": "bill", "avión": "plane", "vuelo": "flight",
+            "ciudad": "city", "trabajo": "work", "vivir": "to live", "leer": "to read",
+            "ventanas": "windows", "puerta": "door", "salón": "living room", "sopa": "soup",
+            "correr": "to run", "brazos": "arms", "espalda": "back", "sudar": "to sweat",
+            "nubes": "clouds", "zapatos": "shoes", "nadar": "to swim", "conchas": "shells",
+            "camarero": "waiter", "menú": "menu", "queso": "cheese", "postre": "dessert",
+            "pasaporte": "passport", "maleta": "suitcase", "seguridad": "security", "despegar": "take off"
+        };
+
+        let savedVocab = JSON.parse(localStorage.getItem('spanishVocab')) || {};
+        let quizMode = false;
+        let activeLessonId = null;
+        let translationMode = 'word'; 
+        let currentLessonText = "";
+
+        // --- 3. DOM ELEMENTS ---
+        const readerEl = document.getElementById('reader-content');
+        const vocabListEl = document.getElementById('vocab-list');
+        const emptyMsgEl = document.getElementById('empty-msg');
+        const statCountEl = document.getElementById('stat-count');
+        const btnQuiz = document.getElementById('btn-quiz');
+        const libraryListEl = document.getElementById('library-list');
+        const grammarListEl = document.getElementById('grammar-list');
+        
+        // Panels
+        const displayLevel = document.getElementById('display-level');
+        const displayTitle = document.getElementById('display-title');
+        
+        // Views
+        const viewReader = document.getElementById('view-reader');
+        const viewStudy = document.getElementById('view-study');
+        const viewGrammar = document.getElementById('view-grammar');
+        
+        // Headers/Tabs
+        const readerTabs = document.getElementById('reader-tabs');
+        const modeControls = document.getElementById('mode-controls');
+        const centerPanelTitle = document.getElementById('center-panel-title');
+        const readerOverlay = document.getElementById('reader-overlay');
+
+        // Grammar Elements
+        const grammarTitle = document.getElementById('grammar-title');
+        const grammarBody = document.getElementById('grammar-body');
+        const grammarQuiz = document.getElementById('grammar-quiz');
+
+        // Mode Toggles
+        const btnModeWord = document.getElementById('btn-mode-word');
+        const btnModeSent = document.getElementById('btn-mode-sent');
+
+        // --- 4. INITIALIZATION ---
+        window.onload = () => {
+            renderLibrary();
+            renderGrammarLibrary();
+            renderVocabList();
+            // Load first lesson by default
+            selectLesson('l1');
+        };
+
+        // --- 5. UI CONTROLLERS ---
+        function switchTab(tabName) {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            
+            const libraryList = document.getElementById('library-list');
+            const grammarList = document.getElementById('grammar-list');
+            const customInput = document.getElementById('custom-input-area');
+            
+            // Reset visibility
+            libraryList.style.display = 'none';
+            grammarList.style.display = 'none';
+            customInput.classList.remove('visible');
+
+            if (tabName === 'library') {
+                btns[0].classList.add('active');
+                libraryList.style.display = 'block';
+            } else if (tabName === 'grammar') {
+                btns[1].classList.add('active');
+                grammarList.style.display = 'block';
+            } else {
+                btns[2].classList.add('active');
+                customInput.classList.add('visible');
+            }
+        }
+
+        function setCenterMode(mode) {
+            // Hide all views first
+            viewReader.style.display = 'none';
+            viewStudy.style.display = 'none';
+            viewGrammar.style.display = 'none';
+
+            // Reset Tab styling
+            document.getElementById('tab-read').classList.remove('active');
+            document.getElementById('tab-study').classList.remove('active');
+
+            if (mode === 'read') {
+                viewReader.style.display = 'block';
+                document.getElementById('tab-read').classList.add('active');
+                
+                // Show reader specific controls
+                readerTabs.style.display = 'flex';
+                modeControls.style.display = 'flex';
+                centerPanelTitle.textContent = "Reader View";
+                readerOverlay.style.display = 'block';
+            } 
+            else if (mode === 'study') {
+                viewStudy.style.display = 'block';
+                document.getElementById('tab-study').classList.add('active');
+                
+                // Hide controls not needed for study
+                modeControls.style.display = 'none';
+                readerOverlay.style.display = 'none';
+            }
+            else if (mode === 'grammar') {
+                viewGrammar.style.display = 'block';
+                
+                // Hide reader specific controls entirely
+                readerTabs.style.display = 'none';
+                modeControls.style.display = 'none';
+                centerPanelTitle.textContent = "Lesson View";
+                readerOverlay.style.display = 'none';
+            }
+        }
+
+        function setTranslationMode(mode) {
+            translationMode = mode;
+            if (mode === 'word') {
+                btnModeWord.classList.add('active');
+                btnModeSent.classList.remove('active');
+            } else {
+                btnModeWord.classList.remove('active');
+                btnModeSent.classList.add('active');
+            }
+            // Re-render text with new mode
+            generateReader(currentLessonText);
+        }
+
+        // --- 6. LIBRARY RENDERING ---
+        function renderLibrary() {
+            libraryListEl.innerHTML = '';
+            curriculum.forEach(lesson => {
+                const card = document.createElement('div');
+                card.className = `lesson-card ${activeLessonId === lesson.id ? 'active' : ''}`;
+                card.onclick = () => selectLesson(lesson.id);
+                card.innerHTML = `
+                    <div class="l-level">${lesson.level}</div>
+                    <span class="l-title">${lesson.title}</span>
+                    <div class="l-desc">${lesson.desc}</div>
+                `;
+                libraryListEl.appendChild(card);
+            });
+        }
+
+        function renderGrammarLibrary() {
+            grammarListEl.innerHTML = '';
+            grammarLessons.forEach(lesson => {
+                const card = document.createElement('div');
+                card.className = "lesson-card";
+                card.onclick = () => selectGrammarLesson(lesson.id);
+                card.innerHTML = `
+                    <div class="l-level" style="color:#0891b2;">Grammar</div>
+                    <span class="l-title">${lesson.title}</span>
+                    <div class="l-desc">${lesson.desc}</div>
+                `;
+                grammarListEl.appendChild(card);
+            });
+        }
+
+        function selectLesson(id) {
+            activeLessonId = id;
+            renderLibrary(); // update active state styling
+            setCenterMode('read');
+
+            const lesson = curriculum.find(l => l.id === id);
+            if (lesson) {
+                displayLevel.textContent = lesson.level;
+                displayTitle.textContent = lesson.title;
+                currentLessonText = lesson.text;
+                generateReader(lesson.text);
+
+                // Update Study View
+                const studyTitle = document.getElementById('study-title');
+                const studyTableBody = document.getElementById('study-table-body');
+                studyTitle.textContent = `${lesson.title} Vocabulary`;
+                
+                studyTableBody.innerHTML = '';
+                if(lesson.keyTerms) {
+                    lesson.keyTerms.forEach(term => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `<td><b>${term.es}</b></td><td>${term.en}</td>`;
+                        studyTableBody.appendChild(tr);
+                    });
+                }
+            }
+        }
+
+        function selectGrammarLesson(id) {
+            const lesson = grammarLessons.find(l => l.id === id);
+            if (!lesson) return;
+
+            setCenterMode('grammar');
+            grammarTitle.textContent = lesson.title;
+            grammarBody.innerHTML = lesson.content;
+            
+            // Render Quiz
+            grammarQuiz.innerHTML = '';
+            lesson.quiz.forEach((q, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'q-card';
+                
+                let optionsHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    optionsHtml += `<button class="q-btn" onclick="checkAnswer(this, ${optIdx}, ${q.correct}, 'feedback-${idx}')">${opt}</button>`;
+                });
+
+                qDiv.innerHTML = `
+                    <span class="q-text">${idx + 1}. ${q.q}</span>
+                    <div class="q-options">${optionsHtml}</div>
+                    <div id="feedback-${idx}" class="q-feedback"></div>
+                `;
+                grammarQuiz.appendChild(qDiv);
+            });
+        }
+
+        function checkAnswer(btn, selectedIdx, correctIdx, feedbackId) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('.q-btn');
+            const feedbackEl = document.getElementById(feedbackId);
+            
+            // Disable all buttons in this question
+            buttons.forEach(b => {
+                b.disabled = true;
+                if(buttons[correctIdx] === b) b.classList.add('correct');
+            });
+
+            if (selectedIdx === correctIdx) {
+                feedbackEl.textContent = "Correct! " + getExplanation(feedbackId);
+                feedbackEl.className = "q-feedback show success";
+            } else {
+                btn.classList.add('wrong');
+                feedbackEl.textContent = "Incorrect. " + getExplanation(feedbackId);
+                feedbackEl.className = "q-feedback show error";
+            }
+        }
+
+        // Helper to retrieve explanation from data based on feedback ID structure
+        function getExplanation(feedbackId) {
+            // This is a simple lookup hack for the demo. 
+            // In a real app, we'd pass the explanation string directly.
+            // ID format: feedback-{questionIndex}
+            // We need to know which lesson is active.
+            // For simplicity, I'll update selectGrammarLesson to pass explanation string in onclick.
+            
+            // Actually, let's fix checkAnswer signature to receive explanation.
+            // Retrying selectGrammarLesson render logic above...
+            return ""; 
+        }
+
+        // --- OVERRIDING render logic to include explanation properly ---
+        // (Self-correction during code generation)
+        selectGrammarLesson = function(id) {
+            const lesson = grammarLessons.find(l => l.id === id);
+            if (!lesson) return;
+
+            setCenterMode('grammar');
+            grammarTitle.textContent = lesson.title;
+            grammarBody.innerHTML = lesson.content;
+            
+            grammarQuiz.innerHTML = '';
+            lesson.quiz.forEach((q, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'q-card';
+                
+                let optionsHtml = '';
+                // Escape single quotes in explanation for onclick attribute
+                const safeExplain = q.explain.replace(/'/g, "\\'");
+                
+                q.options.forEach((opt, optIdx) => {
+                    optionsHtml += `<button class="q-btn" onclick="checkAnswer(this, ${optIdx}, ${q.correct}, '${safeExplain}', 'feedback-${idx}')">${opt}</button>`;
+                });
+
+                qDiv.innerHTML = `
+                    <span class="q-text">${idx + 1}. ${q.q}</span>
+                    <div class="q-options">${optionsHtml}</div>
+                    <div id="feedback-${idx}" class="q-feedback"></div>
+                `;
+                grammarQuiz.appendChild(qDiv);
+            });
+        };
+
+        checkAnswer = function(btn, selectedIdx, correctIdx, explanation, feedbackId) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('.q-btn');
+            const feedbackEl = document.getElementById(feedbackId);
+            
+            buttons.forEach((b, idx) => {
+                b.disabled = true;
+                if(idx === correctIdx) b.classList.add('correct');
+            });
+
+            if (selectedIdx === correctIdx) {
+                feedbackEl.innerHTML = `<b>Correct!</b> ${explanation}`;
+                feedbackEl.className = "q-feedback show success";
+            } else {
+                btn.classList.add('wrong');
+                feedbackEl.innerHTML = `<b>Incorrect.</b> ${explanation}`;
+                feedbackEl.className = "q-feedback show error";
+            }
+        };
+
+
+        function loadCustomText() {
+            const text = document.getElementById('input-text').value;
+            displayLevel.textContent = "Custom Mode";
+            displayTitle.textContent = "Your Text";
+            currentLessonText = text;
+            generateReader(text);
+            
+            // Clear study view
+            document.getElementById('study-title').textContent = "Custom Text";
+            document.getElementById('study-table-body').innerHTML = '<tr><td colspan="2">Vocabulary list not available for custom text.</td></tr>';
+            setCenterMode('read');
+        }
+
+        // --- 7. CORE READER LOGIC ---
+        function generateReader(rawText) {
+            readerEl.innerHTML = '';
+            if (!rawText) return;
+
+            if (translationMode === 'word') {
+                renderWords(rawText);
+            } else {
+                renderSentences(rawText);
+            }
+        }
+
+        function renderWords(rawText) {
+            const tokens = rawText.split(/([\s\n]+|[^\w\sáéíóúüñÁÉÍÓÚÜÑ]+)/g);
+            tokens.forEach(token => {
+                if (!token) return;
+                if (/^\s+$/.test(token)) {
+                    if (token.includes('\n')) readerEl.appendChild(document.createElement('br'));
+                    else readerEl.appendChild(document.createTextNode(' '));
+                    return;
+                }
+                if (/^[^\wáéíóúüñÁÉÍÓÚÜÑ]+$/.test(token)) {
+                    const span = document.createElement('span');
+                    span.style.color = "#94a3b8";
+                    span.textContent = token;
+                    readerEl.appendChild(span);
+                    return;
+                }
+                createWord(token);
+            });
+        }
+
+        function renderSentences(rawText) {
+            const sentences = rawText.match(/[^.!?]+[.!?]*(\s+|$)/g);
+
+            if (sentences) {
+                sentences.forEach(sent => {
+                    const span = document.createElement('span');
+                    span.className = 'sentence';
+                    span.textContent = sent;
+                    span.onmouseenter = () => translateSentence(sent, span);
+                    span.onclick = () => speakWord(sent);
+                    readerEl.appendChild(span);
+                });
+            } else {
+                const span = document.createElement('span');
+                span.className = 'sentence';
+                span.textContent = rawText;
+                span.onmouseenter = () => translateSentence(rawText, span);
+                readerEl.appendChild(span);
+            }
+        }
+
+        function createWord(text) {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = text;
+            const lowerText = text.toLowerCase();
+
+            if (savedVocab[lowerText]) {
+                span.classList.add('saved');
+            }
+
+            span.onclick = () => speakWord(text);
+            span.ondblclick = (e) => toggleSaveWord(text, span, e);
+            span.onmouseenter = () => translateWordHover(text, span);
+
+            readerEl.appendChild(span);
+        }
+
+        // --- 8. TRANSLATION & API ---
+        async function translateWordHover(word, element) {
+            const lower = word.toLowerCase();
+            if (element.getAttribute('data-trans')) return;
+
+            let translation = "Loading...";
+            
+            if (dictionary[lower]) {
+                translation = dictionary[lower];
+            } else if (savedVocab[lower]) {
+                translation = savedVocab[lower].translation;
+            } else {
+                element.setAttribute('data-trans', translation);
+                try {
+                    const res = await fetch(`https://api.mymemory.translated.net/get?q=${lower}&langpair=es|en`);
+                    const data = await res.json();
+                    if(data.responseData.translatedText) {
+                        translation = data.responseData.translatedText.toLowerCase();
+                        dictionary[lower] = translation; 
+                    } else {
+                        translation = "???";
+                    }
+                } catch (e) {
+                    translation = "Error";
+                }
+            }
+            element.setAttribute('data-trans', translation);
+        }
+
+        async function translateSentence(sentence, element) {
+            if (element.getAttribute('data-trans')) return;
+            element.setAttribute('data-trans', "Translating sentence...");
+            
+            try {
+                const cleanSent = sentence.trim();
+                const res = await fetch(`https://api.mymemory.translated.net/get?q=${cleanSent}&langpair=es|en`);
+                const data = await res.json();
+                
+                if(data.responseData.translatedText) {
+                    element.setAttribute('data-trans', data.responseData.translatedText);
+                } else {
+                    element.setAttribute('data-trans', "Translation unavailable");
+                }
+            } catch (e) {
+                element.setAttribute('data-trans', "Connection Error");
+            }
+        }
+
+        // --- 9. VOCABULARY SYSTEM ---
+        function toggleSaveWord(word, element, event) {
+            event.stopPropagation();
+            const lower = word.toLowerCase();
+            const translation = element.getAttribute('data-trans') || dictionary[lower] || "unknown";
+
+            if (savedVocab[lower]) {
+                delete savedVocab[lower];
+                element.classList.remove('saved');
+            } else {
+                savedVocab[lower] = { original: word, translation: translation };
+                element.classList.add('saved');
+            }
+            saveToStorage();
+            renderVocabList();
+        }
+
+        function deleteWord(key) {
+            delete savedVocab[key];
+            saveToStorage();
+            renderVocabList();
+            if (translationMode === 'word') {
+                const currentWords = document.querySelectorAll('.word');
+                currentWords.forEach(span => {
+                    if (span.textContent.toLowerCase() === key) {
+                        span.classList.remove('saved');
+                    }
+                });
+            }
+        }
+
+        function clearVocab() {
+            if(confirm("Clear all saved words?")) {
+                savedVocab = {};
+                saveToStorage();
+                renderVocabList();
+                if (translationMode === 'word') {
+                    const currentWords = document.querySelectorAll('.word');
+                    currentWords.forEach(span => span.classList.remove('saved'));
+                }
+            }
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('spanishVocab', JSON.stringify(savedVocab));
+            updateStats();
+        }
+
+        function renderVocabList() {
+            vocabListEl.innerHTML = '';
+            const keys = Object.keys(savedVocab);
+
+            if (keys.length === 0) {
+                emptyMsgEl.style.display = 'block';
+            } else {
+                emptyMsgEl.style.display = 'none';
+                keys.forEach(key => {
+                    const item = savedVocab[key];
+                    const li = document.createElement('li');
+                    li.className = 'vocab-item';
+                    li.innerHTML = `
+                        <div>
+                            <span class="v-word">${item.original}</span>
+                            <span class="v-trans">${item.translation}</span>
+                        </div>
+                        <button class="delete-btn" onclick="deleteWord('${key}')">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                        </button>
+                    `;
+                    vocabListEl.appendChild(li);
+                });
+            }
+            updateStats();
+            applyQuizMode();
+        }
+
+        // --- 10. QUIZ & AUDIO ---
+        function toggleQuizMode() {
+            quizMode = !quizMode;
+            btnQuiz.classList.toggle('active');
+            applyQuizMode();
+        }
+
+        function applyQuizMode() {
+            if (quizMode) {
+                vocabListEl.classList.add('quiz-mode');
+                btnQuiz.textContent = "Show Answers";
+            } else {
+                vocabListEl.classList.remove('quiz-mode');
+                btnQuiz.textContent = "Test Me";
+            }
+        }
+
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'es-ES';
+                u.rate = 0.8;
+                window.speechSynthesis.speak(u);
+            }
+        }
+
+        function updateStats() {
+            statCountEl.textContent = Object.keys(savedVocab).length;
+        }
+
+    </script>
+</body>
+</html>
