@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linguist: Study Station</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Palette */
             --primary: #4f46e5;
             --primary-light: #818cf8;
             --primary-dark: #4338ca;
-            --bg-app: #f1f5f9;
+            --bg-app: #f8fafc;
             --bg-panel: #ffffff;
-            --text-main: #1e293b;
+            --text-main: #0f172a;
             --text-muted: #64748b;
             --border: #e2e8f0;
             --gold: #f59e0b;
-            --gold-light: #fef3c7;
+            --gold-light: #fffbeb;
             --success: #10b981;
             --error: #ef4444;
             
             /* Dimensions */
-            --header-h: 64px;
+            --header-h: 70px;
         }
 
         * { box-sizing: border-box; }
@@ -52,35 +52,60 @@
         }
 
         .brand {
-            font-weight: 700;
-            font-size: 1.25rem;
+            font-weight: 800;
+            font-size: 1.4rem;
             color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            letter-spacing: -0.02em;
         }
 
-        .stats-bar {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        /* Leveling System UI */
+        .user-progress {
             display: flex;
-            gap: 20px;
             align-items: center;
+            gap: 15px;
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
         }
-        
-        .stat-badge {
-            background: var(--gold-light);
-            color: #92400e;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .level-badge {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .xp-container {
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+        }
+        .xp-text { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; margin-bottom: 3px; display: flex; justify-content: space-between; }
+        .xp-bar-bg { width: 100%; height: 6px; background: #cbd5e1; border-radius: 3px; overflow: hidden; }
+        .xp-bar-fill { height: 100%; background: var(--success); width: 0%; transition: width 0.5s ease-out; }
+
+        .stats-simple {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid #cbd5e1;
         }
 
         /* --- Main Grid Layout --- */
         main {
             display: grid;
-            grid-template-columns: 320px 1fr 320px; /* Library | Reader | Vocab */
+            grid-template-columns: 340px 1fr 300px; /* Library | Reader | Vocab */
             height: calc(100vh - var(--header-h));
             overflow: hidden;
         }
@@ -102,16 +127,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 65px;
+            min-height: 60px;
         }
         
         .panel-title {
             margin: 0;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             color: var(--text-muted);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .panel-content {
@@ -119,15 +144,17 @@
             overflow-y: auto;
             padding: 1.5rem;
             background: #f8fafc;
+            scroll-behavior: smooth;
         }
         
         /* --- Panel 1: Library & Input --- */
         .tab-group {
             display: flex;
-            background: #f1f5f9;
+            background: #e2e8f0;
             padding: 4px;
             border-radius: 8px;
             margin-bottom: 15px;
+            gap: 2px;
         }
         
         .tab-btn {
@@ -141,20 +168,22 @@
             cursor: pointer;
             font-weight: 600;
             white-space: nowrap;
+            transition: all 0.2s;
         }
+        .tab-btn:hover { color: var(--text-main); }
         .tab-btn.active {
             background: white;
             color: var(--primary);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         /* Lesson Cards */
         .lesson-card {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
@@ -162,37 +191,50 @@
         }
         .lesson-card:hover {
             border-color: var(--primary-light);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
         }
         .lesson-card.active {
             border-color: var(--primary);
             background-color: #eef2ff;
-        }
-        .lesson-card.active::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 4px;
-            background: var(--primary);
+            box-shadow: inset 0 0 0 1px var(--primary);
         }
         
+        .l-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
         .l-level {
             font-size: 0.7rem;
             text-transform: uppercase;
-            color: var(--text-muted);
-            font-weight: 700;
+            color: var(--primary);
+            font-weight: 800;
             letter-spacing: 0.05em;
+            background: #e0e7ff;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
+        .l-check {
+            color: var(--success);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s;
+        }
+        .l-check.completed { opacity: 1; transform: scale(1); }
+
         .l-title {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-main);
             margin: 4px 0;
             display: block;
+            font-size: 1rem;
         }
         .l-desc {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
+            line-height: 1.4;
         }
 
         /* Custom Input Mode */
@@ -214,15 +256,16 @@
             resize: none;
             outline: none;
             margin-bottom: 10px;
+            transition: border-color 0.2s;
         }
-        textarea:focus { border-color: var(--primary); }
+        textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px #e0e7ff; }
 
         .btn-primary {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem;
-            border-radius: 6px;
+            padding: 0.85rem;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -230,8 +273,9 @@
             align-items: center;
             gap: 8px;
             transition: 0.2s;
+            width: 100%;
         }
-        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-primary:hover { background-color: var(--primary-dark); transform: translateY(-1px); }
 
         /* --- Panel 2: The Reader & Center Tabs --- */
         #reader-panel { 
@@ -255,6 +299,7 @@
             color: var(--text-muted);
             border-radius: 4px;
             cursor: pointer;
+            transition: 0.2s;
         }
         .c-tab.active {
             background: white;
@@ -262,12 +307,12 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* Mode Switcher (New) */
+        /* Mode Switcher */
         .mode-switcher {
             display: flex;
-            gap: 5px;
+            gap: 4px;
             background: #f1f5f9;
-            padding: 3px;
+            padding: 2px;
             border-radius: 6px;
             margin-left: 10px;
         }
@@ -279,11 +324,11 @@
             cursor: pointer;
             border-radius: 4px;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 600;
         }
         .m-btn.active {
             background: white;
-            color: var(--primary);
+            color: var(--text-main);
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
@@ -291,33 +336,35 @@
         .reader-header {
             text-align: center;
             margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px dashed #f1f5f9;
+            padding-bottom: 2rem;
+            border-bottom: 2px dashed #e2e8f0;
         }
         .current-level {
             display: inline-block;
             background: var(--primary);
             color: white;
             font-size: 0.7rem;
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
         .current-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--text-main);
             margin: 0;
+            letter-spacing: -0.02em;
         }
         
         #reader-content {
             font-family: 'Merriweather', serif;
-            font-size: 1.4rem;
-            line-height: 2.4;
+            font-size: 1.45rem;
+            line-height: 2.2;
             color: #334155;
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
@@ -325,14 +372,15 @@
         .word {
             cursor: pointer;
             border-radius: 4px;
-            padding: 2px 1px;
+            padding: 2px 0;
             position: relative;
-            transition: all 0.2s;
+            transition: all 0.15s;
             border-bottom: 2px solid transparent;
         }
         .word:hover {
             background-color: #e0e7ff;
-            color: var(--primary);
+            color: var(--primary-dark);
+            border-bottom-color: var(--primary-light);
         }
         /* Saved Word State */
         .word.saved {
@@ -357,33 +405,34 @@
         .word::after, .sentence::after {
             content: attr(data-trans);
             position: absolute;
-            bottom: 135%;
+            bottom: 145%;
             left: 50%;
             transform: translateX(-50%);
             background-color: #1e293b;
             color: #fff;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.9rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-family: 'Inter', sans-serif;
-            white-space: normal; /* Allow wrap for long sentences */
-            min-width: 150px;
-            max-width: 300px;
+            white-space: normal;
+            min-width: 120px;
+            max-width: 350px;
             text-align: center;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.15s, bottom 0.15s;
             z-index: 100;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.15);
             line-height: 1.4;
+            font-weight: 500;
         }
-        .word:hover::after, .sentence:hover::after { opacity: 1; bottom: 125%; }
+        .word:hover::after, .sentence:hover::after { opacity: 1; bottom: 130%; }
         
         /* Triangle */
         .word::before, .sentence::before {
             content: '';
             position: absolute;
-            bottom: 125%;
+            bottom: 130%;
             left: 50%;
             transform: translateX(-50%);
             border: 6px solid transparent;
@@ -392,7 +441,7 @@
             pointer-events: none;
             transition: opacity 0.15s, bottom 0.15s;
         }
-        .word:hover::before, .sentence:hover::before { opacity: 1; bottom: 115%; }
+        .word:hover::before, .sentence:hover::before { opacity: 1; bottom: 120%; }
 
         /* Instructions */
         .instructions-overlay {
@@ -409,7 +458,26 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             pointer-events: none;
             white-space: nowrap;
+            backdrop-filter: blur(4px);
         }
+
+        /* Finish Button */
+        .finish-lesson-btn {
+            display: block;
+            margin: 60px auto 20px auto;
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .finish-lesson-btn:hover { background: #059669; transform: scale(1.05); }
+        .finish-lesson-btn:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; }
 
         /* --- New Study View --- */
         #view-study {
@@ -418,14 +486,15 @@
         }
         .vocab-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
         }
         .vocab-table th, .vocab-table td {
-            padding: 12px 20px;
+            padding: 16px 24px;
             text-align: left;
             border-bottom: 1px solid var(--border);
         }
@@ -435,16 +504,17 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            font-weight: 700;
         }
         .vocab-table tr:last-child td { border-bottom: none; }
         .vocab-table tr:hover { background: #f8fafc; }
         
         .study-header {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
         }
-        .study-header h3 { margin: 0 0 5px 0; color: var(--text-main); }
-        .study-header p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+        .study-header h3 { margin: 0 0 8px 0; color: var(--text-main); font-size: 1.5rem; }
+        .study-header p { margin: 0; color: var(--text-muted); font-size: 1rem; }
 
         /* --- New Grammar Lesson View --- */
         #view-grammar {
@@ -452,83 +522,146 @@
             margin: 0 auto;
         }
         .grammar-content {
-            line-height: 1.7;
+            line-height: 1.8;
             color: var(--text-main);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
         }
-        .grammar-content h3 { color: var(--primary); margin-top: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
-        .grammar-content p { margin-bottom: 1rem; }
-        .grammar-content ul { padding-left: 20px; background: #f8fafc; padding: 15px 15px 15px 35px; border-radius: 8px; }
-        .grammar-content li { margin-bottom: 8px; }
+        .grammar-content h3 { color: var(--primary); margin-top: 2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; font-size: 1.4rem; }
+        .grammar-content p { margin-bottom: 1.2rem; }
+        .grammar-content ul { padding-left: 20px; background: #fff; padding: 20px 20px 20px 40px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .grammar-content li { margin-bottom: 10px; }
         .example-box {
             background: #eff6ff;
             border-left: 4px solid var(--primary);
-            padding: 12px;
-            margin: 10px 0;
+            padding: 16px;
+            margin: 16px 0;
             font-style: italic;
+            border-radius: 0 8px 8px 0;
         }
         .mistake-box {
             background: #fef2f2;
             border-left: 4px solid var(--error);
-            padding: 12px;
-            margin: 10px 0;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
         }
+
+        /* --- New Vocab Library View --- */
+        #view-vocab-library {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .vocab-group-title {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .vocab-click-row {
+            cursor: pointer;
+        }
+        .vocab-click-row:hover td {
+            color: var(--primary);
+            font-weight: 600;
+            background: #f0f9ff;
+        }
+
 
         /* Quiz Styles */
         .quiz-section {
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 16px;
+            padding: 30px;
             margin-top: 40px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
         }
         .quiz-title {
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-weight: 800;
+            margin-bottom: 25px;
             color: var(--text-main);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .q-card {
             background: #f8fafc;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 12px;
             border: 1px solid var(--border);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
-        .q-text { font-weight: 600; margin-bottom: 15px; display: block; font-size: 1.05rem; }
-        .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .q-text { font-weight: 700; margin-bottom: 18px; display: block; font-size: 1.1rem; }
+        .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .q-btn {
-            padding: 12px;
-            border: 1px solid var(--border);
+            padding: 14px;
+            border: 2px solid var(--border);
             background: white;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             text-align: left;
             transition: 0.2s;
-            font-size: 0.95rem;
+            font-size: 1rem;
             position: relative;
+            font-weight: 500;
+            color: var(--text-main);
         }
         .q-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
         
-        .q-btn.correct { background: #dcfce7; border-color: #22c55e; color: #14532d; font-weight: 600; }
-        .q-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; opacity: 0.7; }
+        .q-btn.correct { background: #dcfce7; border-color: #22c55e; color: #14532d; font-weight: 700; }
+        .q-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; opacity: 0.6; }
 
         .q-feedback {
-            margin-top: 12px;
-            font-size: 0.9rem;
-            padding: 10px;
-            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            padding: 12px;
+            border-radius: 8px;
             display: none;
-            line-height: 1.4;
+            line-height: 1.5;
         }
         .q-feedback.show { display: block; }
-        .q-feedback.success { background: #dcfce7; color: #14532d; }
-        .q-feedback.error { background: #fee2e2; color: #7f1d1d; }
+        .q-feedback.success { background: #dcfce7; color: #14532d; border: 1px solid #86efac; }
+        .q-feedback.error { background: #fee2e2; color: #7f1d1d; border: 1px solid #fca5a5; }
+
+        /* --- Toast Notification --- */
+        #toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            background: #1e293b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease-out forwards, fadeOut 0.5s ease-in 2.5s forwards;
+            min-width: 200px;
+        }
+        .toast.xp { border-left: 4px solid var(--gold); }
+        .toast span { color: var(--gold); font-weight: 800; }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
 
         /* --- Panel 3: Vocabulary Sidebar --- */
         #vocab-panel { border-left: 1px solid var(--border); }
@@ -537,21 +670,22 @@
         .vocab-controls {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .btn-toggle {
             flex: 1;
-            padding: 8px;
-            font-size: 0.8rem;
+            padding: 10px;
+            font-size: 0.85rem;
             background: white;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 600;
+            transition: 0.2s;
         }
-        .btn-toggle:hover { background: #f8fafc; }
+        .btn-toggle:hover { background: #f8fafc; border-color: #cbd5e1; }
         .btn-toggle.active {
             background: var(--primary);
             color: white;
@@ -567,7 +701,7 @@
         .vocab-item {
             background: white;
             border-bottom: 1px solid var(--border);
-            padding: 12px 4px;
+            padding: 16px 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -577,15 +711,15 @@
         .vocab-item:hover { background: #f8fafc; }
 
         .v-word {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-main);
             display: block;
-            margin-bottom: 2px;
-            font-size: 0.95rem;
+            margin-bottom: 4px;
+            font-size: 1rem;
         }
 
         .v-trans {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
         }
 
@@ -612,6 +746,7 @@
             cursor: pointer;
             padding: 6px;
             border-radius: 4px;
+            transition: opacity 0.2s;
         }
         .vocab-item:hover .delete-btn { opacity: 1; }
         .delete-btn:hover { background: #fee2e2; }
@@ -620,21 +755,21 @@
         .empty-state {
             text-align: center;
             color: var(--text-muted);
-            margin-top: 60px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            margin-top: 80px;
+            font-size: 0.95rem;
+            line-height: 1.6;
             padding: 0 20px;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
             main { grid-template-columns: 280px 1fr; }
-            #vocab-panel { display: none; } /* On tablet, hide vocab */
+            #vocab-panel { display: none; } 
         }
         @media (max-width: 768px) {
             main { grid-template-columns: 1fr; }
             .panel { display: none; }
-            #reader-panel { display: flex; } /* Mobile: Only show reader */
+            #reader-panel { display: flex; } 
         }
     </style>
 </head>
@@ -642,12 +777,25 @@
 
     <header>
         <div class="brand">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             Linguist
         </div>
-        <div class="stats-bar">
-            <span>Saved Words:</span>
-            <span class="stat-badge" id="stat-count">0</span>
+
+        <!-- Level System -->
+        <div class="user-progress">
+            <div class="level-badge" id="level-badge">1</div>
+            <div class="xp-container">
+                <div class="xp-text">
+                    <span>Level <span id="level-text">1</span></span>
+                    <span><span id="xp-current">0</span> / <span id="xp-next">100</span> XP</span>
+                </div>
+                <div class="xp-bar-bg">
+                    <div class="xp-bar-fill" id="xp-bar"></div>
+                </div>
+            </div>
+            <div class="stats-simple">
+                Saved Words: <span id="stat-count" style="color:var(--text-main); font-weight:700;">0</span>
+            </div>
         </div>
     </header>
 
@@ -661,7 +809,8 @@
                 
                 <div class="tab-group">
                     <button class="tab-btn active" onclick="switchTab('library')">Stories</button>
-                    <button class="tab-btn" onclick="switchTab('grammar')">Lessons</button>
+                    <button class="tab-btn" onclick="switchTab('vocab')">Vocab</button>
+                    <button class="tab-btn" onclick="switchTab('grammar')">Grammar</button>
                     <button class="tab-btn" onclick="switchTab('custom')">Custom</button>
                 </div>
 
@@ -670,14 +819,19 @@
                     <!-- Injected via JS -->
                 </div>
 
-                <!-- Grammar Library List (New) -->
+                <!-- Grammar Library List -->
                 <div id="grammar-list" style="display:none;">
+                    <!-- Injected via JS -->
+                </div>
+                
+                <!-- Vocab Library List (New) -->
+                <div id="vocab-library-list" style="display:none;">
                     <!-- Injected via JS -->
                 </div>
 
                 <!-- Custom Input Area -->
                 <div id="custom-input-area">
-                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Paste any text here:</div>
+                    <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px; font-weight:500;">Paste any Spanish text here to study:</div>
                     <textarea id="input-text" placeholder="Había una vez...">Hola. Este es mi texto personalizado. Quiero aprender español a mi manera.</textarea>
                     <button class="btn-primary" onclick="loadCustomText()">
                         <span>Generate Reader</span>
@@ -705,8 +859,6 @@
                         <button class="m-btn" id="btn-mode-sent" onclick="setTranslationMode('sentence')" title="Translate full sentences">Sentence</button>
                     </div>
                 </div>
-
-                <div style="font-size:0.75rem; color:var(--text-muted); width: 80px; text-align:right;"></div>
             </div>
             
             <div class="panel-content">
@@ -718,8 +870,10 @@
                         <h1 class="current-title" id="display-title">Welcome</h1>
                     </div>
                     <div id="reader-content">
-                        <div style="color:var(--text-muted); margin-top:40px; text-align:center;">Select a lesson to begin.</div>
+                        <div style="color:var(--text-muted); margin-top:60px; text-align:center;">Select a story from the left to begin your journey.</div>
                     </div>
+                    <!-- Finish Button (Injected dynamically) -->
+                    <div id="finish-btn-container"></div>
                 </div>
 
                 <!-- View 2: Study (Key Vocab) -->
@@ -742,7 +896,7 @@
                     </table>
                 </div>
 
-                <!-- View 3: Grammar Lesson (New) -->
+                <!-- View 3: Grammar Lesson -->
                 <div id="view-grammar" style="display:none;">
                     <div class="reader-header">
                         <div class="current-level" id="grammar-badge" style="background:#0891b2;">Grammar</div>
@@ -761,9 +915,20 @@
                     </div>
                 </div>
 
+                <!-- View 4: Vocab Library (New) -->
+                <div id="view-vocab-library" style="display:none;">
+                    <div class="reader-header">
+                        <div class="current-level" style="background:#8b5cf6;">Vocabulary Vault</div>
+                        <h1 class="current-title" id="vocab-lib-title">Category</h1>
+                    </div>
+                    <div id="vocab-lib-content">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
             </div>
             <div class="instructions-overlay" id="reader-overlay">
-                Hover: Translate • Click: Audio
+                Hover: Translate • Click: Audio • Double-click: Save Word
             </div>
         </section>
 
@@ -777,7 +942,7 @@
             <div class="panel-content">
                 <div class="vocab-controls">
                     <button class="btn-toggle" id="btn-quiz" onclick="toggleQuizMode()">Test Me</button>
-                    <button class="btn-toggle" onclick="clearVocab()">Clear</button>
+                    <button class="btn-toggle" onclick="clearVocab()">Clear All</button>
                 </div>
                 <ul id="vocab-list">
                     <!-- Vocab items injected here -->
@@ -785,14 +950,350 @@
                 <div id="empty-msg" class="empty-state">
                     <b>No saved words yet.</b><br>
                     (Word Mode only)<br>
-                    Double-click words to save!
+                    Double-click words in the text to save them to your list!
                 </div>
             </div>
         </section>
     </main>
 
+    <div id="toast-container"></div>
+
     <script>
-        // --- 1. DATA: CURRICULUM & GRAMMAR ---
+        // --- 1. DATA: XP SYSTEM ---
+        const xpSystem = {
+            currentXP: 0,
+            level: 1,
+            completedLessons: [], 
+            
+            init() {
+                const saved = JSON.parse(localStorage.getItem('linguistXP'));
+                if (saved) {
+                    this.currentXP = saved.currentXP || 0;
+                    this.level = saved.level || 1;
+                    this.completedLessons = saved.completedLessons || [];
+                }
+                this.updateUI();
+            },
+
+            addXP(amount, reason) {
+                this.currentXP += amount;
+                this.checkLevelUp();
+                this.save();
+                this.updateUI();
+                showToast(`+${amount} XP`, reason);
+            },
+
+            checkLevelUp() {
+                const nextLevelXP = this.level * 100;
+                if (this.currentXP >= nextLevelXP) {
+                    this.currentXP -= nextLevelXP;
+                    this.level++;
+                    showToast("LEVEL UP!", `Welcome to Level ${this.level}`);
+                }
+            },
+
+            save() {
+                localStorage.setItem('linguistXP', JSON.stringify({
+                    currentXP: this.currentXP,
+                    level: this.level,
+                    completedLessons: this.completedLessons
+                }));
+            },
+
+            updateUI() {
+                const nextLevelXP = this.level * 100;
+                const percentage = (this.currentXP / nextLevelXP) * 100;
+                
+                document.getElementById('level-badge').textContent = this.level;
+                document.getElementById('level-text').textContent = this.level;
+                document.getElementById('xp-current').textContent = this.currentXP;
+                document.getElementById('xp-next').textContent = nextLevelXP;
+                document.getElementById('xp-bar').style.width = `${percentage}%`;
+            },
+
+            isLessonComplete(id) {
+                return this.completedLessons.includes(id);
+            },
+
+            markLessonComplete(id) {
+                if (!this.completedLessons.includes(id)) {
+                    this.completedLessons.push(id);
+                    this.addXP(50, "Story Completed");
+                    this.save();
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        function showToast(title, msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast xp';
+            toast.innerHTML = `<span>${title}</span> ${msg}`;
+            container.appendChild(toast);
+            
+            // Remove after animation
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // --- 2. DATA: MASSIVE VOCAB LIBRARY ---
+        const massiveVocab = [
+            {
+                id: 'anatomy',
+                title: 'Anatomy & Body',
+                desc: 'Muscles, bones, organs, and body parts.',
+                groups: [
+                    {
+                        title: 'Muscles (Músculos)',
+                        words: [
+                            {es:'Bíceps', en:'Biceps'}, {es:'Tríceps', en:'Triceps'}, {es:'Cuádriceps', en:'Quadriceps'}, 
+                            {es:'Abdominales', en:'Abs'}, {es:'Pectorales', en:'Pectorals'}, {es:'Gemelos', en:'Calves'}, 
+                            {es:'Espalda', en:'Back'}, {es:'Hombros', en:'Shoulders'}, {es:'Glúteos', en:'Glutes'}
+                        ]
+                    },
+                    {
+                        title: 'Bones (Huesos)',
+                        words: [
+                            {es:'Cráneo', en:'Skull'}, {es:'Columna', en:'Spine'}, {es:'Costilla', en:'Rib'}, 
+                            {es:'Fémur', en:'Femur'}, {es:'Tibia', en:'Tibia'}, {es:'Radio', en:'Radius'}, 
+                            {es:'Mandíbula', en:'Jaw'}, {es:'Clavícula', en:'Clavicle'}
+                        ]
+                    },
+                    {
+                        title: 'Organs (Órganos)',
+                        words: [
+                            {es:'Corazón', en:'Heart'}, {es:'Cerebro', en:'Brain'}, {es:'Pulmones', en:'Lungs'}, 
+                            {es:'Estómago', en:'Stomach'}, {es:'Hígado', en:'Liver'}, {es:'Riñones', en:'Kidneys'}, 
+                            {es:'Intestino', en:'Intestine'}, {es:'Piel', en:'Skin'}
+                        ]
+                    },
+                    {
+                        title: 'Body Parts (Partes del cuerpo)',
+                        words: [
+                            {es:'Cabeza', en:'Head'}, {es:'Cuello', en:'Neck'}, {es:'Brazo', en:'Arm'}, 
+                            {es:'Mano', en:'Hand'}, {es:'Dedo', en:'Finger'}, {es:'Pierna', en:'Leg'}, 
+                            {es:'Pie', en:'Foot'}, {es:'Rodilla', en:'Knee'}, {es:'Codo', en:'Elbow'}, 
+                            {es:'Cara', en:'Face'}, {es:'Ojos', en:'Eyes'}, {es:'Nariz', en:'Nose'}, 
+                            {es:'Boca', en:'Mouth'}, {es:'Oreja', en:'Ear'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'food',
+                title: 'Food & Dining',
+                desc: 'Fruits, vegetables, meats, and meals.',
+                groups: [
+                    {
+                        title: 'Fruits (Frutas)',
+                        words: [
+                            {es:'Manzana', en:'Apple'}, {es:'Plátano', en:'Banana'}, {es:'Naranja', en:'Orange'}, 
+                            {es:'Fresa', en:'Strawberry'}, {es:'Uva', en:'Grape'}, {es:'Piña', en:'Pineapple'}, 
+                            {es:'Sandía', en:'Watermelon'}, {es:'Limón', en:'Lemon'}, {es:'Melocotón', en:'Peach'}
+                        ]
+                    },
+                    {
+                        title: 'Vegetables (Verduras)',
+                        words: [
+                            {es:'Lechuga', en:'Lettuce'}, {es:'Tomate', en:'Tomato'}, {es:'Cebolla', en:'Onion'}, 
+                            {es:'Zanahoria', en:'Carrot'}, {es:'Papa', en:'Potato'}, {es:'Pepino', en:'Cucumber'}, 
+                            {es:'Pimiento', en:'Pepper'}, {es:'Ajo', en:'Garlic'}, {es:'Espinaca', en:'Spinach'}
+                        ]
+                    },
+                    {
+                        title: 'Meats & Proteins (Carnes)',
+                        words: [
+                            {es:'Pollo', en:'Chicken'}, {es:'Res', en:'Beef'}, {es:'Cerdo', en:'Pork'}, 
+                            {es:'Pescado', en:'Fish'}, {es:'Huevo', en:'Egg'}, {es:'Jamón', en:'Ham'}, 
+                            {es:'Salchicha', en:'Sausage'}, {es:'Tocino', en:'Bacon'}
+                        ]
+                    },
+                    {
+                        title: 'Meals (Comidas)',
+                        words: [
+                            {es:'Desayuno', en:'Breakfast'}, {es:'Almuerzo', en:'Lunch'}, {es:'Cena', en:'Dinner'}, 
+                            {es:'Postre', en:'Dessert'}, {es:'Merienda', en:'Snack'}, {es:'Bebida', en:'Drink'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'activities',
+                title: 'Activities & Sports',
+                desc: 'Verbs, sports, and hobbies.',
+                groups: [
+                    {
+                        title: 'Sports (Deportes)',
+                        words: [
+                            {es:'Fútbol', en:'Soccer'}, {es:'Baloncesto', en:'Basketball'}, {es:'Tenis', en:'Tennis'}, 
+                            {es:'Natación', en:'Swimming'}, {es:'Ciclismo', en:'Cycling'}, {es:'Correr', en:'Running'}, 
+                            {es:'Gimnasio', en:'Gym'}, {es:'Voleibol', en:'Volleyball'}
+                        ]
+                    },
+                    {
+                        title: 'Verbs of Action (Acciones)',
+                        words: [
+                            {es:'Jugar', en:'To play'}, {es:'Caminar', en:'To walk'}, {es:'Correr', en:'To run'}, 
+                            {es:'Saltar', en:'To jump'}, {es:'Nadar', en:'To swim'}, {es:'Bailar', en:'To dance'}, 
+                            {es:'Cantar', en:'To sing'}, {es:'Leer', en:'To read'}, {es:'Escribir', en:'To write'}
+                        ]
+                    },
+                    {
+                        title: 'Hobbies (Pasatiempos)',
+                        words: [
+                            {es:'Viajar', en:'To travel'}, {es:'Pintar', en:'To paint'}, {es:'Cocinar', en:'To cook'}, 
+                            {es:'Pescar', en:'To fish'}, {es:'Fotografía', en:'Photography'}, {es:'Jardinería', en:'Gardening'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'house',
+                title: 'The House',
+                desc: 'Rooms, furniture, and objects.',
+                groups: [
+                    {
+                        title: 'Rooms (Habitaciones)',
+                        words: [
+                            {es:'Cocina', en:'Kitchen'}, {es:'Baño', en:'Bathroom'}, {es:'Dormitorio', en:'Bedroom'}, 
+                            {es:'Sala', en:'Living room'}, {es:'Comedor', en:'Dining room'}, {es:'Jardín', en:'Garden'}, 
+                            {es:'Garaje', en:'Garage'}, {es:'Pasillo', en:'Hallway'}
+                        ]
+                    },
+                    {
+                        title: 'Furniture (Muebles)',
+                        words: [
+                            {es:'Mesa', en:'Table'}, {es:'Silla', en:'Chair'}, {es:'Sofá', en:'Sofa'}, 
+                            {es:'Cama', en:'Bed'}, {es:'Armario', en:'Closet'}, {es:'Escritorio', en:'Desk'}, 
+                            {es:'Estantería', en:'Shelf'}, {es:'Lámpara', en:'Lamp'}
+                        ]
+                    },
+                    {
+                        title: 'Appliances (Electrodomésticos)',
+                        words: [
+                            {es:'Nevera', en:'Fridge'}, {es:'Horno', en:'Oven'}, {es:'Microondas', en:'Microwave'}, 
+                            {es:'Lavadora', en:'Washing machine'}, {es:'Televisión', en:'Television'}, {es:'Computadora', en:'Computer'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'nature',
+                title: 'Nature & Animals',
+                desc: 'Animals, plants, weather, and landscapes.',
+                groups: [
+                    {
+                        title: 'Animals (Animales)',
+                        words: [
+                            {es:'Perro', en:'Dog'}, {es:'Gato', en:'Cat'}, {es:'Pájaro', en:'Bird'}, 
+                            {es:'Pez', en:'Fish'}, {es:'Caballo', en:'Horse'}, {es:'Vaca', en:'Cow'}, 
+                            {es:'León', en:'Lion'}, {es:'Oso', en:'Bear'}, {es:'Elefante', en:'Elephant'}
+                        ]
+                    },
+                    {
+                        title: 'Landscape (Paisaje)',
+                        words: [
+                            {es:'Montaña', en:'Mountain'}, {es:'Río', en:'River'}, {es:'Mar', en:'Sea'}, 
+                            {es:'Playa', en:'Beach'}, {es:'Bosque', en:'Forest'}, {es:'Árbol', en:'Tree'}, 
+                            {es:'Flor', en:'Flower'}, {es:'Cielo', en:'Sky'}, {es:'Sol', en:'Sun'}, {es:'Luna', en:'Moon'}
+                        ]
+                    },
+                    {
+                        title: 'Weather (Clima)',
+                        words: [
+                            {es:'Lluvia', en:'Rain'}, {es:'Nieve', en:'Snow'}, {es:'Viento', en:'Wind'}, 
+                            {es:'Calor', en:'Heat'}, {es:'Frío', en:'Cold'}, {es:'Nube', en:'Cloud'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'city',
+                title: 'The City',
+                desc: 'Places, transport, and directions.',
+                groups: [
+                    {
+                        title: 'Places (Lugares)',
+                        words: [
+                            {es:'Escuela', en:'School'}, {es:'Hospital', en:'Hospital'}, {es:'Banco', en:'Bank'}, 
+                            {es:'Restaurante', en:'Restaurant'}, {es:'Tienda', en:'Store'}, {es:'Parque', en:'Park'}, 
+                            {es:'Aeropuerto', en:'Airport'}, {es:'Hotel', en:'Hotel'}, {es:'Biblioteca', en:'Library'}
+                        ]
+                    },
+                    {
+                        title: 'Transport (Transporte)',
+                        words: [
+                            {es:'Coche', en:'Car'}, {es:'Autobús', en:'Bus'}, {es:'Tren', en:'Train'}, 
+                            {es:'Avión', en:'Plane'}, {es:'Bicicleta', en:'Bicycle'}, {es:'Taxi', en:'Taxi'}, 
+                            {es:'Metro', en:'Subway'}
+                        ]
+                    },
+                    {
+                        title: 'Directions (Direcciones)',
+                        words: [
+                            {es:'Calle', en:'Street'}, {es:'Izquierda', en:'Left'}, {es:'Derecha', en:'Right'}, 
+                            {es:'Norte', en:'North'}, {es:'Sur', en:'South'}, {es:'Cerca', en:'Near'}, {es:'Lejos', en:'Far'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'clothing',
+                title: 'Clothing',
+                desc: 'Clothes, accessories, and colors.',
+                groups: [
+                    {
+                        title: 'Clothes (Ropa)',
+                        words: [
+                            {es:'Camisa', en:'Shirt'}, {es:'Pantalones', en:'Pants'}, {es:'Vestido', en:'Dress'}, 
+                            {es:'Falda', en:'Skirt'}, {es:'Abrigo', en:'Coat'}, {es:'Zapatos', en:'Shoes'}, 
+                            {es:'Calcetines', en:'Socks'}, {es:'Sombrero', en:'Hat'}
+                        ]
+                    },
+                    {
+                        title: 'Accessories (Accesorios)',
+                        words: [
+                            {es:'Gafas', en:'Glasses'}, {es:'Reloj', en:'Watch'}, {es:'Bolso', en:'Bag'}, 
+                            {es:'Cinturón', en:'Belt'}, {es:'Bufanda', en:'Scarf'}, {es:'Guantes', en:'Gloves'}
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'abstract',
+                title: 'Abstract Concepts',
+                desc: 'Emotions, time, and numbers.',
+                groups: [
+                    {
+                        title: 'Emotions (Emociones)',
+                        words: [
+                            {es:'Feliz', en:'Happy'}, {es:'Triste', en:'Sad'}, {es:'Enojado', en:'Angry'}, 
+                            {es:'Cansado', en:'Tired'}, {es:'Miedo', en:'Fear'}, {es:'Amor', en:'Love'}, {es:'Sorpresa', en:'Surprise'}
+                        ]
+                    },
+                    {
+                        title: 'Time (Tiempo)',
+                        words: [
+                            {es:'Ahora', en:'Now'}, {es:'Hoy', en:'Today'}, {es:'Mañana', en:'Tomorrow'}, 
+                            {es:'Ayer', en:'Yesterday'}, {es:'Siempre', en:'Always'}, {es:'Nunca', en:'Never'}, 
+                            {es:'Semana', en:'Week'}, {es:'Mes', en:'Month'}, {es:'Año', en:'Year'}
+                        ]
+                    },
+                    {
+                        title: 'Colors (Colores)',
+                        words: [
+                            {es:'Rojo', en:'Red'}, {es:'Azul', en:'Blue'}, {es:'Verde', en:'Green'}, 
+                            {es:'Amarillo', en:'Yellow'}, {es:'Negro', en:'Black'}, {es:'Blanco', en:'White'}
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // --- 3. DATA: EXTENSIVE CURRICULUM ---
         const curriculum = [
             {
                 id: 'l1',
@@ -807,16 +1308,88 @@
                 level: 'Level 1: Basics',
                 title: 'My House',
                 desc: 'Describing rooms, furniture, colors, and family habits.',
-                text: 'Vivo en una casa blanca y cómoda. La casa tiene tres ventanas grandes y una puerta roja brillante. Cuando entras, ves el salón. En el salón hay un sofá azul y una televisión moderna. Mi padre lee el periódico en el sofá todas las mañanas. La cocina es mi lugar favorito. En la cocina, mi madre cocina una sopa deliciosa con verduras frescas. Tenemos una mesa de madera donde comemos juntos.',
+                text: 'Vivo en una casa blanca y cómoda. La casa tiene tres ventanas grandes y una puerta roja brillante. Cuando entras, ves el salón. En el salón hay un sofá azul y una televisión moderna. Mi padre lee el periódico en el sofá todas las mañanas. La cocina es mi lugar favorito. En la cocina, mi madre cocina una sopa deliciosa con verduras frescas. Tenemos una mesa de madera donde comemos juntos. Mi dormitorio está arriba. Tiene una cama suave y un escritorio para estudiar. El jardín tiene muchas flores de colores diferentes.',
                 keyTerms: [ { es: "Casa", en: "House" }, { es: "Ventanas", en: "Windows" }, { es: "Puerta", en: "Door" }, { es: "Cocina", en: "Kitchen" } ]
+            },
+            {
+                id: 'gym',
+                level: 'Level 2: Activities',
+                title: 'The Gym',
+                desc: 'A complete workout: routine, equipment, and body parts.',
+                text: 'Hoy es lunes, y como siempre, voy al gimnasio. Llego a la recepción y saludo al entrenador. "¡Buenos días!" le digo. Voy al vestuario para cambiarme de ropa. Me pongo mi camiseta deportiva y mis zapatillas. Primero, hago cardio en la cinta de correr durante veinte minutos. Estoy sudando un poco. Después, voy a la sala de pesas. Hoy quiero entrenar los brazos y el pecho. Levanto las mancuernas con fuerza. Es difícil, pero quiero estar en forma. Bebo mucha agua de mi botella porque es importante hidratarse. Al final, hago estiramientos en la colchoneta para relajar los músculos. Mañana me dolerán las piernas, pero vale la pena.',
+                keyTerms: [ { es: "Gimnasio", en: "Gym" }, { es: "Entrenador", en: "Trainer" }, { es: "Vestuario", en: "Locker room" }, { es: "Mancuernas", en: "Dumbbells" }, { es: "Estiramientos", en: "Stretching" } ]
+            },
+            {
+                id: 'date',
+                level: 'Level 2: Social',
+                title: 'First Date',
+                desc: 'Conversation starters, compliments, and nervousness.',
+                text: 'Carlos está nervioso. Hoy tiene una cita con María. Se encuentran en una cafetería bonita en el centro. Carlos llega cinco minutos temprano. Cuando María llega, Carlos sonríe. "¡Hola María! Te ves muy guapa," dice él. María sonríe también y dice "Gracias, Carlos." Se sientan en una mesa cerca de la ventana. "¿Qué te gusta hacer en tu tiempo libre?" pregunta Carlos. María responde que le gusta viajar y pintar. Hablan durante dos horas sobre sus familias, sus trabajos y sus sueños. Carlos se siente feliz porque la conversación es fácil y divertida. Al final, Carlos paga los cafés y pregunta: "¿Te gustaría ir al cine el próximo sábado?"',
+                keyTerms: [ { es: "Cita", en: "Date" }, { es: "Nervioso", en: "Nervous" }, { es: "Guapa", en: "Pretty" }, { es: "Sueños", en: "Dreams" } ]
+            },
+            {
+                id: 'grocery',
+                level: 'Level 2: Daily Life',
+                title: 'Grocery Shopping',
+                desc: 'Food items, quantities, weighing, and paying.',
+                text: 'Necesito ir al supermercado porque mi nevera está vacía. Cojo un carrito en la entrada. Primero, voy a la sección de frutas y verduras. Compro un kilo de manzanas rojas, seis plátanos y una bolsa de lechuga. Peso las verduras en la balanza y pego la etiqueta. Luego, voy a la panadería. El pan huele muy bien. Pido dos barras de pan integral. También necesito leche, huevos y queso. Busco el pasillo de los lácteos. Finalmente, voy a la caja para pagar. La cajera pasa los productos por el escáner. "Son cuarenta euros, por favor," dice ella. Pago con mi tarjeta de crédito y meto todo en mis bolsas reutilizables.',
+                keyTerms: [ { es: "Supermercado", en: "Supermarket" }, { es: "Nevera", en: "Fridge" }, { es: "Carrito", en: "Cart" }, { es: "Cajera", en: "Cashier" } ]
+            },
+            {
+                id: 'doctor',
+                level: 'Level 3: Health',
+                title: 'The Doctor',
+                desc: 'Symptoms, body parts, prescriptions, and advice.',
+                text: 'No me siento bien hoy. Tengo dolor de cabeza y fiebre. Decido ir al consultorio del médico. En la sala de espera, hay muchas personas tosiendo. La enfermera llama mi nombre: "Señor García, pase por favor." El doctor me pregunta: "¿Cuáles son sus síntomas?" Yo explico que me duele la garganta y estoy muy cansado. El doctor me examina. Escucha mi corazón y mira mi garganta. "Usted tiene una gripe fuerte," dice él. Me receta unas pastillas y jarabe para la tos. "Necesita descansar mucho y beber líquidos," aconseja. Voy a la farmacia para comprar las medicinas.',
+                keyTerms: [ { es: "Dolor", en: "Pain" }, { es: "Fiebre", en: "Fever" }, { es: "Garganta", en: "Throat" }, { es: "Receta", en: "Prescription" }, { es: "Gripe", en: "Flu" } ]
+            },
+            {
+                id: 'job',
+                level: 'Level 3: Professional',
+                title: 'Job Interview',
+                desc: 'Professional vocabulary, talking about skills and past experience.',
+                text: 'Ana tiene una entrevista de trabajo muy importante. Ella quiere ser gerente de marketing. Lleva un traje elegante y profesional. Entra en la oficina y saluda al director. "Mucho gusto, Ana. Siéntese, por favor," dice el director. Él le hace preguntas sobre su experiencia. "Trabajé cinco años en una empresa de publicidad," explica Ana. "¿Cuáles son sus fortalezas?" pregunta él. "Soy muy organizada, creativa y trabajo bien en equipo," responde Ana con confianza. El director parece impresionado. Hablan sobre el salario y el horario. Al final, se dan la mano. Ana espera recibir una llamada pronto con buenas noticias.',
+                keyTerms: [ { es: "Entrevista", en: "Interview" }, { es: "Gerente", en: "Manager" }, { es: "Fortalezas", en: "Strengths" }, { es: "Salario", en: "Salary" } ]
+            },
+            {
+                id: 'directions',
+                level: 'Level 3: Travel',
+                title: 'Asking Directions',
+                desc: 'City navigation, prepositions, and polite requests.',
+                text: 'Estoy perdido en la ciudad de Barcelona. Quiero ir al Museo Picasso, pero no tengo mi mapa. Veo a una mujer en la calle y decido preguntar. "Perdone, señora. ¿Podría ayudarme?" La mujer sonríe. "Sí, claro." Le pregunto: "¿Cómo llego al museo?" Ella explica: "Es fácil. Siga todo recto por esta calle hasta el semáforo. Luego, gire a la derecha en la esquina. Camine dos cuadras más y verá el museo a la izquierda, al lado de una iglesia antigua." Le doy las gracias por su ayuda. Ahora camino con confianza hacia mi destino.',
+                keyTerms: [ { es: "Perdido", en: "Lost" }, { es: "Mapa", en: "Map" }, { es: "Gire", en: "Turn" }, { es: "Derecha", en: "Right" }, { es: "Izquierda", en: "Left" }, { es: "Semáforo", en: "Traffic light" } ]
             },
             {
                 id: 'travel',
                 level: 'Level 3: Travel',
                 title: 'At the Airport',
                 desc: 'Logistics, security, boarding, and flying.',
-                text: 'El aeropuerto es un lugar muy grande y ocupado. Tengo mi pasaporte y mi billete de avión en la mano. Primero, voy al mostrador para facturar mi maleta grande. La empleada pesa mi equipaje y me da la tarjeta de embarque. "El vuelo sale a las tres y media," me dice. Luego, paso por el control de seguridad. Tengo que quitarme los zapatos y el cinturón. Es un proceso lento, pero es por seguridad. Finalmente, anuncian el embarque.',
+                text: 'El aeropuerto es un lugar muy grande y ocupado. Tengo mi pasaporte y mi billete de avión en la mano. Primero, voy al mostrador para facturar mi maleta grande. La empleada pesa mi equipaje y me da la tarjeta de embarque. "El vuelo sale a las tres y media," me dice. Luego, paso por el control de seguridad. Tengo que quitarme los zapatos y el cinturón. Es un proceso lento, pero es por seguridad. Finalmente, anuncian el embarque. Entro en el avión, busco mi asiento y me abrocho el cinturón. ¡Vamos a volar!',
                 keyTerms: [ { es: "Aeropuerto", en: "Airport" }, { es: "Pasaporte", en: "Passport" }, { es: "Billete", en: "Ticket" }, { es: "Maleta", en: "Suitcase" } ]
+            },
+            {
+                id: 'restaurant',
+                level: 'Level 4: Social',
+                title: 'Dinner Party',
+                desc: 'Hosting friends, cooking terms, and social dynamics.',
+                text: 'Esta noche voy a hacer una fiesta en mi casa. He invitado a seis amigos. He pasado toda la tarde cocinando. He preparado una paella grande con mariscos y pollo. También he hecho una ensalada fresca. A las ocho, suena el timbre. ¡Mis amigos han llegado! Todos traen algo: vino, postres o flores. "¡Qué bien huele!" dice Pedro al entrar. Ponemos música y servimos las bebidas. Nos sentamos alrededor de la mesa y brindamos. "¡Salud!" decimos todos. La comida es deliciosa y la compañía es aún mejor. Nos reímos y contamos historias hasta la medianoche.',
+                keyTerms: [ { es: "Fiesta", en: "Party" }, { es: "Cocinar", en: "To cook" }, { es: "Mariscos", en: "Seafood" }, { es: "Brindar", en: "To toast" }, { es: "Salud", en: "Cheers" } ]
+            },
+            {
+                id: 'hotel',
+                level: 'Level 4: Travel',
+                title: 'Hotel Check-in',
+                desc: 'Booking issues, room amenities, and complaints.',
+                text: 'Llego al hotel cansado después del viaje. Voy a la recepción. "Buenas noches, tengo una reserva a nombre de Smith," digo. El recepcionista busca en el ordenador. "Lo siento, señor, no encuentro su reserva." Me preocupo un poco. Le muestro mi confirmación en el móvil. "Ah, perdone, aquí está. Hubo un error en el sistema." Me da la llave de la habitación 305. "El desayuno se sirve de siete a diez," me informa. Subo en el ascensor. La habitación es limpia y tiene vistas al mar. Hay toallas limpias y una cama grande. Por fin puedo descansar.',
+                keyTerms: [ { es: "Reserva", en: "Reservation" }, { es: "Recepción", en: "Reception" }, { es: "Llave", en: "Key" }, { es: "Ascensor", en: "Elevator" } ]
+            },
+            {
+                id: 'tech',
+                level: 'Level 5: Modern',
+                title: 'Tech Support',
+                desc: 'Computers, internet issues, and troubleshooting.',
+                text: 'Mi ordenador no funciona bien. La pantalla está negra y no puedo encenderlo. Llamo al servicio técnico. "Hola, mi internet es muy lento y mi ordenador no responde," explico. El técnico me dice: "¿Ha intentado reiniciar el dispositivo?" Le digo que sí, pero el problema persiste. Me pide que verifique los cables y el router. Después de veinte minutos, descubrimos que era un virus. El técnico me ayuda a instalar un antivirus nuevo. Ahora todo funciona perfectamente. La tecnología es útil, pero a veces es frustrante.',
+                keyTerms: [ { es: "Pantalla", en: "Screen" }, { es: "Encender", en: "To turn on" }, { es: "Reiniciar", en: "Restart" }, { es: "Contraseña", en: "Password" } ]
             }
         ];
 
@@ -824,7 +1397,7 @@
             {
                 id: 'g1',
                 title: 'Ser vs Estar',
-                desc: 'The two ways to say "To Be".',
+                desc: 'The two ways to say "To Be". Essential foundation.',
                 content: `
                     <h3>The Core Difference</h3>
                     <p>In English, we just say "I am". In Spanish, you must choose between <b>Ser</b> and <b>Estar</b>. The choice depends on context, not just the word you are translating.</p>
@@ -857,76 +1430,172 @@
                     </div>
                 `,
                 quiz: [
-                    {
-                        q: "How would you translate: 'I am tired'?",
-                        options: ["Soy cansado", "Estoy cansado"],
-                        correct: 1,
-                        explain: "Tiredness is a temporary condition/state, so we use Estar."
-                    },
-                    {
-                        q: "How would you translate: 'She is a doctor'?",
-                        options: ["Ella es doctora", "Ella está doctora"],
-                        correct: 0,
-                        explain: "Occupation is a defining characteristic/identity, so we use Ser."
-                    },
-                    {
-                        q: "Where is the library?",
-                        options: ["¿Dónde es la biblioteca?", "¿Dónde está la biblioteca?"],
-                        correct: 1,
-                        explain: "For Location, always use Estar."
-                    }
+                    { q: "Translate: 'I am tired'", options: ["Soy cansado", "Estoy cansado"], correct: 1, explain: "Tiredness is a temporary state (Estar)." },
+                    { q: "Translate: 'She is a doctor'", options: ["Ella es doctora", "Ella está doctora"], correct: 0, explain: "Occupation is an identity (Ser)." },
+                    { q: "Where is the library?", options: ["¿Dónde es la biblioteca?", "¿Dónde está la biblioteca?"], correct: 1, explain: "Location always uses Estar." }
                 ]
             },
             {
                 id: 'g2',
                 title: 'Por vs Para',
-                desc: 'Two words for "For".',
+                desc: 'Confusing prepositions for "For".',
                 content: `
-                    <h3>Why is this hard?</h3>
-                    <p>Both words often translate to "for" in English, but they have distinct uses in Spanish.</p>
-                    
                     <h3>1. Para (Destination / Goal)</h3>
                     <p>Think of <b>Para</b> as an arrow hitting a target 🎯.</p>
                     <ul>
-                        <li><b>Destination:</b> Voy para Madrid. (I'm going to Madrid)</li>
-                        <li><b>Recipient:</b> El regalo es para ti. (The gift is for you)</li>
-                        <li><b>Deadline:</b> La tarea es para mañana. (Homework is for tomorrow)</li>
-                        <li><b>Goal/Purpose:</b> Estudio para aprender. (I study in order to learn)</li>
+                        <li><b>Destination:</b> Voy para Madrid.</li>
+                        <li><b>Recipient:</b> El regalo es para ti.</li>
+                        <li><b>Deadline:</b> La tarea es para mañana.</li>
+                        <li><b>Goal:</b> Estudio para aprender.</li>
                     </ul>
 
                     <h3>2. Por (Motion / Cause)</h3>
                     <p>Think of <b>Por</b> as passing through or an exchange 🔄.</p>
                     <ul>
-                        <li><b>Cause/Reason:</b> Gracias por la ayuda. (Thanks for the help)</li>
-                        <li><b>Motion through:</b> Camino por el parque. (I walk through the park)</li>
-                        <li><b>Duration:</b> Dormí por 8 horas. (I slept for 8 hours)</li>
-                        <li><b>Exchange:</b> Te doy $10 por el libro. (I give you $10 for the book)</li>
+                        <li><b>Cause:</b> Gracias por la ayuda.</li>
+                        <li><b>Motion:</b> Camino por el parque.</li>
+                        <li><b>Duration:</b> Dormí por 8 horas.</li>
+                        <li><b>Exchange:</b> Te doy $10 por el libro.</li>
                     </ul>
                 `,
                 quiz: [
-                    {
-                        q: "This gift is ___ you.",
-                        options: ["Por", "Para"],
-                        correct: 1,
-                        explain: "You are the recipient (target) of the gift."
-                    },
-                    {
-                        q: "I lived there ___ three years.",
-                        options: ["Por", "Para"],
-                        correct: 0,
-                        explain: "For duration of time, we use Por."
-                    },
-                    {
-                        q: "I run ___ the park.",
-                        options: ["Para", "Por"],
-                        correct: 1,
-                        explain: "Movement 'through' a place uses Por."
-                    }
+                    { q: "This gift is ___ you.", options: ["Por", "Para"], correct: 1, explain: "You are the recipient (Target -> Para)." },
+                    { q: "I lived there ___ three years.", options: ["Por", "Para"], correct: 0, explain: "Duration of time uses Por." },
+                    { q: "I run ___ the park.", options: ["Para", "Por"], correct: 1, explain: "Movement 'through' a place uses Por." }
+                ]
+            },
+            {
+                id: 'g3',
+                title: 'Present Tense (Regular)',
+                desc: 'How to conjugate AR, ER, and IR verbs.',
+                content: `
+                    <h3>The Pattern</h3>
+                    <p>Spanish verbs end in -AR, -ER, or -IR. To conjugate, drop the ending and add the new suffix.</p>
+                    
+                    <h3>-AR Verbs (Hablar)</h3>
+                    <ul>
+                        <li>Yo habl<b>o</b></li>
+                        <li>Tú habl<b>as</b></li>
+                        <li>Él/Ella habl<b>a</b></li>
+                        <li>Nosotros habl<b>amos</b></li>
+                        <li>Ellos habl<b>an</b></li>
+                    </ul>
+
+                    <h3>-ER Verbs (Comer)</h3>
+                    <ul>
+                        <li>Yo com<b>o</b></li>
+                        <li>Tú com<b>es</b></li>
+                        <li>Él/Ella com<b>e</b></li>
+                        <li>Nosotros com<b>emos</b></li>
+                        <li>Ellos com<b>en</b></li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        Remember: "Yo" form almost always ends in "o"!
+                    </div>
+                `,
+                quiz: [
+                    { q: "Yo ___ (Hablar)", options: ["Habla", "Hablo"], correct: 1, explain: "Yo form ends in -o." },
+                    { q: "Tú ___ (Comer)", options: ["Comes", "Comas"], correct: 0, explain: "ER verbs use -es for Tú." },
+                    { q: "Ellos ___ (Vivir)", options: ["Viven", "Vivon"], correct: 0, explain: "IR verbs use -en for Ellos." }
+                ]
+            },
+            {
+                id: 'g4',
+                title: 'Gender & Number',
+                desc: 'Masculine, Feminine, and Plural rules.',
+                content: `
+                    <h3>The Golden Rule</h3>
+                    <p>Adjectives must match the noun they describe in both <b>Gender</b> (Male/Female) and <b>Number</b> (Singular/Plural).</p>
+                    
+                    <h3>Gender</h3>
+                    <ul>
+                        <li>Ends in -O usually Masculine (El libro rojo).</li>
+                        <li>Ends in -A usually Feminine (La casa roja).</li>
+                    </ul>
+                    
+                    <h3>Number</h3>
+                    <ul>
+                        <li>If it ends in a vowel, add -S (Libro -> Libros).</li>
+                        <li>If it ends in a consonant, add -ES (Papel -> Papeles).</li>
+                    </ul>
+
+                    <div class="mistake-box">
+                        <b>Watch out:</b> Words ending in -MA are often masculine! <br>
+                        El problema (Not la problema). <br>
+                        El sistema.
+                    </div>
+                `,
+                quiz: [
+                    { q: "The tall girls", options: ["Las chicas altas", "Las chicas altos"], correct: 0, explain: "Must be feminine and plural to match Chicas." },
+                    { q: "The red car", options: ["El coche roja", "El coche rojo"], correct: 1, explain: "Coche is masculine." },
+                    { q: "The problem", options: ["La problema", "El problema"], correct: 1, explain: "Problema is masculine (Greek origin)." }
+                ]
+            },
+            {
+                id: 'g5',
+                title: 'Direct Object Pronouns',
+                desc: 'Lo, La, Los, Las - How to replace nouns.',
+                content: `
+                    <h3>What is a Direct Object?</h3>
+                    <p>It is the thing receiving the action. "I buy <b>the book</b>".</p>
+                    
+                    <h3>The Pronouns</h3>
+                    <ul>
+                        <li><b>Me</b> (me)</li>
+                        <li><b>Te</b> (you)</li>
+                        <li><b>Lo</b> (him/it - masc)</li>
+                        <li><b>La</b> (her/it - fem)</li>
+                        <li><b>Nos</b> (us)</li>
+                        <li><b>Los</b> (them - masc)</li>
+                        <li><b>Las</b> (them - fem)</li>
+                    </ul>
+
+                    <h3>Placement</h3>
+                    <p>Unlike English, the pronoun goes <b>before</b> the conjugated verb.</p>
+                    <div class="example-box">
+                        I buy it (the book). <br>
+                        Yo <b>lo</b> compro. (Not "Yo compro lo")
+                    </div>
+                `,
+                quiz: [
+                    { q: "I see her.", options: ["Yo veo la", "Yo la veo"], correct: 1, explain: "Pronoun goes before the verb." },
+                    { q: "They eat the apples (las manzanas).", options: ["Ellos las comen", "Ellos los comen"], correct: 0, explain: "Manzanas is feminine, so use Las." },
+                    { q: "Do you have it (el dinero)?", options: ["¿Lo tienes?", "¿La tienes?"], correct: 0, explain: "Dinero is masculine, so use Lo." }
+                ]
+            },
+            {
+                id: 'g6',
+                title: 'Preterite vs Imperfect',
+                desc: 'The two past tenses.',
+                content: `
+                    <h3>The Challenge</h3>
+                    <p>Spanish has two main past tenses. Choosing the wrong one changes the meaning entirely.</p>
+                    
+                    <h3>1. Preterite (Completed Action)</h3>
+                    <p>Use for single, completed events or specific times.</p>
+                    <ul>
+                        <li>Ayer fui al cine. (I went to the cinema yesterday).</li>
+                        <li>La bomba explotó. (The bomb exploded).</li>
+                    </ul>
+
+                    <h3>2. Imperfect (Ongoing / Description)</h3>
+                    <p>Use for "used to", "was -ing", descriptions, time, or age in the past.</p>
+                    <ul>
+                        <li>Yo jugaba mucho. (I used to play a lot).</li>
+                        <li>Eran las dos. (It was two o'clock).</li>
+                        <li>Ella era bonita. (She was pretty - description).</li>
+                    </ul>
+                `,
+                quiz: [
+                    { q: "I went to the store yesterday.", options: ["Fui", "Iba"], correct: 0, explain: "Specific completed action -> Preterite." },
+                    { q: "It was 3:00 PM.", options: ["Fueron las tres", "Eran las tres"], correct: 1, explain: "Time in the past -> Imperfect." },
+                    { q: "When I was young...", options: ["Cuando fui joven", "Cuando era joven"], correct: 1, explain: "Description/Age in the past -> Imperfect." }
                 ]
             }
         ];
 
-        // --- 2. STATE & CONFIG ---
+        // --- 4. STATE & CONFIG ---
         const dictionary = {
             "el": "the", "la": "the", "de": "of", "que": "that", "y": "and", "a": "to", "en": "in",
             "un": "a", "ser": "to be", "se": "himself", "no": "no", "haber": "to have", "por": "by",
@@ -952,7 +1621,7 @@
         let translationMode = 'word'; 
         let currentLessonText = "";
 
-        // --- 3. DOM ELEMENTS ---
+        // --- 5. DOM ELEMENTS ---
         const readerEl = document.getElementById('reader-content');
         const vocabListEl = document.getElementById('vocab-list');
         const emptyMsgEl = document.getElementById('empty-msg');
@@ -960,15 +1629,15 @@
         const btnQuiz = document.getElementById('btn-quiz');
         const libraryListEl = document.getElementById('library-list');
         const grammarListEl = document.getElementById('grammar-list');
+        const vocabLibraryListEl = document.getElementById('vocab-library-list');
         
-        // Panels
+        // Panels & Views
         const displayLevel = document.getElementById('display-level');
         const displayTitle = document.getElementById('display-title');
-        
-        // Views
         const viewReader = document.getElementById('view-reader');
         const viewStudy = document.getElementById('view-study');
         const viewGrammar = document.getElementById('view-grammar');
+        const viewVocabLibrary = document.getElementById('view-vocab-library');
         
         // Headers/Tabs
         const readerTabs = document.getElementById('reader-tabs');
@@ -981,60 +1650,68 @@
         const grammarBody = document.getElementById('grammar-body');
         const grammarQuiz = document.getElementById('grammar-quiz');
 
+        // Vocab Library Elements
+        const vocabLibTitle = document.getElementById('vocab-lib-title');
+        const vocabLibContent = document.getElementById('vocab-lib-content');
+
         // Mode Toggles
         const btnModeWord = document.getElementById('btn-mode-word');
         const btnModeSent = document.getElementById('btn-mode-sent');
+        const finishBtnContainer = document.getElementById('finish-btn-container');
 
-        // --- 4. INITIALIZATION ---
+        // --- 6. INITIALIZATION ---
         window.onload = () => {
+            xpSystem.init();
             renderLibrary();
             renderGrammarLibrary();
+            renderVocabLibrary();
             renderVocabList();
             // Load first lesson by default
             selectLesson('l1');
         };
 
-        // --- 5. UI CONTROLLERS ---
+        // --- 7. UI CONTROLLERS ---
         function switchTab(tabName) {
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(b => b.classList.remove('active'));
             
             const libraryList = document.getElementById('library-list');
             const grammarList = document.getElementById('grammar-list');
+            const vocabList = document.getElementById('vocab-library-list');
             const customInput = document.getElementById('custom-input-area');
             
-            // Reset visibility
             libraryList.style.display = 'none';
             grammarList.style.display = 'none';
+            vocabList.style.display = 'none';
             customInput.classList.remove('visible');
 
             if (tabName === 'library') {
                 btns[0].classList.add('active');
                 libraryList.style.display = 'block';
-            } else if (tabName === 'grammar') {
+            } else if (tabName === 'vocab') {
                 btns[1].classList.add('active');
+                vocabList.style.display = 'block';
+            } else if (tabName === 'grammar') {
+                btns[2].classList.add('active');
                 grammarList.style.display = 'block';
             } else {
-                btns[2].classList.add('active');
+                btns[3].classList.add('active');
                 customInput.classList.add('visible');
             }
         }
 
         function setCenterMode(mode) {
-            // Hide all views first
             viewReader.style.display = 'none';
             viewStudy.style.display = 'none';
             viewGrammar.style.display = 'none';
+            viewVocabLibrary.style.display = 'none';
 
-            // Reset Tab styling
             document.getElementById('tab-read').classList.remove('active');
             document.getElementById('tab-study').classList.remove('active');
 
             if (mode === 'read') {
                 viewReader.style.display = 'block';
                 document.getElementById('tab-read').classList.add('active');
-                
-                // Show reader specific controls
                 readerTabs.style.display = 'flex';
                 modeControls.style.display = 'flex';
                 centerPanelTitle.textContent = "Reader View";
@@ -1043,19 +1720,22 @@
             else if (mode === 'study') {
                 viewStudy.style.display = 'block';
                 document.getElementById('tab-study').classList.add('active');
-                
-                // Hide controls not needed for study
                 modeControls.style.display = 'none';
                 readerOverlay.style.display = 'none';
             }
             else if (mode === 'grammar') {
                 viewGrammar.style.display = 'block';
-                
-                // Hide reader specific controls entirely
                 readerTabs.style.display = 'none';
                 modeControls.style.display = 'none';
                 centerPanelTitle.textContent = "Lesson View";
                 readerOverlay.style.display = 'none';
+            }
+            else if (mode === 'vocab-library') {
+                viewVocabLibrary.style.display = 'block';
+                readerTabs.style.display = 'none';
+                modeControls.style.display = 'none';
+                centerPanelTitle.textContent = "Vocabulary Vault";
+                readerOverlay.style.display = 'block'; // Keep overlay for instructions
             }
         }
 
@@ -1068,19 +1748,22 @@
                 btnModeWord.classList.remove('active');
                 btnModeSent.classList.add('active');
             }
-            // Re-render text with new mode
             generateReader(currentLessonText);
         }
 
-        // --- 6. LIBRARY RENDERING ---
+        // --- 8. LIBRARY RENDERING ---
         function renderLibrary() {
             libraryListEl.innerHTML = '';
             curriculum.forEach(lesson => {
+                const isComplete = xpSystem.isLessonComplete(lesson.id);
                 const card = document.createElement('div');
                 card.className = `lesson-card ${activeLessonId === lesson.id ? 'active' : ''}`;
                 card.onclick = () => selectLesson(lesson.id);
                 card.innerHTML = `
-                    <div class="l-level">${lesson.level}</div>
+                    <div class="l-meta">
+                        <span class="l-level">${lesson.level}</span>
+                        <svg class="l-check ${isComplete ? 'completed' : ''}" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
+                    </div>
                     <span class="l-title">${lesson.title}</span>
                     <div class="l-desc">${lesson.desc}</div>
                 `;
@@ -1095,7 +1778,9 @@
                 card.className = "lesson-card";
                 card.onclick = () => selectGrammarLesson(lesson.id);
                 card.innerHTML = `
-                    <div class="l-level" style="color:#0891b2;">Grammar</div>
+                    <div class="l-meta">
+                        <span class="l-level" style="background:#e0f2fe; color:#0284c7;">Grammar</span>
+                    </div>
                     <span class="l-title">${lesson.title}</span>
                     <div class="l-desc">${lesson.desc}</div>
                 `;
@@ -1103,9 +1788,26 @@
             });
         }
 
+        function renderVocabLibrary() {
+            vocabLibraryListEl.innerHTML = '';
+            massiveVocab.forEach(cat => {
+                const card = document.createElement('div');
+                card.className = "lesson-card";
+                card.onclick = () => selectVocabCategory(cat.id);
+                card.innerHTML = `
+                    <div class="l-meta">
+                        <span class="l-level" style="background:#f5f3ff; color:#7c3aed;">Vault</span>
+                    </div>
+                    <span class="l-title">${cat.title}</span>
+                    <div class="l-desc">${cat.desc}</div>
+                `;
+                vocabLibraryListEl.appendChild(card);
+            });
+        }
+
         function selectLesson(id) {
             activeLessonId = id;
-            renderLibrary(); // update active state styling
+            renderLibrary();
             setCenterMode('read');
 
             const lesson = curriculum.find(l => l.id === id);
@@ -1114,8 +1816,9 @@
                 displayTitle.textContent = lesson.title;
                 currentLessonText = lesson.text;
                 generateReader(lesson.text);
+                
+                renderFinishButton(id);
 
-                // Update Study View
                 const studyTitle = document.getElementById('study-title');
                 const studyTableBody = document.getElementById('study-table-body');
                 studyTitle.textContent = `${lesson.title} Vocabulary`;
@@ -1131,6 +1834,26 @@
             }
         }
 
+        function renderFinishButton(id) {
+            finishBtnContainer.innerHTML = '';
+            const btn = document.createElement('button');
+            btn.className = "finish-lesson-btn";
+            
+            if (xpSystem.isLessonComplete(id)) {
+                btn.textContent = "Lesson Completed ✓";
+                btn.disabled = true;
+            } else {
+                btn.textContent = "Finish Lesson (+50 XP)";
+                btn.onclick = () => {
+                    if(xpSystem.markLessonComplete(id)) {
+                        renderLibrary();
+                        renderFinishButton(id);
+                    }
+                };
+            }
+            finishBtnContainer.appendChild(btn);
+        }
+
         function selectGrammarLesson(id) {
             const lesson = grammarLessons.find(l => l.id === id);
             if (!lesson) return;
@@ -1139,77 +1862,12 @@
             grammarTitle.textContent = lesson.title;
             grammarBody.innerHTML = lesson.content;
             
-            // Render Quiz
             grammarQuiz.innerHTML = '';
             lesson.quiz.forEach((q, idx) => {
                 const qDiv = document.createElement('div');
                 qDiv.className = 'q-card';
                 
                 let optionsHtml = '';
-                q.options.forEach((opt, optIdx) => {
-                    optionsHtml += `<button class="q-btn" onclick="checkAnswer(this, ${optIdx}, ${q.correct}, 'feedback-${idx}')">${opt}</button>`;
-                });
-
-                qDiv.innerHTML = `
-                    <span class="q-text">${idx + 1}. ${q.q}</span>
-                    <div class="q-options">${optionsHtml}</div>
-                    <div id="feedback-${idx}" class="q-feedback"></div>
-                `;
-                grammarQuiz.appendChild(qDiv);
-            });
-        }
-
-        function checkAnswer(btn, selectedIdx, correctIdx, feedbackId) {
-            const parent = btn.parentElement;
-            const buttons = parent.querySelectorAll('.q-btn');
-            const feedbackEl = document.getElementById(feedbackId);
-            
-            // Disable all buttons in this question
-            buttons.forEach(b => {
-                b.disabled = true;
-                if(buttons[correctIdx] === b) b.classList.add('correct');
-            });
-
-            if (selectedIdx === correctIdx) {
-                feedbackEl.textContent = "Correct! " + getExplanation(feedbackId);
-                feedbackEl.className = "q-feedback show success";
-            } else {
-                btn.classList.add('wrong');
-                feedbackEl.textContent = "Incorrect. " + getExplanation(feedbackId);
-                feedbackEl.className = "q-feedback show error";
-            }
-        }
-
-        // Helper to retrieve explanation from data based on feedback ID structure
-        function getExplanation(feedbackId) {
-            // This is a simple lookup hack for the demo. 
-            // In a real app, we'd pass the explanation string directly.
-            // ID format: feedback-{questionIndex}
-            // We need to know which lesson is active.
-            // For simplicity, I'll update selectGrammarLesson to pass explanation string in onclick.
-            
-            // Actually, let's fix checkAnswer signature to receive explanation.
-            // Retrying selectGrammarLesson render logic above...
-            return ""; 
-        }
-
-        // --- OVERRIDING render logic to include explanation properly ---
-        // (Self-correction during code generation)
-        selectGrammarLesson = function(id) {
-            const lesson = grammarLessons.find(l => l.id === id);
-            if (!lesson) return;
-
-            setCenterMode('grammar');
-            grammarTitle.textContent = lesson.title;
-            grammarBody.innerHTML = lesson.content;
-            
-            grammarQuiz.innerHTML = '';
-            lesson.quiz.forEach((q, idx) => {
-                const qDiv = document.createElement('div');
-                qDiv.className = 'q-card';
-                
-                let optionsHtml = '';
-                // Escape single quotes in explanation for onclick attribute
                 const safeExplain = q.explain.replace(/'/g, "\\'");
                 
                 q.options.forEach((opt, optIdx) => {
@@ -1223,12 +1881,53 @@
                 `;
                 grammarQuiz.appendChild(qDiv);
             });
-        };
+        }
+
+        function selectVocabCategory(id) {
+            const cat = massiveVocab.find(c => c.id === id);
+            if (!cat) return;
+
+            setCenterMode('vocab-library');
+            vocabLibTitle.textContent = cat.title;
+            vocabLibContent.innerHTML = '';
+
+            cat.groups.forEach(group => {
+                const groupTitle = document.createElement('div');
+                groupTitle.className = 'vocab-group-title';
+                groupTitle.textContent = group.title;
+                vocabLibContent.appendChild(groupTitle);
+
+                const table = document.createElement('table');
+                table.className = 'vocab-table';
+                table.innerHTML = `<thead><tr><th>Spanish</th><th>English</th></tr></thead><tbody id="v-tbody-${group.title.replace(/\s/g,'')}"></tbody>`;
+                
+                const tbody = table.querySelector('tbody');
+                group.words.forEach(word => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'vocab-click-row';
+                    tr.title = 'Double-click to save';
+                    tr.ondblclick = (e) => toggleSaveWord(word.es, tr, e, word.en);
+                    
+                    // Check if already saved
+                    if (savedVocab[word.es.toLowerCase()]) {
+                       // Optional: Add visual indicator if already saved, though not strictly required
+                    }
+
+                    tr.innerHTML = `<td><b>${word.es}</b></td><td>${word.en}</td>`;
+                    tbody.appendChild(tr);
+                });
+
+                vocabLibContent.appendChild(table);
+            });
+        }
 
         checkAnswer = function(btn, selectedIdx, correctIdx, explanation, feedbackId) {
             const parent = btn.parentElement;
             const buttons = parent.querySelectorAll('.q-btn');
             const feedbackEl = document.getElementById(feedbackId);
+            
+            if (parent.dataset.answered) return;
+            parent.dataset.answered = "true";
             
             buttons.forEach((b, idx) => {
                 b.disabled = true;
@@ -1238,6 +1937,7 @@
             if (selectedIdx === correctIdx) {
                 feedbackEl.innerHTML = `<b>Correct!</b> ${explanation}`;
                 feedbackEl.className = "q-feedback show success";
+                xpSystem.addXP(10, "Quiz Correct");
             } else {
                 btn.classList.add('wrong');
                 feedbackEl.innerHTML = `<b>Incorrect.</b> ${explanation}`;
@@ -1245,21 +1945,20 @@
             }
         };
 
-
         function loadCustomText() {
             const text = document.getElementById('input-text').value;
             displayLevel.textContent = "Custom Mode";
             displayTitle.textContent = "Your Text";
             currentLessonText = text;
             generateReader(text);
+            finishBtnContainer.innerHTML = ''; 
             
-            // Clear study view
             document.getElementById('study-title').textContent = "Custom Text";
             document.getElementById('study-table-body').innerHTML = '<tr><td colspan="2">Vocabulary list not available for custom text.</td></tr>';
             setCenterMode('read');
         }
 
-        // --- 7. CORE READER LOGIC ---
+        // --- 9. CORE READER LOGIC ---
         function generateReader(rawText) {
             readerEl.innerHTML = '';
             if (!rawText) return;
@@ -1329,7 +2028,7 @@
             readerEl.appendChild(span);
         }
 
-        // --- 8. TRANSLATION & API ---
+        // --- 10. TRANSLATION & API ---
         async function translateWordHover(word, element) {
             const lower = word.toLowerCase();
             if (element.getAttribute('data-trans')) return;
@@ -1377,18 +2076,26 @@
             }
         }
 
-        // --- 9. VOCABULARY SYSTEM ---
-        function toggleSaveWord(word, element, event) {
+        // --- 11. VOCABULARY SYSTEM ---
+        function toggleSaveWord(word, element, event, manualTranslation) {
             event.stopPropagation();
             const lower = word.toLowerCase();
-            const translation = element.getAttribute('data-trans') || dictionary[lower] || "unknown";
+            let translation = manualTranslation;
+
+            // If not provided manually (from reader), try to get from attr or cache
+            if (!translation) {
+                translation = element.getAttribute('data-trans') || dictionary[lower] || "unknown";
+            }
 
             if (savedVocab[lower]) {
                 delete savedVocab[lower];
-                element.classList.remove('saved');
+                // Remove class if it's a reader element
+                if (element.classList.contains('word')) element.classList.remove('saved');
+                showToast("Removed", `${word}`);
             } else {
                 savedVocab[lower] = { original: word, translation: translation };
-                element.classList.add('saved');
+                if (element.classList.contains('word')) element.classList.add('saved');
+                xpSystem.addXP(5, "New Word Saved");
             }
             saveToStorage();
             renderVocabList();
@@ -1453,7 +2160,7 @@
             applyQuizMode();
         }
 
-        // --- 10. QUIZ & AUDIO ---
+        // --- 12. QUIZ & AUDIO ---
         function toggleQuizMode() {
             quizMode = !quizMode;
             btnQuiz.classList.toggle('active');
