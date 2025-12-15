@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – mobile, evidence-based movement coaching for seniors and post-therapy graduates in Battle Ground, WA." />
+  <meta name="description" content="Olympian Health Solutions – Premium mobile movement coaching for seniors. Evidence-based physical therapy outcomes in the comfort of your home." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | Mobile Senior Fitness</title>
+  <title>Olympian Health Solutions | Elite Mobile Care</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet" />
+  <!-- Modern Fonts: Outfit (Headings) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -31,743 +33,825 @@
 
   <style>
     :root {
-      /* Brand Colors */
-      --dark-blue: #020617;
-      --mid-blue: #0f172a;
-      --accent-blue: #38bdf8;
-      --gold: #facc15;
-      --text-dark: #111827;
-      --text-muted: #4b5563;
-      --white: #ffffff;
-      --soft-blue: #eff6ff;
+      /* === PALETTE: Deep Ocean & Gold === */
+      --primary-dark: #0f172a;
+      --primary-depth: #020617;
+      --primary-light: #1e293b;
       
-      /* UI Variables */
+      --accent-gold: #fbbf24;
+      --accent-gold-glow: #d97706;
+      
+      --accent-cyan: #22d3ee;
+      --accent-cyan-dim: #0891b2;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dark: #1e293b;
+      
+      --surface-glass: rgba(15, 23, 42, 0.7);
+      --surface-glass-light: rgba(255, 255, 255, 0.8);
+      --border-glass: rgba(255, 255, 255, 0.1);
+      
+      /* === TYPOGRAPHY === */
+      --font-head: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      /* === SPACING & LAYOUT === */
+      --header-height: 80px;
+      --radius-xl: 24px;
       --radius-lg: 16px;
-      --radius-md: 10px;
-      --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.12);
-      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      
-      /* Header Config */
-      --header-height: 70px;
+      --radius-md: 8px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
+    /* === RESET & BASE === */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
     body {
       margin: 0;
-      font-family: "Roboto", sans-serif;
-      color: var(--text-dark);
-      background: #ffffff;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background-color: var(--primary-depth);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4 { line-height: 1.2; }
-    
-    /* Fix for sticky header covering content on scroll */
-    section[id] {
-      scroll-margin-top: 100px;
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-head);
+      line-height: 1.1;
+      margin-top: 0;
+      color: var(--text-main);
     }
+
+    p { margin-bottom: 1.5rem; }
     
+    section[id] { scroll-margin-top: 100px; }
+
+    /* === UTILITIES === */
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    
-    /* Animation Utilities */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .delay-100 { transition-delay: 0.1s; }
-    .delay-200 { transition-delay: 0.2s; }
-    .delay-300 { transition-delay: 0.3s; }
-
-    /* ================= HEADER (Optimized) ================= */
-    header {
-      background: rgba(2, 6, 23, 0.98) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: #f9fafb;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      height: var(--header-height);
-      display: flex;
-      align-items: center;
-      transition: height 0.3s ease;
-    }
-    
-    .header-container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative; /* Essential for absolute logo */
     }
 
-    .logo {
-      text-decoration: none;
-      position: relative;
-      /* Push text over to make room for the absolute image */
-      padding-left: 120px; 
-      display: flex;
-      align-items: center;
-      height: var(--header-height);
+    .text-gradient {
+      background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
-    /* The "Hanging" Logo */
-    .logo img { 
-      height: 110px; /* Big & Bold */
-      width: auto; 
-      border-radius: 50%;
-      object-fit: contain;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
-      
-      /* Absolute positioning allows it to break out of the header */
+    .text-gold { color: var(--accent-gold); }
+    
+    .glass-panel {
+      background: var(--surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+    }
+
+    /* === HEADER & NAV === */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 1px solid transparent;
+    }
+
+    header.scrolled {
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-glass);
+      height: 70px; /* Slight shrink */
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .brand-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      /* Padding to account for the hanging logo */
+      padding-left: 100px; 
+      transition: padding 0.4s ease;
+    }
+
+    .brand-logo {
       position: absolute;
       left: 0;
-      top: 10px; /* Starts slightly below top edge */
-      
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      z-index: 10;
-      background: radial-gradient(circle, rgba(2,6,23,1) 60%, transparent 100%); /* Prevents see-through behind logo */
-    }
-    
-    .logo span { 
-      font-weight: 700; 
-      font-size: 1.25rem; 
-      color: #f9fafb; 
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      opacity: 1;
-      transition: opacity 0.2s;
+      top: 8px; /* Hangs nicely */
+      height: 100px; /* Large initial size */
+      width: auto;
+      border-radius: 50%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1001;
+      background: radial-gradient(circle, #020617 50%, transparent 100%);
     }
 
-    /* SCROLLED STATE (Triggered by JS) */
-    header.scrolled {
-      height: 60px; /* Compact bar */
-      background: rgba(2, 6, 23, 0.95) !important;
-    }
-    
-    header.scrolled .logo img {
-      height: 50px; /* Shrink perfectly */
-      top: 5px; /* Center vertically in 60px header */
+    header.scrolled .brand-logo {
+      height: 50px; /* Shrinks */
+      top: 10px;
       box-shadow: none;
-      background: transparent;
     }
     
-    header.scrolled .logo {
-      padding-left: 60px; /* Adjust text spacing */
+    header.scrolled .brand-wrapper {
+      padding-left: 60px;
     }
 
-    /* NAV LINKS */
-    .nav-links {
+    .brand-text {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
       align-items: center;
-      gap: 0.8rem;
     }
 
-    .nav-links a {
+    .nav-link {
+      color: var(--text-muted);
       text-decoration: none;
-      padding: 0.5rem 0.8rem;
-      border-radius: 999px;
-      color: #e2e8f0;
-      font-size: 0.9rem;
       font-weight: 500;
-      transition: var(--transition-smooth);
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
-    
-    .nav-pill.nav-quiz {
-      background: var(--accent-blue) !important;
-      color: var(--dark-blue) !important;
-      font-weight: 700;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-    }
-    .nav-pill.nav-book {
-      background: var(--gold) !important;
-      color: var(--dark-blue) !important;
-      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
     }
 
-    .menu-toggle {
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover { color: var(--text-main); }
+    .nav-link:hover::after { width: 100%; }
+
+    .nav-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 99px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-quiz {
+      background: rgba(34, 211, 238, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+    }
+    .btn-quiz:hover {
+      background: rgba(34, 211, 238, 0.25);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+    }
+
+    .btn-book {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-glow));
+      color: var(--primary-depth);
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    }
+    .btn-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+    }
+
+    .mobile-toggle {
       display: none;
-      flex-direction: column;
-      gap: 5px;
       background: none;
       border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
       cursor: pointer;
-      padding: 5px;
-      z-index: 101;
     }
-    .menu-toggle span { width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
 
-    /* ================= HERO SECTION ================= */
-    .hero-section {
+    /* === HERO SECTION === */
+    .hero {
       position: relative;
-      background: radial-gradient(circle at 50% 50%, #1e293b, #020617);
-      color: #fff;
-      /* Desktop Padding */
-      padding: 8rem 1rem 14rem;
-      overflow: hidden;
+      min-height: 95vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 90vh;
+      overflow: hidden;
+      padding-top: var(--header-height); /* Ensure logo doesn't cover text initially */
     }
 
-    #hero-canvas {
+    /* Dynamic background layers */
+    .hero-bg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 1; opacity: 0.5;
+      z-index: 0;
+      background: radial-gradient(circle at 50% 30%, #1e293b 0%, #020617 70%);
     }
 
-    .hero-content {
+    #particles {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    .hero-container {
       position: relative;
       z-index: 2;
       text-align: center;
-      max-width: 800px;
+      max-width: 900px;
     }
 
-    .hero-badge {
+    .badge-pill {
       display: inline-block;
-      padding: 0.5rem 1rem;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.5rem 1.2rem;
       border-radius: 99px;
-      color: var(--accent-blue);
-      font-size: 0.9rem;
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      color: var(--accent-cyan);
+      font-family: var(--font-head);
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
+      font-size: 0.9rem;
       letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
       backdrop-filter: blur(4px);
-      animation: fadeInDown 1s ease-out;
     }
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      margin: 0 0 1.5rem;
-      font-weight: 900;
+    .hero-title {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      animation: fadeInUp 1s ease-out 0.2s backwards;
     }
-    h1 span {
-      background: linear-gradient(135deg, var(--accent-blue), #a5f3fc);
+    
+    .hero-title span {
+      display: block; /* Force line break */
+      background: linear-gradient(to right, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--accent-cyan), #3b82f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .tagline {
-      font-size: 1.2rem;
-      color: #cbd5e1;
+    .hero-sub {
+      font-size: 1.25rem;
+      color: var(--text-muted);
       max-width: 700px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 3rem;
       line-height: 1.7;
-      animation: fadeInUp 1s ease-out 0.4s backwards;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
+      gap: 1.5rem;
       justify-content: center;
-      gap: 1rem;
       flex-wrap: wrap;
-      animation: fadeInUp 1s ease-out 0.6s backwards;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem 2.2rem;
+    .btn-hero {
+      padding: 1rem 2.5rem;
       border-radius: 99px;
+      font-size: 1.1rem;
       font-weight: 600;
       text-decoration: none;
-      transition: var(--transition-smooth);
-      font-size: 1.05rem;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
+
     .btn-primary {
-      background: var(--accent-blue);
-      color: var(--dark-blue);
-      border: 2px solid var(--accent-blue);
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+      background: var(--accent-cyan);
+      color: var(--primary-depth);
+      border: 2px solid var(--accent-cyan);
     }
     .btn-primary:hover {
-      background: #0ea5e9;
-      transform: translateY(-3px);
-      box-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
-    }
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.3);
-    }
-    .btn-outline:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,0.1);
+      background: #06b6d4;
+      border-color: #06b6d4;
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
     }
 
-    .scroll-indicator {
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--text-main);
+    }
+
+    /* === CURVED DIVIDERS === */
+    .wave-divider {
       position: absolute;
-      bottom: 40px; 
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.8rem;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+    }
+    .wave-divider svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 80px;
+    }
+    .wave-fill { fill: #f8fafc; } /* Matches next section bg */
+
+    /* === STATS / QUIZ SECTION === */
+    .feature-strip {
+      background: #f8fafc; /* Light mode start */
+      color: var(--text-dark);
+      padding: 4rem 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .quiz-card {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      color: var(--text-main);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      z-index: 0; 
-      animation: bounce 2s infinite;
-      pointer-events: none; 
-    }
-    
-    /* ================= INTERACTIVE QUIZ TEASER ================= */
-    .quiz-teaser-section {
-      position: relative;
-      margin-top: -6rem; /* Overlap hero */
-      z-index: 10;
-      padding-bottom: 4rem;
-    }
-    
-    .quiz-teaser-card {
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--accent-blue);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2rem;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-      color: #fff;
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      margin-top: -6rem; /* Pull up over hero */
       position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       overflow: hidden;
     }
-    
-    .quiz-teaser-card::before {
+
+    /* Abstract glow behind card */
+    .quiz-card::after {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
-      animation: pulse 4s infinite;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 60%);
       pointer-events: none;
-    }
-    
-    .quiz-badge {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--dark-blue);
-      padding: 0.25rem 0.75rem;
-      border-radius: 99px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin: 0 auto;
-    }
-    
-    .btn-assessment {
-      background: linear-gradient(135deg, var(--accent-blue), #0ea5e9);
-      color: var(--white);
-      padding: 1.2rem 3rem;
-      border-radius: 99px;
-      font-weight: 800;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-decoration: none;
-      box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
-      animation: pulse-blue 2s infinite;
-      transition: transform 0.2s;
-      display: inline-block;
-      margin-top: 1rem;
-      align-self: center;
-    }
-    .btn-assessment:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
-      animation: none; 
-    }
-    
-    @keyframes pulse-blue {
-      0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(56, 189, 248, 0); }
-      100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
-    }
-    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
-    @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* ================= MOBILE OPTIMIZATION ================= */
-    @media (max-width: 768px) {
-      :root {
-        --header-height: 60px; /* Smaller header on mobile */
-      }
-      
-      /* 1. Pill Position Fix: Reduce top padding */
-      .hero-section {
-        padding-top: 5.5rem; /* Closer to header */
-        padding-bottom: 8rem;
-      }
-      .hero-badge {
-        margin-bottom: 1rem; /* Slightly tighter spacing */
-      }
-      h1 {
-        font-size: 2.5rem; /* Prevent massive text on phones */
-      }
-
-      /* Disable Hanging Logo on Mobile */
-      .logo { padding-left: 50px; }
-      .logo img {
-        height: 45px; /* Fit inside bar */
-        top: 7px;
-        box-shadow: none;
-        background: transparent;
-      }
-      .logo span { font-size: 1rem; }
-      
-      .contact-grid { grid-template-columns: 1fr; }
-      
-      /* Navigation Menu */
-      .nav-links { 
-        display: none; 
-        position: absolute; 
-        top: 100%; 
-        left: 0; 
-        width: 100%; 
-        background: var(--mid-blue); 
-        flex-direction: column; 
-        padding: 1.5rem; 
-        gap: 1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: flex; }
-      
-      .clinic-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .clinical-data-grid { grid-template-columns: 1fr; gap: 1rem; }
-      
-      /* Ensure form inputs are large enough for touch */
-      input, textarea, button { font-size: 16px !important; }
-
-      /* 2. Content Visibility Fixes */
-      /* Center contact text and reduce size to prevent overflow */
-      .contact-content { text-align: center; }
-      .contact-content h2 { font-size: 2rem; line-height: 1.1; }
-      
-      /* Reduce padding in cards to create more space for content */
-      .contact-form { padding: 1.5rem; }
-      .equipment-card { padding: 1.5rem; }
-      
-      /* Ensure timeline bullets don't fall off screen */
-      .timeline-list { margin-left: 0.5rem; }
+      animation: pulse-glow 5s infinite ease-in-out;
     }
 
-    /* ================= "WE COME TO YOU" (Mobile Clinic) ================= */
-    .mobile-clinic-section {
-      padding: 6rem 1rem;
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    /* === PROCESS / TIMELINE SECTION === */
+    .process-section {
       background: #f8fafc;
-      position: relative;
+      color: var(--text-dark);
+      padding: 6rem 0;
     }
-    .clinic-grid {
+    
+    .section-head {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+    .section-head h2 { font-size: 2.5rem; color: var(--primary-depth); margin-bottom: 1rem; }
+    .section-head p { color: var(--text-muted); font-size: 1.1rem; }
+
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
       align-items: center;
     }
-    .clinic-info h2 {
-      font-size: 2.5rem;
-      color: var(--dark-blue);
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-    }
-    .timeline-list {
-      border-left: 2px solid var(--accent-blue);
-      padding-left: 2rem;
-      margin: 2rem 0;
-    }
-    .timeline-item { position: relative; margin-bottom: 2rem; }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2.6rem; top: 0.4rem;
-      width: 16px; height: 16px;
-      background: var(--gold);
-      border: 3px solid #f8fafc;
-      border-radius: 50%;
-    }
-    .timeline-item h3 { font-size: 1.2rem; margin: 0 0 0.5rem; color: var(--dark-blue); }
-    .timeline-item p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
-    
-    .equipment-card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      border: 1px solid #e2e8f0;
-    }
-    .equip-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
-    .equip-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--text-dark); }
-    .equip-item svg { color: var(--accent-blue); }
 
-    /* ================= CLINICAL DASHBOARD ================= */
-    .physiology-section {
-      padding: 6rem 1rem;
-      background: #fff;
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
       position: relative;
     }
-    .physiology-section::before {
+    /* Connecting line */
+    .step-card:not(:last-child)::after {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.3;
+      left: 24px; top: 60px; bottom: -30px;
+      width: 2px;
+      background: #e2e8f0;
+    }
+
+    .step-icon {
+      width: 50px; height: 50px;
+      background: var(--primary-light);
+      color: var(--accent-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .step-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary-depth); }
+    .step-content p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
+
+    .kit-visual {
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+    .kit-visual h3 { color: var(--primary-depth); font-size: 1.5rem; }
+
+    .equip-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .equip-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+    .check-icon { color: var(--accent-cyan-dim); }
+
+    /* === CLINICAL DASHBOARD (Dark/Tech Theme) === */
+    .clinical-section {
+      background: var(--primary-depth);
+      color: var(--text-main);
+      padding: 6rem 0;
+      position: relative;
+    }
+    
+    /* Grid background pattern */
+    .bg-grid {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
       z-index: 0;
     }
-    .science-container { position: relative; z-index: 1; max-width: 950px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 1rem; }
-    .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
 
-    /* Medical Accordion */
-    .clinical-accordion { display: flex; flex-direction: column; gap: 0.8rem; }
-    details.clinical-item {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-left: 4px solid var(--accent-blue);
-      border-radius: 6px;
+    .clinical-container { position: relative; z-index: 1; }
+
+    .dashboard-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    details.med-card {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
       overflow: hidden;
       transition: all 0.3s ease;
     }
-    details.clinical-item[open] {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      border-color: #cbd5e1;
-      border-left-color: var(--dark-blue);
+    
+    details.med-card[open] {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: var(--accent-cyan-dim);
+      box-shadow: 0 0 20px rgba(8, 145, 178, 0.1);
     }
-    summary.clinical-header {
+
+    summary.med-head {
       padding: 1.2rem 1.5rem;
       cursor: pointer;
       list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-weight: 600;
+      color: var(--text-main);
     }
-    summary.clinical-header::-webkit-details-marker { display: none; }
+    summary.med-head::-webkit-details-marker { display: none; }
     
-    .condition-pill {
-      background: #f1f5f9;
-      color: var(--dark-blue);
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.5rem 1.2rem;
-      border-radius: 99px;
-      border: 1px solid #e2e8f0;
+    .condition-tag {
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: var(--font-head);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
-    .toggle-icon { font-size: 1.2rem; color: var(--text-muted); transition: transform 0.3s; }
-    details[open] .toggle-icon { transform: rotate(180deg); color: var(--accent-blue); }
-    
-    .clinical-body { padding: 1.5rem 2rem; border-top: 1px solid #f1f5f9; background: #fff; }
-    .clinical-data-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start; }
-    .clinical-mechanism h4 { font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin: 0 0 0.5rem 0; letter-spacing: 0.05em; }
-    .clinical-mechanism p { font-size: 0.95rem; color: var(--text-dark); line-height: 1.6; margin: 0; }
-    .clinical-stat-box { background: #f8fafc; padding: 1.2rem; border-radius: 8px; border: 1px solid #e2e8f0; }
-    .bar-container { position: relative; height: 28px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 0.8rem; }
-    .bar-active { height: 100%; background: linear-gradient(90deg, var(--mid-blue), var(--accent-blue)); border-radius: 4px; width: 0; transition: width 1s ease-out; position: relative; }
-    .bar-marker { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 0.75rem; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-    .citation { font-size: 0.75rem; color: #94a3b8; font-style: italic; display: block; text-align: right; }
-    .edu-portal-cta { text-align: center; margin-top: 4rem; }
 
-    /* ================= TESTIMONIALS ================= */
-    .testimonial-section { padding: 6rem 1rem; background: #f8fafc; text-align: center; }
-    .testimonial-wrapper { max-width: 800px; margin: 0 auto; background: #fff; padding: 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
-    .quote-text { font-size: 1.2rem; font-style: italic; color: var(--text-dark); margin-bottom: 1.5rem; }
-
-    /* ================= CONTACT & FORM ================= */
-    .contact-section { background: var(--mid-blue); padding: 5rem 1rem; color: #fff; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 0 auto; align-items: center; }
-    .contact-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .contact-content p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
+    .med-body {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.2);
+    }
     
-    .contact-form {
-      background: #fff;
-      padding: 2rem;
-      border-radius: var(--radius-lg);
+    .data-row {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+    }
+    
+    .mechanism h4 { color: var(--accent-cyan); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .mechanism p { font-size: 0.95rem; color: #cbd5e1; margin: 0; }
+
+    .stat-visual {
+      background: rgba(255,255,255,0.03);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+    }
+    
+    .bar-track {
+      background: rgba(255,255,255,0.1);
+      height: 24px;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0; /* Animated by JS */
+      background: linear-gradient(90deg, var(--accent-cyan-dim), var(--accent-cyan));
+      border-radius: 4px;
+      transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+    .bar-label {
+      position: absolute;
+      right: 8px; top: 50%; transform: translateY(-50%);
+      font-size: 0.75rem; font-weight: 700; color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .source-cite { font-size: 0.75rem; color: var(--text-muted); text-align: right; font-style: italic; display: block; }
+
+    /* === CONTACT SECTION === */
+    .contact-section {
+      background: #f1f5f9;
       color: var(--text-dark);
+      padding: 6rem 0;
     }
-    input, textarea {
+
+    .contact-form-card {
+      background: #ffffff;
+      padding: 3rem;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+    }
+    
+    .form-group { margin-bottom: 1.2rem; }
+    
+    .form-input {
       width: 100%;
-      padding: 0.9rem;
-      margin-bottom: 1rem;
+      padding: 1rem;
       border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-family: inherit;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      transition: border 0.3s;
       background: #f8fafc;
     }
-    button[type="submit"] {
-      background: var(--dark-blue);
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan-dim);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary-depth);
       color: #fff;
       border: none;
-      padding: 1rem 2rem;
-      border-radius: 6px;
-      cursor: pointer;
+      border-radius: var(--radius-md);
       font-weight: 600;
-      width: 100%;
-      transition: 0.2s;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    button[type="submit"]:hover { background: var(--accent-blue); }
+    .submit-btn:hover {
+      background: var(--accent-cyan-dim);
+      transform: translateY(-2px);
+    }
 
-    /* Floating CTA */
-    .floating-cta {
+    /* === FLOATING CTA === */
+    .float-cta {
       position: fixed;
-      bottom: 20px; right: 20px;
-      background: var(--gold);
-      color: var(--dark-blue);
+      bottom: 2rem; right: 2rem;
+      background: var(--accent-gold);
+      color: var(--primary-depth);
       padding: 1rem 1.5rem;
       border-radius: 99px;
       font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      font-family: var(--font-head);
       text-decoration: none;
-      z-index: 999;
-      transform: translateY(100px);
-      transition: transform 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 900;
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .floating-cta.visible { transform: translateY(0); }
-    .floating-cta:hover { transform: scale(1.05); }
+    .float-cta.visible { transform: translateY(0); }
+    .float-cta:hover { transform: scale(1.05); }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--primary-depth);
+      color: var(--text-muted);
+      padding: 3rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* === ANIMATIONS === */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .fade-up.active { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      /* Mobile Header Fixes */
+      header.scrolled .brand-wrapper { padding-left: 60px; }
+      .brand-wrapper { padding-left: 60px; }
+      .brand-logo { height: 50px; top: 15px; box-shadow: none; background: transparent; }
+      .nav-menu {
+        position: fixed; top: var(--header-height); left: 0; right: 0;
+        background: var(--primary-depth);
+        flex-direction: column; padding: 2rem;
+        border-bottom: 1px solid var(--border-glass);
+        transform: translateY(-150%); transition: transform 0.3s ease;
+        z-index: 999;
+      }
+      .nav-menu.open { transform: translateY(0); }
+      .mobile-toggle { display: block; }
+
+      /* Hero Mobile */
+      .hero { padding-top: 6rem; align-items: flex-start; }
+      .hero-title { font-size: 2.8rem; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .btn-hero { width: 100%; text-align: center; }
+
+      /* Section Adjustments */
+      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .data-row { grid-template-columns: 1fr; gap: 1rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      
+      /* Card Mobile Padding */
+      .quiz-card, .contact-form-card { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header id="header">
-    <div class="header-container">
-      <a href="#" class="logo">
-        <!-- Logo Image (Hangs over the edge on Desktop) -->
-        <img src="assets/images/OHS Logo.png" alt="Olympian Health Solutions Logo" />
-        <span>Olympian Health Solutions</span>
+  <header id="main-header">
+    <div class="container header-content">
+      <a href="#" class="brand-wrapper">
+        <img src="assets/images/OHS Logo.png" alt="OHS Logo" class="brand-logo">
+        <span class="brand-text">Olympian Health Solutions</span>
       </a>
-      <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="spanish.html">Spanish</a></li>
-        <li><a href="game.html">Titan Game</a></li>
-        <li><a href="exercisequiz.html" class="nav-pill nav-quiz">Take Quiz</a></li>
-        <li><a href="booking.html" class="nav-pill nav-book">Book Now</a></li>
-      </ul>
+      
+      <button class="mobile-toggle" aria-label="Menu">☰</button>
+      
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="education.html" class="nav-link">Science</a></li>
+          <li><a href="game.html" class="nav-link">Titan Game</a></li>
+          <li><a href="exercisequiz.html" class="nav-btn btn-quiz">Assessment</a></li>
+          <li><a href="booking.html" class="nav-btn btn-book">Book Now</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-content">
-      <div class="hero-badge">Serving Battle Ground & Vancouver, WA</div>
-      <h1>
-        We Bring the Clinic<br>
-        <span>To Your Living Room.</span>
-      </h1>
-      <p class="tagline">
-        Specialized mobile personal training for seniors in Assisted Living and Private Homes. 
-        Reclaim your strength and independence without the hassle of travel.
-      </p>
-      <div class="hero-buttons">
-        <a href="booking.html" class="btn btn-primary">Book Now</a>
-        <a href="#process" class="btn btn-outline">See How It Works</a>
-      </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <canvas id="particles"></canvas>
+    
+    <div class="container hero-container fade-up">
+      <div class="badge-pill">Serving Battle Ground & Vancouver, WA</div>
       
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+      <h1 class="hero-title">
+        <span>Elite Clinical Care.</span>
+        <span class="highlight">Right at Home.</span>
+      </h1>
+      
+      <p class="hero-sub">
+        Mobile Physical Therapy & Strength Coaching specialized for seniors.
+        We bring the complete clinic to your living room, empowering you to 
+        reclaim independence without the hassle of travel.
+      </p>
+      
+      <div class="hero-actions">
+        <a href="booking.html" class="btn-hero btn-primary">Book Consultation</a>
+        <a href="#science" class="btn-hero btn-secondary">View Clinical Outcomes</a>
       </div>
+    </div>
+
+    <!-- Curved Divider -->
+    <div class="wave-divider">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="wave-fill"></path>
+      </svg>
     </div>
   </section>
 
-  <!-- INTERACTIVE QUIZ TEASER -->
-  <section class="quiz-teaser-section">
+  <!-- QUIZ / INTRO -->
+  <div class="feature-strip">
     <div class="container">
-      <div class="quiz-teaser-card">
-        <span class="quiz-badge">New Interactive Tool</span>
-        <h2 style="margin:0; font-size: 2rem;">Not sure if exercise is worth it?</h2>
-        <p style="margin:0; opacity:0.9;">Learn what the evidence says about how exercise can improve YOUR life.</p>
-        
-        <a href="exercisequiz.html" class="btn-assessment">
-          Take the Assessment Now
-        </a>
+      <div class="quiz-card fade-up">
+        <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Is Exercise Safe for You?</h2>
+        <p style="color: #cbd5e1; max-width: 600px;">
+          Many seniors underestimate their potential. Take our evidence-based assessment 
+          to see how targeted movement can reverse aging markers.
+        </p>
+        <a href="exercisequiz.html" class="nav-btn btn-book" style="margin-top: 1rem;">Start Assessment</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- MOBILE CLINIC (WE COME TO YOU) -->
-  <section class="mobile-clinic-section" id="process">
+  <!-- PROCESS / MOBILE CLINIC -->
+  <section class="process-section" id="process">
     <div class="container">
-      <div class="clinic-grid">
-        <div class="clinic-info reveal">
-          <h2>The Mobile Clinic Advantage</h2>
-          <p style="font-size:1.1rem; color:var(--text-muted); margin-bottom:2rem;">We eliminate the biggest barrier to health: getting there. We bring a complete gym and rehab center to your door.</p>
-          <div class="timeline-list">
-            <div class="timeline-item">
-              <h3>1. Book Online or Call</h3>
-              <p>Schedule a time that works for you. No complex intake forms.</p>
+      <div class="section-head fade-up">
+        <h2>The Mobile Clinic Advantage</h2>
+        <p>We eliminate the travel barrier. Here is how we transform your home into a safe, clinical training environment.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Steps -->
+        <div class="process-steps fade-up">
+          <div class="step-card">
+            <div class="step-icon">1</div>
+            <div class="step-content">
+              <h3>Easy Scheduling</h3>
+              <p>Book online or call. No referral needed for wellness programs.</p>
             </div>
-            <div class="timeline-item">
-              <h3>2. We Drive to You</h3>
-              <p>Our clinicians serve private homes and assisted living facilities across Battle Ground.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">2</div>
+            <div class="step-content">
+              <h3>We Arrive Fully Equipped</h3>
+              <p>We bring sanitized, professional-grade equipment suited to your needs.</p>
             </div>
-            <div class="timeline-item">
-              <h3>3. Setup in Minutes</h3>
-              <p>We need just 6ft of space. We transform your living room into a safe training zone.</p>
-            </div>
-            <div class="timeline-item">
-              <h3>4. Safe, Guided Movement</h3>
-              <p>You exercise under expert supervision, then we pack up and leave you feeling stronger.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">3</div>
+            <div class="step-content">
+              <h3>Clinical Intervention</h3>
+              <p>60 minutes of guided, evidence-based movement therapy.</p>
             </div>
           </div>
         </div>
-        <div class="clinic-card reveal delay-100">
-          <div class="equipment-card">
-            <h3 style="margin-top:0; color:var(--dark-blue);">Zero Equipment Needed</h3>
-            <p style="font-size:0.9rem; color:var(--text-muted);">We bring a sanitized kit tailored to your strength level.</p>
-            <div class="equip-list">
-              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Resistance Bands</div>
-              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Light Dumbbells</div>
-              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Balance Pads</div>
-              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Safety Rails</div>
-              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Massage Tools</div>
-              <div class="equip-item"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Blood Pressure Cuff</div>
-            </div>
+
+        <!-- Equipment Visual -->
+        <div class="kit-visual fade-up delay-1">
+          <h3>The Mobile Kit</h3>
+          <p style="font-size: 0.9rem; color: #64748b;">We require only 6ft of open space.</p>
+          <div class="equip-grid">
+            <div class="equip-item"><span class="check-icon">✓</span> Resistance Bands</div>
+            <div class="equip-item"><span class="check-icon">✓</span> Safety Rails</div>
+            <div class="equip-item"><span class="check-icon">✓</span> Balance Pads</div>
+            <div class="equip-item"><span class="check-icon">✓</span> Massage Tools</div>
+            <div class="equip-item"><span class="check-icon">✓</span> Light Weights</div>
+            <div class="equip-item"><span class="check-icon">✓</span> Vitals Monitoring</div>
           </div>
         </div>
       </div>
@@ -775,326 +859,288 @@
   </section>
 
   <!-- CLINICAL DASHBOARD -->
-  <section class="physiology-section" id="science">
-    <div class="container science-container">
-      <div class="section-header reveal">
-        <h2>Evidence-Based Clinical Outcomes</h2>
-        <p>We utilize targeted interventions for the specific physiological challenges of aging. Select a condition to review the clinical data.</p>
+  <section class="clinical-section" id="science">
+    <div class="bg-grid"></div>
+    <div class="container clinical-container">
+      <div class="section-head fade-up">
+        <h2 class="text-gradient">Clinical Outcomes Data</h2>
+        <p style="color: #94a3b8;">Review the physiological impact of our protocols on common age-related conditions.</p>
       </div>
-      <div class="clinical-accordion reveal">
+
+      <div class="dashboard-accordion fade-up">
+        
         <!-- Diabetes -->
-        <details class="clinical-item">
-          <summary class="clinical-header">
-            <div class="condition-pill">🩸 DIABETES MELLITUS</div>
-            <span class="toggle-icon">▼</span>
+        <details class="med-card">
+          <summary class="med-head">
+            <div class="condition-tag"><span style="color:var(--accent-cyan)">●</span> Diabetes Mellitus</div>
+            <span>+</span>
           </summary>
-          <div class="clinical-body">
-            <div class="clinical-data-grid">
-              <div class="clinical-mechanism">
-                <h4>Mechanism of Action</h4>
-                <p><strong>GLUT4 Translocation:</strong> Muscle contraction acts as "invisible insulin," moving glucose from the blood into cells without insulin. This effect persists for up to 48 hours.</p>
+          <div class="med-body">
+            <div class="data-row">
+              <div class="mechanism">
+                <h4>Mechanism</h4>
+                <p><strong>GLUT4 Translocation:</strong> Muscle contraction acts as "invisible insulin," moving glucose from blood to cells independently of insulin for 48 hours.</p>
               </div>
-              <div class="clinical-stat-box">
-                <div class="bar-container">
-                  <div class="bar-active observer-bar" data-width="42%">
-                    <span class="bar-marker">Risk -42%</span>
+              <div class="stat-visual">
+                <div class="bar-track">
+                  <div class="bar-fill" data-width="42%">
+                    <span class="bar-label">-42% Risk</span>
                   </div>
                 </div>
-                <span class="citation">Source: Sigal et al., Diabetes Care (2006)</span>
+                <span class="source-cite">Sigal et al., Diabetes Care (2006)</span>
               </div>
             </div>
           </div>
         </details>
-        <!-- Arthritis -->
-        <details class="clinical-item">
-          <summary class="clinical-header">
-            <div class="condition-pill">🦵 OSTEOARTHRITIS</div>
-            <span class="toggle-icon">▼</span>
-          </summary>
-          <div class="clinical-body">
-            <div class="clinical-data-grid">
-              <div class="clinical-mechanism">
-                <h4>Mechanism of Action</h4>
-                <p><strong>Synovial Fluid Dynamics:</strong> Movement creates a "sponge effect," pumping nutrient-rich fluid into the joint capsule to lubricate cartilage. Mechanical loading is superior to rest for pain management.</p>
-              </div>
-              <div class="clinical-stat-box">
-                <div class="bar-container">
-                  <div class="bar-active observer-bar" data-width="40%">
-                    <span class="bar-marker">Pain -40%</span>
-                  </div>
-                </div>
-                <span class="citation">Source: Moseng et al., BJSM (2017)</span>
-              </div>
-            </div>
-          </div>
-        </details>
+
         <!-- Falls -->
-        <details class="clinical-item">
-          <summary class="clinical-header">
-            <div class="condition-pill">⚖️ FALL RISK REDUCTION</div>
-            <span class="toggle-icon">▼</span>
+        <details class="med-card">
+          <summary class="med-head">
+            <div class="condition-tag"><span style="color:var(--accent-gold)">●</span> Fall Risk</div>
+            <span>+</span>
           </summary>
-          <div class="clinical-body">
-            <div class="clinical-data-grid">
-              <div class="clinical-mechanism">
-                <h4>Mechanism of Action</h4>
-                <p><strong>Type II Fiber Recruitment:</strong> Falls occur due to a lack of power (speed). Training fast-twitch fibers improves the "reactive step" needed to catch balance during a slip.</p>
+          <div class="med-body">
+            <div class="data-row">
+              <div class="mechanism">
+                <h4>Mechanism</h4>
+                <p><strong>Type II Fiber Recruitment:</strong> Falls are a power (speed) failure. We specifically train fast-twitch fibers to improve the reactive step reflex.</p>
               </div>
-              <div class="clinical-stat-box">
-                <div class="bar-container">
-                  <div class="bar-active observer-bar" data-width="34%">
-                    <span class="bar-marker">Risk -34%</span>
+              <div class="stat-visual">
+                <div class="bar-track">
+                  <div class="bar-fill" data-width="34%">
+                    <span class="bar-label">-34% Fall Rate</span>
                   </div>
                 </div>
-                <span class="citation">Source: Sherrington et al., Cochrane Database (2019)</span>
+                <span class="source-cite">Sherrington et al., Cochrane (2019)</span>
               </div>
             </div>
           </div>
         </details>
-        <!-- Dementia -->
-        <details class="clinical-item">
-          <summary class="clinical-header">
-            <div class="condition-pill">🧠 COGNITIVE DECLINE</div>
-            <span class="toggle-icon">▼</span>
+
+        <!-- Cognitive -->
+        <details class="med-card">
+          <summary class="med-head">
+            <div class="condition-tag"><span style="color:#a855f7">●</span> Cognitive Decline</div>
+            <span>+</span>
           </summary>
-          <div class="clinical-body">
-            <div class="clinical-data-grid">
-              <div class="clinical-mechanism">
-                <h4>Mechanism of Action</h4>
-                <p><strong>BDNF Release:</strong> Aerobic activity triggers Brain-Derived Neurotrophic Factor, which promotes neurogenesis in the hippocampus (memory center), effectively reversing age-related shrinkage.</p>
+          <div class="med-body">
+            <div class="data-row">
+              <div class="mechanism">
+                <h4>Mechanism</h4>
+                <p><strong>BDNF Release:</strong> Aerobic activity triggers Brain-Derived Neurotrophic Factor, promoting neurogenesis in the hippocampus (memory center).</p>
               </div>
-              <div class="clinical-stat-box">
-                <div class="bar-container">
-                  <div class="bar-active observer-bar" data-width="100%">
-                    <span class="bar-marker" style="left:10px; color:var(--dark-blue);">Volume +2% (Reverses Atrophy)</span>
+              <div class="stat-visual">
+                <div class="bar-track">
+                  <div class="bar-fill" data-width="100%">
+                    <span class="bar-label" style="left: 10px; right: auto;">Reverses Atrophy (+2% Vol)</span>
                   </div>
                 </div>
-                <span class="citation">Source: Erickson et al., PNAS (2011)</span>
+                <span class="source-cite">Erickson et al., PNAS (2011)</span>
               </div>
             </div>
           </div>
         </details>
-        <!-- Hypertension -->
-        <details class="clinical-item">
-          <summary class="clinical-header">
-            <div class="condition-pill">❤️ HYPERTENSION</div>
-            <span class="toggle-icon">▼</span>
-          </summary>
-          <div class="clinical-body">
-            <div class="clinical-data-grid">
-              <div class="clinical-mechanism">
-                <h4>Mechanism of Action</h4>
-                <p><strong>Post-Exercise Hypotension:</strong> Shear stress on arterial walls releases Nitric Oxide, a potent vasodilator. This relaxes blood vessels and lowers resting blood pressure significantly.</p>
-              </div>
-              <div class="clinical-stat-box">
-                <div class="bar-container">
-                  <div class="bar-active observer-bar" data-width="65%">
-                    <span class="bar-marker">BP -8mmHg</span>
-                  </div>
-                </div>
-                <span class="citation">Source: Pescatello et al., ACSM (2004)</span>
-              </div>
-            </div>
-          </div>
-        </details>
+
         <!-- Sarcopenia -->
-        <details class="clinical-item">
-          <summary class="clinical-header">
-            <div class="condition-pill">💪 SARCOPENIA</div>
-            <span class="toggle-icon">▼</span>
+        <details class="med-card">
+          <summary class="med-head">
+            <div class="condition-tag"><span style="color:#ef4444">●</span> Sarcopenia</div>
+            <span>+</span>
           </summary>
-          <div class="clinical-body">
-            <div class="clinical-data-grid">
-              <div class="clinical-mechanism">
-                <h4>Mechanism of Action</h4>
-                <p><strong>Anabolic Signaling:</strong> Resistance training activates the mTOR pathway, stimulating muscle protein synthesis even in advanced age (90+), preserving functional independence.</p>
+          <div class="med-body">
+            <div class="data-row">
+              <div class="mechanism">
+                <h4>Mechanism</h4>
+                <p><strong>mTOR Activation:</strong> Resistance training stimulates muscle protein synthesis pathways effectively even in nonagenarians (90+).</p>
               </div>
-              <div class="clinical-stat-box">
-                <div class="bar-container">
-                  <div class="bar-active observer-bar" data-width="100%" style="overflow:visible;">
-                    <span class="bar-marker" style="right:-70px; color:var(--dark-blue);">+113% Strength</span>
+              <div class="stat-visual">
+                <div class="bar-track" style="overflow: visible;">
+                  <div class="bar-fill" data-width="100%">
+                    <span class="bar-label" style="right: -100px; color: #fff;">+113% Strength</span>
                   </div>
                 </div>
-                <span class="citation">Source: Fiatarone et al., JAMA (1990)</span>
+                <span class="source-cite">Fiatarone et al., JAMA (1990)</span>
               </div>
             </div>
           </div>
         </details>
-      </div>
-      <div class="edu-portal-cta reveal">
-        <a href="education.html" class="btn btn-outline" style="border-color: var(--mid-blue); color: var(--mid-blue);">Explore the Evidence Library</a>
+
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonial-section">
-    <div class="testimonial-wrapper reveal">
-      <p class="quote-text">"I was afraid I would have to leave my assisted living apartment because I couldn't get out of my chair easily. Zeuse worked with me right in my living room, and now I walk to dinner every night."</p>
-      <p style="font-weight: 700; color: var(--dark-blue);">— Martha S., Battle Ground</p>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM (Optimized for Functionality) -->
+  <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="container">
-      <div class="contact-grid">
-        <div class="contact-content">
-          <h2>Reclaim Your Independence</h2>
-          <p>You don't have to accept frailty as a normal part of aging. Let's build a plan that works for you.</p>
-          <p><strong>Call or Text:</strong> (360) 555-0123</p>
-          <p><strong>Email:</strong> info@olympianhealth.com</p>
+      <div class="grid-2">
+        <div class="contact-text fade-up">
+          <h2>Start Your Journey</h2>
+          <p>Frailty is not an inevitable part of aging. Contact us to build a personalized plan for independence.</p>
+          <div style="margin-top: 2rem;">
+            <p><strong>Phone:</strong> (360) 555-0123</p>
+            <p><strong>Email:</strong> info@olympianhealth.com</p>
+          </div>
         </div>
-        <div class="contact-form">
-          <h3 style="margin-top: 0; color: var(--dark-blue);">Request Free Consult</h3>
-          
-          <!-- Formspree Integration Example -->
-          <!-- Replace "YOUR_FORM_ID_HERE" with your actual Formspree ID -->
-          <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-            
-            <label for="name" style="display:none;">Name</label>
-            <input type="text" id="name" name="name" placeholder="Name" required>
-            
-            <label for="email" style="display:none;">Email or Phone</label>
-            <input type="text" id="email" name="email" placeholder="Email or Phone Number" required>
-            
-            <label for="message" style="display:none;">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
-            
-            <!-- Spam Protection (Honeypot) -->
-            <input type="text" name="_gotcha" style="display:none">
-
-            <button type="submit">Send Request</button>
+        
+        <div class="contact-form-card fade-up delay-1">
+          <h3 style="color:var(--primary-depth); margin-bottom:1.5rem;">Request Consultation</h3>
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-group">
+              <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" class="form-input" placeholder="Email or Phone" required>
+            </div>
+            <div class="form-group">
+              <textarea name="message" class="form-input" rows="4" placeholder="How can we help?" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Request</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Floating CTA -->
-  <a href="booking.html" class="floating-cta" id="floatingCTA">Book Consult</a>
+  <!-- CTA & FOOTER -->
+  <a href="booking.html" class="float-cta" id="cta-btn">Book Now</a>
 
   <footer>
-    <div class="container" style="text-align: center; color: #94a3b8; padding: 2rem 0;">
-      <p>&copy; <span id="year">2023</span> Olympian Health Solutions. Educational use only. Consult a physician before starting any program or supplement.</p>
+    <div class="container">
+      <p>&copy; <span id="year">2024</span> Olympian Health Solutions. Clinical excellence in motion.</p>
     </div>
   </footer>
 
+  <!-- LOGIC -->
   <script>
-    // ================= 1. HEADER & SCROLL LOGIC (Optimized) =================
-    const header = document.getElementById('header');
-    const cta = document.getElementById('floatingCTA');
-    
+    // === 1. HEADER & SCROLL EFFECTS ===
+    const header = document.getElementById('main-header');
+    const ctaBtn = document.getElementById('cta-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const menuToggle = document.querySelector('.mobile-toggle');
+
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
+      // Toggle sticky header class
+      if (window.scrollY > 20) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-      
-      // Show Floating CTA after hero
+
+      // Toggle Floating CTA
       if (window.scrollY > 600) {
-        cta.classList.add('visible');
+        ctaBtn.classList.add('visible');
       } else {
-        cta.classList.remove('visible');
+        ctaBtn.classList.remove('visible');
       }
     });
 
     // Mobile Menu
-    const menuBtn = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      // Optional: Close menu when clicking a link
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => navLinks.classList.remove('active'));
-      });
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      menuToggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
     });
 
-    // ================= 2. CANVAS ANIMATION =================
-    const canvas = document.getElementById('hero-canvas');
+    // === 2. PARTICLE ANIMATION (Efficient) ===
+    const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    let width, height, particles = [];
+    let width, height;
     
+    // Fewer particles for cleaner look
+    const particleCount = 40; 
+    const particles = [];
+
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = canvas.parentElement.offsetHeight;
-      initParticles();
     }
-    
+
     class Particle {
       constructor() {
+        this.reset();
+      }
+      reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.size = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.size = Math.random() * 2;
+        this.alpha = Math.random() * 0.5 + 0.1;
       }
       update() {
-        this.x += this.vx; this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(56, 189, 248, 0.3)`;
+        ctx.fillStyle = `rgba(34, 211, 238, ${this.alpha})`; // Cyan particles
         ctx.fill();
       }
     }
 
     function initParticles() {
-      particles = [];
-      for(let i=0; i<60; i++) particles.push(new Particle());
+      for(let i=0; i<particleCount; i++) particles.push(new Particle());
     }
 
     function animate() {
-      ctx.clearRect(0,0,width,height);
-      particles.forEach((p, i) => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
         p.update();
         p.draw();
-        for (let j = i; j < particles.length; j++) {
-          let dx = p.x - particles[j].x;
-          let dy = p.y - particles[j].y;
-          let dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 120) {
+      });
+      // Connection lines (constellations)
+      ctx.strokeStyle = 'rgba(34, 211, 238, 0.05)';
+      for(let i=0; i<particles.length; i++) {
+        for(let j=i+1; j<particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 150) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(56, 189, 248, ${0.1 - dist/1200})`;
-            ctx.moveTo(p.x, p.y);
+            ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
           }
         }
-      });
+      }
       requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', resize);
     resize();
+    initParticles();
     animate();
 
-    // ================= 3. SCROLL REVEAL =================
-    const observer = new IntersectionObserver((entries) => {
+    // === 3. OBSERVERS (Scroll Reveal & Charts) ===
+    const observerOptions = { threshold: 0.15, rootMargin: "0px" };
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
         }
       });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    
-    // Accordion Animations
-    document.querySelectorAll('details.clinical-item').forEach(detail => {
-      detail.addEventListener('toggle', (e) => {
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+    // Chart Animation Logic
+    document.querySelectorAll('details.med-card').forEach(detail => {
+      detail.addEventListener('toggle', () => {
         if (detail.open) {
-          const bar = detail.querySelector('.observer-bar');
+          const bar = detail.querySelector('.bar-fill');
           const width = bar.getAttribute('data-width');
-          setTimeout(() => { bar.style.width = width; }, 50);
+          // Short delay to allow browser layout calculation
+          setTimeout(() => { bar.style.width = width; }, 100);
+        } else {
+           // Reset for re-animation
+           const bar = detail.querySelector('.bar-fill');
+           bar.style.width = '0';
         }
       });
     });
-    
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
