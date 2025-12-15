@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Flow Visualizer</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #050505; }
+        canvas { display: block; }
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions">Move cursor to warp space</div>
+    
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+        // 1. Scene Setup
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.001); // Depth fog for atmosphere
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 100;
+        camera.position.y = 30;
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Performance optimization
+        document.body.appendChild(renderer.domElement);
+
+        // 2. Particle System Parameters
+        const SEPARATION = 1.8;
+        const AMOUNTX = 120;
+        const AMOUNTY = 120;
+        const numParticles = AMOUNTX * AMOUNTY;
+
+        // Geometry & Attributes
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(numParticles * 3);
+        const scales = new Float32Array(numParticles);
+        const colors = new Float32Array(numParticles * 3);
+
+        // Fill initial positions (centered grid)
+        let i = 0;
+        for (let ix = 0; ix < AMOUNTX; ix++) {
+            for (let iy = 0; iy < AMOUNTY; iy++) {
+                positions[i] = ix * SEPARATION - ((AMOUNTX * SEPARATION) / 2); // x
+                positions[i + 1] = 0; // y
+                positions[i + 2] = iy * SEPARATION - ((AMOUNTY * SEPARATION) / 2); // z
+                scales[i / 3] = 1;
+                i += 3;
+            }
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        // Custom Shader Material for Glow and Smoothness
+        const material = new THREE.ShaderMaterial({
+            uniforms: {
+                color: { value: new THREE.Color(0xffffff) },
+            },
+            vertexShader: `
+                attribute float scale;
+                attribute vec3 color;
+                varying vec3 vColor;
+                void main() {
+                    vColor = color;
+                    vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+                    gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+                    gl_Position = projectionMatrix * mvPosition;
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vColor;
+                void main() {
+                    if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
+                    gl_FragColor = vec4( vColor, 1.0 );
+                }
+            `,
+            transparent: true
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        // 3. Interaction & Animation Variables
+        let count = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        // 4. Event Listeners
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX - windowHalfX;
+            mouseY = event.clientY - windowHalfY;
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 5. Main Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+        }
+
+        function render() {
+            // Smooth camera easing
+            targetX = mouseX * 0.001;
+            targetY = mouseY * 0.001;
+
+            // Rotate the entire particle system slowly
+            particles.rotation.y += 0.002;
+
+            // Access positions and colors for update
+            const positions = particles.geometry.attributes.position.array;
+            const scales = particles.geometry.attributes.scale.array;
+            const colors = particles.geometry.attributes.color.array;
+
+            let i = 0;
+            let j = 0;
+
+            // The Math magic happens here
+            for (let ix = 0; ix < AMOUNTX; ix++) {
+                for (let iy = 0; iy < AMOUNTY; iy++) {
+                    
+                    // Base Wave calculation (Sine/Cosine based on position and time)
+                    // This creates the "breathing" ocean effect
+                    const x = positions[i];
+                    const z = positions[i + 2];
+                    
+                    // Distance from center (0,0) used for radial ripples
+                    const dist = Math.sqrt(x*x + z*z);
+                    
+                    // Calculate height (Y)
+                    // We combine a sine wave based on X, a cosine based on Y, and a time variable 'count'
+                    let y = (Math.sin((ix + count) * 0.3) * 5) + 
+                            (Math.sin((iy + count) * 0.5) * 5);
+
+                    // MOUSE INTERACTION:
+                    // Calculate distance from this particle to the mouse's projected position
+                    // We map 2D mouse coordinates roughly to the 3D plane
+                    const mouseDistX = (x - (mouseX * 0.1));
+                    const mouseDistZ = (z - (mouseY * 0.1));
+                    const distToMouse = Math.sqrt(mouseDistX*mouseDistX + mouseDistZ*mouseDistZ);
+
+                    // If mouse is close, create a "repulsion" or "gravity well" effect
+                    if (distToMouse < 40) {
+                        const force = (40 - distToMouse) / 40;
+                        y -= force * 15; // Push down
+                    }
+
+                    positions[i + 1] = y;
+
+                    // COLOR CALCULATION:
+                    // Dynamic color based on height (Y) and position
+                    // We use HSL logic converted to RGB for a cyberpunk spectrum
+                    
+                    // Normalize height for color
+                    const normHeight = (y + 10) / 20; 
+                    
+                    // Create a shifting hue based on time and location
+                    const r = 0.1 + (Math.sin(count * 0.1 + ix * 0.1) + 1) * 0.4;
+                    const g = normHeight * 0.8; // High points are greener/cyan
+                    const b = 0.5 + Math.cos(iy * 0.1) * 0.5; // Blue base
+
+                    colors[i] = r;
+                    colors[i + 1] = g;
+                    colors[i + 2] = b;
+
+                    // SCALE CALCULATION:
+                    // Make peaks larger and troughs smaller for depth perception
+                    scales[j] = (Math.sin((ix + count) * 0.3) + 1) * 4 + 
+                                (Math.sin((iy + count) * 0.5) + 1) * 4;
+
+                    i += 3;
+                    j++;
+                }
+            }
+
+            // Mark attributes as needing updates
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.geometry.attributes.scale.needsUpdate = true;
+            particles.geometry.attributes.color.needsUpdate = true;
+
+            count += 0.1; // Speed of the wave
+            
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
