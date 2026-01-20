@@ -240,6 +240,18 @@
       box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
     }
 
+    /* Pulse/Flashing animation for the assessment button */
+    @keyframes pulse-gold {
+      0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(251, 191, 36, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+    }
+
+    .btn-flash {
+      animation: pulse-gold 2s infinite;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
     .mobile-toggle {
       display: none;
       background: none;
@@ -395,7 +407,7 @@
     .quiz-card {
       background: linear-gradient(135deg, #0f172a, #1e293b);
       border-radius: var(--radius-xl);
-      padding: 3rem;
+      padding: 3.5rem;
       color: var(--text-main);
       display: flex;
       flex-direction: column;
@@ -403,9 +415,36 @@
       text-align: center;
       margin-top: -6rem; /* Pull up over hero */
       position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
       border: 1px solid rgba(255, 255, 255, 0.1);
       overflow: hidden;
+    }
+
+    /* Research Pulse Badge */
+    .pulse-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.4rem 1rem;
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: 99px;
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px; background: #22d3ee; border-radius: 50%;
+      box-shadow: 0 0 10px #22d3ee;
+      animation: pulse-dot 1.5s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     /* Abstract glow behind card */
@@ -794,16 +833,36 @@
     </div>
   </section>
 
-  <!-- QUIZ / INTRO -->
+  <!-- REVAMPED ASSESSMENT SECTION -->
   <div class="feature-strip">
     <div class="container">
       <div class="quiz-card fade-up">
-        <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Is Exercise Safe for You?</h2>
-        <p style="color: #cbd5e1; max-width: 600px;">
-          Many seniors underestimate their potential. Take our evidence-based assessment 
-          to see how targeted movement can reverse aging markers.
+        <div class="pulse-badge">
+          <div class="pulse-dot"></div>
+          Live Clinical Data Analysis
+        </div>
+        <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1rem;">The Physiological Audit</h2>
+        <p style="color: #cbd5e1; max-width: 700px; font-size: 1.1rem; line-height: 1.8;">
+          Movement is medicine, but only when precisely prescribed. Our proprietary audit 
+          cross-references your health history against <strong>modern research</strong> to reveal 
+          the <strong>invaluable benefits</strong> exercise can provide for your specific conditions.
         </p>
-        <a href="exercisequiz.html" class="nav-btn btn-book" style="margin-top: 1rem;">Start Assessment</a>
+        <div style="display: flex; gap: 1.5rem; margin: 2rem 0; flex-wrap: wrap; justify-content: center;">
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 5px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Condition-Specific Analysis
+            </div>
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 5px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Evidence-Based Protocols
+            </div>
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 5px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                NIH/CDC Aligned Data
+            </div>
+        </div>
+        <a href="exercisequiz.html" class="nav-btn btn-book btn-flash" style="margin-top: 1rem; padding: 1rem 2.5rem; font-size: 1.1rem;">Start Your Clinical Audit</a>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1.5rem; font-style: italic;">Takes ~2 minutes to complete.</p>
       </div>
     </div>
   </div>
