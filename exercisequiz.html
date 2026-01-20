@@ -1,727 +1,471 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="The Olympian Physiological Audit - A clinical-grade assessment of how movement can transform your specific health conditions." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Physiological Audit | Olympian Health Solutions</title>
+import React, { useState, useEffect } from 'react';
+import { 
+  Sun, 
+  ArrowRight, 
+  ArrowLeft, 
+  Heart, 
+  Brain, 
+  Activity, 
+  Home, 
+  CheckCircle2, 
+  FileText, 
+  Clock, 
+  Zap, 
+  Shield, 
+  Dna,
+  Printer,
+  ChevronRight,
+  AlertTriangle,
+  MoveUp,
+  Sparkles,
+  Timer,
+  Thermometer,
+  Eye,
+  Microscope,
+  Info,
+  ChevronDown,
+  Droplets,
+  Scale
+} from 'lucide-react';
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+// --- DATA: RESEARCH DATABASE (Comprehensive Citations from PDFs) ---
+const researchDB = {
+  // Personalized Logic Mappings
+  "Insulin Resistance": { title: "Glycemic Kinetic Restoration", text: "Movement acts as 'invisible insulin,' bypassing resistance via GLUT4 translocation to lower blood sugar by 58%.", cite: "DPP Research Group (2002). NEJM." },
+  "Elevated HbA1c": { title: "Metabolic Barrier Offset", text: "Structured activity reduces the risk of Type 2 Diabetes by 58%, nearly doubling the efficacy of Metformin.", cite: "Diabetes Prevention Program (2002)." },
+  "Knee Osteoarthritis": { title: "Synovial Mechanotransduction", text: "Exercise therapy is clinically superior to NSAIDs for pain reduction (SMD 0.54) by lubricating joint cartilage.", cite: "JOSPT (2022)." },
+  "Lumbar/L4-L5 Pain": { title: "Threat Signal Modulation", text: "Strength training reduces the brain's 'threat' output, effectively acting as a natural analgesic for chronic back pain.", cite: "JOSPT (2022)." },
+  "Brain Fog": { title: "Hippocampal Neurogenesis", text: "Aerobic activity increases brain blood flow by 20% and can reverse age-related memory loss by 1-2 years.", cite: "Erickson et al. (2011). PNAS." },
+  "Memory Lapses": { title: "White Matter Preservation", text: "Intentional movement triggers BDNF release, which acts as 'fertilizer' for new neurons in memory centers.", cite: "Erickson et al. (2011)." },
+  "Fear of Falling": { title: "Neuromotor Resilience", text: "Targeted balance and power interventions reduce the rate of multiple falls by 55%.", cite: "CDC / Stevens & Burns (2015)." },
+  "Balance Instability": { title: "Rate of Force Development", text: "Power training improves step-velocity by up to 4.5% per session, preventing trips from becoming fractures.", cite: "Stevens & Burns (2015)." },
+  "Sit-to-Stand Weakness": { title: "Functional Agency Protection", text: "Improving physical 'power' reduces the hazard of developing activities of daily living disability by 53.6%.", cite: "Wang et al. (2024). PubMed Central." },
+  "Stair Ascent Difficulty": { title: "Independence Stewardship", text: "Combined physical and mental activity reduces ADL disability risk by 53.6% in the oldest-old populations.", cite: "Wang et al. (2024)." },
+  "Vascular Stiffness": { title: "Endothelial Elasticity", text: "Meeting movement guidelines reduces cardiovascular death risk by 20-30% by keeping artery walls elastic.", cite: "Lee et al. (2022). Circulation." },
+  "Hypertension": { title: "Vascular De-Stiffening", text: "Aerobic training releases Nitric Oxide, a potent vasodilator that lowers resting blood pressure by 5-8 mmHg.", cite: "AHA Circulation (2022)." },
   
-  <style>
-    :root {
-      /* Medical Palette */
-      --brand-dark: #0f172a;
-      --brand-primary: #0284c7; /* Medical Blue */
-      --brand-accent: #38bdf8;
-      --brand-gold: #fbbf24;
-      --text-main: #334155;
-      --text-light: #64748b;
-      --bg-subtle: #f8fafc;
-      --surface: #ffffff;
-      --success: #10b981;
-      --danger: #ef4444;
-      
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-      --shadow-glow: 0 0 30px rgba(2, 132, 199, 0.15);
-    }
+  // Nutrition & Hydration Specifics
+  "anabolic_low": { title: "Anabolic Resistance Override", text: "Senior muscle requires 1.2g/kg of protein combined with resistance to trigger synthesis pathways blunted by age.", cite: "ESPEN (2014)." },
+  "dehydration": { title: "Thirst Signal Re-Calibration", text: "Age blunts the thirst reflex. Scheduled hydration is critical for adenosine clearance and cognitive acuity.", cite: "Kline et al. (2011)." },
+  "low_fiber": { title: "Glycemic Buffering", text: "Fiber reduces systemic inflammatory triggers and works alongside movement to stabilize insulin kinetics.", cite: "Bird & Hawley (2017)." },
 
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); background: var(--bg-subtle); line-height: 1.6; min-height: 100vh; }
-    
-    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--brand-dark); margin: 0; line-height: 1.2; }
-    
-    /* HEADER */
-    header { padding: 1.5rem 2rem; position: absolute; top: 0; left: 0; width: 100%; z-index: 100; display: flex; justify-content: space-between; align-items: center; background: transparent; }
-    .logo { font-weight: 700; color: var(--brand-dark); text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .back-link { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; }
-    .back-link:hover { color: var(--brand-primary); }
+  // Global/Universal
+  longevity: { title: "Life Expectancy Extension", text: "Transitioning to activity adds 0.4 to 4.2 years of life. Every hour moved adds hours of future energy back to you.", cite: "Strain et al. (2024). BJSM.", icon: <Clock className="w-6 h-6" /> },
+  anxiety: { title: "Emotional Resilience", text: "Physically active individuals have a 60% lower risk of developing anxiety disorders over the long term.", cite: "Svensson et al. (2021). Frontiers in Psychiatry.", icon: <Heart className="w-6 h-6" /> },
+  telomeres: { title: "9-Year DNA Reset", text: "Active adults possess telomeres equating to a biological age 9 years younger than sedentary peers.", cite: "Tucker (2017). Preventive Medicine.", icon: <Dna className="w-6 h-6" /> },
+  vascular: { title: "Vascular Elasticity", text: "Meeting guidelines reduces heart disease death risk by 20-30% by keeping artery walls elastic.", cite: "Lee et al. (2022). Circulation.", icon: <Activity className="w-6 h-6" /> }
+};
 
-    /* ================= NEW START SCREEN ================= */
-    .start-screen {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-      background: #fff;
-    }
-    
-    .start-left {
-      padding: 8rem 4rem 4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: #fff;
-    }
-    
-    .start-right {
-      background: var(--brand-dark);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem;
-      overflow: hidden;
-    }
-    
-    /* Abstract medical pattern */
-    .start-right::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        radial-gradient(rgba(56, 189, 248, 0.1) 2px, transparent 2px),
-        radial-gradient(rgba(56, 189, 248, 0.1) 2px, transparent 2px);
-      background-size: 40px 40px;
-      background-position: 0 0, 20px 20px;
-      opacity: 0.5;
-    }
-    
-    .start-right-content {
-      position: relative; z-index: 2; text-align: center; color: #fff; max-width: 500px;
-    }
+export default function App() {
+  const [step, setStep] = useState(0); 
+  const [user, setUser] = useState({ track: '', health: [], habits: {}, nutrition: [] });
+  const [progress, setProgress] = useState(0);
 
-    .clinical-tag {
-      background: #eff6ff; color: var(--brand-primary); padding: 6px 12px; border-radius: 4px; 
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; 
-      align-self: flex-start; margin-bottom: 1.5rem; border: 1px solid #bfdbfe;
-    }
-    
-    .start-title { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 1.5rem; color: var(--brand-dark); line-height: 1.1; }
-    .start-desc { font-size: 1.1rem; color: var(--text-light); max-width: 540px; margin-bottom: 3rem; line-height: 1.7; }
-    
-    .btn-start {
-      background: var(--brand-primary); color: #fff; padding: 1.2rem 2.5rem; 
-      border-radius: 8px; font-weight: 700; font-size: 1.1rem; text-decoration: none; 
-      transition: all 0.2s; border: none; cursor: pointer; box-shadow: var(--shadow-glow);
-      display: inline-flex; align-items: center; gap: 10px; width: fit-content;
-    }
-    .btn-start:hover { transform: translateY(-2px); background: #0272a9; }
-    
-    .evidence-grid {
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: auto; padding-top: 3rem; border-top: 1px solid #f1f5f9;
-    }
-    .evidence-badge {
-      display: flex; flex-direction: column; font-size: 0.75rem; font-weight: 700; color: var(--text-main);
-    }
-    .evidence-badge span { font-size: 0.7rem; font-weight: 400; color: var(--text-light); margin-top: 2px; }
-    
-    /* Quote Card */
-    .quote-card {
-      background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
-      padding: 2.5rem; border-radius: 16px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; line-height: 1.6;
-    }
-    .quote-author {
-      display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-style: normal; font-size: 0.85rem; 
-      margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px; color: var(--brand-accent);
-    }
+  useEffect(() => {
+    setProgress((step / 5) * 100);
+  }, [step]);
 
-    /* ================= QUIZ INTERFACE ================= */
-    .quiz-container {
-      display: none; /* Hidden initially */
-      min-height: 100vh;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 1rem 2rem;
-    }
-    .quiz-container.active { display: flex; }
-    
-    .quiz-card {
-      background: #fff; width: 100%; max-width: 800px; border-radius: 16px;
-      box-shadow: var(--shadow-lg); padding: 3rem; position: relative;
-      border: 1px solid #e2e8f0;
-    }
+  const toggleHealth = (h) => {
+    setUser(prev => ({
+      ...prev,
+      health: prev.health.includes(h) ? prev.health.filter(x => x !== h) : [...prev.health, h]
+    }));
+  };
 
-    /* Progress */
-    .progress-wrap { position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: #f1f5f9; border-radius: 16px 16px 0 0; overflow: hidden; }
-    .progress-bar { height: 100%; background: var(--brand-primary); width: 0%; transition: width 0.4s ease; }
+  const selectHabit = (key, val, label) => {
+    setUser(prev => ({ ...prev, habits: { ...prev.habits, [key]: { val, label } } }));
+  };
 
-    /* Questions */
-    .question-view { display: none; animation: fadeIn 0.4s ease; }
-    .question-view.active { display: block; }
-    
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  const toggleNutri = (n) => {
+    setUser(prev => ({
+      ...prev,
+      nutrition: prev.nutrition.includes(n) ? prev.nutrition.filter(x => x !== n) : [...prev.nutrition, n]
+    }));
+  };
 
-    .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .q-step { font-size: 0.8rem; font-weight: 700; color: var(--brand-primary); text-transform: uppercase; letter-spacing: 1px; background: #e0f2fe; padding: 4px 8px; border-radius: 4px; }
-    
-    .q-text { font-size: 2rem; margin-bottom: 0.5rem; color: var(--brand-dark); }
-    .q-sub { color: var(--text-light); margin-bottom: 2rem; font-size: 1rem; }
-    
-    /* Options */
-    .option-grid { display: grid; gap: 0.8rem; }
-    
-    .option-btn {
-      background: #fff; border: 1px solid #cbd5e1; padding: 1.2rem 1.5rem; border-radius: 8px;
-      text-align: left; font-size: 1rem; font-weight: 500; color: var(--text-main);
-      cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 1rem;
-    }
-    
-    .option-btn:hover { border-color: var(--brand-primary); background: #f8fafc; }
-    
-    .option-btn.selected {
-      border-color: var(--brand-primary); background: #f0f9ff; color: var(--brand-dark);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-width: 2px; padding: 1.15rem 1.45rem; /* Adjust for border width */
-    }
-    
-    .checkbox {
-      width: 20px; height: 20px; border-radius: 4px; border: 2px solid #94a3b8;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .option-btn.selected .checkbox { border-color: var(--brand-primary); background: var(--brand-primary); }
-    .option-btn.selected .checkbox::after { content: '✓'; color: #fff; font-size: 0.8rem; font-weight: 900; }
-
-    /* Navigation */
-    .quiz-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; }
-    
-    .nav-btn {
-      background: var(--brand-dark); color: #fff; border: none; padding: 0.8rem 2rem;
-      border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 1rem; transition: 0.2s;
-    }
-    .nav-btn:hover { background: #334155; }
-    .nav-btn.back { background: transparent; color: var(--text-light); }
-    .nav-btn.back:hover { color: var(--brand-dark); }
-
-    /* ================= RESULTS PAGE ================= */
-    .results-container { display: none; background: #f8fafc; min-height: 100vh; }
-    .results-container.active { display: block; }
-
-    .results-header {
-      background: var(--brand-dark); color: #fff; padding: 6rem 1rem 5rem; text-align: center;
-    }
-    .results-header h1 { font-size: 3rem; margin-bottom: 1rem; color: #fff; }
-    .results-header p { color: #94a3b8; max-width: 600px; margin: 0 auto; font-size: 1.2rem; }
-
-    .results-body { max-width: 1000px; margin: -4rem auto 4rem; padding: 0 1rem; position: relative; z-index: 10; }
-
-    /* --- SNAPSHOT CHART --- */
-    .chart-card {
-      background: #fff; border-radius: 24px; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid #e2e8f0; margin-bottom: 3rem;
-    }
-    .chart-title { font-size: 1.5rem; margin-bottom: 2rem; color: var(--brand-dark); text-align: center; font-family: 'Playfair Display', serif; }
-    
-    .chart-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.5rem; align-items: end; height: 250px; padding-bottom: 1rem; border-bottom: 2px solid #e2e8f0; margin-bottom: 1rem; }
-    
-    .chart-col { display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
-    
-    .bar-group { display: flex; align-items: flex-end; gap: 8px; height: 100%; width: 60px; }
-    
-    .bar { width: 100%; border-radius: 4px 4px 0 0; position: relative; transition: height 1.5s ease-out; height: 0; }
-    .bar-gray { background: #cbd5e1; }
-    .bar-blue { background: var(--brand-primary); }
-    
-    .chart-label { text-align: center; font-size: 0.8rem; font-weight: 600; color: var(--text-main); margin-top: 10px; }
-    .chart-stat { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; }
-
-    /* Prescription Cards */
-    .results-section-title { font-size: 1.5rem; color: var(--brand-dark); margin: 3rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; display: flex; align-items: center; gap: 10px; }
-    
-    .prescription-list { display: grid; gap: 1.5rem; }
-    
-    .rx-item {
-      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 2rem; 
-      display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; transition: 0.3s;
-      position: relative; overflow: hidden;
-    }
-    .rx-item:hover { border-color: var(--brand-primary); box-shadow: var(--shadow-glow); transform: translateY(-3px); }
-    .rx-item::after {
-      content: 'EVIDENCE SUPPORTED'; position: absolute; top: 1rem; right: 1rem;
-      font-size: 0.6rem; font-weight: 800; color: #cbd5e1; letter-spacing: 1px; border: 1px solid #e2e8f0; padding: 2px 6px; border-radius: 4px;
-    }
-    .rx-icon { width: 60px; height: 60px; background: #f0f9ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--brand-primary); }
-    .rx-title { font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin: 0 0 0.5rem; }
-    .rx-mech { font-size: 0.75rem; font-weight: 700; color: var(--brand-primary); text-transform: uppercase; margin-bottom: 0.5rem; display: block; letter-spacing: 0.05em; }
-    .rx-desc { color: var(--text-main); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6; }
-    .citation-box { background: #f8fafc; padding: 0.8rem; border-radius: 6px; font-size: 0.75rem; color: var(--text-light); border-left: 3px solid var(--brand-gold); font-style: italic; display: flex; align-items: center; gap: 8px; }
-    .citation-box::before { content: '🔬'; font-style: normal; }
-
-    /* NUTRITION & SUPPS GRID */
-    .protocol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .protocol-card { background: #fff; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; }
-    .proto-header { font-weight: 700; color: var(--brand-dark); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
-    .proto-desc { font-size: 0.9rem; color: var(--text-light); }
-
-    .cta-section { text-align: center; margin-top: 4rem; background: var(--brand-dark); color: #fff; padding: 4rem 2rem; border-radius: 16px; }
-    .btn-final { background: var(--brand-gold); color: var(--brand-dark); padding: 1rem 3rem; border-radius: 6px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 1.5rem; transition: 0.2s; }
-    .btn-final:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(250, 204, 21, 0.4); }
-
-    @media (max-width: 768px) {
-      .start-screen { grid-template-columns: 1fr; }
-      .start-right { display: none; } /* Hide visual on mobile for cleaner flow */
-      .start-left { padding: 6rem 1.5rem 2rem; }
-      .rx-item { grid-template-columns: 1fr; }
-      .rx-icon { margin-bottom: 0.5rem; }
-      .chart-grid { gap: 0.5rem; }
-      .chart-label { font-size: 0.7rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <a href="index.html" class="logo">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      Olympian Health
-    </a>
-    <a href="index.html" class="back-link">Exit Assessment</a>
-  </header>
-
-  <!-- 1. START SCREEN -->
-  <section class="start-screen" id="startScreen">
-    <div class="start-left">
-      <span class="clinical-tag">Clinical Intake Tool</span>
-      <h1 class="start-title">Physiological Audit</h1>
-      <p class="start-desc">This assessment compares your health profile against 50+ clinical studies to generate a personalized "Movement Prescription."</p>
-      
-      <button class="btn-start" onclick="startQuiz()">
-        Start Evaluation <span style="font-size:1.2rem;">→</span>
-      </button>
-      
-      <div class="evidence-grid">
-        <div class="evidence-badge">CDC ALIGNED <span>Guidelines</span></div>
-        <div class="evidence-badge">WHO SUPPORTED <span>Evidence</span></div>
-        <div class="evidence-badge">NIH BACKED <span>Research</span></div>
-      </div>
-    </div>
-    
-    <div class="start-right">
-      <div class="start-right-content">
-        <div class="quote-card">
-          "If exercise were a pill, it would be the most widely prescribed drug in the world."
-          <span class="quote-author">— National Institute on Aging</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. QUIZ INTERFACE -->
-  <section class="quiz-container" id="quizInterface">
-    <div class="quiz-card">
-      <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
-      
-      <!-- Q1: Broad Category -->
-      <div class="question-view active" id="q1">
-        <div class="q-meta"><span class="q-step">Step 1 of 8</span></div>
-        <h2 class="q-text">What is your primary health priority?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="selectSingle(this, 'q1', 'metabolic')"><div class="checkbox"></div> Metabolic Health (Weight, Diabetes, Heart)</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q1', 'ortho')"><div class="checkbox"></div> Joint Pain & Mobility (Arthritis, Back, Knees)</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q1', 'neuro')"><div class="checkbox"></div> Brain & Balance (Memory, Fall Risk, Stroke)</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q1', 'energy')"><div class="checkbox"></div> Daily Energy & Vitality (Fatigue, Mood)</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="location.reload()">Cancel</button>
-          <button class="nav-btn" onclick="nextQ(2)">Next</button>
-        </div>
-      </div>
-
-      <!-- Q2: Conditions (Expanded) -->
-      <div class="question-view" id="q2">
-        <div class="q-meta"><span class="q-step">Step 2 of 8</span></div>
-        <h2 class="q-text">Do you manage any specific conditions?</h2>
-        <p class="q-sub">Select all that apply for a tailored protocol.</p>
-        <div class="option-grid" style="grid-template-columns: 1fr 1fr;">
-          <div class="option-btn" onclick="toggleMulti(this, 'diabetes')"><div class="checkbox"></div> Diabetes / Pre-Diabetes</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'hypertension')"><div class="checkbox"></div> High Blood Pressure</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'arthritis')"><div class="checkbox"></div> Arthritis (Osteo/Rheumatoid)</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'osteoporosis')"><div class="checkbox"></div> Osteoporosis / Bone Density</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'cancer')"><div class="checkbox"></div> Cancer History</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'heart')"><div class="checkbox"></div> Cardiovascular Disease</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(1)">Back</button>
-          <button class="nav-btn" onclick="nextQ(3)">Next</button>
-        </div>
-      </div>
-
-      <!-- Q3: "Silent" Symptoms -->
-      <div class="question-view" id="q3">
-        <div class="q-meta"><span class="q-step">Step 3 of 8</span></div>
-        <h2 class="q-text">Do you experience any "silent" symptoms?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="toggleMulti(this, 'brain_fog')"><div class="checkbox"></div> Brain Fog / Forgetfulness</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'digestion')"><div class="checkbox"></div> Digestive Issues / Constipation</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'sleep')"><div class="checkbox"></div> Poor Sleep Quality / Insomnia</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'stiffness')"><div class="checkbox"></div> Morning Stiffness (>30 mins)</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(2)">Back</button>
-          <button class="nav-btn" onclick="nextQ(4)">Next</button>
-        </div>
-      </div>
-
-      <!-- Q4: Nutrition Habits -->
-      <div class="question-view" id="q4">
-        <div class="q-meta"><span class="q-step">Step 4 of 8</span></div>
-        <h2 class="q-text">How would you describe your nutrition?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="selectSingle(this, 'q4', 'low_protein')"><div class="checkbox"></div> Low Appetite / Struggle to eat enough protein</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q4', 'high_sugar')"><div class="checkbox"></div> High Sugar / Carb cravings</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q4', 'balanced')"><div class="checkbox"></div> Balanced / Whole Foods</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q4', 'unsure')"><div class="checkbox"></div> Unsure / Needs Review</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(3)">Back</button>
-          <button class="nav-btn" onclick="nextQ(5)">Next</button>
-        </div>
-      </div>
-
-      <!-- Q5: Mental State -->
-      <div class="question-view" id="q5">
-        <div class="q-meta"><span class="q-step">Step 5 of 8</span></div>
-        <h2 class="q-text">How have you been feeling mentally?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="toggleMulti(this, 'anxiety')"><div class="checkbox"></div> Anxious / Worried</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'depression')"><div class="checkbox"></div> Low Mood / Depressed</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'lonely')"><div class="checkbox"></div> Isolated / Lonely</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'good')"><div class="checkbox"></div> Positive / Resilient</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(4)">Back</button>
-          <button class="nav-btn" onclick="nextQ(6)">Next</button>
-        </div>
-      </div>
-
-       <!-- Q6: Functional -->
-       <div class="question-view" id="q6">
-        <div class="q-meta"><span class="q-step">Step 6 of 8</span></div>
-        <h2 class="q-text">Do you struggle with daily tasks?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="toggleMulti(this, 'stairs')"><div class="checkbox"></div> Stairs are difficult</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'chair')"><div class="checkbox"></div> Getting out of low chairs</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'floor')"><div class="checkbox"></div> Getting up from the floor</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'none')"><div class="checkbox"></div> No issues</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(5)">Back</button>
-          <button class="nav-btn" onclick="nextQ(7)">Next</button>
-        </div>
-      </div>
-
-      <!-- Q7: Surgery History -->
-      <div class="question-view" id="q7">
-        <div class="q-meta"><span class="q-step">Step 7 of 8</span></div>
-        <h2 class="q-text">Any recent surgeries or injuries?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="toggleMulti(this, 'surgery_joint')"><div class="checkbox"></div> Joint Replacement (Hip/Knee)</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'surgery_cardio')"><div class="checkbox"></div> Cardiac Event / Surgery</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'injury_fall')"><div class="checkbox"></div> Fall / Fracture</div>
-          <div class="option-btn" onclick="toggleMulti(this, 'none')"><div class="checkbox"></div> None</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(6)">Back</button>
-          <button class="nav-btn" onclick="nextQ(8)">Next</button>
-        </div>
-      </div>
-
-      <!-- Q8: Goals -->
-      <div class="question-view" id="q8">
-        <div class="q-meta"><span class="q-step">Final Step</span></div>
-        <h2 class="q-text">What is your definition of success?</h2>
-        <div class="option-grid">
-          <div class="option-btn" onclick="selectSingle(this, 'q8', 'independence')"><div class="checkbox"></div> Living independently forever</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q8', 'painfree')"><div class="checkbox"></div> A life without daily pain</div>
-          <div class="option-btn" onclick="selectSingle(this, 'q8', 'energy')"><div class="checkbox"></div> Keeping up with grandkids</div>
-        </div>
-        <div class="quiz-nav">
-          <button class="nav-btn back" onclick="prevQ(7)">Back</button>
-          <button class="nav-btn" onclick="generateReport()">Generate Clinical Report</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 3. RESULTS DASHBOARD -->
-  <section class="results-container" id="results">
-    <div class="results-header">
-      <h1>Your Physiological Ledger</h1>
-      <p>We have analyzed your inputs against clinical benchmarks. Below is your personalized roadmap for systemic restoration.</p>
-    </div>
-
-    <div class="results-body">
-      
-      <!-- NEW: Clinical Snapshot Chart -->
-      <div class="chart-card">
-        <h3 class="chart-title">The Power of Movement: Clinical Data Snapshot</h3>
-        <div class="chart-grid">
-          <!-- 1. Mortality -->
-          <div class="chart-col">
-            <div class="bar-group">
-              <div class="bar bar-gray" style="height: 90%;">
-                <span class="chart-stat">High</span>
-              </div>
-              <div class="bar bar-blue" id="bar-mortality" style="height: 0%">
-                <span class="chart-stat">-50%</span>
-              </div>
+  // --- VIEW: THE IMPACT LANDING ---
+  const LandingPage = () => (
+    <div className="min-h-screen flex flex-col font-sans overflow-hidden bg-slate-950">
+      <div className="relative z-10 flex flex-col lg:grid lg:grid-cols-2 min-h-screen">
+        
+        {/* SIDE A: THE COST (DECAY) */}
+        <div className="p-10 lg:p-24 flex flex-col justify-center relative group overflow-hidden bg-slate-950">
+          <div className="absolute inset-0 bg-red-950/10 group-hover:bg-red-950/20 transition-all duration-700" />
+          <div className="relative z-10 space-y-8 animate-[slideLeft_1s_ease-out]">
+            <div className="inline-flex items-center gap-2 text-red-500 font-black text-[10px] uppercase tracking-[0.4em]">
+                <AlertTriangle className="w-4 h-4" /> The Risk of Inactivity
             </div>
-            <div class="chart-label">Mortality Risk</div>
-          </div>
-          
-          <!-- 2. Diabetes -->
-          <div class="chart-col">
-            <div class="bar-group">
-              <div class="bar bar-gray" style="height: 85%;"></div>
-              <div class="bar bar-blue" id="bar-diabetes" style="height: 0%">
-                <span class="chart-stat">-42%</span>
-              </div>
-            </div>
-            <div class="chart-label">Diabetes Risk</div>
-          </div>
-          
-          <!-- 3. Dementia -->
-          <div class="chart-col">
-            <div class="bar-group">
-              <div class="bar bar-gray" style="height: 80%;"></div>
-              <div class="bar bar-blue" id="bar-dementia" style="height: 0%">
-                <span class="chart-stat">-30%</span>
-              </div>
-            </div>
-            <div class="chart-label">Dementia Risk</div>
-          </div>
-          
-          <!-- 4. Falls -->
-          <div class="chart-col">
-            <div class="bar-group">
-              <div class="bar bar-gray" style="height: 85%;"></div>
-              <div class="bar bar-blue" id="bar-falls" style="height: 0%">
-                <span class="chart-stat">-34%</span>
-              </div>
-            </div>
-            <div class="chart-label">Fall Risk</div>
-          </div>
-        </div>
-        <p style="text-align:center; font-size:0.8rem; color:#94a3b8; margin-top:1rem;">*Based on sedentary vs. active populations (CDC/NIH Data)</p>
-      </div>
-
-      <!-- Systemic Upgrades -->
-      <div class="results-section-title">
-        <span style="background:var(--success); width:10px; height:10px; border-radius:50%; display:inline-block;"></span> Systemic Upgrades
-      </div>
-      <div class="prescription-list" id="rxList">
-        <!-- JS Injected -->
-      </div>
-
-      <!-- Nutritional Protocol -->
-      <div class="results-section-title">
-        <span style="background:var(--brand-gold); width:10px; height:10px; border-radius:50%; display:inline-block;"></span> Nutritional & Supplementation Protocol
-      </div>
-      <div class="protocol-grid" id="nutritionList">
-        <!-- JS Injected -->
-      </div>
-      
-      <!-- Targeted Interventions -->
-      <div class="results-section-title">
-        <span style="background:var(--brand-primary); width:10px; height:10px; border-radius:50%; display:inline-block;"></span> Targeted Interventions
-      </div>
-      <div class="prescription-list" id="targetedList">
-        <!-- JS Injected -->
-      </div>
-
-      <div class="cta-section">
-        <h2 style="color:#fff;">This isn't just data. It's your future.</h2>
-        <p style="color:#cbd5e1; max-width:600px; margin:1rem auto;">You have the potential to reverse biological age markers by up to 9 years. We have the plan to make it happen.</p>
-        <a href="booking.html" class="btn-final">Schedule Your Clinical Intake ($45)</a>
-      </div>
-
-    </div>
-  </section>
-
-  <script>
-    // --- DATA STORE ---
-    const user = {
-      conditions: [],
-      nutrition: ''
-    };
-
-    const database = {
-      // SYSTEMIC
-      brain_fog: {
-        type: 'systemic', icon: '🧠', title: 'Neurogenesis Activation', mech: 'BDNF & VEGF Release',
-        text: 'Exercise increases blood flow to the hippocampus by 20% and stimulates the growth of new brain cells, clearing "fog" and sharpening recall.',
-        cite: 'Erickson et al., PNAS (2011)'
-      },
-      sleep: {
-        type: 'systemic', icon: '😴', title: 'Adenosine Clearance', mech: 'Sleep Pressure Regulation',
-        text: 'Physical fatigue builds healthy "sleep pressure" (adenosine). Studies show active adults fall asleep 55% faster and spend more time in deep restorative sleep.',
-        cite: 'Kline et al., Sleep Med Rev (2011)'
-      },
-      anxiety: {
-        type: 'systemic', icon: '😌', title: 'Cortisol Regulation', mech: 'HPA Axis Dampening',
-        text: 'Exercise burns off excess adrenaline and cortisol. It is clinically proven to be as effective as SSRIs for mild-to-moderate anxiety and depression.',
-        cite: 'Blumenthal et al., Arch Intern Med (1999)'
-      },
-      
-      // TARGETED
-      diabetes: {
-        type: 'targeted', icon: '🩸', title: 'Glucose Disposal System', mech: 'GLUT4 Translocation',
-        text: 'Muscle contraction opens cellular doors for sugar without insulin. This "invisible insulin" effect lasts 48 hours, lowering A1C significantly.',
-        cite: 'Diabetes Prevention Program, NEJM'
-      },
-      arthritis: {
-        type: 'targeted', icon: '🦴', title: 'Joint Lubrication Protocol', mech: 'Synovial Fluid Pumping',
-        text: 'Movement pumps nutrient-rich fluid into the cartilage sponge. This mechanical lubrication reduces stiffness more effectively than NSAIDs long-term.',
-        cite: 'Moseng et al., BJSM (2017)'
-      },
-      osteoporosis: {
-        type: 'targeted', icon: '🏗️', title: 'Bone Remodeling', mech: 'Osteoblast Stimulation',
-        text: 'Bones only stay dense if stressed. Axial loading (lifting) signals osteoblasts to lay down new bone matrix, halting density loss.',
-        cite: 'Zhao et al., Sports Med (2014)'
-      },
-      hypertension: {
-        type: 'targeted', icon: '❤️', title: 'Vascular Elasticity', mech: 'Nitric Oxide Release',
-        text: 'Exercise shears artery walls, releasing Nitric Oxide which relaxes vessels. This can lower resting blood pressure by 8-10 mmHg.',
-        cite: 'Pescatello et al., ACSM'
-      },
-      
-      // NUTRITION & SUPPS
-      low_protein: {
-        type: 'nutrition', title: 'Protein Pacing Strategy', 
-        desc: 'To combat Sarcopenia (muscle loss), we need to spike protein synthesis 3-4 times a day. Target: 30g protein at breakfast is critical.'
-      },
-      digestion: {
-        type: 'nutrition', title: 'Motility Protocol',
-        desc: 'Walking stimulates peristalsis (gut movement). Combined with hydration, this is the first-line treatment for age-related constipation.'
-      },
-      fatigue: {
-        type: 'supp', title: 'Energy Stack: Creatine + B12',
-        desc: 'Creatine Monohydrate (5g) isn\'t just for muscles; it fuels the brain and reduces mental fatigue. B12 supports nerve function.'
-      },
-      stiffness: {
-        type: 'supp', title: 'Anti-Inflammatory Stack',
-        desc: 'Omega-3 Fatty Acids (2g EPA/DHA) and Curcumin reduce systemic inflammation markers like CRP, easing morning stiffness.'
-      }
-    };
-
-    // --- NAVIGATION ---
-    function startQuiz() {
-      document.getElementById('startScreen').style.display = 'none';
-      document.getElementById('quizInterface').classList.add('active');
-    }
-
-    function nextQ(num) {
-      document.querySelectorAll('.question-view').forEach(el => el.classList.remove('active'));
-      document.getElementById('q'+num).classList.add('active');
-      document.getElementById('progressBar').style.width = (num * 12.5) + '%';
-    }
-    function prevQ(num) {
-      document.querySelectorAll('.question-view').forEach(el => el.classList.remove('active'));
-      document.getElementById('q'+num).classList.add('active');
-      document.getElementById('progressBar').style.width = (num * 12.5) + '%';
-    }
-
-    function toggleTooltip(id) {
-      const el = document.getElementById(id);
-      el.style.display = el.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // --- SELECTION ---
-    function selectSingle(btn, qId, val) {
-      const parent = btn.parentElement;
-      parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      if(qId === 'q4') user.nutrition = val; // Track nutrition answer
-    }
-
-    function toggleMulti(btn, val) {
-      btn.classList.toggle('selected');
-      if(user.conditions.includes(val)) {
-        user.conditions = user.conditions.filter(i => i !== val);
-      } else {
-        user.conditions.push(val);
-      }
-    }
-
-    // --- RESULTS GENERATION ---
-    function generateReport() {
-      document.getElementById('quizInterface').classList.remove('active');
-      document.getElementById('results').classList.add('active');
-      window.scrollTo(0,0);
-
-      // Containers
-      const sysList = document.getElementById('rxList');
-      const targList = document.getElementById('targetedList');
-      const nutriList = document.getElementById('nutritionList');
-      
-      sysList.innerHTML = '';
-      targList.innerHTML = '';
-      nutriList.innerHTML = '';
-
-      // 1. Animate Charts
-      setTimeout(() => {
-        document.getElementById('bar-mortality').style.height = '45%';
-        document.getElementById('bar-diabetes').style.height = '50%';
-        document.getElementById('bar-dementia').style.height = '55%';
-        document.getElementById('bar-falls').style.height = '52%';
-      }, 500);
-
-      // 2. Always add General Longevity Card
-      const genHtml = `
-        <div class="rx-item">
-          <div class="rx-icon">🧬</div>
-          <div class="rx-content">
-            <h3 class="rx-title">Cellular Age Reversal</h3>
-            <span class="rx-mech">Mechanism: Telomere Lengthening</span>
-            <p class="rx-desc">Highly active adults have significantly longer telomeres (DNA caps), equating to a biological age ~9 years younger than sedentary peers.</p>
-            <div class="citation-box">Tucker, Prev Med (2017)</div>
-          </div>
-        </div>
-      `;
-      sysList.insertAdjacentHTML('beforeend', genHtml);
-
-      // 3. Map Conditions
-      user.conditions.forEach(cond => {
-        if(database[cond]) {
-          const item = database[cond];
-          
-          if(item.type === 'systemic' || item.type === 'targeted') {
-            const html = `
-              <div class="rx-item">
-                <div class="rx-icon">${item.icon}</div>
-                <div class="rx-content">
-                  <h3 class="rx-title">${item.title}</h3>
-                  <span class="rx-mech">Mechanism: ${item.mech}</span>
-                  <p class="rx-desc">${item.text}</p>
-                  <div class="citation-box">${item.cite}</div>
+            <h2 className="text-4xl lg:text-7xl font-black text-white leading-tight">
+                The Cost of <span className="text-red-500">Stagnation.</span>
+            </h2>
+            <div className="space-y-4 max-w-lg">
+                <p className="text-slate-400 text-lg leading-relaxed">
+                    The CDC and WHO classify inactivity as a <strong className="text-white">Global Emergency.</strong> 
+                    Without movement, the body enters a state of rapid decay:
+                </p>
+                <div className="space-y-3 pt-4">
+                    <div className="flex gap-4 items-center text-slate-300">
+                        <div className="w-2 h-2 rounded-full bg-red-500" />
+                        <span>#3 Leading Cause of Premature Death</span>
+                    </div>
+                    <div className="flex gap-4 items-center text-slate-300">
+                        <div className="w-2 h-2 rounded-full bg-red-500" />
+                        <span>$117 Billion in annual healthcare waste</span>
+                    </div>
+                    <div className="flex gap-4 items-center text-slate-300">
+                        <div className="w-2 h-2 rounded-full bg-red-500" />
+                        <span>Increased risk of Nursing Home Admission</span>
+                    </div>
                 </div>
-              </div>
-            `;
-            if(item.type === 'systemic') sysList.insertAdjacentHTML('beforeend', html);
-            else targList.insertAdjacentHTML('beforeend', html);
-          } 
-          else if (item.type === 'nutrition' || item.type === 'supp') {
-             // handled below
-             const html = `
-              <div class="protocol-card">
-                <div class="proto-header">${item.type === 'supp' ? '💊' : '🥗'} ${item.title}</div>
-                <p class="proto-desc">${item.desc}</p>
-              </div>
-            `;
-            nutriList.insertAdjacentHTML('beforeend', html);
-          }
-        }
-      });
+            </div>
+          </div>
+        </div>
 
-      // 4. Map Nutrition specific Q4
-      if(user.nutrition === 'low_protein') {
-         const html = `
-              <div class="protocol-card">
-                <div class="proto-header">🥩 Anabolic Resistance Protocol</div>
-                <p class="proto-desc">Seniors need MORE protein than young adults to trigger muscle repair. We will aim for 30g per meal to overcome this threshold.</p>
-              </div>
-            `;
-         nutriList.insertAdjacentHTML('beforeend', html);
-      }
-      
-      // 5. Default Supplement if empty
-      if(nutriList.innerHTML === '') {
-         const html = `
-              <div class="protocol-card">
-                <div class="proto-header">💊 The "Big 3" Foundation</div>
-                <p class="proto-desc">Vitamin D3 (Bone), Magnesium (Sleep/Muscle), and Creatine (Brain/Strength) form the evidence-based baseline for healthy aging.</p>
-              </div>
-            `;
-         nutriList.insertAdjacentHTML('beforeend', html);
-      }
+        {/* SIDE B: THE CATALYST (RECLAMATION) */}
+        <div className="p-10 lg:p-24 flex flex-col justify-center bg-orange-500 relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-500 transition-all duration-1000 opacity-90" />
+          <div className="relative z-10 space-y-8 animate-[slideRight_1s_ease-out]">
+            <div className="inline-flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.4em]">
+                <Sparkles className="w-4 h-4" /> The Clinical Catalyst
+            </div>
+            <h2 className="text-4xl lg:text-7xl font-black text-slate-900 leading-tight">
+                The Power of <span className="text-white">Intent.</span>
+            </h2>
+            <div className="space-y-4 max-w-lg">
+                <p className="text-orange-950 text-lg leading-relaxed">
+                    Intentional activity is the most potent intervention in modern medicine.
+                    A few targeted minutes can <strong className="text-white">Reverse the Clock:</strong>
+                </p>
+                <div className="space-y-3 pt-4">
+                    <div className="flex gap-4 items-center text-white font-bold">
+                        <div className="bg-slate-900/10 p-1 rounded-full"><CheckCircle2 className="w-5 h-5 text-slate-900" /></div>
+                        <span>+4.2 Years of high-quality life gained</span>
+                    </div>
+                    <div className="flex gap-4 items-center text-white font-bold">
+                        <div className="bg-slate-900/10 p-1 rounded-full"><CheckCircle2 className="w-5 h-5 text-slate-900" /></div>
+                        <span>58% Reduction in Diabetes onset</span>
+                    </div>
+                    <div className="flex gap-4 items-center text-white font-bold">
+                        <div className="bg-slate-900/10 p-1 rounded-full"><CheckCircle2 className="w-5 h-5 text-slate-900" /></div>
+                        <span>9-Year biological DNA reset</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        {/* STRIKING PIVOT BUTTON */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full flex justify-center px-6">
+            <button 
+                onClick={() => setStep(1)}
+                className="group relative flex items-center justify-between gap-12 bg-white text-slate-900 p-2 pl-10 pr-2 rounded-full shadow-[0_0_50px_rgba(0,0,0,0.3)] hover:scale-105 transition-all duration-500"
+            >
+                <span className="text-lg lg:text-2xl font-black tracking-tighter">Learn how activity can help you</span>
+                <div className="bg-slate-900 p-6 rounded-full text-white group-hover:bg-orange-500 transition-colors">
+                    <ArrowRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
+                </div>
+                <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-ping pointer-events-none" />
+            </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const StepCard = ({ tag, title, desc, children, onNext, onBack }) => (
+    <div className="min-h-screen pt-24 pb-20 px-6 bg-[#fffdfa] flex flex-col items-center">
+      <div className="max-w-4xl w-full bg-white rounded-[56px] p-8 md:p-20 shadow-2xl border border-slate-100 animate-[popIn_0.6s_cubic-bezier(0.175,0.885,0.32,1.275)]">
+        <span className="inline-block text-orange-500 font-black uppercase text-[10px] tracking-[0.3em] mb-6 bg-orange-50 px-4 py-1.5 rounded-full">{tag}</span>
+        <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter leading-[1.05]">{title}</h2>
+        <p className="text-lg text-slate-500 mb-12 font-light leading-relaxed max-w-2xl">{desc}</p>
+        
+        <div className="mb-16">
+          {children}
+        </div>
+
+        <div className="flex justify-between items-center pt-10 border-t border-slate-50">
+          <button onClick={onBack} className="text-slate-300 font-bold hover:text-slate-900 transition-colors uppercase text-xs tracking-widest flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" /> Previous
+          </button>
+          <button 
+            onClick={onNext}
+            className="px-10 py-5 bg-slate-900 text-white rounded-full font-black text-lg shadow-xl shadow-slate-200 transition-all hover:bg-orange-500 hover:-translate-y-1 flex items-center gap-3"
+          >
+            Continue Discovery <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // --- SELECTION SCREENS ---
+  const PrioritySelection = () => (
+    <StepCard tag="Discovery 01" title="Select Your Clinical Orientation" desc="This defines the foundational research database for your analysis." onNext={() => user.track && setStep(2)} onBack={() => setStep(0)}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {[
+          { id: 'metabolic', label: 'Metabolic & Cardiovascular Health' },
+          { id: 'ortho', label: 'Orthopedic & Pain Restoration' },
+          { id: 'neuro', label: 'Cognitive & Neurological Vitality' },
+          { id: 'independence', label: 'Independence & Kinetic Power' }
+        ].map(t => (
+          <button key={t.id} onClick={() => setUser({ ...user, track: t.id })} className={`p-8 rounded-[32px] border-2 transition-all font-black text-xl ${user.track === t.id ? 'border-orange-500 bg-orange-50 shadow-lg' : 'border-slate-50 bg-slate-50 text-slate-400 hover:border-orange-200'}`}>{t.label}</button>
+        ))}
+      </div>
+    </StepCard>
+  );
+
+  const HealthSnapshot = () => {
+    const options = {
+      metabolic: ["Insulin Resistance", "Elevated HbA1c", "Visceral Adiposity", "Statin Dependency", "PM Fatigue", "Vascular Stiffness", "Hypertension", "Dyslipidemia"],
+      ortho: ["Knee Osteoarthritis", "Lumbar/L4-L5 Pain", "Morning Stiffness", "NSAID Dependency", "Shoulder Impingement", "Hip Labral Issues", "Bilateral Foot Pain", "Reduced Grip Strength"],
+      neuro: ["Brain Fog", "Memory Lapses", "Mild Cognitive Diagnosis", "Balance Instability", "Fear of Falling", "Poor Sleep Architecture", "Neural Fatigue", "Dizziness on Standing"],
+      independence: ["Stair Ascent Difficulty", "Sit-to-Stand Weakness", "Reduced Walking Velocity", "Grip Strength Decline", "Housework Fatigue", "Sarcopenic Indicators", "Unsteady Ground Issues"]
+    };
+    return (
+      <StepCard tag="Discovery 02" title="Biomarker Check-in" desc="Which specific hurdles would you like to mitigate?" onNext={() => setStep(3)} onBack={() => setStep(1)}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {options[user.track]?.map(opt => (
+            <button key={opt} onClick={() => toggleHealth(opt)} className={`p-5 rounded-2xl border-2 transition-all font-bold text-xs uppercase tracking-widest ${user.health.includes(opt) ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-50 bg-slate-50 text-slate-400 hover:border-orange-200'}`}>{opt}</button>
+          ))}
+        </div>
+      </StepCard>
+    );
+  };
+
+  const NutritionAudit = () => (
+    <StepCard tag="Discovery 03" title="Biochemical Variables" desc="We need to identify the environmental barriers in your diet and hydration." onNext={() => setStep(4)} onBack={() => setStep(2)}>
+      <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-amber-50 p-6 rounded-[32px] border border-amber-100">
+                <label className="block text-amber-900 font-black uppercase text-[10px] tracking-widest mb-4"><Scale className="inline w-3 h-3 mr-1"/> Anabolic Status</label>
+                <div className="grid gap-2">
+                    {["Cereal/Toast dominant meals", "Struggle with protein intake", "Protein with every meal"].map(o => (
+                        <button key={o} onClick={() => toggleNutri(o)} className={`p-4 rounded-xl border-2 font-bold text-xs text-left ${user.nutrition.includes(o) ? 'border-orange-500 bg-white' : 'border-amber-100 bg-white/50 text-amber-900/50'}`}>{o}</button>
+                    ))}
+                </div>
+            </div>
+            <div className="bg-blue-50 p-6 rounded-[32px] border border-blue-100">
+                <label className="block text-blue-900 font-black uppercase text-[10px] tracking-widest mb-4"><Droplets className="inline w-3 h-3 mr-1"/> Hydration Metrics</label>
+                <div className="grid gap-2">
+                    {["Absent thirst signals", "Drink < 3 glasses daily", "Consistent 8+ glasses daily"].map(o => (
+                        <button key={o} onClick={() => toggleNutri(o)} className={`p-4 rounded-xl border-2 font-bold text-xs text-left ${user.nutrition.includes(o) ? 'border-blue-500 bg-white' : 'border-blue-100 bg-white/50 text-blue-900/50'}`}>{o}</button>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <div className="bg-emerald-50 p-6 rounded-[32px] border border-emerald-100">
+            <label className="block text-emerald-900 font-black uppercase text-[10px] tracking-widest mb-4">Glycemic Buffering</label>
+            <div className="grid grid-cols-2 gap-2">
+                {["Processed food focus", "Rarely eat plants/fiber", "Daily whole foods", "Targeted fiber intake"].map(o => (
+                    <button key={o} onClick={() => toggleNutri(o)} className={`p-4 rounded-xl border-2 font-bold text-xs text-left ${user.nutrition.includes(o) ? 'border-emerald-500 bg-white' : 'border-emerald-100 bg-white/50 text-emerald-900/50'}`}>{o}</button>
+                ))}
+            </div>
+        </div>
+      </div>
+    </StepCard>
+  );
+
+  const HabitsHub = () => (
+    <StepCard tag="Discovery 04" title="Final Recovery Context" desc="Habits like sleep dictate the speed of your physiological response." onNext={() => setStep(5)} onBack={() => setStep(3)}>
+        <div className="grid grid-cols-2 gap-4">
+            <button onClick={() => selectHabit('sleep', 'poor', 'Fragmented Sleep')} className={`p-10 rounded-[40px] border-2 font-black ${user.habits.sleep?.val === 'poor' ? 'border-indigo-500 bg-indigo-50' : 'border-slate-50'}`}>I struggle with deep rest</button>
+            <button onClick={() => selectHabit('sleep', 'good', 'Restorative Sleep')} className={`p-10 rounded-[40px] border-2 font-black ${user.habits.sleep?.val === 'good' ? 'border-indigo-500 bg-indigo-50' : 'border-slate-50'}`}>I sleep soundly</button>
+        </div>
+    </StepCard>
+  );
+
+  // --- VIEW: RESULTS MAP ---
+  const ResultsMap = () => {
+    // Generate results safely
+    const blocks = [];
+    user.health.forEach(h => { 
+      if(researchDB[h]) blocks.push({ label: h, data: researchDB[h] }); 
+    });
+    
+    if(user.nutrition.includes("Cereal/Toast dominant meals") && researchDB.anabolic_low) {
+      blocks.push({ label: "Anabolic Resistance", data: researchDB.anabolic_low });
     }
-  </script>
-</body>
-</html>
+    if(user.nutrition.includes("Absent thirst signals") && researchDB.dehydration) {
+      blocks.push({ label: "Hydration", data: researchDB.dehydration });
+    }
+    if(user.nutrition.includes("Rarely eat plants/fiber") && researchDB.low_fiber) {
+      blocks.push({ label: "Fiber", data: researchDB.low_fiber });
+    }
+
+    // Universal list (ensuring items exist in DB)
+    const universal = [
+      researchDB.longevity, 
+      researchDB.anxiety, 
+      researchDB.telomeres, 
+      researchDB.vascular
+    ].filter(Boolean);
+
+    return (
+      <div className="bg-[#fffcf8] min-h-screen pb-32">
+        <div className="bg-slate-900 text-white py-24 text-center px-6 relative overflow-hidden no-print">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent pointer-events-none opacity-50" />
+          <h1 className="text-6xl font-black mb-4 tracking-tighter">Your Physiological Map</h1>
+          <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto uppercase tracking-widest text-[10px] font-mono">Analysis ID: OHS-{Math.floor(Math.random()*90000)}</p>
+        </div>
+
+        <div className="max-w-6xl mx-auto -mt-12 px-6">
+          <div className="bg-white rounded-[64px] p-8 md:p-24 shadow-2xl border border-slate-50">
+            <div className="flex justify-between items-center mb-16 border-b border-slate-100 pb-8 font-black text-slate-300 text-xs uppercase tracking-[0.3em]">
+              <span>Surveillance Ledger: Research-Set-V2</span>
+              <span>{new Date().toLocaleDateString()}</span>
+            </div>
+
+            {/* Top Outcomes Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+                <div className="bg-orange-50 p-10 rounded-[48px] text-center border border-orange-100">
+                    <span className="block text-6xl font-black text-slate-900 mb-2">+4.2y</span>
+                    <p className="text-[10px] font-black text-orange-600 uppercase tracking-widest">Added Life quality extension</p>
+                </div>
+                <div className="bg-blue-50 p-10 rounded-[48px] text-center border border-blue-100">
+                    <span className="block text-6xl font-black text-slate-900 mb-2">+2%</span>
+                    <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Hippocampal volume recovery</p>
+                </div>
+                <div className="bg-emerald-50 p-10 rounded-[48px] text-center border border-emerald-100">
+                    <span className="block text-6xl font-black text-slate-900 mb-2">58%</span>
+                    <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Metabolic risk offset</p>
+                </div>
+            </div>
+
+            <h2 className="text-3xl font-black mb-12 text-slate-900 flex items-center gap-4">
+              <div className="w-10 h-3 bg-orange-500 rounded-full" />
+              Personalized Research Correlations
+            </h2>
+            <div className="space-y-12 mb-32">
+                {blocks.length > 0 ? blocks.map((b, i) => (
+                    <div key={i} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 animate-[rise-fade_0.6s_ease-out_forwards]" style={{ animationDelay: `${i*0.1}s` }}>
+                        <div className="flex justify-between items-start mb-6">
+                            <span className="bg-white border border-slate-200 px-4 py-1 rounded-full text-[10px] font-black text-slate-400 uppercase tracking-widest">Target: {b.label}</span>
+                            <Microscope className="w-5 h-5 text-orange-500" />
+                        </div>
+                        <h3 className="text-2xl font-black text-slate-900 mb-4">{b.data.title}</h3>
+                        <p className="text-xl text-slate-600 font-light mb-8 leading-relaxed">{b.data.text}</p>
+                        <div className="text-[9px] font-mono text-slate-400 uppercase border-t border-slate-200/50 pt-4 italic tracking-widest">Ref: {b.data.cite}</div>
+                    </div>
+                )) : (
+                    <div className="p-10 bg-slate-50 rounded-[40px] text-center italic text-slate-400">No specific hurdles selected. Universal benefits applied.</div>
+                )}
+            </div>
+
+            <div className="pt-20 border-t border-slate-100">
+                <h2 className="text-3xl font-black mb-12 text-slate-900 flex items-center gap-4">
+                  <div className="w-10 h-3 bg-blue-500 rounded-full" />
+                  Universal Vitality Surveillance
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+                  {universal.map((c, i) => (
+                    <div key={i} className="p-10 bg-slate-50 rounded-[48px] border border-slate-100">
+                      {c.icon}
+                      <h3 className="text-xl font-black text-slate-900 mt-6 mb-3">{c.title}</h3>
+                      <p className="text-slate-600 font-light mb-6">{c.text}</p>
+                      <span className="text-[9px] text-slate-400 font-mono block border-t border-slate-200/50 pt-4 italic uppercase">{c.cite}</span>
+                    </div>
+                  ))}
+                </div>
+            </div>
+
+            <div className="bg-slate-100 p-12 md:p-20 rounded-[56px] mb-20">
+                <h3 className="text-slate-900 font-black uppercase text-sm tracking-widest mb-10 border-b border-slate-200 pb-4">Patient Assessment Input Summary</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase mb-6 tracking-widest">Clinical Markers Identified:</p>
+                        <ul className="space-y-4">
+                            {user.health.length > 0 ? user.health.map((h, i) => (
+                                <li key={i} className="flex items-center gap-4 text-slate-600 font-bold">
+                                    <div className="w-2 h-2 rounded-full bg-orange-500" /> {h}
+                                </li>
+                            )) : <li className="text-slate-400 italic font-light">None identified</li>}
+                        </ul>
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase mb-6 tracking-widest">Lifestyle & Nutrition Context:</p>
+                        <ul className="space-y-4">
+                            {user.nutrition.map((n, i) => (
+                                <li key={i} className="flex items-center gap-4 text-slate-600 font-bold italic">
+                                    <div className="w-2 h-2 rounded-full bg-blue-500" /> {n}
+                                </li>
+                            ))}
+                            {Object.entries(user.habits).map(([k, o], i) => (
+                                <li key={i} className="flex items-center gap-4 text-slate-600 font-bold italic">
+                                    <div className="w-2 h-2 rounded-full bg-indigo-500" /> {o.label}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <details className="bg-slate-900 rounded-[32px] p-8 md:p-12 mb-20 group transition-all duration-500 cursor-pointer no-print">
+                <summary className="list-none flex justify-between items-center text-white font-black uppercase tracking-[0.3em] text-sm">
+                    Clinical Reference Registry (Works Cited)
+                    <ChevronDown className="w-5 h-5 text-orange-500 group-open:rotate-180 transition-transform" />
+                </summary>
+                <ul className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 font-mono text-[9px] md:text-[11px] leading-snug uppercase tracking-wider text-slate-400 border-t border-white/10 pt-10">
+                    <li>• Strain, T., et al. (2024). BJSM. All-Cause Mortality Advantage.</li>
+                    <li>• DPP Research Group. (2002). NEJM. Metabolic risk mitigation.</li>
+                    <li>• Erickson, K. I., et al. (2011). PNAS. Brain regeneration metrics.</li>
+                    <li>• Wang, Y., et al. (2024). PMC. Functional disability avoidance.</li>
+                    <li>• Stevens, J. A., & Burns, E. R. (2015). CDC Compendium of Falls.</li>
+                    <li>• Tucker, L. A. (2017). Preventive Med. Telomere length & DNA Age.</li>
+                    <li>• Lee, D. H., et al. (2022). Circulation. Cardiovascular Mortality.</li>
+                    <li>• Svensson, M., et al. (2021). Frontiers. Anxiety long-term risk.</li>
+                    <li>• JOSPT. (2022). Exercise vs Pharmacology for Osteoarthritis.</li>
+                    <li>• ESPEN. (2014). Clinical Nutrition and Metabolic guidelines.</li>
+                </ul>
+            </details>
+
+            <div className="mt-20 flex flex-col md:flex-row justify-center gap-6 no-print">
+              <button onClick={() => window.print()} className="px-12 py-6 bg-slate-900 text-white rounded-full font-black text-lg shadow-2xl hover:bg-orange-500 transition-all flex items-center gap-4">
+                <Printer className="w-6 h-6" /> Export Map for Physician Review
+              </button>
+              <a href="booking.html" className="px-12 py-6 bg-orange-500 text-white rounded-full font-black text-lg shadow-2xl hover:bg-orange-600 transition-all text-center">
+                Secure Priority Consultation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="selection:bg-orange-200 selection:text-orange-900 scroll-smooth">
+      {step > 0 && step < 5 && (
+        <div className="fixed top-0 left-0 w-full h-2.5 bg-slate-100 z-[1100] no-print">
+          <div className="h-full bg-orange-500 transition-all duration-1000" style={{ width: `${progress}%` }} />
+        </div>
+      )}
+
+      {step === 0 && <LandingPage />}
+      {step === 1 && <PrioritySelection />}
+      {step === 2 && <HealthSnapshot />}
+      {step === 3 && <NutritionAudit />}
+      {step === 4 && <HabitsHub />}
+      {step === 5 && <ResultsMap />}
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes popIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+        @keyframes slideLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes rise-fade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media print {
+          .no-print { display: none !important; }
+          body { background: white !important; margin: 0 !important; padding: 0 !important; }
+          .bg-slate-900 { background: white !important; color: black !important; border-bottom: 2px solid black !important; padding: 20px 0 !important; }
+          .bg-white { border: none !important; box-shadow: none !important; }
+          .rounded-\\[64px\\] { border-radius: 0 !important; }
+          .map-container { margin-top: 0 !important; }
+          .results-hero h1 { color: black !important; }
+          .bg-orange-50, .bg-blue-50, .bg-emerald-50, .bg-slate-50, .bg-slate-100 { background: white !important; border: 1px solid #eee !important; }
+          .shadow-2xl { box-shadow: none !important; }
+          details { border: 1px solid #eee !important; background: white !important; display: block !important; }
+          details summary { color: black !important; }
+        }
+      `}} />
+    </div>
+  );
+}
