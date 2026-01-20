@@ -2,59 +2,165 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About | Olympian Health Solutions</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story | Olympian Health Solutions</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-joy: #f59e0b; 
+      --bg-warm: #fffdfa;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --card-white: #ffffff;
+      --shadow-joy: 0 20px 25px -5px rgba(245, 158, 11, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      background-color: var(--bg-warm); 
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 800; margin-top: 0; }
+
+    /* === HEADER === */
+    header {
+      padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(255, 253, 250, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+    }
+    .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary-joy); text-decoration: none; }
+    .nav-links a { margin-left: 2rem; text-decoration: none; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
+    .nav-links a:hover { color: var(--primary-joy); }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 10rem 1.5rem 6rem; }
+
+    /* === STORY SECTION === */
+    .story-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; margin-bottom: 8rem; }
+    .founder-image-wrap { position: relative; border-radius: 40px; overflow: hidden; box-shadow: var(--shadow-joy); transform: rotate(-2deg); transition: transform 0.5s; }
+    .founder-image-wrap:hover { transform: rotate(0deg) scale(1.02); }
+    .founder-image-wrap img { width: 100%; display: block; border: 10px solid white; }
+    
+    .story-content h1 { font-size: 3.5rem; letter-spacing: -2px; line-height: 1; margin-bottom: 2rem; }
+    .story-content p { font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-bottom: 1.5rem; }
+
+    /* === VALUE PILLARS === */
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 10rem; }
+    .pillar-card { background: #fff; padding: 2.5rem; border-radius: 32px; border: 1px solid #f1f5f9; text-align: center; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .pillar-card:hover { transform: scale(1.05); background: #fffdf5; border-color: var(--primary-joy); }
+    .pillar-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .pillar-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .pillar-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* === MISSION SECTION === */
+    .mission-section { background: #fefce8; border: 1px solid #fef3c7; border-radius: 56px; padding: 5rem; text-align: center; position: relative; overflow: hidden; }
+    .mission-section::after { content: "✨"; position: absolute; font-size: 10rem; opacity: 0.05; right: -2rem; bottom: -2rem; }
+    .mission-section h2 { font-size: 3rem; margin-bottom: 2rem; }
+    .mission-text { font-size: 1.5rem; font-weight: 300; max-width: 800px; margin: 0 auto; color: #92400e; }
+
+    /* === ANIMATIONS === */
+    .animate-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .story-layout { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .mission-section { padding: 3rem 1.5rem; }
+      .container { padding-top: 8rem; }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER / NAV -->
+
   <header>
-    <nav class="navbar">
-      <div class="logo">Olympian Health Solutions</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="telehealth.html">Telehealth</a></li>
-        <li><a href="in-home.html">In-Home</a></li>
-        <li><a href="in-clinic.html">In-Clinic</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="booking.html" class="cta-btn">Book Now</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <a href="index.html" class="logo">OLYMPIAN</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" style="color: var(--primary-joy)">About</a>
+      <a href="education.html">Science</a>
+      <a href="exercisequiz.html">Assessment</a>
+      <a href="booking.html">Book Now</a>
     </nav>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="page-content">
-    <h1>About Olympian Health Solutions</h1>
-    <p>
-      Olympian Health Solutions was founded by a Doctor of Physical Therapy student, certified personal trainer, and nutrition coach with a passion for bringing clinical-grade exercise interventions to individuals at home or online.
-    </p>
-    <p>
-      With a background in exercise physiology and pain science research, our approach integrates the latest scientific evidence to create programs that address not only fitness goals, but also chronic conditions, post-injury rehabilitation, and functional independence for at-risk populations.
-    </p>
+  <div class="container">
+    <section class="story-layout">
+      <div class="founder-image-wrap animate-in">
+        <!-- Replace with real founder photo if available -->
+        <img src="https://via.placeholder.com/600x800?text=Zeuse+Valentine" alt="Zeuse Valentine">
+        <div style="position: absolute; bottom: 2rem; left: 2rem; background: white; padding: 1rem 2rem; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+          <span style="display: block; font-weight: 800; font-size: 1rem;">Zeuse Valentine</span>
+          <span style="font-size: 0.7rem; font-weight: 700; color: var(--primary-joy); text-transform: uppercase; letter-spacing: 1px;">Clinical Director & Founder</span>
+        </div>
+      </div>
+      <div class="story-content animate-in">
+        <span style="color: var(--primary-joy); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Our Philosophy</span>
+        <h1>We believe movement is <span style="color: var(--primary-joy)">Medicine.</span></h1>
+        <p>Olympian Health Solutions was born from a singular vision: That clinical-grade health interventions shouldn't be trapped within clinic walls. </p>
+        <p>As a Student Doctor of Physical Therapy and a performance coach, I saw a gap between "working out" and "healing." We bridge that gap by bringing the complete clinic to your living room.</p>
+        <p>Our programs aren't just about weight or vanity. They are about <strong>autonomy</strong>. We use the latest evidence in pain science and exercise physiology to ensure you keep the keys to your own life—independent, steady, and vibrant.</p>
+      </div>
+    </section>
 
-    <h2>Our Mission</h2>
-    <p>
-      To deliver world-class, prescriptive exercise and nutritional guidance to individuals seeking a higher quality of life. We believe that movement is medicine, and our mission is to make expert-guided movement accessible to everyone—no matter their location or limitations.
-    </p>
+    <div class="pillars-grid">
+      <div class="pillar-card animate-in">
+        <span class="pillar-icon">🧬</span>
+        <h3>Evidence-First</h3>
+        <p>Every rep and every meal plan is anchored in current peer-reviewed research.</p>
+      </div>
+      <div class="pillar-card animate-in" style="transition-delay: 0.1s;">
+        <span class="pillar-icon">🏠</span>
+        <h3>Barrier-Free</h3>
+        <p>We eliminate travel and friction by bringing professional care directly to you.</p>
+      </div>
+      <div class="pillar-card animate-in" style="transition-delay: 0.2s;">
+        <span class="pillar-icon">🤝</span>
+        <h3>Human-Centric</h3>
+        <p>You aren't a patient ID. You are a story, and we are here to support your next chapter.</p>
+      </div>
+      <div class="pillar-card animate-in" style="transition-delay: 0.3s;">
+        <span class="pillar-icon">☀️</span>
+        <h3>Joy-Driven</h3>
+        <p>Health should feel like a gain, never a chore. We celebrate every milestone.</p>
+      </div>
+    </div>
 
-    <h2>Our Values</h2>
-    <ul>
-      <li><strong>Evidence-Based Practice:</strong> Grounded in current research and best clinical practices.</li>
-      <li><strong>Holistic Care:</strong> Addressing the whole person—body, mind, and lifestyle.</li>
-      <li><strong>Collaboration:</strong> Working alongside healthcare professionals to ensure continuity of care.</li>
-      <li><strong>Empowerment:</strong> Educating clients to take charge of their own health journey.</li>
-    </ul>
-  </main>
+    <section class="mission-section animate-in">
+      <span style="font-weight: 800; color: var(--primary-joy); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem;">Our Mission</span>
+      <h2>Revitalizing Independence</h2>
+      <p class="mission-text">To deliver world-class, prescriptive movement guidance that empowers individuals to reclaim their vitality, regardless of age or starting point.</p>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; <span id="year"></span> Olympian Health Solutions. All rights reserved.</p>
-  </footer>
+    <div style="margin-top: 8rem; text-align: center;">
+      <h3 style="font-size: 2rem;">Ready to begin your chapter?</h3>
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+        <a href="booking.html" style="background: var(--text-main); color: #fff; padding: 1.2rem 2.5rem; border-radius: 99px; text-decoration: none; font-weight: 800;">Book a Consultation</a>
+        <a href="exercisequiz.html" style="background: var(--primary-joy); color: #fff; padding: 1.2rem 2.5rem; border-radius: 99px; text-decoration: none; font-weight: 800;">See the Science</a>
+      </div>
+    </div>
+  </div>
 
-  <script src="assets/js/script.js"></script>
+  <script>
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
