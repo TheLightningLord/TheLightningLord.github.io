@@ -2,395 +2,388 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile personal training for seniors. Experience effortless, joyful mobility results in your Clark County home." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | Elite Senior Mobility Masterpiece</title>
+  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Fun, easy, and medically superior mobility coaching in Clark County." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Olympian Health Solutions | Elite Senior Mobility</title>
 
-  <!-- High-Performance Typography -->
+  <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      /* === CRYSTAL AZURE & STERLING PALETTE === */
-      --navy-deep: #020617;
-      --navy-panel: #0f172a;
-      --blue-primary: #3b82f6;
-      --blue-deep: #1d4ed8;
-      --cyan-bright: #22d3ee;
-      --silver-frost: #e2e8f0;
-      --silver-text: #94a3b8;
-      --bg-white: #ffffff;
+      /* === THE CRYSTALLINE FLOW PALETTE === */
+      --color-navy: #030712;
+      --color-ultramarine: #2563eb;
+      --color-azure: #60a5fa;
+      --color-silver: #94a3b8;
+      --color-frost: #f8fafc;
+      --color-white: #ffffff;
       
-      --font-head: 'Outfit', sans-serif;
-      --font-body: 'Inter', sans-serif;
+      --font-header: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
       
-      --glass: rgba(255, 255, 255, 0.9);
-      --glass-dark: rgba(15, 23, 42, 0.95);
-      --border-thin: rgba(15, 23, 42, 0.06);
-      --radius-pill: 999px;
-      --radius-xl: 48px;
-      --radius-lg: 32px;
+      --glass: rgba(255, 255, 255, 0.88);
+      --glass-dark: rgba(3, 7, 18, 0.95);
+      --radius-xl: 40px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-full: 999px;
+      
+      --shadow-subtle: 0 10px 30px rgba(0,0,0,0.03);
+      --shadow-clinical: 0 20px 50px rgba(37, 99, 233, 0.12);
+      --shadow-glow: 0 0 25px rgba(37, 99, 233, 0.3);
     }
 
     /* === RESET === */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
     body {
       margin: 0;
       font-family: var(--font-body);
-      color: #1e293b;
-      background-color: #fff;
-      line-height: 1.5;
+      color: var(--color-navy);
+      background-color: var(--color-frost);
+      line-height: 1.4;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4 { font-family: var(--font-head); margin: 0; color: var(--navy-deep); letter-spacing: -0.04em; }
+    h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === KINETIC FLOW FIELD BACKGROUND === */
-    .bg-engine {
+    /* === TOUCH-REACTIVE QUANTUM BACKGROUND === */
+    .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
-      background: radial-gradient(circle at 0% 0%, #ffffff 0%, #f0f7ff 100%);
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 100%);
     }
-    #kinetic-canvas {
+    #quantum-canvas {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0.85;
     }
 
-    /* === MAGNETIC NAVIGATION WITH DROPDOWN === */
+    /* === NAVIGATION REFINED === */
     nav {
       position: fixed;
-      top: 24px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 40px); max-width: 1200px;
+      top: 15px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 30px); max-width: 1200px;
       z-index: 1000;
       background: var(--glass);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-pill);
-      padding: 10px 32px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 8px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-subtle);
     }
-    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-m { width: 34px; height: 34px; background: var(--navy-deep); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; color: var(--navy-deep); }
+    .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-mark { width: 32px; height: 32px; background: var(--color-navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1rem; }
+    .brand-name { font-weight: 800; font-size: 1.15rem; color: var(--color-navy); }
 
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    .nav-links > li { position: relative; }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 4px; }
-    .nav-links a:hover { color: var(--blue-primary); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+    @media (max-width: 860px) { .nav-links { display: none; } }
+    
+    .nav-links > li { position: relative; padding: 10px 0; }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { color: var(--color-ultramarine); }
 
+    /* Dropdown UI */
     .dropdown {
-      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px);
-      background: #fff; border: 1px solid var(--silver-frost);
-      min-width: 240px; border-radius: 20px; padding: 12px;
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: #fff; border: 1px solid #e2e8f0;
+      min-width: 240px; border-radius: 20px; padding: 10px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      opacity: 0; pointer-events: none; transition: 0.3s;
+      opacity: 0; pointer-events: none; transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
     }
-    .nav-links li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(10px); }
-    .dropdown a { padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; color: #1e293b; }
-    .dropdown a:hover { background: #f8fafc; color: var(--blue-primary); }
+    .nav-links li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0px); }
+    .dropdown a { padding: 12px 16px; border-radius: 12px; color: var(--color-navy); font-size: 0.85rem; display: block; white-space: nowrap; }
+    .dropdown a:hover { background: var(--color-frost); color: var(--color-ultramarine); }
 
-    .btn-nav { background: var(--navy-deep); color: #fff !important; padding: 10px 24px; border-radius: var(--radius-pill); font-weight: 700; transition: 0.3s; font-size: 0.85rem; }
+    .btn-nav { background: var(--color-navy); color: #fff !important; padding: 8px 20px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; }
 
-    /* === HERO SECTION === */
+    /* === HERO === */
     .hero {
-      min-height: 100vh;
+      min-height: 95vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 160px 0 100px;
+      padding: 120px 24px 60px;
       text-align: center;
+      position: relative;
     }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 24px; background: #fff; border: 1px solid var(--silver-frost);
-      border-radius: var(--radius-pill); color: var(--blue-primary); font-weight: 800; font-size: 0.75rem;
-      text-transform: uppercase; letter-spacing: 0.2em; margin: 0 auto 2.5rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 18px; background: #fff; border: 1px solid var(--color-silver);
+      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.15em; margin: 0 auto 2rem;
     }
-    .hero h1 { font-size: clamp(3.5rem, 11vw, 7.5rem); margin-bottom: 2rem; line-height: 0.88; font-weight: 900; color: var(--navy-deep); }
-    .hero h1 span { color: var(--blue-primary); }
-    .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: 1.45rem; color: #475569; font-weight: 400; line-height: 1.7; }
+    .hero h1 { font-size: clamp(3rem, 10vw, 7.5rem); margin-bottom: 1.5rem; font-weight: 900; }
+    .hero h1 span { color: var(--color-ultramarine); }
+    .hero p { max-width: 850px; margin: 0 auto 3.5rem; font-size: 1.35rem; color: #475569; font-weight: 400; line-height: 1.6; }
     
-    .hero-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-    .btn-main { padding: 1.4rem 4.5rem; border-radius: var(--radius-pill); font-weight: 800; font-size: 1.25rem; text-decoration: none; transition: 0.4s; border: none; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--blue-primary), var(--blue-deep)); color: #fff; box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2); }
-    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3); }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-action { padding: 1.2rem 3.5rem; border-radius: var(--radius-full); font-weight: 800; font-size: 1.1rem; text-decoration: none; transition: 0.4s; border: none; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, var(--color-ultramarine), var(--color-azure)); color: #fff; box-shadow: var(--shadow-clinical); }
+    .btn-outline { background: #fff; border: 2.5px solid var(--color-navy); color: var(--color-navy); }
 
     /* === TRUST TICKER === */
-    .trust-strip {
-      padding: 2.2rem 0;
-      background: var(--navy-panel);
-      color: #fff;
-      overflow: hidden;
-      white-space: nowrap;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .track { display: inline-block; animation: marquee 45s linear infinite; }
-    .badge { display: inline-flex; align-items: center; gap: 12px; margin-right: 70px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
-    .badge i { color: var(--cyan-bright); font-style: normal; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .ticker-bar { padding: 1.8rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
+    .ticker-track { display: inline-block; animation: scroll 40s linear infinite; }
+    .badge-item { display: inline-flex; align-items: center; gap: 10px; margin-right: 50px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .badge-item b { color: var(--color-azure); }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === MODERN MODULAR SECTIONS === */
-    .container-island { padding: 120px 24px; max-width: 1200px; margin: 0 auto; }
-    .card {
-      background: #fff; border: 1px solid var(--silver-frost); border-radius: var(--radius-lg);
-      padding: 4.5rem; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.03);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .card:hover { border-color: var(--blue-primary); transform: translateY(-8px); box-shadow: 0 30px 70px rgba(59, 130, 246, 0.1); }
-
-    /* === THE DOORSTEP BLUEPRINT === */
-    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 60px; }
-    .step-box { 
-      padding: 3rem; background: #f8fafc; border-radius: var(--radius-lg); 
-      text-align: center; border: 1px solid transparent; transition: 0.3s;
-    }
-    .step-box:hover { background: #fff; border-color: var(--blue-primary); }
-    .step-num { font-size: 3.5rem; font-weight: 900; color: rgba(15, 23, 42, 0.05); margin-bottom: -1rem; display: block; }
-    .step-box h4 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--navy-deep); }
-    .step-box p { color: #64748b; font-size: 1rem; }
-
-    /* === CLINICAL VITALITY PORTAL === */
-    .portal-box {
-      background: var(--navy-panel); color: #fff;
-      border-radius: var(--radius-xl); padding: 7rem;
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: center;
+    /* === BENTO GRID === */
+    .bento-container { padding: 80px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .bento-tile {
+      background: #fff; border-radius: var(--radius-lg); padding: 3rem;
+      border: 1px solid var(--color-frost); box-shadow: var(--shadow-subtle);
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative; overflow: hidden;
-      box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.5);
     }
-    .portal-box h2 { color: #fff; font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 2rem; }
-    .portal-box p { font-size: 1.3rem; opacity: 0.85; margin-bottom: 3.5rem; font-weight: 300; }
-    .btn-portal { display: inline-block; background: #fff; color: var(--navy-deep); padding: 1.4rem 4.5rem; border-radius: var(--radius-pill); font-weight: 900; font-size: 1.3rem; text-decoration: none; transition: 0.4s; }
-    .btn-portal:hover { transform: scale(1.03); background: var(--blue-primary); color: #fff; box-shadow: 0 0 50px rgba(59, 130, 246, 0.4); }
+    .bento-tile:hover { transform: translateY(-8px); border-color: var(--color-ultramarine); box-shadow: var(--shadow-clinical); }
 
-    /* === CLINICAL ADVANTAGE GRID (RESULTS) === */
-    .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 5rem; }
-    .bio-card { padding: 3.5rem; display: flex; flex-direction: column; gap: 2rem; }
-    .bio-head { display: flex; justify-content: space-between; align-items: center; }
-    .pill-data { padding: 6px 18px; background: #eff6ff; border-radius: 999px; color: var(--blue-primary); font-weight: 800; font-size: 0.9rem; }
-    
-    .graph-wrap { height: 80px; display: flex; align-items: flex-end; gap: 12px; margin: 1rem 0; }
-    .bar-seg { flex: 1; background: var(--silver-frost); border-radius: 6px; height: 15%; transition: height 2s cubic-bezier(0.16, 1, 0.3, 1); }
-    .bar-seg.active { background: linear-gradient(to top, var(--blue-primary), var(--cyan-bright)); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
 
-    /* === COMPACT PLATINUM CORRIDOR === */
-    .corridor-bar {
-      background: var(--navy-panel); color: #fff; border-radius: var(--radius-pill);
-      padding: 16px 48px; display: flex; justify-content: space-between; align-items: center;
-      max-width: 1100px; margin: 40px auto; flex-wrap: wrap; gap: 2rem;
+    /* === TRANSFORMATION SECTION === */
+    .transform-header { margin-bottom: 2rem; }
+    .transform-header h2 { font-size: 2.5rem; }
+    .matrix-scroll { display: flex; gap: 1.2rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .matrix-scroll::-webkit-scrollbar { display: none; }
+    .matrix-item { min-width: 280px; background: var(--color-frost); padding: 2.5rem; border-radius: 24px; scroll-snap-align: center; flex: 1; }
+    .matrix-item strong { color: var(--color-ultramarine); display: block; margin-bottom: 0.5rem; font-size: 1.2rem; }
+
+    /* === BIOMETRIC GROWTH PRECISION === */
+    .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; width: 100%; }
+    .bio-unit { text-align: center; }
+    .bio-visual-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 1.5rem; }
+    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; overflow: visible; }
+    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 12; }
+    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 12; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; font-weight: 900; color: var(--color-navy); }
+    .bio-ring-glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; opacity: 0; transition: 1s opacity; box-shadow: var(--shadow-glow); }
+
+    /* === VITALITY ASSESSMENT PORTAL === */
+    .portal-tile { 
+      background: var(--color-navy); color: #fff;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;
+      box-shadow: 0 40px 80px rgba(3, 7, 18, 0.2);
     }
-    .c-label { font-weight: 900; font-size: 0.8rem; color: var(--silver-text); text-transform: uppercase; letter-spacing: 0.12em; }
-    .c-cities { display: flex; gap: 20px; font-weight: 700; color: var(--cyan-bright); font-size: 0.95rem; }
+    .portal-tile h2 { color: #fff; font-size: 3.5rem; }
+    .btn-portal { display: inline-block; background: var(--color-ultramarine); color: #fff; padding: 1.2rem 4rem; border-radius: var(--radius-full); font-weight: 800; font-size: 1.2rem; text-decoration: none; transition: 0.4s; text-align: center; }
+
+    /* === MOBILE PERSISTENT NAV === */
+    .mobile-fab-bar {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 40px); max-width: 400px;
+      background: var(--glass-dark); color: #fff;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      padding: 12px; border-radius: var(--radius-full);
+      display: none; justify-content: space-between; align-items: center;
+      z-index: 1001; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    @media (max-width: 768px) { .mobile-fab-bar { display: flex; } }
+    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 800; color: #fff; text-decoration: none; padding: 10px; }
+    .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 10px; }
 
     /* === FOOTER === */
-    footer { padding: 6rem 0; text-align: center; color: #94a3b8; font-size: 1rem; border-top: 1px solid var(--silver-frost); }
+    .corridor-bar { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: 1.8rem; text-align: center; margin: 40px 20px; }
+    .city-scroll { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px; font-weight: 800; color: var(--color-azure); font-size: 0.85rem; }
 
-    /* === REVEAL SYSTEM === */
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    footer { padding: 4rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; }
+
+    /* === ANIMATIONS === */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 968px) {
-      .roadmap-grid, .portal-box, .results-grid, .corridor-bar { grid-template-columns: 1fr; text-align: center; }
-      .portal-box { padding: 4rem 2rem; }
-      .nav-links { display: none; }
+      .bento-container { grid-template-columns: 1fr; }
+      .span-2, .span-3 { grid-column: span 1; }
+      .portal-tile, .bio-grid { grid-template-columns: 1fr; text-align: center; }
       .hero h1 { font-size: 3.5rem; }
-      .corridor-bar { border-radius: 30px; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- KINETIC FLOW FIELD ENGINE -->
-  <div class="bg-engine">
-    <canvas id="kinetic-canvas"></canvas>
+  <!-- QUANTUM PARTICLE ENGINE -->
+  <div class="bg-animation">
+    <canvas id="quantum-canvas"></canvas>
   </div>
 
-  <!-- MAGNETIC NAVIGATION PILL -->
-  <nav class="nav-wrapper">
-    <a href="#" class="logo">
-      <div class="logo-m">O</div>
-      <span class="logo-text">Olympian Health</span>
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" class="brand">
+      <div class="logo-mark">O</div>
+      <span class="brand-name">Olympian</span>
     </a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li>
-        <a href="#experience">Concierge Care <span>▾</span></a>
+        <a href="#launch">Experience <span>▾</span></a>
         <div class="dropdown">
-          <a href="#experience">Private Residence Models</a>
-          <a href="#experience">Assisted Living Concierge</a>
-          <a href="#results">Memory Support Plans</a>
-          <a href="#area">Independent Living Care</a>
+          <a href="#launch">Private Home Concierge</a>
+          <a href="#results">Clinical Proof Ledger</a>
+          <a href="#results">Biometric Safety Sync</a>
+          <a href="#launch">Mobility Roadmap</a>
         </div>
       </li>
       <li><a href="#results">Clinical Proof</a></li>
-      <li><a href="#audit">Diagnostic Audit</a></li>
+      <li><a href="#home">Service Area</a></li>
     </ul>
-    <a href="booking.html" class="btn-nav">Book Visit</a>
+    <a href="booking.html" class="btn-nav">Book Home Visit</a>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- MOBILE PERSISTENT FAB -->
+  <div class="mobile-fab-bar">
+    <a href="#audit" class="fab-btn">Vitality Audit</a>
+    <a href="booking.html" class="fab-btn primary">Schedule Visit</a>
+  </div>
+
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="container reveal">
-      <div class="hero-badge">Clinical Movement. Concierge Care.</div>
-      <h1>Dignified <span>Strength.</span><br>Delivered to your home.</h1>
-      <p>Specialized mobile physical coaching for Clark County’s elite seniors. We transform your home into a university-grade mobility lab, providing evidence-based results in a joyful, high-end environment.</p>
+      <div class="hero-badge">Clinical Movement Concierge</div>
+      <h1>Movement made <span>Joyful.</span><br>Care made Clinical.</h1>
+      <p>Specialized mobile physical coaching for Clark County’s elite seniors. We make the "hard stuff" manageable and fun, delivering university-standard results directly to your favorite living room chair.</p>
       
       <div class="hero-btns">
-        <a href="booking.html" class="btn-main btn-primary">Request Clinical Visit</a>
-        <a href="#audit" class="btn-main" style="color: var(--navy-deep); font-weight: 800;">View Discovery Audit →</a>
+        <a href="booking.html" class="btn-action btn-primary">Start Your Journey</a>
+        <a href="#audit" class="btn-action btn-outline">Free Clinical Audit</a>
       </div>
     </div>
   </section>
 
-  <!-- TRUST MARQUEE -->
-  <div class="trust-strip">
-    <div class="track">
-      <div class="badge"><i>✦</i> Doctorate Supervised</div>
-      <div class="badge"><i>✦</i> HIPAA Secure Protocols</div>
-      <div class="badge"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge"><i>✦</i> Family Digital Reporting</div>
-      <div class="badge"><i>✦</i> Sanitized Mobile Lab Suite</div>
-      <div class="badge"><i>✦</i> Serving Battle Ground & Vancouver</div>
-      <!-- Duplicate for infinite loop -->
-      <div class="badge"><i>✦</i> Doctorate Supervised</div>
-      <div class="badge"><i>✦</i> HIPAA Secure Protocols</div>
-      <div class="badge"><i>✦</i> NIH Evidence Aligned</div>
+  <!-- TRUST TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <div class="badge-item"><i>✦</i> Doctorate Supervised</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure</div>
+      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
+      <div class="badge-item"><i>✦</i> Family Progress Sync</div>
+      <div class="badge-item"><i>✦</i> Sanitized Toolkit</div>
+      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
+      <!-- Loop -->
+      <div class="badge-item"><i>✦</i> Doctorate Supervised</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure</div>
+      <div class="badge-item"><i>✦</i> NIH Aligned</div>
     </div>
   </div>
 
-  <!-- THE EXPERIENCE ROADMAP -->
-  <section class="container-island" id="experience">
-    <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">
-      <h2 style="font-size: 3.8rem; font-weight: 900;">Elite Care.<br><span>Zero Friction.</span></h2>
-      <p style="color: #64748b; font-size: 1.3rem; margin-top: 1.5rem;">We’ve removed the clinic walls. Getting world-class results is now as simple as opening your front door.</p>
+  <!-- BENTO EXPERIENCE -->
+  <section class="bento-container" id="launch">
+    <!-- Tile 1: Doorstep Slider -->
+    <div class="bento-tile span-2 reveal">
+      <div class="transform-header">
+        <h2>Clinical Care.<br><span>Living Room Comfort.</span></h2>
+        <p>Reclaiming your freedom is now as simple as answering the front door.</p>
+      </div>
+      
+      <div class="matrix-scroll">
+        <div class="matrix-item">
+          <strong>The Sync</strong>
+          <p>A 10-min intro to align our elite clinical protocols with your personal medical history. Easy, fun goals from Day 1.</p>
+        </div>
+        <div class="matrix-item">
+          <strong>The Suitcase</strong>
+          <p>We arrive with sanitized, high-end diagnostic tools. You don't lift a finger—just provide 6ft of floor space.</p>
+        </div>
+        <div class="matrix-item">
+          <strong>The Thrive</strong>
+          <p>60 minutes of conversational clinical movement. We handle the science; you enjoy the physical reward.</p>
+        </div>
+      </div>
     </div>
-    
-    <div class="roadmap-grid reveal">
-      <div class="step-box">
-        <span class="step-num">01</span>
-        <h4>Quick Sync</h4>
-        <p>A brief introductory call to align our protocols with your specific health history and goals.</p>
-      </div>
-      <div class="step-box">
-        <span class="step-num">02</span>
-        <h4>Mobile Lab</h4>
-        <p>We arrive with sanitized, professional tools. All you need is 6ft of open floor space.</p>
-      </div>
-      <div class="step-box">
-        <span class="step-num">03</span>
-        <h4>Total Freedom</h4>
-        <p>60 minutes of fun, upbeat training designed to reclaim your physical and cognitive confidence.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- ASSESSMENT PORTAL (VITALITY COMPASS) -->
-  <section class="container-island" id="audit">
-    <div class="portal-box reveal">
+    <!-- Tile 2: Portability Toolkit -->
+    <div class="bento-tile reveal">
+      <div style="font-size: 3rem; margin-bottom: 1.2rem;">🧳</div>
+      <h4>Pocket Lab</h4>
+      <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Condensed university-grade tech for home use.</p>
+      <div class="toolkit-list">
+        <div class="tool-tag"><i>✓</i> Digital Vitals Hub</div>
+        <div class="tool-tag"><i>✓</i> Balance Sensors</div>
+        <div class="tool-tag"><i>✓</i> Grip Dynamometers</div>
+      </div>
+    </div>
+
+    <!-- Tile 3: Assessment Portal -->
+    <div class="bento-tile span-3 portal-tile reveal" id="audit">
       <div class="portal-info">
         <h2>Your Blueprint <span>for Freedom.</span></h2>
-        <p>Unlock the science of your own potential. Our clinical audit uses NIH benchmarks to project your exact 12-week improvement curve based on your personal health profile.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem;">
-           <div style="background: rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">🧬 Bio-Sync Mapping</div>
-           <div style="background: rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">📉 Risk Analysis</div>
-        </div>
-        <a href="exercise-quiz.html" class="btn-portal">Start My Health Audit</a>
+        <p>Exercise is a clinical prescription. Our audit projects your exact 12-week vitality improvement based on your unique health profile.</p>
+        <a href="exercise-quiz.html" class="btn-portal">Start My Vitality Audit</a>
       </div>
-      <div style="text-align: center;">
-         <div style="padding: 4rem; background: rgba(255,255,255,0.04); border-radius: 40px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(30px);">
-             <div style="font-size: 6rem; font-weight: 900; line-height: 1; color: var(--cyan-bright);">+113%</div>
-             <p style="font-size: 1.2rem; opacity: 0.8; margin-top: 1.5rem;">Average power increase across clinical senior cohorts.</p>
-             <p style="margin-top: 3rem; font-style: italic; opacity: 0.5; font-size: 0.9rem;">"University-standard science, delivered with family warmth."</p>
-         </div>
+      <div style="background: rgba(255,255,255,0.06); border-radius: 30px; padding: 4rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+         <div style="font-size: 5.5rem; font-weight: 900; color: var(--color-azure); line-height: 1;">+113%</div>
+         <p style="font-size: 1.1rem; opacity: 0.8; margin-top: 1rem;">Avg. power increase across clinical senior cohorts.</p>
       </div>
     </div>
-  </section>
 
-  <!-- CLINICAL RESULTS DASHBOARD -->
-  <section class="container-island" id="results">
-    <div style="text-align: center; margin-bottom: 6rem;" class="reveal">
-      <h2 style="font-size: 4rem; font-weight: 900;">Clinical Joy. Verifiable Data.</h2>
-      <p style="color: #64748b; font-size: 1.4rem;">Every session is measured. Every win is celebrated. Watch your biology respond.</p>
-    </div>
-
-    <div class="results-grid">
-      <div class="card bio-card reveal">
-        <div class="bio-head">
-          <h3>Steady Balance</h3>
-          <div class="pill-data">📉 -34% Risk</div>
-        </div>
-        <p style="color: #64748b; font-size: 1.1rem;">Master the reactive step reflex. Regain total confidence on any surface, stairs, or uneven gravel paths.</p>
-        <div class="graph-wrap">
-          <div class="bar-seg" style="height: 90%;"></div>
-          <div class="bar-seg" style="height: 60%;"></div>
-          <div class="bar-seg active" data-h="25%" style="height: 10%;"></div>
-        </div>
+    <!-- Tile 4: Biometric Progress -->
+    <div class="bento-tile span-3 reveal" id="results">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 3.5rem;">Data That Smiles.</h2>
+        <p style="color: #64748b; font-size: 1.3rem;">Watch your biology improve with every joyful session.</p>
       </div>
-
-      <div class="card bio-card reveal" style="transition-delay: 0.15s;">
-        <div class="bio-head">
-          <h3>Metabolic Clarity</h3>
-          <div class="pill-data">✨ +42% Ease</div>
+      
+      <div class="bio-grid">
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <div class="bio-ring-glow"></div>
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+              <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+              <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <h3>Balance Shift</h3>
+          <p style="font-size: 0.9rem; color: #64748b;">Fall risk reduction through reactive reflex training.</p>
         </div>
-        <p style="color: #64748b; font-size: 1.1rem;">Clinical movement clears sugar from your blood independently of insulin. High energy, all day long.</p>
-        <div class="graph-wrap">
-          <div class="bar-seg" style="height: 25%;"></div>
-          <div class="bar-seg" style="height: 50%;"></div>
-          <div class="bar-seg active" data-h="88%" style="height: 10%;"></div>
+
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <div class="bio-ring-glow"></div>
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+              <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+              <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <h3>Metabolic Gain</h3>
+          <p style="font-size: 0.9rem; color: #64748b;">Clinical improvement in glucose clearance rates.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PLATINUM CORRIDOR -->
-  <section class="reveal" id="area">
-    <div class="corridor-bar">
-      <span class="c-label">Clark County Mobile Corridor</span>
-      <div class="c-cities">
-        <span>Vancouver</span>
-        <span>Battle Ground</span>
-        <span>Camas</span>
-        <span>Ridgefield</span>
-      </div>
-      <div style="font-weight: 900;">Elite Member Access</div>
+  <section class="corridor-bar reveal">
+    <strong>CLARK COUNTY SERVICE RADIUS</strong>
+    <div class="city-scroll">
+      <span>Vancouver</span> • <span>Battle Ground</span> • <span>Camas</span> • <span>Ridgefield</span>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility. Battle Ground, WA.</p>
-    </div>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Concierge. Battle Ground, WA.</p>
   </footer>
 
   <script>
-    // --- SCROLL REVEAL & CHART ANIMATION ---
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => { 
-        if(e.isIntersecting) {
-          e.target.classList.add('active');
-          const bars = e.target.querySelectorAll('.bar-seg.active');
-          bars.forEach(bar => { bar.style.height = bar.getAttribute('data-h'); });
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // --- KINETIC FLOW FIELD ENGINE (CANVAS) ---
-    const canvas = document.getElementById('kinetic-canvas');
+    // --- TOUCH-REACTIVE QUANTUM ENGINE ---
+    const canvas = document.getElementById('quantum-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const particleCount = 2000; // High density for masterpiece effect
-    const noiseScale = 0.005;
+    const particleCount = 1000;
+    const mouse = { x: -1000, y: -1000, radius: 150 };
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -399,38 +392,45 @@
     }
 
     class Particle {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.prevX = this.x;
-        this.prevY = this.y;
-        this.speed = Math.random() * 0.5 + 0.2;
-        this.alpha = Math.random() * 0.2 + 0.1;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.size = Math.random() * 2 + 0.5;
+        this.density = (Math.random() * 30) + 1;
+        this.alpha = Math.random() * 0.3 + 0.1;
       }
-      update(time) {
-        this.prevX = this.x;
-        this.prevY = this.y;
-        
-        // Simulating a flow field using sine/cosine waves for smooth "Masterpiece" motion
-        const angle = (Math.sin(this.x * noiseScale) + Math.cos(this.y * noiseScale) + Math.sin(time * 0.0005)) * Math.PI;
-        
-        this.x += Math.cos(angle) * this.speed;
-        this.y += Math.sin(angle) * this.speed;
+      update() {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx*dx + dy*dy);
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let force = (mouse.radius - distance) / mouse.radius;
+        let directionX = forceDirectionX * force * this.density;
+        let directionY = forceDirectionY * force * this.density;
 
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-          this.reset();
+        if (distance < mouse.radius) {
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          if (this.x !== this.baseX) {
+            let dx = this.x - this.baseX;
+            this.x -= dx / 15;
+          }
+          if (this.y !== this.baseY) {
+            let dy = this.y - this.baseY;
+            this.y -= dy / 15;
+          }
         }
       }
       draw() {
         ctx.beginPath();
-        ctx.moveTo(this.prevX, this.prevY);
-        ctx.lineTo(this.x, this.y);
-        ctx.strokeStyle = `rgba(59, 130, 246, ${this.alpha})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${this.alpha})`;
+        ctx.fill();
       }
     }
 
@@ -439,21 +439,75 @@
     }
 
     function animate() {
-      const time = Date.now();
+      ctx.clearRect(0, 0, width, height);
       
-      // Multi-layer Clinical Wash Effect
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.fillRect(0, 0, width, height);
+      const t = Date.now() * 0.001;
+      ctx.beginPath();
+      ctx.moveTo(0, height);
+      for(let x=0; x<=width; x+=50) {
+        const y = height - 120 + Math.sin(x * 0.0015 + t) * 30;
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(width, height);
+      ctx.fillStyle = 'rgba(37, 99, 235, 0.04)';
+      ctx.fill();
 
-      particles.forEach(p => {
-        p.update(time);
-        p.draw();
-      });
-
+      particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', resize);
+    const handleMove = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      } else if (e.clientX !== undefined) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      }
+    };
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('touchstart', handleMove);
+    window.addEventListener('touchmove', handleMove);
+    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
+
+    // --- SCROLL REVEAL & BIO RINGS ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { 
+        if(e.isIntersecting) {
+          e.target.classList.add('active');
+          const rings = e.target.querySelectorAll('.bio-ring-fill');
+          rings.forEach(ring => {
+            const target = ring.getAttribute('data-target');
+            const circumference = 439.8;
+            const offset = circumference - (target / 100) * circumference;
+            ring.style.strokeDashoffset = offset;
+            
+            const wrap = ring.closest('.bio-visual-wrap');
+            const valBox = wrap.querySelector('.bio-value');
+            const glow = wrap.querySelector('.bio-ring-glow');
+            if (glow) glow.style.opacity = '1';
+            if (valBox) animateValue(valBox, 0, target, 2000);
+          });
+        }
+      });
+    }, { threshold: 0.15 });
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    window.addEventListener('resize', () => {
+      resize();
+    });
     resize();
     animate();
   </script>
