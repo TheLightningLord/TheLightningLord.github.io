@@ -2,1116 +2,400 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – Premium mobile movement coaching for seniors. Evidence-based physical therapy outcomes in the comfort of your home." />
+  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile personal training for seniors. Experience effortless, joyful mobility results in your Clark County home." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olympian Health Solutions | Elite Mobile Care</title>
+  <title>Olympian Health Solutions | Elite Senior Mobility Masterpiece</title>
 
-  <!-- Modern Fonts: Outfit (Headings) & Inter (Body) -->
+  <!-- High-Performance Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
   
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Olympian Health Solutions",
-      "url": "https://yourdomain.github.io/olympian-health-solutions/",
-      "description": "Mobile personal training and movement coaching specifically for seniors in assisted living and private homes in Battle Ground, Washington.",
-      "areaServed": {
-        "@type": "Place",
-        "name": "Battle Ground, WA"
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Zeuse Valentine",
-        "jobTitle": "Student Doctor of Physical Therapy"
-      }
-    }
-  </script>
-
   <style>
     :root {
-      /* === PALETTE: Deep Ocean & Gold === */
-      --primary-dark: #0f172a;
-      --primary-depth: #020617;
-      --primary-light: #1e293b;
+      /* === CRYSTAL AZURE & STERLING PALETTE === */
+      --navy-deep: #020617;
+      --navy-panel: #0f172a;
+      --blue-primary: #3b82f6;
+      --blue-deep: #1d4ed8;
+      --cyan-bright: #22d3ee;
+      --silver-frost: #e2e8f0;
+      --silver-text: #94a3b8;
+      --bg-white: #ffffff;
       
-      --accent-gold: #fbbf24;
-      --accent-gold-glow: #d97706;
-      
-      --accent-cyan: #22d3ee;
-      --accent-cyan-dim: #0891b2;
-      
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dark: #1e293b;
-      
-      --surface-glass: rgba(15, 23, 42, 0.7);
-      --surface-glass-light: rgba(255, 255, 255, 0.8);
-      --border-glass: rgba(255, 255, 255, 0.1);
-      
-      /* === TYPOGRAPHY === */
       --font-head: 'Outfit', sans-serif;
       --font-body: 'Inter', sans-serif;
       
-      /* === SPACING & LAYOUT === */
-      --header-height: 80px;
-      --radius-xl: 24px;
-      --radius-lg: 16px;
-      --radius-md: 8px;
+      --glass: rgba(255, 255, 255, 0.9);
+      --glass-dark: rgba(15, 23, 42, 0.95);
+      --border-thin: rgba(15, 23, 42, 0.06);
+      --radius-pill: 999px;
+      --radius-xl: 48px;
+      --radius-lg: 32px;
     }
 
-    /* === RESET & BASE === */
+    /* === RESET === */
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    
     body {
       margin: 0;
       font-family: var(--font-body);
-      color: var(--text-main);
-      background-color: var(--primary-depth);
-      line-height: 1.6;
+      color: #1e293b;
+      background-color: #fff;
+      line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4, h5 {
-      font-family: var(--font-head);
-      line-height: 1.1;
-      margin-top: 0;
-      color: var(--text-main);
+    h1, h2, h3, h4 { font-family: var(--font-head); margin: 0; color: var(--navy-deep); letter-spacing: -0.04em; }
+
+    /* === KINETIC FLOW FIELD BACKGROUND === */
+    .bg-engine {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 0% 0%, #ffffff 0%, #f0f7ff 100%);
+    }
+    #kinetic-canvas {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
     }
 
-    p { margin-bottom: 1.5rem; }
-    
-    section[id] { scroll-margin-top: 100px; }
-
-    /* === UTILITIES === */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    .text-gradient {
-      background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-cyan) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .text-gold { color: var(--accent-gold); }
-    
-    .glass-panel {
-      background: var(--surface-glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-glass);
-      border-radius: var(--radius-lg);
-    }
-
-    /* === HEADER & NAV === */
-    header {
-      position: sticky;
-      top: 0;
+    /* === MAGNETIC NAVIGATION WITH DROPDOWN === */
+    nav {
+      position: fixed;
+      top: 24px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 40px); max-width: 1200px;
       z-index: 1000;
-      height: var(--header-height);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-bottom: 1px solid transparent;
-    }
-
-    header.scrolled {
-      background: rgba(2, 6, 23, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-glass);
-      height: 70px; /* Slight shrink */
-    }
-
-    .header-content {
+      background: var(--glass);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-pill);
+      padding: 10px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 100%;
-      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-m { width: 34px; height: 34px; background: var(--navy-deep); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; color: var(--navy-deep); }
 
-    .brand-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      /* Padding to account for the hanging logo */
-      padding-left: 100px; 
-      transition: padding 0.4s ease;
-    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+    .nav-links > li { position: relative; }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { color: var(--blue-primary); }
 
-    .brand-logo {
-      position: absolute;
-      left: 0;
-      top: 8px; /* Hangs nicely */
-      height: 100px; /* Large initial size */
-      width: auto;
-      border-radius: 50%;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      z-index: 1001;
-      background: radial-gradient(circle, #020617 50%, transparent 100%);
+    .dropdown {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: #fff; border: 1px solid var(--silver-frost);
+      min-width: 240px; border-radius: 20px; padding: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      opacity: 0; pointer-events: none; transition: 0.3s;
     }
+    .nav-links li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(10px); }
+    .dropdown a { padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; color: #1e293b; }
+    .dropdown a:hover { background: #f8fafc; color: var(--blue-primary); }
 
-    header.scrolled .brand-logo {
-      height: 50px; /* Shrinks */
-      top: 10px;
-      box-shadow: none;
-    }
-    
-    header.scrolled .brand-wrapper {
-      padding-left: 60px;
-    }
-
-    .brand-text {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-    }
-
-    .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-gold);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover { color: var(--text-main); }
-    .nav-link:hover::after { width: 100%; }
-
-    .nav-btn {
-      padding: 0.6rem 1.4rem;
-      border-radius: 99px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn-quiz {
-      background: rgba(34, 211, 238, 0.15);
-      color: var(--accent-cyan);
-      border: 1px solid rgba(34, 211, 238, 0.3);
-    }
-    .btn-quiz:hover {
-      background: rgba(34, 211, 238, 0.25);
-      box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
-    }
-
-    .btn-book {
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-glow));
-      color: var(--primary-depth);
-      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
-    }
-    .btn-book:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
-    }
-
-    /* Pulse/Flashing animation for the assessment button */
-    @keyframes pulse-gold {
-      0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(251, 191, 36, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
-    }
-
-    .btn-flash {
-      animation: pulse-gold 2s infinite;
-      border: 2px solid rgba(255,255,255,0.2);
-    }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text-main);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+    .btn-nav { background: var(--navy-deep); color: #fff !important; padding: 10px 24px; border-radius: var(--radius-pill); font-weight: 700; transition: 0.3s; font-size: 0.85rem; }
 
     /* === HERO SECTION === */
     .hero {
-      position: relative;
-      min-height: 95vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding-top: var(--header-height); /* Ensure logo doesn't cover text initially */
-    }
-
-    /* Dynamic background layers */
-    .hero-bg {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0;
-      background: radial-gradient(circle at 50% 30%, #1e293b 0%, #020617 70%);
-    }
-
-    #particles {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 1;
-      opacity: 0.6;
-    }
-
-    .hero-container {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 900px;
-    }
-
-    .badge-pill {
-      display: inline-block;
-      padding: 0.5rem 1.2rem;
-      border-radius: 99px;
-      background: rgba(34, 211, 238, 0.1);
-      border: 1px solid rgba(34, 211, 238, 0.2);
-      color: var(--accent-cyan);
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(4px);
-    }
-
-    .hero-title {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-    
-    .hero-title span {
-      display: block; /* Force line break */
-      background: linear-gradient(to right, #ffffff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-title .highlight {
-      background: linear-gradient(135deg, var(--accent-cyan), #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      line-height: 1.7;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-hero {
-      padding: 1rem 2.5rem;
-      border-radius: 99px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--accent-cyan);
-      color: var(--primary-depth);
-      border: 2px solid var(--accent-cyan);
-    }
-    .btn-primary:hover {
-      background: #06b6d4;
-      border-color: #06b6d4;
-      box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(4px);
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--text-main);
-    }
-
-    /* === CURVED DIVIDERS === */
-    .wave-divider {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-      transform: rotate(180deg);
-    }
-    .wave-divider svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 80px;
-    }
-    .wave-fill { fill: #f8fafc; } /* Matches next section bg */
-
-    /* === STATS / QUIZ SECTION === */
-    .feature-strip {
-      background: #f8fafc; /* Light mode start */
-      color: var(--text-dark);
-      padding: 4rem 0;
-      position: relative;
-      z-index: 10;
-    }
-
-    .quiz-card {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      border-radius: var(--radius-xl);
-      padding: 3.5rem;
-      color: var(--text-main);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: -6rem; /* Pull up over hero */
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-    }
-
-    /* Research Pulse Badge */
-    .pulse-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0.4rem 1rem;
-      background: rgba(34, 211, 238, 0.1);
-      border: 1px solid rgba(34, 211, 238, 0.3);
-      border-radius: 99px;
-      color: var(--accent-cyan);
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-    }
-    .pulse-dot {
-      width: 8px; height: 8px; background: #22d3ee; border-radius: 50%;
-      box-shadow: 0 0 10px #22d3ee;
-      animation: pulse-dot 1.5s infinite;
-    }
-    @keyframes pulse-dot {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    /* Abstract glow behind card */
-    .quiz-card::after {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 60%);
-      pointer-events: none;
-      animation: pulse-glow 5s infinite ease-in-out;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.1); }
-    }
-
-    /* === PROCESS / TIMELINE SECTION === */
-    .process-section {
-      background: #f8fafc;
-      color: var(--text-dark);
-      padding: 6rem 0;
-    }
-    
-    .section-head {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 4rem;
-    }
-    .section-head h2 { font-size: 2.5rem; color: var(--primary-depth); margin-bottom: 1rem; }
-    .section-head p { color: var(--text-muted); font-size: 1.1rem; }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .process-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .step-card {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      position: relative;
-    }
-    /* Connecting line */
-    .step-card:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 24px; top: 60px; bottom: -30px;
-      width: 2px;
-      background: #e2e8f0;
-    }
-
-    .step-icon {
-      width: 50px; height: 50px;
-      background: var(--primary-light);
-      color: var(--accent-gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      z-index: 2;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 160px 0 100px;
+      text-align: center;
     }
-
-    .step-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary-depth); }
-    .step-content p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
-
-    .kit-visual {
-      background: white;
-      padding: 2.5rem;
-      border-radius: var(--radius-xl);
-      box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
-      border: 1px solid #e2e8f0;
-      position: relative;
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 24px; background: #fff; border: 1px solid var(--silver-frost);
+      border-radius: var(--radius-pill); color: var(--blue-primary); font-weight: 800; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.2em; margin: 0 auto 2.5rem;
     }
-    .kit-visual h3 { color: var(--primary-depth); font-size: 1.5rem; }
-
-    .equip-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 1.5rem;
-    }
-    .equip-item {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-    }
-    .check-icon { color: var(--accent-cyan-dim); }
-
-    /* === CLINICAL DASHBOARD (Dark/Tech Theme) === */
-    .clinical-section {
-      background: var(--primary-depth);
-      color: var(--text-main);
-      padding: 6rem 0;
-      position: relative;
-    }
+    .hero h1 { font-size: clamp(3.5rem, 11vw, 7.5rem); margin-bottom: 2rem; line-height: 0.88; font-weight: 900; color: var(--navy-deep); }
+    .hero h1 span { color: var(--blue-primary); }
+    .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: 1.45rem; color: #475569; font-weight: 400; line-height: 1.7; }
     
-    /* Grid background pattern */
-    .bg-grid {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 0;
-    }
+    .hero-actions { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .btn-main { padding: 1.4rem 4.5rem; border-radius: var(--radius-pill); font-weight: 800; font-size: 1.25rem; text-decoration: none; transition: 0.4s; border: none; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, var(--blue-primary), var(--blue-deep)); color: #fff; box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2); }
+    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3); }
 
-    .clinical-container { position: relative; z-index: 1; }
-
-    .dashboard-accordion {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    details.med-card {
-      background: rgba(30, 41, 59, 0.4);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    details.med-card[open] {
-      background: rgba(30, 41, 59, 0.8);
-      border-color: var(--accent-cyan-dim);
-      box-shadow: 0 0 20px rgba(8, 145, 178, 0.1);
-    }
-
-    summary.med-head {
-      padding: 1.2rem 1.5rem;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-    summary.med-head::-webkit-details-marker { display: none; }
-    
-    .condition-tag {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-head);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .med-body {
-      padding: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      background: rgba(0,0,0,0.2);
-    }
-    
-    .data-row {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 2rem;
-    }
-    
-    .mechanism h4 { color: var(--accent-cyan); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .mechanism p { font-size: 0.95rem; color: #cbd5e1; margin: 0; }
-
-    .stat-visual {
-      background: rgba(255,255,255,0.03);
-      padding: 1rem;
-      border-radius: var(--radius-md);
-    }
-    
-    .bar-track {
-      background: rgba(255,255,255,0.1);
-      height: 24px;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-    .bar-fill {
-      height: 100%;
-      width: 0; /* Animated by JS */
-      background: linear-gradient(90deg, var(--accent-cyan-dim), var(--accent-cyan));
-      border-radius: 4px;
-      transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-    }
-    .bar-label {
-      position: absolute;
-      right: 8px; top: 50%; transform: translateY(-50%);
-      font-size: 0.75rem; font-weight: 700; color: #fff;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-    }
-    .source-cite { font-size: 0.75rem; color: var(--text-muted); text-align: right; font-style: italic; display: block; }
-
-    /* === CONTACT SECTION === */
-    .contact-section {
-      background: #f1f5f9;
-      color: var(--text-dark);
-      padding: 6rem 0;
-    }
-
-    .contact-form-card {
-      background: #ffffff;
-      padding: 3rem;
-      border-radius: var(--radius-xl);
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
-    }
-    
-    .form-group { margin-bottom: 1.2rem; }
-    
-    .form-input {
-      width: 100%;
-      padding: 1rem;
-      border: 1px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      font-family: var(--font-body);
-      transition: border 0.3s;
-      background: #f8fafc;
-    }
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-cyan-dim);
-      background: #fff;
-      box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      background: var(--primary-depth);
+    /* === TRUST TICKER === */
+    .trust-strip {
+      padding: 2.2rem 0;
+      background: var(--navy-panel);
       color: #fff;
-      border: none;
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .submit-btn:hover {
-      background: var(--accent-cyan-dim);
-      transform: translateY(-2px);
-    }
+    .track { display: inline-block; animation: marquee 45s linear infinite; }
+    .badge { display: inline-flex; align-items: center; gap: 12px; margin-right: 70px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
+    .badge i { color: var(--cyan-bright); font-style: normal; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === FLOATING CTA === */
-    .float-cta {
-      position: fixed;
-      bottom: 2rem; right: 2rem;
-      background: var(--accent-gold);
-      color: var(--primary-depth);
-      padding: 1rem 1.5rem;
-      border-radius: 99px;
-      font-weight: 700;
-      font-family: var(--font-head);
-      text-decoration: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      z-index: 900;
-      transform: translateY(150%);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* === MODERN MODULAR SECTIONS === */
+    .container-island { padding: 120px 24px; max-width: 1200px; margin: 0 auto; }
+    .card {
+      background: #fff; border: 1px solid var(--silver-frost); border-radius: var(--radius-lg);
+      padding: 4.5rem; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.03);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .float-cta.visible { transform: translateY(0); }
-    .float-cta:hover { transform: scale(1.05); }
+    .card:hover { border-color: var(--blue-primary); transform: translateY(-8px); box-shadow: 0 30px 70px rgba(59, 130, 246, 0.1); }
+
+    /* === THE DOORSTEP BLUEPRINT === */
+    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 60px; }
+    .step-box { 
+      padding: 3rem; background: #f8fafc; border-radius: var(--radius-lg); 
+      text-align: center; border: 1px solid transparent; transition: 0.3s;
+    }
+    .step-box:hover { background: #fff; border-color: var(--blue-primary); }
+    .step-num { font-size: 3.5rem; font-weight: 900; color: rgba(15, 23, 42, 0.05); margin-bottom: -1rem; display: block; }
+    .step-box h4 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--navy-deep); }
+    .step-box p { color: #64748b; font-size: 1rem; }
+
+    /* === CLINICAL VITALITY PORTAL === */
+    .portal-box {
+      background: var(--navy-panel); color: #fff;
+      border-radius: var(--radius-xl); padding: 7rem;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.5);
+    }
+    .portal-box h2 { color: #fff; font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 2rem; }
+    .portal-box p { font-size: 1.3rem; opacity: 0.85; margin-bottom: 3.5rem; font-weight: 300; }
+    .btn-portal { display: inline-block; background: #fff; color: var(--navy-deep); padding: 1.4rem 4.5rem; border-radius: var(--radius-pill); font-weight: 900; font-size: 1.3rem; text-decoration: none; transition: 0.4s; }
+    .btn-portal:hover { transform: scale(1.03); background: var(--blue-primary); color: #fff; box-shadow: 0 0 50px rgba(59, 130, 246, 0.4); }
+
+    /* === CLINICAL ADVANTAGE GRID (RESULTS) === */
+    .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 5rem; }
+    .bio-card { padding: 3.5rem; display: flex; flex-direction: column; gap: 2rem; }
+    .bio-head { display: flex; justify-content: space-between; align-items: center; }
+    .pill-data { padding: 6px 18px; background: #eff6ff; border-radius: 999px; color: var(--blue-primary); font-weight: 800; font-size: 0.9rem; }
+    
+    .graph-wrap { height: 80px; display: flex; align-items: flex-end; gap: 12px; margin: 1rem 0; }
+    .bar-seg { flex: 1; background: var(--silver-frost); border-radius: 6px; height: 15%; transition: height 2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bar-seg.active { background: linear-gradient(to top, var(--blue-primary), var(--cyan-bright)); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+
+    /* === COMPACT PLATINUM CORRIDOR === */
+    .corridor-bar {
+      background: var(--navy-panel); color: #fff; border-radius: var(--radius-pill);
+      padding: 16px 48px; display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 40px auto; flex-wrap: wrap; gap: 2rem;
+    }
+    .c-label { font-weight: 900; font-size: 0.8rem; color: var(--silver-text); text-transform: uppercase; letter-spacing: 0.12em; }
+    .c-cities { display: flex; gap: 20px; font-weight: 700; color: var(--cyan-bright); font-size: 0.95rem; }
 
     /* === FOOTER === */
-    footer {
-      background: var(--primary-depth);
-      color: var(--text-muted);
-      padding: 3rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
+    footer { padding: 6rem 0; text-align: center; color: #94a3b8; font-size: 1rem; border-top: 1px solid var(--silver-frost); }
 
-    /* === ANIMATIONS === */
-    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .fade-up.active { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
+    /* === REVEAL SYSTEM === */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* === RESPONSIVE === */
-    @media (max-width: 768px) {
-      /* Mobile Header Fixes */
-      header.scrolled .brand-wrapper { padding-left: 60px; }
-      .brand-wrapper { padding-left: 60px; }
-      .brand-logo { height: 50px; top: 15px; box-shadow: none; background: transparent; }
-      .nav-menu {
-        position: fixed; top: var(--header-height); left: 0; right: 0;
-        background: var(--primary-depth);
-        flex-direction: column; padding: 2rem;
-        border-bottom: 1px solid var(--border-glass);
-        transform: translateY(-150%); transition: transform 0.3s ease;
-        z-index: 999;
-      }
-      .nav-menu.open { transform: translateY(0); }
-      .mobile-toggle { display: block; }
-
-      /* Hero Mobile */
-      .hero { padding-top: 6rem; align-items: flex-start; }
-      .hero-title { font-size: 2.8rem; }
-      .hero-actions { flex-direction: column; width: 100%; }
-      .btn-hero { width: 100%; text-align: center; }
-
-      /* Section Adjustments */
-      .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-      .data-row { grid-template-columns: 1fr; gap: 1rem; }
-      .contact-grid { grid-template-columns: 1fr; }
-      
-      /* Card Mobile Padding */
-      .quiz-card, .contact-form-card { padding: 1.5rem; }
+    @media (max-width: 968px) {
+      .roadmap-grid, .portal-box, .results-grid, .corridor-bar { grid-template-columns: 1fr; text-align: center; }
+      .portal-box { padding: 4rem 2rem; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 3.5rem; }
+      .corridor-bar { border-radius: 30px; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header id="main-header">
-    <div class="container header-content">
-      <a href="#" class="brand-wrapper">
-        <img src="assets/images/OHS Logo.png" alt="OHS Logo" class="brand-logo">
-        <span class="brand-text">Olympian Health Solutions</span>
-      </a>
-      
-      <button class="mobile-toggle" aria-label="Menu">☰</button>
-      
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="education.html" class="nav-link">Science</a></li>
-          <li><a href="game.html" class="nav-link">Titan Game</a></li>
-          <li><a href="exercisequiz.html" class="nav-btn btn-quiz">Assessment</a></li>
-          <li><a href="Visual.html" class="nav-btn btn-book">Visual</a></li>
-          <li><a href="booking.html" class="nav-btn btn-book">Book Now</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <!-- KINETIC FLOW FIELD ENGINE -->
+  <div class="bg-engine">
+    <canvas id="kinetic-canvas"></canvas>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <canvas id="particles"></canvas>
-    
-    <div class="container hero-container fade-up">
-      <div class="badge-pill">Serving Battle Ground & Vancouver, WA</div>
+  <!-- MAGNETIC NAVIGATION PILL -->
+  <nav class="nav-wrapper">
+    <a href="#" class="logo">
+      <div class="logo-m">O</div>
+      <span class="logo-text">Olympian Health</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li>
+        <a href="#experience">Concierge Care <span>▾</span></a>
+        <div class="dropdown">
+          <a href="#experience">Private Residence Models</a>
+          <a href="#experience">Assisted Living Concierge</a>
+          <a href="#results">Memory Support Plans</a>
+          <a href="#area">Independent Living Care</a>
+        </div>
+      </li>
+      <li><a href="#results">Clinical Proof</a></li>
+      <li><a href="#audit">Diagnostic Audit</a></li>
+    </ul>
+    <a href="booking.html" class="btn-nav">Book Visit</a>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container reveal">
+      <div class="hero-badge">Clinical Movement. Concierge Care.</div>
+      <h1>Dignified <span>Strength.</span><br>Delivered to your home.</h1>
+      <p>Specialized mobile physical coaching for Clark County’s elite seniors. We transform your home into a university-grade mobility lab, providing evidence-based results in a joyful, high-end environment.</p>
       
-      <h1 class="hero-title">
-        <span>Elite Clinical Care.</span>
-        <span class="highlight">Right at Home.</span>
-      </h1>
-      
-      <p class="hero-sub">
-        Mobile Physical Therapy & Strength Coaching specialized for seniors.
-        We bring the complete clinic to your living room, empowering you to 
-        reclaim independence without the hassle of travel.
-      </p>
-      
-      <div class="hero-actions">
-        <a href="booking.html" class="btn-hero btn-primary">Book Consultation</a>
-        <a href="#science" class="btn-hero btn-secondary">View Clinical Outcomes</a>
+      <div class="hero-btns">
+        <a href="booking.html" class="btn-main btn-primary">Request Clinical Visit</a>
+        <a href="#audit" class="btn-main" style="color: var(--navy-deep); font-weight: 800;">View Discovery Audit →</a>
       </div>
-    </div>
-
-    <!-- Curved Divider -->
-    <div class="wave-divider">
-      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="wave-fill"></path>
-      </svg>
     </div>
   </section>
 
-  <!-- REVAMPED ASSESSMENT SECTION -->
-  <div class="feature-strip">
-    <div class="container">
-      <div class="quiz-card fade-up">
-        <div class="pulse-badge">
-          <div class="pulse-dot"></div>
-          Live Clinical Data Analysis
-        </div>
-        <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1rem;">The Physiological Audit</h2>
-        <p style="color: #cbd5e1; max-width: 700px; font-size: 1.1rem; line-height: 1.8;">
-          Movement is medicine, but only when precisely prescribed. Our proprietary audit 
-          cross-references your health history against <strong>modern research</strong> to reveal 
-          the <strong>invaluable benefits</strong> exercise can provide for your specific conditions.
-        </p>
-        <div style="display: flex; gap: 1.5rem; margin: 2rem 0; flex-wrap: wrap; justify-content: center;">
-            <div style="font-size: 0.85rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 5px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                Condition-Specific Analysis
-            </div>
-            <div style="font-size: 0.85rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 5px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                Evidence-Based Protocols
-            </div>
-            <div style="font-size: 0.85rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 5px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                NIH/CDC Aligned Data
-            </div>
-        </div>
-        <a href="exercisequiz.html" class="nav-btn btn-book btn-flash" style="margin-top: 1rem; padding: 1rem 2.5rem; font-size: 1.1rem;">Start Your Clinical Audit</a>
-        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1.5rem; font-style: italic;">Takes ~2 minutes to complete.</p>
-      </div>
+  <!-- TRUST MARQUEE -->
+  <div class="trust-strip">
+    <div class="track">
+      <div class="badge"><i>✦</i> Doctorate Supervised</div>
+      <div class="badge"><i>✦</i> HIPAA Secure Protocols</div>
+      <div class="badge"><i>✦</i> NIH Evidence Aligned</div>
+      <div class="badge"><i>✦</i> Family Digital Reporting</div>
+      <div class="badge"><i>✦</i> Sanitized Mobile Lab Suite</div>
+      <div class="badge"><i>✦</i> Serving Battle Ground & Vancouver</div>
+      <!-- Duplicate for infinite loop -->
+      <div class="badge"><i>✦</i> Doctorate Supervised</div>
+      <div class="badge"><i>✦</i> HIPAA Secure Protocols</div>
+      <div class="badge"><i>✦</i> NIH Evidence Aligned</div>
     </div>
   </div>
 
-  <!-- PROCESS / MOBILE CLINIC -->
-  <section class="process-section" id="process">
-    <div class="container">
-      <div class="section-head fade-up">
-        <h2>The Mobile Clinic Advantage</h2>
-        <p>We eliminate the travel barrier. Here is how we transform your home into a safe, clinical training environment.</p>
+  <!-- THE EXPERIENCE ROADMAP -->
+  <section class="container-island" id="experience">
+    <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">
+      <h2 style="font-size: 3.8rem; font-weight: 900;">Elite Care.<br><span>Zero Friction.</span></h2>
+      <p style="color: #64748b; font-size: 1.3rem; margin-top: 1.5rem;">We’ve removed the clinic walls. Getting world-class results is now as simple as opening your front door.</p>
+    </div>
+    
+    <div class="roadmap-grid reveal">
+      <div class="step-box">
+        <span class="step-num">01</span>
+        <h4>Quick Sync</h4>
+        <p>A brief introductory call to align our protocols with your specific health history and goals.</p>
+      </div>
+      <div class="step-box">
+        <span class="step-num">02</span>
+        <h4>Mobile Lab</h4>
+        <p>We arrive with sanitized, professional tools. All you need is 6ft of open floor space.</p>
+      </div>
+      <div class="step-box">
+        <span class="step-num">03</span>
+        <h4>Total Freedom</h4>
+        <p>60 minutes of fun, upbeat training designed to reclaim your physical and cognitive confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT PORTAL (VITALITY COMPASS) -->
+  <section class="container-island" id="audit">
+    <div class="portal-box reveal">
+      <div class="portal-info">
+        <h2>Your Blueprint <span>for Freedom.</span></h2>
+        <p>Unlock the science of your own potential. Our clinical audit uses NIH benchmarks to project your exact 12-week improvement curve based on your personal health profile.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem;">
+           <div style="background: rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">🧬 Bio-Sync Mapping</div>
+           <div style="background: rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">📉 Risk Analysis</div>
+        </div>
+        <a href="exercise-quiz.html" class="btn-portal">Start My Health Audit</a>
+      </div>
+      <div style="text-align: center;">
+         <div style="padding: 4rem; background: rgba(255,255,255,0.04); border-radius: 40px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(30px);">
+             <div style="font-size: 6rem; font-weight: 900; line-height: 1; color: var(--cyan-bright);">+113%</div>
+             <p style="font-size: 1.2rem; opacity: 0.8; margin-top: 1.5rem;">Average power increase across clinical senior cohorts.</p>
+             <p style="margin-top: 3rem; font-style: italic; opacity: 0.5; font-size: 0.9rem;">"University-standard science, delivered with family warmth."</p>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL RESULTS DASHBOARD -->
+  <section class="container-island" id="results">
+    <div style="text-align: center; margin-bottom: 6rem;" class="reveal">
+      <h2 style="font-size: 4rem; font-weight: 900;">Clinical Joy. Verifiable Data.</h2>
+      <p style="color: #64748b; font-size: 1.4rem;">Every session is measured. Every win is celebrated. Watch your biology respond.</p>
+    </div>
+
+    <div class="results-grid">
+      <div class="card bio-card reveal">
+        <div class="bio-head">
+          <h3>Steady Balance</h3>
+          <div class="pill-data">📉 -34% Risk</div>
+        </div>
+        <p style="color: #64748b; font-size: 1.1rem;">Master the reactive step reflex. Regain total confidence on any surface, stairs, or uneven gravel paths.</p>
+        <div class="graph-wrap">
+          <div class="bar-seg" style="height: 90%;"></div>
+          <div class="bar-seg" style="height: 60%;"></div>
+          <div class="bar-seg active" data-h="25%" style="height: 10%;"></div>
+        </div>
       </div>
 
-      <div class="grid-2">
-        <!-- Steps -->
-        <div class="process-steps fade-up">
-          <div class="step-card">
-            <div class="step-icon">1</div>
-            <div class="step-content">
-              <h3>Easy Scheduling</h3>
-              <p>Book online or call. No referral needed for wellness programs.</p>
-            </div>
-          </div>
-          <div class="step-card">
-            <div class="step-icon">2</div>
-            <div class="step-content">
-              <h3>We Arrive Fully Equipped</h3>
-              <p>We bring sanitized, professional-grade equipment suited to your needs.</p>
-            </div>
-          </div>
-          <div class="step-card">
-            <div class="step-icon">3</div>
-            <div class="step-content">
-              <h3>Clinical Intervention</h3>
-              <p>60 minutes of guided, evidence-based movement therapy.</p>
-            </div>
-          </div>
+      <div class="card bio-card reveal" style="transition-delay: 0.15s;">
+        <div class="bio-head">
+          <h3>Metabolic Clarity</h3>
+          <div class="pill-data">✨ +42% Ease</div>
         </div>
-
-        <!-- Equipment Visual -->
-        <div class="kit-visual fade-up delay-1">
-          <h3>The Mobile Kit</h3>
-          <p style="font-size: 0.9rem; color: #64748b;">We require only 6ft of open space.</p>
-          <div class="equip-grid">
-            <div class="equip-item"><span class="check-icon">✓</span> Resistance Bands</div>
-            <div class="equip-item"><span class="check-icon">✓</span> Safety Rails</div>
-            <div class="equip-item"><span class="check-icon">✓</span> Balance Pads</div>
-            <div class="equip-item"><span class="check-icon">✓</span> Massage Tools</div>
-            <div class="equip-item"><span class="check-icon">✓</span> Light Weights</div>
-            <div class="equip-item"><span class="check-icon">✓</span> Vitals Monitoring</div>
-          </div>
+        <p style="color: #64748b; font-size: 1.1rem;">Clinical movement clears sugar from your blood independently of insulin. High energy, all day long.</p>
+        <div class="graph-wrap">
+          <div class="bar-seg" style="height: 25%;"></div>
+          <div class="bar-seg" style="height: 50%;"></div>
+          <div class="bar-seg active" data-h="88%" style="height: 10%;"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CLINICAL DASHBOARD -->
-  <section class="clinical-section" id="science">
-    <div class="bg-grid"></div>
-    <div class="container clinical-container">
-      <div class="section-head fade-up">
-        <h2 class="text-gradient">Clinical Outcomes Data</h2>
-        <p style="color: #94a3b8;">Review the physiological impact of our protocols on common age-related conditions.</p>
+  <!-- PLATINUM CORRIDOR -->
+  <section class="reveal" id="area">
+    <div class="corridor-bar">
+      <span class="c-label">Clark County Mobile Corridor</span>
+      <div class="c-cities">
+        <span>Vancouver</span>
+        <span>Battle Ground</span>
+        <span>Camas</span>
+        <span>Ridgefield</span>
       </div>
-
-      <div class="dashboard-accordion fade-up">
-        
-        <!-- Diabetes -->
-        <details class="med-card">
-          <summary class="med-head">
-            <div class="condition-tag"><span style="color:var(--accent-cyan)">●</span> Diabetes Mellitus</div>
-            <span>+</span>
-          </summary>
-          <div class="med-body">
-            <div class="data-row">
-              <div class="mechanism">
-                <h4>Mechanism</h4>
-                <p><strong>GLUT4 Translocation:</strong> Muscle contraction acts as "invisible insulin," moving glucose from blood to cells independently of insulin for 48 hours.</p>
-              </div>
-              <div class="stat-visual">
-                <div class="bar-track">
-                  <div class="bar-fill" data-width="42%">
-                    <span class="bar-label">-42% Risk</span>
-                  </div>
-                </div>
-                <span class="source-cite">Sigal et al., Diabetes Care (2006)</span>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- Falls -->
-        <details class="med-card">
-          <summary class="med-head">
-            <div class="condition-tag"><span style="color:var(--accent-gold)">●</span> Fall Risk</div>
-            <span>+</span>
-          </summary>
-          <div class="med-body">
-            <div class="data-row">
-              <div class="mechanism">
-                <h4>Mechanism</h4>
-                <p><strong>Type II Fiber Recruitment:</strong> Falls are a power (speed) failure. We specifically train fast-twitch fibers to improve the reactive step reflex.</p>
-              </div>
-              <div class="stat-visual">
-                <div class="bar-track">
-                  <div class="bar-fill" data-width="34%">
-                    <span class="bar-label">-34% Fall Rate</span>
-                  </div>
-                </div>
-                <span class="source-cite">Sherrington et al., Cochrane (2019)</span>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- Cognitive -->
-        <details class="med-card">
-          <summary class="med-head">
-            <div class="condition-tag"><span style="color:#a855f7">●</span> Cognitive Decline</div>
-            <span>+</span>
-          </summary>
-          <div class="med-body">
-            <div class="data-row">
-              <div class="mechanism">
-                <h4>Mechanism</h4>
-                <p><strong>BDNF Release:</strong> Aerobic activity triggers Brain-Derived Neurotrophic Factor, promoting neurogenesis in the hippocampus (memory center).</p>
-              </div>
-              <div class="stat-visual">
-                <div class="bar-track">
-                  <div class="bar-fill" data-width="100%">
-                    <span class="bar-label" style="left: 10px; right: auto;">Reverses Atrophy (+2% Vol)</span>
-                  </div>
-                </div>
-                <span class="source-cite">Erickson et al., PNAS (2011)</span>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- Sarcopenia -->
-        <details class="med-card">
-          <summary class="med-head">
-            <div class="condition-tag"><span style="color:#ef4444">●</span> Sarcopenia</div>
-            <span>+</span>
-          </summary>
-          <div class="med-body">
-            <div class="data-row">
-              <div class="mechanism">
-                <h4>Mechanism</h4>
-                <p><strong>mTOR Activation:</strong> Resistance training stimulates muscle protein synthesis pathways effectively even in nonagenarians (90+).</p>
-              </div>
-              <div class="stat-visual">
-                <div class="bar-track" style="overflow: visible;">
-                  <div class="bar-fill" data-width="100%">
-                    <span class="bar-label" style="right: -100px; color: #fff;">+113% Strength</span>
-                  </div>
-                </div>
-                <span class="source-cite">Fiatarone et al., JAMA (1990)</span>
-              </div>
-            </div>
-          </div>
-        </details>
-
-      </div>
+      <div style="font-weight: 900;">Elite Member Access</div>
     </div>
   </section>
-
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="grid-2">
-        <div class="contact-text fade-up">
-          <h2>Start Your Journey</h2>
-          <p>Frailty is not an inevitable part of aging. Contact us to build a personalized plan for independence.</p>
-          <div style="margin-top: 2rem;">
-            <p><strong>Phone:</strong> (360) 555-0123</p>
-            <p><strong>Email:</strong> info@olympianhealth.com</p>
-          </div>
-        </div>
-        
-        <div class="contact-form-card fade-up delay-1">
-          <h3 style="color:var(--primary-depth); margin-bottom:1.5rem;">Request Consultation</h3>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <div class="form-group">
-              <input type="text" name="name" class="form-input" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" name="email" class="form-input" placeholder="Email or Phone" required>
-            </div>
-            <div class="form-group">
-              <textarea name="message" class="form-input" rows="4" placeholder="How can we help?" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Request</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA & FOOTER -->
-  <a href="booking.html" class="float-cta" id="cta-btn">Book Now</a>
 
   <footer>
     <div class="container">
-      <p>&copy; <span id="year">2024</span> Olympian Health Solutions. Clinical excellence in motion.</p>
+      <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility. Battle Ground, WA.</p>
     </div>
   </footer>
 
-  <!-- LOGIC -->
   <script>
-    // === 1. HEADER & SCROLL EFFECTS ===
-    const header = document.getElementById('main-header');
-    const ctaBtn = document.getElementById('cta-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const menuToggle = document.querySelector('.mobile-toggle');
+    // --- SCROLL REVEAL & CHART ANIMATION ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { 
+        if(e.isIntersecting) {
+          e.target.classList.add('active');
+          const bars = e.target.querySelectorAll('.bar-seg.active');
+          bars.forEach(bar => { bar.style.height = bar.getAttribute('data-h'); });
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    window.addEventListener('scroll', () => {
-      // Toggle sticky header class
-      if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-
-      // Toggle Floating CTA
-      if (window.scrollY > 600) {
-        ctaBtn.classList.add('visible');
-      } else {
-        ctaBtn.classList.remove('visible');
-      }
-    });
-
-    // Mobile Menu
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      menuToggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
-    });
-
-    // === 2. PARTICLE ANIMATION (Efficient) ===
-    const canvas = document.getElementById('particles');
+    // --- KINETIC FLOW FIELD ENGINE (CANVAS) ---
+    const canvas = document.getElementById('kinetic-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
-    
-    // Fewer particles for cleaner look
-    const particleCount = 40; 
-    const particles = [];
+    let particles = [];
+    const particleCount = 2000; // High density for masterpiece effect
+    const noiseScale = 0.005;
 
     function resize() {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight;
+      height = canvas.height = window.innerHeight;
+      initParticles();
     }
 
     class Particle {
@@ -1121,87 +405,57 @@
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.size = Math.random() * 2;
-        this.alpha = Math.random() * 0.5 + 0.1;
+        this.prevX = this.x;
+        this.prevY = this.y;
+        this.speed = Math.random() * 0.5 + 0.2;
+        this.alpha = Math.random() * 0.2 + 0.1;
       }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+      update(time) {
+        this.prevX = this.x;
+        this.prevY = this.y;
+        
+        // Simulating a flow field using sine/cosine waves for smooth "Masterpiece" motion
+        const angle = (Math.sin(this.x * noiseScale) + Math.cos(this.y * noiseScale) + Math.sin(time * 0.0005)) * Math.PI;
+        
+        this.x += Math.cos(angle) * this.speed;
+        this.y += Math.sin(angle) * this.speed;
+
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
       }
       draw() {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(34, 211, 238, ${this.alpha})`; // Cyan particles
-        ctx.fill();
+        ctx.moveTo(this.prevX, this.prevY);
+        ctx.lineTo(this.x, this.y);
+        ctx.strokeStyle = `rgba(59, 130, 246, ${this.alpha})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
     }
 
     function initParticles() {
-      for(let i=0; i<particleCount; i++) particles.push(new Particle());
+      particles = Array.from({length: particleCount}, () => new Particle());
     }
 
     function animate() {
-      ctx.clearRect(0, 0, width, height);
+      const time = Date.now();
+      
+      // Multi-layer Clinical Wash Effect
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.fillRect(0, 0, width, height);
+
       particles.forEach(p => {
-        p.update();
+        p.update(time);
         p.draw();
       });
-      // Connection lines (constellations)
-      ctx.strokeStyle = 'rgba(34, 211, 238, 0.05)';
-      for(let i=0; i<particles.length; i++) {
-        for(let j=i+1; j<particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
+
       requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', resize);
     resize();
-    initParticles();
     animate();
-
-    // === 3. OBSERVERS (Scroll Reveal & Charts) ===
-    const observerOptions = { threshold: 0.15, rootMargin: "0px" };
-    
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
-
-    // Chart Animation Logic
-    document.querySelectorAll('details.med-card').forEach(detail => {
-      detail.addEventListener('toggle', () => {
-        if (detail.open) {
-          const bar = detail.querySelector('.bar-fill');
-          const width = bar.getAttribute('data-width');
-          // Short delay to allow browser layout calculation
-          setTimeout(() => { bar.style.width = width; }, 100);
-        } else {
-           // Reset for re-animation
-           const bar = detail.querySelector('.bar-fill');
-           bar.style.width = '0';
-        }
-      });
-    });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
