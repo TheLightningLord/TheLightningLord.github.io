@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA with professional, fun, and manageable mobility coaching." />
+  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Olympian Health Solutions | Your Independence Forecast</title>
 
@@ -13,7 +13,6 @@
   
   <style>
     :root {
-      /* === THE RADIANT FLOW PALETTE === */
       --color-navy: #030712;
       --color-ultramarine: #2563eb;
       --color-azure: #60a5fa;
@@ -21,7 +20,6 @@
       --color-frost: #f8fafc;
       --color-white: #ffffff;
       --color-glow: #dbeafe;
-      --color-success: #10b981;
       
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -30,16 +28,13 @@
       --glass-dark: rgba(3, 7, 18, 0.96);
       --radius-xl: 48px;
       --radius-lg: 32px;
-      --radius-md: 20px;
       --radius-full: 999px;
       
       --shadow-subtle: 0 10px 40px rgba(0,0,0,0.04);
       --shadow-clinical: 0 20px 60px rgba(37, 99, 233, 0.15);
-      --shadow-active: 0 0 40px rgba(37, 99, 233, 0.45);
     }
 
-    /* === RESET === */
-    *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
     html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
     body {
       margin: 0;
@@ -53,7 +48,7 @@
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === OXYGENATED BUBBLE BACKGROUND === */
+    /* === ANIMATED BACKGROUND === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -65,185 +60,147 @@
     /* === NAVIGATION === */
     nav {
       position: fixed;
-      top: 15px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 30px); max-width: 1200px;
+      top: 10px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 20px); max-width: 1200px;
       z-index: 1000;
       background: var(--glass);
       backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border-radius: var(--radius-full);
       border: 1px solid rgba(255,255,255,0.8);
-      padding: 10px 32px;
+      padding: 8px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-subtle);
     }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-mark { width: 34px; height: 34px; background: var(--color-navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.1rem; }
-    .brand-name { font-weight: 800; font-size: 1.2rem; color: var(--color-navy); }
+    .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-mark { width: 32px; height: 32px; background: var(--color-navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
+    .brand-name { font-weight: 800; font-size: 1rem; color: var(--color-navy); }
 
     .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 1024px) { .nav-links { display: none; } }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
-    .nav-links a:hover { color: var(--color-ultramarine); }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; }
     
-    .nav-btns { display: flex; gap: 10px; align-items: center; }
-    @media (max-width: 480px) { .nav-btns { display: none; } }
-    .btn-nav-outline { border: 2px solid var(--color-navy); color: var(--color-navy); padding: 8px 20px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: 0.3s; }
-    .btn-nav-primary { background: var(--color-navy); color: #fff; padding: 10px 24px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: 0.3s; }
+    .nav-btns { display: flex; gap: 8px; }
+    .btn-nav-primary { background: var(--color-navy); color: #fff; padding: 8px 16px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.75rem; text-decoration: none; }
+    @media (max-width: 480px) { .btn-nav-primary { padding: 6px 12px; } }
 
-    /* === HERO === */
+    /* === HERO SECTION === */
     .hero {
-      min-height: 80vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 140px 24px 60px;
+      padding: 120px 20px 40px;
       text-align: center;
     }
-    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 2.5rem; }
+    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 2rem; }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 24px; background: #fff; border: 1px solid var(--color-silver);
-      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.75rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; background: #fff; border: 1px solid var(--color-silver);
+      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.65rem;
       text-transform: uppercase; letter-spacing: 0.15em;
     }
-    .location-pill { font-weight: 800; font-size: 0.9rem; color: var(--color-navy); display: flex; align-items: center; gap: 8px; background: rgba(37, 99, 235, 0.08); padding: 10px 24px; border-radius: 99px; }
+    .location-pill { font-weight: 800; font-size: 0.8rem; color: var(--color-navy); background: rgba(37, 99, 235, 0.06); padding: 8px 18px; border-radius: 99px; }
 
-    .hero h1 { font-size: clamp(3.2rem, 11vw, 7.5rem); margin-bottom: 2rem; font-weight: 900; line-height: 0.9; }
+    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 1.5rem; font-weight: 900; }
     .hero h1 span { color: var(--color-ultramarine); }
-    .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: 1.4rem; color: #475569; font-weight: 400; line-height: 1.6; }
+    .hero p { max-width: 800px; margin: 0 auto 3.5rem; font-size: clamp(1.1rem, 3.5vw, 1.4rem); color: #475569; font-weight: 400; line-height: 1.5; padding: 0 10px; }
     
-    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
-    .btn-hero { padding: 1.4rem 4.5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.2rem; text-decoration: none; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none; cursor: pointer; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-direction: column; align-items: center; }
+    @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
+    .btn-hero { width: 100%; max-width: 400px; padding: 1.2rem 2.5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.15rem; text-decoration: none; transition: 0.4s; text-align: center; border: none; cursor: pointer; }
     .btn-primary { background: var(--color-ultramarine); color: #fff; box-shadow: var(--shadow-clinical); }
     .btn-cta { background: var(--color-navy); color: #fff; }
 
     /* === TRUST TICKER === */
-    .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .ticker-bar { padding: 1.5rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
     .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 10px; margin-right: 60px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
+    .badge-item { display: inline-flex; align-items: center; gap: 8px; margin-right: 40px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === PROGRESS STEPS === */
-    .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; position: relative; }
-    .onboarding-header { text-align: center; margin-bottom: 60px; }
-    .onboarding-header h2 { font-size: 3.5rem; font-weight: 900; }
+    /* === MOBILE-FIRST PROGRESS STEPPER === */
+    .onboarding-section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+    .onboarding-header { text-align: center; margin-bottom: 40px; }
+    .onboarding-header h2 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; }
     
-    .stepper-progress-wrap { position: relative; display: flex; justify-content: space-between; align-items: flex-start; margin-top: 80px; }
-    .stepper-line-bg { position: absolute; top: 30px; left: 0; width: 100%; height: 6px; background: #eef2ff; border-radius: 10px; z-index: 1; }
-    .stepper-line-fill { position: absolute; top: 30px; left: 0; width: 0%; height: 6px; background: var(--color-ultramarine); border-radius: 10px; z-index: 2; transition: 1.5s width cubic-bezier(0.65, 0, 0.35, 1); }
+    .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 40px; }
+    .stepper-line-bg { position: absolute; left: 62px; top: 0; width: 4px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
+    .stepper-line-fill { position: absolute; left: 62px; top: 0; width: 4px; height: 0%; background: var(--color-ultramarine); border-radius: 10px; z-index: 2; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); }
     
-    .step-item { position: relative; z-index: 3; width: 30%; text-align: center; transition: 0.5s; }
+    .step-item { position: relative; z-index: 3; display: flex; gap: 24px; align-items: flex-start; margin-bottom: 50px; opacity: 0.3; transition: 0.5s; transform: translateX(10px); }
+    .step-item.active { opacity: 1; transform: translateX(0); }
     .step-node { 
-        width: 64px; height: 64px; background: #fff; border: 6px solid #eef2ff; border-radius: 50%; 
-        margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; 
-        font-weight: 900; font-size: 1.4rem; color: var(--color-silver); transition: 0.5s;
+        width: 48px; height: 48px; background: #fff; border: 4px solid #eef2ff; border-radius: 50%; 
+        flex-shrink: 0; display: flex; align-items: center; justify-content: center; 
+        font-weight: 900; font-size: 1.1rem; color: var(--color-silver); transition: 0.5s;
     }
-    .active .step-node { border-color: var(--color-ultramarine); color: var(--color-ultramarine); transform: scale(1.15); box-shadow: 0 0 30px rgba(37, 99, 233, 0.2); }
-    .step-content strong { display: block; font-size: 1.4rem; color: var(--color-navy); margin-bottom: 10px; line-height: 1.1; }
-    .step-content p { font-size: 0.95rem; color: #64748b; line-height: 1.6; }
+    .active .step-node { border-color: var(--color-ultramarine); color: var(--color-ultramarine); background: #fff; box-shadow: 0 0 20px rgba(37, 99, 233, 0.2); }
+    .step-content strong { display: block; font-size: 1.25rem; color: var(--color-navy); margin-bottom: 6px; }
+    .step-content p { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
 
-    /* === ENRICHMENT 1: 12-WEEK VITALITY ARC === */
-    .arc-section { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; box-shadow: var(--shadow-subtle); }
-    .arc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 4rem; position: relative; }
-    .arc-card { background: var(--color-frost); padding: 2.5rem; border-radius: 36px; transition: 0.4s; position: relative; overflow: hidden; border: 2px solid transparent; }
-    .arc-card:hover { border-color: var(--color-azure); background: #fff; transform: translateY(-10px); }
-    .arc-week { position: absolute; top: 20px; right: 20px; font-size: 0.75rem; font-weight: 900; color: var(--color-ultramarine); opacity: 0.5; }
-    .arc-card strong { font-size: 1.3rem; display: block; margin-bottom: 12px; color: var(--color-navy); }
-    .arc-card p { font-size: 0.9rem; color: #64748b; line-height: 1.6; }
-    .arc-progress-bar { width: 100%; height: 4px; background: #eef2ff; border-radius: 2px; margin-top: 20px; position: relative; }
-    .arc-progress-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--color-ultramarine); border-radius: 2px; transition: 1s; }
+    @media (min-width: 768px) {
+        .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
+        .stepper-line-bg { top: 24px; left: 0; width: 100%; height: 4px; }
+        .stepper-line-fill { top: 24px; left: 0; height: 4px; width: 0%; transition: 1.5s width; }
+        .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 15px; transform: translateY(10px); }
+        .step-item.active { transform: translateY(0); }
+        .step-node { width: 56px; height: 56px; }
+    }
 
-    /* === ENRICHMENT 2: THE MOBILE TOOLKIT === */
-    .toolkit-section { padding: 80px 24px; max-width: 1400px; margin: 0 auto 100px; }
-    .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-    .tool-tile { background: var(--color-white); padding: 3rem; border-radius: 40px; border: 1.5px solid var(--color-frost); transition: 0.4s; display: flex; flex-direction: column; align-items: flex-start; }
-    .tool-tile:hover { border-color: var(--color-ultramarine); box-shadow: var(--shadow-subtle); transform: scale(1.02); }
-    .tool-icon { font-size: 3rem; margin-bottom: 1.5rem; }
-    .tool-tag { font-size: 0.65rem; font-weight: 900; background: #eff6ff; color: var(--color-ultramarine); padding: 6px 12px; border-radius: 8px; text-transform: uppercase; margin-bottom: 1rem; }
+    /* === SUCCESS METRICS === */
+    .results-strip { padding: 80px 20px; background: #fff; border-radius: 40px; margin: 20px 10px; box-shadow: var(--shadow-subtle); }
+    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
+    @media (min-width: 768px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
+    .bio-unit { text-align: center; background: var(--color-frost); padding: 3rem 1.5rem; border-radius: 32px; border: 1.5px solid transparent; transition: 0.4s; }
+    .bio-visual-wrap { position: relative; width: 160px; height: 160px; margin: 0 auto 1.5rem; }
+    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 14; }
+    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 14; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; font-weight: 900; color: var(--color-navy); }
 
-    /* === METRICS === */
-    .results-strip { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 80px 20px; box-shadow: var(--shadow-subtle); position: relative; z-index: 10; }
-    .bio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1400px; margin: 0 auto; }
-    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 3rem; border-radius: 40px; transition: 0.5s; border: 2px solid transparent; }
-    .bio-unit:hover { border-color: var(--color-ultramarine); background: #fff; transform: translateY(-10px); }
-    
-    .bio-visual-wrap { position: relative; width: 240px; height: 240px; margin: 0 auto 2.5rem; }
-    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; overflow: visible; }
-    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
-    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 12px rgba(37, 99, 233, 0.3)); }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
-
-    /* === FORECAST HUB === */
+    /* === INDEPENDENCE FORECAST === */
     .forecast-hub {
-      padding: 140px 24px; background: var(--color-navy); border-radius: 72px; margin: 0 20px 100px;
+      padding: 100px 20px; background: var(--color-navy); border-radius: 40px; margin: 20px 10px;
       position: relative; overflow: hidden; color: #fff; text-align: center;
     }
-    .forecast-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(37, 99, 233, 0.18) 0%, transparent 70%); pointer-events: none; }
-    .forecast-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; }
-    .forecast-content h2 { font-size: clamp(3rem, 9vw, 5.2rem); color: #fff; margin-bottom: 2rem; }
-    
+    .forecast-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(37, 99, 233, 0.15) 0%, transparent 70%); pointer-events: none; }
+    .forecast-content h2 { font-size: clamp(2.2rem, 8vw, 4.5rem); color: #fff; margin-bottom: 2rem; padding: 0 10px; }
     .forecast-btn {
-      display: inline-flex; align-items: center; gap: 15px;
+      display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 400px;
       background: var(--color-white); color: var(--color-navy);
-      padding: 1.6rem 6rem; border-radius: var(--radius-full);
-      font-weight: 900; font-size: 1.6rem; text-decoration: none;
-      transition: 0.4s; box-shadow: 0 0 60px rgba(255,255,255,0.15);
+      padding: 1.4rem 2rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.2rem; text-decoration: none;
+      transition: 0.4s;
     }
-    .forecast-btn:hover { background: var(--color-azure); color: #fff; transform: scale(1.08); box-shadow: var(--shadow-active); }
 
-    /* === RESEARCH LIBRARY === */
-    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
-    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
-    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 36px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
-    .adv-card:hover { border-color: var(--color-ultramarine); background: #fff; transform: translateY(-10px); }
-    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); line-height: 1.1; }
-    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
-    
-    .kinetic-pill { 
-        align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; 
-        border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; 
-        letter-spacing: 0.1em; border: none; transition: 0.3s; cursor: pointer; margin-top: auto;
-    }
-    .kinetic-pill:hover { background: var(--color-ultramarine); transform: scale(1.05); box-shadow: var(--shadow-active); }
-
-    /* === CLINICAL LEDGER === */
-    .ledger-section { padding: 0 24px 100px; max-width: 1400px; margin: 0 auto; }
-    .ledger-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 50px; }
-    .ledger-tile { background: #fff; border-radius: 36px; padding: 3rem; border: 1.5px solid var(--color-frost); transition: 0.4s; }
-    .ledger-tile:hover { border-color: var(--color-ultramarine); transform: translateY(-8px); box-shadow: var(--shadow-subtle); }
-    .ledger-hard { color: var(--color-silver); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; display: block; margin-bottom: 0.8rem; }
-    .ledger-easy { color: var(--color-ultramarine); font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem; display: block; }
-    .ledger-desc { font-size: 1.1rem; color: #475569; line-height: 1.6; }
+    /* === ROADMAP SECTION === */
+    .arc-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+    .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 40px; }
+    @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } .arc-grid > div:nth-child(n) { grid-column: span 1; } }
+    @media (min-width: 1024px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
+    .arc-card { background: #fff; padding: 2rem; border-radius: 24px; border: 1.5px solid var(--color-frost); position: relative; }
+    .arc-week { font-size: 0.7rem; font-weight: 900; color: var(--color-ultramarine); opacity: 0.5; margin-bottom: 8px; display: block; }
 
     /* === MOBILE PERSISTENT NAV === */
     .mobile-fab-bar {
-      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 36px); max-width: 440px;
+      position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 30px); max-width: 440px;
       background: var(--glass-dark); color: #fff;
-      backdrop-filter: blur(30px); border-radius: var(--radius-full);
-      display: none; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+      padding: 8px; border-radius: var(--radius-full);
+      display: flex; justify-content: space-between; align-items: center;
       z-index: 1001; box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
     }
-    @media (max-width: 768px) { .mobile-fab-bar { display: flex; } }
-    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 800; color: #fff; text-decoration: none; padding: 15px; }
+    @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
+    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 800; color: #fff; text-decoration: none; padding: 12px; }
     .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 8px; }
 
-    /* === FOOTER === */
-    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
-
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    /* === REVEAL === */
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 968px) {
-      .bio-grid, .adv-grid, .ledger-grid, .arc-grid, .toolkit-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 3.2rem; }
-      .forecast-hub { padding: 100px 24px; border-radius: 48px; }
-      .bio-visual-wrap { width: 200px; height: 200px; }
-      .bio-value { font-size: 2.8rem; }
-      .results-strip, .arc-section { border-radius: 40px; padding: 60px 24px; }
-    }
+    footer { padding: 4rem 20px 8rem; text-align: center; color: #94a3b8; font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -253,43 +210,41 @@
     <canvas id="bubble-canvas"></canvas>
   </div>
 
-  <!-- ELITE NAVIGATION -->
+  <!-- MOBILE NAVIGATION -->
   <nav>
     <a href="#" class="brand">
       <div class="logo-mark">O</div>
       <span class="brand-name">Olympian</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#results">Clinical Proof</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#onboarding">Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
-      <li><a href="#advantage">Education</a></li>
     </ul>
     <div class="nav-btns">
-      <a href="quiz.html" class="btn-nav-outline">Assessment</a>
-      <a href="booking.html" class="btn-nav-primary">Book Now</a>
+      <a href="quiz.html" class="btn-nav-primary">Start Assessment</a>
     </div>
   </nav>
 
-  <!-- MOBILE COMMAND BAR -->
+  <!-- PERSISTENT MOBILE COMMAND BAR -->
   <div class="mobile-fab-bar">
     <a href="quiz.html" class="fab-btn">Get Forecast</a>
-    <a href="booking.html" class="fab-btn primary">Schedule Visit</a>
+    <a href="booking.html" class="fab-btn primary">Book Mobile Visit</a>
   </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="container reveal">
       <div class="hero-badges-wrap">
-        <div class="hero-badge">Elite Clinical Movement Specialist</div>
+        <div class="hero-badge">Clinical Movement Specialist</div>
         <div class="location-pill"><i>📍</i> Local Excellence in Clark County, WA</div>
       </div>
       <h1>Movement made <span>Easy.</span><br>Care made Clinical.</h1>
-      <p>Specialized mobile physical coaching for Clark County’s elite seniors. We turn complex rehabilitation into fun, manageable daily wins—delivered directly to your front door.</p>
+      <p>Specialized mobile physical coaching for Clark County’s seniors. High-impact science delivered with family warmth—directly to your favorite chair.</p>
       
       <div class="hero-btns">
         <a href="booking.html" class="btn-hero btn-cta">Book Now</a>
-        <a href="quiz.html" class="btn-hero btn-primary">Start My Independence Forecast</a>
+        <a href="quiz.html" class="btn-hero btn-primary">Independence Forecast</a>
       </div>
     </div>
   </section>
@@ -298,20 +253,16 @@
   <div class="ticker-bar">
     <div class="ticker-track">
       <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
-      <div class="badge-item"><i>✦</i> HIPAA Secure Experience</div>
-      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge-item"><i>✦</i> Serving Vancouver & Battle Ground</div>
-      <div class="badge-item"><i>✦</i> Clinical Rejuvenation Ledger</div>
-      <div class="badge-item"><i>✦</i> Sanitized Mobile Lab Suite</div>
-      <!-- Loop -->
+      <div class="badge-item"><i>✦</i> HIPAA Secure</div>
+      <div class="badge-item"><i>✦</i> NIH Aligned</div>
+      <div class="badge-item"><i>✦</i> Local Mobile Lab Suite</div>
       <div class="badge-item"><i>✦</i> Doctorate Led</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure</div>
       <div class="badge-item"><i>✦</i> NIH Aligned</div>
-      <div class="badge-item"><i>✦</i> Premier Mobile Specialists</div>
     </div>
   </div>
 
-  <!-- VITALITY PROGRESS BAR -->
+  <!-- PROGRESS STEPS -->
   <section class="onboarding-section reveal" id="onboarding">
     <div class="onboarding-header">
         <h2>Your Path to <span>Vitality</span></h2>
@@ -326,21 +277,21 @@
             <div class="step-node">1</div>
             <div class="step-content">
                 <strong>The Digital Sync</strong>
-                <p>A quick 10-min intro to align our elite clinical protocols with your personal health history.</p>
+                <p>A quick 10-min intro to align our elite clinical protocols with your health history.</p>
             </div>
         </div>
         <div class="step-item" id="step-2">
             <div class="step-node">2</div>
             <div class="step-content">
                 <strong>We Bring the Lab</strong>
-                <p>Our specialists arrive with sanitized, high-end diagnostic tools. You don't lift a finger.</p>
+                <p>Our specialists arrive with sanitized, high-end tools. You don't lift a finger.</p>
             </div>
         </div>
         <div class="step-item" id="step-3">
             <div class="step-node">3</div>
             <div class="step-content">
                 <strong>The Joyful Thrive</strong>
-                <p>60 minutes of conversational clinical movement that restores independence and energy.</p>
+                <p>60 minutes of conversational clinical movement that restores energy.</p>
             </div>
         </div>
     </div>
@@ -349,8 +300,8 @@
   <!-- CLINICAL OUTCOMES -->
   <section class="results-strip reveal" id="results">
       <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
-        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by peer-reviewed geriatric research.</p>
+        <h2 style="font-size: 2.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
+        <p style="color: #64748b;">Verifiable proof, backed by peer-reviewed research.</p>
       </div>
       <div class="bio-grid">
         <div class="bio-unit">
@@ -362,7 +313,7 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Stability Gain</strong>
-          <p>Significant reduction in fall-risk through clinical neuromuscular reflex training.</p>
+          <p>Significant reduction in fall-risk via neuromuscular training.</p>
         </div>
         <div class="bio-unit">
           <div class="bio-visual-wrap">
@@ -373,7 +324,7 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Metabolic Logic</strong>
-          <p>Improvement in energy clearance post-session, clearing blood sugar naturally.</p>
+          <p>Clearance of blood glucose independently of insulin.</p>
         </div>
         <div class="bio-unit">
           <div class="bio-visual-wrap">
@@ -384,134 +335,49 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Grip Vitality</strong>
-          <p>Clinical marker for muscle quality and functional longevity.</p>
+          <p>Clinical indicator for muscle quality and biological age.</p>
         </div>
       </div>
-  </section>
-
-  <!-- ENRICHMENT 1: 12-WEEK VITALITY ARC -->
-  <section class="arc-section reveal" id="arc">
-    <div style="text-align: center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
-        <p style="color: #64748b; font-size: 1.25rem;">A milestone-driven clinical roadmap to reclaiming your life.</p>
-    </div>
-    
-    <div class="arc-grid">
-        <div class="arc-card">
-            <span class="arc-week">WEEK 1</span>
-            <strong>Neural Awakening</strong>
-            <p>Targeting proprioception and Type-II fibers to eliminate the "fear of falling" instantly.</p>
-            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 25%"></div></div>
-        </div>
-        <div class="arc-card">
-            <span class="arc-week">WEEK 4</span>
-            <strong>Metabolic Sync</strong>
-            <p>Re-optimizing insulin sensitivity and clearing the "brain fog" through glucose logic.</p>
-            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 50%"></div></div>
-        </div>
-        <div class="arc-card">
-            <span class="arc-week">WEEK 8</span>
-            <strong>Structural Resilience</strong>
-            <p>Reinforcing bone density and joint fluid flow for effortless stairs and yard work.</p>
-            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 75%"></div></div>
-        </div>
-        <div class="arc-card">
-            <span class="arc-week">WEEK 12</span>
-            <strong>Total Independence</strong>
-            <p>Maintenance protocols to ensure travel, play, and vitality remain permanent fixtures.</p>
-            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 100%"></div></div>
-        </div>
-    </div>
   </section>
 
   <!-- INDEPENDENCE FORECAST -->
   <section class="forecast-hub reveal" id="forecast">
     <div class="forecast-content">
       <h2 style="line-height:1;">The Personal <span>Independence Forecast.</span></h2>
-      <p style="margin-top:1.5rem;">Uncover the exact clinical path to reclaiming your physical freedom. Our predictive assessment projects your 12-week potential based on the latest longevity research.</p>
-      <a href="quiz.html" class="forecast-btn" style="margin-top:2.5rem;">Start My Free Forecast Now</a>
-      <p style="margin-top:3rem; font-size:0.9rem; font-weight:900; opacity:0.6; letter-spacing:0.12em;">PREDICTIVE • RESEARCH-BACKED • NO COMMITMENT</p>
+      <p style="margin-top:1.5rem; opacity: 0.8;">Uncover the clinical path to reclaiming your physical freedom. Results in 2 minutes.</p>
+      <a href="quiz.html" class="forecast-btn" style="margin-top:2.5rem;">Get My Free Forecast Now</a>
+      <p style="margin-top:2.5rem; font-size:0.8rem; font-weight:900; opacity:0.6; letter-spacing:0.1em;">PREDICTIVE • RESEARCH-BACKED</p>
     </div>
   </section>
 
-  <!-- ENRICHMENT 2: THE MOBILE TOOLKIT -->
-  <section class="toolkit-section reveal" id="toolkit">
+  <!-- 12-WEEK ROADMAP -->
+  <section class="arc-section reveal" id="arc">
     <div style="text-align: center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">Inside the <span>Mobile Lab</span></h2>
-        <p style="color: #64748b; font-size: 1.25rem;">University-standard diagnostic tools brought to your door.</p>
+        <h2 style="font-size: 2.8rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
+        <p style="color: #64748b; margin-top: 10px;">A milestone-driven clinical roadmap.</p>
     </div>
-    
-    <div class="toolkit-grid">
-        <div class="tool-tile">
-            <div class="tool-icon">⚖️</div>
-            <span class="tool-tag">Fall Prevention</span>
-            <strong>Balance Accelerometers</strong>
-            <p style="color:#64748b; font-size:0.95rem;">Tracking micromovements to retrain your nervous system's "invisible net."</p>
+    <div class="arc-grid">
+        <div class="arc-card">
+            <span class="arc-week">WEEK 1</span>
+            <strong>Neural Awakening</strong>
+            <p>Targeting proprioception to eliminate the "fear of falling" instantly.</p>
         </div>
-        <div class="tool-tile">
-            <div class="tool-icon">✊</div>
-            <span class="tool-tag">Longevity Marker</span>
-            <strong>Grip Dynamometers</strong>
-            <p style="color:#64748b; font-size:0.95rem;">Measuring muscle quality—the primary clinical indicator for senior biological age.</p>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 4</span>
+            <strong>Metabolic Sync</strong>
+            <p>Re-optimizing insulin sensitivity and clearing "brain fog."</p>
         </div>
-        <div class="tool-tile">
-            <div class="tool-icon">📱</div>
-            <span class="tool-tag">Vital Sync</span>
-            <strong>Digital Reporting Hub</strong>
-            <p style="color:#64748b; font-size:0.95rem;">Providing real-time milestone tracking for you and your family members.</p>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 8</span>
+            <strong>Structural Build</strong>
+            <p>Reinforcing bone density for effortless stairs and yard work.</p>
         </div>
-    </div>
-  </section>
-
-  <!-- RESEARCH LIBRARY -->
-  <section class="advantage-hub reveal" id="advantage">
-    <div style="text-align:center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">Clinical <span>Research</span> Library</h2>
-        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the biological upgrades proven by geriatric medical trials:</p>
-    </div>
-    
-    <div class="adv-grid">
-        <div class="adv-card">
-            <strong>Cognitive Spark</strong>
-            <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
-            <button class="kinetic-pill">Neuro-Research Sync</button>
-        </div>
-        <div class="adv-card">
-            <strong>Arterial Rejuvenation</strong>
-            <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
-            <button class="kinetic-pill">Cardio Data Lab</button>
-        </div>
-        <div class="adv-card">
-            <strong>Bone Architecture</strong>
-            <p>Safe resistance protocols that trigger osteoblastic activity for skeletal resilience and strength.</p>
-            <button class="kinetic-pill">Skeletal Sync</button>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 12</span>
+            <strong>Total Independence</strong>
+            <p>Maintenance protocols to ensure travel and play remain permanent.</p>
         </div>
     </div>
-  </section>
-
-  <!-- THE CLINICAL LEDGER -->
-  <section class="ledger-section reveal" id="ledger">
-      <div style="text-align: center;">
-          <h2 style="font-size: 3.2rem; font-weight: 900;">We Make The <span>Hard Stuff Easy.</span></h2>
-          <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Direct solutions for the specific challenges of aging gracefully.</p>
-      </div>
-      <div class="ledger-grid">
-          <div class="ledger-tile">
-              <span class="ledger-hard">Used to be hard:</span>
-              <strong class="ledger-easy">Standing from a chair</strong>
-              <p class="ledger-desc">We target your 'Type-II' power fibers. In weeks, standing becomes an effortless, automatic reflex again.</p>
-          </div>
-          <div class="ledger-tile">
-              <span class="ledger-hard">Used to be hard:</span>
-              <strong class="ledger-easy">Walking on uneven ground</strong>
-              <p class="ledger-desc">Our balance tech recalibrates your nervous system, building total confidence for yards and gravel paths.</p>
-          </div>
-          <div class="ledger-tile">
-              <span class="ledger-hard">Used to be hard:</span>
-              <strong class="ledger-easy">Energy Sustainability</strong>
-              <p class="ledger-desc">Clinical reps clear glucose from your blood independently of insulin, eliminating the 3PM crash.</p>
-          </div>
-      </div>
   </section>
 
   <footer>
@@ -523,8 +389,7 @@
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, bubbles = [];
-    const bubbleCount = 38;
-    const mouse = { x: -1000, y: -1000, radius: 200 };
+    const bubbleCount = window.innerWidth < 768 ? 20 : 38;
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -535,70 +400,36 @@
     class Bubble {
       constructor() { this.reset(); }
       reset() {
-        this.radius = Math.random() * 22 + 6;
+        this.radius = Math.random() * 18 + 4;
         this.x = Math.random() * width;
         this.y = height + this.radius + Math.random() * 200;
-        this.vy = -(Math.random() * 0.45 + 0.25);
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.opacity = Math.random() * 0.14 + 0.05;
+        this.vy = -(Math.random() * 0.4 + 0.15);
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.12 + 0.04;
         this.wobble = Math.random() * Math.PI * 2;
-        this.wobbleSpeed = Math.random() * 0.02;
       }
       update() {
-        // Mouse avoidance physics
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx*dx + dy*dy);
-        
-        if (distance < mouse.radius) {
-          let force = (mouse.radius - distance) / mouse.radius;
-          this.x -= (dx / distance) * force * 5;
-          this.y -= (dy / distance) * force * 5;
-        }
-
         this.y += this.vy;
-        this.wobble += this.wobbleSpeed;
-        this.x += Math.sin(this.wobble) * 0.18 + this.vx;
+        this.wobble += 0.01;
+        this.x += Math.sin(this.wobble) * 0.15 + this.vx;
         if (this.y < -this.radius) this.reset();
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
-        ctx.strokeStyle = `rgba(37, 99, 235, ${this.opacity * 1.5})`;
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
         ctx.fill();
       }
     }
 
     function initBubbles() { bubbles = Array.from({length: bubbleCount}, () => new Bubble()); }
-
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      const t = Date.now() * 0.0012;
-      ctx.beginPath();
-      ctx.moveTo(0, height);
-      for(let x=0; x<=width; x+=50) {
-        ctx.lineTo(x, height - 120 + Math.sin(x * 0.0012 + t) * 25);
-      }
-      ctx.lineTo(width, height);
-      ctx.fillStyle = 'rgba(37, 99, 235, 0.025)';
-      ctx.fill();
       bubbles.forEach(b => { b.update(); b.draw(); });
       requestAnimationFrame(animate);
     }
 
-    const handleMove = (e) => {
-      const touch = e.touches ? e.touches[0] : e;
-      mouse.x = touch.clientX; mouse.y = touch.clientY;
-    };
-    window.addEventListener('mousemove', handleMove);
-    window.addEventListener('touchstart', handleMove, { passive: true });
-    window.addEventListener('touchmove', handleMove, { passive: true });
-    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
-
-    // --- SCROLL REVEAL & BIO RINGS ---
+    // --- SCROLL REVEAL & PROGRESS ---
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
@@ -606,26 +437,28 @@
           
           if (e.target.id === 'onboarding') {
             const fill = document.getElementById('stepper-fill');
-            if (window.innerWidth <= 768) fill.style.height = '100%';
-            else fill.style.width = '100%';
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) fill.style.height = '100%'; else fill.style.width = '100%';
             setTimeout(() => document.getElementById('step-1').classList.add('active'), 200);
-            setTimeout(() => document.getElementById('step-2').classList.add('active'), 700);
-            setTimeout(() => document.getElementById('step-3').classList.add('active'), 1200);
+            setTimeout(() => document.getElementById('step-2').classList.add('active'), 600);
+            setTimeout(() => document.getElementById('step-3').classList.add('active'), 1000);
           }
 
           const rings = e.target.querySelectorAll('.bio-ring-fill');
           rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
             ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
-            const valDisplay = ring.closest('.bio-visual-wrap').querySelector('.bio-value');
-            if (valDisplay) animateValue(valDisplay, 0, target, 2200);
+            const wrap = ring.closest('.bio-visual-wrap');
+            if (wrap) {
+              const valDisplay = wrap.querySelector('.bio-value');
+              if (valDisplay) animateValue(valDisplay, 0, target, 2000);
+            }
           });
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
     function animateValue(obj, start, end, duration) {
-      if (!obj) return;
       let startTimestamp = null;
       const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
