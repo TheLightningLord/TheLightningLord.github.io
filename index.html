@@ -98,10 +98,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 140px 20px 80px;
+      padding: 140px 24px 60px;
       text-align: center;
     }
-    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 2rem; }
+    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 2.5rem; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 8px 24px; background: #fff; border: 1px solid var(--color-silver);
@@ -115,7 +115,7 @@
     .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: 1.4rem; color: #475569; font-weight: 400; line-height: 1.6; }
     
     .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
-    .btn-hero { padding: 1.4rem 5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.3rem; text-decoration: none; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none; cursor: pointer; }
+    .btn-hero { padding: 1.4rem 4.5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.2rem; text-decoration: none; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none; cursor: pointer; }
     .btn-primary { background: var(--color-ultramarine); color: #fff; box-shadow: var(--shadow-clinical); }
     .btn-cta { background: var(--color-navy); color: #fff; }
 
@@ -125,16 +125,16 @@
     .badge-item { display: inline-flex; align-items: center; gap: 10px; margin-right: 60px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === NEW: VITALITY PROGRESS STEPS (LOADING BAR STYLE) === */
+    /* === PROGRESS STEPS === */
     .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; position: relative; }
     .onboarding-header { text-align: center; margin-bottom: 60px; }
-    .onboarding-header h2 { font-size: 3rem; font-weight: 900; }
+    .onboarding-header h2 { font-size: 3.5rem; font-weight: 900; }
     
     .stepper-progress-wrap { position: relative; display: flex; justify-content: space-between; align-items: flex-start; margin-top: 80px; }
     .stepper-line-bg { position: absolute; top: 30px; left: 0; width: 100%; height: 6px; background: #eef2ff; border-radius: 10px; z-index: 1; }
     .stepper-line-fill { position: absolute; top: 30px; left: 0; width: 0%; height: 6px; background: var(--color-ultramarine); border-radius: 10px; z-index: 2; transition: 1.5s width cubic-bezier(0.65, 0, 0.35, 1); }
     
-    .step-item { position: relative; z-index: 3; width: 30%; text-align: center; }
+    .step-item { position: relative; z-index: 3; width: 30%; text-align: center; transition: 0.5s; }
     .step-node { 
         width: 64px; height: 64px; background: #fff; border: 6px solid #eef2ff; border-radius: 50%; 
         margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; 
@@ -144,17 +144,27 @@
     .step-content strong { display: block; font-size: 1.4rem; color: var(--color-navy); margin-bottom: 10px; line-height: 1.1; }
     .step-content p { font-size: 0.95rem; color: #64748b; line-height: 1.6; }
 
-    @media (max-width: 768px) {
-        .stepper-progress-wrap { flex-direction: column; gap: 60px; align-items: flex-start; padding-left: 30px; }
-        .stepper-line-bg { left: 60px; top: 0; width: 4px; height: 100%; }
-        .stepper-line-fill { left: 60px; top: 0; width: 4px; height: 0%; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); }
-        .step-item { width: 100%; display: flex; gap: 30px; text-align: left; align-items: center; }
-        .step-node { margin: 0; flex-shrink: 0; }
-        .onboarding-header h2 { font-size: 2.2rem; }
-    }
+    /* === ENRICHMENT 1: 12-WEEK VITALITY ARC === */
+    .arc-section { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; box-shadow: var(--shadow-subtle); }
+    .arc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 4rem; position: relative; }
+    .arc-card { background: var(--color-frost); padding: 2.5rem; border-radius: 36px; transition: 0.4s; position: relative; overflow: hidden; border: 2px solid transparent; }
+    .arc-card:hover { border-color: var(--color-azure); background: #fff; transform: translateY(-10px); }
+    .arc-week { position: absolute; top: 20px; right: 20px; font-size: 0.75rem; font-weight: 900; color: var(--color-ultramarine); opacity: 0.5; }
+    .arc-card strong { font-size: 1.3rem; display: block; margin-bottom: 12px; color: var(--color-navy); }
+    .arc-card p { font-size: 0.9rem; color: #64748b; line-height: 1.6; }
+    .arc-progress-bar { width: 100%; height: 4px; background: #eef2ff; border-radius: 2px; margin-top: 20px; position: relative; }
+    .arc-progress-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--color-ultramarine); border-radius: 2px; transition: 1s; }
+
+    /* === ENRICHMENT 2: THE MOBILE TOOLKIT === */
+    .toolkit-section { padding: 80px 24px; max-width: 1400px; margin: 0 auto 100px; }
+    .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+    .tool-tile { background: var(--color-white); padding: 3rem; border-radius: 40px; border: 1.5px solid var(--color-frost); transition: 0.4s; display: flex; flex-direction: column; align-items: flex-start; }
+    .tool-tile:hover { border-color: var(--color-ultramarine); box-shadow: var(--shadow-subtle); transform: scale(1.02); }
+    .tool-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+    .tool-tag { font-size: 0.65rem; font-weight: 900; background: #eff6ff; color: var(--color-ultramarine); padding: 6px 12px; border-radius: 8px; text-transform: uppercase; margin-bottom: 1rem; }
 
     /* === METRICS === */
-    .results-strip { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-subtle); position: relative; z-index: 10; }
+    .results-strip { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 80px 20px; box-shadow: var(--shadow-subtle); position: relative; z-index: 10; }
     .bio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1400px; margin: 0 auto; }
     .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 3rem; border-radius: 40px; transition: 0.5s; border: 2px solid transparent; }
     .bio-unit:hover { border-color: var(--color-ultramarine); background: #fff; transform: translateY(-10px); }
@@ -165,7 +175,7 @@
     .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 12px rgba(37, 99, 233, 0.3)); }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
 
-    /* === INDEPENDENCE FORECAST === */
+    /* === FORECAST HUB === */
     .forecast-hub {
       padding: 140px 24px; background: var(--color-navy); border-radius: 72px; margin: 0 20px 100px;
       position: relative; overflow: hidden; color: #fff; text-align: center;
@@ -183,7 +193,7 @@
     }
     .forecast-btn:hover { background: var(--color-azure); color: #fff; transform: scale(1.08); box-shadow: var(--shadow-active); }
 
-    /* === ADVANTAGE LEDGER (GALLERY) === */
+    /* === RESEARCH LIBRARY === */
     .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
     .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
     .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 36px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
@@ -226,19 +236,13 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 1024px) {
-      .bio-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
     @media (max-width: 968px) {
-      .bio-grid, .adv-grid, .ledger-grid { grid-template-columns: 1fr; }
+      .bio-grid, .adv-grid, .ledger-grid, .arc-grid, .toolkit-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 3.2rem; }
-      .hero-btns { flex-direction: column; width: 100%; padding: 0 20px; }
-      .btn-hero { width: 100%; padding: 1.2rem 0; }
       .forecast-hub { padding: 100px 24px; border-radius: 48px; }
       .bio-visual-wrap { width: 200px; height: 200px; }
       .bio-value { font-size: 2.8rem; }
-      .results-strip { border-radius: 40px; padding: 60px 24px; }
+      .results-strip, .arc-section { border-radius: 40px; padding: 60px 24px; }
     }
   </style>
 </head>
@@ -249,7 +253,7 @@
     <canvas id="bubble-canvas"></canvas>
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- ELITE NAVIGATION -->
   <nav>
     <a href="#" class="brand">
       <div class="logo-mark">O</div>
@@ -258,22 +262,22 @@
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#results">Clinical Proof</a></li>
-      <li><a href="#forecast">Vitality Forecast</a></li>
-      <li><a href="#advantage">Advantage Hub</a></li>
+      <li><a href="#arc">Roadmap</a></li>
+      <li><a href="#advantage">Education</a></li>
     </ul>
     <div class="nav-btns">
-      <a href="quiz.html" class="btn-nav-outline">Start Assessment</a>
+      <a href="quiz.html" class="btn-nav-outline">Assessment</a>
       <a href="booking.html" class="btn-nav-primary">Book Now</a>
     </div>
   </nav>
 
-  <!-- MOBILE PERSISTENT COMMAND BAR -->
+  <!-- MOBILE COMMAND BAR -->
   <div class="mobile-fab-bar">
-    <a href="quiz.html" class="fab-btn">Get My Forecast</a>
+    <a href="quiz.html" class="fab-btn">Get Forecast</a>
     <a href="booking.html" class="fab-btn primary">Schedule Visit</a>
   </div>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="container reveal">
       <div class="hero-badges-wrap">
@@ -290,13 +294,13 @@
     </div>
   </section>
 
-  <!-- SCROLLING TRUST BANNER -->
+  <!-- TRUST TICKER -->
   <div class="ticker-bar">
     <div class="ticker-track">
       <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure Experience</div>
       <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
+      <div class="badge-item"><i>✦</i> Serving Vancouver & Battle Ground</div>
       <div class="badge-item"><i>✦</i> Clinical Rejuvenation Ledger</div>
       <div class="badge-item"><i>✦</i> Sanitized Mobile Lab Suite</div>
       <!-- Loop -->
@@ -307,18 +311,17 @@
     </div>
   </div>
 
-  <!-- NEW: VITALITY PROGRESS STEPS (LOADING BAR STYLE) -->
+  <!-- VITALITY PROGRESS BAR -->
   <section class="onboarding-section reveal" id="onboarding">
     <div class="onboarding-header">
         <h2>Your Path to <span>Vitality</span></h2>
-        <p style="color: #64748b;">A seamless 60-second start to a more energetic life.</p>
+        <p style="color: #64748b;">A seamless start to a more energetic life.</p>
     </div>
     
     <div class="stepper-progress-wrap">
         <div class="stepper-line-bg"></div>
         <div class="stepper-line-fill" id="stepper-fill"></div>
         
-        <!-- Step 1 -->
         <div class="step-item" id="step-1">
             <div class="step-node">1</div>
             <div class="step-content">
@@ -326,7 +329,6 @@
                 <p>A quick 10-min intro to align our elite clinical protocols with your personal health history.</p>
             </div>
         </div>
-        <!-- Step 2 -->
         <div class="step-item" id="step-2">
             <div class="step-node">2</div>
             <div class="step-content">
@@ -334,7 +336,6 @@
                 <p>Our specialists arrive with sanitized, high-end diagnostic tools. You don't lift a finger.</p>
             </div>
         </div>
-        <!-- Step 3 -->
         <div class="step-item" id="step-3">
             <div class="step-node">3</div>
             <div class="step-content">
@@ -349,7 +350,7 @@
   <section class="results-strip reveal" id="results">
       <div style="text-align: center; margin-bottom: 60px;">
         <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
-        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by NIH geriatric research.</p>
+        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by peer-reviewed geriatric research.</p>
       </div>
       <div class="bio-grid">
         <div class="bio-unit">
@@ -383,12 +384,47 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Grip Vitality</strong>
-          <p>Clinical marker for biological age and functional longevity.</p>
+          <p>Clinical marker for muscle quality and functional longevity.</p>
         </div>
       </div>
   </section>
 
-  <!-- THE INDEPENDENCE FORECAST -->
+  <!-- ENRICHMENT 1: 12-WEEK VITALITY ARC -->
+  <section class="arc-section reveal" id="arc">
+    <div style="text-align: center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
+        <p style="color: #64748b; font-size: 1.25rem;">A milestone-driven clinical roadmap to reclaiming your life.</p>
+    </div>
+    
+    <div class="arc-grid">
+        <div class="arc-card">
+            <span class="arc-week">WEEK 1</span>
+            <strong>Neural Awakening</strong>
+            <p>Targeting proprioception and Type-II fibers to eliminate the "fear of falling" instantly.</p>
+            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 25%"></div></div>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 4</span>
+            <strong>Metabolic Sync</strong>
+            <p>Re-optimizing insulin sensitivity and clearing the "brain fog" through glucose logic.</p>
+            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 50%"></div></div>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 8</span>
+            <strong>Structural Resilience</strong>
+            <p>Reinforcing bone density and joint fluid flow for effortless stairs and yard work.</p>
+            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 75%"></div></div>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 12</span>
+            <strong>Total Independence</strong>
+            <p>Maintenance protocols to ensure travel, play, and vitality remain permanent fixtures.</p>
+            <div class="arc-progress-bar"><div class="arc-progress-fill" style="width: 100%"></div></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- INDEPENDENCE FORECAST -->
   <section class="forecast-hub reveal" id="forecast">
     <div class="forecast-content">
       <h2 style="line-height:1;">The Personal <span>Independence Forecast.</span></h2>
@@ -398,23 +434,52 @@
     </div>
   </section>
 
-  <!-- THE ADVANTAGE HUB (GALLERY) -->
+  <!-- ENRICHMENT 2: THE MOBILE TOOLKIT -->
+  <section class="toolkit-section reveal" id="toolkit">
+    <div style="text-align: center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">Inside the <span>Mobile Lab</span></h2>
+        <p style="color: #64748b; font-size: 1.25rem;">University-standard diagnostic tools brought to your door.</p>
+    </div>
+    
+    <div class="toolkit-grid">
+        <div class="tool-tile">
+            <div class="tool-icon">⚖️</div>
+            <span class="tool-tag">Fall Prevention</span>
+            <strong>Balance Accelerometers</strong>
+            <p style="color:#64748b; font-size:0.95rem;">Tracking micromovements to retrain your nervous system's "invisible net."</p>
+        </div>
+        <div class="tool-tile">
+            <div class="tool-icon">✊</div>
+            <span class="tool-tag">Longevity Marker</span>
+            <strong>Grip Dynamometers</strong>
+            <p style="color:#64748b; font-size:0.95rem;">Measuring muscle quality—the primary clinical indicator for senior biological age.</p>
+        </div>
+        <div class="tool-tile">
+            <div class="tool-icon">📱</div>
+            <span class="tool-tag">Vital Sync</span>
+            <strong>Digital Reporting Hub</strong>
+            <p style="color:#64748b; font-size:0.95rem;">Providing real-time milestone tracking for you and your family members.</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH LIBRARY -->
   <section class="advantage-hub reveal" id="advantage">
     <div style="text-align:center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">The <span>Impact</span> Gallery</h2>
-        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the high-speed biological upgrades our specialized model provides:</p>
+        <h2 style="font-size: 3.5rem; font-weight: 900;">Clinical <span>Research</span> Library</h2>
+        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the biological upgrades proven by geriatric medical trials:</p>
     </div>
     
     <div class="adv-grid">
         <div class="adv-card">
             <strong>Cognitive Spark</strong>
             <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
-            <button class="kinetic-pill">Research Sync</button>
+            <button class="kinetic-pill">Neuro-Research Sync</button>
         </div>
         <div class="adv-card">
             <strong>Arterial Rejuvenation</strong>
             <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
-            <button class="kinetic-pill">Cardio Lab</button>
+            <button class="kinetic-pill">Cardio Data Lab</button>
         </div>
         <div class="adv-card">
             <strong>Bone Architecture</strong>
@@ -444,7 +509,7 @@
           <div class="ledger-tile">
               <span class="ledger-hard">Used to be hard:</span>
               <strong class="ledger-easy">Energy Sustainability</strong>
-              <p class="ledger-desc">Clinical movement clears glucose naturally, providing energy that eliminates the 3PM mid-day crash.</p>
+              <p class="ledger-desc">Clinical reps clear glucose from your blood independently of insulin, eliminating the 3PM crash.</p>
           </div>
       </div>
   </section>
@@ -457,9 +522,9 @@
     // --- VITALITY BUBBLE ENGINE ---
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height;
-    let bubbles = [];
+    let width, height, bubbles = [];
     const bubbleCount = 38;
+    const mouse = { x: -1000, y: -1000, radius: 200 };
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -480,6 +545,17 @@
         this.wobbleSpeed = Math.random() * 0.02;
       }
       update() {
+        // Mouse avoidance physics
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx*dx + dy*dy);
+        
+        if (distance < mouse.radius) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          this.x -= (dx / distance) * force * 5;
+          this.y -= (dy / distance) * force * 5;
+        }
+
         this.y += this.vy;
         this.wobble += this.wobbleSpeed;
         this.x += Math.sin(this.wobble) * 0.18 + this.vx;
@@ -513,38 +589,36 @@
       requestAnimationFrame(animate);
     }
 
-    // --- SCROLL REVEAL & PROGRESS LOGIC ---
+    const handleMove = (e) => {
+      const touch = e.touches ? e.touches[0] : e;
+      mouse.x = touch.clientX; mouse.y = touch.clientY;
+    };
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('touchstart', handleMove, { passive: true });
+    window.addEventListener('touchmove', handleMove, { passive: true });
+    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
+
+    // --- SCROLL REVEAL & BIO RINGS ---
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
           e.target.classList.add('active');
           
-          // Progress Bar Activation
           if (e.target.id === 'onboarding') {
             const fill = document.getElementById('stepper-fill');
-            const isMobile = window.innerWidth <= 768;
-            if (isMobile) {
-                fill.style.height = '100%';
-            } else {
-                fill.style.width = '100%';
-            }
-            // Sequentially activate steps
+            if (window.innerWidth <= 768) fill.style.height = '100%';
+            else fill.style.width = '100%';
             setTimeout(() => document.getElementById('step-1').classList.add('active'), 200);
             setTimeout(() => document.getElementById('step-2').classList.add('active'), 700);
             setTimeout(() => document.getElementById('step-3').classList.add('active'), 1200);
           }
 
-          // Biometric Rings Activation
           const rings = e.target.querySelectorAll('.bio-ring-fill');
           rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
-            const circumference = 439.8;
-            ring.style.strokeDashoffset = circumference - (target / 100) * circumference;
-            const wrap = ring.closest('.bio-visual-wrap');
-            if (wrap) {
-              const valDisplay = wrap.querySelector('.bio-value');
-              if (valDisplay) animateValue(valDisplay, 0, target, 2200);
-            }
+            ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
+            const valDisplay = ring.closest('.bio-visual-wrap').querySelector('.bio-value');
+            if (valDisplay) animateValue(valDisplay, 0, target, 2200);
           });
         }
       });
