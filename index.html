@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA with professional, fun, and manageable mobility coaching." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Olympian Health Solutions | Clark County Senior Mobility Masterpiece</title>
+  <title>Olympian Health Solutions | Your Independence Forecast</title>
 
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
   
   <style>
     :root {
-      /* === THE CRYSTALLINE FLOW PALETTE === */
+      /* === THE RADIANT FLOW PALETTE === */
       --color-navy: #030712;
       --color-ultramarine: #2563eb;
       --color-azure: #60a5fa;
@@ -21,20 +21,21 @@
       --color-frost: #f8fafc;
       --color-white: #ffffff;
       --color-glow: #dbeafe;
+      --color-success: #10b981;
       
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
       
-      --glass: rgba(255, 255, 255, 0.88);
-      --glass-dark: rgba(3, 7, 18, 0.95);
-      --radius-xl: 40px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
+      --glass: rgba(255, 255, 255, 0.94);
+      --glass-dark: rgba(3, 7, 18, 0.96);
+      --radius-xl: 48px;
+      --radius-lg: 32px;
+      --radius-md: 20px;
       --radius-full: 999px;
       
-      --shadow-subtle: 0 10px 30px rgba(0,0,0,0.03);
-      --shadow-clinical: 0 20px 50px rgba(37, 99, 233, 0.12);
-      --shadow-active: 0 0 30px rgba(37, 99, 233, 0.4);
+      --shadow-subtle: 0 10px 40px rgba(0,0,0,0.04);
+      --shadow-clinical: 0 20px 60px rgba(37, 99, 233, 0.15);
+      --shadow-active: 0 0 40px rgba(37, 99, 233, 0.45);
     }
 
     /* === RESET === */
@@ -52,18 +53,14 @@
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === TOUCH-REACTIVE QUANTUM BACKGROUND === */
+    /* === OXYGENATED BUBBLE BACKGROUND === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
-      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 100%);
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f8ff 100%);
     }
-    #quantum-canvas {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0.85;
-    }
+    #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
     /* === NAVIGATION === */
     nav {
@@ -72,180 +69,184 @@
       width: calc(100% - 30px); max-width: 1200px;
       z-index: 1000;
       background: var(--glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(30px);
       border-radius: var(--radius-full);
-      border: 1px solid rgba(255,255,255,0.7);
-      padding: 8px 24px;
+      border: 1px solid rgba(255,255,255,0.8);
+      padding: 10px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-subtle);
     }
-    .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .logo-mark { width: 32px; height: 32px; background: var(--color-navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1rem; }
-    .brand-name { font-weight: 800; font-size: 1.15rem; color: var(--color-navy); }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 34px; height: 34px; background: var(--color-navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.1rem; }
+    .brand-name { font-weight: 800; font-size: 1.2rem; color: var(--color-navy); }
 
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 860px) { .nav-links { display: none; } }
-    
-    .nav-links > li { position: relative; padding: 10px 0; }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 4px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+    @media (max-width: 1024px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
     .nav-links a:hover { color: var(--color-ultramarine); }
-
-    .dropdown {
-      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-      background: #fff; border: 1px solid #e2e8f0;
-      min-width: 240px; border-radius: 20px; padding: 10px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      opacity: 0; pointer-events: none; transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 100;
-    }
-    .nav-links li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0px); }
-    .dropdown a { padding: 12px 16px; border-radius: 12px; color: var(--color-navy); font-size: 0.85rem; display: block; white-space: nowrap; }
-    .dropdown a:hover { background: var(--color-frost); color: var(--color-ultramarine); }
-
-    .btn-nav { background: var(--color-navy); color: #fff !important; padding: 8px 20px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; }
+    
+    .nav-btns { display: flex; gap: 10px; align-items: center; }
+    @media (max-width: 480px) { .nav-btns { display: none; } }
+    .btn-nav-outline { border: 2px solid var(--color-navy); color: var(--color-navy); padding: 8px 20px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: 0.3s; }
+    .btn-nav-primary { background: var(--color-navy); color: #fff; padding: 10px 24px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: 0.3s; }
 
     /* === HERO === */
     .hero {
-      min-height: 95vh;
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 120px 24px 60px;
+      padding: 140px 20px 80px;
       text-align: center;
-      position: relative;
     }
-    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 2rem; }
+    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 2rem; }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 18px; background: #fff; border: 1px solid var(--color-silver);
-      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.7rem;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 24px; background: #fff; border: 1px solid var(--color-silver);
+      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.75rem;
       text-transform: uppercase; letter-spacing: 0.15em;
     }
-    .location-callout { font-weight: 700; font-size: 0.9rem; color: #64748b; display: flex; align-items: center; gap: 6px; }
-    .location-callout i { color: var(--color-ultramarine); font-style: normal; }
+    .location-pill { font-weight: 800; font-size: 0.9rem; color: var(--color-navy); display: flex; align-items: center; gap: 8px; background: rgba(37, 99, 235, 0.08); padding: 10px 24px; border-radius: 99px; }
 
-    .hero h1 { font-size: clamp(3rem, 10vw, 7.5rem); margin-bottom: 1.5rem; font-weight: 900; }
+    .hero h1 { font-size: clamp(3.2rem, 11vw, 7.5rem); margin-bottom: 2rem; font-weight: 900; line-height: 0.9; }
     .hero h1 span { color: var(--color-ultramarine); }
-    .hero p { max-width: 850px; margin: 0 auto 3.5rem; font-size: 1.35rem; color: #475569; font-weight: 400; line-height: 1.6; }
+    .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: 1.4rem; color: #475569; font-weight: 400; line-height: 1.6; }
     
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-action { padding: 1.2rem 3.5rem; border-radius: var(--radius-full); font-weight: 800; font-size: 1.1rem; text-decoration: none; transition: 0.4s; border: none; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--color-ultramarine), var(--color-azure)); color: #fff; box-shadow: var(--shadow-clinical); }
-    .btn-outline { background: #fff; border: 2.5px solid var(--color-navy); color: var(--color-navy); }
+    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+    .btn-hero { padding: 1.4rem 5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.3rem; text-decoration: none; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none; cursor: pointer; }
+    .btn-primary { background: var(--color-ultramarine); color: #fff; box-shadow: var(--shadow-clinical); }
+    .btn-cta { background: var(--color-navy); color: #fff; }
 
     /* === TRUST TICKER === */
-    .ticker-bar { padding: 1.8rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
-    .ticker-track { display: inline-block; animation: scroll 40s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 10px; margin-right: 50px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; color: rgba(255,255,255,0.6); }
-    .badge-item b { color: var(--color-azure); }
+    .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
+    .badge-item { display: inline-flex; align-items: center; gap: 10px; margin-right: 60px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === BENTO GRID SECTIONS === */
-    .bento-container { padding: 80px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .bento-tile {
-      background: #fff; border-radius: var(--radius-lg); padding: 3rem;
-      border: 1px solid var(--color-frost); box-shadow: var(--shadow-subtle);
-      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative; overflow: hidden;
+    /* === NEW: VITALITY PROGRESS STEPS (LOADING BAR STYLE) === */
+    .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; position: relative; }
+    .onboarding-header { text-align: center; margin-bottom: 60px; }
+    .onboarding-header h2 { font-size: 3rem; font-weight: 900; }
+    
+    .stepper-progress-wrap { position: relative; display: flex; justify-content: space-between; align-items: flex-start; margin-top: 80px; }
+    .stepper-line-bg { position: absolute; top: 30px; left: 0; width: 100%; height: 6px; background: #eef2ff; border-radius: 10px; z-index: 1; }
+    .stepper-line-fill { position: absolute; top: 30px; left: 0; width: 0%; height: 6px; background: var(--color-ultramarine); border-radius: 10px; z-index: 2; transition: 1.5s width cubic-bezier(0.65, 0, 0.35, 1); }
+    
+    .step-item { position: relative; z-index: 3; width: 30%; text-align: center; }
+    .step-node { 
+        width: 64px; height: 64px; background: #fff; border: 6px solid #eef2ff; border-radius: 50%; 
+        margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; 
+        font-weight: 900; font-size: 1.4rem; color: var(--color-silver); transition: 0.5s;
     }
-    .bento-tile:hover { transform: translateY(-8px); border-color: var(--color-ultramarine); box-shadow: var(--shadow-clinical); }
+    .active .step-node { border-color: var(--color-ultramarine); color: var(--color-ultramarine); transform: scale(1.15); box-shadow: 0 0 30px rgba(37, 99, 233, 0.2); }
+    .step-content strong { display: block; font-size: 1.4rem; color: var(--color-navy); margin-bottom: 10px; line-height: 1.1; }
+    .step-content p { font-size: 0.95rem; color: #64748b; line-height: 1.6; }
 
-    .span-2 { grid-column: span 2; }
-    .span-3 { grid-column: span 3; }
-
-    /* === UPGRADE: CONCIERGE COMPARISON MATRIX === */
-    .comparison-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
-    .matrix-col { padding: 2.5rem; border-radius: 24px; }
-    .col-clinical { background: var(--color-white); border: 1.5px solid var(--color-azure); }
-    .col-traditional { background: #f1f5f9; opacity: 0.7; }
-    .matrix-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; }
-    .matrix-row:last-child { border-bottom: none; }
-    .check { color: var(--color-ultramarine); font-weight: 900; }
-    .cross { color: #94a3b8; }
-
-    /* === UPGRADE: THE INSIGHT LAB (EDUCATIONAL AREA) === */
-    .lab-section { padding: 120px 24px; background: #fff; position: relative; }
-    .lab-header { text-align: center; margin-bottom: 60px; }
-    .lab-scroll { display: flex; gap: 2rem; overflow-x: auto; padding: 20px 0 60px; scrollbar-width: none; -ms-overflow-style: none; }
-    .lab-scroll::-webkit-scrollbar { display: none; }
-    .lab-card {
-      min-width: 320px; background: var(--color-frost); border-radius: 30px; padding: 2.5rem;
-      transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid transparent;
-      display: flex; flex-direction: column; justify-content: space-between;
-      height: 400px; cursor: pointer;
+    @media (max-width: 768px) {
+        .stepper-progress-wrap { flex-direction: column; gap: 60px; align-items: flex-start; padding-left: 30px; }
+        .stepper-line-bg { left: 60px; top: 0; width: 4px; height: 100%; }
+        .stepper-line-fill { left: 60px; top: 0; width: 4px; height: 0%; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); }
+        .step-item { width: 100%; display: flex; gap: 30px; text-align: left; align-items: center; }
+        .step-node { margin: 0; flex-shrink: 0; }
+        .onboarding-header h2 { font-size: 2.2rem; }
     }
-    .lab-card:hover { transform: scale(1.02); border-color: var(--color-azure); background: #fff; box-shadow: var(--shadow-clinical); }
-    .lab-card .tag { font-size: 0.7rem; font-weight: 800; color: var(--color-ultramarine); text-transform: uppercase; margin-bottom: 1rem; display: block; }
-    .lab-card h3 { font-size: 1.8rem; line-height: 1.1; margin-bottom: 1rem; color: var(--color-navy); }
-    .lab-card p { font-size: 0.95rem; color: #64748b; line-height: 1.6; }
-    .lab-card .read-more { font-weight: 800; color: var(--color-ultramarine); font-size: 0.9rem; margin-top: auto; display: flex; align-items: center; gap: 8px; }
 
-    /* === DISCOVERY PORTAL HUB === */
-    .discovery-hub {
-      padding: 120px 24px; background: var(--color-navy); border-radius: 60px; margin: 0 20px;
+    /* === METRICS === */
+    .results-strip { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-subtle); position: relative; z-index: 10; }
+    .bio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1400px; margin: 0 auto; }
+    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 3rem; border-radius: 40px; transition: 0.5s; border: 2px solid transparent; }
+    .bio-unit:hover { border-color: var(--color-ultramarine); background: #fff; transform: translateY(-10px); }
+    
+    .bio-visual-wrap { position: relative; width: 240px; height: 240px; margin: 0 auto 2.5rem; }
+    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; overflow: visible; }
+    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
+    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 12px rgba(37, 99, 233, 0.3)); }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
+
+    /* === INDEPENDENCE FORECAST === */
+    .forecast-hub {
+      padding: 140px 24px; background: var(--color-navy); border-radius: 72px; margin: 0 20px 100px;
       position: relative; overflow: hidden; color: #fff; text-align: center;
     }
-    .discovery-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(37, 99, 233, 0.12) 0%, transparent 70%); pointer-events: none; }
-    .discovery-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
-    .discovery-content h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); color: #fff; margin-bottom: 2rem; }
+    .forecast-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(37, 99, 233, 0.18) 0%, transparent 70%); pointer-events: none; }
+    .forecast-content { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; }
+    .forecast-content h2 { font-size: clamp(3rem, 9vw, 5.2rem); color: #fff; margin-bottom: 2rem; }
     
-    .audit-portal-btn {
+    .forecast-btn {
       display: inline-flex; align-items: center; gap: 15px;
       background: var(--color-white); color: var(--color-navy);
-      padding: 1.5rem 5rem; border-radius: var(--radius-full);
-      font-weight: 900; font-size: 1.5rem; text-decoration: none;
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 0 40px rgba(255,255,255,0.1);
+      padding: 1.6rem 6rem; border-radius: var(--radius-full);
+      font-weight: 900; font-size: 1.6rem; text-decoration: none;
+      transition: 0.4s; box-shadow: 0 0 60px rgba(255,255,255,0.15);
     }
-    .audit-portal-btn:hover { transform: scale(1.05); background: var(--color-ultramarine); color: #fff; }
+    .forecast-btn:hover { background: var(--color-azure); color: #fff; transform: scale(1.08); box-shadow: var(--shadow-active); }
 
-    /* === CLINICAL OUTCOMES EXPANDED === */
-    .bio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 2rem; width: 100%; }
-    .bio-unit { text-align: left; background: var(--color-frost); padding: 2.5rem; border-radius: 24px; transition: 0.3s; display: flex; flex-direction: column; }
-    .bio-visual-wrap { position: relative; width: 120px; height: 120px; margin-bottom: 1.5rem; }
-    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 10; }
-    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; font-weight: 900; color: var(--color-navy); }
+    /* === ADVANTAGE LEDGER (GALLERY) === */
+    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 36px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
+    .adv-card:hover { border-color: var(--color-ultramarine); background: #fff; transform: translateY(-10px); }
+    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); line-height: 1.1; }
+    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
+    
+    .kinetic-pill { 
+        align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; 
+        border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; 
+        letter-spacing: 0.1em; border: none; transition: 0.3s; cursor: pointer; margin-top: auto;
+    }
+    .kinetic-pill:hover { background: var(--color-ultramarine); transform: scale(1.05); box-shadow: var(--shadow-active); }
+
+    /* === CLINICAL LEDGER === */
+    .ledger-section { padding: 0 24px 100px; max-width: 1400px; margin: 0 auto; }
+    .ledger-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 50px; }
+    .ledger-tile { background: #fff; border-radius: 36px; padding: 3rem; border: 1.5px solid var(--color-frost); transition: 0.4s; }
+    .ledger-tile:hover { border-color: var(--color-ultramarine); transform: translateY(-8px); box-shadow: var(--shadow-subtle); }
+    .ledger-hard { color: var(--color-silver); font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; display: block; margin-bottom: 0.8rem; }
+    .ledger-easy { color: var(--color-ultramarine); font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+    .ledger-desc { font-size: 1.1rem; color: #475569; line-height: 1.6; }
 
     /* === MOBILE PERSISTENT NAV === */
     .mobile-fab-bar {
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 40px); max-width: 400px;
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 36px); max-width: 440px;
       background: var(--glass-dark); color: #fff;
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      padding: 12px; border-radius: var(--radius-full);
+      backdrop-filter: blur(30px); border-radius: var(--radius-full);
       display: none; justify-content: space-between; align-items: center;
-      z-index: 1001; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      z-index: 1001; box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
     }
     @media (max-width: 768px) { .mobile-fab-bar { display: flex; } }
-    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 800; color: #fff; text-decoration: none; padding: 10px; }
-    .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 10px; }
+    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 800; color: #fff; text-decoration: none; padding: 15px; }
+    .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 8px; }
 
     /* === FOOTER === */
-    footer { padding: 5rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
+    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
 
-    /* === REVEAL === */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
+    @media (max-width: 1024px) {
+      .bio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 968px) {
-      .bento-container { grid-template-columns: 1fr; }
-      .span-2, .span-3 { grid-column: span 1; }
-      .bio-grid, .comparison-matrix { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 3.5rem; }
-      .discovery-hub { padding: 80px 24px; border-radius: 40px; }
+      .bio-grid, .adv-grid, .ledger-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 3.2rem; }
+      .hero-btns { flex-direction: column; width: 100%; padding: 0 20px; }
+      .btn-hero { width: 100%; padding: 1.2rem 0; }
+      .forecast-hub { padding: 100px 24px; border-radius: 48px; }
+      .bio-visual-wrap { width: 200px; height: 200px; }
+      .bio-value { font-size: 2.8rem; }
+      .results-strip { border-radius: 40px; padding: 60px 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- QUANTUM PARTICLE ENGINE -->
+  <!-- OXYGENATED VITALITY ENGINE -->
   <div class="bg-animation">
-    <canvas id="quantum-canvas"></canvas>
+    <canvas id="bubble-canvas"></canvas>
   </div>
 
   <!-- NAVIGATION -->
@@ -256,321 +257,301 @@
     </a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li>
-        <a href="#lab">Insight Lab <span>▾</span></a>
-        <div class="dropdown">
-          <a href="#lab">The BDNF Connection</a>
-          <a href="#lab">Metabolic Sync Research</a>
-          <a href="#lab">Core Stability Guides</a>
-          <a href="#audit">Discovery Audit</a>
-        </div>
-      </li>
       <li><a href="#results">Clinical Proof</a></li>
-      <li><a href="#launch">Experience</a></li>
+      <li><a href="#forecast">Vitality Forecast</a></li>
+      <li><a href="#advantage">Advantage Hub</a></li>
     </ul>
-    <a href="booking.html" class="btn-nav">Book Home Visit</a>
+    <div class="nav-btns">
+      <a href="quiz.html" class="btn-nav-outline">Start Assessment</a>
+      <a href="booking.html" class="btn-nav-primary">Book Now</a>
+    </div>
   </nav>
 
-  <!-- MOBILE PERSISTENT FAB -->
+  <!-- MOBILE PERSISTENT COMMAND BAR -->
   <div class="mobile-fab-bar">
-    <a href="exercise-quiz.html" class="fab-btn">Discovery Audit</a>
+    <a href="quiz.html" class="fab-btn">Get My Forecast</a>
     <a href="booking.html" class="fab-btn primary">Schedule Visit</a>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero" id="home">
     <div class="container reveal">
       <div class="hero-badges-wrap">
-        <div class="hero-badge">Elite Clinical Movement Concierge</div>
-        <div class="location-callout"><i>📍</i> Local Excellence in Clark County, WA</div>
+        <div class="hero-badge">Elite Clinical Movement Specialist</div>
+        <div class="location-pill"><i>📍</i> Local Excellence in Clark County, WA</div>
       </div>
       <h1>Movement made <span>Easy.</span><br>Care made Clinical.</h1>
       <p>Specialized mobile physical coaching for Clark County’s elite seniors. We turn complex rehabilitation into fun, manageable daily wins—delivered directly to your front door.</p>
       
       <div class="hero-btns">
-        <a href="exercise-quiz.html" class="btn-action btn-primary" style="box-shadow: var(--shadow-active);">Start My Discovery Audit</a>
-        <a href="booking.html" class="btn-action btn-outline">Schedule Consultation</a>
+        <a href="booking.html" class="btn-hero btn-cta">Book Now</a>
+        <a href="quiz.html" class="btn-hero btn-primary">Start My Independence Forecast</a>
       </div>
     </div>
   </section>
 
-  <!-- TRUST TICKER -->
+  <!-- SCROLLING TRUST BANNER -->
   <div class="ticker-bar">
     <div class="ticker-track">
-      <div class="badge-item"><i>✦</i> Doctorate Led</div>
-      <div class="badge-item"><i>✦</i> HIPAA Secure</div>
+      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Experience</div>
       <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge-item"><i>✦</i> Serving Vancouver & Battle Ground</div>
-      <div class="badge-item"><i>✦</i> Family Milestone Sync</div>
-      <div class="badge-item"><i>✦</i> Sanitized Toolkit</div>
+      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
+      <div class="badge-item"><i>✦</i> Clinical Rejuvenation Ledger</div>
+      <div class="badge-item"><i>✦</i> Sanitized Mobile Lab Suite</div>
       <!-- Loop -->
       <div class="badge-item"><i>✦</i> Doctorate Led</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure</div>
       <div class="badge-item"><i>✦</i> NIH Aligned</div>
+      <div class="badge-item"><i>✦</i> Premier Mobile Specialists</div>
     </div>
   </div>
 
-  <!-- THE BENTO EXPERIENCE -->
-  <section class="bento-container" id="launch">
-    <!-- Tile 1: Comparison Matrix (Upgrade) -->
-    <div class="bento-tile span-2 reveal">
-      <div style="margin-bottom: 2.5rem;">
-        <h2 style="font-size: 3rem; margin-bottom: 1rem;">The Olympian <span>Advantage.</span></h2>
-        <p style="color: #64748b;">Why seniors in Clark County choose our high-end concierge model over traditional clinics.</p>
-      </div>
-      
-      <div class="comparison-matrix">
-        <div class="matrix-col col-clinical">
-          <strong style="display:block; margin-bottom:1.5rem; color:var(--color-ultramarine);">Olympian Concierge</strong>
-          <div class="matrix-row"><span class="check">✓</span> <span>In-Home Comfort</span></div>
-          <div class="matrix-row"><span class="check">✓</span> <span>Zero Wait Time</span></div>
-          <div class="matrix-row"><span class="check">✓</span> <span>University Grade Tech</span></div>
-          <div class="matrix-row"><span class="check">✓</span> <span>Fun, Manageable Goals</span></div>
-        </div>
-        <div class="matrix-col col-traditional">
-          <strong style="display:block; margin-bottom:1.5rem;">Traditional Clinic</strong>
-          <div class="matrix-row"><span class="cross">✕</span> <span>Traffic & Travel</span></div>
-          <div class="matrix-row"><span class="cross">✕</span> <span>Crowded Waiting Rooms</span></div>
-          <div class="matrix-row"><span class="cross">✕</span> <span>Generic Exercise Sheets</span></div>
-          <div class="matrix-row"><span class="cross">✕</span> <span>Cold, Sterile Environment</span></div>
-        </div>
-      </div>
+  <!-- NEW: VITALITY PROGRESS STEPS (LOADING BAR STYLE) -->
+  <section class="onboarding-section reveal" id="onboarding">
+    <div class="onboarding-header">
+        <h2>Your Path to <span>Vitality</span></h2>
+        <p style="color: #64748b;">A seamless 60-second start to a more energetic life.</p>
     </div>
-
-    <!-- Tile 2: Pocket Clinic -->
-    <div class="bento-tile reveal">
-      <div style="font-size: 3.5rem; margin-bottom: 1.2rem;">🧳</div>
-      <h4>The Suitcase Clinic</h4>
-      <p style="color: #64748b; font-size: 0.9rem; margin-top: 1rem;">We bring the university lab to your living room. Sanitized, professional, and powerful.</p>
-      <ul style="list-style: none; padding: 0; margin-top: 1.5rem; display: grid; gap: 8px;">
-        <li style="font-size: 0.8rem; font-weight: 800; color: var(--color-silver);">✓ Digital Vitals Hub</li>
-        <li style="font-size: 0.8rem; font-weight: 800; color: var(--color-silver);">✓ Balance Sensors</li>
-        <li style="font-size: 0.8rem; font-weight: 800; color: var(--color-silver);">✓ Surgical Sanitization</li>
-      </ul>
+    
+    <div class="stepper-progress-wrap">
+        <div class="stepper-line-bg"></div>
+        <div class="stepper-line-fill" id="stepper-fill"></div>
+        
+        <!-- Step 1 -->
+        <div class="step-item" id="step-1">
+            <div class="step-node">1</div>
+            <div class="step-content">
+                <strong>The Digital Sync</strong>
+                <p>A quick 10-min intro to align our elite clinical protocols with your personal health history.</p>
+            </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="step-item" id="step-2">
+            <div class="step-node">2</div>
+            <div class="step-content">
+                <strong>We Bring the Lab</strong>
+                <p>Our specialists arrive with sanitized, high-end diagnostic tools. You don't lift a finger.</p>
+            </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="step-item" id="step-3">
+            <div class="step-node">3</div>
+            <div class="step-content">
+                <strong>The Joyful Thrive</strong>
+                <p>60 minutes of conversational clinical movement that restores independence and energy.</p>
+            </div>
+        </div>
     </div>
   </section>
 
-  <!-- UPGRADE: THE INSIGHT LAB (EDUCATIONAL CONTENT) -->
-  <section class="lab-section" id="lab">
-    <div class="container">
-      <div class="lab-header reveal">
-        <h2 style="font-size: 4rem; font-weight: 900;">The <span>Insight Lab</span></h2>
-        <p style="color: #64748b; font-size: 1.4rem; margin-top: 1rem;">Free clinical insights from our Doctorate-led team. We make the science manageable.</p>
+  <!-- CLINICAL OUTCOMES -->
+  <section class="results-strip reveal" id="results">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
+        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by NIH geriatric research.</p>
       </div>
-
-      <div class="lab-scroll reveal">
-        <!-- Article 1 -->
-        <div class="lab-card">
-          <div>
-            <span class="tag">Neuroplasticity</span>
-            <h3>The BDNF Brain Fertilizer</h3>
-            <p>How specific clinical movements trigger the release of "Brain-Derived Neurotrophic Factor" to sharpen memory and focus in your 70s and 80s.</p>
-          </div>
-          <span class="read-more">Read Research Note →</span>
-        </div>
-        <!-- Article 2 -->
-        <div class="lab-card">
-          <div>
-            <span class="tag">Metabolism</span>
-            <h3>The Glucose Filter Effect</h3>
-            <p>Did you know muscle contraction clears blood sugar independent of insulin? Learn how our 60-min sessions keep you steady for 48 hours.</p>
-          </div>
-          <span class="read-more">Read Research Note →</span>
-        </div>
-        <!-- Article 3 -->
-        <div class="lab-card">
-          <div>
-            <span class="tag">Independence</span>
-            <h3>The Reactive Step Reflex</h3>
-            <p>Falls aren't inevitable. They are power failures. Discover how we train your fast-twitch fibers to "catch" you instantly.</p>
-          </div>
-          <span class="read-more">Read Research Note →</span>
-        </div>
-        <!-- Article 4 -->
-        <div class="lab-card">
-          <div>
-            <span class="tag">Dignity</span>
-            <h3>Exercise as Medicine</h3>
-            <p>Moving away from "generic gym work" into personalized clinical prescriptions tailored for your specific medical history.</p>
-          </div>
-          <span class="read-more">Read Research Note →</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DISCOVERY PORTAL HUB -->
-  <section class="discovery-hub reveal" id="audit">
-    <div class="discovery-content">
-      <h2>The Vitality <span>Discovery Audit.</span></h2>
-      <p>Stop guessing about your fitness. Our clinical assessment projects your exact 12-week improvement curve based on your personal health profile and goals.</p>
-      <a href="exercise-quiz.html" class="audit-portal-btn">Start My Free Clinical Audit Now</a>
-      <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 40px; font-weight: 800; font-size: 0.9rem; opacity: 0.6;">
-        <span>✓ NIH Research Aligned</span>
-        <span>✓ 100% Private</span>
-        <span>✓ Results in 2 Minutes</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLINICAL OUTCOMES (DATA THAT SMILES) -->
-  <section class="bento-container" id="results">
-    <div class="bento-tile span-3 reveal">
-      <div class="bio-dashboard-header">
-        <h2 style="font-size: 4rem;">Clinical Joy. Verifiable Proof.</h2>
-        <p style="color: #64748b; font-size: 1.4rem;">Watch your biology improve with every joyful session. Our data is backed by peer-reviewed geriatric research.</p>
-      </div>
-      
       <div class="bio-grid">
         <div class="bio-unit">
           <div class="bio-visual-wrap">
             <svg class="bio-ring-svg" viewBox="0 0 160 160">
-              <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-              <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
             </svg>
             <div class="bio-value">0%</div>
           </div>
-          <div class="bio-content">
-            <h3>Reactive Step Mastery</h3>
-            <p>Training the nervous system to "catch" itself instantly. We recruit Type-II fibers to eliminate the fear of falling.</p>
-          </div>
+          <strong>Stability Gain</strong>
+          <p>Significant reduction in fall-risk through clinical neuromuscular reflex training.</p>
         </div>
-
         <div class="bio-unit">
           <div class="bio-visual-wrap">
             <svg class="bio-ring-svg" viewBox="0 0 160 160">
-              <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-              <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
             </svg>
             <div class="bio-value">0%</div>
           </div>
-          <div class="bio-content">
-            <h3>Metabolic Sugar Clearance</h3>
-            <p>Movement clears glucose from your blood independently of insulin for up to 48 hours post-session.</p>
+          <strong>Metabolic Logic</strong>
+          <p>Improvement in energy clearance post-session, clearing blood sugar naturally.</p>
+        </div>
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
           </div>
+          <strong>Grip Vitality</strong>
+          <p>Clinical marker for biological age and functional longevity.</p>
         </div>
       </div>
+  </section>
+
+  <!-- THE INDEPENDENCE FORECAST -->
+  <section class="forecast-hub reveal" id="forecast">
+    <div class="forecast-content">
+      <h2 style="line-height:1;">The Personal <span>Independence Forecast.</span></h2>
+      <p style="margin-top:1.5rem;">Uncover the exact clinical path to reclaiming your physical freedom. Our predictive assessment projects your 12-week potential based on the latest longevity research.</p>
+      <a href="quiz.html" class="forecast-btn" style="margin-top:2.5rem;">Start My Free Forecast Now</a>
+      <p style="margin-top:3rem; font-size:0.9rem; font-weight:900; opacity:0.6; letter-spacing:0.12em;">PREDICTIVE • RESEARCH-BACKED • NO COMMITMENT</p>
     </div>
   </section>
 
+  <!-- THE ADVANTAGE HUB (GALLERY) -->
+  <section class="advantage-hub reveal" id="advantage">
+    <div style="text-align:center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">The <span>Impact</span> Gallery</h2>
+        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the high-speed biological upgrades our specialized model provides:</p>
+    </div>
+    
+    <div class="adv-grid">
+        <div class="adv-card">
+            <strong>Cognitive Spark</strong>
+            <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
+            <button class="kinetic-pill">Research Sync</button>
+        </div>
+        <div class="adv-card">
+            <strong>Arterial Rejuvenation</strong>
+            <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
+            <button class="kinetic-pill">Cardio Lab</button>
+        </div>
+        <div class="adv-card">
+            <strong>Bone Architecture</strong>
+            <p>Safe resistance protocols that trigger osteoblastic activity for skeletal resilience and strength.</p>
+            <button class="kinetic-pill">Skeletal Sync</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- THE CLINICAL LEDGER -->
+  <section class="ledger-section reveal" id="ledger">
+      <div style="text-align: center;">
+          <h2 style="font-size: 3.2rem; font-weight: 900;">We Make The <span>Hard Stuff Easy.</span></h2>
+          <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Direct solutions for the specific challenges of aging gracefully.</p>
+      </div>
+      <div class="ledger-grid">
+          <div class="ledger-tile">
+              <span class="ledger-hard">Used to be hard:</span>
+              <strong class="ledger-easy">Standing from a chair</strong>
+              <p class="ledger-desc">We target your 'Type-II' power fibers. In weeks, standing becomes an effortless, automatic reflex again.</p>
+          </div>
+          <div class="ledger-tile">
+              <span class="ledger-hard">Used to be hard:</span>
+              <strong class="ledger-easy">Walking on uneven ground</strong>
+              <p class="ledger-desc">Our balance tech recalibrates your nervous system, building total confidence for yards and gravel paths.</p>
+          </div>
+          <div class="ledger-tile">
+              <span class="ledger-hard">Used to be hard:</span>
+              <strong class="ledger-easy">Energy Sustainability</strong>
+              <p class="ledger-desc">Clinical movement clears glucose naturally, providing energy that eliminates the 3PM mid-day crash.</p>
+          </div>
+      </div>
+  </section>
+
   <footer>
-    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility. serving Battle Ground & Vancouver, WA.</p>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
   </footer>
 
   <script>
-    // --- TOUCH-REACTIVE QUANTUM ENGINE ---
-    const canvas = document.getElementById('quantum-canvas');
+    // --- VITALITY BUBBLE ENGINE ---
+    const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
-    const particleCount = 1000;
-    const mouse = { x: -1000, y: -1000, radius: 150 };
+    let bubbles = [];
+    const bubbleCount = 38;
 
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      initParticles();
+      initBubbles();
     }
 
-    class Particle {
+    class Bubble {
       constructor() { this.reset(); }
       reset() {
+        this.radius = Math.random() * 22 + 6;
         this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.size = Math.random() * 2 + 0.5;
-        this.density = (Math.random() * 30) + 1;
-        this.alpha = Math.random() * 0.3 + 0.1;
+        this.y = height + this.radius + Math.random() * 200;
+        this.vy = -(Math.random() * 0.45 + 0.25);
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.opacity = Math.random() * 0.14 + 0.05;
+        this.wobble = Math.random() * Math.PI * 2;
+        this.wobbleSpeed = Math.random() * 0.02;
       }
       update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx*dx + dy*dy);
-        let forceDirectionX = dx / distance;
-        let forceDirectionY = dy / distance;
-        let force = (mouse.radius - distance) / mouse.radius;
-        let directionX = forceDirectionX * force * this.density;
-        let directionY = forceDirectionY * force * this.density;
-
-        if (distance < mouse.radius) {
-          this.x -= directionX;
-          this.y -= directionY;
-        } else {
-          if (this.x !== this.baseX) {
-            let dx = this.x - this.baseX;
-            this.x -= dx / 15;
-          }
-          if (this.y !== this.baseY) {
-            let dy = this.y - this.baseY;
-            this.y -= dy / 15;
-          }
-        }
+        this.y += this.vy;
+        this.wobble += this.wobbleSpeed;
+        this.x += Math.sin(this.wobble) * 0.18 + this.vx;
+        if (this.y < -this.radius) this.reset();
       }
       draw() {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37, 99, 235, ${this.alpha})`;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
+        ctx.strokeStyle = `rgba(37, 99, 235, ${this.opacity * 1.5})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
         ctx.fill();
       }
     }
 
-    function initParticles() {
-      particles = Array.from({length: particleCount}, () => new Particle());
-    }
+    function initBubbles() { bubbles = Array.from({length: bubbleCount}, () => new Bubble()); }
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      const t = Date.now() * 0.001;
+      const t = Date.now() * 0.0012;
       ctx.beginPath();
       ctx.moveTo(0, height);
       for(let x=0; x<=width; x+=50) {
-        const y = height - 120 + Math.sin(x * 0.0015 + t) * 30;
-        ctx.lineTo(x, y);
+        ctx.lineTo(x, height - 120 + Math.sin(x * 0.0012 + t) * 25);
       }
       ctx.lineTo(width, height);
-      ctx.fillStyle = 'rgba(37, 99, 235, 0.04)';
+      ctx.fillStyle = 'rgba(37, 99, 235, 0.025)';
       ctx.fill();
-
-      particles.forEach(p => { p.update(); p.draw(); });
+      bubbles.forEach(b => { b.update(); b.draw(); });
       requestAnimationFrame(animate);
     }
 
-    const handleMove = (e) => {
-      if (e.touches && e.touches.length > 0) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-      } else if (e.clientX !== undefined) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      }
-    };
-    window.addEventListener('mousemove', handleMove);
-    window.addEventListener('touchstart', handleMove, { passive: true });
-    window.addEventListener('touchmove', handleMove, { passive: true });
-    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
-
-    // --- SCROLL REVEAL & BIO RINGS ---
+    // --- SCROLL REVEAL & PROGRESS LOGIC ---
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
           e.target.classList.add('active');
+          
+          // Progress Bar Activation
+          if (e.target.id === 'onboarding') {
+            const fill = document.getElementById('stepper-fill');
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                fill.style.height = '100%';
+            } else {
+                fill.style.width = '100%';
+            }
+            // Sequentially activate steps
+            setTimeout(() => document.getElementById('step-1').classList.add('active'), 200);
+            setTimeout(() => document.getElementById('step-2').classList.add('active'), 700);
+            setTimeout(() => document.getElementById('step-3').classList.add('active'), 1200);
+          }
+
+          // Biometric Rings Activation
           const rings = e.target.querySelectorAll('.bio-ring-fill');
           rings.forEach(ring => {
-            const target = ring.getAttribute('data-target');
+            const target = parseInt(ring.getAttribute('data-target'));
             const circumference = 439.8;
-            const offset = circumference - (target / 100) * circumference;
-            ring.style.strokeDashoffset = offset;
-            
+            ring.style.strokeDashoffset = circumference - (target / 100) * circumference;
             const wrap = ring.closest('.bio-visual-wrap');
-            const valBox = wrap.parentElement.querySelector('.bio-value');
-            if (valBox) animateValue(valBox, 0, target, 2000);
+            if (wrap) {
+              const valDisplay = wrap.querySelector('.bio-value');
+              if (valDisplay) animateValue(valDisplay, 0, target, 2200);
+            }
           });
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
     function animateValue(obj, start, end, duration) {
+      if (!obj) return;
       let startTimestamp = null;
       const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
