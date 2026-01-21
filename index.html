@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Fun, easy, and medically superior mobility coaching in Clark County." />
+  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA with professional, fun, and manageable mobility coaching." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Olympian Health Solutions | Elite Senior Mobility</title>
+  <title>Olympian Health Solutions | Clark County Senior Mobility Masterpiece</title>
 
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,7 @@
       --color-silver: #94a3b8;
       --color-frost: #f8fafc;
       --color-white: #ffffff;
+      --color-glow: #dbeafe;
       
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -33,7 +34,7 @@
       
       --shadow-subtle: 0 10px 30px rgba(0,0,0,0.03);
       --shadow-clinical: 0 20px 50px rgba(37, 99, 233, 0.12);
-      --shadow-glow: 0 0 25px rgba(37, 99, 233, 0.3);
+      --shadow-active: 0 0 30px rgba(37, 99, 233, 0.4);
     }
 
     /* === RESET === */
@@ -64,7 +65,7 @@
       opacity: 0.85;
     }
 
-    /* === NAVIGATION REFINED === */
+    /* === NAVIGATION === */
     nav {
       position: fixed;
       top: 15px; left: 50%; transform: translateX(-50%);
@@ -92,7 +93,6 @@
     .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 4px; }
     .nav-links a:hover { color: var(--color-ultramarine); }
 
-    /* Dropdown UI */
     .dropdown {
       position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
       background: #fff; border: 1px solid #e2e8f0;
@@ -109,7 +109,7 @@
 
     /* === HERO === */
     .hero {
-      min-height: 95vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -117,12 +117,16 @@
       text-align: center;
       position: relative;
     }
+    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 2rem; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 6px 18px; background: #fff; border: 1px solid var(--color-silver);
       border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.7rem;
-      text-transform: uppercase; letter-spacing: 0.15em; margin: 0 auto 2rem;
+      text-transform: uppercase; letter-spacing: 0.15em;
     }
+    .location-callout { font-weight: 700; font-size: 0.9rem; color: #64748b; display: flex; align-items: center; gap: 6px; }
+    .location-callout i { color: var(--color-ultramarine); font-style: normal; }
+
     .hero h1 { font-size: clamp(3rem, 10vw, 7.5rem); margin-bottom: 1.5rem; font-weight: 900; }
     .hero h1 span { color: var(--color-ultramarine); }
     .hero p { max-width: 850px; margin: 0 auto 3.5rem; font-size: 1.35rem; color: #475569; font-weight: 400; line-height: 1.6; }
@@ -139,7 +143,7 @@
     .badge-item b { color: var(--color-azure); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === BENTO GRID === */
+    /* === BENTO GRID SECTIONS === */
     .bento-container { padding: 80px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .bento-tile {
       background: #fff; border-radius: var(--radius-lg); padding: 3rem;
@@ -152,32 +156,48 @@
     .span-2 { grid-column: span 2; }
     .span-3 { grid-column: span 3; }
 
-    /* === TRANSFORMATION SECTION === */
-    .transform-header { margin-bottom: 2rem; }
-    .transform-header h2 { font-size: 2.5rem; }
-    .matrix-scroll { display: flex; gap: 1.2rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
-    .matrix-scroll::-webkit-scrollbar { display: none; }
-    .matrix-item { min-width: 280px; background: var(--color-frost); padding: 2.5rem; border-radius: 24px; scroll-snap-align: center; flex: 1; }
-    .matrix-item strong { color: var(--color-ultramarine); display: block; margin-bottom: 0.5rem; font-size: 1.2rem; }
+    /* === CONCERN-TO-SOLUTION MATRIX === */
+    .concern-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .concern-card { padding: 2rem; background: var(--color-frost); border-radius: 24px; text-align: center; border: 1.5px solid transparent; transition: 0.3s; }
+    .concern-card:hover { border-color: var(--color-azure); background: #fff; }
+    .concern-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .concern-card h4 { font-size: 1.1rem; color: var(--color-navy); margin-bottom: 0.5rem; }
+    .concern-card p { font-size: 0.85rem; color: #64748b; }
 
-    /* === BIOMETRIC GROWTH PRECISION === */
-    .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; width: 100%; }
-    .bio-unit { text-align: center; }
-    .bio-visual-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 1.5rem; }
-    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; overflow: visible; }
-    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 12; }
-    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 12; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; font-weight: 900; color: var(--color-navy); }
-    .bio-ring-glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; opacity: 0; transition: 1s opacity; box-shadow: var(--shadow-glow); }
-
-    /* === VITALITY ASSESSMENT PORTAL === */
-    .portal-tile { 
-      background: var(--color-navy); color: #fff;
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;
-      box-shadow: 0 40px 80px rgba(3, 7, 18, 0.2);
+    /* === DISCOVERY PORTAL HUB (HUGE QUIZ EMPHASIS) === */
+    .discovery-hub {
+      padding: 120px 24px; background: var(--color-navy); border-radius: 60px; margin: 0 20px;
+      position: relative; overflow: hidden; color: #fff; text-align: center;
     }
-    .portal-tile h2 { color: #fff; font-size: 3.5rem; }
-    .btn-portal { display: inline-block; background: var(--color-ultramarine); color: #fff; padding: 1.2rem 4rem; border-radius: var(--radius-full); font-weight: 800; font-size: 1.2rem; text-decoration: none; transition: 0.4s; text-align: center; }
+    .discovery-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(37, 99, 233, 0.12) 0%, transparent 70%); pointer-events: none; }
+    .discovery-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .discovery-content h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); color: #fff; margin-bottom: 2rem; }
+    .discovery-content p { font-size: 1.4rem; opacity: 0.8; margin-bottom: 4rem; font-weight: 300; }
+    
+    .audit-portal-btn {
+      display: inline-flex; align-items: center; gap: 15px;
+      background: var(--color-white); color: var(--color-navy);
+      padding: 1.5rem 5rem; border-radius: var(--radius-full);
+      font-weight: 900; font-size: 1.5rem; text-decoration: none;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 40px rgba(255,255,255,0.1);
+    }
+    .audit-portal-btn:hover { transform: scale(1.05); box-shadow: var(--shadow-active); background: var(--color-ultramarine); color: #fff; }
+
+    /* === CLINICAL OUTCOMES EXPANDED === */
+    .bio-dashboard-header { text-align: center; margin-bottom: 4rem; }
+    .bio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 2rem; width: 100%; }
+    .bio-unit { text-align: left; background: var(--color-frost); padding: 2.5rem; border-radius: 24px; border: 1px solid transparent; transition: 0.3s; display: flex; flex-direction: column; }
+    .bio-unit:hover { border-color: var(--color-azure); background: #fff; }
+    
+    .bio-visual-wrap { position: relative; width: 120px; height: 120px; margin-bottom: 1.5rem; }
+    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 10; }
+    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; font-weight: 900; color: var(--color-navy); }
+    
+    .bio-content h3 { font-size: 1.4rem; color: var(--color-ultramarine); margin-bottom: 8px; }
+    .bio-content p { font-size: 0.95rem; color: #475569; margin-bottom: 15px; }
 
     /* === MOBILE PERSISTENT NAV === */
     .mobile-fab-bar {
@@ -194,20 +214,18 @@
     .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 10px; }
 
     /* === FOOTER === */
-    .corridor-bar { background: var(--color-navy); color: #fff; border-radius: var(--radius-lg); padding: 1.8rem; text-align: center; margin: 40px 20px; }
-    .city-scroll { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px; font-weight: 800; color: var(--color-azure); font-size: 0.85rem; }
+    footer { padding: 5rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
 
-    footer { padding: 4rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; }
-
-    /* === ANIMATIONS === */
+    /* === REVEAL === */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 968px) {
       .bento-container { grid-template-columns: 1fr; }
       .span-2, .span-3 { grid-column: span 1; }
-      .portal-tile, .bio-grid { grid-template-columns: 1fr; text-align: center; }
+      .bio-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 3.5rem; }
+      .discovery-hub { padding: 80px 24px; border-radius: 40px; }
     }
   </style>
 </head>
@@ -227,36 +245,38 @@
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li>
-        <a href="#launch">Experience <span>▾</span></a>
+        <a href="#audit">Discovery Audit <span>▾</span></a>
         <div class="dropdown">
-          <a href="#launch">Private Home Concierge</a>
-          <a href="#results">Clinical Proof Ledger</a>
-          <a href="#results">Biometric Safety Sync</a>
-          <a href="#launch">Mobility Roadmap</a>
+          <a href="exercise-quiz.html">Start Clinical Audit</a>
+          <a href="#results">View Outcomes Ledger</a>
+          <a href="#launch">Experience Roadmap</a>
         </div>
       </li>
       <li><a href="#results">Clinical Proof</a></li>
-      <li><a href="#home">Service Area</a></li>
+      <li><a href="#launch">Experience</a></li>
     </ul>
     <a href="booking.html" class="btn-nav">Book Home Visit</a>
   </nav>
 
   <!-- MOBILE PERSISTENT FAB -->
   <div class="mobile-fab-bar">
-    <a href="#audit" class="fab-btn">Vitality Audit</a>
+    <a href="exercise-quiz.html" class="fab-btn">Free Discovery Audit</a>
     <a href="booking.html" class="fab-btn primary">Schedule Visit</a>
   </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="container reveal">
-      <div class="hero-badge">Clinical Movement Concierge</div>
+      <div class="hero-badges-wrap">
+        <div class="hero-badge">Elite Clinical Movement Concierge</div>
+        <div class="location-callout"><i>📍</i> Local Excellence in Clark County, WA</div>
+      </div>
       <h1>Movement made <span>Joyful.</span><br>Care made Clinical.</h1>
       <p>Specialized mobile physical coaching for Clark County’s elite seniors. We make the "hard stuff" manageable and fun, delivering university-standard results directly to your favorite living room chair.</p>
       
       <div class="hero-btns">
-        <a href="booking.html" class="btn-action btn-primary">Start Your Journey</a>
-        <a href="#audit" class="btn-action btn-outline">Free Clinical Audit</a>
+        <a href="exercise-quiz.html" class="btn-action btn-primary" style="box-shadow: var(--shadow-active);">Start My Discovery Audit</a>
+        <a href="booking.html" class="btn-action btn-outline">Schedule Consultation</a>
       </div>
     </div>
   </section>
@@ -264,14 +284,14 @@
   <!-- TRUST TICKER -->
   <div class="ticker-bar">
     <div class="ticker-track">
-      <div class="badge-item"><i>✦</i> Doctorate Supervised</div>
+      <div class="badge-item"><i>✦</i> Doctorate Led</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure</div>
       <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge-item"><i>✦</i> Family Progress Sync</div>
+      <div class="badge-item"><i>✦</i> Serving Vancouver & Battle Ground</div>
+      <div class="badge-item"><i>✦</i> Family Milestone Sync</div>
       <div class="badge-item"><i>✦</i> Sanitized Toolkit</div>
-      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
       <!-- Loop -->
-      <div class="badge-item"><i>✦</i> Doctorate Supervised</div>
+      <div class="badge-item"><i>✦</i> Doctorate Led</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure</div>
       <div class="badge-item"><i>✦</i> NIH Aligned</div>
     </div>
@@ -279,101 +299,123 @@
 
   <!-- BENTO EXPERIENCE -->
   <section class="bento-container" id="launch">
-    <!-- Tile 1: Doorstep Slider -->
+    <!-- Tile 1: Doorstep Sync -->
     <div class="bento-tile span-2 reveal">
-      <div class="transform-header">
-        <h2>Clinical Care.<br><span>Living Room Comfort.</span></h2>
-        <p>Reclaiming your freedom is now as simple as answering the front door.</p>
+      <div style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 3rem; margin-bottom: 1rem;">Elite Care.<br><span>Zero Friction.</span></h2>
+        <p style="color: #64748b;">Getting world-class results is now as simple as answering the front door. We manage the hard stuff; you enjoy the physical freedom.</p>
       </div>
       
-      <div class="matrix-scroll">
-        <div class="matrix-item">
-          <strong>The Sync</strong>
-          <p>A 10-min intro to align our elite clinical protocols with your personal medical history. Easy, fun goals from Day 1.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem;">
+        <div class="matrix-item" style="min-width: 0; background: var(--color-frost);">
+          <strong>The "Sync"</strong>
+          <p style="font-size: 0.85rem;">A brief introductory call to align our elite protocols with your medical history. Manageable goals from Day 1.</p>
         </div>
-        <div class="matrix-item">
-          <strong>The Suitcase</strong>
-          <p>We arrive with sanitized, high-end diagnostic tools. You don't lift a finger—just provide 6ft of floor space.</p>
-        </div>
-        <div class="matrix-item">
-          <strong>The Thrive</strong>
-          <p>60 minutes of conversational clinical movement. We handle the science; you enjoy the physical reward.</p>
+        <div class="matrix-item" style="min-width: 0; background: var(--color-frost);">
+          <strong>The "Thrive"</strong>
+          <p style="font-size: 0.85rem;">60 minutes of conversational clinical movement. High-impact science delivered with family warmth.</p>
         </div>
       </div>
     </div>
 
-    <!-- Tile 2: Portability Toolkit -->
+    <!-- Tile 2: Pocket Clinic -->
     <div class="bento-tile reveal">
-      <div style="font-size: 3rem; margin-bottom: 1.2rem;">🧳</div>
-      <h4>Pocket Lab</h4>
-      <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Condensed university-grade tech for home use.</p>
-      <div class="toolkit-list">
-        <div class="tool-tag"><i>✓</i> Digital Vitals Hub</div>
-        <div class="tool-tag"><i>✓</i> Balance Sensors</div>
-        <div class="tool-tag"><i>✓</i> Grip Dynamometers</div>
-      </div>
+      <div style="font-size: 3.5rem; margin-bottom: 1.2rem;">🧳</div>
+      <h4>Suitcase Clinic</h4>
+      <p style="color: #64748b; font-size: 0.9rem; margin-top: 1rem;">A university lab in a portable suite. Serving Battle Ground & Vancouver homes.</p>
+      <ul style="list-style: none; padding: 0; margin-top: 1.5rem; display: grid; gap: 8px;">
+        <li style="font-size: 0.8rem; font-weight: 800; color: var(--color-silver);">✓ Digital Vitals Hub</li>
+        <li style="font-size: 0.8rem; font-weight: 800; color: var(--color-silver);">✓ Clinical Grip Testing</li>
+        <li style="font-size: 0.8rem; font-weight: 800; color: var(--color-silver);">✓ Sanitized Mobile Tools</li>
+      </ul>
     </div>
 
-    <!-- Tile 3: Assessment Portal -->
-    <div class="bento-tile span-3 portal-tile reveal" id="audit">
-      <div class="portal-info">
-        <h2>Your Blueprint <span>for Freedom.</span></h2>
-        <p>Exercise is a clinical prescription. Our audit projects your exact 12-week vitality improvement based on your unique health profile.</p>
-        <a href="exercise-quiz.html" class="btn-portal">Start My Vitality Audit</a>
+    <!-- Tile 3: Concern-to-Solution Matrix (New Section) -->
+    <div class="bento-tile span-3 reveal">
+      <div style="text-align: center;">
+        <h2 style="font-size: 3rem;">What’s on your mind?</h2>
+        <p style="color: #64748b;">Clinical exercise is the answer to the challenges of aging.</p>
       </div>
-      <div style="background: rgba(255,255,255,0.06); border-radius: 30px; padding: 4rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
-         <div style="font-size: 5.5rem; font-weight: 900; color: var(--color-azure); line-height: 1;">+113%</div>
-         <p style="font-size: 1.1rem; opacity: 0.8; margin-top: 1rem;">Avg. power increase across clinical senior cohorts.</p>
+      <div class="concern-grid">
+        <div class="concern-card">
+          <span class="concern-icon">⚖️</span>
+          <h4>Concerned about Balance?</h4>
+          <p>We train your "Reactive Step" to ensure total confidence on any surface.</p>
+        </div>
+        <div class="concern-card">
+          <span class="concern-icon">🧠</span>
+          <h4>Concerned about Sharpness?</h4>
+          <p>Movement stimulates BDNF—your brain's natural fertilizer for memory.</p>
+        </div>
+        <div class="concern-card">
+          <span class="concern-icon">🩸</span>
+          <h4>Concerned about Blood Sugar?</h4>
+          <p>Muscle contraction clears glucose naturally, independent of insulin.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Tile 4: Biometric Progress -->
-    <div class="bento-tile span-3 reveal" id="results">
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="font-size: 3.5rem;">Data That Smiles.</h2>
-        <p style="color: #64748b; font-size: 1.3rem;">Watch your biology improve with every joyful session.</p>
+  <!-- DISCOVERY PORTAL HUB (THE BIG QUIZ CTA) -->
+  <section class="discovery-hub reveal" id="audit">
+    <div class="discovery-content">
+      <h2>The Vitality <span>Discovery Audit.</span></h2>
+      <p>Stop guessing about your fitness. Our clinical assessment projects your exact 12-week improvement curve based on your personal health profile and goals.</p>
+      <a href="exercise-quiz.html" class="audit-portal-btn">Start My Free Audit Now</a>
+      <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 40px; font-weight: 800; font-size: 0.9rem; opacity: 0.6;">
+        <span>✓ NIH Research Aligned</span>
+        <span>✓ 100% Private</span>
+        <span>✓ Results in 2 Minutes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL OUTCOMES EXPANDED (DATA THAT SMILES) -->
+  <section class="bento-container" id="results">
+    <div class="bento-tile span-3 reveal">
+      <div class="bio-dashboard-header">
+        <h2 style="font-size: 4rem;">Clinical Joy. Verifiable Proof.</h2>
+        <p style="color: #64748b; font-size: 1.4rem;">Watch your biology improve with every joyful session. Our data is backed by peer-reviewed geriatric research.</p>
       </div>
       
       <div class="bio-grid">
+        <!-- Outcome 1 -->
         <div class="bio-unit">
           <div class="bio-visual-wrap">
-            <div class="bio-ring-glow"></div>
             <svg class="bio-ring-svg" viewBox="0 0 160 160">
               <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
               <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
             </svg>
             <div class="bio-value">0%</div>
           </div>
-          <h3>Balance Shift</h3>
-          <p style="font-size: 0.9rem; color: #64748b;">Fall risk reduction through reactive reflex training.</p>
+          <div class="bio-content">
+            <h3>Reactive Step Mastery</h3>
+            <p>We target Type-II fast-twitch fibers to ensure your nervous system "catches" you instantly. Maintaining independence at home starts with balance confidence.</p>
+            <span class="research-tag">NIH COCHRANE SYSTEMATIC REVIEW</span>
+          </div>
         </div>
 
+        <!-- Outcome 2 -->
         <div class="bio-unit">
           <div class="bio-visual-wrap">
-            <div class="bio-ring-glow"></div>
             <svg class="bio-ring-svg" viewBox="0 0 160 160">
               <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
               <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
             </svg>
             <div class="bio-value">0%</div>
           </div>
-          <h3>Metabolic Gain</h3>
-          <p style="font-size: 0.9rem; color: #64748b;">Clinical improvement in glucose clearance rates.</p>
+          <div class="bio-content">
+            <h3>Metabolic Sugar Clearance</h3>
+            <p>Resistance movement triggers "GLUT4 translocation"—clearing glucose from your blood independently of insulin for up to 48 hours post-session.</p>
+            <span class="research-tag">SIGAL ET AL., DIABETES CARE STUDY</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PLATINUM CORRIDOR -->
-  <section class="corridor-bar reveal">
-    <strong>CLARK COUNTY SERVICE RADIUS</strong>
-    <div class="city-scroll">
-      <span>Vancouver</span> • <span>Battle Ground</span> • <span>Camas</span> • <span>Ridgefield</span>
-    </div>
-  </section>
-
   <footer>
-    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Concierge. Battle Ground, WA.</p>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility. serving Battle Ground & Vancouver, WA.</p>
   </footer>
 
   <script>
@@ -440,7 +482,6 @@
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      
       const t = Date.now() * 0.001;
       ctx.beginPath();
       ctx.moveTo(0, height);
@@ -466,8 +507,8 @@
       }
     };
     window.addEventListener('mousemove', handleMove);
-    window.addEventListener('touchstart', handleMove);
-    window.addEventListener('touchmove', handleMove);
+    window.addEventListener('touchstart', handleMove, { passive: true });
+    window.addEventListener('touchmove', handleMove, { passive: true });
     window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
 
     // --- SCROLL REVEAL & BIO RINGS ---
@@ -483,9 +524,7 @@
             ring.style.strokeDashoffset = offset;
             
             const wrap = ring.closest('.bio-visual-wrap');
-            const valBox = wrap.querySelector('.bio-value');
-            const glow = wrap.querySelector('.bio-ring-glow');
-            if (glow) glow.style.opacity = '1';
+            const valBox = wrap.parentElement.querySelector('.bio-value');
             if (valBox) animateValue(valBox, 0, target, 2000);
           });
         }
@@ -504,10 +543,7 @@
     }
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    window.addEventListener('resize', () => {
-      resize();
-    });
+    window.addEventListener('resize', resize);
     resize();
     animate();
   </script>
