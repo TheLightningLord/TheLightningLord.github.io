@@ -2,452 +2,720 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Your Path to Health | Olympian Health Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Olympian Health Solutions | Clinical Vitality Forecast</title>
+
+  <!-- Modern Luxury Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   
-  <style>
+  <style id="theme-variables">
     :root {
-      --brand-dark: #020617;
-      --brand-primary: #0f172a;
-      --brand-accent: #38bdf8;
-      --brand-gold: #facc15;
-      --text-main: #1e293b;
-      --text-light: #64748b;
-      --bg-subtle: #f8fafc;
-      --surface: #ffffff;
-      --success: #10b981;
+      /* Default Fallback (Arctic Frost) */
+      --theme-primary: #2563eb;
+      --theme-accent: #60a5fa;
+      --theme-bg-end: #ebf5ff;
+      --theme-bubble: 37, 99, 235;
+      --theme-glow: rgba(37, 99, 235, 0.4);
       
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-      --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.15);
+      --color-navy: #030712;
+      --color-frost: #f8fafc;
+      --color-white: #ffffff;
+      
+      --font-header: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      
+      --glass: rgba(255, 255, 255, 0.88);
+      --radius-xl: 56px;
+      --radius-lg: 32px;
+      --radius-full: 999px;
+      
+      --shadow-luxe: 0 20px 50px rgba(0,0,0,0.04);
+      --shadow-active: 0 10px 40px rgba(var(--theme-bubble), 0.15);
+    }
+  </style>
+
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--color-navy);
+      background-color: var(--color-frost);
+      line-height: 1.4;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 1s ease;
+    }
+    body.menu-open { overflow: hidden; }
+
+    h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
+
+    /* === ANIMATED OXYGEN BACKGROUND === */
+    .bg-animation {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, var(--theme-bg-end) 100%);
+      transition: background 1s ease;
+    }
+    #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    /* === NAVIGATION MASTERPIECE === */
+    nav {
+      position: fixed;
+      top: 15px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 20px); max-width: 1440px;
+      z-index: 2000;
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: var(--radius-full);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-luxe);
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* STYLISH BRANDING */
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2001; }
+    .logo-mark { 
+      width: 54px; height: 40px; 
+      background: var(--color-navy); 
+      border-radius: 12px; 
+      display: flex; align-items: center; justify-content: center; 
+      color: #fff; font-weight: 900; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1; }
+    .brand-name { 
+      font-weight: 900; 
+      font-size: clamp(1rem, 2vw, 1.2rem); 
+      color: var(--color-navy); 
+      letter-spacing: -0.03em;
+      font-family: var(--font-header);
+    }
+    @media (max-width: 480px) { .brand-text { display: none; } }
+
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+    @media (max-width: 1150px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--theme-primary); }
+    
+    .nav-btns { display: flex; gap: 8px; align-items: center; }
+    @media (max-width: 640px) { .nav-btns .btn-luxe-glass { display: none; } }
+
+    /* MOBILE MENU TOGGLE */
+    .menu-toggle {
+      display: none; width: 44px; height: 44px;
+      background: var(--color-navy); border-radius: 50%;
+      border: none; cursor: pointer; position: relative; z-index: 2001;
+      justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 1150px) { .menu-toggle { display: flex; } }
+    .hamburger { width: 18px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
+    .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 2px; background: #fff; left: 0; transition: 0.3s; }
+    .hamburger::before { top: -6px; }
+    .hamburger::after { top: 6px; }
+    .menu-toggle.active .hamburger { background: transparent; }
+    .menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
+    .menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
+
+    /* MOBILE OVERLAY MENU */
+    .mobile-menu-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      z-index: 1500;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 40px;
+      transform: translateY(-100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-menu-overlay.active { transform: translateY(0); }
+    .mobile-nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
+    .mobile-nav-links li { margin-bottom: 2rem; opacity: 0; transform: translateY(20px); transition: 0.4s; }
+    .mobile-menu-overlay.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+    .mobile-nav-links a { text-decoration: none; color: var(--color-navy); font-size: 1.8rem; font-weight: 800; font-family: var(--font-header); letter-spacing: -0.02em; }
+
+    /* PILL BUTTONS */
+    .btn-pill {
+      position: relative; padding: 10px 20px; border-radius: var(--radius-full);
+      font-weight: 800; font-size: 0.7rem; text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-block; text-align: center; white-space: nowrap; border: 1px solid transparent;
+    }
+    .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
+    .btn-luxe-glass { background: rgba(255, 255, 255, 0.6); color: var(--color-navy) !important; border-color: rgba(3, 7, 18, 0.1); backdrop-filter: blur(5px); }
+    .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+    @media (max-width: 768px) { .btn-pill { padding: 8px 14px; font-size: 0.6rem; } }
+
+    @keyframes shimmer-sweep {
+      0% { left: -100%; }
+      30% { left: 100%; }
+      100% { left: 100%; }
+    }
+    .btn-pill::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-20deg); animation: shimmer-sweep 5s infinite ease-in-out;
     }
 
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); background: var(--bg-subtle); line-height: 1.6; padding-bottom: 100px; }
-    
-    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--brand-primary); margin: 0; line-height: 1.2; }
-    
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 1rem 2rem; border-radius: 99px; font-weight: 700; text-decoration: none;
-      transition: all 0.2s ease; border: none; cursor: pointer; font-size: 1rem;
-    }
-    .btn-primary { background: var(--brand-gold); color: var(--brand-dark); box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(250, 204, 21, 0.4); }
-    
-    .btn-dark { background: var(--brand-primary); color: #fff; }
-    .btn-dark:hover { background: var(--brand-accent); color: var(--brand-dark); }
-
-    .btn-outline { background: transparent; border: 2px solid var(--brand-primary); color: var(--brand-primary); }
-    .btn-outline:hover { background: var(--brand-primary); color: #fff; }
-
-    /* HEADER */
-    header { background: var(--brand-dark); padding: 1rem 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-weight: 700; color: #fff; text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .nav-link { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-    .nav-link:hover { color: #fff; }
-
-    /* HERO */
+    /* === HERO SECTION === */
     .hero {
-      text-align: center; padding: 6rem 1rem 4rem;
-      background: radial-gradient(circle at 50% 0%, #1e293b, var(--brand-dark));
-      color: #fff; margin-bottom: 4rem;
-    }
-    .hero h1 { color: #fff; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; }
-    .hero p { color: #94a3b8; font-size: 1.25rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
-    .hero strong { color: var(--brand-accent); font-weight: 400; font-style: italic; }
-
-    /* ================= SECTION 1: THE INTRO SESSION (GOLDEN TICKET) ================= */
-    .promo-section { margin-bottom: 6rem; margin-top: -3rem; position: relative; z-index: 10; } 
-    .golden-ticket {
-      background: var(--brand-primary); color: #fff; border-radius: 24px;
-      max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr;
-      overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
-      position: relative;
-    }
-    
-    .ticket-content { padding: 4rem; position: relative; z-index: 2; }
-    .ticket-visual {
-      background: radial-gradient(circle at bottom right, var(--brand-gold), #b45309);
-      padding: 3rem; display: flex; flex-direction: column; justify-content: center;
-      align-items: center; text-align: center; position: relative;
-    }
-    /* Decorative texture */
-    .golden-ticket::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 20px 20px; pointer-events: none; z-index: 1;
+      min-height: 98vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 24px 80px;
+      text-align: center;
     }
 
-    .ticket-tag {
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      padding: 6px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1.5rem;
+    .hero-badges-wrap { display: flex; justify-content: center; margin-bottom: 3.5rem; }
+    .unified-hero-banner {
+        display: inline-flex; align-items: center; gap: 12px; padding: 12px 32px;
+        background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        border: 2px solid var(--theme-primary); border-radius: var(--radius-full);
+        box-shadow: 0 15px 35px rgba(var(--theme-bubble), 0.1);
+        color: var(--color-navy); font-family: var(--font-header); font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
+        text-transform: uppercase; letter-spacing: 0.05em; transition: all 1s ease;
     }
-    
-    .ticket-title { font-size: 2.5rem; color: #fff; margin-bottom: 1rem; }
-    .ticket-desc { font-size: 1.1rem; color: #94a3b8; margin-bottom: 2.5rem; }
-    
-    .value-check { display: flex; gap: 12px; margin-bottom: 10px; align-items: center; }
-    .check-circle { width: 20px; height: 20px; background: var(--brand-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #000; flex-shrink: 0; }
-    
-    .price-big { font-size: 4.5rem; font-weight: 900; line-height: 1; font-family: 'Plus Jakarta Sans', sans-serif; color: #fff; }
-    .price-struck { font-size: 1.5rem; text-decoration: line-through; opacity: 0.6; font-weight: 500; }
+    .unified-hero-banner i { font-style: normal; font-size: 1.2rem; filter: drop-shadow(0 0 5px var(--theme-glow)); }
 
-    /* ================= SECTION 2: THE PATIENT JOURNEY ================= */
-    .journey-section { padding: 0 1rem; margin-bottom: 6rem; }
-    .journey-card {
-      background: #fff; border-radius: 24px; padding: 4rem 2rem;
-      box-shadow: var(--shadow-lg); border: 1px solid #e2e8f0;
-      position: relative; overflow: hidden;
-    }
+    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
     
-    .journey-header { text-align: center; margin-bottom: 4rem; }
-    .journey-header h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    
-    .timeline-track {
-      position: absolute; top: 50%; left: 50px; right: 50px; height: 2px;
-      background: #e2e8f0; z-index: 0; transform: translateY(-50%);
-    }
-    
-    .steps-wrapper {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; z-index: 1;
-    }
-    
-    .step-node {
-      text-align: center; background: #fff; padding: 1.5rem; border-radius: 16px;
-      border: 1px solid #e2e8f0; transition: all 0.3s ease; cursor: default;
-      position: relative; top: 0;
-    }
-    
-    .step-node:hover {
-      top: -10px; border-color: var(--brand-accent); box-shadow: var(--shadow-glow);
-    }
-    
-    .step-icon {
-      width: 64px; height: 64px; background: var(--brand-primary); color: #fff;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin: 0 auto 1.5rem; border: 4px solid #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
-    .step-node:hover .step-icon { background: var(--brand-accent); color: var(--brand-dark); }
-    
-    .step-node h3 { font-size: 1.2rem; margin-bottom: 0.75rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
-    .step-node p { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
+    @keyframes drawUnderline { 0%, 100% { width: 0%; left: 0; } 50% { width: 100%; left: 0; } }
+    @keyframes colorBreathe { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
 
-    /* ================= SECTION 3: PRICING HEADER ================= */
-    .pricing-title-section { text-align: center; margin-bottom: 4rem; }
-    .pricing-title-section h2 { font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 1rem; }
-    .pricing-title-section p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
-
-    /* ================= SECTION 4: MONTHLY MEMBERSHIPS ================= */
-    .membership-section { margin-bottom: 6rem; }
-    
-    .mem-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; max-width: 1100px; margin: 0 auto;
+    .hero h1 span {
+      position: relative; display: inline-block; color: var(--theme-primary);
+      animation: colorBreathe 4s infinite ease-in-out; transition: color 1s ease; padding: 0 4px;
     }
-    
-    .mem-card {
-      background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem; text-align: center;
-      position: relative; transition: 0.2s; box-shadow: var(--shadow-sm);
-    }
-    .mem-card:hover { border-color: var(--brand-accent); box-shadow: var(--shadow-lg); }
-    
-    .mem-card.popular {
-      background: #0f172a; color: #fff; border: none; transform: scale(1.05);
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); z-index: 5;
-    }
-    .mem-card.popular h3, .mem-card.popular .mem-price { color: #fff; }
-    .mem-card.popular .mem-per { color: #94a3b8; }
-    .mem-card.popular .mem-list li { color: #cbd5e1; }
-    
-    .mem-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--brand-gold); color: var(--brand-dark); font-weight: 700; padding: 4px 16px; border-radius: 99px; font-size: 0.8rem; }
-    
-    .mem-title { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; color: var(--text-light); }
-    .mem-price { font-size: 3rem; font-weight: 800; color: var(--brand-primary); line-height: 1; margin-bottom: 0.5rem; }
-    .mem-per { font-size: 0.9rem; color: var(--text-light); margin-bottom: 2rem; }
-    
-    .mem-list { list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; }
-    .mem-list li { margin-bottom: 0.8rem; display: flex; gap: 10px; font-size: 0.9rem; }
-    .mem-list li svg { width: 20px; height: 20px; color: var(--success); flex-shrink: 0; }
-
-    /* ================= SECTION 5: CLINICAL PROTOCOLS (PAY PER SESSION) ================= */
-    .protocol-section { margin-bottom: 6rem; }
-    
-    .protocol-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto;
-    }
-    
-    .protocol-card {
-      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden;
-      display: flex; flex-direction: column; transition: transform 0.2s; box-shadow: var(--shadow-sm);
-    }
-    .protocol-card:hover { transform: translateY(-5px); border-color: var(--brand-accent); }
-    
-    .pc-header { padding: 2rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
-    .pc-badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 0.5rem; display: block; }
-    .pc-title { font-size: 1.5rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: var(--brand-primary); }
-    .pc-price { font-size: 2rem; font-weight: 700; color: var(--brand-primary); }
-    .pc-price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
-    
-    .pc-body { padding: 2rem; flex-grow: 1; }
-    .pc-desc { margin-bottom: 1.5rem; color: var(--text-light); min-height: 60px; font-size: 0.95rem; }
-    
-    .feature-row { display: flex; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; font-size: 0.9rem; }
-    .fr-label { font-weight: 600; color: var(--text-main); }
-    .fr-val { color: var(--text-light); text-align: right; }
-
-    /* ================= SCHEDULER SECTION (CALENDLY) ================= */
-    .scheduler-section {
-        margin-bottom: 6rem;
-        padding-top: 2rem;
-        background: #fff;
-        padding-bottom: 6rem;
-        border-top: 1px solid #e2e8f0;
-    }
-    
-    .scheduler-wrapper {
-        background: #fff;
-        max-width: 1000px; margin: 0 auto;
+    .hero h1 span::after {
+      content: ''; position: absolute; bottom: 4px; left: 0; width: 0%; height: 6px;
+      background: var(--theme-primary); border-radius: 4px; opacity: 0.4;
+      animation: drawUnderline 4s infinite ease-in-out;
     }
 
-    .scheduler-header {
-        text-align: center;
-        margin-bottom: 3rem;
+    /* === MISSION CONTAINER === */
+    .mission-container {
+        max-width: 900px; margin: 0 auto 5rem; text-align: left; padding: 35px 45px;
+        background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        border-radius: 36px; border: 1px solid rgba(255, 255, 255, 0.6);
+        border-left: 6px solid var(--theme-primary); position: relative; box-shadow: var(--shadow-luxe);
+        transition: border 1s ease, background 1s ease;
     }
-    
-    /* STICKY BAR */
-    .sticky-cta {
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px);
-      padding: 10px 20px; border-radius: 99px; display: flex; align-items: center; gap: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 900; width: 90%; max-width: 500px;
-      justify-content: space-between; border: 1px solid rgba(255,255,255,0.1);
-    }
-    .sticky-info { color: #fff; font-size: 0.9rem; font-weight: 500; }
-    .sticky-btn { background: var(--brand-gold); color: var(--brand-dark); padding: 8px 20px; border-radius: 99px; font-weight: 700; text-decoration: none; font-size: 0.9rem; }
+    @media (max-width: 768px) { .mission-container { padding: 25px 20px; text-align: center; border-left: none; border-bottom: 4px solid var(--theme-primary); border-radius: 24px; } }
 
-    @media (max-width: 768px) {
-      .steps-wrapper { grid-template-columns: 1fr; gap: 1rem; }
-      .timeline-track { display: none; }
-      .golden-ticket { grid-template-columns: 1fr; text-align: center; }
-      .value-check { justify-content: center; }
-      .protocol-grid { grid-template-columns: 1fr; }
-      .mem-card.popular { transform: none; }
+    .hero p { font-size: clamp(1.15rem, 3vw, 1.45rem); color: #1e293b; font-weight: 500; line-height: 1.7; letter-spacing: -0.01em; margin: 0; }
+    .hero p span { display: inline; color: var(--theme-primary); font-weight: 700; }
+    .hero p .at-home-callout { display: block; margin-top: 15px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 900; color: var(--theme-primary); transition: color 1s ease; }
+
+    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
+    @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
+    .btn-hero { 
+      width: 100%; max-width: 440px; padding: 1.4rem 3rem; border-radius: var(--radius-full); 
+      font-weight: 900; font-size: 1.2rem; text-decoration: none; 
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; 
+      border: none; cursor: pointer; position: relative; overflow: hidden;
     }
+    .btn-hero:hover { transform: scale(1.05) translateY(-3px); }
+    .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
+    .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
+
+    /* === TICKER === */
+    .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
+    .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
+    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* === VITALITY CATALYST === */
+    .catalyst-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; position: relative; }
+    .catalyst-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: stretch; }
+    @media (max-width: 1024px) { .catalyst-grid { grid-template-columns: 1fr; } }
+    .fancy-graphic-card { background: var(--color-white); border-radius: 48px; padding: 80px 60px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--shadow-luxe); border: 1px solid rgba(255,255,255,0.8); }
+    .fancy-graphic-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 60%); animation: rotateGlow 15s infinite linear; pointer-events: none; }
+    @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .fancy-graphic-card h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 2rem; position: relative; z-index: 1; }
+    .fancy-graphic-card h2 span { color: var(--theme-primary); transition: color 1s ease; }
+    .btn-learn-more { align-self: flex-start; padding: 20px 45px; background: var(--theme-primary); color: #fff; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; position: relative; z-index: 1; overflow: hidden; }
+    @keyframes pulseShadow { 0%, 100% { box-shadow: 0 15px 40px rgba(var(--theme-bubble), 0.3); } 50% { box-shadow: 0 15px 60px rgba(var(--theme-bubble), 0.6); } }
+    .btn-learn-more { animation: pulseShadow 3s infinite ease-in-out; }
+    .assessment-panel { background: var(--color-navy); color: #fff; border-radius: 48px; padding: 60px; display: flex; flex-direction: column; justify-content: center; text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+    .assessment-panel h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; color: var(--theme-accent); }
+    .assessment-panel p { font-size: 1.15rem; opacity: 0.85; margin-bottom: 2.5rem; line-height: 1.6; }
+    .btn-assessment { padding: 18px 36px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; font-size: 1rem; text-decoration: none; text-align: center; transition: 0.3s; }
+    .btn-assessment:hover { background: var(--theme-accent); color: #fff; transform: translateY(-3px); }
+
+    /* === STEPPER & METRICS === */
+    .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+    .onboarding-header { text-align: center; margin-bottom: 80px; }
+    .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
+    .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
+    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height; }
+    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s; transform: translateX(20px); }
+    .step-item.active { opacity: 1; transform: translateX(0); }
+    .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
+    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
+
+    @media (min-width: 768px) {
+        .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
+        .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 6px; }
+        .stepper-line-fill { top: 28px; left: 0; height: 6px; width: 0%; }
+        .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
+    }
+
+    .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
+    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
+    @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
+    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s; border: 2.5px solid transparent; }
+    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; }
+    .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
+    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
+    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
+
+    .arc-section { padding: 100px 24px; max-width: 1300px; margin: 0 auto; }
+    .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 60px; }
+    @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
+    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; }
+    .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); }
+
+    /* Persistent FAB */
+    .mobile-fab-bar {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 36px); max-width: 440px;
+      background: var(--color-navy); color: #fff;
+      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      padding: 10px; border-radius: var(--radius-full);
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1001; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+    }
+    @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
+    .fab-btn { flex: 1; text-align: center; font-size: 0.9rem; font-weight: 900; color: #fff; text-decoration: none; padding: 14px; }
+    .fab-btn.primary { background: var(--theme-primary); border-radius: var(--radius-full); margin-left: 10px; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
+
+    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 40px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
+    .adv-card:hover { border-color: var(--theme-primary); background: #fff; transform: translateY(-10px); }
+    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); }
+    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
+    .kinetic-pill { align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; border: none; cursor: pointer; margin-top: auto; transition: 0.3s; }
+    .kinetic-pill:hover { background: var(--theme-primary); transform: scale(1.05); }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Olympian Health
-      </a>
-      <nav>
-        <a href="index.html" class="nav-link" style="margin-right:15px;">Home</a>
-        <a href="education.html" class="nav-link">Education</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <h1>Restore Your <strong>Vitality</strong> & Confidence.</h1>
-      <p>Expert physiological coaching delivered to your living room. Start with a conversation, not a workout.</p>
-    </div>
-  </section>
-
-  <!-- 1. THE GOLDEN TICKET ($45 PROMO) -->
-  <section class="promo-section container">
-    <div class="golden-ticket">
-      <div class="ticket-content">
-        <span class="ticket-tag">Step 1: Start Here</span>
-        <h2 class="ticket-title">The Introductory Session</h2>
-        <p class="ticket-desc">Meet your clinician, discuss your goals, and get a comprehensive safety audit of your home and movement patterns. No commitment required.</p>
-        
-        <div style="margin-bottom:2rem;">
-          <div class="value-check"><div class="check-circle">✓</div> <strong>Home Safety Audit</strong> (Risk Identification)</div>
-          <div class="value-check"><div class="check-circle">✓</div> <strong>Gait Analysis</strong> (Fall Prevention)</div>
-          <div class="value-check"><div class="check-circle">✓</div> <strong>Strength Baseline</strong> (Functional Testing)</div>
-          <div class="value-check"><div class="check-circle">✓</div> <strong>Custom Roadmap</strong> (Written Plan)</div>
-        </div>
-        
-        <button class="btn btn-primary" onclick="scrollToScheduler()">Book Intro Session</button>
-        <p style="font-size:0.8rem; opacity:0.7; margin-top:1rem;">100% Money-Back Satisfaction Guarantee.</p>
-      </div>
-      
-      <div class="ticket-visual">
-        <span style="font-family:'Playfair Display', serif; font-size:1.5rem; color:rgba(255,255,255,0.8);">Total Value: $300</span>
-        <div class="price-big">$45</div>
-        <span style="background:#fff; color:#000; font-weight:700; padding:4px 12px; border-radius:4px; font-size:0.8rem; margin-top:1rem;">ONE-TIME OFFER</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. THE PATIENT JOURNEY -->
-  <section class="journey-section container">
-    <div class="journey-card">
-      <div class="journey-header">
-        <h2>What Does a Visit Feel Like?</h2>
-        <p style="color:#64748b;">A stress-free, professional medical experience in your own home.</p>
-      </div>
-      
-      <div class="timeline-track"></div>
-      
-      <div class="steps-wrapper">
-        <div class="step-node">
-          <div class="step-icon">👋</div>
-          <h3>1. Arrival</h3>
-          <p>Your clinician arrives on time with sanitized equipment. You need nothing but comfy clothes.</p>
-        </div>
-        <div class="step-node">
-          <div class="step-icon">🩺</div>
-          <h3>2. Vitals & Safety</h3>
-          <p>We check blood pressure, heart rate, and scan the room for fall hazards before starting.</p>
-        </div>
-        <div class="step-node">
-          <div class="step-icon">🧬</div>
-          <h3>3. The Work</h3>
-          <p>Gentle, evidence-based movements tailored to your energy level that day. No pain, just progress.</p>
-        </div>
-        <div class="step-node">
-          <div class="step-icon">📝</div>
-          <h3>4. The Plan</h3>
-          <p>We leave you with a clear written plan and simple homework to keep the momentum going.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="pricing-title-section container">
-    <h2>Pathways for Ongoing Care</h2>
-    <p>After your introductory session, choose the path that fits your goals. Whether you want consistent weekly coaching or flexible sessions, we have a plan.</p>
+  <!-- VITALITY ENGINE -->
+  <div class="bg-animation">
+    <canvas id="bubble-canvas"></canvas>
   </div>
 
-  <!-- 3. MONTHLY MEMBERSHIPS -->
-  <section class="membership-section">
-    <div class="container">
-      <div class="mem-grid">
-        
-        <div class="mem-card">
-          <div class="mem-title">Maintenance</div>
-          <div class="mem-price">$360<span style="font-size:1rem; font-weight:400; color:#94a3b8;">/mo</span></div>
-          <div class="mem-per">$90 / session</div>
-          <ul class="mem-list">
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 4 Sessions (1x/Week)</li>
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Weekly Check-in</li>
-          </ul>
-          <button class="btn btn-outline" style="width:100%" onclick="scrollToScheduler()">Select Plan</button>
-        </div>
-
-        <div class="mem-card popular">
-          <span class="mem-tag">Most Popular</span>
-          <div class="mem-title" style="color:#38bdf8;">Growth</div>
-          <div class="mem-price">$640<span style="font-size:1rem; font-weight:400; opacity:0.7;">/mo</span></div>
-          <div class="mem-per">$80 / session</div>
-          <ul class="mem-list">
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 8 Sessions (2x/Week)</li>
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Priority Scheduling</li>
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Accountability Texts</li>
-          </ul>
-          <button class="btn btn-primary" style="width:100%" onclick="scrollToScheduler()">Select Plan</button>
-        </div>
-
-        <div class="mem-card">
-          <div class="mem-title">Accelerator</div>
-          <div class="mem-price">$840<span style="font-size:1rem; font-weight:400; color:#94a3b8;">/mo</span></div>
-          <div class="mem-per">$70 / session</div>
-          <ul class="mem-list">
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 12 Sessions (3x/Week)</li>
-            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> VIP Scheduling</li>
-          </ul>
-          <button class="btn btn-outline" style="width:100%" onclick="scrollToScheduler()">Select Plan</button>
-        </div>
+  <!-- NAVIGATION -->
+  <nav id="main-nav">
+    <a href="index.html" class="brand">
+      <div class="logo-mark">OHS</div>
+      <div class="brand-text">
+        <span class="brand-name">Olympian</span>
+        <span class="brand-subname">Health Solutions</span>
       </div>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="#results">Results</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="about.html">About us</a></li>
+    </ul>
+
+    <div class="nav-btns">
+      <a href="quiz.html" class="btn-pill btn-luxe-glass">Assessment</a>
+      <a href="booking.html" class="btn-pill btn-luxe-dark">Book now</a>
     </div>
-  </section>
 
-  <!-- 4. CLINICAL PROTOCOLS (PAY PER SESSION) -->
-  <section class="protocol-section container">
-    <h3 style="text-align:center; margin-bottom:2rem; color:var(--text-light);">Flexible "Pay-As-You-Go" Options</h3>
-    <div class="protocol-grid">
-      
-      <!-- 30 MIN -->
-      <div class="protocol-card">
-        <div class="pc-header">
-          <span class="pc-badge" style="color:var(--brand-primary)">Energy Conservation Mode</span>
-          <h3 class="pc-title">30-Min Precision</h3>
-          <div class="pc-price">$60<span> / session</span></div>
-        </div>
-        <div class="pc-body">
-          <p class="pc-desc">A high-density, low-fatigue session designed for specific issues. Perfect if you have low energy reserves but need to keep moving.</p>
-          <div class="feature-row"><span class="fr-label">Focus</span><span class="fr-val">Balance / Vestibular / Pain</span></div>
-          <div class="feature-row"><span class="fr-label">Intensity</span><span class="fr-val">Low - Moderate</span></div>
-          <button class="btn btn-outline" style="width:100%; margin-top:2rem;" onclick="scrollToScheduler()">Book Session</button>
-        </div>
-      </div>
+    <button class="menu-toggle" id="menu-toggle">
+      <div class="hamburger"></div>
+    </button>
+  </nav>
 
-      <!-- 60 MIN -->
-      <div class="protocol-card">
-        <div class="pc-header">
-          <span class="pc-badge" style="color:var(--success)">The Gold Standard</span>
-          <h3 class="pc-title">60-Min Comprehensive</h3>
-          <div class="pc-price">$100<span> / session</span></div>
-        </div>
-        <div class="pc-body">
-          <p class="pc-desc">The full physiological upgrade. Includes neuromuscular re-education, multi-planar strength, and active mobility work.</p>
-          <div class="feature-row"><span class="fr-label">Focus</span><span class="fr-val">Full Body / Gait / Power</span></div>
-          <div class="feature-row"><span class="fr-label">Intensity</span><span class="fr-val">Moderate - High</span></div>
-          <button class="btn btn-dark" style="width:100%; margin-top:2rem;" onclick="scrollToScheduler()">Book Session</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 5. REAL SCHEDULER (Placeholder) -->
-  <section class="scheduler-section container" id="scheduler">
-      <div class="scheduler-wrapper">
-          <div class="scheduler-header">
-              <h2>Schedule Your Introductory Session</h2>
-              <p style="color:#64748b;">Select a time below to secure your spot.</p>
-          </div>
-          
-          <!-- CALENDLY PLACEHOLDER -->
-          <div style="text-align:center; padding:4rem; background:#f8fafc; border:2px dashed #cbd5e1; border-radius:12px;">
-              <h3 style="color:#64748b; margin-bottom:1rem;">📅 Calendar Loading...</h3>
-              <p style="color:#94a3b8;">(<!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/zeustrength/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->)</p>
-          </div>
-
-      </div>
-  </section>
-
-  <!-- STICKY CTA -->
-  <div class="sticky-cta">
-    <span class="sticky-info">Ready to start?</span>
-    <a href="#" onclick="scrollToScheduler()" class="sticky-btn">Book Appointment</a>
+  <!-- MOBILE OVERLAY MENU -->
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="#results">Results</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="about.html">About us</a></li>
+    </ul>
   </div>
 
-  <footer style="background:var(--brand-dark); color:#64748b; padding:3rem 1rem; text-align:center;">
-    <p>&copy; 2025 Olympian Health Solutions. All rights reserved.</p>
+  <!-- PERSISTENT MOBILE COMMAND BAR -->
+  <div class="mobile-fab-bar">
+    <a href="quiz.html" class="fab-btn">Get My Forecast</a>
+    <a href="booking.html" class="fab-btn primary">Book Home Visit</a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container reveal">
+      <div class="hero-badges-wrap">
+        <div class="unified-hero-banner">
+          <i>📍</i> Portable Senior Fitness in Clark County
+        </div>
+      </div>
+      
+      <h1 id="dynamic-headline">
+        <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
+      </h1>
+      
+      <div class="mission-container">
+        <p>
+            Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> personal training designed specifically for seniors.
+            <strong class="at-home-callout">Professional fitness — <span>Delivered</span> to your <span>Living Room.</span></strong>
+        </p>
+      </div>
+      
+      <div class="hero-btns">
+        <a href="booking.html" class="btn-hero btn-primary-luxe">Schedule a visit</a>
+        <a href="quiz.html" class="btn-hero btn-outline-luxe">Learn the benefits</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
+      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
+      <div class="badge-item"><i>✦</i> Serving Clark County</div>
+      <div class="badge-item"><i>✦</i> Local Mobile Lab Suite</div>
+      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
+    </div>
+  </div>
+
+  <!-- VITALITY CATALYST -->
+  <section class="catalyst-section reveal">
+    <div class="catalyst-grid">
+        <div class="fancy-graphic-card">
+            <h2>Are you ready to live a <span>happier, healthier,</span> and <span>safer</span> life?</h2>
+            <p style="margin-bottom: 2.5rem; font-size: 1.3rem; font-weight: 400; color: #475569; position: relative; z-index: 1;">Learn how easy it is to get started with our elite clinical framework.</p>
+            <a href="#onboarding" class="btn-learn-more">Learn more</a>
+        </div>
+        <div class="assessment-panel">
+            <h3>Free Fitness Benefits Assessment</h3>
+            <p>Learn how effective exercise is for your specific health condition or fitness goal with our research-backed clinical map.</p>
+            <a href="quiz.html" class="btn-assessment">Start Assessment Now</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- THE VITALITY PATH -->
+  <section class="onboarding-section reveal" id="onboarding">
+    <div class="onboarding-header">
+        <h2 style="font-weight: 900;">Your Path to <span style="color:var(--theme-primary)">Vitality</span></h2>
+        <p style="color: #64748b; font-size: 1.25rem;">A seamless start to a more energetic life.</p>
+    </div>
+    
+    <div class="stepper-progress-wrap">
+        <div class="stepper-line-bg"></div>
+        <div class="stepper-line-fill" id="stepper-fill"></div>
+        
+        <div class="step-item" id="step-1">
+            <div class="step-node">1</div>
+            <div class="step-content">
+                <strong>The Digital Sync</strong>
+                <p>A brief 10-minute intro to align our clinical protocols with your personal medical history.</p>
+            </div>
+        </div>
+        <div class="step-item" id="step-2">
+            <div class="step-node">2</div>
+            <div class="step-content">
+                <strong>We Bring the Lab</strong>
+                <p>Our specialists arrive with sanitized, university-standard tools. You don't lift a finger.</p>
+            </div>
+        </div>
+        <div class="step-item" id="step-3">
+            <div class="step-node">3</div>
+            <div class="step-content">
+                <strong>The Joyful Thrive</strong>
+                <p>60 minutes of clinical movement delivered with family warmth and world-class expertise.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL OUTCOMES -->
+  <section class="results-strip reveal" id="results">
+      <div style="text-align: center; margin-bottom: 80px;">
+        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
+        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by geriatric research.</p>
+      </div>
+      <div class="bio-grid">
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <strong>Stability Gain</strong>
+          <p>Clinical reduction in fall-risk via neuromuscular reflex training.</p>
+        </div>
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <strong>Metabolic Logic</strong>
+          <p>Clearance of blood glucose independently of insulin sensitivity.</p>
+        </div>
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <strong>Grip Vitality</strong>
+          <p>Clinical marker for muscle quality and biological longevity.</p>
+        </div>
+      </div>
+  </section>
+
+  <!-- GROWTH ROADMAP -->
+  <section class="arc-section reveal" id="arc">
+    <div style="text-align: center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span style="color:var(--theme-primary)">Freedom Arc</span></h2>
+        <p style="color: #64748b; margin-top: 15px; font-size: 1.25rem;">A milestone-driven roadmap to your best self.</p>
+    </div>
+    <div class="arc-grid">
+        <div class="arc-card">
+            <span class="arc-week">WEEK 1</span>
+            <strong>Neural Awakening</strong>
+            <p>Targeting proprioception to eliminate the "fear of falling" instantly.</p>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 4</span>
+            <strong>Metabolic Sync</strong>
+            <p>Re-optimizing insulin sensitivity and clearing "brain fog" markers.</p>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 8</span>
+            <strong>Structural Build</strong>
+            <p>Reinforcing bone density and synovial fluid flow for painless movement.</p>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 12</span>
+            <strong>Total Independence</strong>
+            <p>Maintenance protocols to ensure travel and play remain permanent fixtures.</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION PREVIEW -->
+  <section class="advantage-hub reveal" id="advantage">
+    <div style="text-align:center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">Clinical <span>Advantage</span> Ledger</h2>
+        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the biological upgrades proven by medical trials:</p>
+    </div>
+    <div class="adv-grid">
+        <div class="adv-card">
+            <strong>Cognitive Spark</strong>
+            <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
+            <button class="kinetic-pill">Read Clinical Sync</button>
+        </div>
+        <div class="adv-card">
+            <strong>Arterial Rejuvenation</strong>
+            <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
+            <button class="kinetic-pill">View Cardio Lab</button>
+        </div>
+        <div class="adv-card">
+            <strong>Bone Architecture</strong>
+            <p>Safe resistance protocols that trigger osteoblastic activity for skeletal resilience and strength.</p>
+            <button class="kinetic-pill">Bio-Skeletal Sync</button>
+        </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
   </footer>
 
   <script>
-    function scrollToScheduler() {
-      document.getElementById('scheduler').scrollIntoView({ behavior: 'smooth' });
+    // --- THEME ENGINE ---
+    const themes = [
+      { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', glow: 'rgba(37, 99, 235, 0.4)' },
+      { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', glow: 'rgba(124, 58, 237, 0.4)' },
+      { primary: '#0369a1', accent: '#38bdf8', bgEnd: '#f0f9ff', bubble: '3, 105, 161', glow: 'rgba(3, 105, 161, 0.4)' },
+      { primary: '#475569', accent: '#94a3b8', bgEnd: '#f1f5f9', bubble: '71, 85, 105', glow: 'rgba(71, 85, 105, 0.4)' },
+      { primary: '#059669', accent: '#34d399', bgEnd: '#ecfdf5', bubble: '5, 150, 105', glow: 'rgba(5, 150, 105, 0.4)' }
+    ];
+
+    function applyRandomTheme() {
+      const theme = themes[Math.floor(Math.random() * themes.length)];
+      const root = document.documentElement;
+      root.style.setProperty('--theme-primary', theme.primary);
+      root.style.setProperty('--theme-accent', theme.accent);
+      root.style.setProperty('--theme-bg-end', theme.bgEnd);
+      root.style.setProperty('--theme-bubble', theme.bubble);
+      root.style.setProperty('--theme-glow', theme.glow);
     }
+
+    // --- DYNAMIC HEADLINE ENGINE ---
+    const headlines = [
+      "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
+      "Discover the <span>Joy</span> of Clinical Strength, <span>Safely</span> at Home.",
+      "<span>Thrive</span> with Professional Care that feels <span>Fun</span> and <span>Easy.</span>",
+      "Your <span>Independence</span> Forecast made <span>Fun</span> and <span>Easily</span> Proven.",
+      "Movement made <span>Fun.</span> Professional care made <span>Easy.</span>",
+      "Reclaiming <span>Freedom</span> is finally <span>Safe</span>, <span>Fun</span>, and <span>Easy.</span>"
+    ];
+
+    function setDynamicHeadline() {
+      document.getElementById('dynamic-headline').innerHTML = headlines[Math.floor(Math.random() * headlines.length)];
+    }
+
+    // --- MOBILE MENU ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+
+    // --- BUBBLE ENGINE ---
+    const canvas = document.getElementById('bubble-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, bubbles = [];
+    const bubbleCount = window.innerWidth < 768 ? 45 : 110;
+    const mouse = { x: -1000, y: -1000, radius: 240 };
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initBubbles();
+    }
+
+    class Bubble {
+      constructor() { this.reset(); }
+      reset() {
+        this.radius = Math.random() * 26 + 6;
+        this.x = Math.random() * width;
+        this.y = height + this.radius + Math.random() * 300;
+        this.vy = -(Math.random() * 0.9 + 0.35);
+        this.vx = (Math.random() - 0.5) * 0.45;
+        this.opacity = Math.random() * 0.2 + 0.05;
+        this.wobble = Math.random() * Math.PI * 2;
+        this.wobbleSpeed = Math.random() * 0.04 + 0.01;
+      }
+      update() {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < mouse.radius) {
+          let force = (mouse.radius - dist) / mouse.radius;
+          this.x -= (dx / dist) * force * 12;
+          this.y -= (dy / dist) * force * 12;
+        }
+        this.y += this.vy;
+        this.wobble += this.wobbleSpeed;
+        this.x += Math.sin(this.wobble) * 0.28 + this.vx;
+        if (this.y < -this.radius) this.reset();
+      }
+      draw() {
+        let themeRGB = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim();
+        let grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        grad.addColorStop(0, `rgba(${themeRGB}, ${this.opacity * 1.6})`);
+        grad.addColorStop(1, `rgba(${themeRGB}, 0)`);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+    }
+
+    function initBubbles() { bubbles = Array.from({length: bubbleCount}, () => new Bubble()); }
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      bubbles.forEach(b => { b.update(); b.draw(); });
+      requestAnimationFrame(animate);
+    }
+
+    const handleMove = (e) => {
+      const touch = e.touches ? e.touches[0] : e;
+      mouse.x = touch.clientX; mouse.y = touch.clientY;
+    };
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('touchstart', handleMove, { passive: true });
+    window.addEventListener('touchmove', handleMove, { passive: true });
+    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
+
+    // --- SCROLL REVEAL ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { 
+        if(e.isIntersecting) {
+          e.target.classList.add('active');
+          if (e.target.id === 'onboarding') {
+            const fill = document.getElementById('stepper-fill');
+            if (window.innerWidth <= 768) fill.style.height = '100%'; else fill.style.width = '100%';
+            setTimeout(() => document.querySelectorAll('.step-item').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*400)), 200);
+          }
+          const rings = e.target.querySelectorAll('.bio-ring-fill');
+          rings.forEach(ring => {
+            const target = parseInt(ring.getAttribute('data-target'));
+            ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
+            const wrap = ring.closest('.bio-visual-wrap');
+            if (wrap) {
+              const valDisplay = wrap.querySelector('.bio-value');
+              if (valDisplay) animateValue(valDisplay, 0, target, 2500);
+            }
+          });
+        }
+      });
+    }, { threshold: 0.12 });
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    window.onload = function() {
+      applyRandomTheme();
+      setDynamicHeadline();
+      resize();
+      animate();
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    };
+    window.addEventListener('resize', resize);
   </script>
 </body>
 </html>
