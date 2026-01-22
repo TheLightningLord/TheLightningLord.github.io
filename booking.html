@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA." />
+  <meta name="description" content="Secure your clinical fitness session. Mobile senior mobility in Clark County, WA." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Olympian Health Solutions | Clinical Vitality Forecast</title>
+  <title>Pricing & Booking | Olympian Health Solutions</title>
 
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
   
   <style id="theme-variables">
     :root {
-      /* Default Fallback (Arctic Frost) */
+      /* Default Fallback */
       --theme-primary: #2563eb;
       --theme-accent: #60a5fa;
       --theme-bg-end: #ebf5ff;
@@ -50,11 +50,10 @@
       -webkit-font-smoothing: antialiased;
       transition: background-color 1s ease;
     }
-    body.menu-open { overflow: hidden; }
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === ANIMATED OXYGEN BACKGROUND === */
+    /* === ANIMATED BACKGROUND === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -64,7 +63,7 @@
     }
     #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* === NAVIGATION MASTERPIECE === */
+    /* === NAVIGATION === */
     nav {
       position: fixed;
       top: 15px; left: 50%; transform: translateX(-50%);
@@ -82,244 +81,212 @@
       box-shadow: var(--shadow-luxe);
       transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
-    /* STYLISH BRANDING */
     .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2001; }
-    .logo-mark { 
-      width: 54px; height: 40px; 
-      background: var(--color-navy); 
-      border-radius: 12px; 
-      display: flex; align-items: center; justify-content: center; 
-      color: #fff; font-weight: 900; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      flex-shrink: 0;
-      font-size: 0.9rem;
-      letter-spacing: -0.02em;
-    }
+    .logo-mark { width: 54px; height: 40px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
     .brand-text { display: flex; flex-direction: column; line-height: 1; }
-    .brand-name { 
-      font-weight: 900; 
-      font-size: clamp(1rem, 2vw, 1.2rem); 
-      color: var(--color-navy); 
-      letter-spacing: -0.03em;
-      font-family: var(--font-header);
-    }
-    @media (max-width: 480px) { .brand-text { display: none; } }
+    .brand-name { font-weight: 900; font-size: 1.1rem; color: var(--color-navy); font-family: var(--font-header); }
+    .brand-subname { font-weight: 400; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--theme-primary); margin-top: 2px; }
 
     .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 1150px) { .nav-links { display: none; } }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
+    @media (max-width: 1024px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
     .nav-links a:hover { color: var(--theme-primary); }
-    
-    .nav-btns { display: flex; gap: 8px; align-items: center; }
-    @media (max-width: 640px) { .nav-btns .btn-luxe-glass { display: none; } }
 
-    /* MOBILE MENU TOGGLE */
-    .menu-toggle {
-      display: none; width: 44px; height: 44px;
-      background: var(--color-navy); border-radius: 50%;
-      border: none; cursor: pointer; position: relative; z-index: 2001;
-      justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 1150px) { .menu-toggle { display: flex; } }
-    .hamburger { width: 18px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
-    .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 2px; background: #fff; left: 0; transition: 0.3s; }
-    .hamburger::before { top: -6px; }
-    .hamburger::after { top: 6px; }
-    .menu-toggle.active .hamburger { background: transparent; }
-    .menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
-    .menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
-
-    /* MOBILE OVERLAY MENU */
-    .mobile-menu-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      z-index: 1500;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      padding: 40px;
-      transform: translateY(-100%);
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .mobile-menu-overlay.active { transform: translateY(0); }
-    .mobile-nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
-    .mobile-nav-links li { margin-bottom: 2rem; opacity: 0; transform: translateY(20px); transition: 0.4s; }
-    .mobile-menu-overlay.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
-    .mobile-nav-links a { text-decoration: none; color: var(--color-navy); font-size: 1.8rem; font-weight: 800; font-family: var(--font-header); letter-spacing: -0.02em; }
-
-    /* PILL BUTTONS */
     .btn-pill {
-      position: relative; padding: 10px 20px; border-radius: var(--radius-full);
-      font-weight: 800; font-size: 0.7rem; text-decoration: none; text-transform: uppercase;
-      letter-spacing: 0.05em; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative; padding: 10px 24px; border-radius: var(--radius-full);
+      font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em; overflow: hidden; transition: 0.4s;
       display: inline-block; text-align: center; white-space: nowrap; border: 1px solid transparent;
-    }
-    .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
-    .btn-luxe-glass { background: rgba(255, 255, 255, 0.6); color: var(--color-navy) !important; border-color: rgba(3, 7, 18, 0.1); backdrop-filter: blur(5px); }
-    .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-    @media (max-width: 768px) { .btn-pill { padding: 8px 14px; font-size: 0.6rem; } }
-
-    @keyframes shimmer-sweep {
-      0% { left: -100%; }
-      30% { left: 100%; }
-      100% { left: 100%; }
-    }
-    .btn-pill::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
-      transform: skewX(-20deg); animation: shimmer-sweep 5s infinite ease-in-out;
+      background: var(--color-navy); color: #fff !important;
     }
 
-    /* === HERO SECTION === */
-    .hero {
-      min-height: 98vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 140px 24px 80px;
+    /* === BOOKING HERO === */
+    .booking-hero {
+      padding: 160px 24px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
       text-align: center;
     }
-
-    .hero-badges-wrap { display: flex; justify-content: center; margin-bottom: 3.5rem; }
-    .unified-hero-banner {
-        display: inline-flex; align-items: center; gap: 12px; padding: 12px 32px;
-        background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        border: 2px solid var(--theme-primary); border-radius: var(--radius-full);
-        box-shadow: 0 15px 35px rgba(var(--theme-bubble), 0.1);
-        color: var(--color-navy); font-family: var(--font-header); font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
-        text-transform: uppercase; letter-spacing: 0.05em; transition: all 1s ease;
+    .booking-hero h1 { 
+        font-size: clamp(2.5rem, 8vw, 5.5rem); 
+        margin-bottom: 2rem; 
+        font-weight: 900; 
+        color: var(--color-navy); 
+        letter-spacing: -0.05em;
     }
-    .unified-hero-banner i { font-style: normal; font-size: 1.2rem; filter: drop-shadow(0 0 5px var(--theme-glow)); }
+    .booking-hero h1 strong { color: var(--theme-primary); font-weight: 900; transition: color 1s ease; }
+    .booking-hero p { font-size: 1.4rem; color: #475569; max-width: 800px; margin: 0 auto 3rem; line-height: 1.6; }
 
-    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
+    /* === PRICING TILES === */
+    .pricing-section {
+        max-width: 1440px;
+        margin: 0 auto 80px;
+        padding: 0 24px;
+    }
     
-    @keyframes drawUnderline { 0%, 100% { width: 0%; left: 0; } 50% { width: 100%; left: 0; } }
-    @keyframes colorBreathe { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
-
-    .hero h1 span {
-      position: relative; display: inline-block; color: var(--theme-primary);
-      animation: colorBreathe 4s infinite ease-in-out; transition: color 1s ease; padding: 0 4px;
-    }
-    .hero h1 span::after {
-      content: ''; position: absolute; bottom: 4px; left: 0; width: 0%; height: 6px;
-      background: var(--theme-primary); border-radius: 4px; opacity: 0.4;
-      animation: drawUnderline 4s infinite ease-in-out;
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
     }
 
-    /* === MISSION CONTAINER === */
-    .mission-container {
-        max-width: 900px; margin: 0 auto 5rem; text-align: left; padding: 35px 45px;
-        background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        border-radius: 36px; border: 1px solid rgba(255, 255, 255, 0.6);
-        border-left: 6px solid var(--theme-primary); position: relative; box-shadow: var(--shadow-luxe);
-        transition: border 1s ease, background 1s ease;
+    .price-card {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 48px;
+        padding: 50px 40px;
+        border: 1px solid rgba(255,255,255,0.7);
+        box-shadow: var(--shadow-luxe);
+        position: relative;
+        overflow: hidden;
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
     }
-    @media (max-width: 768px) { .mission-container { padding: 25px 20px; text-align: center; border-left: none; border-bottom: 4px solid var(--theme-primary); border-radius: 24px; } }
-
-    .hero p { font-size: clamp(1.15rem, 3vw, 1.45rem); color: #1e293b; font-weight: 500; line-height: 1.7; letter-spacing: -0.01em; margin: 0; }
-    .hero p span { display: inline; color: var(--theme-primary); font-weight: 700; }
-    .hero p .at-home-callout { display: block; margin-top: 15px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 900; color: var(--theme-primary); transition: color 1s ease; }
-
-    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
-    @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
-    .btn-hero { 
-      width: 100%; max-width: 440px; padding: 1.4rem 3rem; border-radius: var(--radius-full); 
-      font-weight: 900; font-size: 1.2rem; text-decoration: none; 
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; 
-      border: none; cursor: pointer; position: relative; overflow: hidden;
+    .price-card:hover {
+        transform: translateY(-10px);
+        background: #fff;
+        border-color: var(--theme-primary);
+        box-shadow: var(--shadow-active);
     }
-    .btn-hero:hover { transform: scale(1.05) translateY(-3px); }
-    .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
-    .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
-
-    /* === TICKER === */
-    .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
-    .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
-    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-    /* === VITALITY CATALYST === */
-    .catalyst-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; position: relative; }
-    .catalyst-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: stretch; }
-    @media (max-width: 1024px) { .catalyst-grid { grid-template-columns: 1fr; } }
-    .fancy-graphic-card { background: var(--color-white); border-radius: 48px; padding: 80px 60px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--shadow-luxe); border: 1px solid rgba(255,255,255,0.8); }
-    .fancy-graphic-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 60%); animation: rotateGlow 15s infinite linear; pointer-events: none; }
-    @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .fancy-graphic-card h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 2rem; position: relative; z-index: 1; }
-    .fancy-graphic-card h2 span { color: var(--theme-primary); transition: color 1s ease; }
-    .btn-learn-more { align-self: flex-start; padding: 20px 45px; background: var(--theme-primary); color: #fff; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; position: relative; z-index: 1; overflow: hidden; }
-    @keyframes pulseShadow { 0%, 100% { box-shadow: 0 15px 40px rgba(var(--theme-bubble), 0.3); } 50% { box-shadow: 0 15px 60px rgba(var(--theme-bubble), 0.6); } }
-    .btn-learn-more { animation: pulseShadow 3s infinite ease-in-out; }
-    .assessment-panel { background: var(--color-navy); color: #fff; border-radius: 48px; padding: 60px; display: flex; flex-direction: column; justify-content: center; text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-    .assessment-panel h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; color: var(--theme-accent); }
-    .assessment-panel p { font-size: 1.15rem; opacity: 0.85; margin-bottom: 2.5rem; line-height: 1.6; }
-    .btn-assessment { padding: 18px 36px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; font-size: 1rem; text-decoration: none; text-align: center; transition: 0.3s; }
-    .btn-assessment:hover { background: var(--theme-accent); color: #fff; transform: translateY(-3px); }
-
-    /* === STEPPER & METRICS === */
-    .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
-    .onboarding-header { text-align: center; margin-bottom: 80px; }
-    .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
-    .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
-    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height; }
-    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s; transform: translateX(20px); }
-    .step-item.active { opacity: 1; transform: translateX(0); }
-    .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
-    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
-
-    @media (min-width: 768px) {
-        .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
-        .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 6px; }
-        .stepper-line-fill { top: 28px; left: 0; height: 6px; width: 0%; }
-        .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
+    
+    .price-card.popular {
+        background: var(--color-navy);
+        color: #fff;
+        border: none;
     }
-
-    .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
-    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
-    @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
-    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s; border: 2.5px solid transparent; }
-    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; }
-    .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
-    .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
-    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
-
-    .arc-section { padding: 100px 24px; max-width: 1300px; margin: 0 auto; }
-    .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 60px; }
-    @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
-    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; }
-    .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); }
-
-    /* Persistent FAB */
-    .mobile-fab-bar {
-      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 36px); max-width: 440px;
-      background: var(--color-navy); color: #fff;
-      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-      padding: 10px; border-radius: var(--radius-full);
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 1001; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+    .price-card.popular::before {
+        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 60%);
+        pointer-events: none;
     }
-    @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
-    .fab-btn { flex: 1; text-align: center; font-size: 0.9rem; font-weight: 900; color: #fff; text-decoration: none; padding: 14px; }
-    .fab-btn.primary { background: var(--theme-primary); border-radius: var(--radius-full); margin-left: 10px; }
+    .price-card.popular p, .price-card.popular .benefit-item { color: rgba(255,255,255,0.7); }
+    .price-card.popular strong { color: #fff; }
+
+    .card-tag {
+        display: inline-block;
+        padding: 6px 16px;
+        background: rgba(var(--theme-bubble), 0.1);
+        color: var(--theme-primary);
+        border-radius: 99px;
+        font-weight: 800;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 20px;
+    }
+    .popular .card-tag { background: var(--theme-accent); color: var(--color-navy); }
+
+    .card-price { margin-bottom: 30px; }
+    .card-price h3 { font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 5px; }
+    .card-price span { font-size: 1rem; font-weight: 600; color: #94a3b8; }
+    .popular .card-price span { color: rgba(255,255,255,0.4); }
+
+    .benefit-stack {
+        margin-bottom: 40px;
+        flex-grow: 1;
+    }
+    .benefit-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        color: #64748b;
+    }
+    .benefit-item i { color: var(--theme-primary); font-style: normal; font-weight: 900; }
+    .popular .benefit-item i { color: var(--theme-accent); }
+
+    .btn-book {
+        display: block;
+        width: 100%;
+        padding: 22px;
+        background: var(--color-navy);
+        color: #fff;
+        border-radius: 99px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.1rem;
+        transition: 0.3s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .btn-book:hover { transform: scale(1.03); filter: brightness(1.1); }
+    .popular .btn-book { background: #fff; color: var(--color-navy); }
+
+    /* === CLINICAL FAQ SECTION === */
+    .faq-section {
+        max-width: 900px;
+        margin: 0 auto 120px;
+        padding: 0 24px;
+    }
+    .faq-title { text-align: center; margin-bottom: 50px; }
+    .faq-title h2 { font-size: 2.5rem; font-weight: 900; color: var(--color-navy); }
+    .faq-title h2 span { color: var(--theme-primary); transition: color 1s ease; }
+
+    .faq-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .faq-item {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(15px);
+        border-radius: 24px;
+        border: 1.5px solid rgba(255,255,255,0.7);
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    .faq-item.active { border-color: var(--theme-primary); background: #fff; }
+
+    .faq-trigger {
+        width: 100%;
+        padding: 24px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        background: none;
+        border: none;
+        text-align: left;
+    }
+    .faq-trigger span { font-weight: 800; font-size: 1.1rem; color: var(--color-navy); }
+    .faq-trigger i { 
+        font-style: normal; font-weight: 900; font-size: 1.2rem; color: var(--theme-primary); 
+        transition: transform 0.4s;
+    }
+    .faq-item.active .faq-trigger i { transform: rotate(45deg); }
+
+    .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 0 32px;
+    }
+    .faq-item.active .faq-content { max-height: 250px; padding-bottom: 24px; }
+    .faq-content p { color: #64748b; line-height: 1.6; font-size: 1rem; }
+
+    /* === SCHEDULER === */
+    .scheduler-container {
+        max-width: 1100px;
+        margin: 0 auto 100px;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border-radius: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        padding: 40px;
+        box-shadow: var(--shadow-luxe);
+    }
+    .scheduler-header { text-align: center; margin-bottom: 40px; }
+    .scheduler-header h2 { font-size: 3rem; margin-bottom: 10px; color: var(--color-navy); }
+
+    footer { padding: 6rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
-
-    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
-    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
-    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 40px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
-    .adv-card:hover { border-color: var(--theme-primary); background: #fff; transform: translateY(-10px); }
-    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); }
-    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
-    .kinetic-pill { align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; border: none; cursor: pointer; margin-top: auto; transition: 0.3s; }
-    .kinetic-pill:hover { background: var(--theme-primary); transform: scale(1.05); }
   </style>
 </head>
 <body>
@@ -330,7 +297,7 @@
   </div>
 
   <!-- NAVIGATION -->
-  <nav id="main-nav">
+  <nav>
     <a href="index.html" class="brand">
       <div class="logo-mark">OHS</div>
       <div class="brand-text">
@@ -338,229 +305,148 @@
         <span class="brand-subname">Health Solutions</span>
       </div>
     </a>
-    
     <ul class="nav-links">
-      <li><a href="#results">Results</a></li>
+      <li><a href="index.html#results">Results</a></li>
       <li><a href="education.html">Education</a></li>
       <li><a href="about.html">About us</a></li>
     </ul>
-
     <div class="nav-btns">
-      <a href="quiz.html" class="btn-pill btn-luxe-glass">Assessment</a>
-      <a href="booking.html" class="btn-pill btn-luxe-dark">Book now</a>
+      <a href="index.html" class="btn-pill">Back Home</a>
     </div>
-
-    <button class="menu-toggle" id="menu-toggle">
-      <div class="hamburger"></div>
-    </button>
   </nav>
 
-  <!-- MOBILE OVERLAY MENU -->
-  <div class="mobile-menu-overlay" id="mobile-menu">
-    <ul class="mobile-nav-links">
-      <li><a href="#results">Results</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="about.html">About us</a></li>
-    </ul>
-  </div>
-
-  <!-- PERSISTENT MOBILE COMMAND BAR -->
-  <div class="mobile-fab-bar">
-    <a href="quiz.html" class="fab-btn">Get My Forecast</a>
-    <a href="booking.html" class="fab-btn primary">Book Home Visit</a>
-  </div>
-
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="container reveal">
-      <div class="hero-badges-wrap">
-        <div class="unified-hero-banner">
-          <i>📍</i> Portable Senior Fitness in Clark County
-        </div>
-      </div>
-      
-      <h1 id="dynamic-headline">
-        <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
-      </h1>
-      
-      <div class="mission-container">
-        <p>
-            Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> personal training designed specifically for seniors.
-            <strong class="at-home-callout">Professional fitness — <span>Delivered</span> to your <span>Living Room.</span></strong>
-        </p>
-      </div>
-      
-      <div class="hero-btns">
-        <a href="booking.html" class="btn-hero btn-primary-luxe">Schedule a visit</a>
-        <a href="quiz.html" class="btn-hero btn-outline-luxe">Learn the benefits</a>
-      </div>
+  <!-- HERO -->
+  <section class="booking-hero">
+    <div class="reveal active">
+        <h1>Select Your <strong>Clinical Protocol</strong></h1>
+        <p>Expert physiological care delivered to your doorstep. Choose a model that fits your lifestyle and clinical goals.</p>
     </div>
   </section>
 
-  <!-- TRUST TICKER -->
-  <div class="ticker-bar">
-    <div class="ticker-track">
-      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
-      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
-      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge-item"><i>✦</i> Serving Clark County</div>
-      <div class="badge-item"><i>✦</i> Local Mobile Lab Suite</div>
-      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
-      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
-    </div>
-  </div>
+  <!-- PRICING TILES -->
+  <section class="pricing-section reveal">
+    <div class="pricing-grid">
+        
+        <!-- PROTOCOL 01 -->
+        <div class="price-card">
+            <span class="card-tag">Precision Access</span>
+            <div class="card-price">
+                <h3>$40</h3>
+                <span>Per 30-Minute Session</span>
+            </div>
+            <div class="benefit-stack">
+                <div class="benefit-item"><i>✓</i> Mobile Lab Suitcase Included</div>
+                <div class="benefit-item"><i>✓</i> Targeted Symptom Relief</div>
+                <div class="benefit-item"><i>✓</i> DPT Clinical Supervision</div>
+                <div class="benefit-item"><i>✓</i> No Gym Memberships Needed</div>
+            </div>
+            <a href="#schedule" class="btn-book">Book Now</a>
+        </div>
 
-  <!-- VITALITY CATALYST -->
-  <section class="catalyst-section reveal">
-    <div class="catalyst-grid">
-        <div class="fancy-graphic-card">
-            <h2>Are you ready to live a <span>happier, healthier,</span> and <span>safer</span> life?</h2>
-            <p style="margin-bottom: 2.5rem; font-size: 1.3rem; font-weight: 400; color: #475569; position: relative; z-index: 1;">Learn how easy it is to get started with our elite clinical framework.</p>
-            <a href="#onboarding" class="btn-learn-more">Learn more</a>
+        <!-- PROTOCOL 02 (POPULAR) -->
+        <div class="price-card popular">
+            <span class="card-tag">The 10-Pack Mastery</span>
+            <div class="card-price">
+                <h3 style="color:#fff;">$350</h3>
+                <span style="color:rgba(255,255,255,0.6);">$35 Per Session (Save $50)</span>
+            </div>
+            <div class="benefit-stack">
+                <div class="benefit-item"><i>✓</i> Complete Gait Re-calibration</div>
+                <div class="benefit-item"><i>✓</i> Permanent Fall-Risk Reduction</div>
+                <div class="benefit-item"><i>✓</i> Full Bio-Skeletal Written Plan</div>
+                <div class="benefit-item"><i>✓</i> Priority Scheduling Access</div>
+            </div>
+            <a href="#schedule" class="btn-book">Secure Bundle</a>
         </div>
-        <div class="assessment-panel">
-            <h3>Free Fitness Benefits Assessment</h3>
-            <p>Learn how effective exercise is for your specific health condition or fitness goal with our research-backed clinical map.</p>
-            <a href="quiz.html" class="btn-assessment">Start Assessment Now</a>
+
+        <!-- PROTOCOL 03 -->
+        <div class="price-card">
+            <span class="card-tag">Monthly Vitality Sync</span>
+            <div class="card-price">
+                <h3>$280</h3>
+                <span>8 Sessions / Month ($35/ea)</span>
+            </div>
+            <div class="benefit-stack">
+                <div class="benefit-item"><i>✓</i> Bi-Weekly Metabolic Tracking</div>
+                <div class="benefit-item"><i>✓</i> Weekly Clinical Recap Text</div>
+                <div class="benefit-item"><i>✓</i> Continuous BDNF Stimulation</div>
+                <div class="benefit-item"><i>✓</i> Family Progress Portal Access</div>
+            </div>
+            <a href="#schedule" class="btn-book">Start Membership</a>
         </div>
+
     </div>
   </section>
 
-  <!-- THE VITALITY PATH -->
-  <section class="onboarding-section reveal" id="onboarding">
-    <div class="onboarding-header">
-        <h2 style="font-weight: 900;">Your Path to <span style="color:var(--theme-primary)">Vitality</span></h2>
-        <p style="color: #64748b; font-size: 1.25rem;">A seamless start to a more energetic life.</p>
+  <!-- FAQ SECTION -->
+  <section class="faq-section reveal">
+    <div class="faq-title">
+        <h2>Clinical <span>F.A.Q.</span></h2>
+        <p style="color:#64748b; margin-top:10px;">Everything you need to know about mobile vitality studies.</p>
     </div>
     
-    <div class="stepper-progress-wrap">
-        <div class="stepper-line-bg"></div>
-        <div class="stepper-line-fill" id="stepper-fill"></div>
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span>What happens during my first visit?</span>
+                <i>+</i>
+            </button>
+            <div class="faq-content">
+                <p>Your first session is a <strong>Clinical Vitality Audit</strong>. We conduct a home safety scan, a gait (walking) analysis, and baseline strength tests to build your custom 12-week roadmap. We move at your pace, starting with gentle education.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span>Do I need to buy any equipment?</span>
+                <i>+</i>
+            </button>
+            <div class="faq-content">
+                <p>No. OHS specialists arrive with a portable "Mobile Lab Suitcase" containing sanitized, university-standard tools (resistance bands, balance pads, biometric sensors). All you need is a comfortable pair of shoes and a bit of floor space.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span>Is this covered by insurance?</span>
+                <i>+</i>
+            </button>
+            <div class="faq-content">
+                <p>We operate as a specialized **Clinical Fitness & Longevity** model, not a standard PT clinic. This allows us more freedom to focus on performance and preventative care. We are a self-pay service, but we can provide detailed itemized receipts upon request.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-trigger" onclick="toggleFAQ(this)">
+                <span>Which areas of Clark County do you serve?</span>
+                <i>+</i>
+            </button>
+            <div class="faq-content">
+                <p>We currently provide home-delivery clinical movement to Vancouver, Battle Ground, Camas, and Ridgefield. If you are slightly outside these areas, please contact us for availability.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULER -->
+  <section class="container reveal" id="schedule">
+    <div class="scheduler-container">
+        <div class="scheduler-header">
+            <h2>Select Your <span>Session Time</span></h2>
+            <p>Direct sync with Zeuse Valentine's clinical calendar.</p>
+        </div>
         
-        <div class="step-item" id="step-1">
-            <div class="step-node">1</div>
-            <div class="step-content">
-                <strong>The Digital Sync</strong>
-                <p>A brief 10-minute intro to align our clinical protocols with your personal medical history.</p>
-            </div>
-        </div>
-        <div class="step-item" id="step-2">
-            <div class="step-node">2</div>
-            <div class="step-content">
-                <strong>We Bring the Lab</strong>
-                <p>Our specialists arrive with sanitized, university-standard tools. You don't lift a finger.</p>
-            </div>
-        </div>
-        <div class="step-item" id="step-3">
-            <div class="step-node">3</div>
-            <div class="step-content">
-                <strong>The Joyful Thrive</strong>
-                <p>60 minutes of clinical movement delivered with family warmth and world-class expertise.</p>
-            </div>
+        <div id="calendly-embed">
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/zeustrength/30min" style="min-width:320px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Calendly inline widget end -->
         </div>
     </div>
   </section>
 
-  <!-- CLINICAL OUTCOMES -->
-  <section class="results-strip reveal" id="results">
-      <div style="text-align: center; margin-bottom: 80px;">
-        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
-        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by geriatric research.</p>
-      </div>
-      <div class="bio-grid">
-        <div class="bio-unit">
-          <div class="bio-visual-wrap">
-            <svg class="bio-ring-svg" viewBox="0 0 160 160">
-                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
-            </svg>
-            <div class="bio-value">0%</div>
-          </div>
-          <strong>Stability Gain</strong>
-          <p>Clinical reduction in fall-risk via neuromuscular reflex training.</p>
-        </div>
-        <div class="bio-unit">
-          <div class="bio-visual-wrap">
-            <svg class="bio-ring-svg" viewBox="0 0 160 160">
-                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
-            </svg>
-            <div class="bio-value">0%</div>
-          </div>
-          <strong>Metabolic Logic</strong>
-          <p>Clearance of blood glucose independently of insulin sensitivity.</p>
-        </div>
-        <div class="bio-unit">
-          <div class="bio-visual-wrap">
-            <svg class="bio-ring-svg" viewBox="0 0 160 160">
-                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
-            </svg>
-            <div class="bio-value">0%</div>
-          </div>
-          <strong>Grip Vitality</strong>
-          <p>Clinical marker for muscle quality and biological longevity.</p>
-        </div>
-      </div>
-  </section>
-
-  <!-- GROWTH ROADMAP -->
-  <section class="arc-section reveal" id="arc">
-    <div style="text-align: center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span style="color:var(--theme-primary)">Freedom Arc</span></h2>
-        <p style="color: #64748b; margin-top: 15px; font-size: 1.25rem;">A milestone-driven roadmap to your best self.</p>
-    </div>
-    <div class="arc-grid">
-        <div class="arc-card">
-            <span class="arc-week">WEEK 1</span>
-            <strong>Neural Awakening</strong>
-            <p>Targeting proprioception to eliminate the "fear of falling" instantly.</p>
-        </div>
-        <div class="arc-card">
-            <span class="arc-week">WEEK 4</span>
-            <strong>Metabolic Sync</strong>
-            <p>Re-optimizing insulin sensitivity and clearing "brain fog" markers.</p>
-        </div>
-        <div class="arc-card">
-            <span class="arc-week">WEEK 8</span>
-            <strong>Structural Build</strong>
-            <p>Reinforcing bone density and synovial fluid flow for painless movement.</p>
-        </div>
-        <div class="arc-card">
-            <span class="arc-week">WEEK 12</span>
-            <strong>Total Independence</strong>
-            <p>Maintenance protocols to ensure travel and play remain permanent fixtures.</p>
-        </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION PREVIEW -->
-  <section class="advantage-hub reveal" id="advantage">
-    <div style="text-align:center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">Clinical <span>Advantage</span> Ledger</h2>
-        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the biological upgrades proven by medical trials:</p>
-    </div>
-    <div class="adv-grid">
-        <div class="adv-card">
-            <strong>Cognitive Spark</strong>
-            <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
-            <button class="kinetic-pill">Read Clinical Sync</button>
-        </div>
-        <div class="adv-card">
-            <strong>Arterial Rejuvenation</strong>
-            <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
-            <button class="kinetic-pill">View Cardio Lab</button>
-        </div>
-        <div class="adv-card">
-            <strong>Bone Architecture</strong>
-            <p>Safe resistance protocols that trigger osteoblastic activity for skeletal resilience and strength.</p>
-            <button class="kinetic-pill">Bio-Skeletal Sync</button>
-        </div>
-    </div>
-  </section>
-
-  <footer id="footer">
-    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
+  <footer>
+    <p>&copy; 2024 Olympian Health Solutions. Clinical Senior Specialists. Clark County, WA.</p>
   </footer>
 
   <script>
@@ -583,34 +469,25 @@
       root.style.setProperty('--theme-glow', theme.glow);
     }
 
-    // --- DYNAMIC HEADLINE ENGINE ---
-    const headlines = [
-      "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
-      "Discover the <span>Joy</span> of Clinical Strength, <span>Safely</span> at Home.",
-      "<span>Thrive</span> with Professional Care that feels <span>Fun</span> and <span>Easy.</span>",
-      "Your <span>Independence</span> Forecast made <span>Fun</span> and <span>Easily</span> Proven.",
-      "Movement made <span>Fun.</span> Professional care made <span>Easy.</span>",
-      "Reclaiming <span>Freedom</span> is finally <span>Safe</span>, <span>Fun</span>, and <span>Easy.</span>"
-    ];
-
-    function setDynamicHeadline() {
-      document.getElementById('dynamic-headline').innerHTML = headlines[Math.floor(Math.random() * headlines.length)];
+    // --- FAQ TOGGLE LOGIC ---
+    function toggleFAQ(btn) {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        
+        // Toggle current
+        if (!isActive) {
+            item.classList.add('active');
+        }
     }
-
-    // --- MOBILE MENU ---
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
-    });
 
     // --- BUBBLE ENGINE ---
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, bubbles = [];
-    const bubbleCount = window.innerWidth < 768 ? 45 : 110;
+    const bubbleCount = window.innerWidth < 768 ? 40 : 100;
     const mouse = { x: -1000, y: -1000, radius: 240 };
 
     function resize() {
@@ -673,44 +550,12 @@
     window.addEventListener('touchmove', handleMove, { passive: true });
     window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
 
-    // --- SCROLL REVEAL ---
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => { 
-        if(e.isIntersecting) {
-          e.target.classList.add('active');
-          if (e.target.id === 'onboarding') {
-            const fill = document.getElementById('stepper-fill');
-            if (window.innerWidth <= 768) fill.style.height = '100%'; else fill.style.width = '100%';
-            setTimeout(() => document.querySelectorAll('.step-item').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*400)), 200);
-          }
-          const rings = e.target.querySelectorAll('.bio-ring-fill');
-          rings.forEach(ring => {
-            const target = parseInt(ring.getAttribute('data-target'));
-            ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
-            const wrap = ring.closest('.bio-visual-wrap');
-            if (wrap) {
-              const valDisplay = wrap.querySelector('.bio-value');
-              if (valDisplay) animateValue(valDisplay, 0, target, 2500);
-            }
-          });
-        }
-      });
-    }, { threshold: 0.12 });
-
-    function animateValue(obj, start, end, duration) {
-      let startTimestamp = null;
-      const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
-        if (progress < 1) window.requestAnimationFrame(step);
-      };
-      window.requestAnimationFrame(step);
-    }
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.1 });
 
     window.onload = function() {
       applyRandomTheme();
-      setDynamicHeadline();
       resize();
       animate();
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
