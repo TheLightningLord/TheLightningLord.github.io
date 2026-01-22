@@ -9,7 +9,7 @@
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   
   <style id="theme-variables">
     :root {
@@ -68,39 +68,43 @@
     nav {
       position: fixed;
       top: 15px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 30px); max-width: 1400px;
+      width: calc(100% - 20px); max-width: 1440px;
       z-index: 2000;
       background: var(--glass);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border-radius: var(--radius-full);
       border: 1.5px solid rgba(255,255,255,0.7);
-      padding: 8px 30px;
+      padding: 8px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-luxe);
       transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    
     .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2001; }
-    .logo-mark { width: 36px; height: 36px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
-    .brand-name { font-weight: 800; font-size: 1.1rem; color: var(--color-navy); letter-spacing: -0.01em; }
+    .logo-mark { width: 54px; height: 40px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; box-shadow: 0 5px 15px rgba(0,0,0,0.1); flex-shrink: 0; font-size: 0.9rem; letter-spacing: -0.02em; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1; }
+    .brand-name { font-weight: 900; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--color-navy); letter-spacing: -0.03em; font-family: var(--font-header); }
+    .brand-subname { font-weight: 400; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--theme-primary); margin-top: 2px; transition: color 1s ease; }
+    @media (max-width: 480px) { .brand-text { display: none; } }
 
     .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
     @media (max-width: 1150px) { .nav-links { display: none; } }
+    .nav-links > li { position: relative; padding: 10px 0; }
     .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
     .nav-links a:hover { color: var(--theme-primary); }
-    
-    .nav-btns { display: flex; gap: 10px; align-items: center; }
-    @media (max-width: 1150px) { .nav-btns { display: none; } }
 
-    /* MOBILE MENU TOGGLE */
-    .menu-toggle {
-      display: none; width: 44px; height: 44px;
-      background: var(--color-navy); border-radius: 50%;
-      border: none; cursor: pointer; position: relative; z-index: 2001;
-      justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+    .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--glass); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.7); padding: 10px; min-width: 180px; box-shadow: var(--shadow-luxe); opacity: 0; visibility: hidden; transition: 0.3s; }
+    .has-dropdown:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown a { display: block; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; color: #64748b; transition: 0.2s; }
+    .dropdown a:hover { background: rgba(var(--theme-bubble), 0.05); color: var(--theme-primary); }
+    
+    .nav-btns { display: flex; gap: 8px; align-items: center; }
+    @media (max-width: 640px) { .nav-btns .btn-luxe-glass { display: none; } }
+
+    .menu-toggle { display: none; width: 44px; height: 44px; background: var(--color-navy); border-radius: 50%; border: none; cursor: pointer; position: relative; z-index: 2001; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     @media (max-width: 1150px) { .menu-toggle { display: flex; } }
     .hamburger { width: 18px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
     .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 2px; background: #fff; left: 0; transition: 0.3s; }
@@ -110,158 +114,41 @@
     .menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
     .menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
-    /* MOBILE OVERLAY */
-    .mobile-menu-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(40px);
-      z-index: 1500; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      padding: 40px; transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(255,255,255,0.95); backdrop-filter: blur(40px); z-index: 1500; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; }
     .mobile-menu-overlay.active { transform: translateY(0); }
-    .mobile-nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
-    .mobile-nav-links li { margin-bottom: 2rem; opacity: 0; transform: translateY(20px); transition: 0.4s; }
-    .mobile-menu-overlay.active .mobile-nav-links li { opacity: 1; transform: translateY(0); }
-    .mobile-nav-links a { text-decoration: none; color: var(--color-navy); font-size: 1.8rem; font-weight: 800; font-family: var(--font-header); letter-spacing: -0.02em; }
-    
-    .mobile-action-btns { width: 100%; max-width: 350px; display: flex; flex-direction: column; gap: 15px; margin-top: 2rem; opacity: 0; transition: 0.5s 0.4s; }
-    .mobile-menu-overlay.active .mobile-action-btns { opacity: 1; }
+    .mobile-nav-links { list-style: none; padding: 20px 0; margin: 0; text-align: center; width: 100%; }
+    .mobile-nav-links li { margin-bottom: 1.5rem; }
+    .mobile-nav-links a { text-decoration: none; color: var(--color-navy); font-size: 1.6rem; font-weight: 800; font-family: var(--font-header); }
+    .mobile-sub-links { list-style: none; padding: 10px 0 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .mobile-sub-links a { font-size: 0.9rem; opacity: 0.6; font-weight: 500; }
 
-    /* PILL BUTTONS */
-    .btn-pill {
-      position: relative; padding: 12px 24px; border-radius: var(--radius-full);
-      font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase;
-      letter-spacing: 0.05em; overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: inline-block; text-align: center; white-space: nowrap; border: 1px solid transparent;
-    }
+    .btn-pill { position: relative; padding: 10px 20px; border-radius: var(--radius-full); font-weight: 800; font-size: 0.7rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; overflow: hidden; transition: 0.4s; display: inline-block; text-align: center; white-space: nowrap; border: 1px solid transparent; }
     .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
     .btn-luxe-glass { background: rgba(255, 255, 255, 0.6); color: var(--color-navy) !important; border-color: rgba(3, 7, 18, 0.1); backdrop-filter: blur(5px); }
     .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-
-    @keyframes shimmer-sweep {
-      0% { left: -100%; }
-      30% { left: 100%; }
-      100% { left: 100%; }
-    }
-    .btn-pill::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
-      transform: skewX(-20deg); animation: shimmer-sweep 5s infinite ease-in-out;
-    }
+    @keyframes shimmer-sweep { 0% { left: -100%; } 30% { left: 100%; } 100% { left: 100%; } }
+    .btn-pill::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%); transform: skewX(-20deg); animation: shimmer-sweep 5s infinite ease-in-out; }
 
     /* === HERO SECTION === */
-    .hero {
-      min-height: 98vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 140px 24px 80px;
-      text-align: center;
-    }
-
-    /* === HERO BANNER === */
-    .hero-badges-wrap { 
-        display: flex; 
-        justify-content: center; 
-        margin-bottom: 3.5rem; 
-    }
-    
-    .unified-hero-banner {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 32px;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 2px solid var(--theme-primary);
-        border-radius: var(--radius-full);
-        box-shadow: 0 15px 35px rgba(var(--theme-bubble), 0.1);
-        color: var(--color-navy);
-        font-family: var(--font-header);
-        font-weight: 800;
-        font-size: clamp(0.85rem, 2vw, 1.05rem);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        transition: all 1s ease;
-    }
-    .unified-hero-banner i { font-style: normal; font-size: 1.2rem; filter: drop-shadow(0 0 5px var(--theme-glow)); }
-
+    .hero { min-height: 98vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 24px 80px; text-align: center; }
+    .hero-badges-wrap { display: flex; justify-content: center; margin-bottom: 3.5rem; }
+    .unified-hero-banner { display: inline-flex; align-items: center; gap: 12px; padding: 12px 32px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border: 2px solid var(--theme-primary); border-radius: var(--radius-full); box-shadow: 0 15px 35px rgba(var(--theme-bubble), 0.1); color: var(--color-navy); font-family: var(--font-header); font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem); text-transform: uppercase; letter-spacing: 0.05em; transition: all 1s ease; }
     .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
-    
-    /* === UNDERLINE ANIMATION === */
+    .hero h1 span { position: relative; display: inline-block; color: var(--theme-primary); animation: colorBreathe 4s infinite ease-in-out; transition: color 1s ease; padding: 0 4px; }
+    .hero h1 span::after { content: ''; position: absolute; bottom: 4px; left: 0; width: 0%; height: 6px; background: var(--theme-primary); border-radius: 4px; opacity: 0.4; animation: drawUnderline 4s infinite ease-in-out; }
     @keyframes drawUnderline { 0%, 100% { width: 0%; left: 0; } 50% { width: 100%; left: 0; } }
     @keyframes colorBreathe { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
 
-    .hero h1 span {
-      position: relative;
-      display: inline-block;
-      color: var(--theme-primary);
-      animation: colorBreathe 4s infinite ease-in-out;
-      transition: color 1s ease;
-      padding: 0 4px;
-    }
-    .hero h1 span::after {
-      content: '';
-      position: absolute;
-      bottom: 4px;
-      left: 0;
-      width: 0%;
-      height: 6px;
-      background: var(--theme-primary);
-      border-radius: 4px;
-      opacity: 0.4;
-      animation: drawUnderline 4s infinite ease-in-out;
-    }
-
-    /* === MISSION CONTAINER === */
-    .mission-container {
-        max-width: 900px;
-        margin: 0 auto 5rem;
-        text-align: left;
-        padding: 35px 45px;
-        background: rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-radius: 36px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-left: 6px solid var(--theme-primary);
-        position: relative;
-        box-shadow: var(--shadow-luxe);
-        transition: border 1s ease, background 1s ease;
-    }
+    .mission-container { max-width: 900px; margin: 0 auto 5rem; text-align: left; padding: 35px 45px; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(15px); border-radius: 36px; border: 1px solid rgba(255, 255, 255, 0.6); border-left: 6px solid var(--theme-primary); position: relative; box-shadow: var(--shadow-luxe); transition: border 1s ease; }
     @media (max-width: 768px) { .mission-container { padding: 25px 20px; text-align: center; border-left: none; border-bottom: 4px solid var(--theme-primary); border-radius: 24px; } }
-
-    .hero p { 
-        font-size: clamp(1.15rem, 3vw, 1.45rem); 
-        color: #1e293b; 
-        font-weight: 500; 
-        line-height: 1.7; 
-        letter-spacing: -0.01em;
-        margin: 0;
-    }
-    .hero p strong { color: var(--color-navy); font-weight: 800; }
-    .hero p .at-home-callout {
-        display: block;
-        margin-top: 15px;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        font-weight: 900;
-        color: var(--theme-primary);
-        transition: color 1s ease;
-    }
+    .hero p { font-size: clamp(1.15rem, 3vw, 1.45rem); color: #1e293b; font-weight: 500; line-height: 1.7; margin: 0; }
+    .hero p .at-home-callout { display: block; margin-top: 15px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 900; color: var(--theme-primary); }
 
     .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
     @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
-    .btn-hero { 
-      width: 100%; max-width: 440px; padding: 1.4rem 3rem; border-radius: var(--radius-full); 
-      font-weight: 900; font-size: 1.2rem; text-decoration: none; 
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; 
-      border: none; cursor: pointer; position: relative; overflow: hidden;
-    }
-    .btn-hero:hover { transform: scale(1.05) translateY(-3px); }
-    .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
-    .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
+    .btn-hero { width: 100%; max-width: 440px; padding: 1.4rem 3rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.2rem; text-decoration: none; transition: 0.4s; text-align: center; position: relative; overflow: hidden; }
+    .btn-primary-luxe { background: var(--color-navy); color: #fff; }
+    .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); }
 
     /* === TICKER === */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -269,120 +156,65 @@
     .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === NEW: VITALITY CATALYST SECTION === */
-    .catalyst-section {
-        padding: 100px 24px;
-        max-width: 1400px;
-        margin: 0 auto;
-        position: relative;
-    }
-    .catalyst-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 40px;
-        align-items: stretch;
-    }
+    /* === FANCY GRAPHIC: VITALITY CATALYST === */
+    .catalyst-section { padding: 80px 24px; max-width: 1400px; margin: 0 auto; position: relative; }
+    .catalyst-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: stretch; }
     @media (max-width: 1024px) { .catalyst-grid { grid-template-columns: 1fr; } }
-
-    .fancy-graphic-card {
-        background: var(--color-white);
-        border-radius: 48px;
-        padding: 80px 60px;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        box-shadow: var(--shadow-luxe);
-        border: 1px solid rgba(255,255,255,0.8);
-    }
-    /* Neural pulse background for card */
-    .fancy-graphic-card::before {
-        content: '';
-        position: absolute;
-        top: -50%; left: -50%; width: 200%; height: 200%;
-        background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 60%);
-        animation: rotateGlow 15s infinite linear;
-        pointer-events: none;
-    }
-    @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    .fancy-graphic-card h2 {
-        font-size: clamp(2.2rem, 5vw, 3.8rem);
-        font-weight: 900;
-        color: var(--color-navy);
-        line-height: 1.05;
-        margin-bottom: 2rem;
-        position: relative;
-        z-index: 1;
-    }
+    .fancy-graphic-card { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 48px; padding: 80px 60px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--shadow-luxe); border: 1px solid rgba(255,255,255,0.7); }
+    .fancy-graphic-card h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 2rem; position: relative; z-index: 1; }
     .fancy-graphic-card h2 span { color: var(--theme-primary); transition: color 1s ease; }
+    .btn-learn-more { align-self: flex-start; padding: 20px 45px; background: var(--theme-primary); color: #fff; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; position: relative; z-index: 1; }
+    .assessment-panel { background: var(--color-navy); color: #fff; border-radius: 48px; padding: 60px; display: flex; flex-direction: column; justify-content: center; text-align: left; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+    .assessment-panel h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--theme-accent); }
+    .btn-assessment { padding: 18px 36px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; font-size: 1rem; text-decoration: none; text-align: center; }
 
-    .btn-learn-more {
-        align-self: flex-start;
-        padding: 20px 45px;
-        background: var(--theme-primary);
-        color: #fff;
-        border-radius: var(--radius-full);
-        font-weight: 900;
-        font-size: 1.1rem;
-        text-decoration: none;
-        box-shadow: 0 15px 40px rgba(var(--theme-bubble), 0.3);
-        transition: 0.4s;
+    /* === THE MERGED VITALITY CONSOLE === */
+    .vitality-console { 
+        padding: 80px 24px 100px; max-width: 1300px; margin: 40px auto; 
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-radius: 64px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: var(--shadow-luxe);
         position: relative;
-        z-index: 1;
         overflow: hidden;
     }
-    .btn-learn-more:hover { transform: scale(1.05); filter: brightness(1.1); }
-    /* Magnetic pulse effect */
-    @keyframes pulseShadow { 0%, 100% { box-shadow: 0 15px 40px rgba(var(--theme-bubble), 0.3); } 50% { box-shadow: 0 15px 60px rgba(var(--theme-bubble), 0.6); } }
-    .btn-learn-more { animation: pulseShadow 3s infinite ease-in-out; }
-
-    .assessment-panel {
-        background: var(--color-navy);
-        color: #fff;
-        border-radius: 48px;
-        padding: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        position: relative;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-    }
-    .assessment-panel h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; color: var(--theme-accent); transition: color 1s ease; }
-    .assessment-panel p { font-size: 1.15rem; opacity: 0.85; margin-bottom: 2.5rem; line-height: 1.6; }
     
-    .btn-assessment {
-        padding: 18px 36px;
-        background: #fff;
-        color: var(--color-navy);
-        border-radius: var(--radius-full);
-        font-weight: 900;
-        font-size: 1rem;
-        text-decoration: none;
-        text-align: center;
-        transition: 0.3s;
+    .console-header { text-align: center; margin-bottom: 80px; }
+    .console-header h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; color: var(--color-navy); margin-bottom: 10px; }
+    .console-header h2 span { color: var(--theme-primary); transition: color 1s ease; }
+    .console-header p { font-size: 1.2rem; color: #64748b; font-weight: 500; }
+
+    /* The Merged Stepper Pipeline */
+    .conduit-wrap { position: relative; margin-top: 60px; padding: 0 40px; }
+    .conduit-line-bg { position: absolute; left: 60px; right: 60px; top: 28px; height: 6px; background: #eef2ff; border-radius: 10px; z-index: 1; }
+    .conduit-line-fill { position: absolute; left: 60px; top: 28px; height: 6px; width: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s width cubic-bezier(0.65, 0, 0.35, 1); box-shadow: 0 0 20px var(--theme-glow); }
+    
+    .conduit-grid { display: flex; justify-content: space-between; position: relative; z-index: 3; }
+    .conduit-step { display: flex; flex-direction: column; align-items: center; text-align: center; width: 30%; opacity: 0.2; transform: translateY(20px); transition: 0.8s; }
+    .conduit-step.active { opacity: 1; transform: translateY(0); }
+    
+    .conduit-node { 
+        width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; 
+        display: flex; align-items: center; justify-content: center; 
+        font-weight: 900; font-size: 1.4rem; color: var(--color-navy); margin-bottom: 24px; transition: 0.5s;
     }
-    .btn-assessment:hover { background: var(--theme-accent); color: #fff; transform: translateY(-3px); }
+    .active .conduit-node { border-color: var(--theme-primary); box-shadow: 0 0 25px var(--theme-glow); transform: scale(1.1); }
+    .conduit-step strong { display: block; font-size: 1.4rem; color: var(--color-navy); margin-bottom: 12px; }
+    .conduit-step p { font-size: 1rem; color: #64748b; line-height: 1.6; }
 
     @media (max-width: 768px) {
-        .fancy-graphic-card, .assessment-panel { padding: 40px 30px; border-radius: 32px; }
-        .assessment-panel h3 { font-size: 1.6rem; }
-        .fancy-graphic-card h2 { font-size: 2.2rem; }
+        .conduit-grid { flex-direction: column; align-items: flex-start; padding-left: 40px; }
+        .conduit-line-bg { left: 68px; right: auto; width: 6px; height: calc(100% - 60px); top: 30px; }
+        .conduit-line-fill { left: 68px; width: 6px; height: 0%; top: 30px; transition: 1.5s height; }
+        .conduit-step { flex-direction: row; text-align: left; width: 100%; gap: 30px; margin-bottom: 60px; transform: translateX(20px); }
+        .conduit-step.active { transform: translateX(0); }
+        .conduit-node { flex-shrink: 0; margin-bottom: 0; }
+        .vitality-console { border-radius: 40px; padding-bottom: 60px; }
     }
 
-    /* === STEPPER & METRICS === */
-    .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
-    .onboarding-header { text-align: center; margin-bottom: 80px; }
-    .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
-    .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
-    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height; }
-    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s; transform: translateX(20px); }
-    .step-item.active { opacity: 1; transform: translateX(0); }
-    .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
-    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
-
+    /* === METRICS & RESULTS === */
     .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
     .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
     @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -399,25 +231,19 @@
     @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
     .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; }
-    .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); }
 
-    /* Persistent FAB */
-    .mobile-fab-bar {
-      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 36px); max-width: 440px;
-      background: var(--color-navy); color: #fff;
-      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-      padding: 10px; border-radius: var(--radius-full);
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 1001; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
-    }
-    @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
-    .fab-btn { flex: 1; text-align: center; font-size: 0.9rem; font-weight: 900; color: #fff; text-decoration: none; padding: 14px; }
-    .fab-btn.primary { background: var(--theme-primary); border-radius: var(--radius-full); margin-left: 10px; }
-
+    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
+
+    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 40px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
+    .adv-card:hover { border-color: var(--theme-primary); background: #fff; transform: translateY(-10px); }
+    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); }
+    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
+    .kinetic-pill { align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; border: none; cursor: pointer; margin-top: auto; transition: 0.3s; }
+    .kinetic-pill:hover { background: var(--theme-primary); transform: scale(1.05); }
   </style>
 </head>
 <body>
@@ -429,39 +255,69 @@
 
   <!-- NAVIGATION -->
   <nav id="main-nav">
-    <a href="#" class="brand">
-      <div class="logo-mark">O</div>
-      <span class="brand-name">Olympian</span>
+    <a href="index.html" class="brand">
+      <div class="logo-mark">OHS</div>
+      <div class="brand-text">
+        <span class="brand-name">Olympian</span>
+        <span class="brand-subname">Health Solutions</span>
+      </div>
     </a>
+    
     <ul class="nav-links">
-      <li><a href="#results">Clinical Proof</a></li>
-      <li><a href="#onboarding">The Path</a></li>
-      <li><a href="#arc">Roadmap</a></li>
-      <li><a href="#advantage">Education</a></li>
-      <li><a href="#footer">About us</a></li>
+      <li><a href="#results">Results</a></li>
+      <li class="has-dropdown">
+        <a href="#">Games ▾</a>
+        <ul class="dropdown">
+          <li><a href="Game1.html">Game 1</a></li>
+          <li><a href="Game2.html">Game 2</a></li>
+          <li><a href="Game3.html">Game 3</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#">Tools ▾</a>
+        <ul class="dropdown">
+          <li><a href="Tool1.html">Tool 1</a></li>
+          <li><a href="Tool2.html">Tool 2</a></li>
+          <li><a href="Tool3.html">Tool 3</a></li>
+        </ul>
+      </li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="about.html">About us</a></li>
     </ul>
+
     <div class="nav-btns">
-      <a href="quiz.html" class="btn-pill btn-luxe-glass">Benefits Assessment</a>
+      <a href="quiz.html" class="btn-pill btn-luxe-glass">Assessment</a>
       <a href="booking.html" class="btn-pill btn-luxe-dark">Book now</a>
     </div>
+
     <button class="menu-toggle" id="menu-toggle">
       <div class="hamburger"></div>
     </button>
   </nav>
 
-  <!-- MOBILE OVERLAY -->
+  <!-- MOBILE OVERLAY MENU -->
   <div class="mobile-menu-overlay" id="mobile-menu">
     <ul class="mobile-nav-links">
-      <li><a href="#results">Clinical Proof</a></li>
-      <li><a href="#onboarding">The Path</a></li>
-      <li><a href="#arc">Roadmap</a></li>
-      <li><a href="#advantage">Education</a></li>
-      <li><a href="#footer">About us</a></li>
+      <li><a href="#results">Results</a></li>
+      <li>
+        <a href="#">Games</a>
+        <div class="mobile-sub-links">
+            <a href="Game1.html">Game 1</a>
+            <a href="Game2.html">Game 2</a>
+            <a href="Game3.html">Game 3</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Tools</a>
+        <div class="mobile-sub-links">
+            <a href="Tool1.html">Tool 1</a>
+            <a href="Tool2.html">Tool 2</a>
+            <a href="Tool3.html">Tool 3</a>
+        </div>
+      </li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="about.html">About us</a></li>
     </ul>
-    <div class="mobile-action-btns">
-      <a href="quiz.html" class="btn-pill btn-luxe-glass" style="width: 100%;">Benefits Assessment</a>
-      <a href="booking.html" class="btn-pill btn-luxe-dark" style="width: 100%;">Schedule Visit</a>
-    </div>
   </div>
 
   <!-- PERSISTENT MOBILE COMMAND BAR -->
@@ -503,20 +359,20 @@
       <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
       <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
-      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
+      <div class="badge-item"><i>✦</i> Serving Clark County</div>
       <div class="badge-item"><i>✦</i> Local Mobile Lab Suite</div>
       <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
       <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
     </div>
   </div>
 
-  <!-- NEW: VITALITY CATALYST (FANCY GRAPHIC) -->
+  <!-- VITALITY CATALYST -->
   <section class="catalyst-section reveal">
     <div class="catalyst-grid">
         <div class="fancy-graphic-card">
             <h2>Are you ready to live a <span>happier, healthier,</span> and <span>safer</span> life?</h2>
             <p style="margin-bottom: 2.5rem; font-size: 1.3rem; font-weight: 400; color: #475569; position: relative; z-index: 1;">Learn how easy it is to get started with our elite clinical framework.</p>
-            <a href="#onboarding" class="btn-learn-more">Learn more</a>
+            <a href="#vitality-console" class="btn-learn-more">Learn more</a>
         </div>
         <div class="assessment-panel">
             <h3>Free Fitness Benefits Assessment</h3>
@@ -526,36 +382,33 @@
     </div>
   </section>
 
-  <!-- THE VITALITY PATH -->
-  <section class="onboarding-section reveal" id="onboarding">
-    <div class="onboarding-header">
-        <h2 style="font-weight: 900;">Your Path to <span style="color:var(--theme-primary)">Vitality</span></h2>
-        <p style="color: #64748b; font-size: 1.25rem;">A seamless start to a more energetic life.</p>
+  <!-- THE MERGED VITALITY CONSOLE -->
+  <section class="vitality-console reveal" id="vitality-console">
+    
+    <div class="console-header">
+        <h2>Your Path to <span>Vitality</span></h2>
+        <p>Expert-led clinical movement, delivered directly to your home.</p>
     </div>
     
-    <div class="stepper-progress-wrap">
-        <div class="stepper-line-bg"></div>
-        <div class="stepper-line-fill" id="stepper-fill"></div>
+    <div class="conduit-wrap">
+        <div class="conduit-line-bg"></div>
+        <div class="conduit-line-fill" id="stepper-fill"></div>
         
-        <div class="step-item" id="step-1">
-            <div class="step-node">1</div>
-            <div class="step-content">
+        <div class="conduit-grid">
+            <div class="conduit-step" id="step-1">
+                <div class="conduit-node">1</div>
                 <strong>The Digital Sync</strong>
-                <p>A brief 10-minute intro to align our clinical protocols with your personal medical history.</p>
+                <p>A brief 10-minute intro to align our clinical protocols with your medical history.</p>
             </div>
-        </div>
-        <div class="step-item" id="step-2">
-            <div class="step-node">2</div>
-            <div class="step-content">
+            <div class="conduit-step" id="step-2">
+                <div class="conduit-node">2</div>
                 <strong>We Bring the Lab</strong>
                 <p>Our specialists arrive with sanitized, university-standard tools. You don't lift a finger.</p>
             </div>
-        </div>
-        <div class="step-item" id="step-3">
-            <div class="step-node">3</div>
-            <div class="step-content">
+            <div class="conduit-step" id="step-3">
+                <div class="conduit-node">3</div>
                 <strong>The Joyful Thrive</strong>
-                <p>60 minutes of clinical movement delivered with family warmth and world-class expertise.</p>
+                <p>60 minutes of high-impact movement delivered with professional expertise and care.</p>
             </div>
         </div>
     </div>
@@ -577,7 +430,7 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Stability Gain</strong>
-          <p>Clinical reduction in fall-risk via neuromuscular reflex training.</p>
+          <p>Neuromuscular reflex training designed to eliminate fall-risks.</p>
         </div>
         <div class="bio-unit">
           <div class="bio-visual-wrap">
@@ -599,7 +452,7 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Grip Vitality</strong>
-          <p>Clinical marker for muscle quality and biological longevity.</p>
+          <p>The primary clinical marker for muscle quality and longevity.</p>
         </div>
       </div>
   </section>
@@ -612,34 +465,33 @@
     </div>
     <div class="arc-grid">
         <div class="arc-card">
-            <span class="arc-week">WEEK 1</span>
-            <strong>Neural Awakening</strong>
-            <p>Targeting proprioception to eliminate the "fear of falling" instantly.</p>
+            <span style="font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4;">WEEK 1</span>
+            <strong style="display: block; font-size: 1.4rem; margin: 10px 0;">Neural Awakening</strong>
+            <p style="color: #64748b; line-height: 1.6;">Targeting proprioception to eliminate the "fear of falling" instantly.</p>
         </div>
         <div class="arc-card">
-            <span class="arc-week">WEEK 4</span>
-            <strong>Metabolic Sync</strong>
-            <p>Re-optimizing insulin sensitivity and clearing "brain fog" markers.</p>
+            <span style="font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4;">WEEK 4</span>
+            <strong style="display: block; font-size: 1.4rem; margin: 10px 0;">Metabolic Sync</strong>
+            <p style="color: #64748b; line-height: 1.6;">Re-optimizing insulin sensitivity and clearing "brain fog" markers.</p>
         </div>
         <div class="arc-card">
-            <span class="arc-week">WEEK 8</span>
-            <strong>Structural Build</strong>
-            <p>Reinforcing bone density and synovial fluid flow for painless movement.</p>
+            <span style="font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4;">WEEK 8</span>
+            <strong style="display: block; font-size: 1.4rem; margin: 10px 0;">Structural Build</strong>
+            <p style="color: #64748b; line-height: 1.6;">Reinforcing bone density and synovial fluid flow for painless movement.</p>
         </div>
         <div class="arc-card">
-            <span class="arc-week">WEEK 12</span>
-            <strong>Total Independence</strong>
-            <p>Maintenance protocols to ensure travel and play remain permanent fixtures.</p>
+            <span style="font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4;">WEEK 12</span>
+            <strong style="display: block; font-size: 1.4rem; margin: 10px 0;">Total Independence</strong>
+            <p style="color: #64748b; line-height: 1.6;">Maintenance protocols to ensure travel and play remain permanent fixtures.</p>
         </div>
     </div>
   </section>
 
   <footer id="footer">
-    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Serving Clark County, WA.</p>
   </footer>
 
   <script>
-    // --- THEME ENGINE ---
     const themes = [
       { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', glow: 'rgba(37, 99, 235, 0.4)' },
       { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', glow: 'rgba(124, 58, 237, 0.4)' },
@@ -658,21 +510,18 @@
       root.style.setProperty('--theme-glow', theme.glow);
     }
 
-    // --- HEADLINE ENGINE ---
     const headlines = [
       "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
       "Discover the <span>Joy</span> of Clinical Strength, <span>Safely</span> at Home.",
       "<span>Thrive</span> with Professional Care that feels <span>Fun</span> and <span>Easy.</span>",
       "Your <span>Independence</span> Forecast made <span>Fun</span> and <span>Easily</span> Proven.",
-      "Movement made <span>Fun.</span> Professional care made <span>Easy.</span>",
-      "Reclaiming <span>Freedom</span> is finally <span>Safe</span>, <span>Fun</span>, and <span>Easy.</span>"
+      "Movement made <span>Fun.</span> Professional care made <span>Easy.</span>"
     ];
 
     function setDynamicHeadline() {
       document.getElementById('dynamic-headline').innerHTML = headlines[Math.floor(Math.random() * headlines.length)];
     }
 
-    // --- MOBILE MENU ---
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     menuToggle.addEventListener('click', () => {
@@ -681,7 +530,6 @@
       document.body.classList.toggle('menu-open');
     });
 
-    // --- INTENSIFIED BUBBLE ENGINE ---
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, bubbles = [];
@@ -729,11 +577,6 @@
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = grad;
         ctx.fill();
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${themeRGB}, ${this.opacity * 0.3})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
       }
     }
 
@@ -751,17 +594,15 @@
     window.addEventListener('mousemove', handleMove);
     window.addEventListener('touchstart', handleMove, { passive: true });
     window.addEventListener('touchmove', handleMove, { passive: true });
-    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
 
-    // --- SCROLL REVEAL & SUCCESS LOGIC ---
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
           e.target.classList.add('active');
-          if (e.target.id === 'onboarding') {
+          if (e.target.id === 'vitality-console') {
             const fill = document.getElementById('stepper-fill');
             if (window.innerWidth <= 768) fill.style.height = '100%'; else fill.style.width = '100%';
-            setTimeout(() => document.querySelectorAll('.step-item').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*400)), 200);
+            setTimeout(() => document.querySelectorAll('.conduit-step').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*400)), 200);
           }
           const rings = e.target.querySelectorAll('.bio-ring-fill');
           rings.forEach(ring => {
