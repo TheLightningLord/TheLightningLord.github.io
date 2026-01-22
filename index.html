@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="description" content="Olympian Health Solutions – Elite clinical mobile movement for seniors. Serving Clark County, WA." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Olympian Health Solutions | Your Independence Forecast</title>
+  <title>Olympian Health Solutions | Clinical Vitality Forecast</title>
 
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,19 +19,19 @@
       --color-silver: #94a3b8;
       --color-frost: #f8fafc;
       --color-white: #ffffff;
-      --color-glow: #dbeafe;
+      --color-glow: rgba(37, 99, 235, 0.1);
+      --color-success: #10b981;
       
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
       
-      --glass: rgba(255, 255, 255, 0.94);
-      --glass-dark: rgba(3, 7, 18, 0.96);
-      --radius-xl: 48px;
+      --glass: rgba(255, 255, 255, 0.88);
+      --radius-xl: 56px;
       --radius-lg: 32px;
       --radius-full: 999px;
       
-      --shadow-subtle: 0 10px 40px rgba(0,0,0,0.04);
-      --shadow-clinical: 0 20px 60px rgba(37, 99, 233, 0.15);
+      --shadow-luxe: 0 20px 50px rgba(0,0,0,0.04);
+      --shadow-active: 0 10px 40px rgba(37, 99, 233, 0.15);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
@@ -48,159 +48,259 @@
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === ANIMATED BACKGROUND === */
+    /* === ANIMATED OXYGEN BACKGROUND === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
-      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f8ff 100%);
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f7ff 100%);
     }
     #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* === NAVIGATION === */
+    /* === NAVIGATION MASTERPIECE === */
     nav {
       position: fixed;
-      top: 10px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 20px); max-width: 1200px;
+      top: 15px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 30px); max-width: 1400px;
       z-index: 1000;
       background: var(--glass);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border-radius: var(--radius-full);
-      border: 1px solid rgba(255,255,255,0.8);
-      padding: 8px 20px;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      padding: 8px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: var(--shadow-subtle);
+      box-shadow: var(--shadow-luxe);
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .logo-mark { width: 32px; height: 32px; background: var(--color-navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
-    .brand-name { font-weight: 800; font-size: 1rem; color: var(--color-navy); }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
+    .brand-name { font-weight: 800; font-size: 1.1rem; color: var(--color-navy); letter-spacing: -0.01em; }
 
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 900px) { .nav-links { display: none; } }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+    @media (max-width: 1250px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--color-ultramarine); }
     
-    .nav-btns { display: flex; gap: 8px; }
-    .btn-nav-primary { background: var(--color-navy); color: #fff; padding: 8px 16px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.75rem; text-decoration: none; }
-    @media (max-width: 480px) { .btn-nav-primary { padding: 6px 12px; } }
+    .nav-btns { display: flex; gap: 10px; align-items: center; }
+    @media (max-width: 600px) { .nav-btns { display: none; } }
+
+    /* === REFINED PILL BUTTONS === */
+    .btn-pill {
+      position: relative;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      overflow: hidden;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    
+    .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
+    .btn-luxe-glass { 
+      background: rgba(255, 255, 255, 0.6); 
+      color: var(--color-navy) !important; 
+      border-color: rgba(3, 7, 18, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+    /* Subtler shimmer sweep */
+    @keyframes shimmer-sweep {
+      0% { left: -100%; }
+      30% { left: 100%; }
+      100% { left: 100%; }
+    }
+    .btn-pill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: shimmer-sweep 5s infinite ease-in-out;
+    }
 
     /* === HERO SECTION === */
     .hero {
-      min-height: 85vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 120px 20px 40px;
+      padding: 140px 24px 60px;
       text-align: center;
     }
-    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 2rem; }
+    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 2.5rem; }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 16px; background: #fff; border: 1px solid var(--color-silver);
-      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 800; font-size: 0.65rem;
-      text-transform: uppercase; letter-spacing: 0.15em;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 24px; background: #fff; border: 1.5px solid var(--color-frost);
+      border-radius: var(--radius-full); color: var(--color-ultramarine); font-weight: 900; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.15em; box-shadow: var(--shadow-luxe);
     }
-    .location-pill { font-weight: 800; font-size: 0.8rem; color: var(--color-navy); background: rgba(37, 99, 235, 0.06); padding: 8px 18px; border-radius: 99px; }
+    .location-pill { font-weight: 800; font-size: 0.85rem; color: var(--color-navy); background: rgba(37, 99, 235, 0.08); padding: 10px 24px; border-radius: 99px; }
 
-    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 1.5rem; font-weight: 900; }
-    .hero h1 span { color: var(--color-ultramarine); }
-    .hero p { max-width: 800px; margin: 0 auto 3.5rem; font-size: clamp(1.1rem, 3.5vw, 1.4rem); color: #475569; font-weight: 400; line-height: 1.5; padding: 0 10px; }
+    .hero h1 { font-size: clamp(3rem, 11vw, 7.5rem); margin-bottom: 2rem; font-weight: 900; color: var(--color-navy); line-height: 0.88; }
     
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-direction: column; align-items: center; }
+    @keyframes textShine {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .hero h1 span {
+      background: linear-gradient(
+        to right,
+        var(--color-ultramarine) 0%,
+        var(--color-ultramarine) 35%,
+        #ffffff 50%,
+        var(--color-ultramarine) 65%,
+        var(--color-ultramarine) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShine 4s infinite linear;
+      display: inline-block;
+    }
+
+    .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: clamp(1.2rem, 3.5vw, 1.5rem); color: #475569; font-weight: 400; line-height: 1.6; }
+    
+    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
     @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
-    .btn-hero { width: 100%; max-width: 400px; padding: 1.2rem 2.5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.15rem; text-decoration: none; transition: 0.4s; text-align: center; border: none; cursor: pointer; }
-    .btn-primary { background: var(--color-ultramarine); color: #fff; box-shadow: var(--shadow-clinical); }
-    .btn-cta { background: var(--color-navy); color: #fff; }
+    
+    .btn-hero { 
+      width: 100%; max-width: 440px; padding: 1.4rem 3rem; border-radius: var(--radius-full); 
+      font-weight: 900; font-size: 1.2rem; text-decoration: none; 
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; 
+      border: none; cursor: pointer; position: relative; overflow: hidden;
+    }
+    .btn-hero:hover { transform: scale(1.05) translateY(-3px); }
+
+    .btn-primary-luxe { 
+      background: var(--color-navy); 
+      color: #fff; 
+      box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); 
+    }
+    .btn-outline-luxe { 
+      background: #fff; 
+      border: 2px solid var(--color-navy); 
+      color: var(--color-navy); 
+      box-shadow: var(--shadow-luxe);
+    }
+    
+    /* Subtle glimmer for Hero buttons too */
+    .btn-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: shimmer-sweep 6s infinite linear;
+    }
 
     /* === TRUST TICKER === */
-    .ticker-bar { padding: 1.5rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
+    .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
     .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 8px; margin-right: 40px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === MOBILE-FIRST PROGRESS STEPPER === */
-    .onboarding-section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
-    .onboarding-header { text-align: center; margin-bottom: 40px; }
-    .onboarding-header h2 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; }
+    /* === VITALITY PATH STEPPER === */
+    .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+    .onboarding-header { text-align: center; margin-bottom: 80px; }
+    .onboarding-header h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; }
     
-    .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 40px; }
-    .stepper-line-bg { position: absolute; left: 62px; top: 0; width: 4px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
-    .stepper-line-fill { position: absolute; left: 62px; top: 0; width: 4px; height: 0%; background: var(--color-ultramarine); border-radius: 10px; z-index: 2; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); }
+    .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
+    .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
+    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--color-ultramarine); border-radius: 10px; z-index: 2; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); box-shadow: 0 0 15px rgba(37, 99, 233, 0.4); }
     
-    .step-item { position: relative; z-index: 3; display: flex; gap: 24px; align-items: flex-start; margin-bottom: 50px; opacity: 0.3; transition: 0.5s; transform: translateX(10px); }
+    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); transform: translateX(20px); }
     .step-item.active { opacity: 1; transform: translateX(0); }
     .step-node { 
-        width: 48px; height: 48px; background: #fff; border: 4px solid #eef2ff; border-radius: 50%; 
+        width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; 
         flex-shrink: 0; display: flex; align-items: center; justify-content: center; 
-        font-weight: 900; font-size: 1.1rem; color: var(--color-silver); transition: 0.5s;
+        font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s;
     }
-    .active .step-node { border-color: var(--color-ultramarine); color: var(--color-ultramarine); background: #fff; box-shadow: 0 0 20px rgba(37, 99, 233, 0.2); }
-    .step-content strong { display: block; font-size: 1.25rem; color: var(--color-navy); margin-bottom: 6px; }
-    .step-content p { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
+    .active .step-node { border-color: var(--color-ultramarine); color: var(--color-ultramarine); transform: scale(1.1) rotate(5deg); box-shadow: 0 10px 30px rgba(37, 99, 233, 0.15); }
+    .step-content strong { display: block; font-size: 1.6rem; color: var(--color-navy); margin-bottom: 8px; line-height: 1.1; }
+    .step-content p { font-size: 1.1rem; color: #64748b; line-height: 1.6; max-width: 500px; }
 
     @media (min-width: 768px) {
         .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
-        .stepper-line-bg { top: 24px; left: 0; width: 100%; height: 4px; }
-        .stepper-line-fill { top: 24px; left: 0; height: 4px; width: 0%; transition: 1.5s width; }
-        .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 15px; transform: translateY(10px); }
+        .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 4px; }
+        .stepper-line-fill { top: 28px; left: 0; height: 4px; width: 0%; }
+        .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
         .step-item.active { transform: translateY(0); }
-        .step-node { width: 56px; height: 56px; }
+        .step-node { width: 64px; height: 64px; }
     }
 
     /* === SUCCESS METRICS === */
-    .results-strip { padding: 80px 20px; background: #fff; border-radius: 40px; margin: 20px 10px; box-shadow: var(--shadow-subtle); }
-    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
-    @media (min-width: 768px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
-    .bio-unit { text-align: center; background: var(--color-frost); padding: 3rem 1.5rem; border-radius: 32px; border: 1.5px solid transparent; transition: 0.4s; }
-    .bio-visual-wrap { position: relative; width: 160px; height: 160px; margin: 0 auto 1.5rem; }
+    .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
+    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
+    @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
+    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); border: 2.5px solid transparent; }
+    .bio-unit:hover { border-color: var(--color-azure); transform: translateY(-10px); background: #fff; box-shadow: var(--shadow-active); }
+    
+    .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 14; }
-    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 14; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; font-weight: 900; color: var(--color-navy); }
+    .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
+    .bio-ring-fill { fill: none; stroke: var(--color-ultramarine); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 10px rgba(37, 99, 233, 0.3)); }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
+    .bio-unit strong { font-size: 1.6rem; color: var(--color-navy); display: block; margin-bottom: 12px; }
+    .bio-unit p { font-size: 1.1rem; color: #64748b; line-height: 1.5; }
 
-    /* === INDEPENDENCE FORECAST === */
-    .forecast-hub {
-      padding: 100px 20px; background: var(--color-navy); border-radius: 40px; margin: 20px 10px;
-      position: relative; overflow: hidden; color: #fff; text-align: center;
-    }
-    .forecast-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(37, 99, 233, 0.15) 0%, transparent 70%); pointer-events: none; }
-    .forecast-content h2 { font-size: clamp(2.2rem, 8vw, 4.5rem); color: #fff; margin-bottom: 2rem; padding: 0 10px; }
-    .forecast-btn {
-      display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 400px;
-      background: var(--color-white); color: var(--color-navy);
-      padding: 1.4rem 2rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.2rem; text-decoration: none;
-      transition: 0.4s;
-    }
+    /* === GROWTH ROADMAP === */
+    .arc-section { padding: 100px 24px; max-width: 1300px; margin: 0 auto; }
+    .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 60px; }
+    @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
+    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; position: relative; overflow: hidden; }
+    .arc-card:hover { border-color: var(--color-ultramarine); transform: translateY(-8px); box-shadow: var(--shadow-luxe); }
+    .arc-week { font-size: 0.75rem; font-weight: 900; color: var(--color-ultramarine); opacity: 0.4; margin-bottom: 12px; display: block; letter-spacing: 0.1em; }
+    .arc-card strong { font-size: 1.4rem; display: block; margin-bottom: 15px; color: var(--color-navy); }
+    .arc-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
 
-    /* === ROADMAP SECTION === */
-    .arc-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-    .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 40px; }
-    @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } .arc-grid > div:nth-child(n) { grid-column: span 1; } }
-    @media (min-width: 1024px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
-    .arc-card { background: #fff; padding: 2rem; border-radius: 24px; border: 1.5px solid var(--color-frost); position: relative; }
-    .arc-week { font-size: 0.7rem; font-weight: 900; color: var(--color-ultramarine); opacity: 0.5; margin-bottom: 8px; display: block; }
-
-    /* === MOBILE PERSISTENT NAV === */
+    /* === MOBILE PERSISTENT COMMAND BAR === */
     .mobile-fab-bar {
-      position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 30px); max-width: 440px;
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 36px); max-width: 440px;
       background: var(--glass-dark); color: #fff;
-      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-      padding: 8px; border-radius: var(--radius-full);
+      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      padding: 10px; border-radius: var(--radius-full);
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 1001; box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+      z-index: 1001; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
     }
     @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
-    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 800; color: #fff; text-decoration: none; padding: 12px; }
-    .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 8px; }
+    .fab-btn { flex: 1; text-align: center; font-size: 0.9rem; font-weight: 900; color: #fff; text-decoration: none; padding: 14px; }
+    .fab-btn.primary { background: var(--color-ultramarine); border-radius: var(--radius-full); margin-left: 10px; }
 
-    /* === REVEAL === */
-    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    /* === REVEAL ANIMATIONS === */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    footer { padding: 4rem 20px 8rem; text-align: center; color: #94a3b8; font-size: 0.85rem; }
+    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
   </style>
 </head>
 <body>
@@ -210,41 +310,43 @@
     <canvas id="bubble-canvas"></canvas>
   </div>
 
-  <!-- MOBILE NAVIGATION -->
-  <nav>
+  <!-- NAVIGATION -->
+  <nav id="main-nav">
     <a href="#" class="brand">
       <div class="logo-mark">O</div>
       <span class="brand-name">Olympian</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#results">Results</a></li>
-      <li><a href="#onboarding">Path</a></li>
+      <li><a href="#results">Clinical Proof</a></li>
+      <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
+      <li><a href="#footer">About us</a></li>
     </ul>
     <div class="nav-btns">
-      <a href="quiz.html" class="btn-nav-primary">Start Assessment</a>
+      <a href="quiz.html" class="btn-pill btn-luxe-glass">Take Benefits Assessment</a>
+      <a href="booking.html" class="btn-pill btn-luxe-dark">Book now</a>
     </div>
   </nav>
 
   <!-- PERSISTENT MOBILE COMMAND BAR -->
   <div class="mobile-fab-bar">
-    <a href="quiz.html" class="fab-btn">Get Forecast</a>
-    <a href="booking.html" class="fab-btn primary">Book Mobile Visit</a>
+    <a href="quiz.html" class="fab-btn">Get My Forecast</a>
+    <a href="booking.html" class="fab-btn primary">Book Home Visit</a>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero" id="home">
     <div class="container reveal">
       <div class="hero-badges-wrap">
         <div class="hero-badge">Clinical Movement Specialist</div>
-        <div class="location-pill"><i>📍</i> Local Excellence in Clark County, WA</div>
+        <div class="location-pill"><i>📍</i> Premier Senior Care in Clark County, WA</div>
       </div>
-      <h1>Movement made <span>Easy.</span><br>Care made Clinical.</h1>
-      <p>Specialized mobile physical coaching for Clark County’s seniors. High-impact science delivered with family warmth—directly to your favorite chair.</p>
+      <h1>Movement made <span>Fun.</span><br>Professional care made <span>Easy.</span></h1>
+      <p>Specialized mobile physical coaching for Clark County’s elite seniors. We turn complex rehabilitation into joyful, manageable daily wins—delivered directly to your home.</p>
       
       <div class="hero-btns">
-        <a href="booking.html" class="btn-hero btn-cta">Book Now</a>
-        <a href="quiz.html" class="btn-hero btn-primary">Independence Forecast</a>
+        <a href="booking.html" class="btn-hero btn-primary-luxe">Schedule a visit</a>
+        <a href="quiz.html" class="btn-hero btn-outline-luxe">Learn the benefits</a>
       </div>
     </div>
   </section>
@@ -253,20 +355,21 @@
   <div class="ticker-bar">
     <div class="ticker-track">
       <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
-      <div class="badge-item"><i>✦</i> HIPAA Secure</div>
-      <div class="badge-item"><i>✦</i> NIH Aligned</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
+      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
+      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
       <div class="badge-item"><i>✦</i> Local Mobile Lab Suite</div>
-      <div class="badge-item"><i>✦</i> Doctorate Led</div>
-      <div class="badge-item"><i>✦</i> HIPAA Secure</div>
-      <div class="badge-item"><i>✦</i> NIH Aligned</div>
+      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
+      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
     </div>
   </div>
 
-  <!-- PROGRESS STEPS -->
+  <!-- THE VITALITY PATH -->
   <section class="onboarding-section reveal" id="onboarding">
     <div class="onboarding-header">
         <h2>Your Path to <span>Vitality</span></h2>
-        <p style="color: #64748b;">A seamless start to a more energetic life.</p>
+        <p style="color: #64748b; font-size: 1.25rem;">A seamless start to a more energetic life.</p>
     </div>
     
     <div class="stepper-progress-wrap">
@@ -277,31 +380,31 @@
             <div class="step-node">1</div>
             <div class="step-content">
                 <strong>The Digital Sync</strong>
-                <p>A quick 10-min intro to align our elite clinical protocols with your health history.</p>
+                <p>A brief 10-minute intro to align our clinical protocols with your personal medical history.</p>
             </div>
         </div>
         <div class="step-item" id="step-2">
             <div class="step-node">2</div>
             <div class="step-content">
                 <strong>We Bring the Lab</strong>
-                <p>Our specialists arrive with sanitized, high-end tools. You don't lift a finger.</p>
+                <p>Our specialists arrive with sanitized, university-standard tools. You don't lift a finger.</p>
             </div>
         </div>
         <div class="step-item" id="step-3">
             <div class="step-node">3</div>
             <div class="step-content">
                 <strong>The Joyful Thrive</strong>
-                <p>60 minutes of conversational clinical movement that restores energy.</p>
+                <p>60 minutes of clinical movement delivered with family warmth and world-class expertise.</p>
             </div>
         </div>
     </div>
   </section>
 
-  <!-- CLINICAL OUTCOMES -->
+  <!-- CLINICAL OUTCOMES (DATA THAT SMILES) -->
   <section class="results-strip reveal" id="results">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="font-size: 2.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
-        <p style="color: #64748b;">Verifiable proof, backed by peer-reviewed research.</p>
+      <div style="text-align: center; margin-bottom: 80px;">
+        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
+        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by geriatric research.</p>
       </div>
       <div class="bio-grid">
         <div class="bio-unit">
@@ -313,7 +416,7 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Stability Gain</strong>
-          <p>Significant reduction in fall-risk via neuromuscular training.</p>
+          <p>Clinical reduction in fall-risk via neuromuscular reflex training.</p>
         </div>
         <div class="bio-unit">
           <div class="bio-visual-wrap">
@@ -324,7 +427,7 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Metabolic Logic</strong>
-          <p>Clearance of blood glucose independently of insulin.</p>
+          <p>Clearance of blood glucose independently of insulin sensitivity.</p>
         </div>
         <div class="bio-unit">
           <div class="bio-visual-wrap">
@@ -335,26 +438,16 @@
             <div class="bio-value">0%</div>
           </div>
           <strong>Grip Vitality</strong>
-          <p>Clinical indicator for muscle quality and biological age.</p>
+          <p>Clinical marker for muscle quality and biological longevity.</p>
         </div>
       </div>
   </section>
 
-  <!-- INDEPENDENCE FORECAST -->
-  <section class="forecast-hub reveal" id="forecast">
-    <div class="forecast-content">
-      <h2 style="line-height:1;">The Personal <span>Independence Forecast.</span></h2>
-      <p style="margin-top:1.5rem; opacity: 0.8;">Uncover the clinical path to reclaiming your physical freedom. Results in 2 minutes.</p>
-      <a href="quiz.html" class="forecast-btn" style="margin-top:2.5rem;">Get My Free Forecast Now</a>
-      <p style="margin-top:2.5rem; font-size:0.8rem; font-weight:900; opacity:0.6; letter-spacing:0.1em;">PREDICTIVE • RESEARCH-BACKED</p>
-    </div>
-  </section>
-
-  <!-- 12-WEEK ROADMAP -->
+  <!-- GROWTH ROADMAP -->
   <section class="arc-section reveal" id="arc">
     <div style="text-align: center;">
-        <h2 style="font-size: 2.8rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
-        <p style="color: #64748b; margin-top: 10px;">A milestone-driven clinical roadmap.</p>
+        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
+        <p style="color: #64748b; margin-top: 15px; font-size: 1.25rem;">A milestone-driven roadmap to your best self.</p>
     </div>
     <div class="arc-grid">
         <div class="arc-card">
@@ -365,22 +458,22 @@
         <div class="arc-card">
             <span class="arc-week">WEEK 4</span>
             <strong>Metabolic Sync</strong>
-            <p>Re-optimizing insulin sensitivity and clearing "brain fog."</p>
+            <p>Re-optimizing insulin sensitivity and clearing "brain fog" markers.</p>
         </div>
         <div class="arc-card">
             <span class="arc-week">WEEK 8</span>
             <strong>Structural Build</strong>
-            <p>Reinforcing bone density for effortless stairs and yard work.</p>
+            <p>Reinforcing bone density and synovial fluid flow for painless movement.</p>
         </div>
         <div class="arc-card">
             <span class="arc-week">WEEK 12</span>
             <strong>Total Independence</strong>
-            <p>Maintenance protocols to ensure travel and play remain permanent.</p>
+            <p>Maintenance protocols to ensure travel and play remain permanent fixtures.</p>
         </div>
     </div>
   </section>
 
-  <footer>
+  <footer id="footer">
     <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
   </footer>
 
@@ -389,7 +482,7 @@
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, bubbles = [];
-    const bubbleCount = window.innerWidth < 768 ? 20 : 38;
+    const bubbleCount = window.innerWidth < 768 ? 22 : 45;
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -400,18 +493,18 @@
     class Bubble {
       constructor() { this.reset(); }
       reset() {
-        this.radius = Math.random() * 18 + 4;
+        this.radius = Math.random() * 22 + 5;
         this.x = Math.random() * width;
         this.y = height + this.radius + Math.random() * 200;
-        this.vy = -(Math.random() * 0.4 + 0.15);
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.opacity = Math.random() * 0.12 + 0.04;
+        this.vy = -(Math.random() * 0.45 + 0.15);
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.opacity = Math.random() * 0.14 + 0.05;
         this.wobble = Math.random() * Math.PI * 2;
       }
       update() {
         this.y += this.vy;
-        this.wobble += 0.01;
-        this.x += Math.sin(this.wobble) * 0.15 + this.vx;
+        this.wobble += 0.015;
+        this.x += Math.sin(this.wobble) * 0.18 + this.vx;
         if (this.y < -this.radius) this.reset();
       }
       draw() {
@@ -429,7 +522,7 @@
       requestAnimationFrame(animate);
     }
 
-    // --- SCROLL REVEAL & PROGRESS ---
+    // --- SCROLL REVEAL & STEPS LOGIC ---
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
@@ -440,8 +533,8 @@
             const isMobile = window.innerWidth <= 768;
             if (isMobile) fill.style.height = '100%'; else fill.style.width = '100%';
             setTimeout(() => document.getElementById('step-1').classList.add('active'), 200);
-            setTimeout(() => document.getElementById('step-2').classList.add('active'), 600);
-            setTimeout(() => document.getElementById('step-3').classList.add('active'), 1000);
+            setTimeout(() => document.getElementById('step-2').classList.add('active'), 700);
+            setTimeout(() => document.getElementById('step-3').classList.add('active'), 1200);
           }
 
           const rings = e.target.querySelectorAll('.bio-ring-fill');
@@ -451,12 +544,12 @@
             const wrap = ring.closest('.bio-visual-wrap');
             if (wrap) {
               const valDisplay = wrap.querySelector('.bio-value');
-              if (valDisplay) animateValue(valDisplay, 0, target, 2000);
+              if (valDisplay) animateValue(valDisplay, 0, target, 2500);
             }
           });
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12 });
 
     function animateValue(obj, start, end, duration) {
       let startTimestamp = null;
