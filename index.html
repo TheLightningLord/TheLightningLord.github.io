@@ -87,12 +87,12 @@
     .brand-name { font-weight: 800; font-size: 1.1rem; color: var(--color-navy); letter-spacing: -0.01em; }
 
     .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 1100px) { .nav-links { display: none; } }
+    @media (max-width: 1150px) { .nav-links { display: none; } }
     .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
     .nav-links a:hover { color: var(--theme-primary); }
     
     .nav-btns { display: flex; gap: 10px; align-items: center; }
-    @media (max-width: 1100px) { .nav-btns { display: none; } }
+    @media (max-width: 1150px) { .nav-btns { display: none; } }
 
     /* MOBILE MENU TOGGLE */
     .menu-toggle {
@@ -101,7 +101,7 @@
       border: none; cursor: pointer; position: relative; z-index: 2001;
       justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    @media (max-width: 1100px) { .menu-toggle { display: flex; } }
+    @media (max-width: 1150px) { .menu-toggle { display: flex; } }
     .hamburger { width: 18px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
     .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 2px; background: #fff; left: 0; transition: 0.3s; }
     .hamburger::before { top: -6px; }
@@ -110,12 +110,18 @@
     .menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
     .menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
-    /* MOBILE OVERLAY */
+    /* MOBILE OVERLAY MENU */
     .mobile-menu-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(40px);
-      z-index: 1500; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      padding: 40px; transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      z-index: 1500;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 40px;
+      transform: translateY(-100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-menu-overlay.active { transform: translateY(0); }
     .mobile-nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
@@ -187,7 +193,7 @@
       transition: background 1s ease;
     }
 
-    /* === UPGRADED MISSION TEXT (BETTER LOOKING) === */
+    /* === UPGRADED MISSION CONTAINER === */
     .mission-container {
         max-width: 850px;
         margin: 0 auto 5rem;
@@ -236,44 +242,116 @@
       transform: skewX(-20deg); animation: shimmer-sweep 6s infinite linear;
     }
 
-    /* === REVEAL & FOOTER === */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
-
-    /* (Other styles truncated for index.html space - identical logic to previous version) */
+    /* === TRUST TICKER === */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
     .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* === VITALITY PATH STEPPER === */
     .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+    .onboarding-header { text-align: center; margin-bottom: 80px; }
+    .onboarding-header h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; }
+    
     .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
     .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
-    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height; }
-    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s; transform: translateX(20px); }
+    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); box-shadow: 0 0 15px rgba(var(--theme-bubble), 0.4); }
+    
+    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); transform: translateX(20px); }
     .step-item.active { opacity: 1; transform: translateX(0); }
-    .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
-    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
+    .step-node { 
+        width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; 
+        flex-shrink: 0; display: flex; align-items: center; justify-content: center; 
+        font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s;
+    }
+    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); transform: scale(1.1) rotate(5deg); box-shadow: 0 10px 30px rgba(var(--theme-bubble), 0.15); }
+    .step-content strong { display: block; font-size: 1.6rem; color: var(--color-navy); margin-bottom: 8px; line-height: 1.1; }
+    .step-content p { font-size: 1.1rem; color: #64748b; line-height: 1.6; max-width: 500px; }
+
     @media (min-width: 768px) {
         .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
         .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 6px; }
         .stepper-line-fill { top: 28px; left: 0; height: 6px; width: 0%; }
         .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
+        .step-item.active { transform: translateY(0); }
+        .step-node { width: 64px; height: 64px; }
     }
+
+    /* === SUCCESS METRICS === */
     .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
     .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
     @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
-    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s; border: 2.5px solid transparent; }
+    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); border: 2.5px solid transparent; }
+    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; box-shadow: var(--shadow-active); }
+    
     .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
     .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
-    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
+    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 10px rgba(var(--theme-bubble), 0.3)); }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
+    .bio-unit strong { font-size: 1.6rem; color: var(--color-navy); display: block; margin-bottom: 12px; }
+    .bio-unit p { font-size: 1.1rem; color: #64748b; line-height: 1.5; }
+
+    /* === INDEPENDENCE FORECAST MODULE === */
+    .forecast-hub {
+      padding: 140px 24px; background: var(--color-navy); border-radius: 64px; margin: 40px 20px;
+      position: relative; overflow: hidden; color: #fff; text-align: center;
+    }
+    .forecast-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(var(--theme-bubble), 0.18) 0%, transparent 70%); pointer-events: none; }
+    .forecast-content h2 { font-size: clamp(2.5rem, 8vw, 5.5rem); color: #fff; margin-bottom: 2rem; font-weight: 900; line-height: 0.9; }
+    .forecast-btn {
+      display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 480px;
+      background: var(--color-white); color: var(--color-navy);
+      padding: 1.6rem 2rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.4rem; text-decoration: none;
+      transition: 0.4s; box-shadow: 0 0 40px rgba(255,255,255,0.15);
+    }
+    .forecast-btn:hover { background: var(--theme-accent); color: #fff; transform: scale(1.05); }
+
+    /* === ADVANTAGE HUB (RESEARCH LIBRARY) === */
+    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 40px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
+    .adv-card:hover { border-color: var(--theme-primary); background: #fff; transform: translateY(-10px); }
+    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); line-height: 1.1; }
+    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
+    
+    .kinetic-pill { 
+        align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; 
+        border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; 
+        letter-spacing: 0.1em; border: none; transition: 0.3s; cursor: pointer; margin-top: auto;
+    }
+    .kinetic-pill:hover { background: var(--theme-primary); transform: scale(1.05); box-shadow: 0 10px 20px rgba(var(--theme-bubble), 0.2); }
+
+    /* === GROWTH ROADMAP === */
     .arc-section { padding: 100px 24px; max-width: 1300px; margin: 0 auto; }
     .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 60px; }
     @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
-    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; }
+    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; position: relative; overflow: hidden; }
+    .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); box-shadow: var(--shadow-luxe); }
+    .arc-week { font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4; margin-bottom: 12px; display: block; letter-spacing: 0.1em; }
+    .arc-card strong { font-size: 1.4rem; display: block; margin-bottom: 15px; color: var(--color-navy); }
+    .arc-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
+
+    /* === MOBILE PERSISTENT COMMAND BAR === */
+    .mobile-fab-bar {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 36px); max-width: 440px;
+      background: var(--color-navy); color: #fff;
+      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      padding: 10px; border-radius: var(--radius-full);
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1001; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+    }
+    @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
+    .fab-btn { flex: 1; text-align: center; font-size: 0.9rem; font-weight: 900; color: #fff; text-decoration: none; padding: 14px; }
+    .fab-btn.primary { background: var(--theme-primary); border-radius: var(--radius-full); margin-left: 10px; }
+
+    /* === REVEAL ANIMATIONS === */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
   </style>
 </head>
 <body>
@@ -293,6 +371,7 @@
       <li><a href="#results">Clinical Proof</a></li>
       <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
+      <li><a href="#advantage">Education</a></li>
       <li><a href="#footer">About us</a></li>
     </ul>
     <div class="nav-btns">
@@ -310,12 +389,19 @@
       <li><a href="#results">Clinical Proof</a></li>
       <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
+      <li><a href="#advantage">Education</a></li>
       <li><a href="#footer">About us</a></li>
     </ul>
     <div class="mobile-action-btns">
       <a href="quiz.html" class="btn-pill btn-luxe-glass" style="width: 100%;">Benefits Assessment</a>
       <a href="booking.html" class="btn-pill btn-luxe-dark" style="width: 100%;">Schedule Visit</a>
     </div>
+  </div>
+
+  <!-- PERSISTENT MOBILE COMMAND BAR -->
+  <div class="mobile-fab-bar">
+    <a href="quiz.html" class="fab-btn">Get My Forecast</a>
+    <a href="booking.html" class="fab-btn primary">Book Home Visit</a>
   </div>
 
   <!-- HERO SECTION -->
@@ -346,8 +432,155 @@
     </div>
   </section>
 
-  <!-- (Sections like Ticker, Stepper, Results follow - same high-quality code from previous load) -->
-  <!-- ... [Ticker, Onboarding, Results, Arc as programmed previously] ... -->
+  <!-- TRUST TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
+      <div class="badge-item"><i>✦</i> NIH Evidence Aligned</div>
+      <div class="badge-item"><i>✦</i> Serving Battle Ground & Vancouver</div>
+      <div class="badge-item"><i>✦</i> Local Mobile Lab Suite</div>
+      <div class="badge-item"><i>✦</i> Doctorate Led Team</div>
+      <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
+    </div>
+  </div>
+
+  <!-- THE VITALITY PATH -->
+  <section class="onboarding-section reveal" id="onboarding">
+    <div class="onboarding-header">
+        <h2>Your Path to <span>Vitality</span></h2>
+        <p style="color: #64748b; font-size: 1.25rem;">A seamless start to a more energetic life.</p>
+    </div>
+    
+    <div class="stepper-progress-wrap">
+        <div class="stepper-line-bg"></div>
+        <div class="stepper-line-fill" id="stepper-fill"></div>
+        
+        <div class="step-item" id="step-1">
+            <div class="step-node">1</div>
+            <div class="step-content">
+                <strong>The Digital Sync</strong>
+                <p>A brief 10-minute intro to align our clinical protocols with your personal medical history.</p>
+            </div>
+        </div>
+        <div class="step-item" id="step-2">
+            <div class="step-node">2</div>
+            <div class="step-content">
+                <strong>We Bring the Lab</strong>
+                <p>Our specialists arrive with sanitized, university-standard tools. You don't lift a finger.</p>
+            </div>
+        </div>
+        <div class="step-item" id="step-3">
+            <div class="step-node">3</div>
+            <div class="step-content">
+                <strong>The Joyful Thrive</strong>
+                <p>60 minutes of clinical movement delivered with family warmth and world-class expertise.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL OUTCOMES -->
+  <section class="results-strip reveal" id="results">
+      <div style="text-align: center; margin-bottom: 80px;">
+        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
+        <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by geriatric research.</p>
+      </div>
+      <div class="bio-grid">
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <strong>Stability Gain</strong>
+          <p>Clinical reduction in fall-risk via neuromuscular reflex training.</p>
+        </div>
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <strong>Metabolic Logic</strong>
+          <p>Clearance of blood glucose independently of insulin sensitivity.</p>
+        </div>
+        <div class="bio-unit">
+          <div class="bio-visual-wrap">
+            <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
+            </svg>
+            <div class="bio-value">0%</div>
+          </div>
+          <strong>Grip Vitality</strong>
+          <p>Clinical marker for muscle quality and biological longevity.</p>
+        </div>
+      </div>
+  </section>
+
+  <!-- GROWTH ROADMAP -->
+  <section class="arc-section reveal" id="arc">
+    <div style="text-align: center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
+        <p style="color: #64748b; margin-top: 15px; font-size: 1.25rem;">A milestone-driven roadmap to your best self.</p>
+    </div>
+    <div class="arc-grid">
+        <div class="arc-card">
+            <span class="arc-week">WEEK 1</span>
+            <strong>Neural Awakening</strong>
+            <p>Targeting proprioception to eliminate the "fear of falling" instantly.</p>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 4</span>
+            <strong>Metabolic Sync</strong>
+            <p>Re-optimizing insulin sensitivity and clearing "brain fog" markers.</p>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 8</span>
+            <strong>Structural Build</strong>
+            <p>Reinforcing bone density and synovial fluid flow for painless movement.</p>
+        </div>
+        <div class="arc-card">
+            <span class="arc-week">WEEK 12</span>
+            <strong>Total Independence</strong>
+            <p>Maintenance protocols to ensure travel and play remain permanent fixtures.</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGE HUB (EDUCATION) -->
+  <section class="advantage-hub reveal" id="advantage">
+    <div style="text-align:center;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">Clinical <span>Advantage</span> Ledger</h2>
+        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the biological upgrades proven by medical trials:</p>
+    </div>
+    <div class="adv-grid">
+        <div class="adv-card">
+            <strong>Cognitive Spark</strong>
+            <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
+            <button class="kinetic-pill">Research Sync</button>
+        </div>
+        <div class="adv-card">
+            <strong>Arterial Rejuvenation</strong>
+            <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
+            <button class="kinetic-pill">Cardio Lab</button>
+        </div>
+        <div class="adv-card">
+            <strong>Bone Architecture</strong>
+            <p>Safe resistance protocols that trigger osteoblastic activity for skeletal resilience and strength.</p>
+            <button class="kinetic-pill">Skeletal Sync</button>
+        </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
+  </footer>
 
   <script>
     // --- MULTI-THEME ENGINE ---
@@ -464,7 +697,7 @@
     window.addEventListener('touchmove', handleMove, { passive: true });
     window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
 
-    // --- SCROLL REVEAL ---
+    // --- SCROLL REVEAL & SUCCESS LOGIC ---
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
@@ -478,8 +711,11 @@
           rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
             ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
-            const valDisplay = ring.closest('.bio-visual-wrap').querySelector('.bio-value');
-            if (valDisplay) animateValue(valDisplay, 0, target, 2500);
+            const wrap = ring.closest('.bio-visual-wrap');
+            if (wrap) {
+              const valDisplay = wrap.querySelector('.bio-value');
+              if (valDisplay) animateValue(valDisplay, 0, target, 2500);
+            }
           });
         }
       });
