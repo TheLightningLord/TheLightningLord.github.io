@@ -53,7 +53,7 @@
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
-      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f7ff 100%);
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #ebf5ff 100%);
     }
     #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
@@ -87,7 +87,6 @@
     .nav-btns { display: flex; gap: 10px; align-items: center; }
     @media (max-width: 600px) { .nav-btns { display: none; } }
 
-    /* === REFINED PILL BUTTONS === */
     .btn-pill {
       position: relative;
       padding: 12px 24px;
@@ -115,7 +114,6 @@
 
     .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-    /* Subtler shimmer sweep */
     @keyframes shimmer-sweep {
       0% { left: -100%; }
       30% { left: 100%; }
@@ -140,7 +138,7 @@
 
     /* === HERO SECTION === */
     .hero {
-      min-height: 90vh;
+      min-height: 92vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -156,8 +154,9 @@
     }
     .location-pill { font-weight: 800; font-size: 0.85rem; color: var(--color-navy); background: rgba(37, 99, 235, 0.08); padding: 10px 24px; border-radius: 99px; }
 
-    .hero h1 { font-size: clamp(3rem, 11vw, 7.5rem); margin-bottom: 2rem; font-weight: 900; color: var(--color-navy); line-height: 0.88; }
+    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 2.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
     
+    /* --- HEADLINE SHINE --- */
     @keyframes textShine {
       0% { background-position: -200% center; }
       100% { background-position: 200% center; }
@@ -176,9 +175,19 @@
       -webkit-text-fill-color: transparent;
       animation: textShine 4s infinite linear;
       display: inline-block;
+      padding: 0 5px;
     }
 
-    .hero p { max-width: 850px; margin: 0 auto 4rem; font-size: clamp(1.2rem, 3.5vw, 1.5rem); color: #475569; font-weight: 400; line-height: 1.6; }
+    /* MISSION TEXT VISIBILITY */
+    .hero p { 
+        max-width: 900px; 
+        margin: 0 auto 4rem; 
+        font-size: clamp(1.3rem, 3.5vw, 1.6rem); 
+        color: #1e293b; 
+        font-weight: 500; 
+        line-height: 1.5; 
+        letter-spacing: -0.01em;
+    }
     
     .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
     @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
@@ -203,7 +212,6 @@
       box-shadow: var(--shadow-luxe);
     }
     
-    /* Subtle glimmer for Hero buttons too */
     .btn-hero::after {
       content: '';
       position: absolute;
@@ -282,7 +290,7 @@
     .arc-card strong { font-size: 1.4rem; display: block; margin-bottom: 15px; color: var(--color-navy); }
     .arc-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
 
-    /* === MOBILE PERSISTENT COMMAND BAR === */
+    /* === MOBILE COMMAND BAR === */
     .mobile-fab-bar {
       position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 36px); max-width: 440px;
@@ -341,8 +349,17 @@
         <div class="hero-badge">Clinical Movement Specialist</div>
         <div class="location-pill"><i>📍</i> Premier Senior Care in Clark County, WA</div>
       </div>
-      <h1>Movement made <span>Fun.</span><br>Professional care made <span>Easy.</span></h1>
-      <p>Specialized mobile physical coaching for Clark County’s elite seniors. We turn complex rehabilitation into joyful, manageable daily wins—delivered directly to your home.</p>
+      
+      <!-- DYNAMIC HEADLINE -->
+      <h1 id="dynamic-headline">
+        <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
+      </h1>
+      
+      <!-- CONSISTENT MISSION TEXT -->
+      <p id="mission-text">
+        Meet your experts in delivering safe, fun, and clinically backed personal training for seniors.
+        Expert Senior Fitness Delivered to your living room.
+      </p>
       
       <div class="hero-btns">
         <a href="booking.html" class="btn-hero btn-primary-luxe">Schedule a visit</a>
@@ -478,11 +495,29 @@
   </footer>
 
   <script>
-    // --- VITALITY BUBBLE ENGINE ---
+    // --- DYNAMIC HEADLINE ENGINE ---
+    const headlines = [
+      "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
+      "Reclaiming your <span>Freedom</span> is finally <span>Fun</span> and <span>Easy.</span>",
+      "Discover the <span>Joy</span> of Clinical Strength, <span>Safely</span> at Home.",
+      "<span>Thrive</span> with Professional Care that feels <span>Fun</span> and <span>Easy.</span>",
+      "Your <span>Independence</span> Forecast made <span>Fun</span> and <span>Easily</span> Proven.",
+      "Movement made <span>Fun.</span> Professional care made <span>Easy.</span>",
+      "Experience <span>Vitality</span> that feels <span>Fun</span> and <span>Safely</span> Simple."
+    ];
+
+    function setDynamicHeadline() {
+      const h1 = document.getElementById('dynamic-headline');
+      const randomIndex = Math.floor(Math.random() * headlines.length);
+      h1.innerHTML = headlines[randomIndex];
+    }
+
+    // --- INTENSIFIED VITALITY BUBBLE ENGINE ---
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, bubbles = [];
-    const bubbleCount = window.innerWidth < 768 ? 22 : 45;
+    const bubbleCount = window.innerWidth < 768 ? 45 : 100; // Increased count
+    const mouse = { x: -1000, y: -1000, radius: 220 }; // Neural avoidance radius
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -493,25 +528,52 @@
     class Bubble {
       constructor() { this.reset(); }
       reset() {
-        this.radius = Math.random() * 22 + 5;
+        this.radius = Math.random() * 24 + 6;
         this.x = Math.random() * width;
-        this.y = height + this.radius + Math.random() * 200;
-        this.vy = -(Math.random() * 0.45 + 0.15);
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.opacity = Math.random() * 0.14 + 0.05;
+        this.y = height + this.radius + Math.random() * 300;
+        this.vy = -(Math.random() * 0.8 + 0.3); // Increased rise speed
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.opacity = Math.random() * 0.18 + 0.05;
         this.wobble = Math.random() * Math.PI * 2;
+        this.wobbleSpeed = Math.random() * 0.03 + 0.01;
       }
       update() {
+        // High-Intensity Avoidance Physics
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        
+        if (dist < mouse.radius) {
+          let force = (mouse.radius - dist) / mouse.radius;
+          this.x -= (dx / dist) * force * 10;
+          this.y -= (dy / dist) * force * 10;
+        }
+
         this.y += this.vy;
-        this.wobble += 0.015;
-        this.x += Math.sin(this.wobble) * 0.18 + this.vx;
+        this.wobble += this.wobbleSpeed;
+        this.x += Math.sin(this.wobble) * 0.25 + this.vx;
         if (this.y < -this.radius) this.reset();
       }
       draw() {
+        // Radial Gradient for Bioluminescent Feel
+        let gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.radius
+        );
+        gradient.addColorStop(0, `rgba(37, 99, 235, ${this.opacity * 1.5})`);
+        gradient.addColorStop(1, `rgba(37, 99, 235, 0)`);
+        
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
+        ctx.fillStyle = gradient;
         ctx.fill();
+        
+        // Crisp outer ring
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(37, 99, 235, ${this.opacity * 0.4})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
     }
 
@@ -521,6 +583,16 @@
       bubbles.forEach(b => { b.update(); b.draw(); });
       requestAnimationFrame(animate);
     }
+
+    // Interaction Listeners
+    const handleMove = (e) => {
+      const touch = e.touches ? e.touches[0] : e;
+      mouse.x = touch.clientX; mouse.y = touch.clientY;
+    };
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('touchstart', handleMove, { passive: true });
+    window.addEventListener('touchmove', handleMove, { passive: true });
+    window.addEventListener('touchend', () => { mouse.x = -1000; mouse.y = -1000; });
 
     // --- SCROLL REVEAL & STEPS LOGIC ---
     const revealObserver = new IntersectionObserver((entries) => {
@@ -562,10 +634,15 @@
       window.requestAnimationFrame(step);
     }
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    // Initialize
+    window.onload = function() {
+      setDynamicHeadline();
+      resize();
+      animate();
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    };
+
     window.addEventListener('resize', resize);
-    resize();
-    animate();
   </script>
 </body>
 </html>
