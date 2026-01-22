@@ -110,18 +110,12 @@
     .menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
     .menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
-    /* MOBILE OVERLAY MENU */
+    /* OVERLAY */
     .mobile-menu-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      z-index: 1500;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      padding: 40px;
-      transform: translateY(-100%);
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(40px);
+      z-index: 1500; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 40px; transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-menu-overlay.active { transform: translateY(0); }
     .mobile-nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
@@ -145,7 +139,7 @@
 
     /* === HERO SECTION === */
     .hero {
-      min-height: 95vh;
+      min-height: 98vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -162,40 +156,71 @@
     }
     .location-pill { font-weight: 800; font-size: 0.85rem; color: var(--color-navy); background: rgba(var(--theme-bubble), 0.08); padding: 10px 24px; border-radius: 99px; transition: background 1s ease; }
 
-    .hero h1 { font-size: clamp(2.6rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
+    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
     
-    /* === NEW: NEURAL PULSE ANIMATION === */
-    @keyframes neuralPulse {
-      0%, 100% { transform: translateY(0) scale(1); text-shadow: 0 0 10px transparent; filter: brightness(1); }
-      50% { transform: translateY(-4px) scale(1.03); text-shadow: 0 0 25px var(--theme-glow); filter: brightness(1.2); }
+    /* === FLOWING UNDERLINE ANIMATION === */
+    @keyframes drawUnderline {
+      0%, 100% { width: 0%; left: 0; }
+      50% { width: 100%; left: 0; }
+    }
+    @keyframes colorBreathe {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.4); }
     }
 
-    .hero h1 span, .hero p span {
+    .hero h1 span {
+      position: relative;
       display: inline-block;
       color: var(--theme-primary);
-      animation: neuralPulse 4s infinite ease-in-out;
+      animation: colorBreathe 4s infinite ease-in-out;
       transition: color 1s ease;
+      padding: 0 4px;
+    }
+    .hero h1 span::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 0%;
+      height: 6px;
+      background: var(--theme-primary);
+      border-radius: 4px;
+      opacity: 0.4;
+      animation: drawUnderline 4s infinite ease-in-out;
     }
 
-    /* MISSION CONTAINER */
+    /* === CLINICAL MISSION GLASS (REFINED) === */
     .mission-container {
-        max-width: 850px;
+        max-width: 900px;
         margin: 0 auto 5rem;
         text-align: left;
-        padding-left: 30px;
-        border-left: 4px solid var(--theme-primary);
+        padding: 35px 45px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-left: 6px solid var(--theme-primary);
         position: relative;
-        transition: border 1s ease;
+        box-shadow: var(--shadow-luxe);
+        transition: border 1s ease, background 1s ease;
     }
-    @media (max-width: 768px) { .mission-container { padding-left: 20px; text-align: center; border-left: none; border-bottom: 2px solid var(--theme-primary); padding-bottom: 20px; } }
+    @media (max-width: 768px) { .mission-container { padding: 25px 20px; text-align: center; border-left: none; border-bottom: 4px solid var(--theme-primary); border-radius: 24px; } }
 
     .hero p { 
-        font-size: clamp(1.2rem, 3.2vw, 1.5rem); 
+        font-size: clamp(1.15rem, 3vw, 1.45rem); 
         color: #1e293b; 
         font-weight: 500; 
-        line-height: 1.6; 
+        line-height: 1.7; 
         letter-spacing: -0.01em;
         margin: 0;
+    }
+    /* NO ANIMATION ON TEXT IN MISSION AREA */
+    .hero p span {
+        display: inline;
+        color: var(--theme-primary);
+        animation: none;
+        font-weight: 700;
     }
     .hero p strong { color: var(--color-navy); font-weight: 800; }
     .hero p .at-home-callout {
@@ -221,63 +246,45 @@
     .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
     .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
 
-    /* === TRUST TICKER === */
+    /* === REST OF PAGE STYLES === */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
     .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; }
+    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* === VITALITY PATH STEPPER === */
     .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
     .onboarding-header { text-align: center; margin-bottom: 80px; }
-    .onboarding-header h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; }
-    
     .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
     .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
-    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); box-shadow: 0 0 15px rgba(var(--theme-bubble), 0.4); }
-    
+    .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height; }
     .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s; transform: translateX(20px); }
     .step-item.active { opacity: 1; transform: translateX(0); }
-    .step-node { 
-        width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; 
-        flex-shrink: 0; display: flex; align-items: center; justify-content: center; 
-        font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s;
-    }
-    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); transform: scale(1.1) rotate(5deg); box-shadow: 0 10px 30px rgba(var(--theme-bubble), 0.15); }
-    .step-content strong { display: block; font-size: 1.6rem; color: var(--color-navy); margin-bottom: 8px; line-height: 1.1; }
-    .step-content p { font-size: 1.1rem; color: #64748b; line-height: 1.6; max-width: 500px; }
-
+    .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
+    .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
     @media (min-width: 768px) {
         .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
         .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 6px; }
         .stepper-line-fill { top: 28px; left: 0; height: 6px; width: 0%; }
         .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
-        .step-item.active { transform: translateY(0); }
     }
 
-    /* === SUCCESS METRICS === */
     .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
     .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
     @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
     .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s; border: 2.5px solid transparent; }
-    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; }
-    
     .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
     .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
     .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
 
-    /* === GROWTH ROADMAP === */
     .arc-section { padding: 100px 24px; max-width: 1300px; margin: 0 auto; }
     .arc-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 60px; }
     @media (min-width: 768px) { .arc-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
-    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; position: relative; overflow: hidden; }
-    .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); box-shadow: var(--shadow-luxe); }
-    .arc-week { font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4; }
+    .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; }
+    .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); }
 
-    /* === MOBILE COMMAND BAR === */
     .mobile-fab-bar {
       position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 36px); max-width: 440px;
@@ -357,7 +364,7 @@
         <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
       </h1>
       
-      <!-- REDESIGNED MISSION CONTAINER -->
+      <!-- RE-ENGINEERED MISSION CARD -->
       <div class="mission-container">
         <p>
             Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> personal training designed specifically for seniors.
@@ -388,7 +395,7 @@
   <!-- THE VITALITY PATH -->
   <section class="onboarding-section reveal" id="onboarding">
     <div class="onboarding-header">
-        <h2>Your Path to <span>Vitality</span></h2>
+        <h2 style="font-weight: 900;">Your Path to <span style="color:var(--theme-primary)">Vitality</span></h2>
         <p style="color: #64748b; font-size: 1.25rem;">A seamless start to a more energetic life.</p>
     </div>
     
@@ -423,7 +430,7 @@
   <!-- CLINICAL OUTCOMES -->
   <section class="results-strip reveal" id="results">
       <div style="text-align: center; margin-bottom: 80px;">
-        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span>Smiles.</span></h2>
+        <h2 style="font-size: 3.8rem; font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
         <p style="color: #64748b; font-size: 1.4rem;">Verifiable biological proof, backed by geriatric research.</p>
       </div>
       <div class="bio-grid">
@@ -466,7 +473,7 @@
   <!-- GROWTH ROADMAP -->
   <section class="arc-section reveal" id="arc">
     <div style="text-align: center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span>Freedom Arc</span></h2>
+        <h2 style="font-size: 3.5rem; font-weight: 900;">The 12-Week <span style="color:var(--theme-primary)">Freedom Arc</span></h2>
         <p style="color: #64748b; margin-top: 15px; font-size: 1.25rem;">A milestone-driven roadmap to your best self.</p>
     </div>
     <div class="arc-grid">
@@ -626,11 +633,8 @@
           rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
             ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
-            const wrap = ring.closest('.bio-visual-wrap');
-            if (wrap) {
-              const valDisplay = wrap.querySelector('.bio-value');
-              if (valDisplay) animateValue(valDisplay, 0, target, 2500);
-            }
+            const valDisplay = ring.closest('.bio-visual-wrap').querySelector('.bio-value');
+            if (valDisplay) animateValue(valDisplay, 0, target, 2500);
           });
         }
       });
