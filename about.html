@@ -2,165 +2,531 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Story | Olympian Health Solutions</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>About Zeuse Valentine | Olympian Health Solutions</title>
+
+  <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   
-  <style>
+  <style id="theme-variables">
     :root {
-      --primary-joy: #f59e0b; 
-      --bg-warm: #fffdfa;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --card-white: #ffffff;
-      --shadow-joy: 0 20px 25px -5px rgba(245, 158, 11, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --theme-primary: #2563eb;
+      --theme-accent: #60a5fa;
+      --theme-bg-end: #ebf5ff;
+      --theme-bubble: 37, 99, 235;
+      --theme-glow: rgba(37, 99, 235, 0.4);
+      
+      --color-navy: #030712;
+      --color-frost: #f8fafc;
+      --color-white: #ffffff;
+      
+      --font-header: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      
+      --glass: rgba(255, 255, 255, 0.88);
+      --radius-xl: 56px;
+      --radius-lg: 32px;
+      --radius-full: 999px;
+      
+      --shadow-luxe: 0 20px 50px rgba(0,0,0,0.04);
+      --shadow-active: 0 10px 40px rgba(var(--theme-bubble), 0.15);
     }
+  </style>
 
-    * { box-sizing: border-box; }
-    body { 
-      margin: 0; 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      background-color: var(--bg-warm); 
-      color: var(--text-main);
-      line-height: 1.6;
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--color-navy);
+      background-color: var(--color-frost);
+      line-height: 1.4;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 1s ease;
+    }
+    body.menu-open { overflow: hidden; }
+
+    h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
+
+    /* === BACKGROUND VITALITY === */
+    .bg-animation {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, var(--theme-bg-end) 100%);
+      transition: background 1s ease;
+    }
+    #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    /* === NAVIGATION === */
+    nav {
+      position: fixed;
+      top: 15px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 30px); max-width: 1400px;
+      z-index: 2000;
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: var(--radius-full);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      padding: 8px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-luxe);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 36px; height: 36px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
+    .brand-name { font-weight: 800; font-size: 1.1rem; color: var(--color-navy); }
+
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; }
+    @media (max-width: 1100px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
+    .nav-links a:hover { color: var(--theme-primary); }
+
+    .btn-pill {
+      position: relative; padding: 10px 24px; border-radius: var(--radius-full);
+      font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em; overflow: hidden; transition: 0.4s;
+      display: inline-block; text-align: center; white-space: nowrap; border: 1px solid transparent;
+      background: var(--color-navy); color: #fff !important;
     }
 
-    h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 800; margin-top: 0; }
-
-    /* === HEADER === */
-    header {
-      padding: 1.5rem 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(255, 253, 250, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+    /* === ABOUT HERO === */
+    .about-hero {
+      padding: 180px 24px 80px;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
     }
-    .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary-joy); text-decoration: none; }
-    .nav-links a { margin-left: 2rem; text-decoration: none; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
-    .nav-links a:hover { color: var(--primary-joy); }
+    @media (max-width: 1024px) { .about-hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; } }
 
-    .container { max-width: 1000px; margin: 0 auto; padding: 10rem 1.5rem 6rem; }
+    .founder-frame {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: 4/5;
+        background: #eee;
+        border-radius: 48px;
+        overflow: hidden;
+        box-shadow: var(--shadow-luxe);
+        margin: 0 auto;
+        border: 2px solid transparent;
+    }
+    .founder-image-placeholder {
+        width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        color: #94a3b8;
+    }
 
-    /* === STORY SECTION === */
-    .story-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; margin-bottom: 8rem; }
-    .founder-image-wrap { position: relative; border-radius: 40px; overflow: hidden; box-shadow: var(--shadow-joy); transform: rotate(-2deg); transition: transform 0.5s; }
-    .founder-image-wrap:hover { transform: rotate(0deg) scale(1.02); }
-    .founder-image-wrap img { width: 100%; display: block; border: 10px solid white; }
+    .hero-content h1 { font-size: clamp(3rem, 8vw, 5.5rem); margin-bottom: 2rem; font-weight: 900; }
+    .hero-content h1 span { color: var(--theme-primary); transition: color 1s ease; }
+    .hero-content p { font-size: 1.4rem; line-height: 1.6; color: #475569; margin-bottom: 3rem; }
+
+    /* === NEW: HORIZONTAL CLINICAL PIPELINE === */
+    .h-pipeline-banner {
+        background: var(--color-navy);
+        padding: 4rem 0;
+        overflow: hidden;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
     
-    .story-content h1 { font-size: 3.5rem; letter-spacing: -2px; line-height: 1; margin-bottom: 2rem; }
-    .story-content p { font-size: 1.2rem; color: var(--text-muted); font-weight: 300; margin-bottom: 1.5rem; }
-
-    /* === VALUE PILLARS === */
-    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 10rem; }
-    .pillar-card { background: #fff; padding: 2.5rem; border-radius: 32px; border: 1px solid #f1f5f9; text-align: center; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    .pillar-card:hover { transform: scale(1.05); background: #fffdf5; border-color: var(--primary-joy); }
-    .pillar-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-    .pillar-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .pillar-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
-
-    /* === MISSION SECTION === */
-    .mission-section { background: #fefce8; border: 1px solid #fef3c7; border-radius: 56px; padding: 5rem; text-align: center; position: relative; overflow: hidden; }
-    .mission-section::after { content: "✨"; position: absolute; font-size: 10rem; opacity: 0.05; right: -2rem; bottom: -2rem; }
-    .mission-section h2 { font-size: 3rem; margin-bottom: 2rem; }
-    .mission-text { font-size: 1.5rem; font-weight: 300; max-width: 800px; margin: 0 auto; color: #92400e; }
-
-    /* === ANIMATIONS === */
-    .animate-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .animate-in.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 768px) {
-      .story-layout { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-      .mission-section { padding: 3rem 1.5rem; }
-      .container { padding-top: 8rem; }
+    .h-pipeline-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        position: relative;
     }
+
+    .h-pipeline-track {
+        height: 4px;
+        background: rgba(255,255,255,0.1);
+        width: 100%;
+        position: relative;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .h-pipeline-pulse {
+        position: absolute;
+        top: 0; left: -20%;
+        width: 20%; height: 100%;
+        background: linear-gradient(to right, transparent, var(--theme-accent), var(--theme-primary), var(--theme-accent), transparent);
+        filter: blur(4px);
+        animation: pulseRight 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes pulseRight {
+        0% { left: -20%; }
+        100% { left: 120%; }
+    }
+
+    .h-pipeline-items {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -14px; /* Align nodes with track */
+        position: relative;
+        z-index: 2;
+    }
+    @media (max-width: 900px) {
+        .h-pipeline-items { flex-wrap: wrap; gap: 40px; justify-content: center; }
+        .h-pipeline-track { display: none; }
+    }
+
+    .h-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        transition: 0.5s;
+    }
+
+    .h-node {
+        width: 24px; height: 24px;
+        background: var(--color-navy);
+        border: 4px solid rgba(255,255,255,0.2);
+        border-radius: 50%;
+        margin-bottom: 20px;
+        transition: 0.5s;
+        box-shadow: 0 0 0 rgba(var(--theme-bubble), 0);
+    }
+
+    .h-label {
+        font-family: var(--font-header);
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: 0.5s;
+    }
+
+    /* Lighting up logic */
+    @keyframes itemGlow {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(1.8); }
+    }
+
+    .h-item.active .h-node {
+        border-color: var(--theme-primary);
+        box-shadow: 0 0 20px var(--theme-primary);
+        transform: scale(1.2);
+    }
+    .h-item.active .h-label {
+        color: #fff;
+        text-shadow: 0 0 10px var(--theme-glow);
+    }
+
+    /* === CLINICAL ACCREDITATION PIPELINE (VERTICAL) === */
+    .pipeline-section { padding: 120px 24px; max-width: 1100px; margin: 0 auto; }
+    .pipeline-header { text-align: center; margin-bottom: 80px; }
+    .pipeline-header h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; }
+    .pipeline-header h2 span { color: var(--theme-primary); transition: 1s; }
+    .pipeline-container { position: relative; padding-left: 80px; }
+    @media (max-width: 768px) { .pipeline-container { padding-left: 50px; } }
+    .pipeline-bar { position: absolute; left: 30px; top: 0; bottom: 0; width: 4px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
+    .pipeline-pulse { position: absolute; top: -100px; left: 0; width: 100%; height: 150px; background: linear-gradient(to bottom, transparent, var(--theme-primary), transparent); filter: blur(2px); animation: pulseDown 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+    @keyframes pulseDown { 0% { top: -150px; } 100% { top: 100%; } }
+    .pipeline-item { position: relative; margin-bottom: 100px; opacity: 0.25; transform: translateX(20px); transition: all 0.8s; }
+    .pipeline-item.active { opacity: 1; transform: translateX(0); }
+    .pipeline-node { position: absolute; left: -62px; top: 5px; width: 28px; height: 28px; background: #fff; border: 4px solid #e2e8f0; border-radius: 50%; z-index: 10; transition: 0.5s; }
+    .active .pipeline-node { border-color: var(--theme-primary); box-shadow: 0 0 20px var(--theme-glow); transform: scale(1.3); }
+    .pipeline-content { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); padding: 35px 45px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.6); transition: 0.5s; }
+    .active .pipeline-content { background: #fff; box-shadow: var(--shadow-luxe); border-color: rgba(var(--theme-bubble), 0.2); }
+    .pipeline-content strong { display: block; font-size: 1.8rem; color: var(--color-navy); margin-bottom: 12px; }
+    .pipeline-content p { color: #64748b; font-size: 1.15rem; line-height: 1.6; }
+
+    /* === HEART SECTION === */
+    .heart-section { padding: 100px 24px; max-width: 1200px; margin: 60px auto; background: var(--color-navy); border-radius: 64px; color: #fff; display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: center; overflow: hidden; position: relative; }
+    @media (max-width: 900px) { .heart-section { grid-template-columns: 1fr; text-align: center; } }
+    .dog-frame { width: 100%; aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.1); }
+    .heart-content h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1.5rem; font-weight: 900; }
+    .heart-content h2 span { color: var(--theme-accent); }
+    .heart-content p { font-size: 1.25rem; line-height: 1.7; opacity: 0.8; margin-bottom: 2rem; }
+    .quote-block { border-left: 4px solid var(--theme-accent); padding-left: 24px; font-style: italic; font-size: 1.1rem; opacity: 0.9; }
+
+    /* === CTA === */
+    .cta-final { padding: 120px 24px; text-align: center; }
+    .btn-luxe { display: inline-flex; align-items: center; gap: 15px; padding: 24px 60px; background: var(--color-navy); color: #fff; border-radius: var(--radius-full); font-weight: 900; font-size: 1.2rem; text-decoration: none; transition: 0.4s; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .btn-luxe:hover { transform: scale(1.05); background: var(--theme-primary); }
+
+    /* Pulse Card Animation */
+    @keyframes pulseBorder { 0%, 100% { border-color: rgba(var(--theme-bubble), 0.2); } 50% { border-color: rgba(var(--theme-bubble), 0.8); } }
+    .pulse-card { animation: pulseBorder 3s infinite ease-in-out; }
+
+    footer { padding: 6rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <header>
-    <a href="index.html" class="logo">OLYMPIAN</a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html" style="color: var(--primary-joy)">About</a>
-      <a href="education.html">Science</a>
-      <a href="exercisequiz.html">Assessment</a>
-      <a href="booking.html">Book Now</a>
-    </nav>
-  </header>
-
-  <div class="container">
-    <section class="story-layout">
-      <div class="founder-image-wrap animate-in">
-        <!-- Replace with real founder photo if available -->
-        <img src="https://via.placeholder.com/600x800?text=Zeuse+Valentine" alt="Zeuse Valentine">
-        <div style="position: absolute; bottom: 2rem; left: 2rem; background: white; padding: 1rem 2rem; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
-          <span style="display: block; font-weight: 800; font-size: 1rem;">Zeuse Valentine</span>
-          <span style="font-size: 0.7rem; font-weight: 700; color: var(--primary-joy); text-transform: uppercase; letter-spacing: 1px;">Clinical Director & Founder</span>
-        </div>
-      </div>
-      <div class="story-content animate-in">
-        <span style="color: var(--primary-joy); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Our Philosophy</span>
-        <h1>We believe movement is <span style="color: var(--primary-joy)">Medicine.</span></h1>
-        <p>Olympian Health Solutions was born from a singular vision: That clinical-grade health interventions shouldn't be trapped within clinic walls. </p>
-        <p>As a Student Doctor of Physical Therapy and a performance coach, I saw a gap between "working out" and "healing." We bridge that gap by bringing the complete clinic to your living room.</p>
-        <p>Our programs aren't just about weight or vanity. They are about <strong>autonomy</strong>. We use the latest evidence in pain science and exercise physiology to ensure you keep the keys to your own life—independent, steady, and vibrant.</p>
-      </div>
-    </section>
-
-    <div class="pillars-grid">
-      <div class="pillar-card animate-in">
-        <span class="pillar-icon">🧬</span>
-        <h3>Evidence-First</h3>
-        <p>Every rep and every meal plan is anchored in current peer-reviewed research.</p>
-      </div>
-      <div class="pillar-card animate-in" style="transition-delay: 0.1s;">
-        <span class="pillar-icon">🏠</span>
-        <h3>Barrier-Free</h3>
-        <p>We eliminate travel and friction by bringing professional care directly to you.</p>
-      </div>
-      <div class="pillar-card animate-in" style="transition-delay: 0.2s;">
-        <span class="pillar-icon">🤝</span>
-        <h3>Human-Centric</h3>
-        <p>You aren't a patient ID. You are a story, and we are here to support your next chapter.</p>
-      </div>
-      <div class="pillar-card animate-in" style="transition-delay: 0.3s;">
-        <span class="pillar-icon">☀️</span>
-        <h3>Joy-Driven</h3>
-        <p>Health should feel like a gain, never a chore. We celebrate every milestone.</p>
-      </div>
-    </div>
-
-    <section class="mission-section animate-in">
-      <span style="font-weight: 800; color: var(--primary-joy); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem;">Our Mission</span>
-      <h2>Revitalizing Independence</h2>
-      <p class="mission-text">To deliver world-class, prescriptive movement guidance that empowers individuals to reclaim their vitality, regardless of age or starting point.</p>
-    </section>
-
-    <div style="margin-top: 8rem; text-align: center;">
-      <h3 style="font-size: 2rem;">Ready to begin your chapter?</h3>
-      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-        <a href="booking.html" style="background: var(--text-main); color: #fff; padding: 1.2rem 2.5rem; border-radius: 99px; text-decoration: none; font-weight: 800;">Book a Consultation</a>
-        <a href="exercisequiz.html" style="background: var(--primary-joy); color: #fff; padding: 1.2rem 2.5rem; border-radius: 99px; text-decoration: none; font-weight: 800;">See the Science</a>
-      </div>
-    </div>
+  <!-- VITALITY ENGINE -->
+  <div class="bg-animation">
+    <canvas id="bubble-canvas"></canvas>
   </div>
 
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="brand">
+      <div class="logo-mark">O</div>
+      <span class="brand-name">Olympian</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#results">Clinical Proof</a></li>
+      <li><a href="index.html#arc">Roadmap</a></li>
+      <li><a href="index.html#advantage">Education</a></li>
+      <li><a href="#">About us</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="booking.html" class="btn-pill">Book now</a>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero reveal">
+    <div class="founder-frame pulse-card">
+        <div class="founder-image-placeholder">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <p style="margin-top: 15px; font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;">Zeuse Valentine, DPT Student</p>
+        </div>
+    </div>
+    <div class="hero-content">
+        <h1>Meet Your Partner in <span>Longevity.</span></h1>
+        <p>
+            Hi, I’m <strong>Zeuse Valentine</strong>. My mission is to bridge the gap between complex clinical rehabilitation and the joyful, active lifestyle every senior deserves. 
+        </p>
+        <p style="font-size: 1.15rem; color: #64748b;">
+            With a background in Doctorate-level Physical Therapy studies and Kinesiology, I don't just "coach"—I prescribe clinical movement that heals the body and restores independence from the comfort of your favorite chair.
+        </p>
+    </div>
+  </section>
+
+  <!-- NEW: HORIZONTAL CLINICAL PIPELINE (REPLACES TICKER) -->
+  <section class="h-pipeline-banner">
+    <div class="h-pipeline-container">
+        <div class="h-pipeline-items">
+            <div class="h-item" id="h-node-1">
+                <div class="h-node"></div>
+                <span class="h-label">DPT Candidate</span>
+            </div>
+            <div class="h-item" id="h-node-2">
+                <div class="h-node"></div>
+                <span class="h-label">Clinical Expert</span>
+            </div>
+            <div class="h-item" id="h-node-3">
+                <div class="h-node"></div>
+                <span class="h-label">OSU Honors Alumni</span>
+            </div>
+            <div class="h-item" id="h-node-4">
+                <div class="h-node"></div>
+                <span class="h-label">HIPAA Secure</span>
+            </div>
+            <div class="h-item" id="h-node-5">
+                <div class="h-node"></div>
+                <span class="h-label">NASM Certified</span>
+            </div>
+        </div>
+        <div class="h-pipeline-track">
+            <div class="h-pipeline-pulse" id="pulse-element"></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- CLINICAL ACCREDITATION PIPELINE (VERTICAL) -->
+  <section class="pipeline-section">
+    <div class="pipeline-header reveal">
+        <h2>The Scientific <span>Foundation</span></h2>
+        <p style="color: #64748b; font-size: 1.3rem;">Unmatched academic rigor for at-home senior fitness.</p>
+    </div>
+    
+    <div class="pipeline-container">
+        <div class="pipeline-bar">
+            <div class="pipeline-pulse"></div>
+        </div>
+        
+        <div class="pipeline-item" id="cred-1">
+            <div class="pipeline-node"></div>
+            <div class="pipeline-content">
+                <strong>OSU Honors Kinesiology</strong>
+                <p>Bachelor of Science with High Honors from Oregon State University. Specialized in human movement mechanics, biomechanics, and geriatric physiology.</p>
+            </div>
+        </div>
+        
+        <div class="pipeline-item" id="cred-2">
+            <div class="pipeline-node"></div>
+            <div class="pipeline-content">
+                <strong>Doctor of Physical Therapy Student</strong>
+                <p>Currently pursuing advanced clinical studies in Physical Therapy, ensuring your protocols are built on the most current medical research in musculoskeletal health.</p>
+            </div>
+        </div>
+        
+        <div class="pipeline-item" id="cred-3">
+            <div class="pipeline-node"></div>
+            <div class="pipeline-content">
+                <strong>Associate in Science</strong>
+                <p>A broad biological foundation that informs every decision we make regarding your cardiovascular, metabolic, and skeletal health.</p>
+            </div>
+        </div>
+        
+        <div class="pipeline-item" id="cred-4">
+            <div class="pipeline-node"></div>
+            <div class="pipeline-content">
+                <strong>NASM Certified Trainer</strong>
+                <p>Certified by the National Academy of Sports Medicine, setting an elite professional standard for corrective exercise and program design.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- HEART OF OLYMPIAN (THE DOG) -->
+  <section class="heart-section reveal">
+    <div class="dog-frame">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.172C10 3.782 11.232 2 13 2c3.351 0 5 3.125 5 5.61 0 3.119-3.099 5.39-5 5.39"/><path d="M14 5.172C14 3.782 12.768 2 11 2c-3.351 0-5 3.125-5 5.61 0 3.119 3.099 5.39 5 5.39"/><path d="M12 14.5c.5 0 1 .5 1 1.5 0 2-2 3.5-3 3.5s-3-1.5-3-3.5c0-1 .5-1.5 1-1.5z"/><path d="M13 14.5c.5 0 1 .5 1 1.5 0 2-2 3.5-3 3.5s-3-1.5-3-3.5c0-1 .5-1.5 1-1.5z"/><circle cx="12" cy="13" r="10"/></svg>
+        <p style="margin-top: 15px; font-weight: 800; font-size: 0.6rem; text-transform: uppercase;">Best Friend & Chief Vitality Officer</p>
+    </div>
+    <div class="heart-content">
+        <h2>The Heart of <span>Olympian.</span></h2>
+        <p>
+            While clinical data drives my methods, my <strong>best friend</strong> (my dog) drives my spirit. He is a daily reminder that movement isn't just about data points—it's about having the energy to spend quality time with those who love us most.
+        </p>
+        <div class="quote-block">
+            "He is my constant companion and my greatest motivation. I want every client to reclaim the joy of moving effortlessly alongside their own best friends."
+        </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final reveal">
+    <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 2rem;">Ready to meet your <span>new partner?</span></h2>
+    <a href="booking.html" class="btn-luxe">
+        Schedule Your Home Visit <i>→</i>
+    </a>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Olympian Health Solutions. Clinical Senior Specialists. Clark County, WA.</p>
+  </footer>
+
   <script>
-    // Intersection Observer for animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
+    // --- THEME ENGINE ---
+    const themes = [
+      { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', glow: 'rgba(37, 99, 235, 0.4)' },
+      { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', glow: 'rgba(124, 58, 237, 0.4)' },
+      { primary: '#0369a1', accent: '#38bdf8', bgEnd: '#f0f9ff', bubble: '3, 105, 161', glow: 'rgba(3, 105, 161, 0.4)' },
+      { primary: '#475569', accent: '#94a3b8', bgEnd: '#f1f5f9', bubble: '71, 85, 105', glow: 'rgba(71, 85, 105, 0.4)' },
+      { primary: '#059669', accent: '#34d399', bgEnd: '#ecfdf5', bubble: '5, 150, 105', glow: 'rgba(5, 150, 105, 0.4)' }
+    ];
+
+    function applyRandomTheme() {
+      const theme = themes[Math.floor(Math.random() * themes.length)];
+      const root = document.documentElement;
+      root.style.setProperty('--theme-primary', theme.primary);
+      root.style.setProperty('--theme-accent', theme.accent);
+      root.style.setProperty('--theme-bg-end', theme.bgEnd);
+      root.style.setProperty('--theme-bubble', theme.bubble);
+      root.style.setProperty('--theme-glow', theme.glow);
+    }
+
+    // --- BUBBLE ENGINE ---
+    const canvas = document.getElementById('bubble-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, bubbles = [];
+    const bubbleCount = window.innerWidth < 768 ? 40 : 90;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initBubbles();
+    }
+
+    class Bubble {
+      constructor() { this.reset(); }
+      reset() {
+        this.radius = Math.random() * 22 + 5;
+        this.x = Math.random() * width;
+        this.y = height + this.radius + Math.random() * 300;
+        this.vy = -(Math.random() * 0.7 + 0.3);
+        this.opacity = Math.random() * 0.15 + 0.05;
+        this.wobble = Math.random() * Math.PI * 2;
+      }
+      update() {
+        this.y += this.vy;
+        this.wobble += 0.02;
+        this.x += Math.sin(this.wobble) * 0.2;
+        if (this.y < -this.radius) this.reset();
+      }
+      draw() {
+        let themeRGB = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${themeRGB}, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    function initBubbles() { bubbles = Array.from({length: bubbleCount}, () => new Bubble()); }
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      bubbles.forEach(b => { b.update(); b.draw(); });
+      requestAnimationFrame(animate);
+    }
+
+    // --- PIPELINE ILLUMINATION LOGIC ---
+    // Vertical observer
+    const pipelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.3 });
+
+    // Horizontal Pulse Sync Logic
+    function trackPulse() {
+        const pulse = document.getElementById('pulse-element');
+        const items = document.querySelectorAll('.h-item');
+        
+        setInterval(() => {
+            const pulseRect = pulse.getBoundingClientRect();
+            const pulseCenter = pulseRect.left + (pulseRect.width / 2);
+            
+            items.forEach(item => {
+                const itemRect = item.getBoundingClientRect();
+                const itemCenter = itemRect.left + (itemRect.width / 2);
+                
+                // If pulse is passing over the item
+                if (Math.abs(pulseCenter - itemCenter) < 100) {
+                    item.classList.add('active');
+                    setTimeout(() => item.classList.remove('active'), 1500);
+                }
+            });
+        }, 100);
+    }
+
+    // --- REVEAL ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+    window.onload = function() {
+      applyRandomTheme();
+      resize();
+      animate();
+      trackPulse();
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      document.querySelectorAll('.pipeline-item').forEach(item => pipelineObserver.observe(item));
+    };
+    window.addEventListener('resize', resize);
   </script>
 </body>
 </html>
