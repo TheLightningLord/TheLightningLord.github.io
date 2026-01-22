@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Vitality Nebula | OHS Elite Experience</title>
+  <title>Neural Supernova | OHS Elite Experience</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   
@@ -11,7 +11,7 @@
     :root {
       --theme-primary: #3b82f6;
       --theme-accent: #60a5fa;
-      --theme-gold: #facc15;
+      --theme-danger: #ef4444;
       --theme-glow: rgba(59, 130, 246, 0.5);
       --color-navy: #020617;
       --font-header: 'Outfit', sans-serif;
@@ -26,9 +26,20 @@
       color: #fff;
       overflow: hidden;
       touch-action: none;
+      transition: background-color 0.2s ease;
     }
 
     canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; }
+
+    /* The Strobe Overlay */
+    #strobe-layer {
+        position: fixed; inset: 0;
+        pointer-events: none; z-index: 11;
+        opacity: 0;
+        background: white;
+        mix-blend-mode: overlay;
+        transition: opacity 0.05s ease-out;
+    }
 
     #ui-layer {
       position: fixed; inset: 0;
@@ -58,13 +69,9 @@
       text-transform: uppercase; letter-spacing: 0.15em;
       box-shadow: 0 15px 40px var(--theme-glow);
       transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-      border: none;
-      color: #fff;
+      cursor: pointer; border: none; color: #fff;
     }
-    .btn-vitality:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-    /* Game HUD */
     #hud {
         position: fixed; top: 40px; left: 0; width: 100%;
         display: flex; justify-content: space-between; padding: 0 40px;
@@ -72,8 +79,7 @@
     }
     #hud.active { opacity: 1; }
 
-    .stat-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.4; margin-bottom: 4px; }
-    .stat-value { font-family: var(--font-header); font-size: 2.5rem; font-weight: 900; line-height: 1; }
+    .stat-value { font-family: var(--font-header); font-size: 2.5rem; font-weight: 900; line-height: 1; text-shadow: 0 0 20px var(--theme-glow); }
 
     .vitality-bar-wrap {
         position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
@@ -82,8 +88,8 @@
     }
     #vitality-fill {
         width: 100%; height: 100%;
-        background: linear-gradient(to right, #ef4444, var(--theme-primary), var(--theme-accent));
-        transition: width 0.3s ease;
+        background: linear-gradient(to right, var(--theme-danger), var(--theme-primary), var(--theme-accent));
+        transition: width 0.1s linear;
     }
 
     .ai-insight {
@@ -94,29 +100,45 @@
         border: 1px solid rgba(255,255,255,0.05);
     }
     .ai-insight.active { display: block; animation: fadeInUp 0.8s ease-out; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Hold Instruction Overlay */
-    #hold-prompt {
-        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        font-weight: 900; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5em;
-        opacity: 0; transition: 0.5s; pointer-events: none; z-index: 150;
+    @keyframes shake {
+      0%, 100% { transform: translate(0, 0); }
+      10%, 30%, 50%, 70%, 90% { transform: translate(-8px, -8px); }
+      20%, 40%, 60%, 80% { transform: translate(8px, 8px); }
     }
-    #hold-prompt.visible { opacity: 0.3; }
+    .shake-active { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
 
+    #hold-prompt {
+        position: fixed; top: 65%; left: 50%; transform: translate(-50%, -50%);
+        font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8em;
+        opacity: 0; transition: 0.5s; pointer-events: none; z-index: 150; color: var(--theme-accent);
+    }
+    #hold-prompt.visible { opacity: 0.5; animation: pulseFade 2s infinite; }
+    @keyframes pulseFade { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.6; } }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ai-loading { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--theme-accent); margin: 0 3px; animation: aiBounce 0.6s infinite alternate; }
+    .ai-loading:nth-child(2) { animation-delay: 0.2s; }
+    .ai-loading:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes aiBounce { from { opacity: 0.3; transform: scale(0.8); } to { opacity: 1; transform: scale(1.2); } }
   </style>
 </head>
 <body>
 
+  <div id="strobe-layer"></div>
   <canvas id="nebula-canvas"></canvas>
 
   <div id="hud">
       <div>
-          <div class="stat-label">Synthesis Level</div>
+          <div class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Synaptic Synthesis</div>
           <div class="stat-value tabular-nums" id="score-val">0</div>
       </div>
       <div class="text-right">
-          <div class="stat-label">Stability</div>
+          <div class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Neural Load</div>
           <div class="stat-value tabular-nums text-blue-400" id="stability-val">100%</div>
       </div>
   </div>
@@ -125,7 +147,7 @@
       <div id="vitality-fill"></div>
   </div>
 
-  <div id="hold-prompt">Place and Hold</div>
+  <div id="hold-prompt">Initialize Neural Connection</div>
 
   <div id="ui-layer">
       <!-- START SCREEN -->
@@ -134,72 +156,87 @@
               <div class="absolute inset-0 bg-blue-400/20 rounded-full animate-ping"></div>
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
           </div>
-          <h1 class="text-4xl font-black mb-4">Vitality Nebula</h1>
-          <p class="text-sm opacity-50 leading-relaxed mb-10">Touch the screen to generate your energy well. Keep holding to harvest biological sparks and expand your neural reach.</p>
+          <h1 class="text-4xl font-black mb-4">Neural Supernova</h1>
+          <p class="text-sm opacity-50 leading-relaxed mb-10">Touch and hold to generate a neural well. Guide the swarm to harvest mitochondrial sparks while avoiding the chaotic entropy clouds.</p>
           
-          <button class="btn-vitality w-full" onclick="game.start()">Begin Synthesis</button>
+          <button class="btn-vitality w-full" id="start-btn" onclick="game.start()">Initialize System</button>
           
-          <button class="mt-8 text-[10px] font-black uppercase tracking-widest opacity-30 hover:opacity-100 transition-opacity" onclick="askCoach('focus')">Request Neural Focus ✨</button>
+          <button class="mt-8 text-[10px] font-black uppercase tracking-widest opacity-30 hover:opacity-100 transition-opacity" id="coach-focus-btn" onclick="askCoach('focus')">Request Adaptive Focus ✨</button>
           <div id="ai-focus-box" class="ai-insight italic"></div>
       </div>
 
       <!-- RESULTS SCREEN -->
       <div id="game-over" class="hidden glass-card">
-          <h2 class="text-2xl font-black mb-2 opacity-50">Synthesis Complete</h2>
+          <h2 class="text-2xl font-black mb-2 opacity-50">Neural Map Destabilized</h2>
           <div class="text-7xl font-black text-blue-400 mb-2" id="final-score">0</div>
-          <div class="text-[10px] font-black uppercase tracking-[0.3em] mb-10">Total Vitality Harvested</div>
+          <div class="text-[10px] font-black uppercase tracking-[0.3em] mb-10">Peak Synthesis Achieved</div>
           
           <div id="ai-analysis-box" class="ai-insight active">
               <div class="flex justify-center gap-2 py-4">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
-                  <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                  <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                  <div class="ai-loading"></div>
+                  <div class="ai-loading"></div>
+                  <div class="ai-loading"></div>
               </div>
           </div>
 
           <div class="flex flex-col gap-4 mt-10">
               <button class="btn-vitality w-full" onclick="location.reload()">Re-Sync System</button>
-              <a href="booking.html" class="text-[10px] font-black uppercase tracking-widest py-2 opacity-40 hover:opacity-100 transition-opacity">Book Longevity Coaching</a>
+              <a href="booking.html" class="text-[10px] font-black uppercase tracking-widest py-2 opacity-40 hover:opacity-100 transition-opacity">Expert Longevity Coaching</a>
           </div>
       </div>
   </div>
 
   <script>
-    const apiKey = ""; // Set by environment
+    const apiKey = ""; // Provided by environment
 
-    // --- GEMINI INTELLIGENCE ---
+    /**
+     * Gemini API call with exponential backoff
+     */
     async function fetchGemini(prompt, systemInstruction) {
-        try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    systemInstruction: { parts: [{ text: systemInstruction }] }
-                })
-            });
-            const result = await response.json();
-            return result.candidates?.[0]?.content?.parts?.[0]?.text;
-        } catch (err) { return "Focus on the steady light."; }
+        const delays = [1000, 2000, 4000, 8000, 16000];
+        for (let i = 0; i < delays.length; i++) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        systemInstruction: { parts: [{ text: systemInstruction }] }
+                    })
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                return result.candidates?.[0]?.content?.parts?.[0]?.text;
+            } catch (err) {
+                if (i === delays.length - 1) {
+                    return "Connection to Neural Expert temporarily unstable. Continue focused breathing and steady movements.";
+                }
+                await new Promise(resolve => setTimeout(resolve, delays[i]));
+            }
+        }
     }
 
     async function askCoach(type) {
         if(type === 'focus') {
+            const btn = document.getElementById('coach-focus-btn');
             const box = document.getElementById('ai-focus-box');
-            box.style.display = 'block';
+            btn.disabled = true;
+            box.style.display = 'block'; 
             box.classList.add('active');
-            const insight = await fetchGemini("Provide 1 elite senior mobility focus for today. 12 words max.", "You are an OHS Expert Coach.");
-            box.innerHTML = `<strong>Focus:</strong> "${insight}"`;
+            box.innerHTML = `<div class="flex justify-center gap-2 py-4"><div class="ai-loading"></div><div class="ai-loading"></div><div class="ai-loading"></div></div>`;
+            const insight = await fetchGemini("Provide 1 elite senior mobility focus regarding managing chaos and distractions. 15 words max.", "You are an OHS Neuro-Specialist.");
+            box.innerHTML = `<strong>Neural Focus:</strong> "${insight}"`;
         } else {
             const box = document.getElementById('ai-analysis-box');
-            const insight = await fetchGemini(`Analyze harvest score of ${game.score}. Explain how sustained hold focus prevents stumbles and improves daily grip. 2 sentences.`, "You are a Senior Longevity Specialist.");
-            box.innerHTML = `<strong>Synthesis Report:</strong> ${insight}`;
+            const insight = await fetchGemini(`Analyze a synthesis score of ${game.score}. Explain in 2 expert sentences how managing moving chaos while maintaining steady isometric focus prevents falls and boosts brain plasticity in seniors.`, "You are a DPT Longevity Specialist.");
+            box.innerHTML = `<strong>Chaos Management Report:</strong> ${insight}`;
         }
     }
 
     // --- GAME ENGINE ---
     const canvas = document.getElementById('nebula-canvas');
     const ctx = canvas.getContext('2d');
+    const strobe = document.getElementById('strobe-layer');
     let width, height;
 
     function resize() {
@@ -210,49 +247,70 @@
     class Particle {
         constructor(x, y, color, type = 'swarm') {
             this.x = x; this.y = y;
-            this.vx = (Math.random() - 0.5) * 4;
-            this.vy = (Math.random() - 0.5) * 4;
-            this.r = Math.random() * 2 + 1;
+            this.vx = (Math.random() - 0.5) * 8;
+            this.vy = (Math.random() - 0.5) * 8;
+            this.r = type === 'spark' ? Math.random() * 4 + 2 : Math.random() * 2 + 0.5;
             this.life = 1; this.color = color; this.type = type;
         }
         update(tx, ty, active) {
-            if (active && this.type === 'swarm') {
+            if (active) {
                 const dx = tx - this.x; const dy = ty - this.y;
                 const dist = Math.sqrt(dx*dx+dy*dy);
-                this.vx += dx * 0.003; this.vy += dy * 0.003;
-                this.vx *= 0.95; this.vy *= 0.95;
-            } else if (this.type === ' Mitochondria') {
-                this.x += this.vx; this.y += this.vy;
+                // Corrected: Reference this.type instead of type
+                const force = this.type === 'spark' ? 0.05 : 0.008;
+                this.vx += dx * force; this.vy += dy * force;
+                this.vx *= 0.94; this.vy *= 0.94;
             }
             this.x += this.vx; this.y += this.vy;
-            this.life -= this.type === 'spark' ? 0.02 : 0.005;
+            this.life -= this.type === 'spark' ? 0.015 : 0.008;
         }
         draw() {
+            if (this.life <= 0) return;
             ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-            ctx.fillStyle = `rgba(${this.color}, ${this.life * 0.6})`; ctx.fill();
+            ctx.fillStyle = `rgba(${this.color}, ${this.life * 0.7})`; ctx.fill();
+            if(this.type === 'spark') {
+                ctx.shadowBlur = 15; ctx.shadowColor = `rgba(${this.color}, 0.5)`;
+            } else {
+                ctx.shadowBlur = 0;
+            }
         }
     }
 
     class Entity {
         constructor(type) {
             this.type = type;
-            this.r = type === 'mito' ? 8 : 25;
+            this.r = type === 'mito' ? 10 : 35;
             this.x = Math.random() * width;
             this.y = type === 'mito' ? -50 : height + 50;
-            this.vx = (Math.random() - 0.5) * 2;
-            this.vy = type === 'mito' ? (1 + Math.random() * 2) : (-1 - Math.random() * 1);
+            this.vx = (Math.random() - 0.5) * 3;
+            this.vy = type === 'mito' ? (1.5 + Math.random() * 2) : (-1.5 - Math.random() * 1.5);
             this.pulse = 0;
+            this.speedMult = 1 + (game.score / 500);
         }
-        update() { this.x += this.vx; this.y += this.vy; this.pulse += 0.1; }
+        update() { 
+            this.x += this.vx * this.speedMult; 
+            this.y += this.vy * this.speedMult; 
+            this.pulse += 0.15; 
+        }
         draw() {
-            ctx.beginPath();
             const glow = this.type === 'mito' ? '59, 130, 246' : '239, 68, 68';
-            const size = this.r + Math.sin(this.pulse) * 3;
-            const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, size * 2);
-            grad.addColorStop(0, `rgba(${glow}, 0.3)`); grad.addColorStop(1, 'transparent');
-            ctx.fillStyle = grad; ctx.arc(this.x, this.y, size * 2, 0, Math.PI*2); ctx.fill();
-            ctx.strokeStyle = `rgba(${glow}, 0.8)`; ctx.lineWidth = 2;
+            const size = this.r + Math.sin(this.pulse) * 5;
+            
+            ctx.save();
+            ctx.beginPath();
+            const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, size * 2.5);
+            grad.addColorStop(0, `rgba(${glow}, 0.4)`); grad.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad; ctx.arc(this.x, this.y, size * 2.5, 0, Math.PI*2); ctx.fill();
+            
+            ctx.strokeStyle = `rgba(${glow}, 1)`; ctx.lineWidth = 3;
             ctx.beginPath(); ctx.arc(this.x, this.y, size, 0, Math.PI*2); ctx.stroke();
+            
+            if(this.type === 'entropy') {
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath(); ctx.arc(this.x, this.y, size + 10, 0, Math.PI*2); ctx.stroke();
+                ctx.setLineDash([]);
+            }
+            ctx.restore();
         }
     }
 
@@ -263,6 +321,7 @@
             this.particles = []; this.entities = [];
             this.touch = { x: -1000, y: -1000 };
             this.themeColor = "59, 130, 246";
+            this.lastStrobe = 0;
         }
 
         start() {
@@ -271,82 +330,127 @@
             document.getElementById('hud').classList.add('active');
             document.getElementById('bar-container').style.display = 'block';
             document.getElementById('hold-prompt').classList.add('visible');
-            this.themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim() || "59, 130, 246";
+            
+            const rootStyle = getComputedStyle(document.documentElement);
+            this.themeColor = rootStyle.getPropertyValue('--theme-bubble').trim() || "59, 130, 246";
+            
             this.loop();
             this.spawn();
         }
 
         spawn() {
             if(!this.isActive) return;
-            const type = Math.random() > 0.3 ? 'mito' : 'entropy';
+            const type = Math.random() > 0.4 ? 'mito' : 'entropy';
             this.entities.push(new Entity(type));
-            setTimeout(() => this.spawn(), 800 - Math.min(500, this.score / 5));
+            setTimeout(() => this.spawn(), Math.max(300, 1000 - (this.score / 3)));
+        }
+
+        triggerStrobe(color = 'white', intensity = 0.15) {
+            strobe.style.backgroundColor = color;
+            strobe.style.opacity = intensity;
+            setTimeout(() => strobe.style.opacity = 0, 50);
         }
 
         loop() {
             if(!this.isActive) return;
-            ctx.fillStyle = 'rgba(2, 6, 23, 0.15)';
+            
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.2)';
             ctx.fillRect(0, 0, width, height);
 
-            // Background Nebula Flow
-            ctx.globalCompositeOperation = 'screen';
-            ctx.strokeStyle = `rgba(${this.themeColor}, 0.03)`;
-            ctx.lineWidth = 200;
-            ctx.beginPath();
-            ctx.moveTo(0, height/2);
-            ctx.bezierCurveTo(width/3, height/2 + Math.sin(Date.now()*0.001)*100, width*0.6, height/2 - Math.cos(Date.now()*0.001)*100, width, height/2);
-            ctx.stroke();
-            ctx.globalCompositeOperation = 'source-over';
-
-            if (this.isHolding) {
-                this.energy = Math.min(100, this.energy + 0.05);
-                // Particle Swarm
-                for(let i=0; i<3; i++) this.particles.push(new Particle(Math.random()*width, Math.random()*height, this.themeColor));
-                
-                // Draw Hold Core
-                const grad = ctx.createRadialGradient(this.touch.x, this.touch.y, 0, this.touch.x, this.touch.y, 100);
-                grad.addColorStop(0, `rgba(${this.themeColor}, 0.3)`); grad.addColorStop(1, 'transparent');
-                ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(this.touch.x, this.touch.y, 100, 0, Math.PI*2); ctx.fill();
-            } else {
-                this.energy -= 0.15;
+            // Background Strobe Pulse
+            const beat = Math.sin(Date.now() * 0.005);
+            if(beat > 0.98 && Date.now() - this.lastStrobe > 200) {
+                this.triggerStrobe('rgba(59, 130, 246, 0.1)', 0.05);
+                this.lastStrobe = Date.now();
             }
 
-            // Entities
-            this.entities.forEach((e, i) => {
+            // Draw Background Chaos
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            ctx.strokeStyle = `rgba(${this.themeColor}, ${0.03 + (Math.abs(beat) * 0.02)})`;
+            ctx.lineWidth = 150 + (beat * 50);
+            ctx.beginPath();
+            ctx.moveTo(0, height/2);
+            ctx.bezierCurveTo(
+                width/4, height/2 + Math.sin(Date.now()*0.002)*200, 
+                width*0.75, height/2 - Math.cos(Date.now()*0.002)*200, 
+                width, height/2
+            );
+            ctx.stroke();
+            ctx.restore();
+
+            if (this.isHolding) {
+                this.energy = Math.min(100, this.energy + 0.08);
+                // Particle Swarm Generation
+                if(Math.random() > 0.3) this.particles.push(new Particle(Math.random()*width, Math.random()*height, this.themeColor));
+                
+                // Hold Core Core Visuals
+                ctx.save();
+                const grad = ctx.createRadialGradient(this.touch.x, this.touch.y, 0, this.touch.x, this.touch.y, 120);
+                grad.addColorStop(0, `rgba(${this.themeColor}, 0.4)`); grad.addColorStop(1, 'transparent');
+                ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(this.touch.x, this.touch.y, 120, 0, Math.PI*2); ctx.fill();
+                
+                ctx.strokeStyle = `rgba(${this.themeColor}, 0.8)`; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.arc(this.touch.x, this.touch.y, 60 + beat * 10, 0, Math.PI*2); ctx.stroke();
+                ctx.restore();
+            } else {
+                this.energy -= 0.25;
+            }
+
+            // Entity Synthesis Logic
+            for (let i = this.entities.length - 1; i >= 0; i--) {
+                const e = this.entities[i];
                 e.update(); e.draw();
+                
                 const dist = Math.sqrt((this.touch.x-e.x)**2 + (this.touch.y-e.y)**2);
                 
-                if (this.isHolding && dist < e.r + 50) {
+                if (this.isHolding && dist < e.r + 80) {
                     if (e.type === 'mito') {
                         this.score += 10;
-                        this.energy = Math.min(100, this.energy + 5);
-                        for(let j=0; j<10; j++) this.particles.push(new Particle(e.x, e.y, this.themeColor, 'spark'));
+                        this.energy = Math.min(100, this.energy + 8);
+                        this.triggerStrobe(`rgba(${this.themeColor}, 0.2)`, 0.2);
+                        for(let j=0; j<15; j++) this.particles.push(new Particle(e.x, e.y, this.themeColor, 'spark'));
                         this.entities.splice(i, 1);
+                        
+                        if(this.score > 0 && this.score % 100 === 0) { // Supernova Event
+                            this.triggerStrobe('white', 0.8);
+                            this.energy = 100;
+                        }
                     } else {
-                        this.energy -= 20;
-                        for(let j=0; j<15; j++) this.particles.push(new Particle(e.x, e.y, "239, 68, 68", 'spark'));
+                        this.triggerDissonance();
                         this.entities.splice(i, 1);
-                        document.body.style.backgroundColor = '#1e0000';
-                        setTimeout(() => document.body.style.backgroundColor = 'var(--color-navy)', 100);
                     }
+                } else if (e.y < -150 || e.y > height + 150) {
+                    this.entities.splice(i, 1);
                 }
-                if (e.y < -100 || e.y > height + 100) this.entities.splice(i, 1);
-            });
+            }
 
             // Update UI
             document.getElementById('score-val').textContent = this.score;
             document.getElementById('stability-val').textContent = Math.round(this.energy) + '%';
             document.getElementById('vitality-fill').style.width = this.energy + '%';
 
-            // Particles
-            this.particles.forEach((p, i) => {
+            // Particles Update & Draw
+            for (let i = this.particles.length - 1; i >= 0; i--) {
+                const p = this.particles[i];
                 p.update(this.touch.x, this.touch.y, this.isHolding);
                 p.draw();
                 if (p.life <= 0) this.particles.splice(i, 1);
-            });
+            }
 
-            if(this.energy <= 0) this.end();
-            requestAnimationFrame(() => this.loop());
+            if(this.energy <= 0) {
+                this.end();
+            } else {
+                requestAnimationFrame(() => this.loop());
+            }
+        }
+
+        triggerDissonance() {
+            this.energy -= 25;
+            this.triggerStrobe('#ef4444', 0.6);
+            document.body.classList.add('shake-active');
+            for(let j=0; j<25; j++) this.particles.push(new Particle(this.touch.x, this.touch.y, "239, 68, 68", 'spark'));
+            setTimeout(() => document.body.classList.remove('shake-active'), 500);
         }
 
         end() {
@@ -355,29 +459,45 @@
             document.getElementById('final-score').textContent = this.score;
             document.getElementById('hud').classList.remove('active');
             document.getElementById('bar-container').style.display = 'none';
-            askCoach();
+            document.getElementById('hold-prompt').classList.remove('visible');
+            askCoach('analysis');
         }
     }
 
     const game = new Game();
+
     window.onload = () => {
         resize();
-        const start = (e) => { 
+        
+        const handleStart = (e) => { 
             e.preventDefault();
             const t = e.touches ? e.touches[0] : e; 
-            game.isHolding = true; game.touch = {x: t.clientX, y: t.clientY}; 
-            document.getElementById('hold-prompt').classList.remove('visible');
+            if(game.isActive) {
+                game.isHolding = true; 
+                game.touch = {x: t.clientX, y: t.clientY}; 
+                document.getElementById('hold-prompt').classList.remove('visible');
+            }
         };
-        const move = (e) => { 
-            if(!game.isHolding) return;
+
+        const handleMove = (e) => { 
             const t = e.touches ? e.touches[0] : e; 
-            game.touch = {x: t.clientX, y: t.clientY}; 
+            if(game.isHolding) game.touch = {x: t.clientX, y: t.clientY}; 
         };
-        const stop = () => { game.isHolding = false; document.getElementById('hold-prompt').classList.add('visible'); };
+
+        const handleStop = () => { 
+            game.isHolding = false; 
+            if(game.isActive) document.getElementById('hold-prompt').classList.add('visible'); 
+        };
         
-        window.addEventListener('mousedown', start); window.addEventListener('mousemove', move); window.addEventListener('mouseup', stop);
-        window.addEventListener('touchstart', start, {passive:false}); window.addEventListener('touchmove', move, {passive:false}); window.addEventListener('touchend', stop);
+        window.addEventListener('mousedown', handleStart); 
+        window.addEventListener('mousemove', handleMove); 
+        window.addEventListener('mouseup', handleStop);
+        
+        window.addEventListener('touchstart', handleStart, {passive:false}); 
+        window.addEventListener('touchmove', handleMove, {passive:false}); 
+        window.addEventListener('touchend', handleStop);
     };
+
     window.onresize = resize;
   </script>
 </body>
