@@ -18,7 +18,7 @@
       --theme-accent: #60a5fa;
       --theme-bg-end: #ebf5ff;
       --theme-bubble: 37, 99, 235;
-      --theme-shine: #ffffff;
+      --theme-glow: rgba(37, 99, 235, 0.4);
       
       --color-navy: #030712;
       --color-frost: #f8fafc;
@@ -64,15 +64,15 @@
     }
     #bubble-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* === NAVIGATION === */
+    /* === NAVIGATION MASTERPIECE === */
     nav {
       position: fixed;
       top: 15px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 30px); max-width: 1400px;
       z-index: 2000;
       background: var(--glass);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border-radius: var(--radius-full);
       border: 1.5px solid rgba(255,255,255,0.7);
       padding: 8px 30px;
@@ -143,17 +143,6 @@
     .btn-luxe-glass { background: rgba(255, 255, 255, 0.6); color: var(--color-navy) !important; border-color: rgba(3, 7, 18, 0.1); backdrop-filter: blur(5px); }
     .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-    @keyframes shimmer-sweep {
-      0% { left: -100%; }
-      30% { left: 100%; }
-      100% { left: 100%; }
-    }
-    .btn-pill::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
-      transform: skewX(-20deg); animation: shimmer-sweep 5s infinite ease-in-out;
-    }
-
     /* === HERO SECTION === */
     .hero {
       min-height: 95vh;
@@ -175,25 +164,20 @@
 
     .hero h1 { font-size: clamp(2.6rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
     
-    @keyframes textShine {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    .hero h1 span, .hero p span {
-      background: linear-gradient(
-        to right,
-        var(--theme-primary) 0%,
-        var(--theme-primary) 35%,
-        var(--theme-shine) 50%,
-        var(--theme-primary) 65%,
-        var(--theme-primary) 100%
-      );
-      background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      animation: textShine 4s infinite linear; display: inline-block;
-      transition: background 1s ease;
+    /* === NEW: NEURAL PULSE ANIMATION === */
+    @keyframes neuralPulse {
+      0%, 100% { transform: translateY(0) scale(1); text-shadow: 0 0 10px transparent; filter: brightness(1); }
+      50% { transform: translateY(-4px) scale(1.03); text-shadow: 0 0 25px var(--theme-glow); filter: brightness(1.2); }
     }
 
-    /* === UPGRADED MISSION CONTAINER === */
+    .hero h1 span, .hero p span {
+      display: inline-block;
+      color: var(--theme-primary);
+      animation: neuralPulse 4s infinite ease-in-out;
+      transition: color 1s ease;
+    }
+
+    /* MISSION CONTAINER */
     .mission-container {
         max-width: 850px;
         margin: 0 auto 5rem;
@@ -236,11 +220,6 @@
     .btn-hero:hover { transform: scale(1.05) translateY(-3px); }
     .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
     .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
-    .btn-hero::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
-      transform: skewX(-20deg); animation: shimmer-sweep 6s infinite linear;
-    }
 
     /* === TRUST TICKER === */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -257,7 +236,7 @@
     .stepper-line-bg { position: absolute; left: 74px; top: 0; width: 6px; height: 100%; background: #eef2ff; border-radius: 10px; z-index: 1; }
     .stepper-line-fill { position: absolute; left: 74px; top: 0; width: 6px; height: 0%; background: var(--theme-primary); border-radius: 10px; z-index: 2; transition: 1.5s height cubic-bezier(0.65, 0, 0.35, 1); box-shadow: 0 0 15px rgba(var(--theme-bubble), 0.4); }
     
-    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); transform: translateX(20px); }
+    .step-item { position: relative; z-index: 3; display: flex; gap: 32px; align-items: flex-start; margin-bottom: 80px; opacity: 0.2; transition: 0.8s; transform: translateX(20px); }
     .step-item.active { opacity: 1; transform: translateX(0); }
     .step-node { 
         width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; 
@@ -274,53 +253,20 @@
         .stepper-line-fill { top: 28px; left: 0; height: 6px; width: 0%; }
         .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
         .step-item.active { transform: translateY(0); }
-        .step-node { width: 64px; height: 64px; }
     }
 
     /* === SUCCESS METRICS === */
     .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
     .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
     @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
-    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); border: 2.5px solid transparent; }
-    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; box-shadow: var(--shadow-active); }
+    .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s; border: 2.5px solid transparent; }
+    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; }
     
     .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
     .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
-    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 10px rgba(var(--theme-bubble), 0.3)); }
+    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s; }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.5rem; font-weight: 900; color: var(--color-navy); }
-    .bio-unit strong { font-size: 1.6rem; color: var(--color-navy); display: block; margin-bottom: 12px; }
-    .bio-unit p { font-size: 1.1rem; color: #64748b; line-height: 1.5; }
-
-    /* === INDEPENDENCE FORECAST MODULE === */
-    .forecast-hub {
-      padding: 140px 24px; background: var(--color-navy); border-radius: 64px; margin: 40px 20px;
-      position: relative; overflow: hidden; color: #fff; text-align: center;
-    }
-    .forecast-hub::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(var(--theme-bubble), 0.18) 0%, transparent 70%); pointer-events: none; }
-    .forecast-content h2 { font-size: clamp(2.5rem, 8vw, 5.5rem); color: #fff; margin-bottom: 2rem; font-weight: 900; line-height: 0.9; }
-    .forecast-btn {
-      display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 480px;
-      background: var(--color-white); color: var(--color-navy);
-      padding: 1.6rem 2rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.4rem; text-decoration: none;
-      transition: 0.4s; box-shadow: 0 0 40px rgba(255,255,255,0.15);
-    }
-    .forecast-btn:hover { background: var(--theme-accent); color: #fff; transform: scale(1.05); }
-
-    /* === ADVANTAGE HUB (RESEARCH LIBRARY) === */
-    .advantage-hub { padding: 100px 24px; background: #fff; border-radius: 64px; margin: 0 20px 100px; }
-    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
-    .adv-card { background: var(--color-frost); padding: 3rem; border-radius: 40px; display: flex; flex-direction: column; transition: 0.4s; border: 2px solid transparent; height: 100%; }
-    .adv-card:hover { border-color: var(--theme-primary); background: #fff; transform: translateY(-10px); }
-    .adv-card strong { font-size: 1.6rem; margin-bottom: 1rem; color: var(--color-navy); line-height: 1.1; }
-    .adv-card p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem; }
-    
-    .kinetic-pill { 
-        align-self: flex-start; padding: 12px 24px; background: var(--color-navy); color: #fff; 
-        border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; 
-        letter-spacing: 0.1em; border: none; transition: 0.3s; cursor: pointer; margin-top: auto;
-    }
-    .kinetic-pill:hover { background: var(--theme-primary); transform: scale(1.05); box-shadow: 0 10px 20px rgba(var(--theme-bubble), 0.2); }
 
     /* === GROWTH ROADMAP === */
     .arc-section { padding: 100px 24px; max-width: 1300px; margin: 0 auto; }
@@ -329,11 +275,9 @@
     @media (min-width: 1200px) { .arc-grid { grid-template-columns: repeat(4, 1fr); } }
     .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; position: relative; overflow: hidden; }
     .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); box-shadow: var(--shadow-luxe); }
-    .arc-week { font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4; margin-bottom: 12px; display: block; letter-spacing: 0.1em; }
-    .arc-card strong { font-size: 1.4rem; display: block; margin-bottom: 15px; color: var(--color-navy); }
-    .arc-card p { font-size: 1rem; color: #64748b; line-height: 1.6; }
+    .arc-week { font-size: 0.75rem; font-weight: 900; color: var(--theme-primary); opacity: 0.4; }
 
-    /* === MOBILE PERSISTENT COMMAND BAR === */
+    /* === MOBILE COMMAND BAR === */
     .mobile-fab-bar {
       position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 36px); max-width: 440px;
@@ -347,10 +291,8 @@
     .fab-btn { flex: 1; text-align: center; font-size: 0.9rem; font-weight: 900; color: #fff; text-decoration: none; padding: 14px; }
     .fab-btn.primary { background: var(--theme-primary); border-radius: var(--radius-full); margin-left: 10px; }
 
-    /* === REVEAL ANIMATIONS === */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-
     footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
   </style>
 </head>
@@ -371,7 +313,6 @@
       <li><a href="#results">Clinical Proof</a></li>
       <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
-      <li><a href="#advantage">Education</a></li>
       <li><a href="#footer">About us</a></li>
     </ul>
     <div class="nav-btns">
@@ -383,13 +324,12 @@
     </button>
   </nav>
 
-  <!-- MOBILE OVERLAY -->
+  <!-- MOBILE OVERLAY MENU -->
   <div class="mobile-menu-overlay" id="mobile-menu">
     <ul class="mobile-nav-links">
       <li><a href="#results">Clinical Proof</a></li>
       <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
-      <li><a href="#advantage">Education</a></li>
       <li><a href="#footer">About us</a></li>
     </ul>
     <div class="mobile-action-btns">
@@ -417,11 +357,11 @@
         <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
       </h1>
       
-      <!-- RE-ENGINEERED MISSION CALLOUT -->
+      <!-- REDESIGNED MISSION CONTAINER -->
       <div class="mission-container">
         <p>
-            Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> protocols designed specifically for the unique needs of seniors.
-            <strong class="at-home-callout">University-grade fitness — <span>Delivered</span> to your <span>Living Room.</span></strong>
+            Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> personal training designed specifically for seniors.
+            <strong class="at-home-callout">Professional fitness — <span>Delivered</span> to your <span>Living Room.</span></strong>
         </p>
       </div>
       
@@ -553,31 +493,6 @@
     </div>
   </section>
 
-  <!-- ADVANTAGE HUB (EDUCATION) -->
-  <section class="advantage-hub reveal" id="advantage">
-    <div style="text-align:center;">
-        <h2 style="font-size: 3.5rem; font-weight: 900;">Clinical <span>Advantage</span> Ledger</h2>
-        <p style="color: #64748b; font-size: 1.25rem; margin-top: 1rem;">Explore the biological upgrades proven by medical trials:</p>
-    </div>
-    <div class="adv-grid">
-        <div class="adv-card">
-            <strong>Cognitive Spark</strong>
-            <p>Direct stimulation of BDNF release—the brain's natural fertilizer for memory and daily recall.</p>
-            <button class="kinetic-pill">Research Sync</button>
-        </div>
-        <div class="adv-card">
-            <strong>Arterial Rejuvenation</strong>
-            <p>Restoring elasticity to the vascular system to support healthy blood pressure and oxygenation.</p>
-            <button class="kinetic-pill">Cardio Lab</button>
-        </div>
-        <div class="adv-card">
-            <strong>Bone Architecture</strong>
-            <p>Safe resistance protocols that trigger osteoblastic activity for skeletal resilience and strength.</p>
-            <button class="kinetic-pill">Skeletal Sync</button>
-        </div>
-    </div>
-  </section>
-
   <footer id="footer">
     <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility Specialists. Battle Ground & Vancouver, WA.</p>
   </footer>
@@ -585,11 +500,11 @@
   <script>
     // --- MULTI-THEME ENGINE ---
     const themes = [
-      { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', shine: '#ffffff' },
-      { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', shine: '#ffffff' },
-      { primary: '#0369a1', accent: '#38bdf8', bgEnd: '#f0f9ff', bubble: '3, 105, 161', shine: '#ffffff' },
-      { primary: '#475569', accent: '#94a3b8', bgEnd: '#f1f5f9', bubble: '71, 85, 105', shine: '#ffffff' },
-      { primary: '#059669', accent: '#34d399', bgEnd: '#ecfdf5', bubble: '5, 150, 105', shine: '#ffffff' }
+      { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', glow: 'rgba(37, 99, 235, 0.4)' },
+      { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', glow: 'rgba(124, 58, 237, 0.4)' },
+      { primary: '#0369a1', accent: '#38bdf8', bgEnd: '#f0f9ff', bubble: '3, 105, 161', glow: 'rgba(3, 105, 161, 0.4)' },
+      { primary: '#475569', accent: '#94a3b8', bgEnd: '#f1f5f9', bubble: '71, 85, 105', glow: 'rgba(71, 85, 105, 0.4)' },
+      { primary: '#059669', accent: '#34d399', bgEnd: '#ecfdf5', bubble: '5, 150, 105', glow: 'rgba(5, 150, 105, 0.4)' }
     ];
 
     function applyRandomTheme() {
@@ -599,7 +514,7 @@
       root.style.setProperty('--theme-accent', theme.accent);
       root.style.setProperty('--theme-bg-end', theme.bgEnd);
       root.style.setProperty('--theme-bubble', theme.bubble);
-      root.style.setProperty('--theme-shine', theme.shine);
+      root.style.setProperty('--theme-glow', theme.glow);
     }
 
     // --- DYNAMIC HEADLINE ENGINE ---
