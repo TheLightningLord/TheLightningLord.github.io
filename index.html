@@ -158,7 +158,7 @@
       text-align: center;
     }
 
-    /* === NEW UNIFIED HERO BANNER === */
+    /* === HERO BANNER === */
     .hero-badges-wrap { 
         display: flex; 
         justify-content: center; 
@@ -184,27 +184,13 @@
         letter-spacing: 0.05em;
         transition: all 1s ease;
     }
-    .unified-hero-banner i {
-        font-style: normal;
-        font-size: 1.2rem;
-        filter: drop-shadow(0 0 5px var(--theme-glow));
-    }
-    .unified-hero-banner:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 45px rgba(var(--theme-bubble), 0.15);
-    }
+    .unified-hero-banner i { font-style: normal; font-size: 1.2rem; filter: drop-shadow(0 0 5px var(--theme-glow)); }
 
     .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
     
     /* === UNDERLINE ANIMATION === */
-    @keyframes drawUnderline {
-      0%, 100% { width: 0%; left: 0; }
-      50% { width: 100%; left: 0; }
-    }
-    @keyframes colorBreathe {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.4); }
-    }
+    @keyframes drawUnderline { 0%, 100% { width: 0%; left: 0; } 50% { width: 100%; left: 0; } }
+    @keyframes colorBreathe { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
 
     .hero h1 span {
       position: relative;
@@ -227,7 +213,7 @@
       animation: drawUnderline 4s infinite ease-in-out;
     }
 
-    /* === CLINICAL MISSION GLASS === */
+    /* === MISSION CONTAINER === */
     .mission-container {
         max-width: 900px;
         margin: 0 auto 5rem;
@@ -253,11 +239,6 @@
         letter-spacing: -0.01em;
         margin: 0;
     }
-    .hero p span {
-        display: inline;
-        color: var(--theme-primary);
-        font-weight: 700;
-    }
     .hero p strong { color: var(--color-navy); font-weight: 800; }
     .hero p .at-home-callout {
         display: block;
@@ -282,12 +263,116 @@
     .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
     .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
 
-    /* === OTHER SECTIONS === */
+    /* === TICKER === */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
     .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
     .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+    /* === NEW: VITALITY CATALYST SECTION === */
+    .catalyst-section {
+        padding: 100px 24px;
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .catalyst-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 40px;
+        align-items: stretch;
+    }
+    @media (max-width: 1024px) { .catalyst-grid { grid-template-columns: 1fr; } }
+
+    .fancy-graphic-card {
+        background: var(--color-white);
+        border-radius: 48px;
+        padding: 80px 60px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: var(--shadow-luxe);
+        border: 1px solid rgba(255,255,255,0.8);
+    }
+    /* Neural pulse background for card */
+    .fancy-graphic-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 60%);
+        animation: rotateGlow 15s infinite linear;
+        pointer-events: none;
+    }
+    @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    .fancy-graphic-card h2 {
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-weight: 900;
+        color: var(--color-navy);
+        line-height: 1.05;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+    .fancy-graphic-card h2 span { color: var(--theme-primary); transition: color 1s ease; }
+
+    .btn-learn-more {
+        align-self: flex-start;
+        padding: 20px 45px;
+        background: var(--theme-primary);
+        color: #fff;
+        border-radius: var(--radius-full);
+        font-weight: 900;
+        font-size: 1.1rem;
+        text-decoration: none;
+        box-shadow: 0 15px 40px rgba(var(--theme-bubble), 0.3);
+        transition: 0.4s;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .btn-learn-more:hover { transform: scale(1.05); filter: brightness(1.1); }
+    /* Magnetic pulse effect */
+    @keyframes pulseShadow { 0%, 100% { box-shadow: 0 15px 40px rgba(var(--theme-bubble), 0.3); } 50% { box-shadow: 0 15px 60px rgba(var(--theme-bubble), 0.6); } }
+    .btn-learn-more { animation: pulseShadow 3s infinite ease-in-out; }
+
+    .assessment-panel {
+        background: var(--color-navy);
+        color: #fff;
+        border-radius: 48px;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        position: relative;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    }
+    .assessment-panel h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; color: var(--theme-accent); transition: color 1s ease; }
+    .assessment-panel p { font-size: 1.15rem; opacity: 0.85; margin-bottom: 2.5rem; line-height: 1.6; }
+    
+    .btn-assessment {
+        padding: 18px 36px;
+        background: #fff;
+        color: var(--color-navy);
+        border-radius: var(--radius-full);
+        font-weight: 900;
+        font-size: 1rem;
+        text-decoration: none;
+        text-align: center;
+        transition: 0.3s;
+    }
+    .btn-assessment:hover { background: var(--theme-accent); color: #fff; transform: translateY(-3px); }
+
+    @media (max-width: 768px) {
+        .fancy-graphic-card, .assessment-panel { padding: 40px 30px; border-radius: 32px; }
+        .assessment-panel h3 { font-size: 1.6rem; }
+        .fancy-graphic-card h2 { font-size: 2.2rem; }
+    }
+
+    /* === STEPPER & METRICS === */
     .onboarding-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
     .onboarding-header { text-align: center; margin-bottom: 80px; }
     .stepper-progress-wrap { position: relative; margin-top: 40px; padding-left: 50px; }
@@ -297,13 +382,6 @@
     .step-item.active { opacity: 1; transform: translateX(0); }
     .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
     .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
-
-    @media (min-width: 768px) {
-        .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
-        .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 6px; }
-        .stepper-line-fill { top: 28px; left: 0; height: 6px; width: 0%; }
-        .step-item { flex-direction: column; width: 30%; text-align: center; align-items: center; gap: 20px; transform: translateY(20px); }
-    }
 
     .results-strip { padding: 120px 24px; background: #fff; border-radius: 64px; margin: 40px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
     .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
@@ -323,6 +401,7 @@
     .arc-card { background: #fff; padding: 3rem 2.5rem; border-radius: 40px; border: 2px solid var(--color-frost); transition: 0.4s; }
     .arc-card:hover { border-color: var(--theme-primary); transform: translateY(-8px); }
 
+    /* Persistent FAB */
     .mobile-fab-bar {
       position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 36px); max-width: 440px;
@@ -358,6 +437,7 @@
       <li><a href="#results">Clinical Proof</a></li>
       <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
+      <li><a href="#advantage">Education</a></li>
       <li><a href="#footer">About us</a></li>
     </ul>
     <div class="nav-btns">
@@ -369,12 +449,13 @@
     </button>
   </nav>
 
-  <!-- MOBILE OVERLAY MENU -->
+  <!-- MOBILE OVERLAY -->
   <div class="mobile-menu-overlay" id="mobile-menu">
     <ul class="mobile-nav-links">
       <li><a href="#results">Clinical Proof</a></li>
       <li><a href="#onboarding">The Path</a></li>
       <li><a href="#arc">Roadmap</a></li>
+      <li><a href="#advantage">Education</a></li>
       <li><a href="#footer">About us</a></li>
     </ul>
     <div class="mobile-action-btns">
@@ -392,20 +473,16 @@
   <!-- HERO SECTION -->
   <section class="hero" id="home">
     <div class="container reveal">
-      
-      <!-- NEW UNIFIED HERO BANNER -->
       <div class="hero-badges-wrap">
         <div class="unified-hero-banner">
           <i>📍</i> Portable Senior Fitness in Clark County
         </div>
       </div>
       
-      <!-- DYNAMIC HEADLINE -->
       <h1 id="dynamic-headline">
         <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
       </h1>
       
-      <!-- MISSION CARD -->
       <div class="mission-container">
         <p>
             Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> personal training designed specifically for seniors.
@@ -432,6 +509,22 @@
       <div class="badge-item"><i>✦</i> HIPAA Secure Cloud</div>
     </div>
   </div>
+
+  <!-- NEW: VITALITY CATALYST (FANCY GRAPHIC) -->
+  <section class="catalyst-section reveal">
+    <div class="catalyst-grid">
+        <div class="fancy-graphic-card">
+            <h2>Are you ready to live a <span>happier, healthier,</span> and <span>safer</span> life?</h2>
+            <p style="margin-bottom: 2.5rem; font-size: 1.3rem; font-weight: 400; color: #475569; position: relative; z-index: 1;">Learn how easy it is to get started with our elite clinical framework.</p>
+            <a href="#onboarding" class="btn-learn-more">Learn more</a>
+        </div>
+        <div class="assessment-panel">
+            <h3>Free Fitness Benefits Assessment</h3>
+            <p>Learn how effective exercise is for your specific health condition or fitness goal with our research-backed clinical map.</p>
+            <a href="quiz.html" class="btn-assessment">Start Assessment Now</a>
+        </div>
+    </div>
+  </section>
 
   <!-- THE VITALITY PATH -->
   <section class="onboarding-section reveal" id="onboarding">
