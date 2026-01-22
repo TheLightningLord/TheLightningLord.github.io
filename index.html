@@ -110,7 +110,7 @@
     .menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
     .menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
-    /* OVERLAY */
+    /* MOBILE OVERLAY */
     .mobile-menu-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
       background: rgba(255,255,255,0.92); backdrop-filter: blur(40px);
@@ -137,6 +137,17 @@
     .btn-luxe-glass { background: rgba(255, 255, 255, 0.6); color: var(--color-navy) !important; border-color: rgba(3, 7, 18, 0.1); backdrop-filter: blur(5px); }
     .btn-pill:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
+    @keyframes shimmer-sweep {
+      0% { left: -100%; }
+      30% { left: 100%; }
+      100% { left: 100%; }
+    }
+    .btn-pill::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-20deg); animation: shimmer-sweep 5s infinite ease-in-out;
+    }
+
     /* === HERO SECTION === */
     .hero {
       min-height: 98vh;
@@ -146,19 +157,46 @@
       padding: 140px 24px 80px;
       text-align: center;
     }
-    .hero-badges-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 2.5rem; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 24px; background: #fff; border: 1.5px solid var(--color-frost);
-      border-radius: var(--radius-full); color: var(--theme-primary); font-weight: 900; font-size: 0.7rem;
-      text-transform: uppercase; letter-spacing: 0.15em; box-shadow: var(--shadow-luxe);
-      transition: color 1s ease;
+
+    /* === NEW UNIFIED HERO BANNER === */
+    .hero-badges-wrap { 
+        display: flex; 
+        justify-content: center; 
+        margin-bottom: 3.5rem; 
     }
-    .location-pill { font-weight: 800; font-size: 0.85rem; color: var(--color-navy); background: rgba(var(--theme-bubble), 0.08); padding: 10px 24px; border-radius: 99px; transition: background 1s ease; }
+    
+    .unified-hero-banner {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 32px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 2px solid var(--theme-primary);
+        border-radius: var(--radius-full);
+        box-shadow: 0 15px 35px rgba(var(--theme-bubble), 0.1);
+        color: var(--color-navy);
+        font-family: var(--font-header);
+        font-weight: 800;
+        font-size: clamp(0.85rem, 2vw, 1.05rem);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 1s ease;
+    }
+    .unified-hero-banner i {
+        font-style: normal;
+        font-size: 1.2rem;
+        filter: drop-shadow(0 0 5px var(--theme-glow));
+    }
+    .unified-hero-banner:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 45px rgba(var(--theme-bubble), 0.15);
+    }
 
     .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.95; }
     
-    /* === FLOWING UNDERLINE ANIMATION === */
+    /* === UNDERLINE ANIMATION === */
     @keyframes drawUnderline {
       0%, 100% { width: 0%; left: 0; }
       50% { width: 100%; left: 0; }
@@ -189,7 +227,7 @@
       animation: drawUnderline 4s infinite ease-in-out;
     }
 
-    /* === CLINICAL MISSION GLASS (REFINED) === */
+    /* === CLINICAL MISSION GLASS === */
     .mission-container {
         max-width: 900px;
         margin: 0 auto 5rem;
@@ -215,11 +253,9 @@
         letter-spacing: -0.01em;
         margin: 0;
     }
-    /* NO ANIMATION ON TEXT IN MISSION AREA */
     .hero p span {
         display: inline;
         color: var(--theme-primary);
-        animation: none;
         font-weight: 700;
     }
     .hero p strong { color: var(--color-navy); font-weight: 800; }
@@ -246,7 +282,7 @@
     .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 20px 40px rgba(3, 7, 18, 0.2); }
     .btn-outline-luxe { background: #fff; border: 2px solid var(--color-navy); color: var(--color-navy); box-shadow: var(--shadow-luxe); }
 
-    /* === REST OF PAGE STYLES === */
+    /* === OTHER SECTIONS === */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(255,255,255,0.05); }
     .ticker-track { display: inline-block; animation: scroll 45s linear infinite; }
     .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
@@ -261,6 +297,7 @@
     .step-item.active { opacity: 1; transform: translateX(0); }
     .step-node { width: 56px; height: 56px; background: #fff; border: 5px solid #eef2ff; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; color: var(--color-silver); transition: 0.5s; }
     .active .step-node { border-color: var(--theme-primary); color: var(--theme-primary); }
+
     @media (min-width: 768px) {
         .stepper-progress-wrap { display: flex; justify-content: space-between; padding-left: 0; }
         .stepper-line-bg { top: 28px; left: 0; width: 100%; height: 6px; }
@@ -272,6 +309,7 @@
     .bio-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto; }
     @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
     .bio-unit { text-align: center; background: var(--color-frost); padding: 4.5rem 2rem; border-radius: 48px; transition: 0.5s; border: 2.5px solid transparent; }
+    .bio-unit:hover { border-color: var(--theme-accent); transform: translateY(-10px); background: #fff; }
     .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
     .bio-ring-bg { fill: none; stroke: #eef2ff; stroke-width: 18; }
@@ -354,9 +392,12 @@
   <!-- HERO SECTION -->
   <section class="hero" id="home">
     <div class="container reveal">
+      
+      <!-- NEW UNIFIED HERO BANNER -->
       <div class="hero-badges-wrap">
-        <div class="hero-badge">Clinical Movement Specialist</div>
-        <div class="location-pill"><i>📍</i> Premier Senior Care in Clark County, WA</div>
+        <div class="unified-hero-banner">
+          <i>📍</i> Portable Senior Fitness in Clark County
+        </div>
       </div>
       
       <!-- DYNAMIC HEADLINE -->
@@ -364,7 +405,7 @@
         <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
       </h1>
       
-      <!-- RE-ENGINEERED MISSION CARD -->
+      <!-- MISSION CARD -->
       <div class="mission-container">
         <p>
             Meet your elite partners in longevity. We deliver <span>Safe</span>, <span>Fun</span>, and <span>Clinically-Backed</span> personal training designed specifically for seniors.
@@ -505,7 +546,7 @@
   </footer>
 
   <script>
-    // --- MULTI-THEME ENGINE ---
+    // --- THEME ENGINE ---
     const themes = [
       { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', glow: 'rgba(37, 99, 235, 0.4)' },
       { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', glow: 'rgba(124, 58, 237, 0.4)' },
@@ -524,7 +565,7 @@
       root.style.setProperty('--theme-glow', theme.glow);
     }
 
-    // --- DYNAMIC HEADLINE ENGINE ---
+    // --- HEADLINE ENGINE ---
     const headlines = [
       "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
       "Discover the <span>Joy</span> of Clinical Strength, <span>Safely</span> at Home.",
@@ -633,8 +674,11 @@
           rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
             ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
-            const valDisplay = ring.closest('.bio-visual-wrap').querySelector('.bio-value');
-            if (valDisplay) animateValue(valDisplay, 0, target, 2500);
+            const wrap = ring.closest('.bio-visual-wrap');
+            if (wrap) {
+              const valDisplay = wrap.querySelector('.bio-value');
+              if (valDisplay) animateValue(valDisplay, 0, target, 2500);
+            }
           });
         }
       });
