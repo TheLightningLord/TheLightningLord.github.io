@@ -15,6 +15,7 @@
     :root {
       --theme-primary: #2563eb;
       --theme-accent: #60a5fa;
+      --theme-tertiary: #93c5fd;
       --theme-bg-end: #f8fafc;
       --theme-bubble: 37, 99, 235;
       --theme-glow: rgba(37, 99, 235, 0.4);
@@ -26,7 +27,7 @@
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
       
-      --glass: rgba(255, 255, 255, 0.82);
+      --glass: rgba(255, 255, 255, 0.75);
       --radius-xl: 56px;
       --radius-lg: 32px;
       --radius-full: 999px;
@@ -50,7 +51,7 @@
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === SERENITY FLOW BACKGROUND === */
+    /* === LIVING TOPOGRAPHY BACKGROUND === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -59,12 +60,9 @@
       overflow: hidden;
     }
     
-    #serenity-canvas {
+    #topo-canvas {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
     }
 
     /* === NAVIGATION === */
@@ -74,10 +72,10 @@
       width: calc(100% - 20px); max-width: 1440px;
       z-index: 2000;
       background: var(--glass);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border-radius: var(--radius-full);
-      border: 1.5px solid rgba(255,255,255,0.7);
+      border: 1.5px solid rgba(255,255,255,0.8);
       padding: 8px 20px;
       display: flex;
       justify-content: space-between;
@@ -85,151 +83,240 @@
       box-shadow: var(--shadow-luxe);
     }
     
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-mark { width: 54px; height: 40px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2001; }
+    .logo-mark { width: 54px; height: 40px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; box-shadow: 0 5px 15px rgba(0,0,0,0.1); flex-shrink: 0; font-size: 0.9rem; }
     .brand-name { font-weight: 900; font-size: 1.2rem; color: var(--color-navy); font-family: var(--font-header); }
     
     .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 1024px) { .nav-links { display: none; } }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
+    @media (max-width: 1150px) { .nav-links { display: none; } }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
     .nav-links a:hover { color: var(--theme-primary); }
+
+    .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--glass); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.7); padding: 10px; min-width: 180px; box-shadow: var(--shadow-luxe); opacity: 0; visibility: hidden; transition: 0.3s; }
+    .has-dropdown { position: relative; }
+    .has-dropdown:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown a { display: block; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; color: #64748b; transition: 0.2s; text-decoration: none; }
+    .dropdown a:hover { background: rgba(var(--theme-bubble), 0.05); color: var(--theme-primary); }
 
     .btn-pill { position: relative; padding: 10px 20px; border-radius: var(--radius-full); font-weight: 800; font-size: 0.7rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.4s; display: inline-block; border: 1px solid transparent; }
     .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
-    .btn-luxe-glass { background: rgba(255, 255, 255, 0.6); color: var(--color-navy) !important; border: 1px solid rgba(0,0,0,0.05); }
+    .btn-luxe-glass { background: rgba(255, 255, 255, 0.4); color: var(--color-navy) !important; border: 1px solid rgba(0,0,0,0.05); }
 
-    /* === HERO === */
+    /* === HERO SECTION === */
     .hero { min-height: 98vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 24px 80px; text-align: center; }
-    .hero h1 { font-size: clamp(2.8rem, 11vw, 7rem); margin-bottom: 3.5rem; font-weight: 900; color: var(--color-navy); }
+    .hero h1 { font-size: clamp(3.2rem, 11vw, 7.8rem); margin-bottom: 2.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.85; }
     
-    @keyframes liquidFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    /* LIQUID COLOR MORPH (Completely Non-Shining) */
+    @keyframes colorMorph {
+      0%, 100% { color: var(--theme-primary); }
+      33% { color: var(--theme-accent); }
+      66% { color: var(--theme-tertiary); }
+    }
     .hero h1 span {
-      background: linear-gradient(to right, var(--theme-primary), var(--theme-accent), var(--theme-primary));
-      background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      animation: liquidFlow 8s linear infinite;
+      display: inline-block;
+      color: var(--theme-primary);
+      animation: colorMorph 8s ease-in-out infinite;
+      padding: 0 6px;
+      transition: color 1.2s ease-in-out;
+      -webkit-text-fill-color: initial;
+      background: none;
     }
 
-    .mission-container { 
-        max-width: 900px; margin: 0 auto 5rem; text-align: left; padding: 45px 55px; 
-        background: rgba(255, 255, 255, 0.4); 
-        backdrop-filter: blur(20px); 
-        border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.3); 
-        position: relative; box-shadow: var(--shadow-luxe);
+    /* === DEEP SMOKY GLASS AUTHORITY MODULE === */
+    @keyframes authorityFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .authority-badge {
+        max-width: 580px;
+        margin: 0 auto 4rem;
+        position: relative;
+        background: rgba(2, 4, 12, 0.94); 
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        padding: 28px 48px;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+        overflow: hidden;
+        animation: authorityFloat 7s ease-in-out infinite;
     }
 
-    .perimeter-svg { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 40px; pointer-events: none; }
-    .perimeter-svg rect { width: calc(100% - 2px); height: calc(100% - 2px); x: 1px; y: 1px; rx: 40; ry: 40; fill: none; stroke: var(--theme-primary); stroke-width: 2.5; stroke-dasharray: 300 1200; stroke-linecap: round; animation: traceOutline 10s linear infinite; }
-    @keyframes traceOutline { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1500; } }
-    
-    .hero p { font-size: clamp(1.15rem, 3vw, 1.45rem); color: #1e293b; font-weight: 500; line-height: 1.6; margin: 0; }
+    .authority-badge::after {
+        content: '';
+        position: absolute;
+        top: -100%; left: -100%;
+        width: 300%; height: 300%;
+        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.05), transparent 60%);
+        pointer-events: none;
+    }
+
+    .authority-badge p {
+        color: #fff;
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+        letter-spacing: -0.01em;
+    }
+    .authority-pre { 
+        color: var(--theme-accent); 
+        text-transform: uppercase; 
+        letter-spacing: 0.35em; 
+        font-weight: 900; 
+        font-size: 0.65rem; 
+        position: relative;
+        z-index: 1;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+        .authority-badge { padding: 24px 30px; margin-bottom: 3.5rem; border-radius: 24px; }
+    }
 
     .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
     @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
-    .btn-hero { width: 100%; max-width: 380px; padding: 1.4rem 2.5rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; text-align: center; }
+    .btn-hero { width: 100%; max-width: 400px; padding: 1.3rem 3rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; text-align: center; }
     .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 15px 30px rgba(3, 7, 18, 0.1); }
     .btn-outline-luxe { background: #fff; border: 2.5px solid var(--color-navy); color: var(--color-navy); }
 
     /* TICKER */
-    .ticker-bar { padding: 1.8rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; }
+    .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
     .ticker-track { display: inline-block; animation: scroll 40s linear infinite; }
-    .badge-item { display: inline-flex; align-items: center; gap: 10px; margin-right: 50px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .badge-item { display: inline-flex; align-items: center; gap: 12px; margin-right: 60px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: rgba(255,255,255,0.7); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* VITALITY CATALYST TILES */
-    .catalyst-section { padding: 80px 24px; max-width: 1400px; margin: 0 auto; position: relative; }
-    .catalyst-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: stretch; }
+    /* CATALYST TILES */
+    .catalyst-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
+    .catalyst-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: stretch; }
     @media (max-width: 1024px) { .catalyst-grid { grid-template-columns: 1fr; } }
     
-    .fancy-graphic-card { 
-      background: rgba(255, 255, 255, 0.45); 
-      backdrop-filter: blur(25px); 
-      border-radius: 48px; 
-      padding: 60px; 
-      border: 1px solid rgba(255,255,255,0.7); 
-      box-shadow: var(--shadow-luxe);
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .fancy-graphic-card h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 1.5rem; }
+    .fancy-graphic-card { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(25px); border-radius: 56px; padding: 60px; border: 1px solid rgba(255,255,255,0.7); box-shadow: var(--shadow-luxe); display: flex; flex-direction: column; justify-content: center; }
+    .fancy-graphic-card h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 1.8rem; }
     .fancy-graphic-card h2 span { color: var(--theme-primary); }
     
-    .assessment-panel { 
-      background: var(--color-navy); 
-      color: #fff; 
-      border-radius: 48px; 
-      padding: 60px; 
-      display: flex; flex-direction: column; justify-content: center; 
-      box-shadow: 0 30px 60px rgba(0,0,0,0.15); 
-    }
-    .assessment-panel h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--theme-accent); }
-    .btn-assessment { 
-      align-self: flex-start;
-      margin-top: 1.5rem;
-      padding: 16px 36px; 
-      background: #fff; color: var(--color-navy); 
-      border-radius: var(--radius-full); 
-      font-weight: 900; text-decoration: none; 
-      transition: 0.3s;
-    }
+    .assessment-panel { background: var(--color-navy); color: #fff; border-radius: 56px; padding: 60px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+    .assessment-panel h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--theme-accent); }
+    .btn-assessment { align-self: flex-start; margin-top: 1.5rem; padding: 18px 40px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; text-decoration: none; transition: 0.3s; }
 
     /* VITALITY CONSOLE */
-    .vitality-console { padding: 80px 24px; max-width: 1200px; margin: 40px auto; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border-radius: 60px; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: var(--shadow-luxe); }
-    .conduit-wrap { position: relative; margin-top: 50px; padding: 0 20px; }
-    .conduit-line-bg { position: absolute; left: 40px; right: 40px; top: 25px; height: 4px; background: rgba(0,0,0,0.05); border-radius: 10px; }
-    .conduit-line-fill { position: absolute; left: 40px; top: 25px; height: 4px; width: 0%; background: var(--theme-primary); border-radius: 10px; transition: 2s width ease-in-out; }
+    .vitality-console { padding: 100px 24px; max-width: 1240px; margin: 40px auto; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(20px); border-radius: 64px; border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: var(--shadow-luxe); position: relative; }
+    .console-header { text-align: center; margin-bottom: 70px; }
+    .console-header h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; }
+    .conduit-wrap { position: relative; margin-top: 60px; padding: 0 40px; }
+    .conduit-line-bg { position: absolute; left: 60px; right: 60px; top: 30px; height: 6px; background: rgba(0,0,0,0.05); border-radius: 10px; }
+    .conduit-line-fill { position: absolute; left: 60px; top: 30px; height: 6px; width: 0%; background: var(--theme-primary); border-radius: 10px; transition: 2.5s width cubic-bezier(0.65, 0, 0.35, 1); }
     .conduit-grid { display: flex; justify-content: space-between; position: relative; }
-    .conduit-step { display: flex; flex-direction: column; align-items: center; text-align: center; width: 30%; opacity: 0.15; transition: 0.8s; }
-    .conduit-step.active { opacity: 1; }
-    .conduit-node { width: 50px; height: 50px; background: #fff; border: 4px solid #f1f5f9; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: 900; margin-bottom: 20px; }
+    .conduit-step { display: flex; flex-direction: column; align-items: center; text-align: center; width: 30%; opacity: 0.15; transition: 1s cubic-bezier(0.16, 1, 0.3, 1); transform: translateY(20px); }
+    .conduit-step.active { opacity: 1; transform: translateY(0); }
+    .conduit-node { width: 60px; height: 60px; background: #fff; border: 5px solid #f1f5f9; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; margin-bottom: 24px; }
 
     /* RESULTS */
-    .results-strip { padding: 100px 24px; background: #fff; border-radius: 60px; margin: 40px 20px; box-shadow: var(--shadow-luxe); }
-    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1200px; margin: 0 auto; }
-    @media (min-width: 768px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
-    .bio-visual-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 2rem; }
+    .results-strip { padding: 120px 24px; background: #fff; border-radius: 72px; margin: 60px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
+    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; max-width: 1240px; margin: 0 auto; }
+    @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
+    .bio-visual-wrap { position: relative; width: 220px; height: 220px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-    .bio-ring-bg { fill: none; stroke: #f1f5f9; stroke-width: 14; }
-    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 14; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.8rem; font-weight: 900; color: var(--color-navy); }
+    .bio-ring-bg { fill: none; stroke: #f1f5f9; stroke-width: 18; }
+    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.2rem; font-weight: 900; color: var(--color-navy); }
 
-    footer { padding: 5rem 24px 8rem; text-align: center; color: #94a3b8; font-size: 0.85rem; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    /* === AI CHAT UI === */
+    #ai-trigger {
+        position: fixed;
+        bottom: 30px; right: 30px;
+        width: 65px; height: 65px;
+        background: var(--color-navy);
+        color: #fff;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        z-index: 3000;
+        border: 2px solid rgba(255,255,255,0.1);
+        transition: 0.3s;
+    }
+    #ai-trigger:hover { transform: scale(1.1); background: var(--theme-primary); }
+    
+    #ai-chat-window {
+        position: fixed;
+        bottom: 110px; right: 30px;
+        width: 380px; height: 500px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(40px);
+        border-radius: 32px;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+        z-index: 3000;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    .chat-header { padding: 20px; background: var(--color-navy); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+    .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; }
+    .chat-footer { padding: 15px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; gap: 10px; }
+    .chat-footer input { flex: 1; padding: 12px 20px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.1); outline: none; }
+    .chat-footer button { padding: 10px 20px; background: var(--theme-primary); color: #fff; border: none; border-radius: 20px; font-weight: 700; cursor: pointer; }
+    
+    .msg { max-width: 85%; padding: 12px 16px; border-radius: 18px; line-height: 1.4; }
+    .msg.user { align-self: flex-end; background: var(--theme-primary); color: #fff; border-bottom-right-radius: 4px; }
+    .msg.ai { align-self: flex-start; background: #f1f5f9; color: var(--color-navy); border-bottom-left-radius: 4px; }
+
+    footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; position: relative; z-index: 10; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    .mobile-fab-bar { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 400px; background: var(--color-navy); color: #fff; padding: 8px; border-radius: var(--radius-full); display: flex; justify-content: space-between; align-items: center; z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    @media (min-width: 769px) { .mobile-fab-bar { display: none; } }
-    .fab-btn { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 900; color: #fff; text-decoration: none; padding: 12px; }
-    .fab-btn.primary { background: var(--theme-primary); border-radius: var(--radius-full); margin-left: 8px; }
-    
     .menu-toggle { display: none; width: 44px; height: 44px; background: var(--color-navy); border-radius: 50%; border: none; cursor: pointer; position: relative; z-index: 2001; justify-content: center; align-items: center; }
-    @media (max-width: 1024px) { .menu-toggle { display: flex; } }
-    .hamburger { width: 18px; height: 2px; background: #fff; position: relative; }
+    @media (max-width: 1150px) { .menu-toggle { display: flex; } }
+    .hamburger { width: 18px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
     .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 2px; background: #fff; left: 0; transition: 0.3s; }
     .hamburger::before { top: -6px; }
     .hamburger::after { top: 6px; }
     
-    .mobile-menu { position: fixed; inset: 0; background: #fff; z-index: 1999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; transform: translateY(-100%); transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .mobile-menu { position: fixed; inset: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(40px); z-index: 1999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transform: translateY(-100%); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .mobile-menu.active { transform: translateY(0); }
-    .mobile-menu a { font-family: var(--font-header); font-size: 2rem; font-weight: 900; color: var(--color-navy); text-decoration: none; }
+    .mobile-menu a { font-family: var(--font-header); font-size: 2.4rem; font-weight: 900; color: var(--color-navy); text-decoration: none; }
   </style>
 </head>
 <body>
 
-  <!-- SERENITY FLOW BACKGROUND -->
+  <!-- TOPOGRAPHY CANVAS -->
   <div class="bg-animation">
-    <canvas id="serenity-canvas"></canvas>
+    <canvas id="topo-canvas"></canvas>
   </div>
 
   <!-- NAVIGATION -->
   <nav id="main-nav">
     <a href="index.html" class="brand" style="text-decoration:none;">
-      <div class="logo-mark" style="margin-right:12px;">OHS</div>
-      <div class="brand-text">
-        <span class="brand-name">Olympian</span>
-      </div>
+      <div class="logo-mark">OHS</div>
+      <div class="brand-text"><span class="brand-name">Olympian</span></div>
     </a>
     
     <ul class="nav-links">
       <li><a href="#results">Results</a></li>
+      <li class="has-dropdown">
+        <a href="#">Games ▾</a>
+        <ul class="dropdown">
+          <li><a href="Game1.html">Game 1</a></li>
+          <li><a href="Game2.html">Game 2</a></li>
+          <li><a href="Game3.html">Game 3</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#">Tools ▾</a>
+        <ul class="dropdown">
+          <li><a href="Tool1.html">Tool 1</a></li>
+          <li><a href="Tool2.html">Tool 2</a></li>
+          <li><a href="Tool3.html">Tool 3</a></li>
+        </ul>
+      </li>
       <li><a href="education.html">Education</a></li>
       <li><a href="about.html">About us</a></li>
     </ul>
@@ -239,9 +326,7 @@
       <a href="booking.html" class="btn-pill btn-luxe-dark">Book now</a>
     </div>
 
-    <button class="menu-toggle" id="menu-toggle">
-      <div class="hamburger"></div>
-    </button>
+    <button class="menu-toggle" id="menu-toggle"><div class="hamburger"></div></button>
   </nav>
 
   <div class="mobile-menu" id="mobile-menu">
@@ -251,26 +336,17 @@
       <a href="quiz.html">Start Assessment</a>
   </div>
 
-  <div class="mobile-fab-bar">
-    <a href="quiz.html" class="fab-btn">Free Forecast</a>
-    <a href="booking.html" class="fab-btn primary">Book Home Visit</a>
-  </div>
-
   <!-- HERO SECTION -->
   <section class="hero" id="home">
     <div class="container reveal">
       <h1 id="dynamic-headline">
-        <span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>
+        Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>
       </h1>
       
-      <div class="mission-container" id="mission-card">
-        <svg class="perimeter-svg"><rect/></svg>
-        <div class="mission-content">
-            <p>
-                Meet your <strong>elite partners in longevity.</strong> We deliver <span>Safe</span>, <span>Fun</span>, and <span>Evidence-Backed</span> mobility training designed specifically for seniors.
-                <strong style="display:block; margin-top:20px; color:var(--theme-primary);">Professional coaching — Delivered to your Living Room.</strong>
-            </p>
-        </div>
+      <!-- AUTHORITY BADGE -->
+      <div class="authority-badge" id="mission-card">
+        <span class="authority-pre">Premier Local Authority</span>
+        <p>Clark County's local expert in portable personal training.</p>
       </div>
       
       <div class="hero-btns">
@@ -292,43 +368,44 @@
     </div>
   </div>
 
-  <!-- VITALITY CATALYST -->
+  <!-- CATALYST TILES -->
   <section class="catalyst-section reveal">
     <div class="catalyst-grid">
         <div class="fancy-graphic-card">
-            <h2>Are you ready to live a <span>happier, healthier,</span> and <span>safer</span> life?</h2>
-            <p style="margin-bottom: 2rem; font-size: 1.2rem; color: #475569;">Learn how easy it is to get started with our expert mobility framework.</p>
-            <a href="#vitality-console" class="btn-hero btn-outline-luxe" style="width:auto; padding: 1rem 2rem; font-size: 0.9rem;">See how it works</a>
+            <h2>Ready for your <span>happiest</span> health season?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.25rem; color: #475569;">Our professional mobility framework makes starting feel easy and completely safe.</p>
+            <a href="booking.html" class="btn-hero btn-outline-luxe" style="width:auto; padding: 1.1rem 2.5rem;">See How It Works</a>
         </div>
         <div class="assessment-panel">
-            <h3>Free Fitness Assessment</h3>
-            <p style="opacity: 0.9;">Learn how effective exercise is for your specific health goals with our expert performance map.</p>
-            <a href="quiz.html" class="btn-assessment">Start Assessment Now</a>
+            <h3>Free Benefits Forecast</h3>
+            <p style="opacity: 0.9; font-size: 1.1rem;">Discover exactly how expert exercise aligns with your lifestyle goals.</p>
+            <a href="quiz.html" class="btn-assessment">Start Assessment</a>
         </div>
     </div>
   </section>
 
-  <!-- VITALITY CONSOLE -->
+  <!-- VITALITY CONSOLE (STEPPER) -->
   <section class="vitality-console reveal" id="vitality-console">
-    <div style="text-align:center; margin-bottom:50px;">
-        <h2 style="font-size:2.8rem; font-weight:900;">Your Path to <span>Vitality</span></h2>
-        <p>Expert-led movement, delivered directly to your home.</p>
+    <div class="console-header">
+        <h2 style="font-size:3rem; font-weight:900; text-align:center;">Your Path to <span>Vitality</span></h2>
+        <p style="text-align:center;">A seamless, expert experience brought directly to you.</p>
     </div>
     <div class="conduit-wrap">
         <div class="conduit-line-bg"></div>
         <div class="conduit-line-fill" id="stepper-fill"></div>
         <div class="conduit-grid">
-            <div class="conduit-step" id="step-1"><div class="conduit-node">1</div><strong>Digital Sync</strong></div>
-            <div class="conduit-step" id="step-2"><div class="conduit-node">2</div><strong>Mobile Suite</strong></div>
-            <div class="conduit-step" id="step-3"><div class="conduit-node">3</div><strong>Joyful Thrive</strong></div>
+            <div class="conduit-step" id="step-1"><div class="conduit-node">1</div><strong>Digital Sync</strong><p>A brief 10-minute intro.</p></div>
+            <div class="conduit-step" id="step-2"><div class="conduit-node">2</div><strong>Mobile Suite</strong><p>We arrive with elite tools.</p></div>
+            <div class="conduit-step" id="step-3"><div class="conduit-node">3</div><strong>Joyful Thrive</strong><p>Movement led by doctors.</p></div>
         </div>
     </div>
   </section>
 
   <!-- RESULTS -->
   <section class="results-strip reveal" id="results">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="font-size: 3.2rem; font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
+      <div style="text-align: center; margin-bottom: 70px;">
+        <h2 style="font-size: 3.5rem; font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
+        <p style="color: #64748b; font-size: 1.3rem;">Scientific proof of your thriving independence.</p>
       </div>
       <div class="bio-grid">
         <div class="bio-unit" style="text-align:center;">
@@ -349,7 +426,7 @@
                 </svg>
                 <div class="bio-value">0%</div>
             </div>
-            <strong>Metabolic Logic</strong>
+            <strong>Metabolic Flow</strong>
         </div>
         <div class="bio-unit" style="text-align:center;">
             <div class="bio-visual-wrap">
@@ -364,16 +441,47 @@
       </div>
   </section>
 
+  <!-- AI ASSISTANT -->
+  <div id="ai-trigger" title="Ask Vitality AI">AI</div>
+  <div id="ai-chat-window">
+      <div class="chat-header">
+          <strong>Vitality AI Guide</strong>
+          <span id="close-chat" style="cursor:pointer;">&times;</span>
+      </div>
+      <div class="chat-body" id="chat-body">
+          <div class="msg ai">Hello! I'm your Olympian Vitality Guide. How can I help you rediscover your strength today?</div>
+      </div>
+      <div class="chat-footer">
+          <input type="text" id="chat-input" placeholder="Ask about longevity...">
+          <button id="send-chat">Send</button>
+      </div>
+  </div>
+
   <footer id="footer">
-    <p>&copy; 2024 Olympian Health Solutions. Serving Clark County, WA.</p>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility specialists. Serving Clark County, WA.</p>
   </footer>
 
   <script>
+    // PHRASING ENGINE
+    const headlines = [
+      "Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>",
+      "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
+      "Longevity <span>Reimagined</span>: Specialized Care for Your <span>Strongest Years.</span>",
+      "Discover the <span>Power</span> of Movement, <span>Doctorate-Led</span> and Delivered Home.",
+      "Your <span>Path</span> to <span>Vitality</span> Starts with Gentle, <span>Expert Support.</span>"
+    ];
+
+    function setDynamicHeadline() {
+      const el = document.getElementById('dynamic-headline');
+      if (el) el.innerHTML = headlines[Math.floor(Math.random() * headlines.length)];
+    }
+
+    // Theme Randomizer
     const themes = [
-      { primary: '#2563eb', accent: '#60a5fa', bubble: '37, 99, 235' },
-      { primary: '#7c3aed', accent: '#a78bfa', bubble: '124, 58, 237' },
-      { primary: '#0369a1', accent: '#38bdf8', bubble: '3, 105, 161' },
-      { primary: '#059669', accent: '#34d399', bubble: '5, 150, 105' }
+      { primary: '#2563eb', accent: '#60a5fa', tertiary: '#93c5fd', bubble: '37, 99, 235' },
+      { primary: '#7c3aed', accent: '#a78bfa', tertiary: '#c4b5fd', bubble: '124, 58, 237' },
+      { primary: '#0369a1', accent: '#38bdf8', tertiary: '#bae6fd', bubble: '3, 105, 161' },
+      { primary: '#059669', accent: '#34d399', tertiary: '#a7f3d0', bubble: '5, 150, 105' }
     ];
 
     function applyRandomTheme() {
@@ -381,122 +489,139 @@
       const root = document.documentElement;
       root.style.setProperty('--theme-primary', theme.primary);
       root.style.setProperty('--theme-accent', theme.accent);
+      root.style.setProperty('--theme-tertiary', theme.tertiary);
       root.style.setProperty('--theme-bubble', theme.bubble);
     }
 
-    // CANVAS ENGINE: Serenity Flow Particles & Waves
-    const canvas = document.getElementById('serenity-canvas');
+    // LIVING TOPOGRAPHY ENGINE
+    const canvas = document.getElementById('topo-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height, particles = [], waves = [];
-    const mouse = { x: -1000, y: -1000, active: false };
-    const isMobile = window.innerWidth < 768;
+    let width, height, time = 0;
+    const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
+    const isMobileSize = window.innerWidth < 768;
 
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      initParticles();
-      initWaves();
     }
 
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * (isMobile ? 1.5 : 2.5) + 0.5;
-        this.alpha = Math.random() * 0.3 + 0.1;
-        this.baseAlpha = this.alpha;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Mouse interaction: Gentle repulsion
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          const force = (150 - dist) / 150;
-          this.x += dx / dist * force * 2;
-          this.y += dy / dist * force * 2;
-          this.alpha = Math.min(this.baseAlpha * 3, 0.8);
-        } else {
-          this.alpha += (this.baseAlpha - this.alpha) * 0.05;
-        }
-
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
-      }
-      draw(themeRGB) {
+    function drawTopo(rgb) {
+      ctx.clearRect(0, 0, width, height);
+      const lines = isMobileSize ? 14 : 28;
+      const step = height / lines;
+      mouse.x += (mouse.targetX - mouse.x) * 0.1;
+      mouse.y += (mouse.targetY - mouse.y) * 0.1;
+      ctx.lineWidth = 1.25;
+      ctx.lineCap = 'round';
+      for (let i = 0; i < lines; i++) {
         ctx.beginPath();
-        ctx.fillStyle = `rgba(${themeRGB}, ${this.alpha})`;
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
+        const yBase = i * step + step / 2;
+        ctx.strokeStyle = `rgba(${rgb}, ${0.03 + (i / lines) * 0.08})`;
+        for (let x = 0; x <= width; x += 10) {
+          let y = yBase + Math.sin(x * 0.002 + time + i * 0.5) * (isMobileSize ? 25 : 45);
+          y += Math.cos(x * 0.005 - time * 0.4) * 18;
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 350) {
+            const force = (350 - dist) / 350;
+            y -= force * 90;
+            ctx.strokeStyle = `rgba(${rgb}, ${0.1 + force * 0.35})`;
+          }
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
       }
-    }
-
-    function initParticles() {
-      particles = [];
-      const count = isMobile ? 40 : 100;
-      for (let i = 0; i < count; i++) particles.push(new Particle());
-    }
-
-    function initWaves() {
-      waves = [];
-      const count = isMobile ? 2 : 4;
-      for (let i = 0; i < count; i++) {
-        waves.push({
-          y: height * 0.5,
-          length: 0.001 + (i * 0.0005),
-          amplitude: (isMobile ? 40 : 100) - (i * 15),
-          frequency: 0.002 + (i * 0.001),
-          phase: Math.random() * Math.PI * 2,
-          opacity: 0.08 - (i * 0.015)
-        });
-      }
+      time += 0.006;
     }
 
     function animate() {
-      ctx.clearRect(0, 0, width, height);
       let themeRGB = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim();
-
-      // Draw Chill Waves
-      waves.forEach(wave => {
-        ctx.beginPath();
-        ctx.moveTo(0, height);
-        for (let x = 0; x <= width; x += 10) {
-          const y = wave.y + Math.sin(x * wave.length + wave.phase) * wave.amplitude;
-          ctx.lineTo(x, y);
-        }
-        ctx.lineTo(width, height);
-        ctx.fillStyle = `rgba(${themeRGB}, ${wave.opacity})`;
-        ctx.fill();
-        wave.phase += wave.frequency;
-      });
-
-      // Draw Particles
-      particles.forEach(p => {
-        p.update();
-        p.draw(themeRGB);
-      });
-
+      drawTopo(themeRGB);
       requestAnimationFrame(animate);
     }
 
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
+    // AI CHAT LOGIC (GEMINI)
+    const apiKey = ""; // Empty string as per environment requirement
+    const aiTrigger = document.getElementById('ai-trigger');
+    const aiChatWindow = document.getElementById('ai-chat-window');
+    const closeChat = document.getElementById('close-chat');
+    const sendBtn = document.getElementById('send-chat');
+    const chatInput = document.getElementById('chat-input');
+    const chatBody = document.getElementById('chat-body');
 
+    aiTrigger.onclick = () => aiChatWindow.style.display = aiChatWindow.style.display === 'flex' ? 'none' : 'flex';
+    closeChat.onclick = () => aiChatWindow.style.display = 'none';
+
+    async function callGemini(query) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        const payload = {
+            contents: [{ parts: [{ text: query }] }],
+            systemInstruction: { parts: [{ text: "You are the Olympian Vitality Guide. You help seniors in Clark County, WA, understand longevity, mobility, and the benefits of doctorate-led personal training at home. Keep responses professional, warm, encouraging, and medically grounded but easy to understand. Keep answers concise." }] }
+        };
+
+        let delay = 1000;
+        for (let i = 0; i < 5; i++) {
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) throw new Error();
+                const result = await response.json();
+                return result.candidates?.[0]?.content?.parts?.[0]?.text;
+            } catch (e) {
+                await new Promise(r => setTimeout(r, delay));
+                delay *= 2;
+            }
+        }
+        return "I'm sorry, my vitality circuits are cooling down. Please try again in a moment.";
+    }
+
+    async function handleChat() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        appendMsg(text, 'user');
+        chatInput.value = '';
+        const loading = appendMsg('...', 'ai');
+
+        const reply = await callGemini(text);
+        loading.remove();
+        appendMsg(reply, 'ai');
+    }
+
+    function appendMsg(text, sender) {
+        const div = document.createElement('div');
+        div.className = `msg ${sender}`;
+        div.textContent = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        return div;
+    }
+
+    sendBtn.onclick = handleChat;
+    chatInput.onkeypress = (e) => { if(e.key === 'Enter') handleChat(); };
+
+    // Interaction Tracker
+    function updateInteraction(clientX, clientY) {
+      mouse.targetX = clientX;
+      mouse.targetY = clientY;
+      const card = document.getElementById('mission-card');
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const x = ((clientX - rect.left) / rect.width) * 100;
+        const y = ((clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => updateInteraction(e.clientX, e.clientY));
     window.addEventListener('touchmove', (e) => {
-      mouse.x = e.touches[0].clientX;
-      mouse.y = e.touches[0].clientY;
+      if (e.touches[0]) updateInteraction(e.touches[0].clientX, e.touches[0].clientY);
     });
 
     const revealObserver = new IntersectionObserver((entries) => {
@@ -504,10 +629,12 @@
         if(e.isIntersecting) {
           e.target.classList.add('active');
           if (e.target.id === 'vitality-console') {
-            document.getElementById('stepper-fill').style.width = '100%';
-            setTimeout(() => document.querySelectorAll('.conduit-step').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*400)), 200);
+            const fill = document.getElementById('stepper-fill');
+            if (fill) fill.style.width = '100%';
+            setTimeout(() => document.querySelectorAll('.conduit-step').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*350)), 200);
           }
-          e.target.querySelectorAll('.bio-ring-fill').forEach(ring => {
+          const rings = e.target.querySelectorAll('.bio-ring-fill');
+          rings.forEach(ring => {
             const target = parseInt(ring.getAttribute('data-target'));
             ring.style.strokeDashoffset = 439.8 - (target / 100) * 439.8;
             const valDisplay = ring.closest('.bio-visual-wrap').querySelector('.bio-value');
@@ -530,13 +657,16 @@
 
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+    }
 
     window.onload = function() {
       applyRandomTheme();
+      setDynamicHeadline();
       resize();
       animate();
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
