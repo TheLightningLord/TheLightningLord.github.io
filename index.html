@@ -51,7 +51,7 @@
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === LIVING TOPOGRAPHY BACKGROUND === */
+    /* === UNIVERSAL BACKGROUND SYSTEM === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -59,32 +59,28 @@
       background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%);
       overflow: hidden;
     }
-    
-    #topo-canvas {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-    }
+    #experience-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* === NAVIGATION === */
+    /* === NAVIGATION MASTERPIECE === */
     nav {
       position: fixed;
       top: 15px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 20px); max-width: 1440px;
+      width: calc(100% - 24px); max-width: 1440px;
       z-index: 2000;
       background: var(--glass);
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
       border-radius: var(--radius-full);
       border: 1.5px solid rgba(255,255,255,0.8);
-      padding: 8px 20px;
+      padding: 8px 12px 8px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-luxe);
     }
     
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2001; }
-    .logo-mark { width: 54px; height: 40px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; box-shadow: 0 5px 15px rgba(0,0,0,0.1); flex-shrink: 0; font-size: 0.9rem; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2100; }
+    .logo-mark { width: 52px; height: 38px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 0.85rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     .brand-name { font-weight: 900; font-size: 1.2rem; color: var(--color-navy); font-family: var(--font-header); }
     
     .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
@@ -92,98 +88,87 @@
     .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
     .nav-links a:hover { color: var(--theme-primary); }
 
-    .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--glass); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.7); padding: 10px; min-width: 180px; box-shadow: var(--shadow-luxe); opacity: 0; visibility: hidden; transition: 0.3s; }
+    .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--glass); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.7); padding: 10px; min-width: 180px; box-shadow: var(--shadow-luxe); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; }
     .has-dropdown { position: relative; }
     .has-dropdown:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
     .dropdown a { display: block; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; color: #64748b; transition: 0.2s; text-decoration: none; }
     .dropdown a:hover { background: rgba(var(--theme-bubble), 0.05); color: var(--theme-primary); }
 
-    .btn-pill { position: relative; padding: 10px 20px; border-radius: var(--radius-full); font-weight: 800; font-size: 0.7rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.4s; display: inline-block; border: 1px solid transparent; }
+    .mobile-nav-cluster { display: none; gap: 8px; align-items: center; }
+    @media (max-width: 1150px) { .mobile-nav-cluster { display: flex; } .nav-btns-desktop { display: none; } }
+
+    .menu-pill {
+        background: var(--color-navy);
+        color: #fff;
+        border-radius: var(--radius-full);
+        padding: 10px 18px;
+        font-weight: 800;
+        font-size: 0.75rem;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: 0.3s;
+    }
+
+    .btn-pill { position: relative; padding: 12px 22px; border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.4s; display: inline-block; border: 1px solid transparent; }
     .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
-    .btn-luxe-glass { background: rgba(255, 255, 255, 0.4); color: var(--color-navy) !important; border: 1px solid rgba(0,0,0,0.05); }
+    .btn-luxe-glass { background: rgba(0, 0, 0, 0.04); color: var(--color-navy) !important; border: 1.5px solid rgba(0,0,0,0.05); }
 
     /* === HERO SECTION === */
-    .hero { min-height: 98vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 24px 80px; text-align: center; }
-    .hero h1 { font-size: clamp(3.2rem, 11vw, 7.8rem); margin-bottom: 2.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.85; }
+    .hero { min-height: 95vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 24px 80px; text-align: center; }
+    .hero h1 { font-size: clamp(3rem, 11vw, 7.8rem); margin-bottom: 2.5rem; font-weight: 900; color: var(--color-navy); line-height: 0.85; }
     
-    /* LIQUID COLOR MORPH (Completely Non-Shining) */
-    @keyframes colorMorph {
-      0%, 100% { color: var(--theme-primary); }
-      33% { color: var(--theme-accent); }
-      66% { color: var(--theme-tertiary); }
+    /* ENHANCED COLOR BLOOM (Non-Shining) */
+    @keyframes colorBloom {
+      0%, 100% { color: var(--theme-primary); opacity: 1; }
+      33% { color: var(--theme-accent); opacity: 0.9; }
+      66% { color: var(--theme-tertiary); opacity: 0.95; }
     }
     .hero h1 span {
       display: inline-block;
-      color: var(--theme-primary);
-      animation: colorMorph 8s ease-in-out infinite;
-      padding: 0 6px;
-      transition: color 1.2s ease-in-out;
-      -webkit-text-fill-color: initial;
+      animation: colorBloom 9s ease-in-out infinite;
+      padding: 0 4px;
       background: none;
+      -webkit-text-fill-color: initial;
+      transition: color 1.5s ease-in-out;
     }
 
-    /* === DEEP SMOKY GLASS AUTHORITY MODULE === */
-    @keyframes authorityFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    /* === DEEP OBSIDIAN AUTHORITY BADGE === */
+    @keyframes authorityFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .authority-badge {
         max-width: 580px;
         margin: 0 auto 4rem;
         position: relative;
-        background: rgba(2, 4, 12, 0.94); 
+        background: rgba(2, 4, 12, 0.95); 
         backdrop-filter: blur(40px);
         -webkit-backdrop-filter: blur(40px);
-        padding: 28px 48px;
+        padding: 30px 48px;
         border-radius: 32px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.15); 
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         box-shadow: 0 50px 100px rgba(0,0,0,0.4);
         overflow: hidden;
         animation: authorityFloat 7s ease-in-out infinite;
     }
-
     .authority-badge::after {
-        content: '';
-        position: absolute;
-        top: -100%; left: -100%;
-        width: 300%; height: 300%;
-        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.05), transparent 60%);
+        content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
+        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.04), transparent 60%);
         pointer-events: none;
     }
-
-    .authority-badge p {
-        color: #fff;
-        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-        font-weight: 700;
-        margin: 0;
-        line-height: 1.2;
-        position: relative;
-        z-index: 1;
-        letter-spacing: -0.01em;
-    }
-    .authority-pre { 
-        color: var(--theme-accent); 
-        text-transform: uppercase; 
-        letter-spacing: 0.35em; 
-        font-weight: 900; 
-        font-size: 0.65rem; 
-        position: relative;
-        z-index: 1;
-        opacity: 0.9;
-    }
-
-    @media (max-width: 768px) {
-        .authority-badge { padding: 24px 30px; margin-bottom: 3.5rem; border-radius: 24px; }
-    }
+    .authority-badge p { color: #fff; font-size: clamp(1.1rem, 2.5vw, 1.45rem); font-weight: 700; margin: 0; line-height: 1.25; z-index: 1; letter-spacing: -0.01em; position: relative; }
+    .authority-pre { color: var(--theme-accent); text-transform: uppercase; letter-spacing: 0.35em; font-weight: 900; font-size: 0.65rem; z-index: 1; position: relative; }
 
     .hero-btns { display: flex; gap: 1.2rem; justify-content: center; flex-direction: column; align-items: center; }
     @media (min-width: 768px) { .hero-btns { flex-direction: row; } }
-    .btn-hero { width: 100%; max-width: 400px; padding: 1.3rem 3rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; text-align: center; }
-    .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 15px 30px rgba(3, 7, 18, 0.1); }
+    .btn-hero { width: 100%; max-width: 400px; padding: 1.4rem 3rem; border-radius: var(--radius-full); font-weight: 900; font-size: 1.1rem; text-decoration: none; transition: 0.4s; text-align: center; }
+    .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 15px 40px rgba(3, 7, 18, 0.2); }
     .btn-outline-luxe { background: #fff; border: 2.5px solid var(--color-navy); color: var(--color-navy); }
 
     /* TICKER */
@@ -201,7 +186,20 @@
     .fancy-graphic-card h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 1.8rem; }
     .fancy-graphic-card h2 span { color: var(--theme-primary); }
     
-    .assessment-panel { background: var(--color-navy); color: #fff; border-radius: 56px; padding: 60px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+    /* OBSIDIAN GLASS TILE */
+    .assessment-panel { 
+        background: rgba(2, 4, 12, 0.9); 
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff; 
+        border-radius: 56px; 
+        padding: 60px; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        box-shadow: 0 30px 60px rgba(0,0,0,0.15); 
+    }
     .assessment-panel h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--theme-accent); }
     .btn-assessment { align-self: flex-start; margin-top: 1.5rem; padding: 18px 40px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; text-decoration: none; transition: 0.3s; }
 
@@ -227,74 +225,90 @@
     .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3.2rem; font-weight: 900; color: var(--color-navy); }
 
-    /* === AI CHAT UI === */
-    #ai-trigger {
+    /* MOBILE MENU OVERLAY */
+    .mobile-menu { 
+        position: fixed; inset: 0; background: rgba(255,255,255,0.98); 
+        backdrop-filter: blur(40px); z-index: 2999; 
+        display: flex; flex-direction: column; padding: 100px 30px 40px; 
+        gap: 1rem; transform: translateX(100%); 
+        transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+        overflow-y: auto;
+    }
+    .mobile-menu.active { transform: translateX(0); }
+    .mobile-link { font-family: var(--font-header); font-size: 2.2rem; font-weight: 900; color: var(--color-navy); text-decoration: none; display: flex; align-items: center; justify-content: space-between; }
+    
+    .mobile-sub-menu { display: none; padding-left: 20px; flex-direction: column; gap: 0.8rem; margin-top: 10px; margin-bottom: 20px; }
+    .mobile-sub-menu.open { display: flex; }
+    .mobile-sub-menu a { font-size: 1.4rem; color: #64748b; text-decoration: none; font-weight: 700; }
+    .chevron { transition: 0.3s; font-size: 1.2rem; opacity: 0.5; }
+    .mobile-link.open .chevron { transform: rotate(90deg); }
+
+    /* === NEW: BACKGROUND SWITCHER DOCK === */
+    .experience-dock {
         position: fixed;
-        bottom: 30px; right: 30px;
-        width: 65px; height: 65px;
-        background: var(--color-navy);
-        color: #fff;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(3, 7, 18, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 6px;
+        border-radius: var(--radius-full);
+        display: flex;
+        gap: 4px;
+        z-index: 3000;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .dock-btn {
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 10px 18px;
+        border-radius: var(--radius-full);
+        font-family: var(--font-body);
+        font-weight: 800;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
         cursor: pointer;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        z-index: 3000;
-        border: 2px solid rgba(255,255,255,0.1);
         transition: 0.3s;
+        position: relative;
+        z-index: 2;
     }
-    #ai-trigger:hover { transform: scale(1.1); background: var(--theme-primary); }
-    
-    #ai-chat-window {
-        position: fixed;
-        bottom: 110px; right: 30px;
-        width: 380px; height: 500px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(40px);
-        border-radius: 32px;
-        border: 1px solid rgba(255,255,255,0.6);
-        box-shadow: 0 30px 80px rgba(0,0,0,0.15);
-        z-index: 3000;
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
+    .dock-btn.active {
+        color: #fff;
     }
-    
-    .chat-header { padding: 20px; background: var(--color-navy); color: #fff; display: flex; justify-content: space-between; align-items: center; }
-    .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; }
-    .chat-footer { padding: 15px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; gap: 10px; }
-    .chat-footer input { flex: 1; padding: 12px 20px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.1); outline: none; }
-    .chat-footer button { padding: 10px 20px; background: var(--theme-primary); color: #fff; border: none; border-radius: 20px; font-weight: 700; cursor: pointer; }
-    
-    .msg { max-width: 85%; padding: 12px 16px; border-radius: 18px; line-height: 1.4; }
-    .msg.user { align-self: flex-end; background: var(--theme-primary); color: #fff; border-bottom-right-radius: 4px; }
-    .msg.ai { align-self: flex-start; background: #f1f5f9; color: var(--color-navy); border-bottom-left-radius: 4px; }
+    .dock-indicator {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        height: calc(100% - 12px);
+        background: var(--theme-primary);
+        border-radius: var(--radius-full);
+        transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        z-index: 1;
+        box-shadow: 0 0 15px rgba(var(--theme-bubble), 0.5);
+    }
+    @media (max-width: 600px) {
+        .experience-dock { bottom: 15px; width: calc(100% - 30px); justify-content: space-between; padding: 4px; }
+        .dock-btn { font-size: 0.6rem; padding: 8px 12px; }
+    }
 
     footer { padding: 6rem 24px 10rem; text-align: center; color: #94a3b8; font-size: 0.9rem; position: relative; z-index: 10; }
     .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-
-    .menu-toggle { display: none; width: 44px; height: 44px; background: var(--color-navy); border-radius: 50%; border: none; cursor: pointer; position: relative; z-index: 2001; justify-content: center; align-items: center; }
-    @media (max-width: 1150px) { .menu-toggle { display: flex; } }
-    .hamburger { width: 18px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
-    .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 2px; background: #fff; left: 0; transition: 0.3s; }
-    .hamburger::before { top: -6px; }
-    .hamburger::after { top: 6px; }
-    
-    .mobile-menu { position: fixed; inset: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(40px); z-index: 1999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transform: translateY(-100%); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .mobile-menu.active { transform: translateY(0); }
-    .mobile-menu a { font-family: var(--font-header); font-size: 2.4rem; font-weight: 900; color: var(--color-navy); text-decoration: none; }
   </style>
 </head>
 <body>
 
-  <!-- TOPOGRAPHY CANVAS -->
+  <!-- UNIVERSAL CANVAS -->
   <div class="bg-animation">
-    <canvas id="topo-canvas"></canvas>
+    <canvas id="experience-canvas"></canvas>
   </div>
 
   <!-- NAVIGATION -->
   <nav id="main-nav">
-    <a href="index.html" class="brand" style="text-decoration:none;">
+    <a href="index.html" class="brand">
       <div class="logo-mark">OHS</div>
       <div class="brand-text"><span class="brand-name">Olympian</span></div>
     </a>
@@ -321,19 +335,48 @@
       <li><a href="about.html">About us</a></li>
     </ul>
 
-    <div class="nav-btns" style="display:flex; gap:10px;">
+    <div class="nav-btns-desktop" style="display:flex; gap:10px;">
       <a href="quiz.html" class="btn-pill btn-luxe-glass">Assessment</a>
       <a href="booking.html" class="btn-pill btn-luxe-dark">Book now</a>
     </div>
 
-    <button class="menu-toggle" id="menu-toggle"><div class="hamburger"></div></button>
+    <!-- ENHANCED MOBILE PILL -->
+    <div class="mobile-nav-cluster">
+        <a href="booking.html" class="btn-pill btn-luxe-dark" style="padding: 10px 18px; font-size: 0.7rem;">Book Now</a>
+        <button class="menu-pill" id="menu-toggle">
+            <span id="menu-text">Menu</span>
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1.5H11M1 6.5H11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
   </nav>
 
+  <!-- MOBILE OVERLAY -->
   <div class="mobile-menu" id="mobile-menu">
-      <a href="#results">Results</a>
-      <a href="education.html">Education</a>
-      <a href="about.html">About us</a>
-      <a href="quiz.html">Start Assessment</a>
+      <a href="#results" class="mobile-link">Results</a>
+      
+      <div class="mobile-dropdown-wrap">
+          <div class="mobile-link" onclick="toggleMobileSub(this)">Games <span class="chevron">›</span></div>
+          <div class="mobile-sub-menu">
+              <a href="Game1.html">Game 1</a>
+              <a href="Game2.html">Game 2</a>
+              <a href="Game3.html">Game 3</a>
+          </div>
+      </div>
+
+      <div class="mobile-dropdown-wrap">
+          <div class="mobile-link" onclick="toggleMobileSub(this)">Tools <span class="chevron">›</span></div>
+          <div class="mobile-sub-menu">
+              <a href="Tool1.html">Tool 1</a>
+              <a href="Tool2.html">Tool 2</a>
+              <a href="Tool3.html">Tool 3</a>
+          </div>
+      </div>
+
+      <a href="education.html" class="mobile-link">Education</a>
+      <a href="about.html" class="mobile-link">About us</a>
+      <a href="quiz.html" class="mobile-link" style="color: var(--theme-primary); margin-top: 20px;">Start Assessment</a>
   </div>
 
   <!-- HERO SECTION -->
@@ -343,7 +386,7 @@
         Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>
       </h1>
       
-      <!-- AUTHORITY BADGE -->
+      <!-- OBSIDIAN AUTHORITY BADGE -->
       <div class="authority-badge" id="mission-card">
         <span class="authority-pre">Premier Local Authority</span>
         <p>Clark County's local expert in portable personal training.</p>
@@ -384,7 +427,7 @@
     </div>
   </section>
 
-  <!-- VITALITY CONSOLE (STEPPER) -->
+  <!-- VITALITY CONSOLE -->
   <section class="vitality-console reveal" id="vitality-console">
     <div class="console-header">
         <h2 style="font-size:3rem; font-weight:900; text-align:center;">Your Path to <span>Vitality</span></h2>
@@ -441,20 +484,13 @@
       </div>
   </section>
 
-  <!-- AI ASSISTANT -->
-  <div id="ai-trigger" title="Ask Vitality AI">AI</div>
-  <div id="ai-chat-window">
-      <div class="chat-header">
-          <strong>Vitality AI Guide</strong>
-          <span id="close-chat" style="cursor:pointer;">&times;</span>
-      </div>
-      <div class="chat-body" id="chat-body">
-          <div class="msg ai">Hello! I'm your Olympian Vitality Guide. How can I help you rediscover your strength today?</div>
-      </div>
-      <div class="chat-footer">
-          <input type="text" id="chat-input" placeholder="Ask about longevity...">
-          <button id="send-chat">Send</button>
-      </div>
+  <!-- BACKGROUND SWITCHER DOCK -->
+  <div class="experience-dock">
+    <div class="dock-indicator" id="dock-indicator"></div>
+    <button class="dock-btn" onclick="setEngine('topo', this)">Topo</button>
+    <button class="dock-btn" onclick="setEngine('bubbles', this)">Bubbles</button>
+    <button class="dock-btn" onclick="setEngine('bloom', this)">Bloom</button>
+    <button class="dock-btn" onclick="setEngine('ocean', this)">Ocean</button>
   </div>
 
   <footer id="footer">
@@ -467,8 +503,8 @@
       "Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>",
       "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
       "Longevity <span>Reimagined</span>: Specialized Care for Your <span>Strongest Years.</span>",
-      "Discover the <span>Power</span> of Movement, <span>Doctorate-Led</span> and Delivered Home.",
-      "Your <span>Path</span> to <span>Vitality</span> Starts with Gentle, <span>Expert Support.</span>"
+      "Experience <span>Elite</span> Longevity <span>Expertise</span>, Tailored to Your <span>Home.</span>",
+      "Your <span>Strongest</span> Chapter <span>Starts</span> with Local, <span>Expert Support.</span>"
     ];
 
     function setDynamicHeadline() {
@@ -493,119 +529,196 @@
       root.style.setProperty('--theme-bubble', theme.bubble);
     }
 
-    // LIVING TOPOGRAPHY ENGINE
-    const canvas = document.getElementById('topo-canvas');
+    // MULTI-ENGINE BACKGROUND LOGIC
+    const canvas = document.getElementById('experience-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height, time = 0;
+    let width, height, time = 0, engineType;
     const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
     const isMobileSize = window.innerWidth < 768;
+
+    let particles = [];
+    let oceanLayers = [];
 
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      initCurrentEngine();
+    }
+
+    function initCurrentEngine() {
+        particles = [];
+        if (engineType === 'bubbles') {
+            const count = isMobileSize ? 25 : 60;
+            for(let i=0; i<count; i++) particles.push({
+                x: Math.random()*width, y: Math.random()*height,
+                vx: (Math.random()-0.5)*0.6, vy: (Math.random()-0.5)*0.6,
+                radius: Math.random()*15+5
+            });
+        } else if (engineType === 'bloom') {
+            const count = isMobileSize ? 12 : 25;
+            for(let i=0; i<count; i++) particles.push({
+                x: Math.random()*width, y: Math.random()*height,
+                baseRadius: Math.random()*(width*0.15) + (width*0.05),
+                currentRadius: 0,
+                vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4,
+                alpha: Math.random()*0.12 + 0.04,
+                pulseOffset: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.01 + Math.random() * 0.02
+            });
+        } else if (engineType === 'ocean') {
+            oceanLayers = [];
+            const layerCount = isMobileSize ? 3 : 5;
+            for(let i=0; i<layerCount; i++) {
+                oceanLayers.push({
+                    yBase: height * (0.6 + (i * 0.08)),
+                    amplitude: (isMobileSize ? 30 : 60) + (i * 10),
+                    frequency: 0.001 + (Math.random() * 0.001),
+                    speed: 0.01 + (i * 0.005),
+                    phase: Math.random() * Math.PI * 2,
+                    alpha: 0.05 + (i * 0.03)
+                });
+            }
+        }
     }
 
     function drawTopo(rgb) {
-      ctx.clearRect(0, 0, width, height);
-      const lines = isMobileSize ? 14 : 28;
-      const step = height / lines;
-      mouse.x += (mouse.targetX - mouse.x) * 0.1;
-      mouse.y += (mouse.targetY - mouse.y) * 0.1;
-      ctx.lineWidth = 1.25;
-      ctx.lineCap = 'round';
-      for (let i = 0; i < lines; i++) {
-        ctx.beginPath();
-        const yBase = i * step + step / 2;
-        ctx.strokeStyle = `rgba(${rgb}, ${0.03 + (i / lines) * 0.08})`;
-        for (let x = 0; x <= width; x += 10) {
-          let y = yBase + Math.sin(x * 0.002 + time + i * 0.5) * (isMobileSize ? 25 : 45);
-          y += Math.cos(x * 0.005 - time * 0.4) * 18;
-          const dx = x - mouse.x;
-          const dy = y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 350) {
-            const force = (350 - dist) / 350;
-            y -= force * 90;
-            ctx.strokeStyle = `rgba(${rgb}, ${0.1 + force * 0.35})`;
-          }
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
+        ctx.clearRect(0, 0, width, height);
+        const lines = isMobileSize ? 14 : 28;
+        const step = height / lines;
+        ctx.lineWidth = 1.25;
+        ctx.lineCap = 'round';
+        for (let i = 0; i < lines; i++) {
+            ctx.beginPath();
+            const yBase = i * step + step / 2;
+            ctx.strokeStyle = `rgba(${rgb}, ${0.03 + (i / lines) * 0.08})`;
+            for (let x = 0; x <= width; x += 10) {
+                let y = yBase + Math.sin(x * 0.002 + time + i * 0.5) * (isMobileSize ? 25 : 45);
+                y += Math.cos(x * 0.005 - time * 0.4) * 18;
+                const dx = x - mouse.x, dy = y - mouse.y;
+                const d = Math.sqrt(dx*dx + dy*dy);
+                if (d < 350) {
+                    const f = (350 - d) / 350;
+                    y -= f * 90;
+                    ctx.strokeStyle = `rgba(${rgb}, ${0.1 + f * 0.35})`;
+                }
+                if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
         }
-        ctx.stroke();
-      }
-      time += 0.006;
+    }
+
+    function drawBubbles(rgb) {
+        ctx.clearRect(0, 0, width, height);
+        ctx.lineWidth = 0.6;
+        for (let i = 0; i < particles.length; i++) {
+            const p1 = particles[i];
+            p1.x += p1.vx; p1.y += p1.vy;
+            if (p1.x < 0 || p1.x > width) p1.vx *= -1;
+            if (p1.y < 0 || p1.y > height) p1.vy *= -1;
+
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const d = Math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2);
+                const limit = isMobileSize ? 120 : 180;
+                if (d < limit) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(${rgb}, ${0.1 * (1 - d/limit)})`;
+                    ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+                }
+            }
+            
+            const dx = p1.x - mouse.x, dy = p1.y - mouse.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 200) { p1.x += dx * 0.01; p1.y += dy * 0.01; }
+
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${rgb}, 0.15)`;
+            ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI*2); ctx.fill();
+        }
+    }
+
+    function drawBloom(rgb) {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < -p.baseRadius*2) p.x = width+p.baseRadius*2;
+            if (p.x > width+p.baseRadius*2) p.x = -p.baseRadius*2;
+            if (p.y < -p.baseRadius*2) p.y = height+p.baseRadius*2;
+            if (p.y > height+p.baseRadius*2) p.y = -p.baseRadius*2;
+
+            const dx = p.x - mouse.x, dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx*dx+dy*dy);
+            const pulse = 1 + Math.sin(time + p.pulseOffset) * 0.1;
+            let targetRadius = p.baseRadius * pulse;
+            if(dist < 400) { 
+                const interactionForce = (400 - dist) / 400;
+                targetRadius *= (1 + interactionForce * 0.4);
+                p.x += dx * 0.005 * interactionForce;
+                p.y += dy * 0.005 * interactionForce;
+            }
+            p.currentRadius += (targetRadius - p.currentRadius) * 0.1;
+            ctx.beginPath();
+            const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.currentRadius);
+            g.addColorStop(0, `rgba(${rgb}, ${p.alpha})`);
+            g.addColorStop(0.6, `rgba(${rgb}, ${p.alpha * 0.2})`);
+            g.addColorStop(1, `rgba(${rgb}, 0)`);
+            ctx.fillStyle = g;
+            ctx.arc(p.x, p.y, p.currentRadius, 0, Math.PI*2);
+            ctx.fill();
+        });
+    }
+
+    function drawOcean(rgb) {
+        ctx.clearRect(0, 0, width, height);
+        oceanLayers.forEach((layer, i) => {
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${rgb}, ${layer.alpha})`;
+            ctx.moveTo(0, height);
+            for (let x = 0; x <= width; x += 10) {
+                let y = layer.yBase + Math.sin(x * layer.frequency + layer.phase) * layer.amplitude;
+                const dx = x - mouse.x;
+                const dist = Math.abs(dx);
+                if (dist < 300) {
+                    const force = (300 - dist) / 300;
+                    y -= force * 50; 
+                }
+                ctx.lineTo(x, y);
+            }
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fill();
+            layer.phase += layer.speed;
+        });
     }
 
     function animate() {
       let themeRGB = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim();
-      drawTopo(themeRGB);
+      mouse.x += (mouse.targetX - mouse.x) * 0.1;
+      mouse.y += (mouse.targetY - mouse.y) * 0.1;
+      
+      if(engineType === 'topo') drawTopo(themeRGB);
+      else if(engineType === 'bubbles') drawBubbles(themeRGB);
+      else if(engineType === 'bloom') drawBloom(themeRGB);
+      else if(engineType === 'ocean') drawOcean(themeRGB);
+      
+      time += 0.006;
       requestAnimationFrame(animate);
     }
 
-    // AI CHAT LOGIC (GEMINI)
-    const apiKey = ""; // Empty string as per environment requirement
-    const aiTrigger = document.getElementById('ai-trigger');
-    const aiChatWindow = document.getElementById('ai-chat-window');
-    const closeChat = document.getElementById('close-chat');
-    const sendBtn = document.getElementById('send-chat');
-    const chatInput = document.getElementById('chat-input');
-    const chatBody = document.getElementById('chat-body');
-
-    aiTrigger.onclick = () => aiChatWindow.style.display = aiChatWindow.style.display === 'flex' ? 'none' : 'flex';
-    closeChat.onclick = () => aiChatWindow.style.display = 'none';
-
-    async function callGemini(query) {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-        const payload = {
-            contents: [{ parts: [{ text: query }] }],
-            systemInstruction: { parts: [{ text: "You are the Olympian Vitality Guide. You help seniors in Clark County, WA, understand longevity, mobility, and the benefits of doctorate-led personal training at home. Keep responses professional, warm, encouraging, and medically grounded but easy to understand. Keep answers concise." }] }
-        };
-
-        let delay = 1000;
-        for (let i = 0; i < 5; i++) {
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                if (!response.ok) throw new Error();
-                const result = await response.json();
-                return result.candidates?.[0]?.content?.parts?.[0]?.text;
-            } catch (e) {
-                await new Promise(r => setTimeout(r, delay));
-                delay *= 2;
-            }
-        }
-        return "I'm sorry, my vitality circuits are cooling down. Please try again in a moment.";
+    // ENGINE SWITCHER LOGIC
+    function setEngine(type, btn) {
+        engineType = type;
+        initCurrentEngine();
+        
+        // Update dock UI
+        document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const indicator = document.getElementById('dock-indicator');
+        indicator.style.width = `${btn.offsetWidth}px`;
+        indicator.style.left = `${btn.offsetLeft}px`;
     }
 
-    async function handleChat() {
-        const text = chatInput.value.trim();
-        if (!text) return;
-
-        appendMsg(text, 'user');
-        chatInput.value = '';
-        const loading = appendMsg('...', 'ai');
-
-        const reply = await callGemini(text);
-        loading.remove();
-        appendMsg(reply, 'ai');
-    }
-
-    function appendMsg(text, sender) {
-        const div = document.createElement('div');
-        div.className = `msg ${sender}`;
-        div.textContent = text;
-        chatBody.appendChild(div);
-        chatBody.scrollTop = chatBody.scrollHeight;
-        return div;
-    }
-
-    sendBtn.onclick = handleChat;
-    chatInput.onkeypress = (e) => { if(e.key === 'Enter') handleChat(); };
-
-    // Interaction Tracker
     function updateInteraction(clientX, clientY) {
       mouse.targetX = clientX;
       mouse.targetY = clientY;
@@ -620,10 +733,23 @@
     }
 
     window.addEventListener('mousemove', (e) => updateInteraction(e.clientX, e.clientY));
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches[0]) updateInteraction(e.touches[0].clientX, e.touches[0].clientY);
-    });
+    window.addEventListener('touchmove', (e) => { if (e.touches[0]) updateInteraction(e.touches[0].clientX, e.touches[0].clientY); });
 
+    // MOBILE MENU
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuText = document.getElementById('menu-text');
+    menuToggle.onclick = () => {
+        mobileMenu.classList.toggle('active');
+        const isActive = mobileMenu.classList.contains('active');
+        menuText.innerText = isActive ? "Close" : "Menu";
+        menuToggle.style.background = isActive ? "var(--theme-primary)" : "var(--color-navy)";
+    };
+    function toggleMobileSub(el) {
+        el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open');
+    }
+
+    // REVEALS
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
@@ -655,16 +781,15 @@
       window.requestAnimationFrame(step);
     }
 
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-      });
-    }
-
     window.onload = function() {
+      // Pick random initial engine and setup dock
+      const engines = ['topo', 'bubbles', 'bloom', 'ocean'];
+      const randomIdx = Math.floor(Math.random()*4);
+      engineType = engines[randomIdx];
+      
+      const buttons = document.querySelectorAll('.dock-btn');
+      setEngine(engineType, buttons[randomIdx]);
+      
       applyRandomTheme();
       setDynamicHeadline();
       resize();
