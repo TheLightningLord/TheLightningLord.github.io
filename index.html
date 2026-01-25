@@ -51,7 +51,7 @@
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
 
-    /* === MULTI-ENGINE BACKGROUND SYSTEM === */
+    /* === BACKGROUND SYSTEM === */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -61,18 +61,18 @@
     }
     #experience-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    /* === SCROLL PROGRESS INDICATOR === */
+    /* === SCROLL PROGRESS === */
     .scroll-progress-container {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 3px;
-        z-index: 3001;
+        z-index: 4001;
         background: rgba(0,0,0,0.05);
     }
     .scroll-progress-bar {
         height: 100%; width: 0%;
         background: var(--theme-primary);
         box-shadow: 0 0 10px var(--theme-accent);
-        transition: width 0.1s ease-out, background 0.5s ease;
+        transition: width 0.1s ease-out;
     }
 
     /* === NAVIGATION === */
@@ -99,7 +99,6 @@
     .brand-name { font-weight: 900; font-size: 1.2rem; color: var(--color-navy); font-family: var(--font-header); }
     
     .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 1150px) { .nav-links, .nav-btns-desktop { display: none; } }
     .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
     .nav-links a:hover { color: var(--theme-primary); }
 
@@ -113,8 +112,53 @@
     .btn-luxe-dark { background: var(--color-navy); color: #fff !important; }
     .btn-luxe-glass { background: rgba(0, 0, 0, 0.04); color: var(--color-navy) !important; border: 1.5px solid rgba(0,0,0,0.05); }
 
-    /* === MOBILE FLOATING COMMAND PILL === */
-    .mobile-command-pill {
+    /* === REVISED MOBILE NAV TRIGGER (TOP RIGHT FLOATING) === */
+    .mobile-nav-trigger {
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 15px;
+        z-index: 4000;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(255,255,255,0.8);
+        box-shadow: var(--shadow-luxe);
+        padding: 10px 18px;
+        border-radius: var(--radius-full);
+        font-family: var(--font-header);
+        font-weight: 800;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--color-navy);
+        cursor: pointer;
+        transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav-trigger.active {
+        background: var(--color-navy);
+        color: #fff;
+        border-color: var(--color-navy);
+    }
+
+    @media (max-width: 1150px) { 
+        nav { 
+            background: transparent; 
+            border: none; 
+            box-shadow: none; 
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            pointer-events: none;
+            left: 15px;
+            transform: none;
+            width: auto;
+        }
+        nav .brand { pointer-events: auto; }
+        .nav-links, .nav-btns-desktop { display: none; } 
+        .mobile-nav-trigger { display: block; }
+    }
+
+    /* === BOTTOM MOBILE PILL === */
+    .mobile-action-pill {
         display: none;
         position: fixed;
         bottom: 25px;
@@ -122,21 +166,21 @@
         transform: translateX(-50%);
         background: var(--color-navy);
         color: #fff;
-        padding: 6px;
+        padding: 6px 6px 6px 20px;
         border-radius: var(--radius-full);
         box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         z-index: 3000;
         border: 1px solid rgba(255,255,255,0.1);
         align-items: center;
-        gap: 6px;
+        gap: 15px;
         width: auto;
-        min-width: 200px;
+        min-width: 180px;
         justify-content: space-between;
         transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    @media (max-width: 1150px) { .mobile-command-pill { display: flex; } }
-    .command-book-btn { background: var(--theme-primary); color: #fff; border-radius: var(--radius-full); padding: 10px 20px; font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
-    .command-menu-trigger { background: transparent; border: none; color: #fff; padding: 10px 18px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; }
+    .mobile-action-pill span { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.6); }
+    .action-btn { background: var(--theme-primary); color: #fff; border-radius: var(--radius-full); padding: 10px 22px; font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    @media (max-width: 1150px) { .mobile-action-pill { display: flex; } }
 
     /* === HERO SECTION === */
     .hero { min-height: 95vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 24px 80px; text-align: center; }
@@ -151,12 +195,10 @@
       display: inline-block;
       animation: colorBloom 9s ease-in-out infinite;
       padding: 0 4px;
-      background: none;
-      -webkit-text-fill-color: initial;
       transition: color 1.5s ease-in-out;
     }
 
-    /* === DEEP OBSIDIAN AUTHORITY BADGE === */
+    /* === AUTHORITY BADGE === */
     @keyframes authorityFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .authority-badge {
         max-width: 580px;
@@ -176,16 +218,10 @@
         overflow: hidden;
         animation: authorityFloat 7s ease-in-out infinite;
     }
-    /* Grain Micro-texture */
     .authority-badge::before {
         content: ''; position: absolute; inset: 0;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         opacity: 0.05; pointer-events: none; z-index: 0; mix-blend-mode: overlay;
-    }
-    .authority-badge::after {
-        content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
-        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.04), transparent 60%);
-        pointer-events: none;
     }
     .authority-badge p { color: #fff; font-size: clamp(1rem, 2.5vw, 1.45rem); font-weight: 700; margin: 0; line-height: 1.25; z-index: 1; letter-spacing: -0.01em; position: relative; }
     .authority-pre { color: var(--theme-accent); text-transform: uppercase; letter-spacing: 0.35em; font-weight: 900; font-size: 0.65rem; z-index: 1; position: relative; }
@@ -225,11 +261,6 @@
         box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         position: relative; overflow: hidden;
     }
-    .assessment-panel::before {
-        content: ''; position: absolute; inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        opacity: 0.04; pointer-events: none; mix-blend-mode: overlay;
-    }
     .assessment-panel h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 1.2rem; color: var(--theme-accent); }
     .btn-assessment { align-self: flex-start; margin-top: 1.5rem; padding: 18px 40px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; text-decoration: none; transition: 0.3s; }
 
@@ -260,10 +291,10 @@
     .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; font-weight: 900; color: var(--color-navy); }
 
-    /* ENHANCED MOBILE MENU OVERLAY */
+    /* MOBILE MENU OVERLAY */
     .mobile-menu { 
         position: fixed; inset: 0; background: rgba(255,255,255,0.98); 
-        backdrop-filter: blur(50px); z-index: 2999; 
+        backdrop-filter: blur(50px); z-index: 3999; 
         display: flex; flex-direction: column; padding: 120px 30px 100px; 
         gap: 1.2rem; transform: translateY(100%); 
         transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
@@ -277,7 +308,7 @@
     .chevron { transition: 0.3s; font-size: 1.2rem; opacity: 0.5; }
     .mobile-link.open .chevron { transform: rotate(90deg); }
 
-    /* BACKGROUND SWITCHER DOCK */
+    /* DOCK SWITCHER */
     .experience-dock {
         position: fixed;
         bottom: 30px;
@@ -292,7 +323,7 @@
         gap: 4px;
         z-index: 3000;
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
+        transition: 0.4s;
     }
     .dock-btn {
         background: transparent;
@@ -320,7 +351,6 @@
         border-radius: var(--radius-full);
         transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         z-index: 1;
-        box-shadow: 0 0 15px rgba(var(--theme-bubble), 0.5);
     }
 
     @media (max-width: 1150px) {
@@ -355,6 +385,9 @@
   <div class="scroll-progress-container">
       <div class="scroll-progress-bar" id="progress-bar"></div>
   </div>
+
+  <!-- FLOATING MOBILE TRIGGER -->
+  <button class="mobile-nav-trigger" id="mobile-trigger">Menu</button>
 
   <div class="bg-animation">
     <canvas id="experience-canvas"></canvas>
@@ -395,10 +428,10 @@
     </div>
   </nav>
 
-  <!-- MOBILE COMMAND PILL -->
-  <div class="mobile-command-pill" id="mobile-command">
-      <button class="command-menu-trigger" id="menu-toggle">Menu</button>
-      <a href="booking.html" class="command-book-btn">Book Now</a>
+  <!-- MOBILE BOTTOM PILL -->
+  <div class="mobile-action-pill">
+      <span>Clark County, WA</span>
+      <a href="booking.html" class="action-btn">Book Now</a>
   </div>
 
   <!-- MOBILE OVERLAY -->
@@ -427,7 +460,6 @@
       <a href="about.html" class="mobile-link">About us</a>
       <a href="quiz.html" class="mobile-link" style="color: var(--theme-primary); margin-top: 10px;">Assessment</a>
 
-      <!-- SWITCHER INSIDE MENU ON MOBILE -->
       <div style="margin-top: 30px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px;">
           <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 15px;">Experience Theme</span>
           <div class="experience-dock" style="position: relative; left: 0; transform: none; bottom: 0;">
@@ -544,7 +576,7 @@
       </div>
   </section>
 
-  <!-- DESKTOP BACKGROUND SWITCHER DOCK -->
+  <!-- DESKTOP DOCK -->
   <div class="experience-dock desktop-only-dock" id="exp-dock">
     <div class="dock-indicator" id="dock-indicator"></div>
     <button class="dock-btn magnetic" data-engine="topo" onclick="setEngine('topo', this)">Topo</button>
@@ -558,7 +590,6 @@
   </footer>
 
   <script>
-    // PHRASING ENGINE
     const headlines = [
       "Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>",
       "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
@@ -588,7 +619,6 @@
       root.style.setProperty('--theme-bubble', theme.bubble);
     }
 
-    // MULTI-ENGINE BACKGROUND LOGIC
     const canvas = document.getElementById('experience-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, time = 0, engineType;
@@ -748,17 +778,15 @@
       requestAnimationFrame(animate);
     }
 
-    // SCROLL PROGRESS
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / h) * 100;
         document.getElementById("progress-bar").style.width = scrolled + "%";
     });
 
-    // MAGNETIC PHYSICS LOGIC
     function initMagnetic() {
-        if (isMobileSize) return;
+        if (window.innerWidth < 1150) return;
         const magneticElements = document.querySelectorAll('.magnetic');
         magneticElements.forEach(el => {
             el.addEventListener('mousemove', (e) => {
@@ -773,12 +801,10 @@
         });
     }
 
-    // ENGINE SWITCHER
     function setEngine(type, btn) {
         engineType = type;
         initCurrentEngine();
         
-        // Sync desktop dock
         const desktopDock = document.getElementById('exp-dock');
         if(desktopDock) {
             desktopDock.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
@@ -791,7 +817,6 @@
             }
         }
         
-        // Sync mobile indicator
         const mobileIndicator = document.getElementById('dock-indicator-mobile');
         if(mobileIndicator) {
             mobileIndicator.style.width = `${btn.offsetWidth}px`;
@@ -813,15 +838,13 @@
     window.addEventListener('mousemove', (e) => updateInteraction(e.clientX, e.clientY));
     window.addEventListener('touchmove', (e) => { if (e.touches[0]) updateInteraction(e.touches[0].clientX, e.touches[0].clientY); });
 
-    const menuToggle = document.getElementById('menu-toggle');
+    const mobileTrigger = document.getElementById('mobile-trigger');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileCommand = document.getElementById('mobile-command');
     
-    menuToggle.onclick = () => {
+    mobileTrigger.onclick = () => {
         mobileMenu.classList.toggle('active');
-        const isActive = mobileMenu.classList.contains('active');
-        menuToggle.innerText = isActive ? "Close" : "Menu";
-        menuToggle.style.background = isActive ? "var(--theme-primary)" : "transparent";
+        mobileTrigger.classList.toggle('active');
+        mobileTrigger.innerText = mobileMenu.classList.contains('active') ? "Close" : "Menu";
     };
 
     function toggleMobileSub(el) {
