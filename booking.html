@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Secure your vitality session. Mobile senior fitness in Clark County, WA." />
+  <meta name="description" content="Experience senior vitality at home. Mobile fitness sessions in Clark County, WA." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Pricing & Booking | Olympian Health Solutions</title>
+  <title>The Experience | Olympian Health Solutions</title>
 
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,6 @@
   
   <style id="theme-variables">
     :root {
-      /* Default Fallback */
       --theme-primary: #2563eb;
       --theme-accent: #60a5fa;
       --theme-bg-end: #ebf5ff;
@@ -24,10 +23,9 @@
       --color-white: #ffffff;
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
-      --glass: rgba(255, 255, 255, 0.82);
+      --glass: rgba(255, 255, 255, 0.85);
       --radius-full: 999px;
-      --shadow-luxe: 0 20px 50px rgba(0,0,0,0.04);
-      --shadow-active: 0 10px 40px rgba(var(--theme-bubble), 0.15);
+      --shadow-luxe: 0 20px 50px rgba(0,0,0,0.06);
     }
   </style>
 
@@ -39,263 +37,244 @@
       font-family: var(--font-body);
       color: var(--color-navy);
       background-color: var(--color-frost);
-      line-height: 1.4;
+      line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 1s ease;
     }
 
-    h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
+    h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 1.1; letter-spacing: -0.03em; }
 
-    /* === NEURAL FLOW BACKGROUND === */
+    /* Neural Flow Background */
     .bg-animation {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
       background: radial-gradient(circle at 50% 50%, #ffffff 0%, var(--theme-bg-end) 100%);
-      transition: background 1s ease;
     }
     #flow-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.45; }
 
-    /* === NAVIGATION === */
+    /* Luxury Navigation */
     nav {
       position: fixed;
-      top: 15px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 20px); max-width: 1440px;
+      top: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 30px); max-width: 1200px;
       z-index: 2000;
       background: var(--glass);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       border-radius: var(--radius-full);
-      border: 1.5px solid rgba(255,255,255,0.7);
-      padding: 8px 20px;
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 12px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: var(--shadow-luxe);
-      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; position: relative; z-index: 2001; }
-    .logo-mark { width: 54px; height: 40px; background: var(--color-navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 0.9rem; flex-shrink: 0; }
-    .brand-text { display: flex; flex-direction: column; line-height: 1; }
-    .brand-name { font-weight: 900; font-size: 1.1rem; color: var(--color-navy); font-family: var(--font-header); }
-    .brand-subname { font-weight: 400; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--theme-primary); margin-top: 2px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-mark { width: 44px; height: 32px; background: var(--color-navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 0.75rem; }
+    .brand-name { font-weight: 900; font-size: 1.15rem; color: var(--color-navy); font-family: var(--font-header); }
+    .btn-pill { padding: 12px 28px; border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; background: var(--color-navy); color: #fff; transition: 0.3s; }
+    .btn-pill:hover { background: var(--theme-primary); transform: translateY(-2px); }
 
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; align-items: center; }
-    @media (max-width: 1100px) { .nav-links { display: none; } }
-    .nav-links a { text-decoration: none; color: #64748b; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
-    .nav-links a:hover { color: var(--theme-primary); }
-
-    .btn-pill {
-      position: relative; padding: 10px 24px; border-radius: var(--radius-full);
-      font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase;
-      letter-spacing: 0.05em; overflow: hidden; transition: 0.4s;
-      display: inline-block; text-align: center; white-space: nowrap; border: 1px solid transparent;
-      background: var(--color-navy); color: #fff !important;
-    }
-
-    /* === HERO === */
-    .booking-hero {
-      padding: 160px 24px 40px;
-      max-width: 1200px;
+    /* Hero Section */
+    .hero {
+      padding: 180px 24px 80px;
+      max-width: 1100px;
       margin: 0 auto;
       text-align: center;
-      min-height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
-    .booking-hero h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); margin-bottom: 1.5rem; font-weight: 900; color: var(--color-navy); letter-spacing: -0.05em; }
-    .booking-hero h1 strong { color: var(--theme-primary); transition: color 1s ease; }
-    .booking-hero p { font-size: 1.4rem; color: #475569; max-width: 800px; margin: 0 auto 3rem; line-height: 1.6; font-weight: 500; }
+    .hero h1 { font-size: clamp(2.8rem, 9vw, 5rem); font-weight: 900; margin-bottom: 1.5rem; color: var(--color-navy); }
+    .hero h1 span { color: var(--theme-primary); }
+    .hero p { font-size: 1.4rem; color: #475569; max-width: 750px; margin: 0 auto; font-weight: 500; line-height: 1.4; }
 
-    .hero-action-btn {
-        display: inline-flex; align-items: center; gap: 12px;
-        padding: 18px 36px; background: var(--color-white); color: var(--color-navy);
-        border: 2px solid var(--theme-primary); border-radius: var(--radius-full);
-        font-weight: 800; text-decoration: none; transition: 0.4s; box-shadow: var(--shadow-luxe);
-    }
-    .hero-action-btn:hover { background: var(--theme-primary); color: #fff; transform: translateY(-3px); }
+    /* Timeline Section */
+    .experience-section { padding: 60px 24px 100px; max-width: 1000px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 70px; }
+    .section-header h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 10px; }
+    .section-header p { color: #64748b; font-size: 1.25rem; font-weight: 500; }
 
-    @keyframes bounceArrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
-    .scroll-arrow { margin-top: 40px; cursor: pointer; animation: bounceArrow 2s infinite ease-in-out; color: var(--theme-primary); transition: color 1s ease; }
-
-    /* === HAPPINESS MULTIPLIER === */
-    .frequency-engine {
-        max-width: 1200px;
-        margin: 0 auto 100px;
-        background: rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-        border-radius: 64px;
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        padding: 80px 60px;
-        box-shadow: var(--shadow-luxe);
-    }
+    .exp-container { position: relative; padding-left: 90px; }
+    @media (max-width: 768px) { .exp-container { padding-left: 40px; } }
     
-    .engine-header { text-align: center; margin-bottom: 60px; }
-    .engine-header h2 { font-size: 3rem; font-weight: 900; margin-bottom: 15px; }
-    .engine-header h2 span { color: var(--theme-primary); transition: color 1s ease; }
-
-    .freq-selector {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 80px;
-        flex-wrap: wrap;
+    .exp-bar { 
+        position: absolute; left: 35px; top: 0; bottom: 0; width: 4px; 
+        background: rgba(0,0,0,0.04); border-radius: 10px; overflow: hidden; 
     }
-    .freq-btn {
-        padding: 18px 32px;
-        border-radius: 20px;
-        background: #fff;
-        border: 2px solid #f1f5f9;
-        font-family: var(--font-header);
-        font-weight: 900;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        color: #94a3b8;
-    }
-    .freq-btn.active {
-        background: var(--color-navy);
-        color: #fff;
-        border-color: var(--color-navy);
-        transform: scale(1.08);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    }
-
-    .visualizer-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-    }
-    @media (max-width: 900px) { .visualizer-grid { grid-template-columns: 1fr; } }
-
-    .chart-container { display: flex; flex-direction: column; gap: 40px; }
-    .visual-bar-wrap { width: 100%; }
-    .visual-bar-label { display: flex; justify-content: space-between; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: 12px; }
-    .visual-bar-label strong { color: var(--color-navy); font-size: 0.95rem; }
-
-    .bar-outer { width: 100%; height: 14px; background: #eef2ff; border-radius: 99px; overflow: hidden; position: relative; }
-    .bar-inner { height: 100%; width: 0%; background: var(--theme-primary); border-radius: 99px; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 1s ease; position: relative; }
-    .bar-inner::after { content: ''; position: absolute; top: 0; right: 0; height: 100%; width: 50px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); animation: barShimmer 2s infinite linear; }
-    @keyframes barShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
-
-    .value-display-card {
-        background: var(--color-navy);
-        border-radius: 40px;
-        padding: 50px;
-        color: #fff;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-    .value-display-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 80%); }
+    @media (max-width: 768px) { .exp-bar { left: 15px; } }
     
-    .current-rate { font-size: 5.5rem; font-weight: 900; line-height: 1; margin-bottom: 10px; color: var(--theme-accent); transition: color 1s ease; }
-    .current-rate-label { font-size: 0.9rem; font-weight: 600; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em; }
+    .exp-pulse { 
+        position: absolute; top: -100px; left: 0; width: 100%; height: 200px; 
+        background: linear-gradient(to bottom, transparent, var(--theme-primary), transparent); 
+        filter: blur(3px); animation: pulseDown 5s infinite linear; 
+    }
+    @keyframes pulseDown { 0% { top: -200px; } 100% { top: 100%; } }
     
-    .monthly-sum { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-    .monthly-sum span { display: block; font-size: 0.75rem; font-weight: 800; opacity: 0.5; margin-bottom: 5px; }
-    .monthly-sum strong { font-size: 2rem; display: block; }
-
-    .savings-badge { position: absolute; top: 20px; right: 20px; background: #fff; color: var(--color-navy); padding: 8px 16px; border-radius: 99px; font-weight: 900; font-size: 0.7rem; transform: rotate(5deg); box-shadow: 0 10px 20px rgba(0,0,0,0.3); opacity: 0; transition: 0.5s; z-index: 2; }
-    .savings-badge.active { opacity: 1; transform: rotate(15deg) scale(1.1); }
-
-    /* === VITALITY RATE MATRIX === */
-    .ledger-section { padding: 40px 24px; max-width: 1300px; margin: 0 auto 80px; }
-    .matrix-title { text-align: center; margin-bottom: 40px; }
-    .matrix-title h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; color: var(--color-navy); }
-    .matrix-title span { color: var(--theme-primary); transition: color 1s ease; }
-
-    .investment-matrix { background: var(--color-navy); color: #fff; border-radius: 40px; padding: 2px; position: relative; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.25); }
-    .matrix-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr 1.2fr; background: var(--color-navy); border-radius: 38px; overflow: hidden; }
-    .matrix-header-col { padding: 30px; border-right: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); display: flex; flex-direction: column; justify-content: center; }
-    .matrix-col { padding: 40px 30px; border-right: 1px solid rgba(255,255,255,0.05); text-align: center; transition: 0.4s; }
-    .matrix-col:last-child { border-right: none; }
-    .matrix-col:hover { background: rgba(255,255,255,0.03); }
-    .matrix-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--theme-accent); margin-bottom: 10px; display: block; }
-    .matrix-title-text { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; display: block; }
-    .matrix-price { font-size: 3rem; font-weight: 900; line-height: 1; margin-bottom: 5px; }
-    .matrix-unit { font-size: 0.8rem; opacity: 0.5; font-weight: 600; display: block; margin-bottom: 25px; }
-    .matrix-scope { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; font-weight: 500; }
-    .best-value-col { background: rgba(var(--theme-bubble), 0.08); border-right-color: rgba(var(--theme-bubble), 0.2); }
-    .best-value-col .matrix-price { color: var(--theme-accent); }
-
-    @media (max-width: 1024px) {
-        .matrix-grid { grid-template-columns: 1fr; }
-        .matrix-header-col { text-align: center; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .matrix-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 50px 30px; }
+    .exp-item { 
+        position: relative; margin-bottom: 50px; opacity: 0; 
+        transform: translateX(30px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); 
     }
-
-    /* === PRICING GRID === */
-    .pricing-section { max-width: 1440px; margin: 0 auto 100px; padding: 0 24px; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .price-card { background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(25px); border-radius: 40px; padding: 40px 35px; border: 1px solid rgba(255,255,255,0.7); box-shadow: var(--shadow-luxe); position: relative; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; }
-    .price-card:hover { transform: translateY(-10px); background: #fff; border-color: var(--theme-primary); box-shadow: var(--shadow-active); }
-    .price-card.popular { background: var(--color-navy); color: #fff; border: none; }
-    .price-card.popular::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, var(--theme-glow) 0%, transparent 60%); pointer-events: none; }
-    .card-tag { display: inline-block; padding: 6px 16px; background: rgba(var(--theme-bubble), 0.1); color: var(--theme-primary); border-radius: 99px; font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 15px; }
-    .popular .card-tag { background: var(--theme-accent); color: var(--color-navy); }
-    .card-price h3 { font-size: 3.5rem; font-weight: 900; line-height: 1; margin-bottom: 25px; }
-    .benefit-stack { margin-bottom: 30px; flex-grow: 1; }
-    .benefit-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-weight: 500; font-size: 0.9rem; }
-    .benefit-item i { color: var(--theme-primary); font-style: normal; font-weight: 900; }
-    .popular .benefit-item i { color: var(--theme-accent); }
-    .btn-book { display: block; width: 100%; padding: 20px; background: var(--color-navy); color: #fff; border-radius: 99px; text-align: center; text-decoration: none; font-weight: 900; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    .popular .btn-book { background: #fff; color: var(--color-navy); }
-
-    /* MOBILE ADJUSTMENTS */
-    @media (max-width: 768px) {
-        .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
-        .price-card { padding: 30px 20px; border-radius: 30px; }
-        .card-price h3 { font-size: 2.8rem; }
-        .frequency-engine { padding: 40px 20px; border-radius: 32px; }
-        .current-rate { font-size: 4rem; }
-    }
-
-    /* === INVESTMENT EDGE === */
-    .investment-edge { padding: 80px 24px; max-width: 1100px; margin: 0 auto 100px; background: var(--color-navy); border-radius: 64px; color: #fff; text-align: center; overflow: hidden; position: relative; }
-    .edge-header h2 { font-size: 3rem; margin-bottom: 1rem; }
-    .edge-header h2 span { color: var(--theme-accent); }
-    .comparison-wrap { display: flex; justify-content: center; align-items: flex-end; gap: 30px; height: 250px; margin-bottom: 40px; }
-    .comp-bar { width: 110px; border-radius: 16px 16px 0 0; position: relative; transition: 1.5s cubic-bezier(0.16, 1, 0.3, 1); height: 0%; }
-    .bar-gym { background: rgba(255,255,255,0.15); }
-    .bar-ohs { background: var(--theme-primary); box-shadow: 0 0 30px var(--theme-primary); }
-    .bar-val { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); font-weight: 900; font-size: 1.3rem; }
-    .bar-label { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; font-weight: 800; text-transform: uppercase; white-space: nowrap; }
-
-    /* === EXPERIENCE PIPELINE === */
-    .experience-section { padding: 100px 24px; max-width: 1000px; margin: 0 auto; }
-    .exp-container { position: relative; padding-left: 80px; }
-    @media (max-width: 768px) { .exp-container { padding-left: 50px; } }
-    .exp-bar { position: absolute; left: 30px; top: 0; bottom: 0; width: 4px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
-    .exp-pulse { position: absolute; top: -100px; left: 0; width: 100%; height: 150px; background: linear-gradient(to bottom, transparent, var(--theme-primary), transparent); filter: blur(2px); animation: pulseDown 6s infinite linear; }
-    @keyframes pulseDown { 0% { top: -150px; } 100% { top: 100%; } }
-    .exp-item { position: relative; margin-bottom: 60px; opacity: 0.2; transform: translateX(20px); transition: 0.8s; }
     .exp-item.active { opacity: 1; transform: translateX(0); }
-    .exp-node { position: absolute; left: -62px; top: 5px; width: 28px; height: 28px; background: #fff; border: 4px solid #e2e8f0; border-radius: 50%; z-index: 10; transition: 0.5s; }
-    .active .exp-node { border-color: var(--theme-primary); box-shadow: 0 0 20px var(--theme-glow); transform: scale(1.2); }
-    .exp-content { background: #fff; padding: 30px; border-radius: 28px; border: 1.5px solid #f1f5f9; box-shadow: var(--shadow-luxe); }
+    
+    .exp-node { 
+        position: absolute; left: -72px; top: 8px; width: 32px; height: 32px; 
+        background: #fff; border: 5px solid rgba(0,0,0,0.05); border-radius: 50%; 
+        z-index: 10; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+    @media (max-width: 768px) { .exp-node { left: -36px; width: 20px; height: 20px; border-width: 3px; } }
+    
+    .active .exp-node { 
+        border-color: var(--theme-primary); 
+        box-shadow: 0 0 30px var(--theme-glow); 
+        transform: scale(1.3); 
+    }
+    
+    .exp-content { 
+        background: #fff; padding: 40px 50px; border-radius: 45px; 
+        border: 1.5px solid #f1f5f9; box-shadow: var(--shadow-luxe); 
+        transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (max-width: 768px) { .exp-content { padding: 30px; border-radius: 30px; } }
+    .exp-item:hover .exp-content { border-color: var(--theme-primary); transform: scale(1.02) translateX(10px); }
+    
+    .exp-content strong { display: block; font-size: 1.6rem; margin-bottom: 12px; color: var(--color-navy); }
+    .exp-content p { margin: 0; color: #475569; font-weight: 500; font-size: 1.15rem; line-height: 1.6; }
+    .exp-step-label { 
+        font-size: 0.8rem; font-weight: 900; color: var(--theme-primary); 
+        text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 10px; display: block;
+    }
 
-    /* FAQ */
-    .faq-section { max-width: 900px; margin: 0 auto 120px; padding: 0 24px; }
-    .faq-item { background: var(--glass); backdrop-filter: blur(15px); border-radius: 24px; border: 1.5px solid rgba(255,255,255,0.7); overflow: hidden; margin-bottom: 12px; }
-    .faq-item.active { border-color: var(--theme-primary); background: #fff; }
-    .faq-trigger { width: 100%; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: none; border: none; text-align: left; }
-    .faq-trigger span { font-weight: 800; font-size: 1rem; color: var(--color-navy); }
-    .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s; padding: 0 30px; }
-    .faq-item.active .faq-content { max-height: 250px; padding-bottom: 20px; }
+    /* Simple Investment Section */
+    .investment-section { padding: 100px 24px; background: var(--color-navy); color: #fff; border-radius: 80px; margin: 40px 24px; overflow: hidden; position: relative; }
+    .investment-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(var(--theme-bubble), 0.1) 0%, transparent 60%); pointer-events: none; }
+    
+    .pricing-snapshot { max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .pricing-snapshot h2 { font-size: 3.5rem; margin-bottom: 20px; }
+    .pricing-snapshot p { color: rgba(255,255,255,0.6); font-size: 1.3rem; margin-bottom: 60px; font-weight: 500; }
 
-    /* SCHEDULER */
-    .scheduler-container { max-width: 1100px; margin: 0 auto 100px; background: rgba(255,255,255,0.6); backdrop-filter: blur(30px); border-radius: 48px; border: 1px solid rgba(255,255,255,0.8); padding: 40px; box-shadow: var(--shadow-luxe); }
-    .scheduler-header { text-align: center; margin-bottom: 40px; }
+    .pricing-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: stretch; }
+    @media (max-width: 1024px) { .pricing-layout { grid-template-columns: 1fr; gap: 24px; } }
 
-    footer { padding: 6rem 24px; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid var(--color-frost); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .intro-card {
+        background: rgba(255,255,255,0.03);
+        padding: 60px 40px;
+        border-radius: 50px;
+        border: 2px solid rgba(255,255,255,0.1);
+        display: flex; flex-direction: column; justify-content: center;
+        position: relative; overflow: hidden;
+        backdrop-filter: blur(10px); transition: 0.4s;
+    }
+    .intro-card:hover { border-color: var(--theme-accent); transform: translateY(-5px); }
+    .intro-badge { 
+        position: absolute; top: 35px; right: -45px; background: var(--theme-accent); 
+        color: var(--color-navy); padding: 8px 60px; font-size: 0.75rem; font-weight: 900; 
+        transform: rotate(45deg); text-transform: uppercase;
+    }
+    .intro-card h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--theme-accent); margin-bottom: 15px; }
+    .intro-price { font-size: 5.5rem; font-weight: 900; line-height: 1; margin: 15px 0; }
+    .intro-sub { font-size: 1.2rem; opacity: 0.7; font-weight: 600; }
+
+    .slider-box {
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+        border-radius: 50px;
+        padding: 60px 50px;
+        text-align: left;
+        display: flex; flex-direction: column; justify-content: space-between;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 768px) { .slider-box { padding: 40px 30px; border-radius: 35px; } }
+    
+    .slider-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
+    .slider-title h4 { font-size: 2.2rem; margin-bottom: 8px; color: var(--color-white); }
+    .savings-pill { background: #059669; color: #fff; padding: 10px 22px; border-radius: 99px; font-weight: 800; font-size: 0.8rem; display: none; }
+    .savings-pill.active { display: block; animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    
+    .frequency-slider-wrap { margin: 50px 0; position: relative; }
+    .custom-slider {
+        -webkit-appearance: none; width: 100%; height: 14px;
+        background: rgba(255,255,255,0.1); border-radius: 15px; outline: none;
+    }
+    .custom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none; width: 48px; height: 48px;
+        background: #fff; border-radius: 50%; cursor: pointer;
+        box-shadow: 0 0 30px var(--theme-accent); transition: 0.3s;
+    }
+    .slider-labels { display: flex; justify-content: space-between; margin-top: 25px; font-weight: 800; opacity: 0.4; font-size: 0.85rem; }
+    .slider-labels span.active { opacity: 1; color: var(--theme-accent); }
+
+    .slider-result { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    @media (max-width: 768px) { .slider-result { flex-direction: column; align-items: flex-start; gap: 30px; } }
+    .res-val { font-size: 4rem; font-weight: 900; color: #fff; }
+    .res-val span { font-size: 1.2rem; opacity: 0.5; font-weight: 500; }
+    .per-visit-tag { font-weight: 700; color: var(--theme-accent); font-size: 1.1rem; }
+
+    /* Final Action Card */
+    .final-cta { padding: 80px 24px 140px; text-align: center; max-width: 900px; margin: 0 auto; }
+    .final-cta h2 { font-size: 4rem; margin-bottom: 40px; color: var(--color-navy); }
+    @media (max-width: 768px) { .final-cta h2 { font-size: 2.5rem; } }
+    .btn-massive {
+        display: inline-block;
+        padding: 28px 70px;
+        background: var(--theme-primary);
+        color: #fff;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.5rem;
+        box-shadow: 0 25px 50px var(--theme-glow);
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-massive:hover { transform: scale(1.05) translateY(-5px); background: var(--color-navy); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+
+    /* FAQ System */
+    .faq-section { padding: 60px 24px 100px; max-width: 900px; margin: 0 auto; }
+    .faq-title { text-align: center; margin-bottom: 50px; }
+    .faq-title h2 { font-size: 2.8rem; }
+    .faq-item {
+        background: #fff;
+        border: 1.5px solid #f1f5f9;
+        border-radius: 28px;
+        overflow: hidden;
+        transition: 0.3s;
+        margin-bottom: 15px;
+    }
+    .faq-item:hover { border-color: var(--theme-primary); transform: translateY(-2px); }
+    .faq-trigger {
+        width: 100%; padding: 30px 40px; display: flex; justify-content: space-between; align-items: center;
+        cursor: pointer; background: none; border: none; text-align: left;
+    }
+    @media (max-width: 768px) { .faq-trigger { padding: 25px; } }
+    .faq-trigger span { font-weight: 800; font-size: 1.2rem; color: var(--color-navy); }
+    .faq-icon {
+        width: 28px; height: 28px; position: relative; transition: 0.4s;
+    }
+    .faq-icon::before, .faq-icon::after {
+        content: ''; position: absolute; background: var(--theme-primary);
+        top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .faq-icon::before { width: 16px; height: 2.5px; }
+    .faq-icon::after { width: 2.5px; height: 16px; transition: 0.4s; }
+    .faq-item.active .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+    
+    .faq-content { 
+        max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+        padding: 0 40px;
+    }
+    .faq-item.active .faq-content { max-height: 1000px; transition: max-height 0.6s cubic-bezier(1, 0, 1, 0); padding-bottom: 30px; }
+    .faq-content p { margin: 0; color: #64748b; font-weight: 500; font-size: 1.1rem; line-height: 1.7; }
+
+    footer { padding: 60px 24px; text-align: center; color: #94a3b8; font-size: 0.85rem; border-top: 1px solid rgba(0,0,0,0.03); }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+        .btn-massive { padding: 22px 40px; font-size: 1.2rem; width: 100%; }
+        .hero { padding-top: 140px; }
+    }
   </style>
 </head>
 <body>
@@ -304,271 +283,207 @@
     <canvas id="flow-canvas"></canvas>
   </div>
 
-  <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="brand">
       <div class="logo-mark">OHS</div>
-      <div class="brand-text">
-        <span class="brand-name">Olympian</span>
-        <span class="brand-subname">Health Solutions</span>
-      </div>
+      <span class="brand-name">Olympian Health</span>
     </a>
-    <ul class="nav-links">
-      <li><a href="index.html#results">Our Results</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="about.html">About us</a></li>
-    </ul>
-    <div class="nav-btns">
-      <a href="index.html" class="btn-pill">Back Home</a>
-    </div>
+    <a href="index.html" class="btn-pill">Home</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="booking-hero">
-    <div class="reveal active">
-        <h1>Select Your <strong>Vitality Journey</strong></h1>
-        <p>Expert home-delivery care designed for energy and independence. Choose a model that fits your goals.</p>
-        <div class="flex flex-col items-center">
-            <a href="#frequency-lab" class="hero-action-btn">Calculate Your Happiness ROI <i>↓</i></a>
-            <div class="scroll-arrow" onclick="document.getElementById('frequency-lab').scrollIntoView({behavior:'smooth'})">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
-            </div>
-        </div>
-    </div>
-  </section>
+  <header class="hero reveal active">
+    <h1>Your Best Life, <span>At Home.</span></h1>
+    <p>Premium vitality sessions designed specifically for the modern senior. We bring the expertise, the energy, and the equipment directly to your door.</p>
+  </header>
 
-  <!-- HAPPINESS MULTIPLIER ENGINE -->
-  <section class="container reveal" id="frequency-lab">
-    <div class="frequency-engine">
-        <div class="engine-header">
-            <h2>The Happiness <span>Multiplier</span></h2>
-            <p style="color:#64748b; font-weight:500;">Select your weekly goal to watch the rewards surge.</p>
-        </div>
-
-        <div class="freq-selector">
-            <button class="freq-btn active" data-val="1">1X / WEEK</button>
-            <button class="freq-btn" data-val="2">2X / WEEK</button>
-            <button class="freq-btn" data-val="3">3X / WEEK</button>
-            <button class="freq-btn" data-val="4">4X / WEEK</button>
-            <button class="freq-btn" data-val="5">5X / WEEK</button>
-        </div>
-
-        <div class="visualizer-grid">
-            <div class="chart-container">
-                <div class="visual-bar-wrap">
-                    <div class="visual-bar-label"><span>Cost Per Visit</span> <strong id="price-label">$40</strong></div>
-                    <div class="bar-outer"><div class="bar-inner" id="bar-price" style="width: 100%;"></div></div>
-                </div>
-                <div class="visual-bar-wrap">
-                    <div class="visual-bar-label"><span>Confidence & Stability</span> <strong id="neural-label">+15%</strong></div>
-                    <div class="bar-outer"><div class="bar-inner" id="bar-neural" style="width: 20%; background: var(--theme-accent);"></div></div>
-                </div>
-                <div class="visual-bar-wrap">
-                    <div class="visual-bar-label"><span>Energy Recovery Rate</span> <strong id="recovery-label">Standard</strong></div>
-                    <div class="bar-outer"><div class="bar-inner" id="bar-recovery" style="width: 15%; opacity: 0.6;"></div></div>
-                </div>
-            </div>
-
-            <div class="value-display-card">
-                <div class="savings-badge" id="save-badge">SAVE $100/MO</div>
-                <span class="current-rate-label">Optimized Rate</span>
-                <div class="current-rate" id="current-price">$40</div>
-                <div class="monthly-sum">
-                    <span>Monthly Vitality Investment</span>
-                    <strong id="monthly-total">$160</strong>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- RATE MATRIX -->
-  <section class="ledger-section" id="matrix">
-    <div class="matrix-title">
-        <h2>Wellness Investment <span>Map</span></h2>
-        <p style="color:#64748b; font-weight:500; margin-top:10px;">Compare models side-by-side for your best results.</p>
-    </div>
-    <div class="investment-matrix reveal">
-        <div class="matrix-grid">
-            <div class="matrix-header-col">
-                <strong class="matrix-title-text" style="font-size: 1rem; opacity:0.7;">Select Your Tier</strong>
-                <p class="matrix-scope" style="font-size: 0.8rem;">Every visit includes our portable "Vitality Suite" and full health mapping.</p>
-            </div>
-            <div class="matrix-col">
-                <span class="matrix-label">Starter</span>
-                <strong class="matrix-title-text">Precision Access</strong>
-                <div class="matrix-price">$40</div>
-                <span class="matrix-unit">Per 30m Session</span>
-                <p class="matrix-scope">Quick Relief & Maintenance. Perfect for initial health audits.</p>
-            </div>
-            <div class="matrix-col">
-                <span class="matrix-label">Best Momentum</span>
-                <strong class="matrix-title-text">Mastery Bundle</strong>
-                <div class="matrix-price">$35</div>
-                <span class="matrix-unit">Per Session ($350 Total)</span>
-                <p class="matrix-scope">Structural Building. 10 sessions to truly feel the difference.</p>
-            </div>
-            <div class="matrix-col best-value-col">
-                <span class="matrix-label">Endless Energy</span>
-                <strong class="matrix-title-text">Vitality Sync</strong>
-                <div class="matrix-price">$35</div>
-                <span class="matrix-unit">Per Session ($280/mo)</span>
-                <p class="matrix-scope">Biological Rejuvenation. 2x weekly recurring joyful growth.</p>
-            </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- PRICING TILES -->
-  <section class="pricing-section reveal">
-    <div class="pricing-grid">
-        <div class="price-card">
-            <span class="card-tag">Targeted Relief</span>
-            <div class="card-price"><h3>$40</h3><span>Per 30-Minute Session</span></div>
-            <div class="benefit-stack">
-                <div class="benefit-item"><i>✓</i> Expert "Vitality Suite" Provided</div>
-                <div class="benefit-item"><i>✓</i> Friendly One-on-One Support</div>
-                <div class="benefit-item"><i>✓</i> Expert DPT Supervision</div>
-            </div>
-            <a href="#schedule" class="btn-book">Book Now</a>
-        </div>
-
-        <div class="price-card popular">
-            <span class="card-tag">The 10-Pack Journey</span>
-            <div class="card-price"><h3>$350</h3><span style="color:rgba(255,255,255,0.6);">$35 Per Session (Save $50)</span></div>
-            <div class="benefit-stack">
-                <div class="benefit-item"><i>✓</i> Complete Walking Re-calibration</div>
-                <div class="benefit-item"><i>✓</i> Permanent Confidence Boost</div>
-                <div class="benefit-item"><i>✓</i> Full Personal Wellness Plan</div>
-            </div>
-            <a href="#schedule" class="btn-book">Secure Bundle</a>
-        </div>
-
-        <div class="price-card">
-            <span class="card-tag">Monthly Happiness Sync</span>
-            <div class="card-price"><h3>$280</h3><span>8 Sessions / Month ($35/ea)</span></div>
-            <div class="benefit-stack">
-                <div class="benefit-item"><i>✓</i> Fun Progress Tracking</div>
-                <div class="benefit-item"><i>✓</i> Weekly Wellness Recap Texts</div>
-                <div class="benefit-item"><i>✓</i> Continuous Natural Surge</div>
-            </div>
-            <a href="#schedule" class="btn-book">Start Membership</a>
-        </div>
-    </div>
-  </section>
-
-  <!-- INVESTMENT EDGE -->
-  <section class="investment-edge container reveal">
-    <div class="edge-header">
-        <h2>Expertise Without the <span>Commute.</span></h2>
-        <p>Why pay for gym memberships and gas? We bring the high-end coaching to your favorite chair.</p>
-    </div>
-    <div class="comparison-wrap">
-        <div class="comp-bar bar-gym" id="bar-gym"><div class="bar-val">$120</div><span class="bar-label">Typical Gym Trainer</span></div>
-        <div class="comp-bar bar-ohs" id="bar-ohs"><div class="bar-val">$40</div><span class="bar-label">OHS Expert Partner</span></div>
-    </div>
-    <div style="margin-top: 50px;"><p style="font-weight: 900; font-size: 1.4rem; color: var(--theme-accent);">Double the attention. 1/3 the cost.</p></div>
-  </section>
-
-  <!-- SESSION EXPERIENCE -->
+  <!-- THE EXPERIENCE TIMELINE -->
   <section class="experience-section reveal" id="experience">
-    <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="font-size: 3rem; font-weight: 900;">A Stellar <span>At-Home</span> Session</h2>
-        <p style="color: #64748b; font-size: 1.2rem;">Easy, friendly, and wonderfully simple.</p>
+    <div class="section-header">
+        <h2>What a session <span>looks like</span></h2>
+        <p>Expert care, simplified into three joyful steps.</p>
     </div>
+    
     <div class="exp-container">
         <div class="exp-bar"><div class="exp-pulse"></div></div>
-        <div class="exp-item" id="exp-1"><div class="exp-node"></div><div class="exp-content"><strong>01. Warm Arrival</strong><p>Your partner arrives on time with a portable "Vitality Suite." Sanitized for your peace of mind. No equipment needed from you!</p></div></div>
-        <div class="exp-item" id="exp-2"><div class="exp-node"></div><div class="exp-content"><strong>02. Energy Sync</strong><p>We start with a quick check-in on how you're feeling and a simple safety scan of your favorite room to keep everything smooth.</p></div></div>
-        <div class="exp-item" id="exp-3"><div class="exp-node"></div><div class="exp-content"><strong>03. Precision Play</strong><p>30 minutes of targeted movement built around your goals—more energy, better balance, or simply moving without care.</p></div></div>
-        <div class="exp-item" id="exp-4"><div class="exp-node"></div><div class="exp-content"><strong>04. The Brighter Blueprint</strong><p>We wrap up with a clear plan for your week so you can keep that positive momentum until our next visit.</p></div></div>
+        
+        <!-- Step 1 -->
+        <div class="exp-item" id="exp-1">
+            <div class="exp-node"></div>
+            <div class="exp-content">
+                <span class="exp-step-label">Step 01</span>
+                <strong>Friendly meeting & Warm-up</strong>
+                <p>We start with a warm hello and a heart-to-heart on how you're feeling today. Then, a gentle physical warm-up prepares your body and spirit for a great session.</p>
+            </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="exp-item" id="exp-2">
+            <div class="exp-node"></div>
+            <div class="exp-content">
+                <span class="exp-step-label">Step 02</span>
+                <strong>Making improvements</strong>
+                <p>The core of the experience. We focus on enhancing your balance, boosting your energy, and building the strength you need for your favorite hobbies and activities.</p>
+            </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="exp-item" id="exp-3">
+            <div class="exp-node"></div>
+            <div class="exp-content">
+                <span class="exp-step-label">Step 03</span>
+                <strong>Cool-down & See ya next week!</strong>
+                <p>We wrap up with a relaxing cool-down and a positive summary of your wins. We leave you with a simple plan to keep the momentum going until our next visit.</p>
+            </div>
+        </div>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- INVESTMENT SECTION -->
+  <section class="investment-section reveal">
+    <div class="pricing-snapshot">
+        <h2>A Simple <span>Investment</span></h2>
+        <p>Professional one-on-one care tailored to your goals.</p>
+        
+        <div class="pricing-layout">
+            <!-- Intro Card -->
+            <div class="intro-card">
+                <div class="intro-badge">Intro Rate</div>
+                <h3>Starter Session</h3>
+                <div class="intro-price">$40</div>
+                <div class="intro-sub">25-Minute Discovery Visit</div>
+                <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 20px;">Experience the full "Vitality Suite" and receive your first health mapping results.</p>
+            </div>
+
+            <!-- Slider Box -->
+            <div class="slider-box">
+                <div class="slider-header">
+                    <div class="slider-title">
+                        <h4>Thrive Monthly</h4>
+                        <p style="opacity: 0.5; font-size: 0.95rem;">Choose your frequency for maximum ROI.</p>
+                    </div>
+                    <div class="savings-pill" id="savings-display">SAVE $84</div>
+                </div>
+
+                <div class="frequency-slider-wrap">
+                    <input type="range" min="1" max="3" value="1" class="custom-slider" id="freq-slider">
+                    <div class="slider-labels">
+                        <span id="label-1" class="active">1X / WEEK</span>
+                        <span id="label-2">2X / WEEK</span>
+                        <span id="label-3">3X / WEEK</span>
+                    </div>
+                </div>
+
+                <div class="slider-result">
+                    <div>
+                        <div style="font-size: 0.8rem; font-weight: 800; opacity: 0.5; text-transform: uppercase; margin-bottom: 5px;">Investment</div>
+                        <div class="res-val" id="total-price">$160<span>/mo</span></div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div id="session-count" style="font-weight: 800; color: #fff; font-size: 1.4rem;">4 Sessions</div>
+                        <div id="per-session-price" class="per-visit-tag">$40 per visit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta reveal">
+    <h2>Ready to get started? Let's schedule your visit!</h2>
+    <a href="booking1.html" class="btn-massive">Check Availability & Book →</a>
+  </section>
+
+  <!-- FAQ SECTION -->
   <section class="faq-section reveal">
-    <div class="faq-title" style="text-align:center; margin-bottom:40px;"><h2>Common <span>Questions</span></h2></div>
+    <div class="faq-title">
+        <h2>Common <span>Questions</span></h2>
+    </div>
     <div class="faq-container">
         <div class="faq-item">
-            <button class="faq-trigger" onclick="toggleFAQ(this)"><span>Do I need a big gym space?</span><i>+</i></button>
-            <div class="faq-content"><p>Not at all! If you have room for a dining chair, you have room for vitality. We specialize in making your living room the ultimate wellness space.</p></div>
+            <button class="faq-trigger">
+                <span>Do I need to own any equipment?</span>
+                <div class="faq-icon"></div>
+            </button>
+            <div class="faq-content">
+                <p>Not a single thing! We bring our portable "Vitality Suite"—including specialized air-stability pads, precision resistance tools, and balance sensors. We handle all the setup and teardown.</p>
+            </div>
         </div>
         <div class="faq-item">
-            <button class="faq-trigger" onclick="toggleFAQ(this)"><span>What should I wear?</span><i>+</i></button>
-            <div class="faq-content"><p>Whatever makes you feel good. Comfortable shoes and easy-to-move-in casual wear are perfect.</p></div>
+            <button class="faq-trigger">
+                <span>How much space is required?</span>
+                <div class="faq-icon"></div>
+            </button>
+            <div class="faq-content">
+                <p>If you have room for a sturdy dining chair and a few feet of floor space, you have more than enough. We specialize in transforming cozy living rooms into high-end wellness zones.</p>
+            </div>
         </div>
-    </div>
-  </section>
-
-  <!-- SCHEDULER -->
-  <section class="container reveal" id="schedule">
-    <div class="scheduler-container">
-        <div class="scheduler-header"><h2>Pick Your <span>Happy Hour</span></h2><p>Direct sync with Zeuse Valentine's expert calendar.</p></div>
-        <div class="calendly-inline-widget" data-url="https://calendly.com/zeustrength/30min" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <div class="faq-item">
+            <button class="faq-trigger">
+                <span>What is the "Discovery Visit"?</span>
+                <div class="faq-icon"></div>
+            </button>
+            <div class="faq-content">
+                <p>It's your low-risk introduction to OHS. For $40, we perform a full vitality audit, test out the equipment, and build your initial mobility map. No long-term commitment required.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-trigger">
+                <span>Can I change my frequency later?</span>
+                <div class="faq-icon"></div>
+            </button>
+            <div class="faq-content">
+                <p>Absolutely. You can scale up to 3x per week for faster results or stick to once a week for maintenance. We are flexible and grow with you.</p>
+            </div>
+        </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2024 Olympian Health Solutions. Senior Vitality Specialists. Clark County, WA.</p>
+    &copy; 2024 Olympian Health Solutions. Senior Vitality Specialists. Clark County, WA.
   </footer>
 
   <script>
-    const themes = [
-      { primary: '#2563eb', accent: '#60a5fa', bgEnd: '#ebf5ff', bubble: '37, 99, 235', glow: 'rgba(37, 99, 235, 0.4)' },
-      { primary: '#7c3aed', accent: '#a78bfa', bgEnd: '#f5f3ff', bubble: '124, 58, 237', glow: 'rgba(124, 58, 237, 0.4)' },
-      { primary: '#0369a1', accent: '#38bdf8', bgEnd: '#f0f9ff', bubble: '3, 105, 161', glow: 'rgba(3, 105, 161, 0.4)' },
-      { primary: '#059669', accent: '#34d399', bgEnd: '#ecfdf5', bubble: '5, 150, 105', glow: 'rgba(5, 150, 105, 0.4)' }
-    ];
-
-    function applyRandomTheme() {
-      const theme = themes[Math.floor(Math.random() * themes.length)];
-      const root = document.documentElement;
-      root.style.setProperty('--theme-primary', theme.primary);
-      root.style.setProperty('--theme-accent', theme.accent);
-      root.style.setProperty('--theme-bg-end', theme.bgEnd);
-      root.style.setProperty('--theme-bubble', theme.bubble);
-      root.style.setProperty('--theme-glow', theme.glow);
-    }
-
-    // --- FREQUENCY ENGINE LOGIC ---
-    const freqData = {
-        "1": { price: "$40", total: "$160", savings: 0, barPrice: 100, neural: 20, recovery: 15 },
-        "2": { price: "$35", total: "$280", savings: 40, barPrice: 87.5, neural: 45, recovery: 35 },
-        "3": { price: "$33", total: "$396", savings: 84, barPrice: 82.5, neural: 65, recovery: 60 },
-        "4": { price: "$31", total: "$496", savings: 144, barPrice: 77.5, neural: 85, recovery: 82 },
-        "5": { price: "$30", total: "$600", savings: 200, barPrice: 75, neural: 100, recovery: 100 }
+    // Slider Logic
+    const slider = document.getElementById('freq-slider');
+    const totalPrice = document.getElementById('total-price');
+    const sessionCount = document.getElementById('session-count');
+    const perSessionPrice = document.getElementById('per-session-price');
+    const savingsDisplay = document.getElementById('savings-display');
+    
+    const pricingData = {
+        "1": { total: 160, count: 4, per: 40, savings: 0 },
+        "2": { total: 280, count: 8, per: 35, savings: 40 },
+        "3": { total: 396, count: 12, per: 33, savings: 84 }
     };
 
-    const freqBtns = document.querySelectorAll('.freq-btn');
-    freqBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            freqBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const v = btn.dataset.val;
-            const d = freqData[v];
-            document.getElementById('price-label').textContent = d.price;
-            document.getElementById('current-price').textContent = d.price;
-            document.getElementById('monthly-total').textContent = d.total;
-            document.getElementById('neural-label').textContent = (v == "1") ? "+15%" : (v == "5") ? "+110% Rapid" : `+${d.neural}%`;
-            document.getElementById('recovery-label').textContent = (v == "1") ? "Standard" : (v == "5") ? "Maximum" : "Advanced";
-            document.getElementById('bar-price').style.width = d.barPrice + "%";
-            document.getElementById('bar-neural').style.width = d.neural + "%";
-            document.getElementById('bar-recovery').style.width = d.recovery + "%";
-            const saveBadge = document.getElementById('save-badge');
-            if(d.savings > 0) { saveBadge.textContent = `SAVE $${d.savings}/MO`; saveBadge.classList.add('active'); }
-            else { saveBadge.classList.remove('active'); }
+    slider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const data = pricingData[val];
+        document.querySelectorAll('.slider-labels span').forEach(s => s.classList.remove('active'));
+        document.getElementById(`label-${val}`).classList.add('active');
+        totalPrice.innerHTML = `$${data.total}<span>/mo</span>`;
+        sessionCount.textContent = `${data.count} Sessions`;
+        perSessionPrice.textContent = `$${data.per} per visit`;
+        if (data.savings > 0) {
+            savingsDisplay.textContent = `SAVE $${data.savings}`;
+            savingsDisplay.classList.add('active');
+        } else {
+            savingsDisplay.classList.remove('active');
+        }
+    });
+
+    // FAQ Logic
+    document.querySelectorAll('.faq-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const item = trigger.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
         });
     });
 
-    function toggleFAQ(btn) {
-        const item = btn.parentElement;
-        const isActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-        if (!isActive) item.classList.add('active');
-    }
-
-    // --- NEW: SILKY NEURAL FLOW ENGINE ---
+    // Neural Flow Animation
     const canvas = document.getElementById('flow-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, waves = [];
@@ -580,94 +495,54 @@
     }
 
     function initWaves() {
-        waves = [];
-        const count = 3;
-        for(let i = 0; i < count; i++) {
-            waves.push({
-                y: height * (0.3 + (i * 0.2)),
-                length: 0.002 + (Math.random() * 0.001),
-                amplitude: 60 + (Math.random() * 40),
-                frequency: 0.01 + (Math.random() * 0.01),
-                phase: Math.random() * Math.PI * 2
-            });
-        }
+      waves = [];
+      for(let i = 0; i < 3; i++) {
+        waves.push({
+          y: height * (0.4 + i * 0.1),
+          length: 0.001 + Math.random() * 0.001,
+          amplitude: 60 + Math.random() * 40,
+          frequency: 0.01 + Math.random() * 0.005,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
     }
 
     function animate() {
-        ctx.clearRect(0, 0, width, height);
-        let themeRGB = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim();
-        
-        waves.forEach((wave, i) => {
-            ctx.beginPath();
-            ctx.moveTo(0, wave.y);
-            
-            for(let x = 0; x < width; x++) {
-                const y = wave.y + Math.sin(x * wave.length + wave.phase) * wave.amplitude * Math.sin(wave.phase);
-                ctx.lineTo(x, y);
-            }
-            
-            const opacity = 0.1 - (i * 0.02);
-            ctx.strokeStyle = `rgba(${themeRGB}, ${opacity})`;
-            ctx.lineWidth = 150;
-            ctx.lineCap = 'round';
-            ctx.stroke();
-            
-            wave.phase += wave.frequency;
-        });
-
-        // Add subtle drifting "synapses" (light particles)
-        if (Math.random() > 0.95) spawnSynapse();
-        updateSynapses(themeRGB);
-
-        requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+      const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-bubble').trim();
+      waves.forEach((wave, i) => {
+        ctx.beginPath(); ctx.moveTo(0, wave.y);
+        for(let x = 0; x < width; x++) {
+          const y = wave.y + Math.sin(x * wave.length + wave.phase) * wave.amplitude;
+          ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = `rgba(${themeColor}, ${0.12 - i * 0.03})`;
+        ctx.lineWidth = 140; ctx.lineCap = 'round'; ctx.stroke();
+        wave.phase += wave.frequency;
+      });
+      requestAnimationFrame(animate);
     }
 
-    let synapses = [];
-    function spawnSynapse() {
-        synapses.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            r: Math.random() * 2 + 1,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            life: 1
-        });
-    }
-
-    function updateSynapses(color) {
-        synapses.forEach((s, i) => {
-            s.x += s.vx; s.y += s.vy; s.life -= 0.002;
-            if(s.life <= 0) synapses.splice(i, 1);
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-            ctx.fillStyle = `rgba(${color}, ${s.life * 0.3})`;
-            ctx.fill();
-        });
-    }
-
+    // Scroll Observer
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
           e.target.classList.add('active');
-          if (e.target.classList.contains('investment-edge')) {
-              document.getElementById('bar-gym').style.height = '100%';
-              document.getElementById('bar-ohs').style.height = '33%';
-          }
           if (e.target.id === 'experience') {
-              document.querySelectorAll('.exp-item').forEach((it, i) => { setTimeout(() => it.classList.add('active'), i * 500); });
+              document.querySelectorAll('.exp-item').forEach((it, i) => { 
+                  setTimeout(() => it.classList.add('active'), i * 350); 
+              });
           }
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
 
-    window.onload = function() {
-      applyRandomTheme();
-      resize();
-      animate();
+    window.onload = () => {
+      resize(); animate();
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-      document.querySelector('.freq-btn[data-val="1"]').click();
+      revealObserver.observe(document.getElementById('experience'));
     };
-    window.addEventListener('resize', resize);
+    window.onresize = resize;
   </script>
 </body>
 </html>
