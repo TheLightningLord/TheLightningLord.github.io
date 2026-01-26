@@ -2,9 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Olympian Health Solutions – Elite partners in senior longevity. Serving Clark County, WA." />
+  <meta name="description" content="Olympian Health Solutions – Elite partners in senior longevity founded by Zeuse Valentine. Specialized in Kinesiology, Senior Fitness, and Strength Training in Clark County, WA." />
+  <meta name="keywords" content="Zeuse Valentine, Senior Fitness Clark County, Kinesiology, Strength Training for Seniors, Geriatric Exercise, Longevity Coaching, Nutrition for Seniors, Vancouver WA Personal Training, Fall Prevention, Sarcopenia Treatment, In-Home Physical Training" />
+  <meta name="author" content="Zeuse Valentine" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Olympian Health Solutions | Your Partners in Longevity</title>
+  <title>Olympian Health Solutions | Zeuse Valentine | Senior Longevity & Kinesiology</title>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://olympianhealthsolutions.com/" />
+  <meta property="og:title" content="Olympian Health Solutions | Partners in Longevity" />
+  <meta property="og:description" content="Expert senior mobility and longevity specialists led by Zeuse Valentine. Professional Kinesiology and Strength Training delivered to your home." />
+  <meta property="og:image" content="https://olympianhealthsolutions.com/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Olympian Health Solutions | Zeuse Valentine" />
+  <meta property="twitter:description" content="Elite Senior Mobility and Longevity specialists serving Clark County, WA." />
+
+  <!-- Structured Data (JSON-LD) for SEO -->
+  <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "Olympian Health Solutions",
+        "founder": {
+          "@type": "Person",
+          "name": "Zeuse Valentine",
+          "jobTitle": "Longevity Specialist & Kinesiologist",
+          "description": "Expert in geriatric biomechanics and strength training for older adults."
+        },
+        "image": "https://olympianhealthsolutions.com/logo.png",
+        "@id": "https://olympianhealthsolutions.com",
+        "url": "https://olympianhealthsolutions.com",
+        "telephone": "",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Vancouver",
+          "addressRegion": "WA",
+          "postalCode": "98660",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 45.6277,
+          "longitude": -122.6716
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Vancouver" },
+          { "@type": "City", "name": "Camas" },
+          { "@type": "City", "name": "Battle Ground" },
+          { "@type": "City", "name": "Ridgefield" },
+          { "@type": "City", "name": "Washougal" },
+          { "@type": "AdministrativeArea", "name": "Clark County" }
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        "sameAs": [
+          "https://www.facebook.com/OlympianHealthSolutions",
+          "https://www.instagram.com/ZeuseValentine",
+          "https://www.linkedin.com/in/zeusevalentine"
+        ],
+        "description": "Olympian Health Solutions, founded by Zeuse Valentine, provides elite senior longevity services, kinesiology-based personal training, and strength conditioning for older adults in Clark County, WA."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Kinesiology-based fitness for seniors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kinesiology is the scientific study of human movement. At Olympian Health Solutions, Zeuse Valentine applies these principles to ensure senior exercise is biomechanically safe, effective for joint health, and tailored to improve balance and stability."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer in-home personal training in Clark County?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we are a mobile fitness service. We bring professional-grade equipment and expertise directly to your home in Vancouver, Camas, Battle Ground, and surrounding Clark County areas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can strength training help with Sarcopenia or Osteoporosis?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Evidence-based resistance training is the gold standard for combating Sarcopenia (muscle loss) and increasing bone density to manage Osteoporosis. Our programs are specifically designed for these conditions."
+            }
+          }
+        ]
+      }
+    ]
+  </script>
 
   <!-- Modern Luxury Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,6 +149,19 @@
     }
 
     h1, h2, h3, h4 { font-family: var(--font-header); margin: 0; line-height: 0.95; letter-spacing: -0.04em; }
+
+    /* Screen Reader Only Class for SEO Text */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
 
     /* === BACKGROUND SYSTEM === */
     .bg-animation {
@@ -109,7 +220,7 @@
     .dropdown a { display: block; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; color: #64748b; transition: 0.2s; text-decoration: none; }
     .dropdown a:hover { background: rgba(var(--theme-bubble), 0.05); color: var(--theme-primary); }
 
-    /* === FIXED MOBILE TRIGGER (SHARP RENDERING) === */
+    /* === FIXED MOBILE TRIGGER === */
     .mobile-nav-trigger {
         display: none;
         position: fixed;
@@ -153,7 +264,7 @@
         .mobile-nav-trigger { display: block; }
     }
 
-    /* === BOTTOM MOBILE PILL (SHARP RENDERING) === */
+    /* === BOTTOM MOBILE PILL === */
     .mobile-action-pill {
         display: none;
         position: fixed;
@@ -274,6 +385,98 @@
     .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
     .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; font-weight: 900; color: var(--color-navy); }
 
+    /* === NEW SEO EXPERTISE SECTION === */
+    .seo-expertise-section {
+        padding: 100px 24px;
+        background: var(--color-navy);
+        color: #fff;
+        border-radius: 72px;
+        margin: 60px 20px;
+        position: relative;
+        z-index: 10;
+        text-align: center;
+    }
+    .seo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 60px auto 0;
+    }
+    .seo-card {
+        background: rgba(255,255,255,0.05);
+        padding: 40px;
+        border-radius: 32px;
+        border: 1px solid rgba(255,255,255,0.1);
+        text-align: left;
+    }
+    .seo-card h4 { color: var(--theme-accent); margin-bottom: 15px; font-size: 1.4rem; }
+    .seo-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); }
+
+    /* === NEW SEO FAQ SECTION === */
+    .faq-section {
+        padding: 80px 24px;
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+    }
+    .faq-header { text-align: center; margin-bottom: 50px; }
+    .faq-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--color-navy); }
+    .faq-item {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        margin-bottom: 16px;
+        padding: 24px 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .faq-item:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .faq-question { font-weight: 700; font-size: 1.1rem; color: var(--color-navy); display: flex; justify-content: space-between; align-items: center; }
+    .faq-answer { 
+        margin-top: 0; 
+        max-height: 0; 
+        overflow: hidden; 
+        color: #64748b; 
+        line-height: 1.6; 
+        transition: 0.4s ease-out; 
+        opacity: 0;
+    }
+    .faq-item.active .faq-answer { margin-top: 15px; max-height: 200px; opacity: 1; }
+    .faq-icon { color: var(--theme-primary); font-size: 1.2rem; transition: 0.3s; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+    /* === NEW SERVICE AREA FOOTER STRIP === */
+    .service-area-strip {
+        background: #f1f5f9;
+        padding: 40px 24px;
+        text-align: center;
+        margin-top: 60px;
+        border-top: 1px solid #e2e8f0;
+    }
+    .area-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        max-width: 1000px;
+        margin: 0 auto;
+        list-style: none;
+        padding: 0;
+    }
+    .area-list li {
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 600;
+    }
+    .area-list li:not(:last-child)::after {
+        content: "•";
+        margin-left: 15px;
+        color: #cbd5e1;
+    }
+
     /* MOBILE MENU OVERLAY */
     .mobile-menu { 
         position: fixed; inset: 0; background: #ffffff; 
@@ -370,21 +573,22 @@
 <body>
 
   <div class="scroll-progress-container">
-      <div class="scroll-progress-bar" id="progress-bar"></div>
+      <div class="scroll-progress-bar" id="progress-bar" aria-hidden="true"></div>
   </div>
 
   <!-- FIXED MOBILE TRIGGER -->
-  <button class="mobile-nav-trigger" id="mobile-trigger">Menu</button>
+  <button class="mobile-nav-trigger" id="mobile-trigger" aria-label="Toggle Navigation Menu">Menu</button>
 
-  <div class="bg-animation">
+  <div class="bg-animation" aria-hidden="true">
     <canvas id="experience-canvas"></canvas>
   </div>
 
   <!-- NAVIGATION -->
-  <nav id="main-nav">
-    <a href="index.html" class="brand">
-      <div class="logo-mark">OHS</div>
+  <nav id="main-nav" role="navigation">
+    <a href="index.html" class="brand" title="Olympian Health Solutions Home">
+      <div class="logo-mark" aria-hidden="true">OHS</div>
       <div class="brand-text"><span class="brand-name">Olympian</span></div>
+      <span class="sr-only">Zeuse Valentine's Premier Senior Fitness & Kinesiology Service in Clark County</span>
     </a>
     
     <ul class="nav-links">
@@ -392,26 +596,26 @@
       <li class="has-dropdown">
         <a href="#">Games ▾</a>
         <ul class="dropdown">
-          <li><a href="Game1.html">Game 1</a></li>
-          <li><a href="Game2.html">Game 2</a></li>
-          <li><a href="Game3.html">Game 3</a></li>
+          <li><a href="Game1.html">Brain Health Games</a></li>
+          <li><a href="Game2.html">Reaction Time</a></li>
+          <li><a href="Game3.html">Memory Fit</a></li>
         </ul>
       </li>
       <li class="has-dropdown">
         <a href="#">Tools ▾</a>
         <ul class="dropdown">
-          <li><a href="tool1.html">Tool 1</a></li>
-          <li><a href="tool2.html">Tool 2</a></li>
-          <li><a href="tool3.html">Tool 3</a></li>
+          <li><a href="tool1.html">Mobility Calculator</a></li>
+          <li><a href="tool2.html">Nutrition Planner</a></li>
+          <li><a href="tool3.html">Balance Check</a></li>
         </ul>
       </li>
       <li><a href="education.html">Education</a></li>
-      <li><a href="about.html">About us</a></li>
+      <li><a href="about.html">About Zeuse Valentine</a></li>
     </ul>
 
     <div class="nav-btns-desktop">
-      <a href="quiz.html" class="btn-pill btn-luxe-glass magnetic">Assessment</a>
-      <a href="booking.html" class="btn-pill btn-luxe-dark magnetic">Book now</a>
+      <a href="quiz.html" class="btn-pill btn-luxe-glass magnetic" aria-label="Start Longevity Assessment">Assessment</a>
+      <a href="booking.html" class="btn-pill btn-luxe-dark magnetic" aria-label="Book Personal Training Session">Book now</a>
     </div>
   </nav>
 
@@ -468,7 +672,8 @@
       
       <div class="authority-badge" id="mission-card">
         <span class="authority-pre">Premier Local Authority</span>
-        <p>Clark County's local expert in portable personal training.</p>
+        <p>Clark County's expert in senior fitness, founded by Zeuse Valentine.</p>
+        <span class="sr-only">Specializing in Geriatric Kinesiology and fall prevention strategies.</span>
       </div>
       
       <div class="hero-btns">
@@ -479,14 +684,14 @@
   </section>
 
   <!-- TICKER -->
-  <div class="ticker-bar">
+  <div class="ticker-bar" aria-hidden="true">
     <div class="ticker-track">
       <div class="badge-item">✦ Fun, friendly, Safe PT </div>
-      <div class="badge-item">✦ HIPAA Secure Cloud</div>
+      <div class="badge-item">✦ Kinesiology Experts</div>
       <div class="badge-item">✦ Evidence Aligned</div>
       <div class="badge-item">✦ Serving Clark County</div>
       <div class="badge-item">✦ Local Portable PT</div>
-      <div class="badge-item">✦ Nationally Accredited Experts</div>
+      <div class="badge-item">✦ Zeuse Valentine Longevity</div>
     </div>
   </div>
 
@@ -495,12 +700,12 @@
     <div class="catalyst-grid">
         <div class="fancy-graphic-card">
             <h2>Ready for your <span>happiest</span> health season?</h2>
-            <p style="margin-bottom: 2rem; font-size: 1.15rem; color: #475569;">Our professional mobility framework makes starting feel easy and completely safe.</p>
+            <p style="margin-bottom: 2rem; font-size: 1.15rem; color: #475569;">Our professional mobility framework and strength training protocols make starting feel easy and completely safe.</p>
             <a href="booking.html" class="btn-hero btn-outline-luxe magnetic" style="width:auto; padding: 1.1rem 2.5rem;">See How It Works</a>
         </div>
         <div class="assessment-panel">
             <h3>Free Benefits Forecast</h3>
-            <p style="opacity: 0.9; font-size: 1.1rem;">Discover exactly how expert exercise aligns with your lifestyle goals.</p>
+            <p style="opacity: 0.9; font-size: 1.1rem;">Discover exactly how professional kinesiology and exercise science aligns with your goals.</p>
             <a href="quiz.html" class="btn-assessment magnetic">Start Assessment</a>
         </div>
     </div>
@@ -510,7 +715,7 @@
   <section class="vitality-console reveal" id="vitality-console">
     <div class="console-header">
         <h2 style="font-size:3rem; font-weight:900; text-align:center;">Your Path to <span>Vitality</span></h2>
-        <p style="text-align:center;">A seamless, expert experience brought directly to you.</p>
+        <p style="text-align:center;">Professional senior fitness brought directly to you by Zeuse Valentine.</p>
     </div>
     <div class="conduit-wrap">
         <div class="conduit-line-bg"></div>
@@ -527,12 +732,13 @@
   <section class="results-strip reveal" id="results">
       <div style="text-align: center; margin-bottom: 70px;">
         <h2 style="font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
-        <p style="color: #64748b; font-size: 1.3rem;">Scientific proof of your thriving independence.</p>
+        <p style="color: #64748b; font-size: 1.3rem;">Scientific proof of your thriving independence through strength training.</p>
+        <span class="sr-only">Charts showing clinical improvements in stability, metabolism and grip strength for seniors.</span>
       </div>
       <div class="bio-grid">
         <div class="bio-unit" style="text-align:center;">
             <div class="bio-visual-wrap">
-                <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <svg class="bio-ring-svg" viewBox="0 0 160 160" aria-label="Stability Gain Chart showing 34% improvement">
                     <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
                     <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
                 </svg>
@@ -542,7 +748,7 @@
         </div>
         <div class="bio-unit" style="text-align:center;">
             <div class="bio-visual-wrap">
-                <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <svg class="bio-ring-svg" viewBox="0 0 160 160" aria-label="Metabolic Flow Chart showing 42% improvement">
                     <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
                     <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
                 </svg>
@@ -552,7 +758,7 @@
         </div>
         <div class="bio-unit" style="text-align:center;">
             <div class="bio-visual-wrap">
-                <svg class="bio-ring-svg" viewBox="0 0 160 160">
+                <svg class="bio-ring-svg" viewBox="0 0 160 160" aria-label="Grip Vitality Chart showing 28% improvement">
                     <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
                     <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
                 </svg>
@@ -563,8 +769,87 @@
       </div>
   </section>
 
+  <!-- EXPERTISE SEO SECTION -->
+  <section class="seo-expertise-section reveal">
+    <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px;">The <span style="color:var(--theme-accent)">Core Disciplines</span> of Longevity</h2>
+    <p style="max-width: 800px; margin: 0 auto; color: rgba(255,255,255,0.7); font-size: 1.1rem;">
+        Founded by <strong>Zeuse Valentine</strong>, Olympian Health Solutions bridges the gap between exercise science and active aging. Our specialized approach to senior health is rooted in three key pillars.
+    </p>
+    
+    <div class="seo-grid">
+        <div class="seo-card">
+            <h4>Applied Kinesiology</h4>
+            <p>Utilizing functional human mechanics to improve range of motion and decrease joint pain. Our protocols are designed for safe, impactful movement in a home environment.</p>
+        </div>
+        <div class="seo-card">
+            <h4>Geriatric Strength Training</h4>
+            <p>Evidence-based resistance training tailored specifically for older adults to prevent sarcopenia, improve bone density, and enhance daily independence.</p>
+        </div>
+        <div class="seo-card">
+            <h4>Metabolic Nutrition</h4>
+            <p>Fueling for longevity through personalized nutritional insights that support metabolic health, cognitive function, and sustained energy levels throughout the day.</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- NEW FAQ SECTION FOR SEO RICH SNIPPETS -->
+  <section class="faq-section reveal" id="faq">
+    <div class="faq-header">
+      <h2>Common <span style="color:var(--theme-primary)">Insights</span></h2>
+      <p style="color:#64748b">Expert answers to your longevity questions.</p>
+    </div>
+    
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <span>Why is Kinesiology important for seniors?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Kinesiology ensures that every movement is biomechanically sound. For seniors, this means reducing the risk of injury while maximizing the benefits of exercise for joint mobility, balance, and pain reduction. Zeuse Valentine applies these scientific principles to every session.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <span>Do you provide equipment for home visits?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes. Olympian Health Solutions is a fully mobile fitness service. We bring professional-grade equipment, including stability tools, resistance bands, and weights, directly to your home in Clark County.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <span>Can strength training help with Osteoporosis?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes. Resistance training is clinically proven to stimulate bone growth and improve density. Our geriatric strength training protocols are specifically designed to safely combat Osteoporosis and Sarcopenia (muscle loss).
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SERVICE AREA & MODALITIES FOOTER STRIP -->
+  <section class="service-area-strip">
+    <p style="font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; margin-bottom:20px;">Service Areas & Specialties</p>
+    <ul class="area-list">
+        <li>Vancouver, WA</li>
+        <li>Camas</li>
+        <li>Battle Ground</li>
+        <li>Ridgefield</li>
+        <li>Washougal</li>
+        <li>Salmon Creek</li>
+        <li>Fall Prevention</li>
+        <li>Post-Rehab Conditioning</li>
+        <li>Balance Training</li>
+        <li>Cognitive Fitness</li>
+        <li>Mobility Coaching</li>
+    </ul>
+  </section>
+
   <!-- DESKTOP DOCK -->
-  <div class="experience-dock desktop-only-dock" id="exp-dock">
+  <div class="experience-dock desktop-only-dock" id="exp-dock" aria-label="Theme Selection Dock">
     <div class="dock-indicator" id="dock-indicator"></div>
     <button class="dock-btn magnetic" data-engine="topo" onclick="setEngine('topo', this)">Topo</button>
     <button class="dock-btn magnetic" data-engine="bubbles" onclick="setEngine('bubbles', this)">Bubbles</button>
@@ -573,7 +858,7 @@
   </div>
 
   <footer id="footer">
-    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility specialists. Serving Clark County, WA.</p>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility specialists. Founded by Zeuse Valentine. Serving Clark County, WA.</p>
   </footer>
 
   <script>
