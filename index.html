@@ -3,9 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="description" content="Olympian Health Solutions – Elite partners in senior longevity founded by Zeuse Valentine. Specialized in Kinesiology, Senior Fitness, and Strength Training in Clark County, WA." />
-  <meta name="keywords" content="Zeuse Valentine, Senior Fitness Clark County, Kinesiology, Strength Training for Seniors, Geriatric Exercise, Longevity Coaching, Nutrition for Seniors, Vancouver WA Personal Training, Fall Prevention, Sarcopenia Treatment, In-Home Physical Training" />
+  <meta name="keywords" content="Zeuse Valentine, Senior Fitness Clark County, Kinesiology, Strength Training for Seniors, Geriatric Exercise, Longevity Coaching, Nutrition for Seniors, Vancouver WA Personal Training, Fall Prevention, Sarcopenia Treatment, In-Home Physical Training, Vestibular Training, Osteoporosis Exercise" />
   <meta name="author" content="Zeuse Valentine" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  
+  <!-- 1. MAJOR SEO ADDITION: Canonical Tag to prevent duplicate content issues -->
+  <link rel="canonical" href="https://olympianhealthsolutions.com/" />
+  
+  <!-- 2. MAJOR SEO ADDITION: Geo-Positioning Tags for Local SEO Dominance -->
+  <meta name="geo.region" content="US-WA" />
+  <meta name="geo.placename" content="Vancouver" />
+  <meta name="geo.position" content="45.6277;-122.6716" />
+  <meta name="ICBM" content="45.6277, -122.6716" />
+
+  <!-- 3. MAJOR SEO ADDITION: Preloading Fonts for Core Web Vitals (Speed) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" as="style">
+
   <title>Olympian Health Solutions | Zeuse Valentine | Senior Longevity & Kinesiology</title>
 
   <!-- Open Graph / Facebook -->
@@ -100,6 +113,35 @@
             }
           }
         ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Geriatric Kinesiology",
+        "provider": {
+          "@type": "HealthAndBeautyBusiness",
+          "name": "Olympian Health Solutions"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Clark County"
+        },
+        "description": "Specialized movement therapy and strength training for seniors to improve mobility and reduce fall risk."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://olympianhealthsolutions.com"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Senior Fitness Services",
+          "item": "https://olympianhealthsolutions.com/#services"
+        }]
       }
     ]
   </script>
@@ -448,6 +490,29 @@
     .faq-icon { color: var(--theme-primary); font-size: 1.2rem; transition: 0.3s; }
     .faq-item.active .faq-icon { transform: rotate(45deg); }
 
+    /* === NEW MEDICAL GLOSSARY SECTION (SEO HONEY POT) === */
+    .glossary-section {
+        padding: 80px 24px;
+        max-width: 1300px;
+        margin: 40px auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 50px;
+    }
+    @media (max-width: 900px) { .glossary-section { grid-template-columns: 1fr; } }
+    .glossary-intro h3 { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; color: var(--color-navy); }
+    .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .term-card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        padding: 20px;
+        border-radius: 16px;
+        transition: 0.3s;
+    }
+    .term-card:hover { border-color: var(--theme-primary); transform: translateY(-3px); }
+    .term-title { font-weight: 800; color: var(--theme-primary); margin-bottom: 8px; font-size: 0.95rem; }
+    .term-def { font-size: 0.85rem; color: #64748b; line-height: 1.5; }
+
     /* === NEW SERVICE AREA FOOTER STRIP === */
     .service-area-strip {
         background: #f1f5f9;
@@ -476,6 +541,26 @@
         margin-left: 15px;
         color: #cbd5e1;
     }
+
+    /* === EXPANDED FOOTER NAVIGATION (INTERNAL LINKING) === */
+    .expanded-footer-nav {
+        background: var(--color-navy);
+        color: #fff;
+        padding: 80px 24px 40px;
+    }
+    .footer-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        text-align: left;
+    }
+    .footer-col h5 { font-size: 1.1rem; color: #fff; margin-bottom: 20px; font-weight: 800; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
+    .footer-col a:hover { color: var(--theme-accent); }
 
     /* MOBILE MENU OVERLAY */
     .mobile-menu { 
@@ -550,7 +635,7 @@
         .desktop-only-dock { display: none; }
     }
 
-    footer { padding: 6rem 24px 140px; text-align: center; color: #94a3b8; font-size: 0.9rem; position: relative; z-index: 10; }
+    footer { padding: 40px 24px; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.8rem; background: var(--color-navy); }
     
     .reveal { 
         opacity: 0; 
@@ -792,7 +877,34 @@
     </div>
   </section>
 
-  <!-- NEW FAQ SECTION FOR SEO RICH SNIPPETS -->
+  <!-- NEW GLOSSARY SECTION FOR SEO -->
+  <section class="glossary-section reveal">
+      <div class="glossary-intro">
+          <h3>Medical Fitness <span style="color:var(--theme-primary)">Glossary</span></h3>
+          <p style="color:#64748b; font-size:1.1rem; line-height:1.6;">Understanding your body is the first step to healing it. Here are the core concepts Zeuse Valentine uses to design your custom program.</p>
+          <a href="booking.html" class="btn-hero btn-primary-luxe magnetic" style="display:inline-block; margin-top:20px; font-size:0.9rem; padding:15px 30px;">Discuss Your Needs</a>
+      </div>
+      <div class="glossary-grid">
+          <div class="term-card">
+              <div class="term-title">Sarcopenia Prevention</div>
+              <div class="term-def">Combating the natural loss of muscle mass with age through targeted resistance training to maintain independence.</div>
+          </div>
+          <div class="term-card">
+              <div class="term-title">Proprioception</div>
+              <div class="term-def">Training your body's ability to sense movement and position, crucial for preventing falls and improving coordination.</div>
+          </div>
+          <div class="term-card">
+              <div class="term-title">Vestibular Training</div>
+              <div class="term-def">Exercises that stabilize vision and balance by strengthening the link between your inner ear and brain.</div>
+          </div>
+          <div class="term-card">
+              <div class="term-title">Hypertrophy for Seniors</div>
+              <div class="term-def">Safe muscle growth techniques designed to support joints and increase metabolic rate in older adults.</div>
+          </div>
+      </div>
+  </section>
+
+  <!-- FAQ SECTION FOR SEO RICH SNIPPETS -->
   <section class="faq-section reveal" id="faq">
     <div class="faq-header">
       <h2>Common <span style="color:var(--theme-primary)">Insights</span></h2>
@@ -830,7 +942,7 @@
     </div>
   </section>
 
-  <!-- NEW SERVICE AREA & MODALITIES FOOTER STRIP -->
+  <!-- SERVICE AREA & MODALITIES FOOTER STRIP -->
   <section class="service-area-strip">
     <p style="font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; margin-bottom:20px;">Service Areas & Specialties</p>
     <ul class="area-list">
@@ -847,6 +959,48 @@
         <li>Mobility Coaching</li>
     </ul>
   </section>
+
+  <!-- EXPANDED FOOTER NAVIGATION (SEO SITEMAP) -->
+  <div class="expanded-footer-nav">
+      <div class="footer-grid">
+          <div class="footer-col">
+              <h5>Core Services</h5>
+              <ul>
+                  <li><a href="#vitality-console">In-Home Personal Training</a></li>
+                  <li><a href="quiz.html">Mobility Assessment</a></li>
+                  <li><a href="#results">Fall Prevention Program</a></li>
+                  <li><a href="booking.html">Geriatric Kinesiology</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h5>Client Resources</h5>
+              <ul>
+                  <li><a href="tool1.html">Mobility Calculator</a></li>
+                  <li><a href="Game1.html">Cognitive Games</a></li>
+                  <li><a href="#faq">Common Questions</a></li>
+                  <li><a href="education.html">Longevity Education</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h5>About OHS</h5>
+              <ul>
+                  <li><a href="about.html">Meet Zeuse Valentine</a></li>
+                  <li><a href="#mission-card">Our Mission</a></li>
+                  <li><a href="booking.html">Contact Us</a></li>
+                  <li><a href="#home">Service Area Map</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h5>Connect</h5>
+              <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Instagram</a></li>
+                  <li><a href="#">LinkedIn</a></li>
+                  <li><a href="mailto:contact@olympianhealth.com">Email Us</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
 
   <!-- DESKTOP DOCK -->
   <div class="experience-dock desktop-only-dock" id="exp-dock" aria-label="Theme Selection Dock">
