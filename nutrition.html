@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympian Health Solutions | Nutrition Hub</title>
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            --bg-deep: #0f172a;       /* Dark Metallic Blue */
+            --bg-card: #1e293b;       /* Lighter Metallic Blue */
+            --bg-card-hover: #334155;
+            --accent-silver: #94a3b8; /* Silvery Blue */
+            --accent-glow: #38bdf8;   /* Electric Blue/Cyan */
+            --accent-gold: #fbbf24;   /* For achievement/Olympian status */
+            --text-primary: #f8fafc;  /* White/Near White */
+            --text-secondary: #cbd5e1;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(148, 163, 184, 0.05) 0%, transparent 20%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.4s ease-in; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .brand-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff, var(--accent-silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            color: var(--accent-glow);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* --- DASHBOARD --- */
+        .progress-overview {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .user-rank {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-silver);
+        }
+        
+        .user-rank span { color: var(--accent-glow); }
+
+        /* --- LEVEL GRID --- */
+        .level-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .level-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .level-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+            filter: grayscale(0.8);
+        }
+
+        .level-card:not(.locked):hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .level-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .level-status {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .status-locked { color: var(--accent-silver); }
+        .status-open { color: var(--accent-glow); background: rgba(56, 189, 248, 0.1); }
+        .status-completed { color: var(--success); background: rgba(34, 197, 94, 0.1); }
+
+        /* --- LEARNING VIEW --- */
+        .nav-back {
+            background: none;
+            border: none;
+            color: var(--accent-silver);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        .nav-back:hover { color: var(--text-primary); }
+
+        .topic-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .topic-card {
+            background: linear-gradient(180deg, var(--bg-card) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .topic-title {
+            color: var(--accent-glow);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .topic-content h4 {
+            color: var(--accent-silver);
+            margin: 15px 0 5px 0;
+            font-size: 1rem;
+        }
+
+        .topic-content ul {
+            list-style-type: none;
+            margin-left: 5px;
+        }
+
+        .topic-content li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .topic-content li::before {
+            content: "•";
+            color: var(--accent-glow);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .citation {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.75rem;
+            color: var(--accent-silver);
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .coach-note {
+            background: rgba(56, 189, 248, 0.05);
+            border-left: 3px solid var(--accent-glow);
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .btn-action {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 30px;
+            background: linear-gradient(90deg, var(--accent-glow), #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-action:hover { opacity: 0.9; }
+
+        /* --- QUIZ VIEW --- */
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-btn {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            padding: 15px;
+            text-align: left;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-silver);
+        }
+
+        .quiz-btn.correct {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .quiz-btn.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        /* FOOTER & SECRET CODE */
+        .dashboard-footer {
+            margin-top: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        .reset-btn:hover { opacity: 1; background: rgba(239, 68, 68, 0.1); }
+
+        .secret-area {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+        .secret-area:hover { opacity: 1; }
+
+        .secret-input {
+            background: var(--bg-deep);
+            border: 1px solid var(--bg-card-hover);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            width: 150px;
+        }
+        .secret-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-silver);
+            color: var(--accent-silver);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            .level-grid { grid-template-columns: repeat(2, 1fr); }
+            .level-card:last-child { grid-column: span 2; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="brand-title">Olympian Health</div>
+            <div class="brand-subtitle">Advanced Nutritional Coaching Hub</div>
+        </header>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="view-dashboard" class="fade-in">
+            <div class="progress-overview">
+                <div>
+                    <div style="font-size: 0.8rem; color: var(--accent-silver); text-transform: uppercase;">Current Rank</div>
+                    <div class="user-rank" id="user-rank">Rookie</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.8rem; color: var(--accent-silver);">Progress</div>
+                    <div style="color: var(--text-primary); font-weight: bold;"><span id="levels-completed">0</span>/5 Levels</div>
+                </div>
+            </div>
+
+            <div class="level-grid" id="level-grid">
+                <!-- Levels will be injected here via JS -->
+            </div>
+            
+            <div class="dashboard-footer">
+                <button class="reset-btn" onclick="app.resetProgress()">Reset All Progress</button>
+                <div class="secret-area">
+                    <input type="password" id="secret-code" class="secret-input" placeholder="Coach Access Code">
+                    <button class="secret-btn" onclick="app.checkSecretCode()">Unlock</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEARNING VIEW -->
+        <div id="view-learn" class="hidden fade-in">
+            <button class="nav-back" onclick="app.showDashboard()">← Back to Dashboard</button>
+            <h2 id="learn-title" style="margin-bottom: 20px; color: var(--text-primary);"></h2>
+            <div class="topic-container" id="learn-content">
+                <!-- Content injected here -->
+            </div>
+            <button class="btn-action" onclick="app.startQuiz()">Take Assessment</button>
+        </div>
+
+        <!-- QUIZ VIEW -->
+        <div id="view-quiz" class="hidden fade-in">
+            <button class="nav-back" onclick="app.showDashboard()">← Quit Assessment</button>
+            <div style="margin-bottom: 10px; color: var(--accent-glow); font-size: 0.9rem;">Question <span id="q-current">1</span>/<span id="q-total">3</span></div>
+            <div id="quiz-container">
+                <div class="quiz-question" id="quiz-question"></div>
+                <div class="quiz-options" id="quiz-options"></div>
+                <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+                <button id="btn-next-q" class="btn-action hidden" onclick="app.nextQuestion()">Next Question</button>
+                <button id="btn-finish-quiz" class="btn-action hidden" onclick="app.finishQuiz()">Complete Level</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SOURCE ---
+        const contentData = [
+            {
+                id: 1,
+                title: "I. Foundations of Energy",
+                rankName: "Apprentice",
+                desc: "Rethinking Calories & NEAT",
+                topics: [
+                    {
+                        title: "1. Dynamic Energy Balance vs. Static Rules",
+                        points: [
+                            "The '3,500 kcal = 1 lb fat' rule (Wishnofsky Rule) fails to account for dynamic metabolic adaptations. As mass decreases, BMR and TEF decrease disproportionately.",
+                            "<span class='citation'>Hall, K. D., et al. (2011). Quantification of the effect of energy imbalance on bodyweight. The Lancet.</span>",
+                            "Energy expenditure is not static; it adapts downward during deficits through hormonal regulation (Leptin/Thyroid) and reduced body mass.",
+                            "<span class='citation'>Leibel, R. L., Rosenbaum, M., & Hirsch, J. (1995). Changes in energy expenditure resulting from altered body weight. NEJM.</span>"
+                        ],
+                        coachNote: "Clients stall because they calculate needs based on their STARTING body, not their current dynamic body. Hall's models show weight loss curves are exponential, not linear."
+                    },
+                    {
+                        title: "2. NEAT Compensation (The Silent Killer)",
+                        points: [
+                            "Non-Exercise Activity Thermogenesis (NEAT) varies by up to 2,000 kcal/day between individuals.",
+                            "<span class='citation'>Levine, J. A. (2002). Non-exercise activity thermogenesis (NEAT). Best Practice & Research Clinical Endocrinology & Metabolism.</span>",
+                            "In a deficit, the body subconsciously reduces spontaneous movement (fidgeting, posture maintenance) to conserve energy, sometimes offsetting the deficit by 300-500 kcal.",
+                            "<span class='citation'>Trexler, E. T., et al. (2014). Metabolic adaptation to weight loss: implications for the athlete. JISSN.</span>"
+                        ],
+                        coachNote: "If a client's weight stalls but they swear they are hitting macros, their steps likely dropped. Prescribing step counts fixes this variable."
+                    },
+                    {
+                        title: "3. The Interference Effect (Cardio vs. LBM)",
+                        points: [
+                            "Chronic high-intensity cardio can interfere with muscle hypertrophy pathways (mTOR vs AMPK conflict), leading to a 'skinny fat' outcome if resistance training is neglected.",
+                            "<span class='citation'>Wilson, J. M., et al. (2012). Concurrent training: a meta-analysis examining interference of aerobic and resistance exercises. J Strength Cond Res.</span>"
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Why does the 3,500 kcal/lb rule fail over long durations?",
+                        options: ["It assumes energy expenditure remains static despite weight loss", "It underestimates water retention", "It only applies to low carb diets", "It is actually 4,000 kcal"],
+                        correct: 0,
+                        expl: "Correct. Hall (2011) demonstrated that as weight is lost, energy needs drop, making the deficit shrink over time."
+                    },
+                    {
+                        q: "According to Levine (2002), how much can NEAT vary between individuals?",
+                        options: ["50 kcal/day", "Up to 2,000 kcal/day", "Exactly 500 kcal/day", "It doesn't vary"],
+                        correct: 1,
+                        expl: "Correct. Spontaneous activity is a massive variable in the energy balance equation."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "II. Metabolic Adaptation",
+                rankName: "Practitioner",
+                desc: "Thermogenesis & Myths",
+                topics: [
+                    {
+                        title: "1. Adaptive Thermogenesis Mechanisms",
+                        points: [
+                            "Weight loss triggers a reduction in total energy expenditure (TEE) that exceeds what is predicted by the loss of body mass alone. This is an evolutionary survival mechanism.",
+                            "<span class='citation'>Rosenbaum, M., & Leibel, R. L. (2010). Adaptive thermogenesis in humans. International Journal of Obesity.</span>",
+                            "Key Drivers: Reduced conversion of T4 (inactive thyroid) to T3 (active thyroid), and increased skeletal muscle work efficiency (burning fewer calories for the same movement).",
+                            "<span class='citation'>Müller, M. J., & Bosy-Westphal, A. (2013). Adaptive thermogenesis with weight loss in humans. Obesity.</span>"
+                        ],
+                        coachNote: "Use the term 'Metabolic Efficiency' instead of 'Slow Metabolism'. Their body is becoming MORE efficient at using fuel, which is annoying for fat loss but brilliant for survival."
+                    },
+                    {
+                        title: "2. 'Metabolic Damage' is a Myth",
+                        points: [
+                            "There is no evidence of permanent metabolic damage in healthy populations. Metabolic adaptation is transient and reverses when energy availability is restored.",
+                            "<span class='citation'>Trexler, E. T., Smith-Ryan, A. E., & Norton, L. E. (2014). J Int Soc Sports Nutr.</span>",
+                            "Even in extreme cases (e.g., The Biggest Loser study), RMR suppression is severe but tied to body composition changes and extreme deficits, not permanent organ failure.",
+                            "<span class='citation'>Fothergill, E., et al. (2016). Persistent metabolic adaptation 6 years after 'The Biggest Loser' competition. Obesity.</span>"
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Which hormone conversion is typically downregulated during aggressive dieting?",
+                        options: ["T4 to T3", "Insulin to Glucagon", "Testosterone to Estrogen", "Cortisol to Adrenaline"],
+                        correct: 0,
+                        expl: "Correct. The body reduces active thyroid hormone (T3) to lower metabolic rate and conserve energy."
+                    },
+                    {
+                        q: "Is metabolic adaptation permanent?",
+                        options: ["Yes, the metabolism is broken forever", "Only in women", "No, it is a reversible, protective mechanism", "Yes, if you diet for more than 12 weeks"],
+                        correct: 2,
+                        expl: "Correct. Research (Trexler et al.) supports that RMR recovers as calories are brought back to maintenance."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "III. Muscle & Hormones",
+                rankName: "Specialist",
+                desc: "Protein Synthesis & Regulation",
+                topics: [
+                    {
+                        title: "1. The Leucine Threshold",
+                        points: [
+                            "Muscle Protein Synthesis (MPS) is 'triggered' by intracellular leucine concentrations. A bolus of ~2-3g Leucine is required to saturate the system.",
+                            "<span class='citation'>Norton, L. E., & Layman, D. K. (2006). Leucine regulates translation initiation of protein synthesis. J Nutr.</span>",
+                            "This equates to roughly 25-35g of high-quality protein per meal. Spiking MPS 3-4 times daily is superior to 1 giant meal or 6 tiny ones.",
+                            "<span class='citation'>Areta, J. L., et al. (2013). Timing and distribution of protein ingestion... J Physiol.</span>"
+                        ]
+                    },
+                    {
+                        title: "2. Anabolic Resistance in Aging",
+                        points: [
+                            "Sarcopenia begins in the 4th decade. Older muscle becomes 'resistant' to anabolic signals (amino acids and resistance training).",
+                            "<span class='citation'>Breen, L., & Phillips, S. M. (2011). Skeletal muscle protein metabolism in the elderly: Interventions to counteract the 'anabolic resistance' of ageing. Nutrition & Metabolism.</span>",
+                            "To overcome this, older clients need HIGHER protein doses (40g+ per meal) and heavier loading compared to younger individuals."
+                        ],
+                        coachNote: "For your 50+ clients: They cannot 'get away' with low protein breakfasts like oatmeal. They need eggs/whey/yogurt to trigger growth."
+                    },
+                    {
+                        title: "3. Hormonal Regulation of Hunger",
+                        points: [
+                            "Leptin (satiety) scales with body fat. As you get leaner, Leptin drops, signaling the hypothalamus to increase hunger and decrease reproductive hormones.",
+                            "<span class='citation'>Friedman, J. M. (2002). The function of leptin in nutrition, weight, and physiology. Nutrition Reviews.</span>",
+                            "Ghrelin (hunger) tends to rise and remain elevated in a deficit.",
+                            "<span class='citation'>Cummings, D. E., et al. (2002). Plasma ghrelin levels after diet-induced weight loss... NEJM.</span>"
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "What is the approximate Leucine threshold needed to maximize MPS per meal?",
+                        options: ["0.5g", "2.0 - 3.0g", "10g", "It doesn't matter"],
+                        correct: 1,
+                        expl: "Correct. Without hitting this threshold (Norton & Layman), the protein synthesis 'light switch' isn't fully turned on."
+                    },
+                    {
+                        q: "Why do clients over 50 need MORE protein per meal?",
+                        options: ["Digestion speeds up", "Anabolic Resistance", "Lower kidney function", "They exercise more"],
+                        correct: 1,
+                        expl: "Correct. Breen & Phillips (2011) showed older muscle is less sensitive to amino acids."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "IV. Advanced Strategy",
+                rankName: "Expert",
+                desc: "Partitioning & Periodization",
+                topics: [
+                    {
+                        title: "1. Diet Breaks (The MATADOR Study)",
+                        points: [
+                            "Continuous restriction downregulates metabolism faster. Intermittent energy restriction (2 weeks on, 2 weeks off) has been shown to result in greater fat loss and RMR retention over time.",
+                            "<span class='citation'>Byrne, N. M., et al. (2018). Intermittent energy restriction improves weight loss efficiency in obese men: the MATADOR study. Int J Obes.</span>",
+                            "A 'Refeed' (24-48 hours) is mainly psychological and for glycogen. A 'Diet Break' (1-2 weeks) allows full hormonal recovery."
+                        ],
+                        coachNote: "Don't just grind clients into the ground. Scheduled maintenance weeks prevent burnout and metabolic crash."
+                    },
+                    {
+                        title: "2. Nutrient Partitioning (P-Ratio)",
+                        points: [
+                            "The P-Ratio determines the proportion of weight lost as fat vs. lean tissue. Resistance Training is the strongest signal to improve P-Ratio.",
+                            "<span class='citation'>Stiegler, P., & Cunliffe, A. (2006). The role of diet and exercise for the maintenance of fat-free mass and resting metabolic rate during weight loss. Sports Med.</span>",
+                            "Sleep restriction (5.5h vs 8.5h) drastically worsens partitioning, causing more weight to be lost as muscle rather than fat.",
+                            "<span class='citation'>Nedeltcheva, A. V., et al. (2010). Insufficient sleep undermines dietary efforts to reduce adiposity. Ann Intern Med.</span>"
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "What did the MATADOR study (Byrne et al., 2018) demonstrate?",
+                        options: ["Keto is superior", "Intermittent energy restriction improved weight loss efficiency vs continuous restriction", "Fasted cardio is best", "Carbs cause fat gain"],
+                        correct: 1,
+                        expl: "Correct. Taking diet breaks preserved metabolic rate better than grinding straight through."
+                    },
+                    {
+                        q: "How does sleep deprivation affect nutrient partitioning?",
+                        options: ["It has no effect", "It increases fat loss", "It shifts loss toward muscle tissue instead of fat", "It increases muscle growth"],
+                        correct: 2,
+                        expl: "Correct. Nedeltcheva et al. showed sleep-deprived dieters lost significantly more lean mass."
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "V. Elite Physiology",
+                rankName: "Olympian",
+                desc: "Molecular Pathways & Mitochondria",
+                topics: [
+                    {
+                        title: "1. The Molecular Basis of Interference (mTORC1 vs AMPK)",
+                        points: [
+                            "Resistance training activates mTORC1 (growth). Endurance training activates AMPK (energy biogenesis).",
+                            "AMPK can inhibit mTORC1 signaling via TSC2 phosphorylation, potentially blunting hypertrophy if sessions are performed immediately together.",
+                            "<span class='citation'>Baar, K. (2014). Using molecular biology to maximize concurrent training. Sports Med.</span>",
+                            "Practical Application: Separate cardio and lifting by at least 6 hours, or perform cardio on separate days to minimize this molecular conflict."
+                        ]
+                    },
+                    {
+                        title: "2. Mitochondrial Biogenesis & Fat Oxidation",
+                        points: [
+                            "Zone 2 training improves mitochondrial density and beta-oxidation enzymes (fat burning machinery).",
+                            "<span class='citation'>San-Millán, I., & Brooks, G. A. (2018). Assessment of Metabolic Flexibility... Sports Med.</span>",
+                            "Unlike HIIT, Zone 2 improves the ability to clear lactate, which is crucial for high-performance recovery."
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Which signaling pathway is associated with endurance adaptation and can inhibit growth?",
+                        options: ["mTOR", "AMPK", "Insulin", "Creatine"],
+                        correct: 1,
+                        expl: "Correct. AMPK is the energy sensor that can shut down the expensive process of building muscle (mTOR)."
+                    },
+                    {
+                        q: "To minimize the interference effect, Baar (2014) suggests:",
+                        options: ["Doing cardio immediately before lifting", "Separating sessions by 6+ hours", "Only doing HIIT", "Never doing cardio"],
+                        correct: 1,
+                        expl: "Correct. Giving the molecular signals time to return to baseline prevents the 'mixed signals' effect."
+                    }
+                ]
+            }
+        ];
+
+        // --- APP LOGIC ---
+        const app = {
+            state: {
+                unlockedLevel: 1,
+                currentLevelViewing: null,
+                currentQuizIndex: 0,
+                quizScore: 0
+            },
+
+            init: function() {
+                this.loadState();
+                this.renderDashboard();
+            },
+
+            loadState: function() {
+                const saved = localStorage.getItem('olympianData');
+                if (saved) {
+                    this.state = JSON.parse(saved);
+                }
+            },
+
+            saveState: function() {
+                localStorage.setItem('olympianData', JSON.stringify(this.state));
+            },
+
+            resetProgress: function() {
+                if(confirm("Reset all learning progress?")) {
+                    localStorage.removeItem('olympianData');
+                    location.reload();
+                }
+            },
+
+            // --- SECRET CODE LOGIC ---
+            checkSecretCode: function() {
+                const input = document.getElementById('secret-code');
+                const code = input.value.trim().toUpperCase();
+                
+                if (code === "CICO") {
+                    this.state.unlockedLevel = 6; // Unlock all (above max ID)
+                    this.saveState();
+                    alert("🔓 ACCESS GRANTED: Protocol CICO Active.\n\nAll Olympian Knowledge Levels Unlocked.");
+                    this.renderDashboard();
+                    input.value = "";
+                } else {
+                    alert("⛔ ACCESS DENIED: Incorrect Code.");
+                    input.value = "";
+                }
+            },
+
+            renderDashboard: function() {
+                const grid = document.getElementById('level-grid');
+                grid.innerHTML = '';
+                
+                let currentRank = "Rookie";
+                
+                contentData.forEach((level, index) => {
+                    const isUnlocked = level.id <= this.state.unlockedLevel;
+                    const isCompleted = level.id < this.state.unlockedLevel;
+                    
+                    // Update Rank Name based on highest unlocked
+                    if (level.id === this.state.unlockedLevel) currentRank = level.rankName;
+                    if (this.state.unlockedLevel > 5) currentRank = "Olympian Coach";
+
+                    const statusClass = isCompleted ? 'status-completed' : (isUnlocked ? 'status-open' : 'status-locked');
+                    const statusText = isCompleted ? 'Mastered' : (isUnlocked ? 'In Progress' : 'Locked');
+                    const cardClass = isUnlocked ? 'level-card' : 'level-card locked';
+                    const lockIcon = isUnlocked ? '' : '🔒 ';
+
+                    const card = document.createElement('div');
+                    card.className = cardClass;
+                    card.innerHTML = `
+                        <div class="level-header">
+                            <span class="level-title">${lockIcon}${level.title}</span>
+                            <span class="level-status ${statusClass}">${statusText}</span>
+                        </div>
+                        <div style="color: var(--accent-silver); font-size: 0.9rem;">${level.desc}</div>
+                    `;
+
+                    if (isUnlocked) {
+                        card.onclick = () => this.loadLevel(level.id);
+                    }
+
+                    grid.appendChild(card);
+                });
+
+                document.getElementById('user-rank').innerHTML = currentRank;
+                document.getElementById('levels-completed').innerText = Math.min(this.state.unlockedLevel - 1, 5);
+
+                this.switchView('view-dashboard');
+            },
+
+            loadLevel: function(levelId) {
+                this.state.currentLevelViewing = levelId;
+                const data = contentData.find(l => l.id === levelId);
+                
+                document.getElementById('learn-title').innerText = data.title;
+                const contentContainer = document.getElementById('learn-content');
+                contentContainer.innerHTML = '';
+
+                data.topics.forEach(topic => {
+                    let pointsHtml = topic.points.map(p => `<li>${p}</li>`).join('');
+                    let noteHtml = topic.coachNote ? `<div class="coach-note"><strong>💡 Coach's Eye:</strong> ${topic.coachNote}</div>` : '';
+                    
+                    const div = document.createElement('div');
+                    div.className = 'topic-card';
+                    div.innerHTML = `
+                        <div class="topic-title">${topic.title}</div>
+                        <div class="topic-content">
+                            <ul>${pointsHtml}</ul>
+                            ${noteHtml}
+                        </div>
+                    `;
+                    contentContainer.appendChild(div);
+                });
+
+                this.switchView('view-learn');
+            },
+
+            startQuiz: function() {
+                this.state.currentQuizIndex = 0;
+                this.state.quizScore = 0;
+                this.renderQuizQuestion();
+                this.switchView('view-quiz');
+            },
+
+            renderQuizQuestion: function() {
+                const levelData = contentData.find(l => l.id === this.state.currentLevelViewing);
+                const qData = levelData.quiz[this.state.currentQuizIndex];
+
+                document.getElementById('q-current').innerText = this.state.currentQuizIndex + 1;
+                document.getElementById('q-total').innerText = levelData.quiz.length;
+                document.getElementById('quiz-question').innerText = qData.q;
+                
+                const optionsContainer = document.getElementById('quiz-options');
+                optionsContainer.innerHTML = '';
+                
+                // Hide feedback and next buttons
+                document.getElementById('quiz-feedback').classList.add('hidden');
+                document.getElementById('btn-next-q').classList.add('hidden');
+                document.getElementById('btn-finish-quiz').classList.add('hidden');
+
+                qData.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'quiz-btn';
+                    btn.innerText = opt;
+                    btn.onclick = () => this.checkAnswer(idx, btn);
+                    optionsContainer.appendChild(btn);
+                });
+            },
+
+            checkAnswer: function(selectedIndex, btnElement) {
+                // Prevent multiple clicks
+                const allBtns = document.querySelectorAll('.quiz-btn');
+                allBtns.forEach(b => b.disabled = true);
+
+                const levelData = contentData.find(l => l.id === this.state.currentLevelViewing);
+                const qData = levelData.quiz[this.state.currentQuizIndex];
+
+                const feedback = document.getElementById('quiz-feedback');
+                feedback.classList.remove('hidden');
+
+                if (selectedIndex === qData.correct) {
+                    btnElement.classList.add('correct');
+                    feedback.innerText = "✓ " + qData.expl;
+                    feedback.style.border = "1px solid var(--success)";
+                    feedback.style.color = "var(--success)";
+                    this.state.quizScore++;
+                } else {
+                    btnElement.classList.add('incorrect');
+                    // Highlight correct one
+                    allBtns[qData.correct].classList.add('correct');
+                    feedback.innerText = "✗ " + qData.expl;
+                    feedback.style.border = "1px solid var(--danger)";
+                    feedback.style.color = "var(--danger)";
+                }
+
+                // Show next button
+                if (this.state.currentQuizIndex < levelData.quiz.length - 1) {
+                    document.getElementById('btn-next-q').classList.remove('hidden');
+                } else {
+                    document.getElementById('btn-finish-quiz').classList.remove('hidden');
+                }
+            },
+
+            nextQuestion: function() {
+                this.state.currentQuizIndex++;
+                this.renderQuizQuestion();
+            },
+
+            finishQuiz: function() {
+                const levelData = contentData.find(l => l.id === this.state.currentLevelViewing);
+                const passThreshold = Math.ceil(levelData.quiz.length * 0.5); // Need 50% to pass
+
+                if (this.state.quizScore >= passThreshold) {
+                    alert(`Assessment Passed! Score: ${this.state.quizScore}/${levelData.quiz.length}\n\nLevel unlocked.`);
+                    if (this.state.unlockedLevel === this.state.currentLevelViewing) {
+                        this.state.unlockedLevel++;
+                        this.saveState();
+                    }
+                    this.renderDashboard();
+                } else {
+                    alert(`Assessment Failed. Score: ${this.state.quizScore}/${levelData.quiz.length}\n\nReview the material and try again.`);
+                    this.renderDashboard(); // Or reload level
+                }
+            },
+
+            showDashboard: function() {
+                this.renderDashboard();
+            },
+
+            switchView: function(viewId) {
+                ['view-dashboard', 'view-learn', 'view-quiz'].forEach(id => {
+                    document.getElementById(id).classList.add('hidden');
+                });
+                document.getElementById(viewId).classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }
+        };
+
+        // Initialize
+        app.init();
+
+    </script>
+</body>
+</html>
