@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Synchronization Suite | OHS Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   
   <style id="theme-variables">
     :root {
@@ -16,7 +16,8 @@
       --color-navy: #030712;
       --font-header: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
-      --glass-dense: rgba(255, 255, 255, 0.92);
+      --glass: rgba(255, 255, 255, 0.85);
+      --glass-mobile: rgba(255, 255, 255, 0.95);
     }
   </style>
 
@@ -24,276 +25,313 @@
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       margin: 0; padding: 0;
-      background-color: #f8fafc;
+      background-color: var(--color-navy);
       font-family: var(--font-body);
-      color: var(--color-navy);
+      color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
+      transition: background-color 0.5s;
     }
+    body.focus-mode { background-color: #000; }
+    body.focus-mode nav, body.focus-mode .nav-rail, body.focus-mode .footer-note { opacity: 0; pointer-events: none; }
+    body.focus-mode .portal-hub { margin-top: 40px; }
 
     canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-
-    /* === CLINICAL COMMAND NAVIGATION === */
-    nav.fixed-nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 2000;
-      background: var(--glass-dense);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      padding: 15px 40px;
-      display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.03);
-    }
-
-    .brand-group { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-    .brand-logo {
-        width: 42px; height: 42px; background: var(--color-navy); border-radius: 12px;
-        display: flex; align-items: center; justify-content: center;
-        position: relative;
-    }
-    .brand-logo::after {
-        content: ''; position: absolute; top: -2px; right: -2px;
-        width: 10px; height: 10px; background: #10b981;
-        border: 2px solid #fff; border-radius: 50%;
-        box-shadow: 0 0 10px #10b981;
-    }
-    .brand-text { display: flex; flex-direction: column; line-height: 1; }
-    .brand-name { font-family: var(--font-header); font-weight: 900; font-size: 1.2rem; color: var(--color-navy); letter-spacing: -0.02em; }
-    .brand-status { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--theme-primary); margin-top: 2px; }
-
-    .nav-links-container { display: flex; items-center; gap: 35px; }
-    @media (max-width: 1024px) { .nav-links-container { display: none; } }
-    
-    .nav-link {
-        text-decoration: none; color: #475569; font-size: 0.85rem; font-weight: 700;
-        text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s;
-        position: relative; padding: 5px 0;
-    }
-    .nav-link:hover { color: var(--theme-primary); }
-    .nav-link::after {
-        content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
-        background: var(--theme-primary); transition: 0.3s;
-    }
-    .nav-link:hover::after { width: 100%; }
-
-    .btn-clinical {
-        background: var(--color-navy); color: #fff;
-        padding: 12px 24px; border-radius: 12px;
-        font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
-        letter-spacing: 0.1em; transition: 0.3s; border: none;
-    }
-    .btn-clinical:hover { background: var(--theme-primary); transform: translateY(-1px); }
 
     /* === PORTAL HUB ARCHITECTURE === */
     .portal-hub {
         max-width: 1440px;
-        margin: 120px auto 80px;
+        margin: 140px auto 40px;
         display: grid;
-        grid-template-columns: 350px 1fr;
-        gap: 50px;
+        grid-template-columns: 320px 1fr;
+        gap: 40px;
         padding: 0 40px;
+        transition: margin 0.5s;
     }
 
-    @media (max-width: 1100px) {
-        .portal-hub { grid-template-columns: 1fr; margin-top: 90px; padding: 0 20px; gap: 30px; }
+    @media (max-width: 1024px) {
+        .portal-hub { grid-template-columns: 1fr; margin-top: 100px; padding: 0 15px; gap: 20px; }
+    }
+
+    /* Module Navigation Rail */
+    .nav-rail {
+        position: sticky;
+        top: 120px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        transition: opacity 0.5s;
+    }
+
+    /* Mobile Swipe Menu */
+    @media (max-width: 1024px) {
+        .nav-rail { 
+            position: relative; top: 0; flex-direction: row; 
+            overflow-x: auto; padding-bottom: 10px; scrollbar-width: none;
+            margin-bottom: 10px;
+        }
+        .nav-rail::-webkit-scrollbar { display: none; }
     }
 
     .doc-module-key {
-        background: #fff;
-        border: 1px solid rgba(0,0,0,0.05);
-        padding: 30px;
-        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1.5px solid rgba(255, 255, 255, 0.08);
+        padding: 25px;
+        border-radius: 24px;
         display: flex;
-        align-items: flex-start;
-        gap: 20px;
+        align-items: center;
+        gap: 15px;
         cursor: pointer;
         transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        color: #64748b;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        color: #94a3b8;
+        min-width: 260px;
+        flex-shrink: 0;
+    }
+
+    .doc-module-key:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .doc-module-key.active {
-        background: var(--color-navy);
-        color: #fff;
-        border-color: var(--color-navy);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        background: var(--glass);
+        color: var(--color-navy);
+        border-color: var(--theme-primary);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         transform: translateX(10px);
     }
-    @media (max-width: 1100px) { .doc-module-key.active { transform: translateY(-5px) translateX(0); } }
+    @media (max-width: 1024px) { 
+        .doc-module-key.active { transform: translateY(-3px) translateX(0); } 
+        .doc-module-key { padding: 15px 20px; min-width: auto; border-radius: 16px; }
+    }
 
     .status-pulse {
-        width: 14px; height: 14px;
-        border-radius: 4px;
-        background: rgba(0,0,0,0.05);
-        margin-top: 5px;
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
         flex-shrink: 0;
         transition: 0.5s;
     }
-    .active .status-pulse { background: var(--theme-accent); box-shadow: 0 0 15px var(--theme-accent); transform: rotate(45deg); }
 
+    .active .status-pulse { 
+        background: var(--theme-primary); 
+        box-shadow: 0 0 15px var(--theme-primary);
+    }
+
+    .nav-label { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-label strong { font-family: var(--font-header); font-size: 1rem; font-weight: 800; }
+    .nav-label span { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
+
+    /* Module Viewport */
     .viewport-module {
         position: relative;
-        background: #fff;
-        border-radius: 56px;
-        border: 1px solid rgba(0,0,0,0.05);
+        background: var(--glass);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border-radius: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
         overflow: hidden;
-        box-shadow: 0 50px 120px rgba(0,0,0,0.1);
-        min-height: 85vh;
+        box-shadow: 0 50px 120px rgba(0,0,0,0.3);
+        min-height: 80vh;
+        display: flex; flex-direction: column;
+    }
+    @media (max-width: 768px) {
+        .viewport-module { border-radius: 24px; min-height: 85vh; }
     }
 
-    .perimeter-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-    .perimeter-svg rect {
-        width: 100%; height: 100%; rx: 56; ry: 56;
-        fill: none; stroke: var(--theme-primary); stroke-width: 5;
-        stroke-dasharray: 0.2 1; pathLength: 1; 
-        stroke-linecap: round; filter: drop-shadow(0 0 20px var(--theme-primary));
-        animation: traceModule 10s linear infinite;
+    .form-container { 
+        flex-grow: 1;
+        width: 100%; 
+        border: none; 
+        background: #fff; 
     }
-    @keyframes traceModule { 0% { stroke-dashoffset: 1; } 100% { stroke-dashoffset: 0; } }
 
+    /* AI Insight Bar */
     .ai-strategy-anchor {
-        background: #f8fafc;
-        padding: 30px 50px;
+        background: linear-gradient(to right, #f8fafc, #fff);
+        padding: 20px 40px;
         border-bottom: 1px solid rgba(0,0,0,0.05);
         display: flex;
         align-items: center;
-        gap: 25px;
+        justify-content: space-between;
+        gap: 20px;
         color: var(--color-navy);
     }
-    .ai-orb {
-        width: 48px; height: 48px;
-        background: var(--theme-primary);
-        border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 10px 20px var(--theme-glow);
-        flex-shrink: 0;
-    }
+    .ai-left { display: flex; align-items: center; gap: 20px; }
     
-    .ai-speech { font-size: 0.95rem; font-weight: 600; line-height: 1.6; }
-    .ai-speech strong { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--theme-primary); margin-bottom: 3px; }
+    .ai-orb {
+        width: 40px; height: 40px;
+        background: var(--theme-primary);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 5px 15px var(--theme-glow);
+        flex-shrink: 0;
+        animation: orbBreathe 4s ease-in-out infinite;
+    }
+    @keyframes orbBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    
+    .ai-speech { font-size: 0.9rem; font-weight: 500; line-height: 1.4; }
+    .ai-speech strong { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--theme-primary); margin-bottom: 2px; }
 
-    .form-container { width: 100%; height: 80vh; border: none; }
-    .secure-footer { padding: 40px; text-align: center; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.3; color: var(--color-navy); }
+    /* Utility Buttons in Header */
+    .util-btns { display: flex; gap: 10px; }
+    .util-btn {
+        padding: 8px 16px; border-radius: 99px;
+        font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+        border: 1px solid rgba(0,0,0,0.1); color: #64748b; background: white;
+        cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px;
+    }
+    .util-btn:hover { background: var(--theme-primary); color: white; border-color: var(--theme-primary); }
+
+    @media (max-width: 640px) {
+        .ai-strategy-anchor { padding: 15px 20px; flex-direction: column; align-items: flex-start; gap: 15px; }
+        .util-btns { width: 100%; justify-content: space-between; }
+        .util-btn { flex: 1; justify-content: center; }
+        .ai-speech { font-size: 0.85rem; }
+    }
+
+    /* Global Nav Navigation */
+    nav.fixed-nav {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 40px); max-width: 1400px; z-index: 1000;
+      background: var(--glass); backdrop-filter: blur(30px);
+      border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.7);
+      padding: 10px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      transition: opacity 0.5s;
+    }
+    .brand { font-family: var(--font-header); font-weight: 900; font-size: 1.2rem; color: var(--color-navy); text-decoration: none; letter-spacing: -0.02em; }
+    .brand span { color: var(--theme-primary); }
+
+    .secure-footer { margin-top: 50px; text-align: center; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.4; padding-bottom: 40px; transition: opacity 0.5s; }
 
   </style>
 </head>
 <body onmousemove="updateMouseTracker(event)">
 
-  <!-- BACKGROUND -->
+  <!-- REACTIVE BUBBLE CANVAS -->
   <canvas id="bubble-canvas"></canvas>
 
-  <!-- NAVIGATION -->
   <nav class="fixed-nav">
-    <a href="index.html" class="brand-group">
-      <div class="brand-logo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
-      <div class="brand-text">
-        <span class="brand-name">Olympian Health</span>
-        <span class="brand-status">System Synced</span>
-      </div>
-    </a>
-
-    <div class="nav-links-container">
-        <a href="index.html" class="nav-link">Overview</a>
-        <a href="calculator.html" class="nav-link">Vitality Tool</a>
-        <a href="booking.html" class="nav-link">Book Session</a>
-        <a href="about.html" class="nav-link">Our Expert</a>
-    </div>
-
-    <div class="flex gap-3">
-        <a href="booking.html" class="btn-clinical">Quick Consultation</a>
+    <a href="index.html" class="brand">Olympian <span>Health</span></a>
+    <div class="flex gap-6 items-center">
+        <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-500 no-underline hover:text-blue-600 transition-colors hidden md:block">Home</a>
+        <a href="booking.html" class="text-[10px] font-black uppercase tracking-widest text-slate-500 no-underline hover:text-blue-600 transition-colors hidden md:block">Book Visit</a>
+        <a href="index.html" class="md:hidden text-slate-900 font-bold">✕</a>
     </div>
   </nav>
 
   <div class="portal-hub">
       
-      <!-- MODULE RAIL -->
+      <!-- MOBILE-READY NAV RAIL -->
       <div class="nav-rail">
-          <div class="doc-module-key active" onclick="loadModule('onboarding')" id="key-onboarding">
+          <div class="doc-module-key active" onclick="loadModule('intake')" id="key-intake">
               <div class="status-pulse"></div>
-              <div class="key-label">
-                  <span>General Intake</span>
-                  <strong>Structural Onboarding</strong>
+              <div class="nav-label">
+                  <span>Primary Form</span>
+                  <strong>General Intake</strong>
               </div>
           </div>
           <div class="doc-module-key" onclick="loadModule('nutrition')" id="key-nutrition">
               <div class="status-pulse"></div>
-              <div class="key-label">
-                  <span>Bio-Fueling</span>
-                  <strong>Nutrition Architecture</strong>
+              <div class="nav-label">
+                  <span>Optional</span>
+                  <strong>Nutrition Audit</strong>
               </div>
           </div>
-          <div class="doc-module-key" onclick="loadModule('safety')" id="key-safety">
+          <div class="doc-module-key" onclick="loadModule('waiver')" id="key-waiver">
               <div class="status-pulse"></div>
-              <div class="key-label">
-                  <span>Legal & Compliance</span>
-                  <strong>Safety Protocols</strong>
+              <div class="nav-label">
+                  <span>Required</span>
+                  <strong>Safety Waiver</strong>
               </div>
           </div>
       </div>
 
-      <!-- VIEWPORT -->
+      <!-- INTELLIGENT VIEWPORT -->
       <div class="viewport-module" id="viewport">
-          <svg class="perimeter-svg"><rect/></svg>
           
+          <!-- AI HEADER -->
           <div class="ai-strategy-anchor">
-              <div class="ai-orb">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              <div class="ai-left">
+                  <div class="ai-orb">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="ai-speech">
+                      <strong>Clinical Context</strong>
+                      <span id="ai-insight-text">Loading intake protocols...</span>
+                  </div>
               </div>
-              <div class="ai-speech">
-                  <strong>Partner Strategy ✨</strong>
-                  <span id="ai-insight-text">Initializing Clinical Hub Assistant...</span>
+              <div class="util-btns">
+                  <button class="util-btn" onclick="toggleFocusMode()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"/></svg>
+                      Focus Mode
+                  </button>
+                  <button class="util-btn" onclick="copyLink()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                      Share
+                  </button>
               </div>
           </div>
 
-          <iframe id="doc-iframe" class="form-container" src="https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true">
-              Syncing...
+          <!-- EMBEDDED FORM -->
+          <iframe id="doc-iframe" class="form-container" src="https://docs.google.com/forms/d/e/1FAIpQLSdktzd8imbMzhFPlwbio76bLBl4nY2mhqJDwoISpD16jmqucA/viewform?embedded=true">
+              Loading...
           </iframe>
       </div>
 
   </div>
 
-  <div class="secure-footer">Encrypted Data Exchange • Clinical Privacy Standards</div>
+  <div class="secure-footer footer-note">HIPAA Compliant Google Workspace • 256-bit Encryption</div>
 
   <script>
-    const apiKey = ""; 
+    const apiKey = ""; // Environment
 
+    // FORM DATABASE
     const moduleBank = {
-        onboarding: {
-            url: "https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true",
-            objective: "creating your structural baseline and medical history profile."
+        intake: {
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSdktzd8imbMzhFPlwbio76bLBl4nY2mhqJDwoISpD16jmqucA/viewform?embedded=true",
+            objective: "establishing your medical baseline and safety profile."
         },
         nutrition: {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true", 
-            objective: "optimizing your metabolic fueling strategy for muscle recovery."
+            objective: "fueling your cellular recovery and energy systems."
         },
-        safety: {
+        waiver: {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true", 
-            objective: "legal acknowledgments and clinical safety standard alignment."
+            objective: "confirming our mutual commitment to safe practice."
         }
     };
 
     function loadModule(key) {
         const iframe = document.getElementById('doc-iframe');
-        const keys = document.querySelectorAll('.doc-module-key');
-        keys.forEach(k => k.classList.remove('active'));
-        document.getElementById(`key-${key}`).classList.add('active');
+        
+        // Reset Active States
+        document.querySelectorAll('.doc-module-key').forEach(k => k.classList.remove('active'));
+        const activeKey = document.getElementById(`key-${key}`);
+        if(activeKey) activeKey.classList.add('active');
+
+        // Iframe Transition
         iframe.style.opacity = '0.3';
         setTimeout(() => {
             iframe.src = moduleBank[key].url;
             iframe.style.opacity = '1';
         }, 300);
+
         syncAIPartner(key);
-        window.location.hash = key;
     }
 
     async function syncAIPartner(key) {
         const textEl = document.getElementById('ai-insight-text');
         textEl.style.opacity = "0.4";
+        
         const info = moduleBank[key].objective;
-        const prompt = `Module: ${key}. Objective: ${info}. Write a short, professional, warm sentence for a senior client explaining why this specific module is vital to their mobility. 20 words max.`;
-        const system = "You are a professional Senior Longevity Specialist at OHS.";
+        const prompt = `Form Context: ${info}. Write a short, encouraging sentence for a senior client explaining why this specific form helps us build a safer, better plan for them. 20 words max.`;
+        const system = "You are a warm, professional Clinical Specialist.";
+
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
                 method: 'POST',
@@ -306,11 +344,24 @@
             const result = await response.json();
             textEl.textContent = result.candidates[0].content.parts[0].text;
         } catch (e) {
-            textEl.textContent = `Aligning your ${info} allows our partners to deliver elite, safer results.`;
+            textEl.textContent = `This information is vital for ${info}`;
         }
         textEl.style.opacity = "1";
     }
 
+    // Toggle Focus Mode
+    function toggleFocusMode() {
+        document.body.classList.toggle('focus-mode');
+    }
+
+    // Copy Link
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert("Link copied to clipboard!");
+        });
+    }
+
+    // --- BUBBLE ENGINE ---
     const canvas = document.getElementById('bubble-canvas');
     const ctx = canvas.getContext('2d');
     let width, height, bubbles = [];
@@ -357,10 +408,10 @@
 
     function updateMouseTracker(e) { mouse.x = e.clientX; mouse.y = e.clientY; }
     window.onresize = resize;
+
     window.onload = () => {
         resize(); animate();
-        const hash = window.location.hash.replace('#', '');
-        if (hash && moduleBank[hash]) loadModule(hash); else syncAIPartner('onboarding');
+        loadModule('intake'); // Default load
     };
   </script>
 </body>
