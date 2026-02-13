@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Synchronization Suite | OHS Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style id="theme-variables">
+    :root {
+      --theme-primary: #2563eb;
+      --theme-accent: #60a5fa;
+      --theme-bubble: 37, 99, 235;
+      --theme-glow: rgba(37, 99, 235, 0.4);
+      --color-navy: #030712;
+      --font-header: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --glass: rgba(255, 255, 255, 0.85);
+    }
+  </style>
+
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0; padding: 0;
+      background-color: var(--color-navy);
+      font-family: var(--font-body);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+    /* === PORTAL HUB ARCHITECTURE === */
+    .portal-hub {
+        max-width: 1440px;
+        margin: 140px auto 80px;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 50px;
+        padding: 0 40px;
+    }
+
+    @media (max-width: 1100px) {
+        .portal-hub { grid-template-columns: 1fr; margin-top: 110px; padding: 0 20px; gap: 30px; }
+    }
+
+    /* Module Navigation Rail */
+    .nav-rail {
+        position: sticky;
+        top: 140px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    @media (max-width: 1100px) {
+        .nav-rail { 
+            position: relative; top: 0; flex-direction: row; 
+            overflow-x: auto; padding: 10px 0 25px; scrollbar-width: none;
+        }
+        .nav-rail::-webkit-scrollbar { display: none; }
+    }
+
+    .doc-module-key {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1.5px solid rgba(255, 255, 255, 0.08);
+        padding: 30px;
+        border-radius: 32px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        cursor: pointer;
+        transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        color: #94a3b8;
+        min-width: 300px;
+    }
+
+    .doc-module-key:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .doc-module-key.active {
+        background: var(--glass);
+        color: var(--color-navy);
+        border-color: var(--theme-primary);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        transform: translateX(10px);
+    }
+    @media (max-width: 1100px) { .doc-module-key.active { transform: translateY(-5px); } }
+
+    .status-pulse {
+        width: 14px; height: 14px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.1);
+        margin-top: 5px;
+        flex-shrink: 0;
+        transition: 0.5s;
+    }
+
+    .active .status-pulse { 
+        background: var(--theme-primary); 
+        box-shadow: 0 0 15px var(--theme-primary);
+        transform: rotate(45deg);
+    }
+
+    .key-label strong { display: block; font-family: var(--font-header); font-size: 1.1rem; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .key-label span { display: block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; }
+
+    /* Module Viewport */
+    .viewport-module {
+        position: relative;
+        background: var(--glass);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border-radius: 56px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        overflow: hidden;
+        box-shadow: 0 50px 120px rgba(0,0,0,0.4);
+        min-height: 85vh;
+    }
+
+    .form-container { width: 100%; height: 85vh; border: none; background: #fff; }
+
+    /* Precision SVG Trace */
+    .perimeter-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .perimeter-svg rect {
+        width: 100%; height: 100%; rx: 56; ry: 56;
+        fill: none; stroke: var(--theme-primary); stroke-width: 5;
+        stroke-dasharray: 0.2 1; pathLength: 1; 
+        stroke-linecap: round; filter: drop-shadow(0 0 20px var(--theme-primary));
+        animation: traceModule 10s linear infinite;
+    }
+    @keyframes traceModule { 0% { stroke-dashoffset: 1; } 100% { stroke-dashoffset: 0; } }
+
+    /* AI Insight Bar */
+    .ai-strategy-anchor {
+        background: linear-gradient(to right, rgba(var(--theme-bubble), 0.12), transparent);
+        padding: 35px 50px;
+        border-bottom: 1.5px solid rgba(0,0,0,0.04);
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        color: var(--color-navy);
+    }
+    .ai-orb {
+        width: 56px; height: 56px;
+        background: var(--theme-primary);
+        border-radius: 20px;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 15px 30px var(--theme-glow);
+        flex-shrink: 0;
+        animation: orbBreathe 4s ease-in-out infinite;
+    }
+    @keyframes orbBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    
+    .ai-speech { font-size: 1rem; font-weight: 500; line-height: 1.6; }
+    .ai-speech strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--theme-primary); margin-bottom: 5px; }
+
+    /* Global Nav Navigation */
+    nav.fixed-nav {
+      position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 50px); max-width: 1400px; z-index: 1000;
+      background: var(--glass); backdrop-filter: blur(30px);
+      border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.7);
+      padding: 12px 35px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+    .brand { font-family: var(--font-header); font-weight: 900; font-size: 1.4rem; color: var(--color-navy); text-decoration: none; }
+    .brand span { color: var(--theme-primary); }
+
+    .secure-footer { margin-top: 50px; text-align: center; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.25em; opacity: 0.25; }
+
+  </style>
+</head>
+<body onmousemove="updateMouseTracker(event)">
+
+  <!-- OXYGENATED VITALITY BACKGROUND -->
+  <canvas id="bubble-canvas"></canvas>
+
+  <nav class="fixed-nav">
+    <a href="index.html" class="brand">Olympian <span>Health</span></a>
+    <div class="flex gap-6">
+        <a href="index.html" class="text-[11px] font-black uppercase tracking-widest text-slate-500 no-underline hover:text-blue-600 transition-colors">Home</a>
+        <a href="booking.html" class="text-[11px] font-black uppercase tracking-widest text-slate-500 no-underline hover:text-blue-600 transition-colors">Schedule Consultation</a>
+    </div>
+  </nav>
+
+  <div class="portal-hub">
+      
+      <!-- NEURAL ACCESS RAIL (SEPARATE MODULES) -->
+      <div class="nav-rail">
+          <div class="doc-module-key active" onclick="loadModule('onboarding')" id="key-onboarding">
+              <div class="status-pulse"></div>
+              <div class="key-label">
+                  <span>General Intake</span>
+                  <strong>Structural Onboarding</strong>
+              </div>
+          </div>
+          <div class="doc-module-key" onclick="loadModule('nutrition')" id="key-nutrition">
+              <div class="status-pulse"></div>
+              <div class="key-label">
+                  <span>Bio-Fueling</span>
+                  <strong>Nutrition Architecture</strong>
+              </div>
+          </div>
+          <div class="doc-module-key" onclick="loadModule('safety')" id="key-safety">
+              <div class="status-pulse"></div>
+              <div class="key-label">
+                  <span>Legal & Compliance</span>
+                  <strong>Safety Protocols</strong>
+              </div>
+          </div>
+      </div>
+
+      <!-- INTELLIGENT VIEWPORT -->
+      <div class="viewport-module" id="viewport">
+          <svg class="perimeter-svg"><rect/></svg>
+          
+          <!-- AI STRATEGY PARTNER -->
+          <div class="ai-strategy-anchor">
+              <div class="ai-orb">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              </div>
+              <div class="ai-speech">
+                  <strong>Partner Strategy ✨</strong>
+                  <span id="ai-insight-text">Initializing clinical documentation suite...</span>
+              </div>
+          </div>
+
+          <!-- DYNAMIC FORM VIEWPORT -->
+          <iframe id="doc-iframe" class="form-container" src="https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true">
+              Syncing with secure server...
+          </iframe>
+      </div>
+
+  </div>
+
+  <div class="secure-footer">HIPAA Compliant Documentation Protocol • End-to-End Encryption</div>
+
+  <script>
+    const apiKey = ""; // Set by environment
+
+    const moduleBank = {
+        onboarding: {
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true",
+            objective: "creating your structural baseline and medical history profile."
+        },
+        nutrition: {
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true", // Use unique ID here
+            objective: "optimizing your metabolic fueling strategy for muscle recovery."
+        },
+        safety: {
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSfirjow4l1d38-MvewY07lLW-eS6aTmZIMGTpB_Yle4OiHGEQ/viewform?embedded=true", // Use unique ID here
+            objective: "legal acknowledgments and clinical safety standard alignment."
+        }
+    };
+
+    /**
+     * Discrete Module Loading Logic
+     */
+    function loadModule(key) {
+        const iframe = document.getElementById('doc-iframe');
+        const keys = document.querySelectorAll('.doc-module-key');
+        
+        // UI State Update
+        keys.forEach(k => k.classList.remove('active'));
+        document.getElementById(`key-${key}`).classList.add('active');
+
+        // Iframe Transition
+        iframe.style.opacity = '0.3';
+        setTimeout(() => {
+            iframe.src = moduleBank[key].url;
+            iframe.style.opacity = '1';
+        }, 300);
+
+        // AI Partner Response
+        syncAIPartner(key);
+
+        // Update URL Reference
+        window.location.hash = key;
+    }
+
+    /**
+     * Gemini AI Contextual Support
+     */
+    async function syncAIPartner(key) {
+        const textEl = document.getElementById('ai-insight-text');
+        textEl.style.opacity = "0.4";
+        
+        const info = moduleBank[key].objective;
+        const prompt = `Module: ${key}. Objective: ${info}. Write a short, extremely professional, and warm sentence for a senior client explaining why this specific module is vital to their independence. 25 words max.`;
+        const system = "You are a professional Senior Longevity Specialist at OHS.";
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: { parts: [{ text: system }] }
+                })
+            });
+            const result = await response.json();
+            textEl.textContent = result.candidates[0].content.parts[0].text;
+        } catch (e) {
+            textEl.textContent = `Aligning your ${info} allows our partners to deliver elite, safer results.`;
+        }
+        textEl.style.opacity = "1";
+    }
+
+    // --- REACTIVE BUBBLE PHYSICS ---
+    const canvas = document.getElementById('bubble-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, bubbles = [];
+    let mouse = { x: -1000, y: -1000 };
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initBubbles();
+    }
+
+    class Bubble {
+      constructor() { this.reset(); }
+      reset() {
+        this.r = Math.random() * 20 + 8;
+        this.x = Math.random() * width;
+        this.y = height + this.r + Math.random() * 500;
+        this.vx = (Math.random() - 0.5) * 1;
+        this.vy = -(Math.random() * 1.4 + 0.6);
+        this.opacity = Math.random() * 0.15 + 0.05;
+      }
+      update() {
+        this.y += this.vy;
+        this.x += this.vx;
+        const dx = mouse.x - this.x; const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 150) {
+            const force = (150 - dist) / 150;
+            this.x -= dx * force * 0.06;
+            this.y -= dy * force * 0.06;
+        }
+        if (this.y < -this.r) this.reset();
+      }
+      draw() {
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`; ctx.fill();
+      }
+    }
+
+    function initBubbles() { bubbles = Array.from({length: 45}, () => new Bubble()); }
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      bubbles.forEach(b => { b.update(); b.draw(); });
+      requestAnimationFrame(animate);
+    }
+
+    function updateMouseTracker(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    }
+
+    window.onresize = resize;
+
+    window.onload = () => {
+        resize(); animate();
+        const hash = window.location.hash.replace('#', '');
+        if (hash && moduleBank[hash]) {
+            loadModule(hash);
+        } else {
+            syncAIPartner('onboarding');
+        }
+    };
+  </script>
+</body>
+</html>
