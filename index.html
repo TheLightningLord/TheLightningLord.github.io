@@ -38,7 +38,7 @@
         "@type": "HealthAndBeautyBusiness",
         "name": "Olympian Health Solutions",
         "founder": { "@type": "Person", "name": "Zeuse Valentine" },
-        "image": "https://olympianhealthsolutions.com/ologo.png",
+        "image": "https://raw.githubusercontent.com/TheLightningLord/TheLightningLord.github.io/gh-pages/assets/images/ologo.png",
         "@id": "https://olympianhealthsolutions.com",
         "url": "https://olympianhealthsolutions.com",
         "telephone": "",
@@ -131,7 +131,6 @@
     #intro-splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
     .splash-logo {
         width: 250px; max-width: 60%; height: auto;
-        /* Removed blend mode as PNGs usually handle transparency natively */
         animation: pulseLogo 3s infinite ease-in-out;
     }
     @keyframes pulseLogo {
@@ -231,10 +230,6 @@
     .btn-primary-luxe { background: var(--color-navy); color: #fff; box-shadow: 0 15px 40px rgba(3, 7, 18, 0.2); }
     .btn-outline-luxe { background: #fff; border: 2.5px solid var(--color-navy); color: var(--color-navy); }
 
-    /* 3D TILT EFFECT CLASSES */
-    .tilt-card { transition: transform 0.1s; transform-style: preserve-3d; perspective: 1000px; }
-    .tilt-content { transform: translateZ(20px); }
-
     /* TICKER */
     .ticker-bar { padding: 2.2rem 0; background: var(--color-navy); overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
     .ticker-track { display: inline-block; animation: scroll 40s linear infinite; }
@@ -247,11 +242,17 @@
     @media (max-width: 1024px) { .catalyst-grid { grid-template-columns: 1fr; } }
     
     .fancy-graphic-card { background: rgba(255, 255, 255, 0.8); border-radius: 56px; padding: clamp(30px, 5vw, 60px); border: 1px solid #e2e8f0; box-shadow: var(--shadow-luxe); display: flex; flex-direction: column; justify-content: center; }
+    .fancy-graphic-card h2 { font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 900; color: var(--color-navy); line-height: 1.05; margin-bottom: 1.8rem; }
+    .fancy-graphic-card h2 span { color: var(--theme-primary); }
+    
     .assessment-panel { background: #030712; color: #fff; border-radius: 56px; padding: clamp(30px, 5vw, 60px); display: flex; flex-direction: column; justify-content: center; box-shadow: 0 30px 60px rgba(0,0,0,0.15); position: relative; overflow: hidden; }
+    .assessment-panel h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 1.2rem; color: var(--theme-accent); }
     .btn-assessment { align-self: flex-start; margin-top: 1.5rem; padding: 18px 40px; background: #fff; color: var(--color-navy); border-radius: var(--radius-full); font-weight: 900; text-decoration: none; transition: 0.3s; }
 
     /* VITALITY CONSOLE */
     .vitality-console { padding: 100px 24px; max-width: 1240px; margin: 40px auto; background: rgba(255, 255, 255, 0.6); border-radius: 64px; border: 1px solid #e2e8f0; box-shadow: var(--shadow-luxe); position: relative; }
+    .console-header { text-align: center; margin-bottom: 70px; }
+    .console-header h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; }
     .conduit-wrap { position: relative; margin-top: 60px; padding: 0 40px; }
     .conduit-line-bg { position: absolute; left: 60px; right: 60px; top: 30px; height: 6px; background: rgba(0,0,0,0.05); border-radius: 10px; }
     .conduit-line-fill { position: absolute; left: 60px; top: 30px; height: 6px; width: 0%; background: var(--theme-primary); border-radius: 10px; transition: 2.5s width cubic-bezier(0.65, 0, 0.35, 1); }
@@ -261,61 +262,44 @@
     .conduit-node { width: 60px; height: 60px; background: #fff; border: 5px solid #f1f5f9; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; margin-bottom: 24px; }
     @media (max-width: 768px) { .conduit-line-bg, .conduit-line-fill { display: none; } }
 
-    /* ANATOMY INTERACTIVE SECTION */
-    .anatomy-section { padding: 100px 24px; max-width: 1100px; margin: 40px auto; background: #fff; border-radius: 64px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; }
-    .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; align-items: center; margin-top: 40px; }
-    @media(max-width: 768px) { .anatomy-grid { grid-template-columns: 1fr; } }
-    
-    .anatomy-visual { position: relative; height: 400px; display: flex; justify-content: center; }
-    .human-shape { height: 100%; width: auto; fill: #e2e8f0; transition: 0.3s; }
-    .body-point { position: absolute; width: 20px; height: 20px; background: var(--theme-primary); border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 15px rgba(37,99,235,0.4); cursor: pointer; transition: 0.3s; transform: scale(1); }
-    .body-point:hover, .body-point.active { transform: scale(1.5); background: var(--color-navy); }
-    .point-head { top: 10%; left: 50%; transform: translate(-50%, 0); }
-    .point-core { top: 35%; left: 50%; transform: translate(-50%, 0); }
-    .point-legs { top: 65%; left: 50%; transform: translate(-50%, 0); }
-
-    .anatomy-info { padding: 30px; background: #f8fafc; border-radius: 32px; min-height: 250px; display: flex; flex-direction: column; justify-content: center; border: 1px solid #e2e8f0; }
-    .info-title { font-size: 1.8rem; font-weight: 800; color: var(--color-navy); margin-bottom: 10px; }
-    .info-desc { color: #64748b; font-size: 1.1rem; }
-
-    /* RESULTS STRIP WITH VERTICAL TICKER */
-    .results-strip { padding: 100px 24px; background: #fff; border-radius: 72px; margin: 60px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; display: grid; grid-template-columns: 3fr 1fr; gap: 40px; }
-    @media (max-width: 1024px) { .results-strip { grid-template-columns: 1fr; } }
-    
-    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-    @media (min-width: 768px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
-    .bio-visual-wrap { position: relative; width: 160px; height: 160px; margin: 0 auto 1.5rem; }
+    /* RESULTS STRIP */
+    .results-strip { padding: 120px 24px; background: #fff; border-radius: 72px; margin: 60px 20px; box-shadow: var(--shadow-luxe); position: relative; z-index: 10; }
+    .bio-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; max-width: 1240px; margin: 0 auto; }
+    @media (min-width: 1024px) { .bio-grid { grid-template-columns: repeat(3, 1fr); } }
+    .bio-visual-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto 2.5rem; }
     .bio-ring-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-    .bio-ring-bg { fill: none; stroke: #f1f5f9; stroke-width: 16; }
-    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 16; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.2rem; font-weight: 900; color: var(--color-navy); }
-
-    /* WINS SIDEBAR */
-    .wins-sidebar { background: var(--color-navy); border-radius: 32px; padding: 30px; color: #fff; overflow: hidden; height: 400px; position: relative; display: flex; flex-direction: column; }
-    .wins-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--theme-accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .wins-marquee { flex: 1; overflow: hidden; position: relative; }
-    .wins-list { position: absolute; width: 100%; animation: scrollUp 15s linear infinite; }
-    .win-item { margin-bottom: 20px; font-size: 0.95rem; line-height: 1.4; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; }
-    @keyframes scrollUp { 0% { top: 0; } 100% { top: -100%; } }
+    .bio-ring-bg { fill: none; stroke: #f1f5f9; stroke-width: 18; }
+    .bio-ring-fill { fill: none; stroke: var(--theme-primary); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 439.8; stroke-dashoffset: 439.8; transition: stroke-dashoffset 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bio-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; font-weight: 900; color: var(--color-navy); }
 
     /* EXPERTISE */
     .seo-expertise-section { padding: 100px 24px; background: var(--color-navy); color: #fff; border-radius: 72px; margin: 60px 20px; position: relative; z-index: 10; text-align: center; }
     .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1400px; margin: 60px auto 0; }
-    .seo-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.1); text-align: left; transform-style: preserve-3d; perspective: 1000px; }
+    .seo-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+    .seo-card h4 { color: var(--theme-accent); margin-bottom: 15px; font-size: 1.4rem; }
+    .seo-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); }
 
     /* GLOSSARY */
     .glossary-section { padding: 80px 24px; max-width: 1300px; margin: 40px auto; display: grid; grid-template-columns: 1fr 2fr; gap: 50px; }
     @media (max-width: 900px) { .glossary-section { grid-template-columns: 1fr; } }
+    .glossary-intro h3 { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; color: var(--color-navy); }
     .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
     .term-card { background: #fff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 16px; transition: 0.3s; }
     .term-card:hover { border-color: var(--theme-primary); transform: translateY(-3px); }
+    .term-title { font-weight: 800; color: var(--theme-primary); margin-bottom: 8px; font-size: 0.95rem; }
+    .term-def { font-size: 0.85rem; color: #64748b; line-height: 1.5; }
 
     /* FAQ */
     .faq-section { padding: 80px 24px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 10; }
+    .faq-header { text-align: center; margin-bottom: 50px; }
+    .faq-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--color-navy); }
     .faq-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; margin-bottom: 16px; padding: 24px 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); cursor: pointer; transition: 0.3s; }
     .faq-item:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .faq-question { font-weight: 700; font-size: 1.1rem; color: var(--color-navy); display: flex; justify-content: space-between; align-items: center; }
     .faq-answer { margin-top: 0; max-height: 0; overflow: hidden; color: #64748b; line-height: 1.6; transition: 0.4s ease-out; opacity: 0; }
     .faq-item.active .faq-answer { margin-top: 15px; max-height: 200px; opacity: 1; }
+    .faq-icon { color: var(--theme-primary); font-size: 1.2rem; transition: 0.3s; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
 
     /* FOOTER STRIPS */
     .service-area-strip { background: #f1f5f9; padding: 40px 24px; text-align: center; margin-top: 60px; border-top: 1px solid #e2e8f0; }
@@ -325,16 +309,26 @@
 
     .expanded-footer-nav { background: var(--color-navy); color: #fff; padding: 80px 24px 40px; }
     .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; }
+    .footer-col h5 { font-size: 1.1rem; color: #fff; margin-bottom: 20px; font-weight: 800; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 12px; }
     .footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
     .footer-col a:hover { color: var(--theme-accent); }
 
     /* MOBILE PILL */
     .mobile-action-pill { display: none; position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateZ(0); background: var(--color-navy); color: #fff; padding: 6px 6px 6px 20px; border-radius: var(--radius-full); box-shadow: 0 15px 40px rgba(0,0,0,0.3); z-index: 3000; border: 1px solid rgba(255,255,255,0.2); align-items: center; gap: 15px; width: 280px; justify-content: space-between; }
+    .mobile-action-pill span { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.7); white-space: nowrap; }
     .action-btn { background: var(--theme-primary); color: #fff; border-radius: var(--radius-full); padding: 12px 24px; font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
     @media (max-width: 1150px) { .mobile-action-pill { display: flex; } }
 
     .mobile-menu { position: fixed; inset: 0; background: #ffffff; z-index: 3999; display: flex; flex-direction: column; padding: 120px 30px 100px; gap: 1.2rem; transform: translateY(100%); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; }
     .mobile-menu.active { transform: translateY(0); }
+    .mobile-link { font-family: var(--font-header); font-size: 2.2rem; font-weight: 900; color: var(--color-navy); text-decoration: none; display: flex; align-items: center; justify-content: space-between; }
+    .mobile-sub-menu { display: none; padding-left: 20px; flex-direction: column; gap: 1rem; margin-top: 10px; margin-bottom: 20px; }
+    .mobile-sub-menu.open { display: flex; }
+    .mobile-sub-menu a { font-size: 1.4rem; color: #64748b; text-decoration: none; font-weight: 700; }
+    .chevron { transition: 0.3s; font-size: 1.2rem; opacity: 0.5; }
+    .mobile-link.open .chevron { transform: rotate(90deg); }
 
     /* DOCK */
     .experience-dock { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #030712; padding: 6px; border-radius: var(--radius-full); display: flex; gap: 4px; z-index: 3000; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
@@ -347,9 +341,6 @@
     
     .reveal { opacity: 0; transform: translateY(40px) scale(0.98); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
-    
-    .scramble-text { opacity: 0; transition: opacity 0.5s; }
-    .scramble-text.visible { opacity: 1; }
 
     .nav-btns-desktop { display: flex; gap: 10px; }
     .btn-pill { position: relative; padding: 12px 22px; border-radius: var(--radius-full); font-weight: 800; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.4s; display: inline-block; border: 1px solid transparent; }
@@ -366,7 +357,7 @@
 
   <!-- INTRO SPLASH SCREEN -->
   <div id="intro-splash">
-    <img src="ologo.png" alt="Olympian Health Solutions Logo" class="splash-logo">
+    <img src="https://raw.githubusercontent.com/TheLightningLord/TheLightningLord.github.io/gh-pages/assets/images/ologo.png" alt="Olympian Health Solutions Logo" class="splash-logo">
   </div>
 
   <div class="scroll-progress-container">
@@ -383,7 +374,7 @@
   <!-- NAVIGATION -->
   <nav id="main-nav" role="navigation">
     <a href="index.html" class="brand magnetic" title="Olympian Health Solutions Home">
-      <img src="ologo.png" alt="OHS Logo" class="logo-img-nav">
+      <img src="https://raw.githubusercontent.com/TheLightningLord/TheLightningLord.github.io/gh-pages/assets/images/ologo.png" alt="OHS Logo" class="logo-img-nav">
       <div class="brand-text"><span class="brand-name">Olympian</span></div>
     </a>
     
@@ -463,18 +454,17 @@
   <!-- HERO SECTION -->
   <section class="hero" id="home">
     <!-- Large Background Watermark -->
-    <img src="ologo.png" class="hero-watermark" aria-hidden="true" alt="">
+    <img src="https://raw.githubusercontent.com/TheLightningLord/TheLightningLord.github.io/gh-pages/assets/images/ologo.png" class="hero-watermark" aria-hidden="true" alt="">
 
     <div class="container reveal">
-      <h1 id="dynamic-headline" class="scramble-text">
+      <h1 id="dynamic-headline">
         Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>
       </h1>
       
-      <div class="authority-badge tilt-card" id="mission-card">
+      <div class="authority-badge" id="mission-card">
         <span class="authority-pre">Premier Local Authority</span>
-        <div class="tilt-content">
-            <p>Expert Personal Training, delivered to your living room.</p>
-        </div>
+        <p>Expert Personal Training, delivered to your living room.</p>
+        <span class="sr-only">Specializing in Geriatric Kinesiology and fall prevention strategies.</span>
       </div>
       
       <div class="hero-btns">
@@ -495,22 +485,18 @@
     </div>
   </div>
 
-  <!-- CATALYST TILES (FEATURE 2: 3D TILT) -->
+  <!-- CATALYST TILES -->
   <section class="catalyst-section reveal">
     <div class="catalyst-grid">
-        <div class="fancy-graphic-card tilt-card">
-            <div class="tilt-content">
-                <h2 class="scramble-text">Ready for your <span>happiest</span> health season?</h2>
-                <p style="margin-bottom: 2rem; font-size: 1.15rem; color: #475569;">Our professional mobility framework and strength training protocols make starting feel easy and completely safe.</p>
-                <a href="booking.html" class="btn-hero btn-outline-luxe magnetic" style="width:auto; padding: 1.1rem 2.5rem;">See How It Works</a>
-            </div>
+        <div class="fancy-graphic-card">
+            <h2>Ready for your <span>happiest</span> health season?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.15rem; color: #475569;">Our professional mobility framework and strength training protocols make starting feel easy and completely safe.</p>
+            <a href="booking.html" class="btn-hero btn-outline-luxe magnetic" style="width:auto; padding: 1.1rem 2.5rem;">See How It Works</a>
         </div>
-        <div class="assessment-panel tilt-card">
-            <div class="tilt-content">
-                <h3>Free Benefits Forecast</h3>
-                <p style="opacity: 0.9; font-size: 1.1rem;">Discover exactly how professional kinesiology and exercise science aligns with your goals.</p>
-                <a href="quiz.html" class="btn-assessment magnetic">Start Assessment</a>
-            </div>
+        <div class="assessment-panel">
+            <h3>Free Benefits Forecast</h3>
+            <p style="opacity: 0.9; font-size: 1.1rem;">Discover exactly how professional kinesiology and exercise science aligns with your goals.</p>
+            <a href="quiz.html" class="btn-assessment magnetic">Start Assessment</a>
         </div>
     </div>
   </section>
@@ -518,7 +504,7 @@
   <!-- VITALITY CONSOLE -->
   <section class="vitality-console reveal" id="vitality-console">
     <div class="console-header">
-        <h2 class="scramble-text" style="font-size:3rem; font-weight:900; text-align:center;">Your Path to <span>Vitality</span></h2>
+        <h2 style="font-size:3rem; font-weight:900; text-align:center;">Your Path to <span>Vitality</span></h2>
         <p style="text-align:center;">Professional senior fitness brought directly to you by experts.</p>
     </div>
     <div class="conduit-wrap">
@@ -532,188 +518,196 @@
     </div>
   </section>
 
-  <!-- FEATURE 4: INTERACTIVE ANATOMY MAP -->
-  <section class="anatomy-section reveal">
-      <div style="text-align: center; max-width: 600px;">
-          <h2 class="scramble-text" style="font-size: 2.5rem; font-weight: 900;">Targeted <span>Kinesiology</span></h2>
-          <p>Hover over the focus points below to see how our specialized training benefits your specific needs.</p>
-      </div>
-      <div class="anatomy-grid">
-          <div class="anatomy-visual">
-               <!-- Stylized Human Shape SVG -->
-               <svg class="human-shape" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
-                   <path d="M50 5 a 15 15 0 1 1 0 30 a 15 15 0 1 1 0 -30 M30 40 q 20 5 40 0 q 10 20 5 50 q -5 30 -5 60 l -10 45 l -10 -45 l -10 45 l -10 -45 q 0 -30 -5 -60 q -5 -30 5 -50 z" />
-               </svg>
-               <div class="body-point point-head magnetic" data-info="head" aria-label="Cognitive Health"></div>
-               <div class="body-point point-core magnetic" data-info="core" aria-label="Core Strength"></div>
-               <div class="body-point point-legs magnetic" data-info="legs" aria-label="Leg Stability"></div>
-          </div>
-          <div class="anatomy-info">
-              <div id="info-content">
-                  <div class="info-title">Interactive Wellness</div>
-                  <div class="info-desc">Select a focus point on the body map to explore our targeted longevity benefits.</div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- RESULTS & WINS TICKER (FEATURE 5) -->
+  <!-- RESULTS -->
   <section class="results-strip reveal" id="results">
-      <div class="results-main">
-          <div style="text-align: center; margin-bottom: 70px;">
-            <h2 class="scramble-text" style="font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
-            <p style="color: #64748b; font-size: 1.3rem;">Scientific proof of your thriving independence.</p>
-          </div>
-          <div class="bio-grid">
-            <div class="bio-unit" style="text-align:center;">
-                <div class="bio-visual-wrap">
-                    <svg class="bio-ring-svg" viewBox="0 0 160 160">
-                        <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-                        <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
-                    </svg>
-                    <div class="bio-value">0%</div>
-                </div>
-                <strong>Stability Gain</strong>
-            </div>
-            <div class="bio-unit" style="text-align:center;">
-                <div class="bio-visual-wrap">
-                    <svg class="bio-ring-svg" viewBox="0 0 160 160">
-                        <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-                        <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
-                    </svg>
-                    <div class="bio-value">0%</div>
-                </div>
-                <strong>Metabolic Flow</strong>
-            </div>
-            <div class="bio-unit" style="text-align:center;">
-                <div class="bio-visual-wrap">
-                    <svg class="bio-ring-svg" viewBox="0 0 160 160">
-                        <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
-                        <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
-                    </svg>
-                    <div class="bio-value">0%</div>
-                </div>
-                <strong>Grip Vitality</strong>
-            </div>
-          </div>
+      <div style="text-align: center; margin-bottom: 70px;">
+        <h2 style="font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900;">Data That <span style="color:var(--theme-primary)">Smiles.</span></h2>
+        <p style="color: #64748b; font-size: 1.3rem;">Scientific proof of your thriving independence through strength training.</p>
+        <span class="sr-only">Charts showing clinical improvements in stability, metabolism and grip strength for seniors.</span>
       </div>
-      
-      <!-- FEATURE 5: VERTICAL WINS TICKER -->
-      <div class="wins-sidebar tilt-card">
-          <div class="tilt-content">
-              <div class="wins-title">Recent Client Wins</div>
-              <div class="wins-marquee">
-                  <div class="wins-list">
-                      <div class="win-item">"Mary T. improved balance score by 15% this week!"</div>
-                      <div class="win-item">"John D. walked 1 mile unassisted."</div>
-                      <div class="win-item">"Sarah L. lifted grandkids pain-free!"</div>
-                      <div class="win-item">"Robert M. reduced fall risk by 40%."</div>
-                      <div class="win-item">"New personal record: 10 sit-to-stands in 30s."</div>
-                      <div class="win-item">"Alice K. gardening again after 2 years."</div>
-                      <!-- Repeat for seamless scroll -->
-                      <div class="win-item">"Mary T. improved balance score by 15% this week!"</div>
-                      <div class="win-item">"John D. walked 1 mile unassisted."</div>
-                  </div>
-              </div>
-          </div>
+      <div class="bio-grid">
+        <div class="bio-unit" style="text-align:center;">
+            <div class="bio-visual-wrap">
+                <svg class="bio-ring-svg" viewBox="0 0 160 160" aria-label="Stability Gain Chart showing 34% improvement">
+                    <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                    <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="34"></circle>
+                </svg>
+                <div class="bio-value">0%</div>
+            </div>
+            <strong>Stability Gain</strong>
+        </div>
+        <div class="bio-unit" style="text-align:center;">
+            <div class="bio-visual-wrap">
+                <svg class="bio-ring-svg" viewBox="0 0 160 160" aria-label="Metabolic Flow Chart showing 42% improvement">
+                    <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                    <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="42"></circle>
+                </svg>
+                <div class="bio-value">0%</div>
+            </div>
+            <strong>Metabolic Flow</strong>
+        </div>
+        <div class="bio-unit" style="text-align:center;">
+            <div class="bio-visual-wrap">
+                <svg class="bio-ring-svg" viewBox="0 0 160 160" aria-label="Grip Vitality Chart showing 28% improvement">
+                    <circle class="bio-ring-bg" cx="80" cy="80" r="70"></circle>
+                    <circle class="bio-ring-fill" cx="80" cy="80" r="70" data-target="28"></circle>
+                </svg>
+                <div class="bio-value">0%</div>
+            </div>
+            <strong>Grip Vitality</strong>
+        </div>
       </div>
   </section>
 
   <!-- EXPERTISE SEO SECTION -->
   <section class="seo-expertise-section reveal">
-    <h2 class="scramble-text" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px;">The <span style="color:var(--theme-accent)">Core Disciplines</span> of Longevity</h2>
+    <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px;">The <span style="color:var(--theme-accent)">Core Disciplines</span> of Longevity</h2>
     <p style="max-width: 800px; margin: 0 auto; color: rgba(255,255,255,0.7); font-size: 1.1rem;">
-        Founded by <strong>Zeuse Valentine</strong>, Olympian Health Solutions bridges the gap between exercise science and active aging.
+        Founded by <strong>Zeuse Valentine</strong>, Olympian Health Solutions bridges the gap between exercise science and active aging. Our specialized approach to senior health is rooted in three key pillars.
     </p>
     
     <div class="seo-grid">
-        <div class="seo-card tilt-card">
-            <div class="tilt-content">
-                <h4>Applied Kinesiology</h4>
-                <p>Utilizing functional human mechanics to improve range of motion and decrease joint pain.</p>
-            </div>
+        <div class="seo-card">
+            <h4>Applied Kinesiology</h4>
+            <p>Utilizing functional human mechanics to improve range of motion and decrease joint pain. Our protocols are designed for safe, impactful movement in a home environment.</p>
         </div>
-        <div class="seo-card tilt-card">
-            <div class="tilt-content">
-                <h4>Geriatric Strength</h4>
-                <p>Evidence-based resistance training tailored specifically to prevent sarcopenia and improve bone density.</p>
-            </div>
+        <div class="seo-card">
+            <h4>Geriatric Strength Training</h4>
+            <p>Evidence-based resistance training tailored specifically for older adults to prevent sarcopenia, improve bone density, and enhance daily independence.</p>
         </div>
-        <div class="seo-card tilt-card">
-            <div class="tilt-content">
-                <h4>Metabolic Nutrition</h4>
-                <p>Fueling for longevity through personalized nutritional insights that support metabolic health.</p>
-            </div>
+        <div class="seo-card">
+            <h4>Metabolic Nutrition</h4>
+            <p>Fueling for longevity through personalized nutritional insights that support metabolic health, cognitive function, and sustained energy levels throughout the day.</p>
         </div>
     </div>
   </section>
 
-  <!-- GLOSSARY & FAQ REMAIN SAME FOR SEO -->
+  <!-- GLOSSARY SECTION -->
   <section class="glossary-section reveal">
       <div class="glossary-intro">
           <h3>Medical Fitness <span style="color:var(--theme-primary)">Glossary</span></h3>
-          <p style="color:#64748b; font-size:1.1rem; line-height:1.6;">Understanding your body is the first step to healing it.</p>
+          <p style="color:#64748b; font-size:1.1rem; line-height:1.6;">Understanding your body is the first step to healing it. Here are the core concepts Zeuse Valentine uses to design your custom program.</p>
           <a href="booking.html" class="btn-hero btn-primary-luxe magnetic" style="display:inline-block; margin-top:20px; font-size:0.9rem; padding:15px 30px;">Discuss Your Needs</a>
       </div>
       <div class="glossary-grid">
           <div class="term-card">
               <div class="term-title">Sarcopenia Prevention</div>
-              <div class="term-def">Combating the natural loss of muscle mass with age through targeted resistance training.</div>
+              <div class="term-def">Combating the natural loss of muscle mass with age through targeted resistance training to maintain independence.</div>
           </div>
           <div class="term-card">
               <div class="term-title">Proprioception</div>
-              <div class="term-def">Training your body's ability to sense movement and position to prevent falls.</div>
+              <div class="term-def">Training your body's ability to sense movement and position, crucial for preventing falls and improving coordination.</div>
           </div>
           <div class="term-card">
               <div class="term-title">Vestibular Training</div>
-              <div class="term-def">Exercises that stabilize vision and balance by strengthening the inner ear connection.</div>
+              <div class="term-def">Exercises that stabilize vision and balance by strengthening the link between your inner ear and brain.</div>
           </div>
           <div class="term-card">
-              <div class="term-title">Hypertrophy</div>
-              <div class="term-def">Safe muscle growth techniques designed to support joints and increase metabolic rate.</div>
+              <div class="term-title">Hypertrophy for Seniors</div>
+              <div class="term-def">Safe muscle growth techniques designed to support joints and increase metabolic rate in older adults.</div>
           </div>
       </div>
   </section>
 
+  <!-- FAQ SECTION -->
   <section class="faq-section reveal" id="faq">
     <div class="faq-header">
       <h2>Common <span style="color:var(--theme-primary)">Insights</span></h2>
       <p style="color:#64748b">Expert answers to your longevity questions.</p>
     </div>
+    
     <div class="faq-item" onclick="this.classList.toggle('active')">
-      <div class="faq-question"><span>Why is Kinesiology important for seniors?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer">Kinesiology ensures that every movement is biomechanically sound, reducing injury risk while maximizing joint mobility benefits.</div>
+      <div class="faq-question">
+        <span>Why is Kinesiology important for seniors?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Kinesiology ensures that every movement is biomechanically sound. For seniors, this means reducing the risk of injury while maximizing the benefits of exercise for joint mobility, balance, and pain reduction. Zeuse Valentine applies these scientific principles to every session.
+      </div>
     </div>
+
     <div class="faq-item" onclick="this.classList.toggle('active')">
-      <div class="faq-question"><span>Do you provide equipment for home visits?</span><span class="faq-icon">+</span></div>
-      <div class="faq-answer">Yes. We bring professional-grade equipment, including stability tools and resistance bands, directly to your home.</div>
+      <div class="faq-question">
+        <span>Do you provide equipment for home visits?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes. Olympian Health Solutions is a fully mobile fitness service. We bring professional-grade equipment, including stability tools, resistance bands, and weights, directly to your home in Clark County.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <span>Can strength training help with Osteoporosis?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Yes. Resistance training is clinically proven to stimulate bone growth and improve density. Our geriatric strength training protocols are specifically designed to safely combat Osteoporosis and Sarcopenia (muscle loss).
+      </div>
     </div>
   </section>
 
+  <!-- SERVICE AREA & MODALITIES FOOTER STRIP -->
   <section class="service-area-strip">
     <p style="font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; margin-bottom:20px;">Service Areas & Specialties</p>
     <ul class="area-list">
-        <li>Vancouver, WA</li><li>Camas</li><li>Battle Ground</li><li>Ridgefield</li><li>Washougal</li>
+        <li>Vancouver, WA</li>
+        <li>Camas</li>
+        <li>Battle Ground</li>
+        <li>Ridgefield</li>
+        <li>Washougal</li>
+        <li>Salmon Creek</li>
+        <li>Fall Prevention</li>
+        <li>Post-Rehab Conditioning</li>
+        <li>Balance Training</li>
+        <li>Cognitive Fitness</li>
+        <li>Mobility Coaching</li>
     </ul>
   </section>
 
+  <!-- EXPANDED FOOTER NAVIGATION -->
   <div class="expanded-footer-nav">
       <div class="footer-grid">
           <div class="footer-col">
               <h5>Core Services</h5>
-              <ul><li><a href="#vitality-console">In-Home Training</a></li><li><a href="quiz.html">Mobility Assessment</a></li></ul>
+              <ul>
+                  <li><a href="#vitality-console">In-Home Personal Training</a></li>
+                  <li><a href="quiz.html">Mobility Assessment</a></li>
+                  <li><a href="#results">Fall Prevention Program</a></li>
+                  <li><a href="booking.html">Geriatric Kinesiology</a></li>
+              </ul>
           </div>
           <div class="footer-col">
-              <h5>Resources</h5>
-              <ul><li><a href="tool1.html">Mobility Calculator</a></li><li><a href="Game1.html">Cognitive Games</a></li></ul>
+              <h5>Client Resources</h5>
+              <ul>
+                  <li><a href="tool1.html">Mobility Calculator</a></li>
+                  <li><a href="Game1.html">Cognitive Games</a></li>
+                  <li><a href="#faq">Common Questions</a></li>
+                  <li><a href="education.html">Longevity Education</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h5>About OHS</h5>
+              <ul>
+                  <li><a href="about.html">About us</a></li>
+                  <li><a href="#mission-card">Our Mission</a></li>
+                  <li><a href="booking.html">Contact Us</a></li>
+                  <li><a href="#home">Service Area Map</a></li>
+              </ul>
           </div>
           <div class="footer-col">
               <h5>Connect</h5>
-              <ul><li><a href="#">Facebook</a></li><li><a href="mailto:contact@olympianhealth.com">Email Us</a></li></ul>
+              <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Instagram</a></li>
+                  <li><a href="#">LinkedIn</a></li>
+                  <li><a href="mailto:contact@olympianhealth.com">Email Us</a></li>
+              </ul>
           </div>
       </div>
   </div>
 
+  <!-- DESKTOP DOCK -->
   <div class="experience-dock desktop-only-dock" id="exp-dock">
     <div class="dock-indicator" id="dock-indicator"></div>
     <button class="dock-btn magnetic" data-engine="topo" onclick="setEngine('topo', this)">Topo</button>
@@ -723,7 +717,7 @@
   </div>
 
   <footer id="footer">
-    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility specialists. Founded by Zeuse Valentine.</p>
+    <p>&copy; 2024 Olympian Health Solutions. Elite Senior Mobility specialists. Founded by Zeuse Valentine. Serving Clark County, WA.</p>
   </footer>
 
   <script>
@@ -764,119 +758,16 @@
             const y = e.clientY - rect.top - rect.height / 2;
             // Move element slightly
             el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            // Magnetize cursor to element center (optional, sticky feel)
         });
     });
-
-    // === FEATURE 2: 3D TILT LOGIC ===
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = ((y - centerY) / centerY) * -10; // -10 deg max tilt
-            const rotateY = ((x - centerX) / centerX) * 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
-        });
-    });
-
-    // === FEATURE 3: SCRAMBLE TEXT LOGIC ===
-    class TextScramble {
-        constructor(el) {
-            this.el = el;
-            this.chars = '!<>-_\\/[]{}—=+*^?#________';
-            this.update = this.update.bind(this);
-        }
-        setText(newText) {
-            const oldText = this.el.innerText;
-            const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => this.resolve = resolve);
-            this.queue = [];
-            for (let i = 0; i < length; i++) {
-                const from = oldText[i] || '';
-                const to = newText[i] || '';
-                const start = Math.floor(Math.random() * 40);
-                const end = start + Math.floor(Math.random() * 40);
-                this.queue.push({ from, to, start, end });
-            }
-            cancelAnimationFrame(this.frameRequest);
-            this.frame = 0;
-            this.update();
-            return promise;
-        }
-        update() {
-            let output = '';
-            let complete = 0;
-            for (let i = 0, n = this.queue.length; i < n; i++) {
-                let { from, to, start, end, char } = this.queue[i];
-                if (this.frame >= end) {
-                    complete++;
-                    output += to;
-                } else if (this.frame >= start) {
-                    if (!char || Math.random() < 0.28) {
-                        char = this.randomChar();
-                        this.queue[i].char = char;
-                    }
-                    output += `<span class="dud">${char}</span>`;
-                } else {
-                    output += from;
-                }
-            }
-            this.el.innerHTML = output;
-            if (complete === this.queue.length) {
-                this.resolve();
-            } else {
-                this.frameRequest = requestAnimationFrame(this.update);
-                this.frame++;
-            }
-        }
-        randomChar() {
-            return this.chars[Math.floor(Math.random() * this.chars.length)];
-        }
-    }
-
-    // === FEATURE 4: ANATOMY MAP LOGIC ===
-    const bodyPoints = document.querySelectorAll('.body-point');
-    const infoContent = document.getElementById('info-content');
-    
-    const anatomyData = {
-        'head': { title: "Cognitive Harmony", desc: "Dual-task training that sharpens memory while moving, reducing dementia risk." },
-        'core': { title: "Core Stability", desc: "Strengthening the trunk to improve posture, reduce back pain, and prevent falls." },
-        'legs': { title: "Leg Power", desc: "Building quadricep strength for easier chair exits and stair climbing confidence." },
-        'default': { title: "Interactive Wellness", desc: "Select a focus point on the body map to explore our targeted longevity benefits." }
-    };
-
-    bodyPoints.forEach(point => {
-        point.addEventListener('mouseenter', () => {
-            const type = point.getAttribute('data-info');
-            const data = anatomyData[type];
-            // Simple fade out/in text
-            infoContent.style.opacity = 0;
-            setTimeout(() => {
-                infoContent.innerHTML = `<div class="info-title">${data.title}</div><div class="info-desc">${data.desc}</div>`;
-                infoContent.style.opacity = 1;
-            }, 200);
-        });
-        point.addEventListener('mouseleave', () => {
-             // Optional: reset to default or keep last selected
-        });
-    });
-
 
     // === EXISTING CANVAS & THEME LOGIC ===
     const headlines = [
       "Rediscover the <span>Joy</span> of <span>Health</span>, Right in Your <span>Living Room.</span>",
-      "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>"
+      "<span>Fun</span> Movement that <span>Heals</span>, <span>Safely</span> and <span>Easily.</span>",
+      "Longevity <span>Reimagined</span>: Specialized Care for Your <span>Strongest Years.</span>",
+      "Experience <span>Elite</span> Longevity <span>Expertise</span>, Tailored to Your <span>Home.</span>",
+      "Your <span>Strongest</span> Chapter <span>Starts</span> with Local, <span>Expert Support.</span>"
     ];
 
     function setDynamicHeadline() {
@@ -1080,21 +971,24 @@
         }
     }
 
+    function updateInteraction(clientX, clientY) {
+      mouse.targetX = clientX; mouse.targetY = clientY;
+      const card = document.getElementById('mission-card');
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const x = ((clientX - rect.left) / rect.width) * 100;
+        const y = ((clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`); card.style.setProperty('--mouse-y', `${y}%`);
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => updateInteraction(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => { if (e.touches[0]) updateInteraction(e.touches[0].clientX, e.touches[0].clientY); });
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { 
         if(e.isIntersecting) {
           e.target.classList.add('active');
-          
-          // Trigger Scramble Text
-          e.target.querySelectorAll('.scramble-text').forEach(t => {
-              if(!t.classList.contains('scrambled-done')) {
-                  const fx = new TextScramble(t);
-                  fx.setText(t.innerText);
-                  t.classList.add('scrambled-done');
-                  t.style.opacity = 1;
-              }
-          });
-
           if (e.target.id === 'vitality-console') {
             document.getElementById('stepper-fill').style.width = '100%';
             setTimeout(() => document.querySelectorAll('.conduit-step').forEach((s,i) => setTimeout(() => s.classList.add('active'), i*350)), 200);
@@ -1131,6 +1025,7 @@
     function toggleMobileSub(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
 
     window.onload = function() {
+      // INTRO SPLASH
       const splash = document.getElementById('intro-splash');
       setTimeout(() => { splash.classList.add('hidden'); }, 1500);
 
