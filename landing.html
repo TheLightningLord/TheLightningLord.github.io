@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympian Health Solutions | Elite Entrance</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --silver-light: #e2e8f0;
+            --silver-med: #94a3b8;
+            --silver-dark: #475569;
+            --blue-glow: #3b82f6;
+            --deep-space: #020617;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor only */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--deep-space);
+            font-family: 'Outfit', sans-serif;
+            color: var(--silver-light);
+        }
+
+        /* === BACKGROUND CANVAS === */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* === CUSTOM CURSOR === */
+        .cursor-dot, .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--blue-glow);
+            box-shadow: 0 0 10px var(--blue-glow);
+        }
+        .cursor-ring {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--silver-med);
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
+        }
+        body.hovering .cursor-ring {
+            width: 80px;
+            height: 80px;
+            border-color: var(--blue-glow);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        /* === MAIN CONTAINER === */
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px; /* For 3D Tilt */
+        }
+
+        /* === HOLOGRAPHIC LOGO WRAPPER === */
+        .logo-stage {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            transition: transform 0.1s; /* Smooth follow */
+        }
+
+        /* The Main Logo Image */
+        .mega-logo {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.3));
+            transform: translateZ(50px); /* Pushed forward in 3D */
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        /* The "Ghost" behind it for glow effect */
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(-20px);
+            width: 110%;
+            height: 110%;
+            background: radial-gradient(circle, rgba(59,130,246,0.4) 0%, rgba(0,0,0,0) 70%);
+            opacity: 0.6;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        /* Silver Ring behind logo */
+        .silver-orbit {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translateZ(0);
+            animation: spinOrbit 20s linear infinite;
+        }
+        .silver-orbit::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: 50%;
+            width: 4px; height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translateZ(50px) scale(1); filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.3)); }
+            50% { transform: translateZ(50px) scale(1.05); filter: drop-shadow(0 0 50px rgba(59, 130, 246, 0.6)); }
+        }
+        @keyframes spinOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* === TYPOGRAPHY === */
+        .hero-text {
+            margin-top: 60px;
+            text-align: center;
+            transform: translateZ(30px);
+        }
+
+        h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin: 0;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            
+            /* Metallic Gradient Text */
+            background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 50%, #475569 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
+        }
+
+        p.tagline {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            color: var(--blue-glow);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.8s;
+        }
+
+        /* === CTA BUTTON === */
+        .enter-btn {
+            margin-top: 50px;
+            padding: 20px 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 1.2s;
+        }
+
+        /* Metallic Sheen Animation on Button */
+        .enter-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .enter-btn:hover {
+            background: var(--blue-glow);
+            border-color: var(--blue-glow);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
+        .enter-btn:hover::after {
+            left: 100%;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === MOBILE RESPONSIVENESS === */
+        @media (max-width: 768px) {
+            .logo-stage { width: 280px; height: 280px; }
+            .silver-orbit { width: 320px; height: 320px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- BACKGROUND -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- MAIN CONTENT -->
+    <div class="hero-container">
+        
+        <!-- 3D LOGO STAGE -->
+        <div class="logo-stage tilt-target">
+            <div class="silver-orbit"></div>
+            <div class="logo-glow"></div>
+            <img src="https://raw.githubusercontent.com/TheLightningLord/TheLightningLord.github.io/gh-pages/assets/images/ologo.png" alt="Olympian Logo" class="mega-logo">
+        </div>
+
+        <div class="hero-text">
+            <h1>Olympian</h1>
+            <p class="tagline">The Architecture of Longevity</p>
+            
+            <a href="index.html" class="enter-btn tilt-btn">Enter Experience</a>
+        </div>
+
+    </div>
+
+    <script>
+        // === 1. SILVER-BLUE NEURAL NETWORK CANVAS ===
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let points = [];
+        const mouse = { x: 0, y: 0 };
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initPoints();
+        }
+
+        function initPoints() {
+            points = [];
+            const count = window.innerWidth < 768 ? 40 : 90;
+            for(let i = 0; i < count; i++) {
+                points.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function animateCanvas() {
+            ctx.fillStyle = '#020617'; // Deep Space Blue Background
+            ctx.fillRect(0, 0, width, height);
+            
+            // Update and draw points
+            points.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off walls
+                if(p.x < 0 || p.x > width) p.vx *= -1;
+                if(p.y < 0 || p.y > height) p.vy *= -1;
+
+                // Draw Point (Silver)
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#94a3b8'; // Silver
+                ctx.fill();
+
+                // Draw Connections
+                for(let j = i + 1; j < points.length; j++) {
+                    const p2 = points[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+
+                    if(dist < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${1 - dist/150})`; // Electric Blue lines
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        // === 2. 3D TILT EFFECT LOGIC ===
+        const container = document.querySelector('.hero-container');
+        const stage = document.querySelector('.logo-stage');
+        
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            // Animate Logo Stage
+            stage.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+
+            // Update mouse pos for canvas interactions (optional expansion)
+            mouse.x = e.pageX;
+            mouse.y = e.pageY;
+        });
+
+        // Reset tilt on mouse leave
+        document.addEventListener('mouseleave', () => {
+            stage.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+
+        // === 3. CUSTOM CURSOR LOGIC ===
+        const dot = document.querySelector('.cursor-dot');
+        const ring = document.querySelector('.cursor-ring');
+        const tiltBtn = document.querySelector('.tilt-btn');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            dot.style.left = x + 'px';
+            dot.style.top = y + 'px';
+
+            // Slight delay for ring
+            ring.animate({
+                left: x + 'px',
+                top: y + 'px'
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Hover Effect
+        tiltBtn.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+        tiltBtn.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+
+        // === INIT ===
+        window.addEventListener('resize', resize);
+        resize();
+        animateCanvas();
+
+    </script>
+</body>
+</html>
