@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olympian Health Solutions | Elite Entrance</title>
+    <title>Olympian Health Solutions | Welcome</title>
     
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --silver-light: #f8fafc;
-            --silver-med: #94a3b8;
-            --silver-dark: #475569;
-            --blue-electric: #3b82f6;
-            --blue-deep: #172554;
-            --void: #020617;
-            --glass: rgba(255, 255, 255, 0.03);
+            --silver-med: #cbd5e1;
+            --blue-sky: #38bdf8;
+            --blue-royal: #1e40af;
+            --deep-bg: #0f172a;
+            --void-red: #ef4444;
+            --void-purple: #a855f7;
+            --void-dark: #450a0a;
         }
 
         * {
             box-sizing: border-box;
             cursor: none; /* Custom cursor */
+            user-select: none; /* Prevent selection during game */
         }
 
         body, html {
@@ -32,34 +34,95 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: var(--void);
+            background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 100%);
             font-family: 'Outfit', sans-serif;
             color: var(--silver-light);
+            transition: background 1s ease;
+        }
+
+        /* BOSS MODE STYLES */
+        body.boss-active {
+            background: radial-gradient(circle at 50% 50%, #2a0a0a 0%, #000000 100%);
+        }
+        
+        body.boss-active .hero-text { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        body.boss-active .stage-container { animation: none; }
+        
+        /* Strobe Effect */
+        @keyframes strobe {
+            0% { background-color: #000; }
+            50% { background-color: #300; }
+            100% { background-color: #000; }
+        }
+        body.strobe-mode {
+            animation: strobe 0.1s infinite;
         }
 
         /* === CURSOR SYSTEM === */
         .cursor-dot {
             position: fixed; top: 0; left: 0;
-            width: 6px; height: 6px;
+            width: 8px; height: 8px;
             background: #fff;
             border-radius: 50%;
             pointer-events: none; z-index: 10000;
             transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
         }
         .cursor-ring {
             position: fixed; top: 0; left: 0;
             width: 40px; height: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1.5px solid rgba(255,255,255,0.4);
             border-radius: 50%;
             pointer-events: none; z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, border-color 0.3s;
+            transition: width 0.1s, height 0.1s, background-color 0.1s;
         }
-        body.hovering .cursor-ring {
-            width: 80px; height: 80px;
-            background: rgba(59, 130, 246, 0.1);
-            border-color: var(--blue-electric);
+        /* Combat Cursor */
+        body.boss-active .cursor-ring {
+            border-color: #ef4444;
+            width: 30px; height: 30px;
+            border-width: 3px;
+        }
+        body.boss-active .cursor-dot {
+            background: #ef4444;
+            box-shadow: 0 0 15px #ef4444;
+        }
+
+        /* === GAME UI === */
+        #game-ui {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 5000;
+            display: none;
+            flex-direction: column; justify-content: space-between; padding: 40px;
+        }
+        
+        .boss-health-container {
+            width: 60%; margin: 20px auto;
+            height: 30px; background: rgba(0,0,0,0.5);
+            border: 2px solid #ef4444;
+            border-radius: 15px; overflow: hidden;
+            box-shadow: 0 0 20px #ef4444;
+            position: relative;
+        }
+        .boss-health-fill {
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, #991b1b, #ef4444);
+            transition: width 0.1s linear, background 0.3s;
+        }
+        .boss-name {
+            text-align: center; color: #ef4444; font-family: 'Syncopate', sans-serif;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;
+            margin-bottom: 10px; text-shadow: 0 0 10px #ef4444;
+        }
+        
+        .game-message {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 4rem; color: #fff; text-align: center;
+            text-shadow: 0 0 30px currentColor;
+            opacity: 0; transition: opacity 0.5s;
+            z-index: 6000; pointer-events: none;
         }
 
         /* === BACKGROUND CANVAS === */
@@ -76,178 +139,173 @@
             justify-content: center; align-items: center;
             perspective: 2000px;
             opacity: 0; 
-            animation: curtainUp 2s ease-out forwards 0.5s;
+            animation: softEntrance 2.5s ease-out forwards;
+            transition: opacity 0.5s;
         }
 
-        @keyframes curtainUp {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes softEntrance {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* === ATOMIC CORE (LOGO + RINGS) === */
         .atomic-core {
             position: relative;
-            width: 350px; height: 350px;
+            width: 380px; height: 380px;
             display: flex; justify-content: center; align-items: center;
             transform-style: preserve-3d;
             margin-bottom: 2rem;
             transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
+        /* Boss Shake Animation */
+        .atomic-core.shaking {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+            40%, 60% { transform: translate3d(8px, 0, 0); }
+        }
+
         .mega-logo {
-            width: 160px; height: auto;
+            width: 180px; height: auto;
             transform: translateZ(60px);
-            filter: drop-shadow(0 0 35px rgba(59,130,246,0.5));
+            filter: drop-shadow(0 0 40px rgba(56, 189, 248, 0.4));
             animation: floatLogo 6s ease-in-out infinite;
             z-index: 10;
+            transition: filter 0.3s;
         }
 
-        /* Orbital Rings */
+        /* Boss Damage Effect */
+        .mega-logo.damage {
+            filter: drop-shadow(0 0 50px red) brightness(2) !important;
+        }
+
+        /* Boss Phase 2 Effect */
+        .atomic-core.phase-2 .mega-logo {
+            filter: drop-shadow(0 0 50px #a855f7) hue-rotate(270deg);
+        }
+
         .ring {
             position: absolute;
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.05);
             pointer-events: none;
+            transition: border-color 0.5s, box-shadow 0.5s;
         }
         
-        .ring-1 { width: 280px; height: 280px; animation: spin 12s linear infinite; border-top: 2px solid var(--blue-electric); }
-        .ring-2 { width: 340px; height: 340px; animation: spin 18s linear infinite reverse; border-bottom: 2px solid #fff; }
-        .ring-3 { width: 400px; height: 400px; animation: spin3D 25s linear infinite; border-left: 2px solid var(--silver-med); }
+        .ring-1 { width: 300px; height: 300px; animation: spin 16s linear infinite; border-top: 2px solid var(--blue-sky); }
+        .ring-2 { width: 360px; height: 360px; animation: spin 22s linear infinite reverse; border-bottom: 2px solid #fff; }
+        .ring-3 { width: 420px; height: 420px; animation: spin3D 30s linear infinite; border-left: 2px solid rgba(255,255,255,0.5); }
 
-        .ring::after {
-            content: ''; position: absolute; top: -3px; left: 50%;
-            width: 6px; height: 6px; background: var(--blue-electric);
-            border-radius: 50%; box-shadow: 0 0 10px var(--blue-electric);
+        /* Boss Ring State */
+        .atomic-core.boss-state .ring {
+            border-color: #ef4444;
+            box-shadow: 0 0 20px #ef4444;
+            animation-duration: 2s; /* Fast spin */
+        }
+        .atomic-core.boss-state.phase-2 .ring {
+            border-color: #a855f7;
+            box-shadow: 0 0 30px #a855f7;
+            animation-duration: 0.5s; /* Super fast spin */
         }
 
         @keyframes floatLogo {
             0%, 100% { transform: translateZ(60px) translateY(0); }
-            50% { transform: translateZ(60px) translateY(-15px); }
+            50% { transform: translateZ(60px) translateY(-12px); }
         }
         @keyframes spin { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
         @keyframes spin3D { 
-            0% { transform: rotateX(65deg) rotateY(0deg); } 
-            100% { transform: rotateX(65deg) rotateY(360deg); } 
+            0% { transform: rotateX(70deg) rotateY(0deg); } 
+            100% { transform: rotateX(70deg) rotateY(360deg); } 
         }
 
-        /* === TYPOGRAPHY === */
+        /* === GLASS TYPOGRAPHY === */
         .hero-text {
             text-align: center;
             transform: translateZ(40px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            transition: opacity 0.5s;
         }
 
         h1 {
             font-family: 'Syncopate', sans-serif;
             font-weight: 700;
-            line-height: 1.1;
-            margin: 0;
+            line-height: 1.1; margin: 0;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        /* Glass Text Container */
+        .glass-title {
+            font-size: clamp(1.8rem, 5vw, 4rem);
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .text-primary {
-            display: block;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(255,255,255,0.1);
-        }
-
-        .text-secondary {
-            display: block;
-            font-size: clamp(1rem, 3vw, 2.2rem);
-            font-weight: 400;
-            color: var(--blue-electric);
-            letter-spacing: 0.2em;
-            background: linear-gradient(90deg, #94a3b8 0%, #3b82f6 50%, #94a3b8 100%);
+            letter-spacing: 0.1em;
+            
+            /* Prismatic Gradient */
+            background: linear-gradient(
+                135deg, 
+                rgba(255,255,255,1) 0%, 
+                rgba(200,230,255,1) 25%, 
+                rgba(56,189,248,1) 50%, 
+                rgba(200,230,255,1) 75%, 
+                rgba(255,255,255,1) 100%
+            );
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: shine 5s linear infinite;
+            
+            /* Glass Reflection & Shadow */
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.3));
+            animation: prismaticShimmer 4s linear infinite;
         }
 
-        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes prismaticShimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
 
         p.tagline {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.9rem;
-            color: var(--silver-dark);
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            margin-top: 25px;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 1.8s;
+            font-family: 'Outfit', sans-serif; font-size: 1rem; color: var(--silver-med);
+            letter-spacing: 0.4em; text-transform: uppercase; margin-top: 30px;
+            opacity: 0; animation: fadeIn 1.5s ease forwards 1.5s;
         }
 
-        /* === MAG-LEV BUTTON === */
+        /* === BUTTON === */
         .btn-wrapper {
-            margin-top: 60px;
-            position: relative;
-            width: 280px;
-            height: 70px;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 2.2s;
+            margin-top: 50px; position: relative; width: 260px; height: 64px;
+            opacity: 0; animation: fadeIn 1.5s ease forwards 2s;
         }
 
         .mag-btn {
-            position: relative;
-            display: flex; justify-content: center; align-items: center;
+            position: relative; display: flex; justify-content: center; align-items: center;
             width: 100%; height: 100%;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px; color: #fff; text-decoration: none;
+            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.95rem;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            overflow: hidden; transition: all 0.3s ease;
+            backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .mag-btn::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--blue-electric);
-            transform: scaleX(0); transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            z-index: -1;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--blue-royal), var(--blue-sky));
+            opacity: 0; transition: opacity 0.4s ease; z-index: -1; border-radius: 50px;
         }
 
-        .mag-btn:hover { border-color: var(--blue-electric); box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
-        .mag-btn:hover::before { transform: scaleX(1); }
+        .mag-btn:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3); }
+        .mag-btn:hover::before { opacity: 1; }
         
-        .corner {
-            position: absolute; width: 10px; height: 10px;
-            border: 2px solid var(--silver-med);
-            transition: 0.3s; pointer-events: none;
-        }
-        .tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
-        .tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
-        .bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
-        .br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
-
-        .btn-wrapper:hover .corner { border-color: #fff; width: 15px; height: 15px; }
-
         @keyframes fadeIn { to { opacity: 1; } }
 
         @media (max-width: 768px) {
             .atomic-core { transform: scale(0.65); margin-bottom: 1rem; }
-            h1 { font-size: 2rem; }
-            .btn-wrapper { margin-top: 40px; transform: scale(0.9); }
+            .glass-title { font-size: 1.8rem; }
         }
-
     </style>
 </head>
 <body>
@@ -258,6 +316,17 @@
 
     <!-- BACKGROUND -->
     <canvas id="neural-canvas"></canvas>
+
+    <!-- GAME UI (HIDDEN DEFAULT) -->
+    <div id="game-ui">
+        <div>
+            <div class="boss-name" id="boss-name-label">ANOMALY DETECTED</div>
+            <div class="boss-health-container">
+                <div class="boss-health-fill" id="boss-health"></div>
+            </div>
+        </div>
+        <div class="game-message" id="game-msg"></div>
+    </div>
 
     <!-- MAIN CONTENT -->
     <div class="stage-container">
@@ -272,224 +341,393 @@
         </div>
 
         <div class="hero-text">
-            <h1>
-                <span class="text-primary scramble-target-1">Olympian</span>
-                <span class="text-secondary scramble-target-2">Health Solutions</span>
+            <h1 class="glass-title">
+                Olympian Health<br>Solutions
             </h1>
             <p class="tagline">The Architecture of Longevity</p>
             
             <div class="btn-wrapper" id="mag-btn-wrap">
-                <div class="corner tl"></div><div class="corner tr"></div>
-                <div class="corner bl"></div><div class="corner br"></div>
-                <a href="index.html" class="mag-btn">Enter System</a>
+                <a href="index.html" class="mag-btn">Begin Journey</a>
             </div>
         </div>
 
     </div>
 
     <script>
-        // === 1. NEURAL NETWORK CANVAS (UPDATED) ===
+        // === GAME STATE ===
+        const gameState = {
+            isCharging: false,
+            chargeLevel: 0,
+            active: false,
+            phase2: false,
+            bossHealth: 100,
+            projectiles: [],
+            playerBullets: [],
+            particles: [], // For explosions
+            floatingTexts: [] // Damage numbers
+        };
+
+        // === CANVAS SETUP ===
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
         let points = [];
-        const mouse = { x: -1000, y: -1000 }; // Start off-screen
+        const mouse = { x: -1000, y: -1000 }; 
 
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            initPoints();
+            if(!gameState.active) initPoints();
         }
 
         function initPoints() {
             points = [];
-            // More points for a richer network
-            const count = window.innerWidth < 768 ? 40 : 80;
+            const count = window.innerWidth < 768 ? 45 : 120;
             for(let i = 0; i < count; i++) {
                 points.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    size: Math.random() * 2 + 1,
-                    pulse: Math.random() * Math.PI
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    size: Math.random() * 2,
+                    brightness: Math.random(),
+                    pulseSpeed: 0.02 + Math.random() * 0.03,
+                    color: '#ffffff'
                 });
             }
         }
 
-        function animateCanvas() {
-            ctx.fillStyle = '#020617'; // Void color
-            ctx.fillRect(0, 0, width, height);
+        // === GAME LOGIC ===
+        const atomicCore = document.querySelector('.atomic-core');
+        const megaLogo = document.querySelector('.mega-logo');
+        const gameUI = document.getElementById('game-ui');
+        const healthBar = document.getElementById('boss-health');
+        const gameMsg = document.getElementById('game-msg');
+        const bossNameLabel = document.getElementById('boss-name-label');
+
+        atomicCore.addEventListener('mousedown', () => { if (!gameState.active) gameState.isCharging = true; });
+        document.addEventListener('mouseup', () => {
+            if (gameState.isCharging) {
+                gameState.isCharging = false;
+                gameState.chargeLevel = 0;
+                atomicCore.classList.remove('shaking');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (gameState.active) {
+                spawnPlayerBullet(e.clientX, e.clientY);
+                const ring = document.querySelector('.cursor-ring');
+                ring.style.transform = `translate(-50%, -50%) scale(0.8)`;
+                setTimeout(() => ring.style.transform = `translate(-50%, -50%) scale(1)`, 100);
+            }
+        });
+
+        function startBossFight() {
+            gameState.active = true;
+            gameState.isCharging = false;
+            document.body.classList.add('boss-active');
+            atomicCore.classList.add('boss-state');
+            gameUI.style.display = 'flex';
+            bossNameLabel.innerText = "ANOMALY DETECTED";
+            bossNameLabel.style.color = "#ef4444";
             
-            points.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
+            document.body.classList.add('strobe-mode');
+            setTimeout(() => document.body.classList.remove('strobe-mode'), 500);
 
-                // Bounce off walls
-                if(p.x < 0 || p.x > width) p.vx *= -1;
-                if(p.y < 0 || p.y > height) p.vy *= -1;
+            // Points become Void Matter
+            points.forEach(p => {
+                p.vx *= 5; p.vy *= 5;
+                p.color = '#ef4444'; 
+            });
+        }
+
+        function enterPhase2() {
+            gameState.phase2 = true;
+            bossNameLabel.innerText = "CRITICAL MASS";
+            bossNameLabel.style.color = "#a855f7";
+            healthBar.style.background = "linear-gradient(90deg, #581c87, #a855f7)";
+            atomicCore.classList.add('phase-2');
+            
+            // Explosion of purple particles
+            for(let i=0; i<30; i++) {
+                spawnParticle(window.innerWidth/2, window.innerHeight/2 - 100, '#a855f7', 15);
+            }
+        }
+
+        function spawnPlayerBullet(x, y) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2 - 100;
+            const angle = Math.atan2(centerY - y, centerX - x);
+            const speed = 15;
+            gameState.playerBullets.push({ x: x, y: y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life: 100 });
+        }
+
+        function spawnBossProjectile() {
+            // Firing Rate increases in Phase 2
+            const chance = gameState.phase2 ? 0.15 : 0.05; 
+            if(Math.random() > chance) return;
+
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2 - 100;
+            const angle = Math.random() * Math.PI * 2;
+            const speed = gameState.phase2 ? 12 : 6;
+            const color = gameState.phase2 ? '#a855f7' : '#ef4444';
+            
+            gameState.projectiles.push({
+                x: centerX, y: centerY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                size: 3 + Math.random() * 5,
+                color: color
+            });
+        }
+
+        function spawnParticle(x, y, color, speedVal) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * speedVal;
+            gameState.particles.push({
+                x: x, y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 1.0,
+                color: color
+            });
+        }
+
+        function spawnFloatingText(x, y, text) {
+            gameState.floatingTexts.push({
+                x: x, y: y,
+                text: text,
+                life: 1.0,
+                vy: -2
+            });
+        }
+
+        function updateGame() {
+            if (!gameState.active) return;
+            spawnBossProjectile();
+
+            // Bullets
+            for(let i = gameState.playerBullets.length - 1; i >= 0; i--) {
+                let b = gameState.playerBullets[i];
+                b.x += b.vx; b.y += b.vy; b.life--;
                 
-                // Pulsing size
-                p.pulse += 0.05;
-                const pulsingSize = p.size + Math.sin(p.pulse) * 0.5;
-
-                // Draw Point
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, pulsingSize, 0, Math.PI * 2);
-                ctx.fillStyle = '#94a3b8'; // Silver
-                ctx.fill();
-
-                // 1. Connect to Mouse (Interaction)
-                const distMouse = Math.hypot(mouse.x - p.x, mouse.y - p.y);
-                if (distMouse < 200) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(59, 130, 246, ${1 - distMouse/200})`; // Blue
-                    ctx.lineWidth = 0.8;
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2 - 100;
+                if(Math.hypot(centerX - b.x, centerY - b.y) < 80) {
+                    // Hit Boss
+                    const dmg = 2 + Math.floor(Math.random()*3);
+                    gameState.bossHealth -= dmg;
+                    healthBar.style.width = gameState.bossHealth + '%';
                     
-                    // Gentle magnetic pull
-                    p.x += (mouse.x - p.x) * 0.005;
-                    p.y += (mouse.y - p.y) * 0.005;
+                    spawnParticle(b.x, b.y, '#38bdf8', 8); // Blue spark
+                    spawnFloatingText(b.x, b.y, `-${dmg}`);
+                    gameState.playerBullets.splice(i, 1);
+                    
+                    megaLogo.classList.add('damage');
+                    setTimeout(() => megaLogo.classList.remove('damage'), 50);
+
+                    // Trigger Phase 2
+                    if(!gameState.phase2 && gameState.bossHealth < 50) enterPhase2();
+                    if(gameState.bossHealth <= 0) winGame();
+                    continue;
                 }
+                if (b.life <= 0) gameState.playerBullets.splice(i, 1);
+            }
 
-                // 2. Connect to Neighbors
-                for(let j = i + 1; j < points.length; j++) {
-                    const p2 = points[j];
-                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            // Particles (Explosions)
+            for(let i = gameState.particles.length - 1; i >= 0; i--) {
+                let p = gameState.particles[i];
+                p.x += p.vx; p.y += p.vy; p.life -= 0.05;
+                if(p.life <= 0) gameState.particles.splice(i, 1);
+            }
 
-                    if(dist < 150) {
+            // Push Background Particles away (Shockwave)
+            if(gameState.particles.length > 0) {
+                points.forEach(pt => {
+                    gameState.particles.forEach(expl => {
+                         const dx = pt.x - expl.x;
+                         const dy = pt.y - expl.y;
+                         const dist = Math.hypot(dx, dy);
+                         if(dist < 100) {
+                             pt.x += dx * 0.1;
+                             pt.y += dy * 0.1;
+                         }
+                    });
+                });
+            }
+
+            // Floating Text
+            for(let i = gameState.floatingTexts.length - 1; i >= 0; i--) {
+                let t = gameState.floatingTexts[i];
+                t.y += t.vy; t.life -= 0.02;
+                if(t.life <= 0) gameState.floatingTexts.splice(i, 1);
+            }
+
+            // Projectiles
+            for(let i = gameState.projectiles.length - 1; i >= 0; i--) {
+                let p = gameState.projectiles[i];
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0 || p.x > width || p.y < 0 || p.y > height) gameState.projectiles.splice(i, 1);
+            }
+        }
+
+        function winGame() {
+            gameState.active = false;
+            gameMsg.innerText = "THREAT NEUTRALIZED";
+            gameMsg.style.color = "#38bdf8";
+            gameMsg.style.opacity = 1;
+            document.body.classList.remove('boss-active');
+            atomicCore.classList.remove('boss-state');
+            atomicCore.classList.remove('phase-2');
+            
+            // Explosion finale
+            for(let i=0; i<50; i++) {
+                spawnParticle(window.innerWidth/2, window.innerHeight/2 - 100, '#ffffff', 20);
+            }
+
+            setTimeout(() => {
+                gameMsg.style.opacity = 0;
+                gameUI.style.display = 'none';
+                gameState.bossHealth = 100;
+                gameState.phase2 = false;
+                healthBar.style.width = '100%';
+                healthBar.style.background = "linear-gradient(90deg, #991b1b, #ef4444)";
+                gameState.projectiles = [];
+                gameState.playerBullets = [];
+                initPoints(); 
+            }, 4000);
+        }
+
+        // === RENDER LOOP ===
+        function animateCanvas() {
+            if(gameState.active) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // Trails
+                ctx.fillRect(0, 0, width, height);
+            } else {
+                ctx.clearRect(0, 0, width, height);
+            }
+            
+            if (gameState.isCharging && !gameState.active) {
+                gameState.chargeLevel += 0.5;
+                if (gameState.chargeLevel > 20) atomicCore.classList.add('shaking');
+                if (gameState.chargeLevel > 100) startBossFight();
+            }
+
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2 - 100;
+
+            // DRAW POINTS
+            points.forEach((p, i) => {
+                if (gameState.active) {
+                    p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0 || p.x > width) p.vx *= -1;
+                    if(p.y < 0 || p.y > height) p.vy *= -1;
+                    ctx.fillStyle = gameState.phase2 ? '#a855f7' : '#ef4444';
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                } 
+                else if (gameState.isCharging) {
+                    const dx = centerX - p.x; const dy = centerY - p.y;
+                    p.x += dx * 0.05; p.y += dy * 0.05;
+                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                    if (Math.hypot(dx, dy) < 20) { p.x = Math.random()*width; p.y = Math.random()*height; }
+                }
+                else {
+                    p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0 || p.x > width) p.vx *= -1;
+                    if(p.y < 0 || p.y > height) p.vy *= -1;
+                    p.brightness += p.pulseSpeed;
+                    const alpha = 0.3 + Math.sin(p.brightness) * 0.3;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`; ctx.fill();
+
+                    const distMouse = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+                    if (distMouse < 250) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(148, 163, 184, ${0.4 * (1 - dist/150)})`; // Silver lines
-                        ctx.lineWidth = 0.4;
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${0.4 * (1 - distMouse/250)})`;
+                        ctx.lineWidth = 0.6; ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
                     }
                 }
             });
 
+            if(gameState.active) {
+                updateGame();
+
+                // Draw Particles
+                gameState.particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.life;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill();
+                    ctx.globalAlpha = 1.0;
+                });
+
+                // Draw Floating Text
+                ctx.font = "bold 20px Outfit";
+                ctx.fillStyle = "#fff";
+                gameState.floatingTexts.forEach(t => {
+                    ctx.globalAlpha = t.life;
+                    ctx.fillText(t.text, t.x, t.y);
+                    ctx.globalAlpha = 1.0;
+                });
+
+                // Boss Shots
+                gameState.projectiles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                });
+
+                // Player Shots
+                ctx.fillStyle = '#38bdf8';
+                ctx.shadowBlur = 10; ctx.shadowColor = '#38bdf8';
+                gameState.playerBullets.forEach(b => {
+                    ctx.beginPath(); ctx.arc(b.x, b.y, 4, 0, Math.PI*2); ctx.fill();
+                });
+                ctx.shadowBlur = 0;
+            }
+
             requestAnimationFrame(animateCanvas);
         }
 
-        // === 2. 3D TILT ENGINE ===
-        const stage = document.querySelector('.stage-container');
-        const atomicCore = document.querySelector('.atomic-core');
+        // === ENGINE TILT & MOUSE ===
         const heroText = document.querySelector('.hero-text');
-
-        document.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-
-            // Apply tilt to core
-            atomicCore.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            // Parallax text
-            heroText.style.transform = `translateZ(40px) translateX(${-xAxis}px) translateY(${-yAxis}px)`;
-        });
-
-        // === 3. BUTTON PHYSICS ===
-        const btnWrap = document.getElementById('mag-btn-wrap');
-        const btn = btnWrap.querySelector('.mag-btn');
-
-        btnWrap.addEventListener('mousemove', (e) => {
-            const rect = btnWrap.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
-            document.body.classList.add('hovering');
-        });
-
-        btnWrap.addEventListener('mouseleave', () => {
-            btn.style.transform = `translate(0, 0)`;
-            document.body.classList.remove('hovering');
-        });
-
-        // === 4. SCRAMBLE TEXT ===
-        class TextScramble {
-            constructor(el) {
-                this.el = el;
-                this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                this.update = this.update.bind(this);
-            }
-            setText(newText) {
-                const oldText = this.el.innerText;
-                const length = Math.max(oldText.length, newText.length);
-                const promise = new Promise((resolve) => this.resolve = resolve);
-                this.queue = [];
-                for (let i = 0; i < length; i++) {
-                    const from = oldText[i] || '';
-                    const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
-                    this.queue.push({ from, to, start, end });
-                }
-                cancelAnimationFrame(this.frameRequest);
-                this.frame = 0;
-                this.update();
-                return promise;
-            }
-            update() {
-                let output = '';
-                let complete = 0;
-                for (let i = 0, n = this.queue.length; i < n; i++) {
-                    let { from, to, start, end, char } = this.queue[i];
-                    if (this.frame >= end) {
-                        complete++;
-                        output += to;
-                    } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
-                            char = this.randomChar();
-                            this.queue[i].char = char;
-                        }
-                        output += `<span class="dud" style="opacity:0.5">${char}</span>`;
-                    } else {
-                        output += from;
-                    }
-                }
-                this.el.innerHTML = output;
-                if (complete === this.queue.length) {
-                    this.resolve();
-                } else {
-                    this.frameRequest = requestAnimationFrame(this.update);
-                    this.frame++;
-                }
-            }
-            randomChar() {
-                return this.chars[Math.floor(Math.random() * this.chars.length)];
-            }
-        }
-
-        // === 5. CURSOR ===
         const dot = document.querySelector('.cursor-dot');
         const ring = document.querySelector('.cursor-ring');
 
         document.addEventListener('mousemove', (e) => {
-            dot.style.left = e.clientX + 'px';
-            dot.style.top = e.clientY + 'px';
-            
-            ring.animate({
-                left: e.clientX + 'px',
-                top: e.clientY + 'px'
-            }, { duration: 400, fill: "forwards" });
+            mouse.x = e.clientX; mouse.y = e.clientY;
+            dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+            ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+
+            if (!gameState.active) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 45; 
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+                atomicCore.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                heroText.style.transform = `translateZ(40px) translateX(${-xAxis}px) translateY(${-yAxis}px)`;
+            }
+        });
+
+        // === BUTTON PHYSICS ===
+        const btnWrap = document.getElementById('mag-btn-wrap');
+        const btn = btnWrap.querySelector('.mag-btn');
+        btnWrap.addEventListener('mousemove', (e) => {
+            if(gameState.active) return;
+            const rect = btnWrap.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            document.body.classList.add('hovering');
+        });
+        btnWrap.addEventListener('mouseleave', () => {
+            btn.style.transform = `translate(0, 0)`;
+            document.body.classList.remove('hovering');
         });
 
         // === INIT ===
         window.addEventListener('resize', resize);
         resize();
         animateCanvas();
-
-        const t1 = document.querySelector('.scramble-target-1');
-        const t2 = document.querySelector('.scramble-target-2');
-        
-        const fx1 = new TextScramble(t1);
-        const fx2 = new TextScramble(t2);
-
-        setTimeout(() => { fx1.setText('Olympian'); }, 800);
-        setTimeout(() => { fx2.setText('Health Solutions'); }, 1400);
 
     </script>
 </body>
