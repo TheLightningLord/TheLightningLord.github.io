@@ -1,0 +1,15 @@
+# Olympian Health Solutions — robots.txt
+User-agent: *
+Allow: /
+
+# Let major AI/answer engines index too (helps you show up in AI answers)
+User-agent: GPTBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://olympiansolutions.org/sitemap.xml
