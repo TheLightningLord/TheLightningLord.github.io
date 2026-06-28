@@ -155,8 +155,8 @@
           if (data.session) {
             window.location.replace(next); // email confirmation disabled
           } else {
-            showMsg("Account created! Check your email to confirm, then sign in.", "success");
             setMode("signin");
+            showMsg("Account created! Check your email to confirm, then sign in.", "success");
           }
         }
       } catch (err) {
