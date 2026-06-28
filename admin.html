@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>Admin · Client Portal | Olympian Health Solutions</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0c1f3f" />
+  <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg?v=1" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/portal.css?v=1" />
+  <script src="js/portal-config.js"></script>
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="img/logo-mark.svg?v=1" alt="" width="42" height="42" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Olympian</span>
+          <span class="brand-sub">Health Solutions</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="dashboard.html">My dashboard</a>
+        <a href="#" id="signOutNav" class="btn btn-ghost btn-small">Sign out</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="portal-main" id="top">
+    <div class="portal-wrap">
+      <div class="portal-head">
+        <h1>Coach Admin</h1>
+        <p>Create materials and assign them to your clients.</p>
+      </div>
+
+      <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
+
+      <section id="gate" class="portal-card"><p class="empty-state">Checking access…</p></section>
+
+      <div id="adminBody" hidden>
+
+        <!-- ===== Create material ===== -->
+        <section class="portal-card">
+          <h2 class="section-label">Create a material</h2>
+          <div class="form-row">
+            <label for="mType">Type</label>
+            <select id="mType">
+              <option value="note">Note / message</option>
+              <option value="workout">Structured workout</option>
+              <option value="pdf">PDF document</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="mTitle">Title</label>
+            <input type="text" id="mTitle" placeholder="e.g. Week 1 — Lower Body" />
+          </div>
+
+          <!-- note fields -->
+          <div id="noteFields">
+            <div class="form-row">
+              <label for="mNote">Note</label>
+              <textarea id="mNote" rows="5" placeholder="Write a personalized message or instructions…"></textarea>
+            </div>
+          </div>
+
+          <!-- workout fields -->
+          <div id="workoutFields" hidden>
+            <label class="section-label" style="font-size:1rem;">Exercises</label>
+            <div id="exRows"></div>
+            <button type="button" class="btn btn-ghost btn-small" id="addExBtn">+ Add exercise</button>
+          </div>
+
+          <!-- pdf fields -->
+          <div id="pdfFields" hidden>
+            <div class="form-row">
+              <label for="mFile">PDF file</label>
+              <input type="file" id="mFile" accept="application/pdf" />
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-gold" id="createBtn" style="margin-top:.6rem;">Save material</button>
+        </section>
+
+        <!-- ===== Materials + assignment ===== -->
+        <section class="portal-card">
+          <h2 class="section-label">Materials</h2>
+          <div id="materialsList"><p class="empty-state">Loading…</p></div>
+        </section>
+
+        <!-- ===== Clients ===== -->
+        <section class="portal-card">
+          <h2 class="section-label">Clients</h2>
+          <div id="clientsList"><p class="empty-state">Loading…</p></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { supabase, requireAdmin, signOut, el, escapeHtml } from "./js/portal.js";
+
+    const $ = (id) => document.getElementById(id);
+    $("signOutNav").addEventListener("click", (e) => { e.preventDefault(); signOut(); });
+
+    function showMsg(text, kind = "info") {
+      const m = $("msg"); m.textContent = text; m.className = "portal-msg show " + kind;
+      if (kind === "success") setTimeout(() => (m.className = "portal-msg"), 4000);
+    }
+
+    let clients = [];
+
+    /* ---------- type switcher ---------- */
+    $("mType").addEventListener("change", () => {
+      const t = $("mType").value;
+      $("noteFields").hidden = t !== "note";
+      $("workoutFields").hidden = t !== "workout";
+      $("pdfFields").hidden = t !== "pdf";
+      if (t === "workout" && !$("exRows").children.length) addExRow();
+    });
+
+    /* ---------- workout builder ---------- */
+    function addExRow(ex = {}) {
+      const row = el("div", { class: "ex-row" },
+        el("input", { type: "text", placeholder: "Exercise", value: ex.name || "", class: "ex-name" }),
+        el("input", { type: "text", placeholder: "Sets", value: ex.sets || "", class: "ex-sets" }),
+        el("input", { type: "text", placeholder: "Reps", value: ex.reps || "", class: "ex-reps" }),
+        el("input", { type: "text", placeholder: "Notes (optional)", value: ex.notes || "", class: "ex-notes" }),
+        el("button", { type: "button", class: "btn-x", onClick: (e) => e.target.closest(".ex-row").remove() }, "✕")
+      );
+      $("exRows").append(row);
+    }
+    $("addExBtn").addEventListener("click", () => addExRow());
+
+    function collectWorkout() {
+      return Array.from($("exRows").querySelectorAll(".ex-row")).map((r) => ({
+        name: r.querySelector(".ex-name").value.trim(),
+        sets: r.querySelector(".ex-sets").value.trim(),
+        reps: r.querySelector(".ex-reps").value.trim(),
+        notes: r.querySelector(".ex-notes").value.trim(),
+      })).filter((x) => x.name);
+    }
+
+    /* ---------- create material ---------- */
+    $("createBtn").addEventListener("click", async () => {
+      const type = $("mType").value;
+      const title = $("mTitle").value.trim();
+      if (!title) return showMsg("Please give the material a title.", "error");
+
+      $("createBtn").disabled = true;
+      try {
+        const { data: u } = await supabase.auth.getUser();
+        const row = { type, title, created_by: u.user.id };
+
+        if (type === "note") {
+          const text = $("mNote").value.trim();
+          if (!text) throw new Error("Write a note first.");
+          row.body = { text };
+        } else if (type === "workout") {
+          const exercises = collectWorkout();
+          if (!exercises.length) throw new Error("Add at least one exercise.");
+          row.body = { exercises };
+        } else if (type === "pdf") {
+          const file = $("mFile").files[0];
+          if (!file) throw new Error("Choose a PDF file.");
+          const path = u.user.id + "/" + Date.now() + "-" + file.name.replace(/[^\w.\-]+/g, "_");
+          const { error: upErr } = await supabase.storage.from("materials").upload(path, file, {
+            contentType: "application/pdf", upsert: false,
+          });
+          if (upErr) throw upErr;
+          row.file_path = path;
+        }
+
+        const { error } = await supabase.from("materials").insert(row);
+        if (error) throw error;
+
+        showMsg("Material saved.", "success");
+        $("mTitle").value = ""; $("mNote").value = ""; $("exRows").innerHTML = ""; if ($("mFile")) $("mFile").value = "";
+        loadMaterials();
+      } catch (err) {
+        showMsg(err.message || "Could not save.", "error");
+      } finally {
+        $("createBtn").disabled = false;
+      }
+    });
+
+    /* ---------- load clients ---------- */
+    async function loadClients() {
+      const { data, error } = await supabase
+        .from("profiles").select("id, email, full_name, role").order("created_at", { ascending: true });
+      if (error) { $("clientsList").innerHTML = ""; $("clientsList").append(el("p", { class: "empty-state" }, error.message)); return; }
+      clients = (data || []).filter((p) => p.role === "client");
+
+      const wrap = $("clientsList");
+      wrap.innerHTML = "";
+      if (!clients.length) { wrap.append(el("p", { class: "empty-state" }, "No clients have signed up yet.")); return; }
+      const table = el("table", { class: "admin-table" },
+        el("thead", {}, el("tr", {}, el("th", {}, "Name"), el("th", {}, "Email"))),
+        el("tbody", {}, ...clients.map((c) => el("tr", {},
+          el("td", {}, (c.full_name || "—")), el("td", {}, c.email || "—"))))
+      );
+      wrap.append(table);
+    }
+
+    /* ---------- load materials + assignment controls ---------- */
+    async function loadMaterials() {
+      const [{ data: mats, error: mErr }, { data: asgs }] = await Promise.all([
+        supabase.from("materials").select("id, type, title, created_at").order("created_at", { ascending: false }),
+        supabase.from("assignments").select("id, material_id, client_id"),
+      ]);
+      const wrap = $("materialsList");
+      wrap.innerHTML = "";
+      if (mErr) { wrap.append(el("p", { class: "empty-state" }, mErr.message)); return; }
+      if (!mats || !mats.length) { wrap.append(el("p", { class: "empty-state" }, "No materials yet. Create one above.")); return; }
+
+      const byMat = {};
+      (asgs || []).forEach((a) => { (byMat[a.material_id] ||= []).push(a); });
+
+      const table = el("table", { class: "admin-table" },
+        el("thead", {}, el("tr", {},
+          el("th", {}, "Title"), el("th", {}, "Type"), el("th", {}, "Assigned to"), el("th", {}, "Assign"), el("th", {}, ""))),
+        el("tbody", {}, ...mats.map((m) => materialRow(m, byMat[m.id] || [])))
+      );
+      wrap.append(table);
+    }
+
+    function clientName(id) {
+      const c = clients.find((x) => x.id === id);
+      return c ? (c.full_name || c.email) : "unknown";
+    }
+
+    function materialRow(m, assigns) {
+      const assignedNames = assigns.length
+        ? assigns.map((a) => clientName(a.client_id)).join(", ") : "—";
+
+      const select = el("select", {},
+        el("option", { value: "" }, "Choose client…"),
+        ...clients
+          .filter((c) => !assigns.some((a) => a.client_id === c.id))
+          .map((c) => el("option", { value: c.id }, c.full_name || c.email))
+      );
+      const assignBtn = el("button", { class: "btn btn-gold btn-small", type: "button",
+        onClick: () => assign(m.id, select.value) }, "Assign");
+
+      const delBtn = el("button", { class: "btn-x", type: "button",
+        onClick: () => removeMaterial(m.id, m.title) }, "Delete");
+
+      return el("tr", {},
+        el("td", {}, m.title),
+        el("td", {}, el("span", { class: "mtag " + m.type }, m.type)),
+        el("td", {}, el("span", { class: "pill" }, assignedNames)),
+        el("td", {}, el("div", { class: "inline-form" }, select, assignBtn)),
+        el("td", {}, delBtn)
+      );
+    }
+
+    async function assign(materialId, clientId) {
+      if (!clientId) return showMsg("Pick a client first.", "error");
+      const { data: u } = await supabase.auth.getUser();
+      const { error } = await supabase.from("assignments")
+        .insert({ material_id: materialId, client_id: clientId, assigned_by: u.user.id });
+      if (error) return showMsg(error.message, "error");
+      showMsg("Assigned.", "success");
+      loadMaterials();
+    }
+
+    async function removeMaterial(id, title) {
+      if (!confirm('Delete "' + title + '"? This also removes it from any client.')) return;
+      const { error } = await supabase.from("materials").delete().eq("id", id);
+      if (error) return showMsg(error.message, "error");
+      showMsg("Deleted.", "success");
+      loadMaterials();
+    }
+
+    /* ---------- boot ---------- */
+    (async () => {
+      const profile = await requireAdmin();
+      if (!profile) return;
+      $("gate").hidden = true;
+      $("adminBody").hidden = false;
+      await loadClients();
+      await loadMaterials();
+    })();
+  </script>
+</body>
+</html>

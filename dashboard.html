@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>Your Dashboard | Olympian Health Solutions</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0c1f3f" />
+  <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg?v=1" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/portal.css?v=1" />
+  <script src="js/portal-config.js"></script>
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="img/logo-mark.svg?v=1" alt="" width="42" height="42" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Olympian</span>
+          <span class="brand-sub">Health Solutions</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html#programs">Programs</a>
+        <a href="#" id="adminNavLink" hidden>Admin</a>
+        <a href="#" id="signOutNav" class="btn btn-ghost btn-small">Sign out</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="portal-main" id="top">
+    <div class="portal-wrap">
+      <div class="portal-userbar">
+        <div class="who">
+          <strong id="greeting">Welcome</strong>
+          <small id="subline">Loading your materials…</small>
+        </div>
+      </div>
+
+      <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
+
+      <section id="loading" class="portal-card">
+        <p class="empty-state">Loading your dashboard…</p>
+      </section>
+
+      <div id="content" hidden>
+        <section class="portal-card" id="notesSection" hidden>
+          <h2 class="section-label">Notes from Zeuse</h2>
+          <div id="notesList" class="portal-grid"></div>
+        </section>
+
+        <section class="portal-card" id="workoutsSection" hidden>
+          <h2 class="section-label">Your Workouts</h2>
+          <div id="workoutsList" class="portal-grid"></div>
+        </section>
+
+        <section class="portal-card" id="pdfsSection" hidden>
+          <h2 class="section-label">Documents &amp; Plans</h2>
+          <div id="pdfsList" class="portal-grid cols-2"></div>
+        </section>
+
+        <section class="portal-card" id="emptyAll" hidden>
+          <p class="empty-state">No materials have been assigned to you yet. Zeuse will add them here soon. 💪</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { supabase, requireSession, getProfile, signOut, el, escapeHtml } from "./js/portal.js";
+
+    const $ = (id) => document.getElementById(id);
+    document.getElementById("signOutNav").addEventListener("click", (e) => { e.preventDefault(); signOut(); });
+
+    function showMsg(text, kind = "info") {
+      const m = $("msg"); m.textContent = text; m.className = "portal-msg show " + kind;
+    }
+
+    function workoutTable(body) {
+      const rows = (body && Array.isArray(body.exercises)) ? body.exercises : [];
+      const table = el("table", { class: "workout-table" },
+        el("thead", {}, el("tr", {},
+          el("th", {}, "Exercise"), el("th", {}, "Sets"), el("th", {}, "Reps"), el("th", {}, "Notes"))),
+        el("tbody", {}, ...rows.map((x) => el("tr", {},
+          el("td", {}, x.name || ""), el("td", {}, x.sets || ""),
+          el("td", {}, x.reps || ""), el("td", {}, x.notes || ""))))
+      );
+      return table;
+    }
+
+    function materialCard(m, extra) {
+      const card = el("div", { class: "material" },
+        el("span", { class: "mtag " + m.type }, m.type === "pdf" ? "Document" : m.type),
+        el("h3", {}, m.title),
+        el("div", { class: "meta" }, "Assigned " + new Date(m.assigned_at).toLocaleDateString())
+      );
+      if (extra) card.append(extra);
+      return card;
+    }
+
+    (async () => {
+      const session = await requireSession();
+      if (!session) return;
+
+      const profile = await getProfile();
+      const name = (profile?.full_name || "").trim() || (profile?.email || "").split("@")[0];
+      $("greeting").textContent = "Welcome" + (name ? ", " + name : "");
+      if (profile?.role === "admin") {
+        const a = $("adminNavLink"); a.hidden = false; a.href = "admin.html";
+      }
+
+      // Pull assignments joined with their material.
+      const { data, error } = await supabase
+        .from("assignments")
+        .select("assigned_at, materials ( id, type, title, body, file_path )")
+        .order("assigned_at", { ascending: false });
+
+      $("loading").hidden = true;
+      $("content").hidden = false;
+
+      if (error) {
+        showMsg("Couldn't load your materials: " + error.message, "error");
+        return;
+      }
+
+      const items = (data || [])
+        .filter((r) => r.materials)
+        .map((r) => ({ ...r.materials, assigned_at: r.assigned_at }));
+
+      $("subline").textContent = items.length
+        ? items.length + " item" + (items.length === 1 ? "" : "s") + " assigned to you"
+        : "Nothing assigned yet";
+
+      const notes = items.filter((m) => m.type === "note");
+      const workouts = items.filter((m) => m.type === "workout");
+      const pdfs = items.filter((m) => m.type === "pdf");
+
+      if (!items.length) { $("emptyAll").hidden = false; return; }
+
+      // Notes
+      if (notes.length) {
+        $("notesSection").hidden = false;
+        notes.forEach((m) => {
+          const text = (m.body && (m.body.text ?? "")) || "";
+          $("notesList").append(materialCard(m, el("div", { class: "body" }, text)));
+        });
+      }
+
+      // Workouts
+      if (workouts.length) {
+        $("workoutsSection").hidden = false;
+        workouts.forEach((m) => $("workoutsList").append(materialCard(m, workoutTable(m.body))));
+      }
+
+      // PDFs — fetch a short-lived signed URL for each.
+      if (pdfs.length) {
+        $("pdfsSection").hidden = false;
+        for (const m of pdfs) {
+          const card = materialCard(m);
+          const link = el("a", { class: "btn btn-gold btn-small", href: "#", target: "_blank", rel: "noopener" }, "Open PDF");
+          link.style.marginTop = ".8rem";
+          if (m.file_path) {
+            const { data: signed, error: sErr } = await supabase
+              .storage.from("materials").createSignedUrl(m.file_path, 3600);
+            if (signed?.signedUrl) { link.href = signed.signedUrl; }
+            else { link.textContent = "Unavailable"; link.classList.add("btn-ghost"); link.classList.remove("btn-gold"); }
+          }
+          card.append(link);
+          $("pdfsList").append(card);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <!-- ===== Primary SEO ===== -->
-  <title>Zeuse Valentine | Olympian Health Solutions — Global Personal Training, In Your Language + In-Home Clark County WA</title>
-  <meta name="description" content="Train live with Zeuse Valentine from anywhere in the world — in your own language, thanks to real-time translation. Science-based online personal training with a free FitPack shipped nationwide, plus portable in-home sessions across Clark County, WA. B.S. Kinesiology (Oregon State) & Doctor of Physical Therapy student. Free consultation." />
+  <title>Zeuse Valentine | Olympian Health Solutions — Personal Trainer, Clark County WA</title>
+  <meta name="description" content="Zeuse Valentine is a personal trainer and founder of Olympian Health Solutions, offering portable in-home personal training across Battle Ground & Clark County, WA. B.S. Kinesiology (Oregon State) & Doctor of Physical Therapy student. Specializing in post-physical-therapy training, senior fitness, pain-free movement & strength. Free consultation." />
   <meta name="author" content="Zeuse Valentine" />
-  <meta name="keywords" content="Zeuse Valentine, Olympian Health Solutions, online personal trainer, global personal training, personal training in your language, real-time translation coaching, personal trainer Clark County WA, in-home personal training, free FitPack, senior fitness training, post physical therapy training, kinesiology, doctor of physical therapy" />
+  <meta name="keywords" content="Zeuse Valentine, Olympian Health Solutions, personal trainer Clark County WA, personal trainer Battle Ground WA, online fitness coaching, in-home personal training, kinesiology, doctor of physical therapy, senior fitness training, strength coach Vancouver WA" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://olympiansolutions.org/" />
 
@@ -21,8 +21,8 @@
   <!-- ===== Open Graph (Facebook, LinkedIn, iMessage…) ===== -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Olympian Health Solutions" />
-  <meta property="og:title" content="Global Personal Training, In Your Language | Olympian Health Solutions" />
-  <meta property="og:description" content="Train live with Zeuse Valentine from anywhere on Earth — in your own language, with real-time translation. Free FitPack shipped nationwide. Plus portable in-home sessions across Clark County, WA. Free consultation." />
+  <meta property="og:title" content="Zeuse Valentine — Personal Training | Olympian Health Solutions" />
+  <meta property="og:description" content="Science-backed, portable personal training by Zeuse Valentine, B.S. Kinesiology & DPT student. Post-PT, senior fitness & pain-free training across Battle Ground & Clark County, WA. Free consultation." />
   <meta property="og:url" content="https://olympiansolutions.org/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://olympiansolutions.org/img/og-cover.jpg" />
@@ -32,13 +32,13 @@
 
   <!-- ===== Twitter / X ===== -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Global Personal Training, In Your Language | Olympian Health Solutions" />
-  <meta name="twitter:description" content="Train live with Zeuse Valentine from anywhere — in your own language, with real-time translation. Free FitPack shipped nationwide. Plus in-home sessions across Clark County, WA." />
+  <meta name="twitter:title" content="Zeuse Valentine — Personal Training | Olympian Health Solutions" />
+  <meta name="twitter:description" content="Science-backed, portable personal training by Zeuse Valentine. Post-PT, senior fitness & pain-free training across Battle Ground & Clark County, WA. Free consultation." />
   <meta name="twitter:image" content="https://olympiansolutions.org/img/og-cover.jpg" />
 
   <!-- ===== Icons / PWA ===== -->
   <meta name="theme-color" content="#0c1f3f" />
-  <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg?v=1" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>⚡</text></svg>" />
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 
@@ -46,7 +46,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=13" />
 </head>
 <body>
 
@@ -55,24 +55,24 @@
 
   <!-- ===== Preloader ===== -->
   <div class="preloader" id="preloader" aria-hidden="true">
-    <img class="preloader-bolt" src="img/logo-mark.svg?v=1" alt="" />
+    <div class="preloader-bolt">⚡</div>
     <div class="preloader-name">OLYMPIAN HEALTH SOLUTIONS</div>
   </div>
 
   <!-- ===== Announcement Banner ===== -->
   <div class="topbar" id="topbar" role="region" aria-label="Service area announcement">
     <div class="topbar-track">
-      <span class="tb-item"><span class="tb-pulse" aria-hidden="true"></span>🌍 Train live from anywhere in the world — coaching in your language, any time zone</span>
+      <span class="tb-item"><span class="tb-pulse" aria-hidden="true"></span>Portable in-home &amp; on-site sessions across Clark County, WA</span>
       <span class="tb-dot" aria-hidden="true">✦</span>
-      <span class="tb-item tb-accent">📦 Free FitPack shipped nationwide · Portable in-home sessions across Clark County, WA</span>
+      <span class="tb-item tb-accent">No travel fee for Battle Ground residents</span>
       <span class="tb-dot" aria-hidden="true">✦</span>
-      <span class="tb-item"><span class="tb-pulse" aria-hidden="true"></span>🌍 Train live from anywhere in the world — coaching in your language, any time zone</span>
+      <span class="tb-item"><span class="tb-pulse" aria-hidden="true"></span>Portable in-home &amp; on-site sessions across Clark County, WA</span>
       <span class="tb-dot" aria-hidden="true">✦</span>
-      <span class="tb-item tb-accent">📦 Free FitPack shipped nationwide · Portable in-home sessions across Clark County, WA</span>
+      <span class="tb-item tb-accent">No travel fee for Battle Ground residents</span>
       <span class="tb-dot" aria-hidden="true">✦</span>
-      <span class="tb-item"><span class="tb-pulse" aria-hidden="true"></span>🌍 Train live from anywhere in the world — coaching in your language, any time zone</span>
+      <span class="tb-item"><span class="tb-pulse" aria-hidden="true"></span>Portable in-home &amp; on-site sessions across Clark County, WA</span>
       <span class="tb-dot" aria-hidden="true">✦</span>
-      <span class="tb-item tb-accent">📦 Free FitPack shipped nationwide · Portable in-home sessions across Clark County, WA</span>
+      <span class="tb-item tb-accent">No travel fee for Battle Ground residents</span>
       <span class="tb-dot" aria-hidden="true">✦</span>
     </div>
   </div>
@@ -82,7 +82,7 @@
     <div class="nav-inner">
       <a href="#top" class="brand">
         <span class="brand-mark" aria-hidden="true">
-          <img src="img/logo-mark.svg?v=1" alt="" width="42" height="42" />
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M13 2 4.5 13.5h5L9 22l9.5-12.5h-5L13 2Z" fill="url(#boltGrad)"/><defs><linearGradient id="boltGrad" x1="4" y1="2" x2="20" y2="22"><stop stop-color="#7fb0ff"/><stop offset="1" stop-color="#2f6dd4"/></linearGradient></defs></svg>
         </span>
         <span class="brand-text">
           <span class="brand-name">Olympian</span>
@@ -91,13 +91,13 @@
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
         <a href="#about">About</a>
-        <a href="#online">Train Anywhere</a>
         <a href="#bridge">Post-PT</a>
         <a href="#seniors">Seniors</a>
         <a href="#programs">Programs</a>
+        <a href="#online">Online</a>
         <a href="#results">Results</a>
+        <a href="#books">Books</a>
         <a href="#pricing">Pricing</a>
-        <a href="login.html" class="btn btn-ghost btn-small nav-login">🔒 Client Login</a>
         <a href="#contact" class="btn btn-gold btn-small">Book Free Consult</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -122,24 +122,20 @@
       </div>
 
       <div class="hero-content">
-        <p class="hero-kicker reveal">🌍 &nbsp;Personal Training, Anywhere on Earth — in Your Language &nbsp;·&nbsp; Portable In-Home Sessions Across Clark County, WA</p>
+        <p class="hero-kicker reveal">⚡ &nbsp;Battle Ground &amp; Clark County, WA &nbsp;·&nbsp; Portable In-Home Personal Training</p>
         <h1 class="hero-title">
           <span class="reveal d1">Your Strongest Years</span>
           <span class="reveal d2 hero-hl">Are Still Ahead.</span>
         </h1>
         <p class="hero-sub reveal d3">
-          World-class, science-based coaching that comes to you — <em>wherever you are</em>.
-          Train live with me from anywhere in the world, in your own language, or book a
-          portable in-home session across Clark County, WA. Move without pain, rebuild real
-          strength, and stay independent — at any age.
+          Science-based personal training, brought right to your door — so you can
+          <em>move without pain, rebuild real strength, and stay independent</em> at any age.
+          Serving Battle Ground &amp; Clark County, WA.
         </p>
         <div class="hero-cta reveal d4">
           <a href="#contact" class="btn btn-gold btn-lg">Book a Free Assessment</a>
-          <a href="#online" class="btn btn-ghost btn-lg">Train From Anywhere →</a>
+          <a href="#how" class="btn btn-ghost btn-lg">How It Works</a>
         </div>
-        <p class="hero-login reveal d4">
-          Already a client? <a href="login.html">🔒 Sign in to your portal →</a>
-        </p>
         <div class="hero-trust reveal d5">
           <div class="trust-item">
             <span class="trust-icon">🎓</span>
@@ -184,16 +180,16 @@
           <div class="stat-label">Coaching Sessions Delivered</div>
         </div>
         <div class="stat reveal d1">
-          <div class="stat-num"><span class="counter" data-target="50">0</span>+</div>
-          <div class="stat-label">Languages · Live Translation</div>
-        </div>
-        <div class="stat reveal d2">
           <div class="stat-num"><span class="counter" data-target="7">0</span>+</div>
           <div class="stat-label">Years in Exercise Science</div>
         </div>
+        <div class="stat reveal d2">
+          <div class="stat-num"><span class="counter" data-target="100">0</span>%</div>
+          <div class="stat-label">Programs Individually Built</div>
+        </div>
         <div class="stat reveal d3">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Any Time Zone, Worldwide</div>
+          <div class="stat-num"><span class="counter" data-target="1">0</span></div>
+          <div class="stat-label">Goal: Yours</div>
         </div>
       </div>
     </section>
@@ -344,7 +340,7 @@
           <div class="process-step reveal">
             <div class="step-num">1</div>
             <h3>Book a Free Assessment</h3>
-            <p>A relaxed 30 minutes — by video, in your home, or over the phone, in your language. We talk goals, history, and concerns. You leave with clarity, whether or not we train together.</p>
+            <p>A relaxed 30 minutes — in your home or over the phone. We talk goals, history, and concerns. You leave with clarity, whether or not we train together.</p>
           </div>
           <div class="process-connector reveal d1" aria-hidden="true"></div>
           <div class="process-step reveal d1">
@@ -377,7 +373,7 @@
           <article class="program-card reveal">
             <div class="program-icon">🏛️</div>
             <h3>1-on-1 Personal Training</h3>
-            <p>Fully personalized sessions — live online from anywhere in the world (in your language), or portable in-home across Clark County, WA. Expert coaching on every rep, real-time form correction, and programming that evolves with you.</p>
+            <p>Fully personalized, portable sessions across Clark County, WA — I come to you. Expert coaching on every rep, real-time form correction, and programming that evolves with you.</p>
             <ul>
               <li>Movement &amp; mobility assessment</li>
               <li>Custom periodized programming</li>
@@ -414,44 +410,18 @@
       </div>
     </section>
 
-    <!-- ===== Train Anywhere / Global + FitPack ===== -->
+    <!-- ===== Online / Nationwide (FitPack) ===== -->
     <section class="online section" id="online">
       <div class="container">
-        <p class="eyebrow center reveal">Now Worldwide · Train From Anywhere</p>
-        <h2 class="section-title center reveal d1">No Gym. No Borders.<br><span class="gold-shimmer">Train in Your Language.</span></h2>
-        <p class="section-sub center reveal d2">Live anywhere on Earth? We train together <strong>live</strong> — and <strong>real-time translation</strong> means we speak the same language, every single session. I send you a <strong>FitPack</strong> (free shipping nationwide), then coach you through a plan built around your body, your goals, and your time zone. No equipment to buy, no membership, no commute.</p>
-
-        <!-- Real-time translation highlight -->
-        <div class="lang-band reveal d2" aria-label="Coaching available in your language">
-          <div class="lang-band-head">
-            <span class="lang-band-ico" aria-hidden="true">🗣️</span>
-            <div>
-              <h3>We'll speak the same language — literally.</h3>
-              <p>Real-time translation runs quietly through every live session, so nothing gets lost between us. Coach and client, perfectly understood, in <strong>50+ languages</strong>.</p>
-            </div>
-          </div>
-          <div class="lang-chips" aria-hidden="true">
-            <span class="lang-chip">English</span>
-            <span class="lang-chip">Español</span>
-            <span class="lang-chip">中文</span>
-            <span class="lang-chip">العربية</span>
-            <span class="lang-chip">Português</span>
-            <span class="lang-chip">Français</span>
-            <span class="lang-chip">हिन्दी</span>
-            <span class="lang-chip">Deutsch</span>
-            <span class="lang-chip">日本語</span>
-            <span class="lang-chip">Русский</span>
-            <span class="lang-chip">한국어</span>
-            <span class="lang-chip">Tagalog</span>
-            <span class="lang-chip">+ 40 more</span>
-          </div>
-        </div>
+        <p class="eyebrow center reveal">Now Nationwide · Train Anywhere</p>
+        <h2 class="section-title center reveal d1">No Gym? No Problem.<br><span class="gold-shimmer">I'll Ship Your Gym to the Door.</span></h2>
+        <p class="section-sub center reveal d2">Live anywhere in the U.S.? I send you a <strong>FitPack</strong> — every essential you need to get strong at home — then coach you through a custom plan, step by step. No equipment to buy, no membership, no commute.</p>
 
         <div class="online-grid">
           <!-- FitPack contents -->
           <div class="fitpack-card reveal d2">
             <div class="fitpack-head">
-              <span class="fitpack-badge">Ships Free Nationwide</span>
+              <span class="fitpack-badge">Ships Free</span>
               <h3>📦 The FitPack</h3>
               <p>A complete home gym in one light, portable box — and it fits in a drawer.</p>
             </div>
@@ -480,15 +450,15 @@
             <div class="online-steps">
               <div class="online-step">
                 <span class="os-num">1</span>
-                <div><strong>Start with a free intake</strong><p>A quick movement check by video — in your language. I learn your goals, history, and the space you have to work with.</p></div>
+                <div><strong>Start online</strong><p>A quick intake and movement check by video. I learn your goals, history, and the space you have.</p></div>
               </div>
               <div class="online-step">
                 <span class="os-num">2</span>
-                <div><strong>Your FitPack ships free</strong><p>Free nationwide shipping — it lands on your doorstep in days. Everything you need, nothing you don't.</p></div>
+                <div><strong>Your FitPack ships free</strong><p>It lands on your doorstep in days — everything you need, nothing you don't.</p></div>
               </div>
               <div class="online-step">
                 <span class="os-num">3</span>
-                <div><strong>Train live, in your language</strong><p>Real-time translation on every live session, plus custom app workouts, demo videos, and weekly check-ins scheduled around your time zone.</p></div>
+                <div><strong>Train with your plan</strong><p>Custom app workouts, demo videos for every move, and weekly check-ins that keep you progressing.</p></div>
               </div>
             </div>
             <div class="online-cta">
@@ -501,20 +471,20 @@
         <!-- Effectiveness proof -->
         <div class="online-proof reveal d2" id="online-proof">
           <div class="op-stat">
-            <strong>Your language, every session</strong>
-            <span>Real-time translation removes the barrier completely — coach and client, fully understood, in 50+ languages.</span>
-          </div>
-          <div class="op-stat">
-            <strong>Any time zone</strong>
-            <span>Sessions scheduled around your clock, wherever you live. Morning in Manila or midnight in Madrid — we make it work.</span>
-          </div>
-          <div class="op-stat">
             <strong>Just as effective</strong>
             <span>Research shows resistance bands build strength comparable to free weights — the body only knows tension, not the source.</span>
           </div>
+          <div class="op-stat">
+            <strong>5-minute setup</strong>
+            <span>No gym, no commute, no equipment to shop for. Your living room becomes the gym the day it arrives.</span>
+          </div>
+          <div class="op-stat">
+            <strong>Coached, never alone</strong>
+            <span>Real clinical programming plus weekly accountability — the difference between owning a kit and actually transforming.</span>
+          </div>
         </div>
 
-        <p class="online-note center reveal d2">Anywhere in the world · FitPack ships free nationwide with every plan</p>
+        <p class="online-note center reveal d2">Anywhere in the United States · FitPack ships free with every online plan</p>
       </div>
     </section>
 
@@ -865,58 +835,8 @@
       <div class="container">
         <p class="eyebrow center reveal">Investment</p>
         <h2 class="section-title center reveal d1">Earn Your Crown</h2>
-        <p class="section-sub center reveal d2">Two ways to train: a global monthly membership you can start from anywhere, or portable in-home sessions across Clark County, WA. Either way, every program is built around you — and spots are limited so each client gets my full attention.</p>
+        <p class="section-sub center reveal d2">100% portable — I come to you across Clark County, WA. No gym membership, no commute, no guesswork. Spots are limited so every client gets my full attention.</p>
 
-        <!-- Global online monthly tiers -->
-        <h3 class="pricing-group-title reveal d2"><span class="pgt-ico" aria-hidden="true">🌍</span> Train From Anywhere · Monthly Coaching</h3>
-        <div class="pricing-grid">
-          <article class="price-card reveal">
-            <h3>Essentials</h3>
-            <p class="price-desc">Coach-built training you run on your own schedule.</p>
-            <div class="price"><span class="price-num">$99</span><span class="price-per">/ month</span></div>
-            <ul>
-              <li>Custom app program, refreshed monthly</li>
-              <li>FitPack shipped free (nationwide)</li>
-              <li>Demo videos for every movement</li>
-              <li>Message support + monthly check-in</li>
-              <li>Train in your language — real-time translation</li>
-            </ul>
-            <a href="#contact" class="btn btn-ghost btn-block">Start Essentials</a>
-          </article>
-
-          <article class="price-card price-featured reveal d1">
-            <div class="program-badge">Most Popular</div>
-            <h3>Pro</h3>
-            <p class="price-desc">Live coaching + a plan that adapts every week.</p>
-            <div class="price"><span class="price-num">$199</span><span class="price-per">/ month</span></div>
-            <ul>
-              <li>Everything in Essentials</li>
-              <li>2 live 1-on-1 video sessions / month</li>
-              <li>Real-time translation on every session</li>
-              <li>Weekly check-ins &amp; program adjustments</li>
-              <li>Priority messaging</li>
-            </ul>
-            <a href="#contact" class="btn btn-gold btn-block">Start Pro</a>
-          </article>
-
-          <article class="price-card reveal d2">
-            <h3>Elite</h3>
-            <p class="price-desc">My highest-touch coaching, anywhere in the world.</p>
-            <div class="price"><span class="price-num">$349</span><span class="price-per">/ month</span></div>
-            <ul>
-              <li>Everything in Pro</li>
-              <li>Weekly live 1-on-1 sessions (4 / month)</li>
-              <li>Nutrition &amp; recovery coaching</li>
-              <li>Same-day priority support</li>
-              <li>Quarterly progress deep-dive</li>
-            </ul>
-            <a href="#contact" class="btn btn-ghost btn-block">Apply for Elite</a>
-          </article>
-        </div>
-        <p class="pricing-subnote center reveal d2">Free FitPack with every plan · ships free nationwide · cancel anytime</p>
-
-        <!-- Clark County in-home -->
-        <h3 class="pricing-group-title reveal d2"><span class="pgt-ico" aria-hidden="true">📍</span> Clark County, WA · Portable In-Home</h3>
         <div class="pricing-grid">
           <article class="price-card reveal">
             <h3>Senior Strength</h3>
@@ -1000,20 +920,8 @@
             <p>If you complete your first month of coaching, follow the plan, and don't feel it was worth it — I'll work with you until it is. Your results are my reputation.</p>
           </details>
           <details class="faq-item">
-            <summary>I don't speak English fluently — can we still train together?<span class="faq-chevron" aria-hidden="true">+</span></summary>
-            <p>Absolutely, and it works beautifully. Real-time translation runs through our live sessions, so you hear my coaching in your language and I understand you in yours — cues, questions, encouragement, all of it. Coaching has reached people in 50+ languages; yours is almost certainly one of them.</p>
-          </details>
-          <details class="faq-item">
-            <summary>I live outside the U.S. — can you coach me?<span class="faq-chevron" aria-hidden="true">+</span></summary>
-            <p>Yes. Online coaching is fully global — we train live over video from anywhere in the world, scheduled around your time zone. The free FitPack ships within the U.S.; if you're international, I'll send a simple gear list so you can grab the equivalent locally (it's inexpensive and easy to find), and we go from there.</p>
-          </details>
-          <details class="faq-item">
-            <summary>How does the free FitPack shipping work?<span class="faq-chevron" aria-hidden="true">+</span></summary>
-            <p>Every online coaching plan includes a FitPack — a complete, drawer-sized home gym — shipped to your door free anywhere in the U.S. It arrives within days, sets up in five minutes, and you can train the same day. No equipment to shop for, no membership, no commute.</p>
-          </details>
-          <details class="faq-item">
             <summary>What areas does Olympian Health Solutions serve?<span class="faq-chevron" aria-hidden="true">+</span></summary>
-            <p>Online coaching is available worldwide — train live from anywhere, in your language. For in-person training, I offer portable, in-home sessions across Clark County, WA, based in Battle Ground, where there's no travel fee. I bring everything to you.</p>
+            <p>Portable, in-home and on-site personal training across Clark County, WA — based in Battle Ground, where there's no travel fee. I bring everything to you.</p>
           </details>
         </div>
       </div>
@@ -1027,8 +935,7 @@
           <h2 class="section-title reveal d1">Picture a Year From Now:<br><span class="gold-shimmer">Strong, Steady, Unstoppable.</span></h2>
           <p class="reveal d2">
             Doing the things you love — without fear, without limits, without wondering "what if."
-            That future starts with one relaxed conversation, wherever you are in the world and
-            in whatever language you're most comfortable. Tell me where you are and where you
+            That future starts with one relaxed conversation. Tell me where you are and where you
             want to be; I'll reply within 24 hours with honest guidance, no pressure.
           </p>
 
@@ -1050,7 +957,6 @@
 
           <ul class="contact-perks reveal d3">
             <li>⚡ 100% free, zero pressure</li>
-            <li>⚡ Anywhere in the world — we'll talk in your language</li>
             <li>⚡ Personalized recommendations on the call</li>
             <li>⚡ Limited roster — only a few spots open each month</li>
           </ul>
@@ -1077,14 +983,6 @@
               <input type="email" id="email" name="email" placeholder="you@email.com" required />
             </div>
             <div class="form-row">
-              <label for="location">Where are you based?</label>
-              <input type="text" id="location" name="location" placeholder="City &amp; country — e.g. Lisbon, Portugal" />
-            </div>
-            <div class="form-row">
-              <label for="language">Preferred language</label>
-              <input type="text" id="language" name="language" placeholder="e.g. Português — we'll translate live" />
-            </div>
-            <div class="form-row">
               <label for="goal">Primary Goal</label>
               <select id="goal" name="goal" required>
                 <option value="" disabled selected>Select your goal…</option>
@@ -1100,11 +998,9 @@
               <label for="interest">Interested In</label>
               <select id="interest" name="interest" required>
                 <option value="" disabled selected>Select a program…</option>
-                <option>Online — Essentials ($99/mo + free FitPack)</option>
-                <option>Online — Pro ($199/mo · most popular)</option>
-                <option>Online — Elite ($349/mo)</option>
-                <option>In-Home — 1-on-1 Portable ($90 / 60-min · Clark County)</option>
-                <option>In-Home — Senior Strength ($40 / 25-min · Clark County)</option>
+                <option>Senior Strength ($40 / 25-min, in-home)</option>
+                <option>1-on-1 Portable Training ($90 / 60-min)</option>
+                <option>Online Coaching + FitPack (nationwide)</option>
                 <option>Post-PT / Bridge program</option>
                 <option>Not sure yet — help me decide</option>
               </select>
@@ -1127,15 +1023,13 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <div class="brand">
-          <span class="brand-mark" aria-hidden="true">
-            <img src="img/logo-mark.svg?v=1" alt="" width="34" height="34" />
-          </span>
+          <span class="brand-mark" aria-hidden="true">⚡</span>
           <span class="brand-text">
             <span class="brand-name">Olympian</span>
             <span class="brand-sub">Health Solutions</span>
           </span>
         </div>
-        <p>Science-backed personal training by Zeuse Valentine — train live from anywhere in the world, in your language, or in-home across Clark County, WA. Specializing in post-PT, senior fitness &amp; pain-free strength. Free FitPack shipped nationwide.</p>
+        <p>Science-backed, portable personal training by Zeuse Valentine — specializing in post-PT, senior fitness &amp; pain-free strength. Based in Battle Ground, serving Clark County, WA.</p>
         <p class="footer-email"><a href="mailto:OHS@OlympianSolutions.org">OHS@OlympianSolutions.org</a></p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
@@ -1143,7 +1037,7 @@
         <a href="#bridge">Post-PT Training</a>
         <a href="#seniors">Senior Fitness</a>
         <a href="#programs">Programs</a>
-        <a href="#online">Train Anywhere (Worldwide)</a>
+        <a href="#online">Online (Nationwide)</a>
         <a href="#quiz">Free Quiz</a>
         <a href="#books">Books</a>
         <a href="blog/index.html">Blog</a>
@@ -1151,7 +1045,6 @@
         <a href="#pricing">Pricing</a>
         <a href="schedule.html">Schedule a Call</a>
         <a href="#contact">Free Assessment</a>
-        <a href="login.html">Client Login</a>
       </nav>
       <div class="footer-cta">
         <a href="#contact" class="btn btn-gold">Start Today</a>
@@ -1202,7 +1095,7 @@
           { "@type": "Occupation", "name": "Personal Trainer" },
           { "@type": "Occupation", "name": "Author" }
         ],
-        "description": "Zeuse Valentine is a NASM Certified Personal Trainer, author, and founder of Olympian Health Solutions, providing science-backed personal training worldwide. He coaches clients live online from anywhere in the world — using real-time translation so clients can train in their own language — and offers portable in-home sessions across Clark County, Washington. Every online plan includes a free FitPack shipped nationwide. He holds a B.S. in Exercise Science from Oregon State University and is a Doctor of Physical Therapy student, specializing in senior fitness, post-physical-therapy training, fall prevention, pain-free movement, and strength. He is also the primary caregiver and coach for his 87-year-old grandfather. His own recovery from a serious shoulder injury inspired his focus on helping older adults and injured clients rebuild strength and confidence.",
+        "description": "Zeuse Valentine is a NASM Certified Personal Trainer, author, and founder of Olympian Health Solutions, providing science-backed, portable in-home personal training based in Battle Ground and serving Clark County, Washington. He holds a B.S. in Exercise Science from Oregon State University and is a Doctor of Physical Therapy student, specializing in senior fitness, post-physical-therapy training, fall prevention, pain-free movement, and strength. He is also the primary caregiver and coach for his 87-year-old grandfather. His own recovery from a serious shoulder injury inspired his focus on helping older adults and injured clients rebuild strength and confidence.",
         "url": "https://olympiansolutions.org/",
         "image": "https://olympiansolutions.org/img/zeuse.jpg",
         "gender": "Male",
@@ -1268,7 +1161,7 @@
         "@id": "https://olympiansolutions.org/#business",
         "name": "Olympian Health Solutions",
         "alternateName": "Olympian Health Solutions — Personal Training",
-        "description": "Olympian Health Solutions provides science-backed personal training worldwide, founded by Zeuse Valentine (B.S. Exercise Science, NASM-CPT, DPT student). Clients train live online from anywhere in the world, in their own language via real-time translation, and every online plan includes a free FitPack shipped nationwide. Portable, in-home sessions are also offered across Clark County, Washington. Specialties include senior fitness, post-physical-therapy training, fall prevention, pain-free movement, and strength.",
+        "description": "Olympian Health Solutions provides portable, in-home personal training based in Battle Ground and serving Clark County, Washington, founded by Zeuse Valentine (B.S. Exercise Science, NASM-CPT, DPT student). Specialties include senior fitness, post-physical-therapy training, fall prevention, pain-free movement, and strength.",
         "url": "https://olympiansolutions.org/",
         "image": "https://olympiansolutions.org/img/og-cover.jpg",
         "logo": "https://olympiansolutions.org/img/og-cover.jpg",
@@ -1277,11 +1170,9 @@
         "employee": { "@id": "https://olympiansolutions.org/#zeuse" },
         "priceRange": "$$",
         "currenciesAccepted": "USD",
-        "knowsLanguage": ["en", "es", "zh", "ar", "pt", "fr", "hi", "de", "ja", "ru", "ko"],
-        "slogan": "World-Class Coaching. In Your Language. Anywhere.",
+        "knowsLanguage": "en",
+        "slogan": "Precision Training. Measurable Results.",
         "areaServed": [
-          { "@type": "Place", "name": "Worldwide" },
-          { "@type": "Country", "name": "United States" },
           { "@type": "AdministrativeArea", "name": "Clark County, Washington" },
           { "@type": "City", "name": "Battle Ground, Washington" },
           { "@type": "City", "name": "Vancouver, Washington" }
@@ -1297,16 +1188,12 @@
           "@type": "OfferCatalog",
           "name": "Personal Training Services",
           "itemListElement": [
-            { "@type": "Offer", "name": "Online Coaching — Essentials", "priceCurrency": "USD", "price": "99", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "99", "priceCurrency": "USD", "unitText": "MONTH" }, "category": "Online Personal Training", "description": "Monthly online coaching from anywhere in the world: custom app program refreshed monthly, a free FitPack shipped nationwide, message support, a monthly check-in, and live sessions with real-time translation in your language." },
-            { "@type": "Offer", "name": "Online Coaching — Pro", "priceCurrency": "USD", "price": "199", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "199", "priceCurrency": "USD", "unitText": "MONTH" }, "category": "Online Personal Training", "description": "Everything in Essentials plus two live 1-on-1 video sessions per month with real-time translation, weekly check-ins, ongoing program adjustments, and priority messaging." },
-            { "@type": "Offer", "name": "Online Coaching — Elite", "priceCurrency": "USD", "price": "349", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "349", "priceCurrency": "USD", "unitText": "MONTH" }, "category": "Online Personal Training", "description": "Highest-touch online coaching: weekly live 1-on-1 sessions, nutrition and recovery coaching, same-day priority support, and a quarterly progress deep-dive — anywhere in the world, in your language." },
-            { "@type": "Offer", "name": "Senior Strength — Portable In-Home Session", "priceCurrency": "USD", "price": "40", "description": "25-minute in-home session of gentle strength and balance training for older adults, 1–5× per week. Clark County, WA." },
+            { "@type": "Offer", "name": "Senior Strength — Portable In-Home Session", "priceCurrency": "USD", "price": "40", "description": "25-minute in-home session of gentle strength and balance training for older adults, 1–5× per week." },
             { "@type": "Offer", "name": "1-on-1 Portable Personal Training", "priceCurrency": "USD", "price": "90", "description": "60-minute private, portable training session across Clark County, WA. Includes movement assessment and custom programming." },
             { "@type": "Offer", "name": "Session Packages", "priceCurrency": "USD", "description": "Discounted rates on packs of 8 or more sessions." }
           ]
         },
         "makesOffer": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Online Personal Training with Real-Time Translation", "serviceType": "Online Personal Training", "description": "Live, science-based personal training delivered online to clients anywhere in the world, with real-time translation so each client trains in their own language. Includes a free FitPack shipped nationwide.", "areaServed": { "@type": "Place", "name": "Worldwide" }, "availableLanguage": ["English", "Spanish", "Chinese", "Arabic", "Portuguese", "French", "Hindi", "German", "Japanese", "Russian", "Korean", "Tagalog"] } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Post-Physical-Therapy Training (Bridge Program)", "serviceType": "Post-Rehabilitation Personal Training", "description": "Strength and conditioning that picks up where physical therapy ends — rebuilding strength and confidence to prevent re-injury." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Senior Fitness & Fall Prevention", "serviceType": "Senior Fitness" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pain-Free Movement Coaching", "serviceType": "Corrective Exercise" } },
@@ -1323,7 +1210,7 @@
         "@id": "https://olympiansolutions.org/#website",
         "url": "https://olympiansolutions.org/",
         "name": "Olympian Health Solutions",
-        "description": "Global personal training by Zeuse Valentine — train live from anywhere in the world, in your language, with real-time translation. Free FitPack shipped nationwide. Portable in-home sessions across Clark County, WA.",
+        "description": "Portable personal training by Zeuse Valentine — Battle Ground & Clark County, WA.",
         "publisher": { "@id": "https://olympiansolutions.org/#business" },
         "inLanguage": "en-US"
       },
@@ -1357,14 +1244,8 @@
             "acceptedAnswer": { "@type": "Answer", "text": "Most clients feel a difference in 2–3 weeks and see visible change by week 6–8. Consistency beats intensity — the plan is engineered to be something you can actually stick to." } },
           { "@type": "Question", "name": "What if I'm not satisfied?",
             "acceptedAnswer": { "@type": "Answer", "text": "If you complete your first month of coaching, follow the plan, and don't feel it was worth it, Zeuse will work with you until it is. Your results are his reputation." } },
-          { "@type": "Question", "name": "I don't speak English fluently — can we still train together?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Real-time translation runs through the live sessions, so you hear coaching in your language and Zeuse understands you in yours — cues, questions, and encouragement included. Coaching is available in 50+ languages." } },
-          { "@type": "Question", "name": "I live outside the U.S. — can you coach me?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Online coaching is fully global — sessions are delivered live over video from anywhere in the world, scheduled around your time zone. The free FitPack ships within the U.S.; international clients receive a simple gear list to source the equivalent equipment locally." } },
-          { "@type": "Question", "name": "How does the free FitPack shipping work?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Every online coaching plan includes a FitPack — a complete, drawer-sized home gym — shipped to your door free anywhere in the U.S. It arrives within days and sets up in five minutes, so you can train the same day." } },
           { "@type": "Question", "name": "What areas does Olympian Health Solutions serve?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Online coaching is available worldwide — train live from anywhere, in your language. For in-person training, Zeuse offers portable, in-home sessions across Clark County, WA, based in Battle Ground, where there's no travel fee." } }
+            "acceptedAnswer": { "@type": "Answer", "text": "Portable, in-home and on-site personal training across Clark County, WA — based in Battle Ground, where there's no travel fee. Zeuse brings everything to you." } }
         ]
       }
     ]

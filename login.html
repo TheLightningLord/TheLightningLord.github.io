@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>Client Login | Olympian Health Solutions</title>
+  <meta name="description" content="Sign in to your Olympian Health Solutions client portal to access training plans, workouts and notes from Zeuse Valentine." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://olympiansolutions.org/login.html" />
+
+  <meta name="theme-color" content="#0c1f3f" />
+  <link rel="icon" type="image/svg+xml" href="img/logo-mark.svg?v=1" />
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/portal.css?v=1" />
+  <script src="js/portal-config.js"></script>
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="img/logo-mark.svg?v=1" alt="" width="42" height="42" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Olympian</span>
+          <span class="brand-sub">Health Solutions</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html" class="btn btn-ghost btn-small">← Back to site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="portal-main" id="top">
+    <div class="portal-wrap narrow">
+      <div class="portal-card">
+        <div class="portal-head center" style="text-align:center;">
+          <h1 id="authHeading">Client Portal</h1>
+          <p id="authSub">Sign in to view the materials Zeuse has assigned to you.</p>
+        </div>
+
+        <div class="auth-tabs" role="tablist">
+          <button class="auth-tab active" id="tabSignin" role="tab" aria-selected="true">Sign in</button>
+          <button class="auth-tab" id="tabSignup" role="tab" aria-selected="false">Create account</button>
+        </div>
+
+        <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
+
+        <form id="authForm" novalidate>
+          <div class="form-row" id="nameRow" hidden>
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Your name" />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required />
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required minlength="6" />
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-block" id="submitBtn">Sign in</button>
+        </form>
+
+        <p class="portal-foot-link">
+          <a href="#" id="forgotLink">Forgot your password?</a>
+        </p>
+      </div>
+      <p class="portal-foot-link"><a href="index.html">← Back to the main site</a></p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { supabase, isConfigured } from "./js/portal.js";
+
+    const $ = (id) => document.getElementById(id);
+    const msg = $("msg");
+    const form = $("authForm");
+    const submitBtn = $("submitBtn");
+    const nameRow = $("nameRow");
+    let mode = "signin"; // or "signup"
+
+    const params = new URLSearchParams(location.search);
+    const next = params.get("next") || "dashboard.html";
+
+    function showMsg(text, kind = "info") {
+      msg.textContent = text;
+      msg.className = "portal-msg show " + kind;
+    }
+    function clearMsg() { msg.className = "portal-msg"; }
+
+    // If already signed in, skip straight to the dashboard.
+    (async () => {
+      if (!isConfigured()) {
+        showMsg("Portal isn't connected yet — add your Supabase keys in js/portal-config.js.", "info");
+        return;
+      }
+      const { data } = await supabase.auth.getSession();
+      if (data.session) window.location.replace(next);
+    })();
+
+    function setMode(m) {
+      mode = m;
+      const signin = m === "signin";
+      $("tabSignin").classList.toggle("active", signin);
+      $("tabSignup").classList.toggle("active", !signin);
+      $("tabSignin").setAttribute("aria-selected", signin);
+      $("tabSignup").setAttribute("aria-selected", !signin);
+      nameRow.hidden = signin;
+      $("password").autocomplete = signin ? "current-password" : "new-password";
+      $("authHeading").textContent = signin ? "Client Portal" : "Create your account";
+      $("authSub").textContent = signin
+        ? "Sign in to view the materials Zeuse has assigned to you."
+        : "Make an account, then Zeuse will assign your training materials.";
+      submitBtn.textContent = signin ? "Sign in" : "Create account";
+      clearMsg();
+    }
+    $("tabSignin").addEventListener("click", () => setMode("signin"));
+    $("tabSignup").addEventListener("click", () => setMode("signup"));
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!isConfigured()) { showMsg("Portal isn't connected yet.", "error"); return; }
+      clearMsg();
+      const email = $("email").value.trim();
+      const password = $("password").value;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Please wait…";
+
+      try {
+        if (mode === "signin") {
+          const { error } = await supabase.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          window.location.replace(next);
+        } else {
+          const full_name = $("fullName").value.trim();
+          const { data, error } = await supabase.auth.signUp({
+            email, password,
+            options: { data: { full_name }, emailRedirectTo: location.origin + "/login.html" },
+          });
+          if (error) throw error;
+          if (data.session) {
+            window.location.replace(next); // email confirmation disabled
+          } else {
+            showMsg("Account created! Check your email to confirm, then sign in.", "success");
+            setMode("signin");
+          }
+        }
+      } catch (err) {
+        showMsg(err.message || "Something went wrong. Please try again.", "error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = mode === "signin" ? "Sign in" : "Create account";
+      }
+    });
+
+    $("forgotLink").addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!isConfigured()) { showMsg("Portal isn't connected yet.", "error"); return; }
+      const email = $("email").value.trim();
+      if (!email) { showMsg("Enter your email above first, then click Forgot password.", "info"); return; }
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: location.origin + "/login.html",
+      });
+      showMsg(error ? error.message : "Password reset link sent — check your email.", error ? "error" : "success");
+    });
+  </script>
+</body>
+</html>
