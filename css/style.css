@@ -743,6 +743,122 @@ img { max-width: 100%; display: block; }
 }
 .senior-card p { font-size: 0.86rem; line-height: 1.65; color: var(--text); }
 
+/* ---------- Where I Do My Best Work ---------- */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  margin: 3.2rem auto 1.6rem;
+}
+.work-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.6rem 2.2rem;
+  border-radius: 18px;
+  background: linear-gradient(165deg, var(--ink-3), var(--ink-2));
+  border: 1px solid var(--line);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+.work-card-glow {
+  position: absolute;
+  inset: -40%;
+  z-index: -1;
+  background: radial-gradient(circle at 30% 20%, rgba(91, 147, 240, 0.22), transparent 60%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+}
+.work-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(47, 109, 212, 0.5);
+  box-shadow: 0 26px 60px rgba(20, 50, 110, 0.14), 0 0 0 1px rgba(47, 109, 212, 0.18);
+}
+.work-card:hover .work-card-glow { opacity: 1; transform: scale(1); }
+.work-card-icon {
+  display: inline-flex;
+  font-size: 2.4rem;
+  margin-bottom: 1.1rem;
+  transition: transform 0.5s var(--ease);
+}
+.work-card:hover .work-card-icon { transform: scale(1.18) rotate(-6deg); }
+.work-card h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--marble); margin-bottom: 0.6rem; }
+.work-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.3rem; }
+.work-card-loc {
+  font-size: 0.78rem;
+  color: var(--gold-deep);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.4rem;
+}
+.work-card-cta {
+  margin-top: auto;
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.work-card-cta span { display: inline-block; transition: transform 0.3s var(--ease); }
+.work-card:hover .work-card-cta span { transform: translateX(6px); }
+
+.work-global {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+  padding: 1.6rem 2.2rem;
+  margin-top: 0.4rem;
+  border-radius: 100px;
+  background: var(--gold-grad);
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: var(--shadow-gold);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.work-global:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(47, 109, 212, 0.38); }
+.work-global-shine {
+  position: absolute;
+  top: 0; left: -60%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s var(--ease);
+}
+.work-global:hover .work-global-shine { left: 120%; }
+.work-global-left { display: flex; align-items: center; gap: 1rem; }
+.work-global-icon {
+  font-size: 1.8rem;
+  display: inline-flex;
+  animation: workGlobeSpin 7s linear infinite;
+}
+@keyframes workGlobeSpin {
+  0%, 85% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.work-global-text { display: flex; flex-direction: column; color: #fff; }
+.work-global-text strong { font-size: 1.05rem; font-weight: 700; }
+.work-global-text small { font-size: 0.8rem; opacity: 0.92; font-weight: 400; }
+.work-global-cta {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .work-global { flex-direction: column; align-items: flex-start; border-radius: 24px; }
+  .work-global-cta { align-self: flex-end; }
+}
+
 /* ---------- Programs ---------- */
 .program-grid {
   display: grid;
@@ -1010,6 +1126,63 @@ img { max-width: 100%; display: block; }
 @keyframes faqFade {
   from { opacity: 0; transform: translateY(-6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Client Portal Promo ---------- */
+.portal-promo-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.4rem, 5vw, 4rem);
+  border-radius: 26px;
+  background: linear-gradient(155deg, var(--royal-deep) 0%, #16315e 60%, var(--royal-deep) 100%);
+  text-align: center;
+}
+.portal-promo-glow {
+  position: absolute;
+  inset: -50%;
+  background:
+    radial-gradient(35% 45% at 20% 15%, rgba(91, 147, 240, 0.28), transparent 70%),
+    radial-gradient(35% 45% at 85% 85%, rgba(245, 208, 97, 0.14), transparent 70%);
+  animation: portalGlowDrift 16s ease-in-out infinite alternate;
+}
+@keyframes portalGlowDrift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(4%, 3%); }
+}
+.portal-promo-copy { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+.portal-promo-copy .eyebrow { color: var(--gold-light); }
+.portal-promo-copy .eyebrow::before { background: var(--gold-light); }
+.portal-promo-copy .section-title { color: #fff; }
+.portal-promo-copy .section-sub { color: #c3d2ec; }
+
+.portal-promo-chips {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin: 1.8rem 0 2.2rem;
+}
+.pp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e3ebfa;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease);
+}
+.pp-chip:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.14); }
+
+.portal-promo-actions { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
+.portal-promo-new { color: #aebfda; font-size: 0.88rem; text-decoration: underline; text-decoration-color: rgba(174,191,218,0.4); }
+.portal-promo-new:hover { color: #fff; }
+
+@media (max-width: 640px) {
+  .portal-promo-card { padding: 2.2rem 1.4rem; border-radius: 20px; }
 }
 
 /* ---------- Contact ---------- */
