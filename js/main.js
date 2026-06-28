@@ -24,7 +24,6 @@
   /* ---------- Hero: parallax + content fade (scroll + mouse) ---------- */
   const pLayers = [
     { el: document.getElementById("heroBlueprint"), sy: 0.06, mx: 14 },
-    { el: document.getElementById("heroEcg"), sy: 0.12, mx: 26 },
   ].filter((l) => l.el);
 
   let mouseX = 0; // -0.5 .. 0.5
@@ -59,15 +58,18 @@
     }
   }
 
-  /* ---------- Hero: motion-capture node mesh ---------- */
+  /* ---------- Hero: biomechanical motion field ----------
+     Kinetic "movement" streams flowing along an evolving field, plus
+     motion-capture marker nodes that track & link — a premium sports-
+     medicine / biomechanics motif (replaces the old heart-rate line). */
   const meshCanvas = document.getElementById("heroMesh");
   if (meshCanvas && !prefersReduced) {
     const ctx = meshCanvas.getContext("2d");
-    let w, h, nodes, dpr;
-    let running = false;
-    let rafId = null;
+    let w, h, dpr, streams, markers;
+    let running = false, rafId = null, t = 0;
     const pointer = { x: -9999, y: -9999, active: false };
-    const LINK_DIST = 132;
+    const TAU = Math.PI * 2;
+    const TRAIL = 11;
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -79,72 +81,118 @@
       meshCanvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
+
+    // Smooth, slowly-evolving flow field — gives the sense of motion
+    const flow = (x, y) =>
+      (Math.sin(x * 0.0019 + t * 0.6) +
+        Math.cos(y * 0.0021 - t * 0.5) +
+        Math.sin((x + y) * 0.0013 + t * 0.35)) * Math.PI;
+
+    const reseed = (p) => {
+      p.x = Math.random() * w;
+      p.y = Math.random() * h;
+      p.speed = 0.6 + Math.random() * 1.5;
+      p.life = 70 + Math.random() * 150;
+      p.age = 0;
+      p.gold = Math.random() < 0.16;
+      p.trail = [{ x: p.x, y: p.y }];
+      return p;
+    };
+
     const spawn = () => {
-      // Scale node count to area, capped for performance
-      const count = Math.min(58, Math.round((w * h) / 19000));
-      nodes = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.34,
-        vy: (Math.random() - 0.5) * 0.34,
-        r: Math.random() * 1.6 + 1.0,
+      const count = Math.min(90, Math.round((w * h) / 11000));
+      streams = Array.from({ length: count }, () => {
+        const p = reseed({});
+        p.age = Math.random() * p.life; // desync
+        return p;
+      });
+      const mCount = Math.min(9, Math.max(5, Math.round(w / 230)));
+      markers = Array.from({ length: mCount }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        speed: 0.22 + Math.random() * 0.3,
       }));
     };
+
+    const drawTrail = (tr, width, color) => {
+      if (tr.length < 2) return;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.beginPath();
+      ctx.moveTo(tr[0].x, tr[0].y);
+      for (let i = 1; i < tr.length; i++) ctx.lineTo(tr[i].x, tr[i].y);
+      ctx.stroke();
+    };
+
     const tick = () => {
       if (!running) return;
+      t += 0.0025;
       ctx.clearRect(0, 0, w, h);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
 
-      for (const n of nodes) {
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 0 || n.x > w) n.vx *= -1;
-        if (n.y < 0 || n.y > h) n.vy *= -1;
-      }
-
-      // Links between nearby nodes
-      for (let i = 0; i < nodes.length; i++) {
-        const a = nodes[i];
-        for (let j = i + 1; j < nodes.length; j++) {
-          const b = nodes[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < LINK_DIST) {
-            const alpha = (1 - dist / LINK_DIST) * 0.32;
-            ctx.strokeStyle = "rgba(212, 175, 55, " + alpha.toFixed(3) + ")";
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-        // Links to the pointer (interactive "tracking")
+      // Flowing motion streams
+      for (const p of streams) {
+        let ang = flow(p.x, p.y);
         if (pointer.active) {
-          const dx = a.x - pointer.x, dy = a.y - pointer.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < LINK_DIST * 1.5) {
-            const alpha = (1 - dist / (LINK_DIST * 1.5)) * 0.5;
-            ctx.strokeStyle = "rgba(245, 208, 97, " + alpha.toFixed(3) + ")";
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(pointer.x, pointer.y);
-            ctx.stroke();
-          }
+          const dx = p.x - pointer.x, dy = p.y - pointer.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 30000) ang += (1 - d2 / 30000) * 2.6; // swirl around cursor
+        }
+        p.x += Math.cos(ang) * p.speed;
+        p.y += Math.sin(ang) * p.speed;
+        p.trail.push({ x: p.x, y: p.y });
+        if (p.trail.length > TRAIL) p.trail.shift();
+        p.age++;
+
+        if (p.age > p.life || p.x < -30 || p.x > w + 30 || p.y < -30 || p.y > h + 30) {
+          reseed(p); continue;
+        }
+        const fade = Math.min(1, (p.life - p.age) / 26) * Math.min(1, p.age / 10);
+        const a = 0.5 * fade;
+        if (p.gold) {
+          drawTrail(p.trail, 3, "rgba(240, 196, 132, " + (a * 0.45).toFixed(3) + ")");
+          drawTrail(p.trail, 1.2, "rgba(250, 224, 176, " + a.toFixed(3) + ")");
+        } else {
+          drawTrail(p.trail, 3, "rgba(110, 158, 240, " + (a * 0.45).toFixed(3) + ")");
+          drawTrail(p.trail, 1.2, "rgba(176, 206, 255, " + a.toFixed(3) + ")");
         }
       }
 
-      // Nodes (motion-capture markers)
-      for (const n of nodes) {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(245, 224, 160, 0.85)";
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r + 2.5, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(212, 175, 55, 0.22)";
-        ctx.lineWidth = 1;
-        ctx.stroke();
+      // Motion-capture markers drift along the same field
+      for (const m of markers) {
+        const ang = flow(m.x, m.y);
+        m.x += Math.cos(ang) * m.speed;
+        m.y += Math.sin(ang) * m.speed;
+        if (m.x < 0) m.x += w; else if (m.x > w) m.x -= w;
+        if (m.y < 0) m.y += h; else if (m.y > h) m.y -= h;
+      }
+      // Kinematic links between markers + tracking lines to cursor
+      for (let i = 0; i < markers.length; i++) {
+        const a = markers[i];
+        for (let j = i + 1; j < markers.length; j++) {
+          const b = markers[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 260) {
+            ctx.strokeStyle = "rgba(91, 147, 240, " + ((1 - d / 260) * 0.22).toFixed(3) + ")";
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+        if (pointer.active) {
+          const d = Math.hypot(a.x - pointer.x, a.y - pointer.y);
+          if (d < 240) {
+            ctx.strokeStyle = "rgba(150, 190, 255, " + ((1 - d / 240) * 0.45).toFixed(3) + ")";
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(pointer.x, pointer.y); ctx.stroke();
+          }
+        }
+      }
+      // Marker dots with tracking rings, drawn on top
+      for (const m of markers) {
+        ctx.beginPath(); ctx.arc(m.x, m.y, 2.6, 0, TAU);
+        ctx.fillStyle = "rgba(196, 219, 255, 0.95)"; ctx.fill();
+        ctx.beginPath(); ctx.arc(m.x, m.y, 6.5, 0, TAU);
+        ctx.strokeStyle = "rgba(91, 147, 240, 0.3)"; ctx.lineWidth = 1; ctx.stroke();
       }
 
       rafId = requestAnimationFrame(tick);
@@ -355,6 +403,34 @@
     );
   }
 
+  /* ---------- Mobile dock: scroll-spy + hide over contact ---------- */
+  const dock = document.getElementById("mobileDock");
+  if (dock) {
+    const contact = document.getElementById("contact");
+    if (contact) {
+      new IntersectionObserver(
+        (entries) => entries.forEach((e) => dock.classList.toggle("dock-hidden", e.isIntersecting)),
+        { threshold: 0.18 }
+      ).observe(contact);
+    }
+    // Highlight the dock item for whichever section is in view
+    const spyItems = dock.querySelectorAll(".dock-item[data-spy]");
+    spyItems.forEach((item) => {
+      const sec = document.getElementById(item.dataset.spy);
+      if (!sec) return;
+      new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              spyItems.forEach((i) => i.classList.remove("active"));
+              item.classList.add("active");
+            }
+          }),
+        { threshold: 0.5 }
+      ).observe(sec);
+    });
+  }
+
   /* ---------- Before / After slider ---------- */
   const baRange = document.getElementById("baRange");
   if (baRange) {
@@ -389,70 +465,6 @@
         '<iframe src="' + url + sep + 'autoplay=1" title="Intro video by Zeuse Valentine" ' +
         'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
         'allowfullscreen></iframe>';
-    });
-  }
-
-  /* ---------- Calorie & Macro calculator ---------- */
-  const calcForm = document.getElementById("calcForm");
-  if (calcForm) {
-    let unit = "imperial";
-    const $ = (id) => document.getElementById(id);
-
-    // Unit toggle
-    document.querySelectorAll(".unit-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        unit = btn.dataset.unit;
-        document.querySelectorAll(".unit-btn").forEach((b) => b.classList.toggle("active", b === btn));
-        const imp = unit === "imperial";
-        document.querySelector(".calc-imp").hidden = !imp;
-        document.querySelector(".calc-met").hidden = imp;
-        document.querySelector(".wt-unit").textContent = imp ? "lb" : "kg";
-        // sensible default weight when switching
-        $("calcWeight").value = imp ? 175 : 79;
-      });
-    });
-
-    // Sex segmented control
-    let sex = "male";
-    document.querySelectorAll("#calcSex button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        sex = btn.dataset.v;
-        document.querySelectorAll("#calcSex button").forEach((b) => b.classList.toggle("active", b === btn));
-      });
-    });
-
-    const fmt = (n) => Math.round(n / 10) * 10;
-
-    calcForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const age = parseFloat($("calcAge").value) || 30;
-      let kg, cm;
-      if (unit === "imperial") {
-        const ft = parseFloat($("calcFt").value) || 0;
-        const inch = parseFloat($("calcIn").value) || 0;
-        cm = (ft * 12 + inch) * 2.54;
-        kg = (parseFloat($("calcWeight").value) || 0) * 0.453592;
-      } else {
-        cm = parseFloat($("calcCm").value) || 0;
-        kg = parseFloat($("calcWeight").value) || 0;
-      }
-      if (!kg || !cm) return;
-
-      // Mifflin–St Jeor
-      const bmr = 10 * kg + 6.25 * cm - 5 * age + (sex === "male" ? 5 : -161);
-      const tdee = bmr * parseFloat($("calcActivity").value);
-      const proteinG = Math.round(kg * 1.8); // ~0.8 g/lb
-
-      $("crMaintain").textContent = fmt(tdee).toLocaleString();
-      $("crCut").textContent = fmt(tdee * 0.8).toLocaleString();
-      $("crBulk").textContent = fmt(tdee * 1.1).toLocaleString();
-      $("crProtein").textContent = proteinG + " g";
-      $("crBmr").textContent = Math.round(bmr).toLocaleString();
-      $("crTdee").textContent = Math.round(tdee).toLocaleString();
-
-      const results = $("calcResults");
-      results.hidden = false;
-      results.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "nearest" });
     });
   }
 
