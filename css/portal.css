@@ -1,0 +1,93 @@
+/* ============================================================
+   OLYMPIAN HEALTH SOLUTIONS — portal.css
+   Layout for login / dashboard / admin. Inherits all colour,
+   type and shadow tokens from style.css (load style.css first).
+   ============================================================ */
+
+.portal-main { min-height: 70vh; padding: calc(var(--topbar-h) + 90px) 0 90px; }
+
+.portal-wrap { width: min(1080px, 92%); margin: 0 auto; }
+.portal-wrap.narrow { width: min(460px, 92%); }
+
+/* ---------- Cards / panels ---------- */
+.portal-card {
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  padding: 2rem 2.1rem;
+}
+.portal-card + .portal-card { margin-top: 1.4rem; }
+
+.portal-head { margin-bottom: 1.6rem; }
+.portal-head h1 { color: var(--marble); font-family: var(--serif); font-weight: 600; line-height: 1.1; }
+.portal-head p { color: var(--muted); margin-top: .4rem; }
+
+/* ---------- Auth (login) ---------- */
+.auth-tabs { display: flex; gap: .4rem; margin-bottom: 1.4rem; background: var(--ink-2); padding: .35rem; border-radius: 14px; }
+.auth-tab {
+  flex: 1; padding: .7rem 1rem; border: 0; border-radius: 10px; cursor: pointer;
+  font-family: var(--sans); font-weight: 500; font-size: .9rem; color: var(--muted);
+  background: transparent; transition: all .2s var(--ease);
+}
+.auth-tab.active { background: var(--ink-3); color: var(--gold-deep); box-shadow: var(--shadow-soft); }
+
+/* ---------- Feedback banners ---------- */
+.portal-msg { border-radius: 12px; padding: .85rem 1rem; font-size: .9rem; margin: 0 0 1.1rem; display: none; }
+.portal-msg.show { display: block; }
+.portal-msg.error   { background: #fdecec; color: #9b1c1c; border: 1px solid #f5c2c2; }
+.portal-msg.success { background: #eafaf0; color: #14663a; border: 1px solid #bce8cf; }
+.portal-msg.info    { background: var(--ink-2); color: var(--text); border: 1px solid var(--line); }
+
+/* ---------- Material sections ---------- */
+.portal-grid { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .portal-grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+
+.material {
+  border: 1px solid var(--line); border-radius: 16px; padding: 1.2rem 1.3rem;
+  background: var(--ink-3); transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.material:hover { border-color: var(--gold); transform: translateY(-2px); }
+.material h3 { color: var(--marble); font-size: 1.05rem; font-weight: 600; }
+.material .meta { color: var(--muted); font-size: .8rem; margin-top: .15rem; }
+.material .body { color: var(--text); margin-top: .7rem; white-space: pre-wrap; }
+
+.mtag {
+  display: inline-block; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: .2rem .55rem; border-radius: 999px; font-weight: 600;
+}
+.mtag.pdf     { background: #eaf1ff; color: var(--gold-deep); }
+.mtag.workout { background: #fff3e0; color: #9a6212; }
+.mtag.note    { background: #eef7f0; color: #14663a; }
+
+/* ---------- Workout table ---------- */
+.workout-table { width: 100%; border-collapse: collapse; margin-top: .7rem; font-size: .9rem; }
+.workout-table th, .workout-table td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--line); }
+.workout-table th { color: var(--muted); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; }
+.workout-table td { color: var(--text); }
+
+/* ---------- Admin tables / lists ---------- */
+.admin-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.admin-table th, .admin-table td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.admin-table th { color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; }
+.admin-table td .pill { font-size: .75rem; color: var(--muted); }
+
+.section-label { font-family: var(--serif); font-size: 1.35rem; color: var(--marble); font-weight: 600; margin-bottom: .9rem; }
+
+/* exercise builder rows */
+.ex-row { display: grid; grid-template-columns: 2fr .7fr .7fr 2fr auto; gap: .5rem; margin-bottom: .5rem; align-items: center; }
+.ex-row input { width: 100%; }
+.ex-row .btn-x { background: #fdecec; color: #9b1c1c; border: 0; border-radius: 8px; padding: .55rem .7rem; cursor: pointer; }
+@media (max-width: 620px) { .ex-row { grid-template-columns: 1fr 1fr; } }
+
+.inline-form { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.inline-form select, .inline-form input { flex: 1; min-width: 160px; }
+
+.portal-foot-link { text-align: center; margin-top: 1.4rem; }
+.portal-foot-link a { color: var(--gold-deep); font-size: .88rem; }
+
+.empty-state { color: var(--muted); text-align: center; padding: 2rem 1rem; font-style: italic; }
+
+.portal-userbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.portal-userbar .who strong { color: var(--marble); }
+.portal-userbar .who small { color: var(--muted); display: block; }
