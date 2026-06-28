@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=6" />
+  <link rel="stylesheet" href="../css/style.css?v=14" />
 </head>
 <body>
   <header class="nav scrolled" id="nav" style="position:sticky">
@@ -69,6 +69,22 @@
 
         <p>The perfect workout isn't the longest one. It's the one that fits your life well enough that you'll still be doing it a year from now. Start with 20 minutes, a few times a week. Consistency — backed by the science above — will do the rest.</p>
 
+        <section class="faq-list" aria-label="Frequently asked questions">
+          <h2>Frequently Asked Questions</h2>
+          <details class="faq-item">
+            <summary>Can 20 minutes really build muscle and fitness?<span class="faq-chevron" aria-hidden="true">+</span></summary>
+            <p>Yes — research on minimum effective dose has found that even a low dose of resistance training, as little as a few hard sets per muscle each week, is enough to increase maximal strength.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is it better to train every day for less time, or fewer days for longer?</summary>
+            <p>Total effort matters more than how it's spread out. Large population studies on "weekend warriors" found people who packed activity into just one or two sessions a week still had substantially lower mortality risk than inactive people.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What exercises give the most benefit in limited time?</summary>
+            <p>Big, compound movements — squats, hinges, presses, rows, and carries — train the most muscle per minute, and pairing exercises (alternating push with pull) cuts wasted rest time.</p>
+          </details>
+        </section>
+
         <section class="references">
           <h2>References</h2>
           <ol>
@@ -80,6 +96,25 @@
           </ol>
           <p class="ref-note">This article is educational and not medical advice. Consult your physician before starting a new exercise program.</p>
         </section>
+
+        <section class="blog-cat" aria-label="Related articles">
+          <h2>Related Articles</h2>
+          <div class="blog-cat-grid">
+            <a class="insight-post" href="exercise-inflammation-muscle-growth.html">
+              <div class="ip-tag">Training Science</div>
+              <h3>Is Inflammation Good for You? The Science of Muscle Growth</h3>
+              <p>Why a short, intense session can still trigger real muscle adaptation.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="insight-post" href="strength-training-after-60.html">
+              <div class="ip-tag">Senior Fitness</div>
+              <h3>Strength Training After 60: What the Research Really Says</h3>
+              <p>The same minimum-effective-dose principle, applied to training later in life.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </section>
+
         <a class="article-back" href="index.html">← More articles</a>
       </div>
     </article>
@@ -88,22 +123,54 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "The 20-Minute Workout for Busy People",
-    "description": "A research-backed look at getting real strength and fitness results in 20 minutes a few times a week, using the science of minimum effective dose.",
-    "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
-    "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
-    "mainEntityOfPage": "https://olympiansolutions.org/blog/20-minute-workout-busy-schedule.html",
-    "image": "https://olympiansolutions.org/img/og-cover.jpg",
-    "datePublished": "2026-06-18",
-    "articleSection": "Busy Schedules",
-    "inLanguage": "en-US",
-    "citation": [
-      "Gillen JB, Gibala MJ. Is high-intensity interval training a time-efficient exercise strategy to improve health and fitness? Applied Physiology, Nutrition, and Metabolism. 2014.",
-      "Androulakis-Korakakis P, Fisher JP, Steele J. The minimum effective training dose required to increase 1RM strength in resistance-trained men: a systematic review and meta-analysis. Sports Medicine. 2020.",
-      "O'Donovan G, Lee IM, Hamer M, Stamatakis E. Association of 'weekend warrior' and other leisure-time physical activity patterns with risks for all-cause and cardiovascular disease mortality. JAMA Internal Medicine. 2017.",
-      "Bull FC, et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. British Journal of Sports Medicine. 2020.",
-      "Islam H, Gibala MJ, Little JP. Exercise snacks: a novel strategy to improve cardiometabolic health. Exercise and Sport Sciences Reviews. 2022."
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "The 20-Minute Workout for Busy People",
+        "description": "A research-backed look at getting real strength and fitness results in 20 minutes a few times a week, using the science of minimum effective dose.",
+        "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
+        "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
+        "mainEntityOfPage": "https://olympiansolutions.org/blog/20-minute-workout-busy-schedule.html",
+        "image": "https://olympiansolutions.org/img/og-cover.jpg",
+        "datePublished": "2026-06-18",
+        "articleSection": "Busy Schedules",
+        "inLanguage": "en-US",
+        "citation": [
+          "Gillen JB, Gibala MJ. Is high-intensity interval training a time-efficient exercise strategy to improve health and fitness? Applied Physiology, Nutrition, and Metabolism. 2014.",
+          "Androulakis-Korakakis P, Fisher JP, Steele J. The minimum effective training dose required to increase 1RM strength in resistance-trained men: a systematic review and meta-analysis. Sports Medicine. 2020.",
+          "O'Donovan G, Lee IM, Hamer M, Stamatakis E. Association of 'weekend warrior' and other leisure-time physical activity patterns with risks for all-cause and cardiovascular disease mortality. JAMA Internal Medicine. 2017.",
+          "Bull FC, et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. British Journal of Sports Medicine. 2020.",
+          "Islam H, Gibala MJ, Little JP. Exercise snacks: a novel strategy to improve cardiometabolic health. Exercise and Sport Sciences Reviews. 2022."
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can 20 minutes really build muscle and fitness?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — research on minimum effective dose has found that even a low dose of resistance training, as little as a few hard sets per muscle each week, is enough to increase maximal strength." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it better to train every day for less time, or fewer days for longer?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Total effort matters more than how it's spread out. Large population studies on weekend warriors found people who packed activity into just one or two sessions a week still had substantially lower mortality risk than inactive people." }
+          },
+          {
+            "@type": "Question",
+            "name": "What exercises give the most benefit in limited time?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Big, compound movements — squats, hinges, presses, rows, and carries — train the most muscle per minute, and pairing exercises cuts wasted rest time." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiansolutions.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://olympiansolutions.org/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "The 20-Minute Workout for Busy People", "item": "https://olympiansolutions.org/blog/20-minute-workout-busy-schedule.html" }
+        ]
+      }
     ]
   }
   </script>

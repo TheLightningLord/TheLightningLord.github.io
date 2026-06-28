@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=6" />
+  <link rel="stylesheet" href="../css/style.css?v=14" />
 </head>
 <body>
   <header class="nav scrolled" id="nav" style="position:sticky">
@@ -69,6 +69,22 @@
         <h2>Where to start</h2>
         <p>You don't need a gym full of barbells. A good beginning is two to three short sessions a week covering the major movement patterns — sitting to standing, pushing, pulling, carrying, and balance work — scaled to your ability and progressed slowly. The goal isn't to train like a 25-year-old. It's to be the strongest, steadiest version of <em>you</em>. It is, genuinely, never too late to start.</p>
 
+        <section class="faq-list" aria-label="Frequently asked questions">
+          <h2>Frequently Asked Questions</h2>
+          <details class="faq-item">
+            <summary>Is it too late to start strength training at 60, 70, or 80?<span class="faq-chevron" aria-hidden="true">+</span></summary>
+            <p>No. A landmark trial found that frail nursing-home residents with an average age of about 90 made large strength and mobility gains after just weeks of supervised resistance training. The body still responds to training at any age.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How often should older adults strength train?</summary>
+            <p>Two to three sessions a week covering the major movement patterns — sitting to standing, pushing, pulling, carrying, and balance — is a solid, well-supported starting point, scaled to ability and progressed slowly.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can strength training really reduce my risk of falling?</summary>
+            <p>Yes — a major Cochrane review found exercise programs that include strength and balance training reduce the rate of falls in community-dwelling older adults by roughly 23%.</p>
+          </details>
+        </section>
+
         <section class="references">
           <h2>References</h2>
           <ol>
@@ -81,6 +97,25 @@
           </ol>
           <p class="ref-note">This article is educational and not medical advice. Consult your physician before beginning a new exercise program.</p>
         </section>
+
+        <section class="blog-cat" aria-label="Related articles">
+          <h2>Related Articles</h2>
+          <div class="blog-cat-grid">
+            <a class="insight-post" href="balance-training-seniors-fall-risk.html">
+              <div class="ip-tag">Senior Fitness</div>
+              <h3>Balance Training for Seniors: Exercises That Actually Cut Fall Risk</h3>
+              <p>The other half of fall prevention — specific balance work and what it adds beyond strength alone.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="insight-post" href="training-after-physical-therapy.html">
+              <div class="ip-tag">Injury Recovery</div>
+              <h3>What to Do After Physical Therapy Ends</h3>
+              <p>Closing the strength gap after rehab — the same principle that makes late-life strength training work.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </section>
+
         <a class="article-back" href="index.html">← More articles</a>
       </div>
     </article>
@@ -89,23 +124,55 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Strength Training After 60: What the Research Really Says",
-    "description": "The research-backed case for strength training after 60 — for independence, bone density, and fall prevention.",
-    "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
-    "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
-    "mainEntityOfPage": "https://olympiansolutions.org/blog/strength-training-after-60.html",
-    "image": "https://olympiansolutions.org/img/og-cover.jpg",
-    "datePublished": "2026-06-17",
-    "articleSection": "Senior Fitness",
-    "inLanguage": "en-US",
-    "citation": [
-      "Cruz-Jentoft AJ, et al. Sarcopenia: revised European consensus on definition and diagnosis (EWGSOP2). Age and Ageing. 2019.",
-      "Fiatarone MA, et al. High-intensity strength training in nonagenarians. JAMA. 1990.",
-      "Sherrington C, et al. Exercise for preventing falls in older people living in the community. Cochrane Database of Systematic Reviews. 2019.",
-      "Watson SL, et al. High-intensity resistance and impact training improves bone mineral density and physical function in postmenopausal women with osteopenia and osteoporosis: the LIFTMOR randomized controlled trial. Journal of Bone and Mineral Research. 2018.",
-      "García-Hermoso A, et al. Muscular strength as a predictor of all-cause mortality in an apparently healthy population: a systematic review and meta-analysis. Archives of Physical Medicine and Rehabilitation. 2018.",
-      "Fiatarone MA, et al. Exercise training and nutritional supplementation for physical frailty in very elderly people. New England Journal of Medicine. 1994."
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Strength Training After 60: What the Research Really Says",
+        "description": "The research-backed case for strength training after 60 — for independence, bone density, and fall prevention.",
+        "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
+        "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
+        "mainEntityOfPage": "https://olympiansolutions.org/blog/strength-training-after-60.html",
+        "image": "https://olympiansolutions.org/img/og-cover.jpg",
+        "datePublished": "2026-06-17",
+        "articleSection": "Senior Fitness",
+        "inLanguage": "en-US",
+        "citation": [
+          "Cruz-Jentoft AJ, et al. Sarcopenia: revised European consensus on definition and diagnosis (EWGSOP2). Age and Ageing. 2019.",
+          "Fiatarone MA, et al. High-intensity strength training in nonagenarians. JAMA. 1990.",
+          "Sherrington C, et al. Exercise for preventing falls in older people living in the community. Cochrane Database of Systematic Reviews. 2019.",
+          "Watson SL, et al. High-intensity resistance and impact training improves bone mineral density and physical function in postmenopausal women with osteopenia and osteoporosis: the LIFTMOR randomized controlled trial. Journal of Bone and Mineral Research. 2018.",
+          "García-Hermoso A, et al. Muscular strength as a predictor of all-cause mortality in an apparently healthy population: a systematic review and meta-analysis. Archives of Physical Medicine and Rehabilitation. 2018.",
+          "Fiatarone MA, et al. Exercise training and nutritional supplementation for physical frailty in very elderly people. New England Journal of Medicine. 1994."
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is it too late to start strength training at 60, 70, or 80?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. A landmark trial found that frail nursing-home residents with an average age of about 90 made large strength and mobility gains after just weeks of supervised resistance training. The body still responds to training at any age." }
+          },
+          {
+            "@type": "Question",
+            "name": "How often should older adults strength train?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Two to three sessions a week covering the major movement patterns — sitting to standing, pushing, pulling, carrying, and balance — is a solid, well-supported starting point, scaled to ability and progressed slowly." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can strength training really reduce my risk of falling?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — a major Cochrane review found exercise programs that include strength and balance training reduce the rate of falls in community-dwelling older adults by roughly 23%." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiansolutions.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://olympiansolutions.org/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "Strength Training After 60", "item": "https://olympiansolutions.org/blog/strength-training-after-60.html" }
+        ]
+      }
     ]
   }
   </script>

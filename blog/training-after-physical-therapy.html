@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=6" />
+  <link rel="stylesheet" href="../css/style.css?v=14" />
 </head>
 <body>
   <header class="nav scrolled" id="nav" style="position:sticky">
@@ -72,6 +72,22 @@
         <h2>What to look for in a coach after PT</h2>
         <p>You want someone who understands tissue healing and progressive loading, will communicate with your healthcare providers when useful, and scales every exercise to your history rather than running you through a generic template. Finishing PT isn't the finish line — it's the handoff. Done right, the months after rehab are when you come back <strong>stronger than before the injury.</strong></p>
 
+        <section class="faq-list" aria-label="Frequently asked questions">
+          <h2>Frequently Asked Questions</h2>
+          <details class="faq-item">
+            <summary>How long after finishing PT should I keep training the area?<span class="faq-chevron" aria-hidden="true">+</span></summary>
+            <p>There's no fixed cutoff — the goal is to keep progressively loading the area until it's measurably as strong as, or stronger than, the uninjured side, not just until a calendar date.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is it normal to still feel weaker after being discharged from PT?</summary>
+            <p>Yes, and it's extremely common. Meaningful muscle loss occurs within the first one to two weeks of disuse, so most people leave PT with the area still measurably weaker than the rest of their body — daily life often doesn't expose that gap until you return to harder activity.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can a personal trainer replace physical therapy?</summary>
+            <p>No — they serve different purposes. Physical therapy resolves the injury and restores baseline function; a knowledgeable trainer picks up afterward to progressively rebuild full strength and reduce re-injury risk.</p>
+          </details>
+        </section>
+
         <section class="references">
           <h2>References</h2>
           <ol>
@@ -83,6 +99,25 @@
           </ol>
           <p class="ref-note">This article is educational and not medical advice — always follow your physician's or physical therapist's specific guidance.</p>
         </section>
+
+        <section class="blog-cat" aria-label="Related articles">
+          <h2>Related Articles</h2>
+          <div class="blog-cat-grid">
+            <a class="insight-post" href="exercise-inflammation-muscle-growth.html">
+              <div class="ip-tag">Training Science</div>
+              <h3>Is Inflammation Good for You? The Science of Muscle Growth</h3>
+              <p>The repair-and-adapt biology behind why progressive loading works after an injury.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="insight-post" href="exercise-for-chronic-pain.html">
+              <div class="ip-tag">Pain Science</div>
+              <h3>Can Exercise Really Help Chronic Pain?</h3>
+              <p>What to do when pain lingers even after the original injury has healed.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </section>
+
         <a class="article-back" href="index.html">← More articles</a>
       </div>
     </article>
@@ -91,22 +126,54 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "What to Do After Physical Therapy Ends",
-    "description": "A research-backed guide to bridging the gap from rehab to genuinely strong — and preventing re-injury — after physical therapy.",
-    "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
-    "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
-    "mainEntityOfPage": "https://olympiansolutions.org/blog/training-after-physical-therapy.html",
-    "image": "https://olympiansolutions.org/img/og-cover.jpg",
-    "datePublished": "2026-06-17",
-    "articleSection": "Injury Recovery",
-    "inLanguage": "en-US",
-    "citation": [
-      "Wall BT, Dirks ML, van Loon LJC. Skeletal muscle atrophy during short-term disuse: implications for age-related sarcopenia. Ageing Research Reviews. 2013.",
-      "Grindem H, et al. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. British Journal of Sports Medicine. 2016.",
-      "Ratamess NA, et al. American College of Sports Medicine position stand: progression models in resistance training for healthy adults. Medicine & Science in Sports & Exercise. 2009.",
-      "Alfredson H, et al. Heavy-load eccentric calf muscle training for the treatment of chronic Achilles tendinosis. The American Journal of Sports Medicine. 1998.",
-      "Suchomel TJ, Nimphius S, Stone MH. The importance of muscular strength in athletic performance. Sports Medicine. 2016."
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What to Do After Physical Therapy Ends",
+        "description": "A research-backed guide to bridging the gap from rehab to genuinely strong — and preventing re-injury — after physical therapy.",
+        "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
+        "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
+        "mainEntityOfPage": "https://olympiansolutions.org/blog/training-after-physical-therapy.html",
+        "image": "https://olympiansolutions.org/img/og-cover.jpg",
+        "datePublished": "2026-06-17",
+        "articleSection": "Injury Recovery",
+        "inLanguage": "en-US",
+        "citation": [
+          "Wall BT, Dirks ML, van Loon LJC. Skeletal muscle atrophy during short-term disuse: implications for age-related sarcopenia. Ageing Research Reviews. 2013.",
+          "Grindem H, et al. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. British Journal of Sports Medicine. 2016.",
+          "Ratamess NA, et al. American College of Sports Medicine position stand: progression models in resistance training for healthy adults. Medicine & Science in Sports & Exercise. 2009.",
+          "Alfredson H, et al. Heavy-load eccentric calf muscle training for the treatment of chronic Achilles tendinosis. The American Journal of Sports Medicine. 1998.",
+          "Suchomel TJ, Nimphius S, Stone MH. The importance of muscular strength in athletic performance. Sports Medicine. 2016."
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How long after finishing PT should I keep training the area?",
+            "acceptedAnswer": { "@type": "Answer", "text": "There's no fixed cutoff — the goal is to keep progressively loading the area until it's measurably as strong as, or stronger than, the uninjured side, not just until a calendar date." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it normal to still feel weaker after being discharged from PT?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it's extremely common. Meaningful muscle loss occurs within the first one to two weeks of disuse, so most people leave PT with the area still measurably weaker than the rest of their body." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a personal trainer replace physical therapy?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No — they serve different purposes. Physical therapy resolves the injury and restores baseline function; a knowledgeable trainer picks up afterward to progressively rebuild full strength and reduce re-injury risk." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiansolutions.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://olympiansolutions.org/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "What to Do After Physical Therapy Ends", "item": "https://olympiansolutions.org/blog/training-after-physical-therapy.html" }
+        ]
+      }
     ]
   }
   </script>

@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=6" />
+  <link rel="stylesheet" href="../css/style.css?v=14" />
 </head>
 <body>
   <header class="nav scrolled" id="nav" style="position:sticky">
@@ -70,6 +70,22 @@
         <h2>An important caveat</h2>
         <p>Not all pain is persistent, overprotective pain — new, severe, or "red flag" symptoms need medical evaluation first, and this article isn't a substitute for that. But for the many people living with longstanding aches that scans can't fully explain, the message from the research is genuinely encouraging: <strong>your body is not broken, and the right kind of movement is often the way out.</strong></p>
 
+        <section class="faq-list" aria-label="Frequently asked questions">
+          <h2>Frequently Asked Questions</h2>
+          <details class="faq-item">
+            <summary>Will exercise make my chronic pain worse?<span class="faq-chevron" aria-hidden="true">+</span></summary>
+            <p>Usually not when it's dosed and progressed appropriately. Graded movement is associated with reduced pain sensitivity over time, while avoidance tends to feed the cycle of fear, weakness, and worse pain.</p>
+          </details>
+          <details class="faq-item">
+            <summary>My scan shows damage — shouldn't I avoid moving that area?</summary>
+            <p>Not necessarily. Imaging findings like disc bulges and degeneration are extremely common in people with no pain at all, found in over a third of pain-free 20-year-olds and the large majority of pain-free 80-year-olds. A scan finding doesn't automatically explain your pain.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is rest ever the right answer for chronic pain?</summary>
+            <p>New, severe, or red-flag symptoms need medical evaluation first. But for the large majority of longstanding, persistent pain, leading clinical guidance now favors graded activity over rest and inactivity.</p>
+          </details>
+        </section>
+
         <section class="references">
           <h2>References</h2>
           <ol>
@@ -81,6 +97,25 @@
           </ol>
           <p class="ref-note">This article is educational and not medical advice or a diagnosis. See a qualified provider for new, severe, or worsening symptoms.</p>
         </section>
+
+        <section class="blog-cat" aria-label="Related articles">
+          <h2>Related Articles</h2>
+          <div class="blog-cat-grid">
+            <a class="insight-post" href="exercises-for-lower-back-pain.html">
+              <div class="ip-tag">Pain Science</div>
+              <h3>The Best Exercises for Lower Back Pain, According to Research</h3>
+              <p>A practical breakdown of which exercise categories actually have evidence behind them.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="insight-post" href="training-after-physical-therapy.html">
+              <div class="ip-tag">Injury Recovery</div>
+              <h3>What to Do After Physical Therapy Ends</h3>
+              <p>Why "no longer injured" isn't the same as fully recovered — and how to close the gap.</p>
+              <span class="ip-link">Read article <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </section>
+
         <a class="article-back" href="index.html">← More articles</a>
       </div>
     </article>
@@ -89,22 +124,54 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Can Exercise Really Help Chronic Pain?",
-    "description": "A research-backed look at why rest is often the wrong advice for chronic pain — and how graded movement calms the nervous system and rebuilds capacity.",
-    "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
-    "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
-    "mainEntityOfPage": "https://olympiansolutions.org/blog/exercise-for-chronic-pain.html",
-    "image": "https://olympiansolutions.org/img/og-cover.jpg",
-    "datePublished": "2026-06-17",
-    "articleSection": "Pain Science",
-    "inLanguage": "en-US",
-    "citation": [
-      "Brinjikji W, et al. Systematic literature review of imaging features of spinal degeneration in asymptomatic populations. American Journal of Neuroradiology. 2015.",
-      "Vlaeyen JWS, Linton SJ. Fear-avoidance and its consequences in chronic musculoskeletal pain: a state of the art. Pain. 2000.",
-      "Rice D, et al. Exercise-induced hypoalgesia in pain-free and chronic pain populations: state of the art and future directions. The Journal of Pain. 2019.",
-      "Hayden JA, et al. Exercise therapy for chronic low back pain. Cochrane Database of Systematic Reviews. 2021.",
-      "Foster NE, et al. Prevention and treatment of low back pain: evidence, challenges, and promising directions. The Lancet. 2018."
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Can Exercise Really Help Chronic Pain?",
+        "description": "A research-backed look at why rest is often the wrong advice for chronic pain — and how graded movement calms the nervous system and rebuilds capacity.",
+        "author": { "@type": "Person", "name": "Zeuse Valentine", "url": "https://olympiansolutions.org/" },
+        "publisher": { "@type": "Organization", "name": "Olympian Health Solutions", "url": "https://olympiansolutions.org/" },
+        "mainEntityOfPage": "https://olympiansolutions.org/blog/exercise-for-chronic-pain.html",
+        "image": "https://olympiansolutions.org/img/og-cover.jpg",
+        "datePublished": "2026-06-17",
+        "articleSection": "Pain Science",
+        "inLanguage": "en-US",
+        "citation": [
+          "Brinjikji W, et al. Systematic literature review of imaging features of spinal degeneration in asymptomatic populations. American Journal of Neuroradiology. 2015.",
+          "Vlaeyen JWS, Linton SJ. Fear-avoidance and its consequences in chronic musculoskeletal pain: a state of the art. Pain. 2000.",
+          "Rice D, et al. Exercise-induced hypoalgesia in pain-free and chronic pain populations: state of the art and future directions. The Journal of Pain. 2019.",
+          "Hayden JA, et al. Exercise therapy for chronic low back pain. Cochrane Database of Systematic Reviews. 2021.",
+          "Foster NE, et al. Prevention and treatment of low back pain: evidence, challenges, and promising directions. The Lancet. 2018."
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Will exercise make my chronic pain worse?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Usually not when it's dosed and progressed appropriately. Graded movement is associated with reduced pain sensitivity over time, while avoidance tends to feed the cycle of fear, weakness, and worse pain." }
+          },
+          {
+            "@type": "Question",
+            "name": "My scan shows damage — shouldn't I avoid moving that area?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. Imaging findings like disc bulges and degeneration are extremely common in people with no pain at all, found in over a third of pain-free 20-year-olds and the large majority of pain-free 80-year-olds." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is rest ever the right answer for chronic pain?",
+            "acceptedAnswer": { "@type": "Answer", "text": "New, severe, or red-flag symptoms need medical evaluation first. But for the large majority of longstanding, persistent pain, leading clinical guidance now favors graded activity over rest and inactivity." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiansolutions.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://olympiansolutions.org/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "Can Exercise Really Help Chronic Pain?", "item": "https://olympiansolutions.org/blog/exercise-for-chronic-pain.html" }
+        ]
+      }
     ]
   }
   </script>
