@@ -46,7 +46,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=19" />
 </head>
 <body>
 
@@ -91,7 +91,7 @@
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
         <a href="#about">About</a>
-        <a href="#online">Train Anywhere</a>
+        <a href="global-training.html">Train Anywhere</a>
         <a href="#bridge">Post-PT</a>
         <a href="#seniors">Seniors</a>
         <a href="#programs">Programs</a>
@@ -134,8 +134,8 @@
           strength, and stay independent — at any age.
         </p>
         <div class="hero-cta reveal d4">
-          <a href="#contact" class="btn btn-gold btn-lg">Book a Free Assessment</a>
-          <a href="#online" class="btn btn-ghost btn-lg">Train From Anywhere →</a>
+          <a href="schedule.html" class="btn btn-gold btn-lg">Reserve Complimentary Session</a>
+          <a href="#programs" class="btn btn-ghost btn-lg">View Services</a>
         </div>
         <p class="hero-login reveal d4">
           Already a client? <a href="login.html">🔒 Sign in to your portal →</a>
@@ -153,90 +153,122 @@
         </div>
       </div>
 
-      <a href="#marquee" class="scroll-cue" aria-label="Scroll down">
+      <a href="#focus" class="scroll-cue" aria-label="Scroll down">
         <span class="scroll-cue-line"></span>
       </a>
     </section>
 
-    <!-- ===== Marquee ===== -->
-    <section class="marquee" id="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Strength</span><span class="mq-dot">◆</span>
-        <span>Discipline</span><span class="mq-dot">◆</span>
-        <span>Longevity</span><span class="mq-dot">◆</span>
-        <span>Power</span><span class="mq-dot">◆</span>
-        <span>Recovery</span><span class="mq-dot">◆</span>
-        <span>Performance</span><span class="mq-dot">◆</span>
-        <span>Strength</span><span class="mq-dot">◆</span>
-        <span>Discipline</span><span class="mq-dot">◆</span>
-        <span>Longevity</span><span class="mq-dot">◆</span>
-        <span>Power</span><span class="mq-dot">◆</span>
-        <span>Recovery</span><span class="mq-dot">◆</span>
-        <span>Performance</span><span class="mq-dot">◆</span>
+    <!-- ===== Specialty Banner (full-bleed · the two things I do best) ===== -->
+    <section class="focus-banner-wrap" id="focus" aria-label="My two specialties">
+      <div class="focus-banner">
+        <span class="focus-banner-shine" aria-hidden="true"></span>
+        <a href="#seniors" class="focus-side focus-side-seniors">
+          <span class="focus-ico" aria-hidden="true">🦴</span>
+          <span class="focus-text">
+            <span class="focus-eyebrow">Specialty 01</span>
+            <strong>Senior Strength &amp; Balance</strong>
+            <em>Stay steady, strong &amp; independent — at any age</em>
+          </span>
+          <span class="focus-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <span class="focus-divider" aria-hidden="true"><span class="focus-diamond">✦</span></span>
+
+        <a href="#bridge" class="focus-side focus-side-bridge">
+          <span class="focus-ico" aria-hidden="true">⚡</span>
+          <span class="focus-text">
+            <span class="focus-eyebrow">Specialty 02</span>
+            <strong>Post-PT &amp; Pain-Free</strong>
+            <em>From cleared by rehab to genuinely strong</em>
+          </span>
+          <span class="focus-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="focus-stats reveal" aria-label="At a glance">
+        <div class="focus-stat"><strong><span class="counter" data-target="500">0</span>+</strong><span>Sessions delivered</span></div>
+        <div class="focus-stat"><strong><span class="counter" data-target="50">0</span>+</strong><span>Languages · live translation</span></div>
+        <div class="focus-stat"><strong><span class="counter" data-target="7">0</span>+</strong><span>Years in exercise science</span></div>
+        <div class="focus-stat"><strong>24/7</strong><span>Any time zone</span></div>
       </div>
     </section>
 
-    <!-- ===== Stats ===== -->
-    <section class="stats">
-      <div class="container stats-grid">
-        <div class="stat reveal">
-          <div class="stat-num"><span class="counter" data-target="500">0</span>+</div>
-          <div class="stat-label">Coaching Sessions Delivered</div>
-        </div>
-        <div class="stat reveal d1">
-          <div class="stat-num"><span class="counter" data-target="50">0</span>+</div>
-          <div class="stat-label">Languages · Live Translation</div>
-        </div>
-        <div class="stat reveal d2">
-          <div class="stat-num"><span class="counter" data-target="7">0</span>+</div>
-          <div class="stat-label">Years in Exercise Science</div>
-        </div>
-        <div class="stat reveal d3">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Any Time Zone, Worldwide</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Where I Do My Best Work ===== -->
-    <section class="work section section-alt" id="work">
+    <!-- ===== Two Specialties (fancy showcase) ===== -->
+    <section class="specialties section section-alt" id="specialties">
       <div class="container container-narrow center">
         <p class="eyebrow center reveal">Where I Do My Best Work</p>
-        <h2 class="section-title center reveal d1">Two Local Specialties.<br><span class="gold-shimmer">One Global Mission.</span></h2>
-        <p class="section-sub center reveal d2">In-home across Clark County, WA — or live online, anywhere on Earth. Pick the path that fits you.</p>
+        <h2 class="section-title center reveal d1">Two Specialties.<br><span class="gold-shimmer">One Mission — Your Strength.</span></h2>
+        <p class="section-sub center reveal d2">Portable, in-home coaching across Clark County, WA — built for the two moments strength matters most.</p>
       </div>
 
-      <div class="container work-grid reveal d2">
-        <a href="#seniors" class="work-card">
-          <span class="work-card-glow" aria-hidden="true"></span>
-          <span class="work-card-icon" aria-hidden="true">🦴</span>
-          <h3>Senior Fitness</h3>
-          <p>Strength, balance &amp; fall prevention for adults 60+ who want to stay independent and keep doing what they love.</p>
-          <span class="work-card-loc"><span aria-hidden="true">📍</span> Clark County, WA · In-Home</span>
-          <span class="work-card-cta">Explore senior training <span aria-hidden="true">→</span></span>
-        </a>
+      <div class="container spec-stack">
+        <!-- Specialty 01 · Seniors -->
+        <article class="spec-panel reveal d2">
+          <div class="spec-media spec-media-seniors" aria-hidden="true">
+            <span class="spec-badge">Specialty 01</span>
+            <span class="spec-glyph">🦴</span>
+            <span class="spec-media-loc"><span aria-hidden="true">📍</span> Clark County, WA · In-Home</span>
+          </div>
+          <div class="spec-body">
+            <p class="spec-kicker">Senior Fitness · In Your Home</p>
+            <h3>Strength &amp; Balance for Seniors</h3>
+            <p>For adults 60+ who want to stay independent — steady on their feet, strong enough to carry the groceries, lift the grandkids, and keep doing what they love. Gentle, patient, and scaled entirely to you.</p>
+            <ul class="spec-points">
+              <li>Balance &amp; fall-prevention training</li>
+              <li>Bone- &amp; joint-friendly progressions</li>
+              <li>Family welcome to join the first session</li>
+            </ul>
+            <div class="spec-getstarted">
+              <span class="spec-gs-ico" aria-hidden="true">✧</span>
+              <div><strong>Getting started</strong> — book a free 25-minute in-home visit. We talk goals, check your movement, and you get a plan whether or not we train together.</div>
+            </div>
+            <div class="spec-actions">
+              <a href="schedule.html" class="btn btn-gold">Book a Gentle First Session</a>
+              <a href="#seniors" class="spec-link">See how it works <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
 
-        <a href="#bridge" class="work-card">
-          <span class="work-card-glow" aria-hidden="true"></span>
-          <span class="work-card-icon" aria-hidden="true">⚡</span>
-          <h3>Post-PT &amp; Pain-Free</h3>
-          <p>Just finished physical therapy or fighting nagging pain? I bridge the gap from rehab to genuinely strong.</p>
-          <span class="work-card-loc"><span aria-hidden="true">📍</span> Clark County, WA · In-Home</span>
-          <span class="work-card-cta">Explore the Bridge program <span aria-hidden="true">→</span></span>
-        </a>
+        <!-- Specialty 02 · Post-PT -->
+        <article class="spec-panel spec-reverse reveal d2">
+          <div class="spec-media spec-media-bridge" aria-hidden="true">
+            <span class="spec-badge">Specialty 02</span>
+            <span class="spec-glyph">⚡</span>
+            <span class="spec-media-loc"><span aria-hidden="true">📍</span> Clark County, WA · In-Home</span>
+          </div>
+          <div class="spec-body">
+            <p class="spec-kicker">Post-Physical-Therapy · In Your Home</p>
+            <h3>Keep Going After Discharge</h3>
+            <p>Physical therapy gets you out of pain. I take it from there — bridging the gap from "cleared by your PT" to genuinely, lastingly strong. Doctoral-level programming built around your history, so the problem doesn't come back.</p>
+            <ul class="spec-points">
+              <li>Picks up exactly where your PT left off</li>
+              <li>Re-injury-proofing &amp; pain-free progressions</li>
+              <li>Confidence to trust your body under load again</li>
+            </ul>
+            <div class="spec-getstarted">
+              <span class="spec-gs-ico" aria-hidden="true">✧</span>
+              <div><strong>Getting started</strong> — bring your discharge notes to a free assessment. I map the bridge from where PT ended to where you want to be, and can coordinate with your care team.</div>
+            </div>
+            <div class="spec-actions">
+              <a href="schedule.html" class="btn btn-gold">Start Your Bridge Plan</a>
+              <a href="#bridge" class="spec-link">See how it works <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
       </div>
 
+      <!-- Global Training → dedicated virtual-coaching page -->
       <div class="container reveal d3">
-        <a href="#online" class="work-global">
+        <a href="global-training.html" class="work-global spec-global-banner">
           <span class="work-global-shine" aria-hidden="true"></span>
           <span class="work-global-left">
             <span class="work-global-icon" aria-hidden="true">🌍</span>
             <span class="work-global-text">
-              <strong>Train Globally — Anywhere on Earth, in Your Language</strong>
-              <small>Live coaching worldwide with real-time translation · Free FitPack shipped nationwide</small>
+              <strong>Not local? Train Globally — Anywhere on Earth</strong>
+              <small>Live virtual coaching in your language, real-time translation · Free FitPack shipped nationwide</small>
             </span>
           </span>
-          <span class="work-global-cta">See global training <span aria-hidden="true">→</span></span>
+          <span class="work-global-cta">Explore Global Training <span aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
@@ -315,31 +347,32 @@
     </section>
 
     <!-- ===== The Plan (StoryBrand) ===== -->
-    <section class="process section" id="how">
-      <div class="container">
+    <section class="process section process-compact" id="how">
+      <div class="container container-narrow">
         <p class="eyebrow center reveal">Your Simple Plan</p>
-        <h2 class="section-title center reveal d1">Getting Strong Is Easier Than You Think</h2>
+        <h2 class="section-title section-title-sm center reveal d1">Getting Strong Is Easier Than You Think</h2>
         <p class="section-sub center reveal d2">No gym to join, no guesswork, no pressure. Just three steps.</p>
-        <div class="process-grid">
-          <div class="process-step reveal">
-            <div class="step-num">1</div>
+
+        <div class="process-flow reveal d2">
+          <div class="process-rail" aria-hidden="true"><span class="process-rail-fill"></span></div>
+          <div class="process-step">
+            <div class="step-num"><span class="step-num-inner">1</span><span class="step-ico" aria-hidden="true">📞</span></div>
             <h3>Book a Free Assessment</h3>
-            <p>A relaxed 30 minutes — by video, in your home, or over the phone, in your language. We talk goals, history, and concerns. You leave with clarity, whether or not we train together.</p>
+            <p>A relaxed 30 minutes — by video, in your home, or over the phone, in your language. You leave with clarity, whether or not we train together.</p>
           </div>
-          <div class="process-connector reveal d1" aria-hidden="true"></div>
-          <div class="process-step reveal d1">
-            <div class="step-num">2</div>
+          <div class="process-step">
+            <div class="step-num"><span class="step-num-inner">2</span><span class="step-ico" aria-hidden="true">📋</span></div>
             <h3>Get Your Custom Plan</h3>
             <p>I build a safe, science-based program around your body and your goals — and bring it (and the equipment) right to your door.</p>
           </div>
-          <div class="process-connector reveal d2" aria-hidden="true"></div>
-          <div class="process-step reveal d2">
-            <div class="step-num">3</div>
+          <div class="process-step">
+            <div class="step-num"><span class="step-num-inner">3</span><span class="step-ico" aria-hidden="true">💪</span></div>
             <h3>Get Strong &amp; Capable</h3>
-            <p>We train, track, and adjust week by week. You get steadier, stronger, and more confident — doing the things you love, for life.</p>
+            <p>We train, track, and adjust week by week — steadier, stronger, and more confident, for life.</p>
           </div>
         </div>
-        <div class="center reveal d2" style="margin-top:2.6rem">
+
+        <div class="center reveal d2" style="margin-top:2.2rem">
           <a href="#contact" class="btn btn-gold btn-lg">Book My Free Assessment</a>
           <p class="plan-reassure">It's free, friendly, and there's zero obligation. The hardest part is saying yes.</p>
         </div>
@@ -394,107 +427,21 @@
       </div>
     </section>
 
-    <!-- ===== Train Anywhere / Global + FitPack ===== -->
-    <section class="online section" id="online">
+    <!-- ===== Global Training pointer (full section lives on global-training.html) ===== -->
+    <section class="online-cta-band section" id="online">
       <div class="container">
-        <p class="eyebrow center reveal">Now Worldwide · Train From Anywhere</p>
-        <h2 class="section-title center reveal d1">No Gym. No Borders.<br><span class="gold-shimmer">Train in Your Language.</span></h2>
-        <p class="section-sub center reveal d2">Live anywhere on Earth? We train together <strong>live</strong> — and <strong>real-time translation</strong> means we speak the same language, every single session. I send you a <strong>FitPack</strong> (free shipping nationwide), then coach you through a plan built around your body, your goals, and your time zone. No equipment to buy, no membership, no commute.</p>
-
-        <!-- Real-time translation highlight -->
-        <div class="lang-band reveal d2" aria-label="Coaching available in your language">
-          <div class="lang-band-head">
-            <span class="lang-band-ico" aria-hidden="true">🗣️</span>
-            <div>
-              <h3>We'll speak the same language — literally.</h3>
-              <p>Real-time translation runs quietly through every live session, so nothing gets lost between us. Coach and client, perfectly understood, in <strong>50+ languages</strong>.</p>
-            </div>
-          </div>
-          <div class="lang-chips" aria-hidden="true">
-            <span class="lang-chip">English</span>
-            <span class="lang-chip">Español</span>
-            <span class="lang-chip">中文</span>
-            <span class="lang-chip">العربية</span>
-            <span class="lang-chip">Português</span>
-            <span class="lang-chip">Français</span>
-            <span class="lang-chip">हिन्दी</span>
-            <span class="lang-chip">Deutsch</span>
-            <span class="lang-chip">日本語</span>
-            <span class="lang-chip">Русский</span>
-            <span class="lang-chip">한국어</span>
-            <span class="lang-chip">Tagalog</span>
-            <span class="lang-chip">+ 40 more</span>
-          </div>
-        </div>
-
-        <div class="online-grid">
-          <!-- FitPack contents -->
-          <div class="fitpack-card reveal d2">
-            <div class="fitpack-head">
-              <span class="fitpack-badge">Ships Free Nationwide</span>
-              <h3>📦 The FitPack</h3>
-              <p>A complete home gym in one light, portable box — and it fits in a drawer.</p>
-            </div>
-            <ul class="fitpack-list">
-              <li>
-                <span class="fp-ico" aria-hidden="true">➰</span>
-                <div><strong>Loop resistance bands</strong><em>Glute, hip &amp; lower-body strength, scaled to you</em></div>
-              </li>
-              <li>
-                <span class="fp-ico" aria-hidden="true">🎗️</span>
-                <div><strong>Resistance bands + door anchor</strong><em>Press, row &amp; pull from any doorway in the house</em></div>
-              </li>
-              <li>
-                <span class="fp-ico" aria-hidden="true">💧</span>
-                <div><strong>Adjustable fill-weight</strong><em>Load it with water or rice — it grows as you do</em></div>
-              </li>
-              <li>
-                <span class="fp-ico" aria-hidden="true">📲</span>
-                <div><strong>Quick-start guide</strong><em>Set up in 5 minutes and train the same day</em></div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- How it works + CTA -->
-          <div class="online-how reveal d3">
-            <div class="online-steps">
-              <div class="online-step">
-                <span class="os-num">1</span>
-                <div><strong>Start with a free intake</strong><p>A quick movement check by video — in your language. I learn your goals, history, and the space you have to work with.</p></div>
-              </div>
-              <div class="online-step">
-                <span class="os-num">2</span>
-                <div><strong>Your FitPack ships free</strong><p>Free nationwide shipping — it lands on your doorstep in days. Everything you need, nothing you don't.</p></div>
-              </div>
-              <div class="online-step">
-                <span class="os-num">3</span>
-                <div><strong>Train live, in your language</strong><p>Real-time translation on every live session, plus custom app workouts, demo videos, and weekly check-ins scheduled around your time zone.</p></div>
-              </div>
-            </div>
-            <div class="online-cta">
-              <a href="#contact" class="btn btn-gold btn-lg">Start Online Coaching →</a>
-              <a href="#online-proof" class="btn btn-ghost btn-lg">Does it really work?</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Effectiveness proof -->
-        <div class="online-proof reveal d2" id="online-proof">
-          <div class="op-stat">
-            <strong>Your language, every session</strong>
-            <span>Real-time translation removes the barrier completely — coach and client, fully understood, in 50+ languages.</span>
-          </div>
-          <div class="op-stat">
-            <strong>Any time zone</strong>
-            <span>Sessions scheduled around your clock, wherever you live. Morning in Manila or midnight in Madrid — we make it work.</span>
-          </div>
-          <div class="op-stat">
-            <strong>Just as effective</strong>
-            <span>Research shows resistance bands build strength comparable to free weights — the body only knows tension, not the source.</span>
-          </div>
-        </div>
-
-        <p class="online-note center reveal d2">Anywhere in the world · FitPack ships free nationwide with every plan</p>
+        <a href="global-training.html" class="global-band reveal">
+          <span class="global-band-glow" aria-hidden="true"></span>
+          <span class="global-band-main">
+            <span class="global-band-ico" aria-hidden="true">🌍</span>
+            <span class="global-band-copy">
+              <span class="global-band-kicker">Now Worldwide · Train From Anywhere</span>
+              <strong>No Gym. No Borders. Train in Your Language.</strong>
+              <small>Live virtual coaching with real-time translation in 50+ languages · a free FitPack ships to your door nationwide.</small>
+            </span>
+          </span>
+          <span class="global-band-cta">Explore Global Training <span aria-hidden="true">→</span></span>
+        </a>
       </div>
     </section>
 
@@ -845,7 +792,15 @@
       <div class="container">
         <p class="eyebrow center reveal">Investment</p>
         <h2 class="section-title center reveal d1">Earn Your Crown</h2>
-        <p class="section-sub center reveal d2">Two ways to train: a global monthly membership you can start from anywhere, or portable in-home sessions across Clark County, WA. Either way, every program is built around you — and spots are limited so each client gets my full attention.</p>
+        <p class="section-sub center reveal d2">Compare a private trainer at $70–$120 a session. My global membership gives you a coach, a plan, and a home gym — for less than the price of a single gym visit a week. Every program is built around <em>you</em>, and the roster is capped so each client gets my full attention.</p>
+
+        <!-- Risk-reversal / trust band -->
+        <div class="pricing-assurance reveal d2">
+          <div class="pa-item"><span class="pa-ico" aria-hidden="true">🛡️</span><div><strong>14-day promise</strong><span>Not a fit? Full refund, no questions.</span></div></div>
+          <div class="pa-item"><span class="pa-ico" aria-hidden="true">🔓</span><div><strong>No lock-in</strong><span>Month-to-month. Cancel anytime.</span></div></div>
+          <div class="pa-item"><span class="pa-ico" aria-hidden="true">📦</span><div><strong>Free FitPack</strong><span>A $75 home gym, on the house.</span></div></div>
+          <div class="pa-item"><span class="pa-ico" aria-hidden="true">🎓</span><div><strong>Doctor-level coaching</strong><span>DPT student · B.S. Kinesiology.</span></div></div>
+        </div>
 
         <!-- Global online monthly tiers -->
         <h3 class="pricing-group-title reveal d2"><span class="pgt-ico" aria-hidden="true">🌍</span> Train From Anywhere · Monthly Coaching</h3>
@@ -854,43 +809,50 @@
             <h3>Essentials</h3>
             <p class="price-desc">Coach-built training you run on your own schedule.</p>
             <div class="price"><span class="price-num">$99</span><span class="price-per">/ month</span></div>
+            <p class="price-anchor">≈ $23/week — less than one gym drop-in</p>
             <ul>
               <li>Custom app program, refreshed monthly</li>
-              <li>FitPack shipped free (nationwide)</li>
+              <li>Free FitPack shipped nationwide <span class="li-tag">$75 value</span></li>
               <li>Demo videos for every movement</li>
               <li>Message support + monthly check-in</li>
               <li>Train in your language — real-time translation</li>
             </ul>
             <a href="#contact" class="btn btn-ghost btn-block">Start Essentials</a>
+            <p class="price-foot">No card to start · book a free intake first</p>
           </article>
 
           <article class="price-card price-featured reveal d1">
-            <div class="program-badge">Most Popular</div>
+            <div class="program-badge">★ Most Popular</div>
             <h3>Pro</h3>
             <p class="price-desc">Live coaching + a plan that adapts every week.</p>
             <div class="price"><span class="price-num">$199</span><span class="price-per">/ month</span></div>
+            <p class="price-anchor">2 live sessions alone would cost $140+ elsewhere</p>
             <ul>
-              <li>Everything in Essentials</li>
+              <li><strong>Everything in Essentials</strong></li>
               <li>2 live 1-on-1 video sessions / month</li>
               <li>Real-time translation on every session</li>
               <li>Weekly check-ins &amp; program adjustments</li>
-              <li>Priority messaging</li>
+              <li>Priority messaging — answers within a day</li>
             </ul>
             <a href="#contact" class="btn btn-gold btn-block">Start Pro</a>
+            <p class="price-foot">Most clients start here · cancel anytime</p>
           </article>
 
           <article class="price-card reveal d2">
+            <div class="program-badge badge-value">Best Value</div>
             <h3>Elite</h3>
             <p class="price-desc">My highest-touch coaching, anywhere in the world.</p>
             <div class="price"><span class="price-num">$349</span><span class="price-per">/ month</span></div>
+            <p class="price-anchor">4 weekly sessions + nutrition — under $90/session</p>
             <ul>
-              <li>Everything in Pro</li>
+              <li><strong>Everything in Pro</strong></li>
               <li>Weekly live 1-on-1 sessions (4 / month)</li>
               <li>Nutrition &amp; recovery coaching</li>
               <li>Same-day priority support</li>
               <li>Quarterly progress deep-dive</li>
             </ul>
             <a href="#contact" class="btn btn-ghost btn-block">Apply for Elite</a>
+            <p class="price-foot">Limited — only a few Elite spots open</p>
           </article>
         </div>
         <p class="pricing-subnote center reveal d2">Free FitPack with every plan · ships free nationwide · cancel anytime</p>
@@ -902,6 +864,7 @@
             <h3>Senior Strength</h3>
             <p class="price-desc">Gentle, in-home training to keep you strong &amp; independent.</p>
             <div class="price"><span class="price-num">$40</span><span class="price-per">/ session</span></div>
+            <p class="price-anchor">Most-loved by families caring for a parent</p>
             <ul>
               <li>25-minute sessions, 1–5× per week</li>
               <li>I come to your living room or chosen spot</li>
@@ -909,13 +872,15 @@
               <li>Patient pace — family welcome to join</li>
             </ul>
             <a href="#contact" class="btn btn-ghost btn-block">Book a Gentle Session</a>
+            <p class="price-foot">First visit is free — no obligation</p>
           </article>
 
           <article class="price-card price-featured reveal d1">
-            <div class="program-badge">Most Popular</div>
+            <div class="program-badge">★ Most Popular</div>
             <h3>1-on-1 Portable</h3>
             <p class="price-desc">Full private training, brought to your door.</p>
             <div class="price"><span class="price-num">$90</span><span class="price-per">/ session</span></div>
+            <p class="price-anchor">Everything a $120 studio session gives — at home</p>
             <ul>
               <li>60-minute private sessions</li>
               <li>Movement assessment included</li>
@@ -924,12 +889,15 @@
               <li>I bring the equipment &amp; the plan</li>
             </ul>
             <a href="#contact" class="btn btn-gold btn-block">Book a Session</a>
+            <p class="price-foot">No gym, no commute · just results</p>
           </article>
 
           <article class="price-card reveal d2">
+            <div class="program-badge badge-value">Save up to 20%</div>
             <h3>Session Packs</h3>
             <p class="price-desc">Commit to the work, save on every session.</p>
             <div class="price"><span class="price-num">Save</span><span class="price-per">on 8+</span></div>
+            <p class="price-anchor">The path most transformations actually take</p>
             <ul>
               <li>Best value for real, lasting results</li>
               <li>Available on Senior &amp; 1-on-1 sessions</li>
@@ -937,7 +905,18 @@
               <li>Build momentum with consistency</li>
             </ul>
             <a href="#contact" class="btn btn-ghost btn-block">Ask About Packages</a>
+            <p class="price-foot">Lock in today's rate before it rises</p>
           </article>
+        </div>
+
+        <!-- The Olympian Promise -->
+        <div class="pricing-promise reveal d2">
+          <span class="pp-crown" aria-hidden="true">👑</span>
+          <div class="pp-body">
+            <h3>The Olympian Promise</h3>
+            <p>Train with me for two full weeks. If you don't feel stronger, clearer, and genuinely looked-after, I'll refund every dollar — and you keep the FitPack. All the risk is on me, because I only win when you do.</p>
+          </div>
+          <a href="#contact" class="btn btn-gold btn-lg pp-cta">Claim Your Crown →</a>
         </div>
 
         <p class="pricing-note reveal">Not sure which fits? <a href="#contact">Book a free assessment</a> — no pressure, just a plan.</p>
@@ -1148,7 +1127,7 @@
         <a href="#bridge">Post-PT Training</a>
         <a href="#seniors">Senior Fitness</a>
         <a href="#programs">Programs</a>
-        <a href="#online">Train Anywhere (Worldwide)</a>
+        <a href="global-training.html">Train Anywhere (Worldwide)</a>
         <a href="#quiz">Free Quiz</a>
         <a href="#books">Books</a>
         <a href="blog/index.html">Blog</a>

@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=14" />
-  <link rel="stylesheet" href="css/portal.css?v=1" />
+  <link rel="stylesheet" href="css/portal.css?v=2" />
   <script src="js/portal-config.js"></script>
 </head>
 <body>
@@ -45,6 +45,19 @@
 
   <main class="portal-main" id="top">
     <div class="portal-wrap narrow">
+
+      <!-- Summer Kickoff promo — shown to new sign-ups -->
+      <div class="promo-banner" id="promoBanner">
+        <span class="promo-flare" aria-hidden="true"></span>
+        <span class="promo-badge">☀️ Summer Kickoff 2026</span>
+        <p class="promo-headline">Create a free account &amp; unlock your first plan today.</p>
+        <ul class="promo-perks">
+          <li><span aria-hidden="true">🎁</span> Free intro consultation with Zeuse</li>
+          <li><span aria-hidden="true">💪</span> A personalized starter workout — instantly in your dashboard</li>
+          <li><span aria-hidden="true">🔒</span> Locked-in summer member rates</li>
+        </ul>
+      </div>
+
       <div class="portal-card">
         <div class="portal-head center" style="text-align:center;">
           <h1 id="authHeading">Client Portal</h1>
@@ -69,15 +82,32 @@
           </div>
           <div class="form-row">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required minlength="6" />
+            <div class="pw-wrap">
+              <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required minlength="6" />
+              <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">Show</button>
+            </div>
+            <div class="pw-strength" id="pwStrength" hidden>
+              <div class="pw-bar"><span id="pwBar"></span></div>
+              <small id="pwHint">Use at least 6 characters.</small>
+            </div>
+          </div>
+          <div class="form-row" id="promoRow" hidden>
+            <label for="promoCode">Promo code <span class="opt">(optional)</span></label>
+            <input type="text" id="promoCode" name="promoCode" autocomplete="off" placeholder="SUMMER" />
           </div>
 
           <button type="submit" class="btn btn-gold btn-block" id="submitBtn">Sign in</button>
         </form>
 
+        <p class="auth-switch" id="authSwitch" hidden>
+          New to Olympian? <a href="#" id="switchToSignup">Create your free account →</a>
+        </p>
+
         <p class="portal-foot-link">
           <a href="#" id="forgotLink">Forgot your password?</a>
         </p>
+
+        <p class="trust-line">🔒 Private &amp; secure. Your data is never shared. Cancel anytime.</p>
       </div>
       <p class="portal-foot-link"><a href="index.html">← Back to the main site</a></p>
     </div>
@@ -95,6 +125,9 @@
 
     const params = new URLSearchParams(location.search);
     const next = params.get("next") || "dashboard.html";
+    // Marketing links can deep-link straight to sign-up: ?signup=1 or ?promo=SUMMER
+    const wantsSignup = params.get("signup") === "1" || params.has("promo");
+    const promoParam = (params.get("promo") || "").trim().toUpperCase();
 
     function showMsg(text, kind = "info") {
       msg.textContent = text;
@@ -120,16 +153,51 @@
       $("tabSignin").setAttribute("aria-selected", signin);
       $("tabSignup").setAttribute("aria-selected", !signin);
       nameRow.hidden = signin;
+      $("promoRow").hidden = signin;
+      $("pwStrength").hidden = signin;
+      $("authSwitch").hidden = !signin;
+      $("promoBanner").classList.toggle("dim", signin);
       $("password").autocomplete = signin ? "current-password" : "new-password";
-      $("authHeading").textContent = signin ? "Client Portal" : "Create your account";
+      $("authHeading").textContent = signin ? "Welcome back" : "Create your free account";
       $("authSub").textContent = signin
-        ? "Sign in to view the materials Zeuse has assigned to you."
-        : "Make an account, then Zeuse will assign your training materials.";
-      submitBtn.textContent = signin ? "Sign in" : "Create account";
+        ? "Sign in to view the plans, workouts and notes Zeuse assigned you."
+        : "It takes 20 seconds. You'll get a free starter workout the moment you're in.";
+      submitBtn.textContent = signin ? "Sign in" : "Create my free account →";
       clearMsg();
     }
     $("tabSignin").addEventListener("click", () => setMode("signin"));
     $("tabSignup").addEventListener("click", () => setMode("signup"));
+    $("switchToSignup").addEventListener("click", (e) => { e.preventDefault(); setMode("signup"); });
+
+    // Prefill promo code from the marketing link, then open sign-up.
+    if (promoParam) $("promoCode").value = promoParam;
+    if (wantsSignup) setMode("signup");
+
+    // ---- Password: show/hide toggle ----
+    const pwInput = $("password");
+    $("pwToggle").addEventListener("click", () => {
+      const show = pwInput.type === "password";
+      pwInput.type = show ? "text" : "password";
+      $("pwToggle").textContent = show ? "Hide" : "Show";
+      $("pwToggle").setAttribute("aria-label", show ? "Hide password" : "Show password");
+    });
+
+    // ---- Password: lightweight strength meter (sign-up only) ----
+    pwInput.addEventListener("input", () => {
+      if (mode !== "signup") return;
+      const v = pwInput.value;
+      let score = 0;
+      if (v.length >= 6) score++;
+      if (v.length >= 10) score++;
+      if (/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
+      if (/\d/.test(v) || /[^A-Za-z0-9]/.test(v)) score++;
+      const pct = [8, 33, 62, 82, 100][score];
+      const labels = ["Too short", "Weak", "Okay", "Good", "Strong"];
+      const bar = $("pwBar");
+      bar.style.width = pct + "%";
+      bar.className = "s" + score;
+      $("pwHint").textContent = v ? labels[score] : "Use at least 6 characters.";
+    });
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -147,13 +215,17 @@
           window.location.replace(next);
         } else {
           const full_name = $("fullName").value.trim();
+          const promo_code = $("promoCode").value.trim().toUpperCase();
           const { data, error } = await supabase.auth.signUp({
             email, password,
-            options: { data: { full_name }, emailRedirectTo: location.origin + "/login.html" },
+            options: {
+              data: { full_name, promo_code, signup_source: promo_code ? "summer_promo" : "web" },
+              emailRedirectTo: location.origin + "/login.html",
+            },
           });
           if (error) throw error;
           if (data.session) {
-            window.location.replace(next); // email confirmation disabled
+            window.location.replace(next + (next.includes("?") ? "&" : "?") + "welcome=1"); // email confirmation disabled
           } else {
             setMode("signin");
             showMsg("Account created! Check your email to confirm, then sign in.", "success");

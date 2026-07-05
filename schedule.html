@@ -17,7 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=15" />
+  <script src="js/portal-config.js"></script>
 </head>
 <body>
 
@@ -84,11 +85,28 @@
 
       <!-- Online scheduler -->
       <div class="schedule-wrap container">
-        <h2 class="schedule-title">Grab your free 30-minute assessment — pick a time</h2>
-        <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/zeustrength/30min" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
+        <h2 class="schedule-title">Grab your complimentary 30-minute session — pick a time</h2>
+
+        <!-- Loading state while we check for a session -->
+        <p class="empty-state" id="bookingLoading">Loading your booking calendar…</p>
+
+        <!-- Account gate: shown to logged-out visitors -->
+        <div class="booking-gate" id="bookingGate" hidden>
+          <span class="gate-badge">🔒 Members book instantly</span>
+          <h3>Create a free account to reserve your complimentary session</h3>
+          <p>Your first 1-on-1 session is on me. Making a free account takes about 20 seconds — then your live calendar opens right up, and a free starter workout is waiting in your dashboard.</p>
+          <div class="gate-actions">
+            <a href="login.html?next=schedule.html&amp;signup=1" class="btn btn-gold btn-lg">Create free account &amp; book →</a>
+            <a href="login.html?next=schedule.html" class="btn btn-ghost btn-lg">I already have an account</a>
+          </div>
+          <p class="gate-alt">Prefer not to make an account? <a href="index.html#contact">Call or email me instead →</a> — always happy to talk first.</p>
+        </div>
+
+        <!-- Calendly: shown only to signed-in members -->
+        <div id="bookingCalendly" hidden>
+          <div class="calendly-inline-widget" id="calendlyWidget" style="min-width:320px;height:700px;"></div>
+        </div>
+
         <p class="schedule-back center"><a href="index.html">← Not ready yet? Head back to the site</a></p>
       </div>
     </section>
@@ -128,5 +146,50 @@
   </footer>
 
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <!-- Gate the Calendly booking behind a free account. Email/phone above stay public. -->
+  <script type="module">
+    import { getSession, getProfile, isConfigured } from "./js/portal.js";
+
+    const CALENDLY_BASE = "https://calendly.com/zeustrength/30min";
+    const $ = (id) => document.getElementById(id);
+
+    function showCalendly(name, email) {
+      const url = new URL(CALENDLY_BASE);
+      if (name)  url.searchParams.set("name", name);
+      if (email) url.searchParams.set("email", email);
+      // Hide the Calendly footer nag & match our theme a touch.
+      url.searchParams.set("hide_gdpr_banner", "1");
+      $("calendlyWidget").setAttribute("data-url", url.toString());
+      $("bookingCalendly").hidden = false;
+      const s = document.createElement("script");
+      s.src = "https://assets.calendly.com/assets/external/widget.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
+
+    (async () => {
+      try {
+        // If the portal isn't wired up, don't lock people out of booking — just show it.
+        if (!isConfigured()) { $("bookingLoading").hidden = true; showCalendly(); return; }
+
+        const session = await getSession();
+        $("bookingLoading").hidden = true;
+
+        if (session) {
+          const profile = await getProfile().catch(() => null);
+          const name  = (profile?.full_name || "").trim();
+          const email = profile?.email || session.user?.email || "";
+          showCalendly(name, email);
+        } else {
+          $("bookingGate").hidden = false;
+        }
+      } catch (_) {
+        // On any error, fail open to the public gate (never a dead end).
+        $("bookingLoading").hidden = true;
+        $("bookingGate").hidden = false;
+      }
+    })();
+  </script>
 </body>
 </html>
