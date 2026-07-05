@@ -308,6 +308,42 @@
     });
   }
 
+  /* ---------- Path cards: expand pricing + mouse-follow shine ---------- */
+  document.querySelectorAll(".path-card").forEach((card) => {
+    const toggle = card.querySelector(".path-toggle");
+    const detail = card.querySelector(".path-detail");
+    if (toggle && detail) {
+      const label = toggle.querySelector(".path-toggle-txt");
+      toggle.addEventListener("click", () => {
+        const open = card.classList.toggle("path-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) {
+          detail.hidden = false;
+        } else {
+          // wait for the collapse transition before hiding
+          detail.addEventListener("transitionend", function hide(e) {
+            if (e.propertyName === "max-height" && !card.classList.contains("path-open")) {
+              detail.hidden = true;
+              detail.removeEventListener("transitionend", hide);
+            }
+          });
+        }
+        if (label) label.textContent = open ? "Hide pricing" : "See full pricing";
+      });
+    }
+
+    if (canHover) {
+      const shine = card.querySelector(".path-shine");
+      if (shine) {
+        card.addEventListener("mousemove", (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+          card.style.setProperty("--my", (e.clientY - r.top) + "px");
+        });
+      }
+    }
+  });
+
   /* ---------- Testimonial slider ---------- */
   const track = document.getElementById("sliderTrack");
   if (track) {
