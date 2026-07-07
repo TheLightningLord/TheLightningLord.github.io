@@ -4044,3 +4044,123 @@ a.price-card:hover .price-choose span { transform: translateX(5px); }
   .plan-num::after { animation: none; }
   .path-detail { transition: none; }
 }
+
+/* ============================================================
+   2026-07 RE-ARCHITECTURE — new/adjusted components
+   (Two Ways to Train · About video · slim path cards ·
+    in-home rate card · centered getting-started note)
+   ============================================================ */
+
+/* ---- Getting-started note used in Seniors / Bridge ---- */
+.spec-getstarted-center {
+  max-width: 660px; margin-left: auto; margin-right: auto;
+  text-align: left;
+}
+
+/* ---- Meet-Your-Coach video (merged into #about) ---- */
+.about-video { max-width: 760px; margin: 3rem auto 0; }
+.about-video-head { text-align: center; margin-bottom: 1.4rem; }
+.about-video-title {
+  font-family: var(--serif); font-size: 1.7rem; font-weight: 600;
+  color: var(--marble); line-height: 1.2;
+}
+.about-video-sub { font-size: 0.95rem; color: var(--muted); margin-top: 0.4rem; }
+
+/* ---- Two Ways to Train (single local-vs-global band) ---- */
+.two-ways {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem; margin-top: 3rem; align-items: stretch;
+}
+.tw-card {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 2.2rem 2rem;
+  border-radius: 20px; border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+}
+.tw-card:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(20, 50, 110, 0.16); }
+.tw-local { background: linear-gradient(168deg, var(--ink-3), var(--ink-2)); }
+.tw-global {
+  background: linear-gradient(155deg, #12305c 0%, #0c1f3f 100%);
+  border-color: rgba(91, 147, 240, 0.35);
+}
+.tw-ico { font-size: 2rem; margin-bottom: 0.6rem; }
+.tw-eyebrow {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.4rem;
+}
+.tw-global .tw-eyebrow { color: var(--gold-light); }
+.tw-card h3 {
+  font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+  color: var(--marble); line-height: 1.2; margin-bottom: 0.6rem;
+}
+.tw-global h3 { color: #fff; }
+.tw-card p { font-size: 0.92rem; line-height: 1.6; color: var(--muted); margin-bottom: 1.1rem; }
+.tw-global p { color: #b9cdea; }
+.tw-points { list-style: none; margin-bottom: 1.4rem; display: grid; gap: 0.5rem; }
+.tw-points li { position: relative; padding-left: 1.5rem; font-size: 0.9rem; color: var(--text); }
+.tw-points li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.tw-points strong { color: var(--marble); }
+.tw-global .tw-points li { color: #cdddf3; }
+.tw-global .tw-points li::before { color: var(--gold-light); }
+.tw-global .tw-points strong { color: #fff; }
+.tw-cta {
+  margin-top: auto; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.9rem; font-weight: 600; text-decoration: none;
+  padding: 0.75rem 1.4rem; border-radius: 100px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s;
+}
+.tw-local .tw-cta { color: #fff; background: var(--gold-grad); box-shadow: var(--shadow-gold); }
+.tw-global .tw-cta { color: #0c1f3f; background: linear-gradient(120deg, #a9c8f5, #5b93f0); }
+.tw-cta:hover { transform: translateY(-2px); }
+.tw-cta span { transition: transform 0.3s var(--ease); }
+.tw-cta:hover span { transform: translateX(5px); }
+.tw-badge {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.3rem 0.7rem; border-radius: 100px;
+  background: var(--gold-light); color: #0c1f3f;
+}
+
+/* ---- Slim path cards (services menu; pricing now lives in #pricing) ---- */
+.path-card-slim { justify-content: space-between; }
+.path-card-slim .path-cta,
+.path-card-slim .path-cta-row { margin-top: auto; }
+.path-cta-full { width: 100%; }
+.path-cta-row { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+.path-cta-row .path-cta { margin-top: 0; }
+.path-link {
+  position: relative; z-index: 1;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: color 0.3s, border-color 0.3s;
+}
+.path-link:hover { color: var(--marble); border-color: var(--marble); }
+
+/* ---- Full in-home rate card (single source for in-home numbers) ---- */
+.inhome-ratecard {
+  --accent: #2f6dd4;
+  margin-top: 1.6rem;
+  padding: 1.6rem 1.7rem;
+  background: linear-gradient(168deg, var(--ink-3), var(--ink-2));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+.ratecard-title {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
+  color: var(--marble); margin-bottom: 1.1rem;
+  display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+}
+.ratecard-title small { font-family: var(--sans); font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+.ratecard-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem 2.4rem; }
+
+@media (max-width: 780px) {
+  .two-ways { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+}
+@media (max-width: 640px) {
+  .ratecard-groups { grid-template-columns: 1fr; }
+}
