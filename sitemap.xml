@@ -3,13 +3,37 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://olympiansolutions.org/</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://olympiansolutions.org/img/og-cover.jpg</image:loc>
       <image:title>Olympian Health Solutions — Personal Training by Zeuse Valentine</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://olympiansolutions.org/personal-trainer-clark-county-wa.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://olympiansolutions.org/personal-trainer-battle-ground-wa.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://olympiansolutions.org/personal-trainer-vancouver-wa.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://olympiansolutions.org/personal-trainer-for-aging-parents-clark-county-wa.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://olympiansolutions.org/seniors.html</loc>
@@ -22,6 +46,12 @@
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://olympiansolutions.org/blog/how-to-find-a-personal-trainer.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://olympiansolutions.org/blog/training-after-physical-therapy.html</loc>
