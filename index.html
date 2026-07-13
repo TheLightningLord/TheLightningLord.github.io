@@ -47,6 +47,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=22" />
+  <link rel="stylesheet" href="css/polish.css?v=1" />
 </head>
 <body>
 
@@ -124,6 +125,10 @@
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
         <div class="hero-sky"></div>
+        <div class="hero-aurora hero-aurora-1"></div>
+        <div class="hero-aurora hero-aurora-2"></div>
+        <div class="hero-halo"></div>
+        <div class="hero-floor"></div>
         <div class="hero-blueprint" id="heroBlueprint"></div>
 
         <!-- Biomechanical motion field (flow streams + mocap markers) -->
@@ -149,9 +154,14 @@
           <a href="schedule.html" class="btn btn-gold btn-lg">Reserve Your Free Session</a>
           <a href="#programs" class="btn btn-ghost btn-lg">View Services</a>
         </div>
+        <p class="hero-micro reveal d4">Free first session <span class="hm-dot" aria-hidden="true">·</span> No card required <span class="hm-dot" aria-hidden="true">·</span> <strong>Zero obligation</strong></p>
         <p class="hero-login reveal d4">
           Already a client? <a href="login.html">🔒 Sign in to your portal →</a>
         </p>
+        <div class="hero-rating reveal d5">
+          <span class="hr-stars" aria-hidden="true">★★★★★</span>
+          <span>Loved by clients from Clark County to 50+ languages worldwide</span>
+        </div>
         <div class="hero-trust reveal d5">
           <div class="trust-item">
             <span class="trust-icon">🎓</span>
@@ -165,6 +175,18 @@
         </div>
       </div>
 
+      <svg class="hero-ekg" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="ekgGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5b93f0" stop-opacity="0" />
+            <stop offset="0.18" stop-color="#5b93f0" />
+            <stop offset="0.5" stop-color="#7dd3fc" />
+            <stop offset="0.82" stop-color="#5b93f0" />
+            <stop offset="1" stop-color="#5b93f0" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M0,32 H210 l14,0 8,-13 10,26 9,-30 10,38 8,-24 6,3 H480 l12,0 8,-11 10,22 9,-27 10,34 8,-21 6,3 H900 l12,0 8,-12 10,24 9,-28 10,36 8,-23 6,3 H1200" />
+      </svg>
       <a href="#focus" class="scroll-cue" aria-label="Scroll down">
         <span class="scroll-cue-line"></span>
       </a>
@@ -1539,6 +1561,7 @@
   </script>
 
   <script src="js/main.js?v=10"></script>
+  <script src="js/polish.js?v=1"></script>
   <script src="js/quiz.js?v=5"></script>
 </body>
 </html>

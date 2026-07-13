@@ -1,0 +1,653 @@
+@charset "UTF-8";
+/* ============================================================
+   OLYMPIAN HEALTH SOLUTIONS — polish.css
+   "Clinical Aurora" final-polish layer · loads AFTER style.css
+   Cinematic hero · glass & gradient-hairline cards · magnetic
+   CTAs · refined motion system · conversion accents
+   ============================================================ */
+
+:root {
+  /* Refined accent system: royal blue core + clinical cyan + warm gold */
+  --cyan: #38bdf8;
+  --cyan-soft: #7dd3fc;
+  --aurora-grad: linear-gradient(115deg, #5b93f0 0%, #38bdf8 40%, #2f6dd4 75%, #1e40af 100%);
+  --hairline: linear-gradient(135deg, rgba(91, 147, 240, 0.55), rgba(56, 189, 248, 0.35) 40%, rgba(47, 109, 212, 0.14) 70%, rgba(91, 147, 240, 0.45));
+  --hairline-soft: linear-gradient(135deg, rgba(91, 147, 240, 0.28), rgba(56, 189, 248, 0.16) 45%, rgba(47, 109, 212, 0.08) 75%, rgba(91, 147, 240, 0.22));
+  --shadow-soft: 0 2px 6px rgba(13, 40, 90, 0.05), 0 18px 50px rgba(20, 50, 110, 0.10);
+  --shadow-lift: 0 6px 16px rgba(13, 40, 90, 0.08), 0 30px 70px rgba(20, 50, 110, 0.16);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.45, 0.44, 1);
+}
+
+/* ---------- Base refinements ---------- */
+::selection { background: var(--gold-deep); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (min-width: 900px) {
+  ::-webkit-scrollbar { width: 11px; }
+  ::-webkit-scrollbar-track { background: #e8eefb; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #5b93f0, #2f6dd4);
+    border-radius: 8px;
+    border: 2px solid #e8eefb;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+}
+
+/* Slightly crisper body copy against the airy background */
+body { color: #2e4763; }
+
+/* ---------- Scroll progress: aurora beam ---------- */
+.scroll-progress {
+  height: 3px;
+  background: linear-gradient(90deg, #5b93f0, #38bdf8 45%, #2f6dd4 80%, #1e40af);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 0 4px rgba(91, 147, 240, 0.8);
+}
+
+/* ---------- Preloader: pulse ring + charge line ---------- */
+.preloader {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 42%, rgba(91, 147, 240, 0.12), transparent 65%),
+    var(--ink);
+}
+.preloader::before {
+  content: "";
+  position: absolute;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  border: 1px solid rgba(47, 109, 212, 0.5);
+  top: calc(50% - 103px); left: calc(50% - 75px);
+  animation: plRing 1.6s var(--ease-out) infinite;
+}
+@keyframes plRing {
+  0% { transform: scale(0.55); opacity: 0; }
+  40% { opacity: 0.9; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+.preloader::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 70px);
+  bottom: calc(50% - 128px);
+  width: 140px; height: 2px;
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, #5b93f0, #38bdf8, #2f6dd4) no-repeat 0 0 / 40% 100%,
+    rgba(47, 109, 212, 0.15);
+  animation: plCharge 1.2s ease-in-out infinite;
+}
+@keyframes plCharge {
+  0% { background-position: -60% 0, 0 0; }
+  100% { background-position: 165% 0, 0 0; }
+}
+.preloader-name {
+  background: linear-gradient(100deg, #3f6db8 30%, #7db4ff 50%, #3f6db8 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: plName 2.2s linear infinite;
+}
+@keyframes plName { to { background-position: -200% center; } }
+
+/* ---------- Nav: liquid glass ---------- */
+.nav.scrolled {
+  background: rgba(250, 252, 255, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid rgba(91, 147, 240, 0.22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset, 0 12px 40px rgba(20, 50, 110, 0.10);
+}
+.nav-links a:not(.btn)::after { height: 2px; border-radius: 2px; bottom: -6px; }
+.nav .btn-gold.btn-small {
+  border-radius: 999px;
+  box-shadow: 0 2px 14px rgba(47, 109, 212, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+.nav .btn-ghost.btn-small { border-radius: 999px; }
+
+/* ============================================================
+   HERO — cinematic clinical aurora
+   ============================================================ */
+.hero {
+  min-height: clamp(560px, 94vh, 1020px);
+  padding-top: 7rem;
+}
+
+/* Deeper, richer sky with a cyan clinical glow */
+.hero-sky {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 34%, rgba(91, 147, 240, 0.30), transparent 62%),
+    radial-gradient(ellipse 46% 38% at 72% 20%, rgba(56, 189, 248, 0.14), transparent 70%),
+    radial-gradient(ellipse 90% 80% at 50% 118%, rgba(47, 109, 212, 0.34), transparent 60%),
+    linear-gradient(180deg, #0d2450 0%, #0b1f45 45%, #091a3c 78%, #081430 100%);
+}
+
+/* Aurora ribbons — huge, blurred, slowly breathing light */
+.hero-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(42px);
+  opacity: 0.5;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+}
+.hero-aurora-1 {
+  width: 68vw; height: 56vh;
+  min-width: 560px; min-height: 380px;
+  top: -18%; left: -12%;
+  background: conic-gradient(from 210deg at 50% 50%,
+    transparent 0deg, rgba(47, 109, 212, 0.55) 80deg,
+    rgba(56, 189, 248, 0.35) 150deg, transparent 240deg);
+  animation: auroraDrift1 22s ease-in-out infinite alternate;
+}
+.hero-aurora-2 {
+  width: 60vw; height: 52vh;
+  min-width: 500px; min-height: 340px;
+  bottom: -24%; right: -14%;
+  background: conic-gradient(from 30deg at 50% 50%,
+    transparent 0deg, rgba(91, 147, 240, 0.5) 90deg,
+    rgba(246, 201, 135, 0.20) 160deg, transparent 250deg);
+  animation: auroraDrift2 26s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift1 {
+  from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  to   { transform: translate3d(6vw, 5vh, 0) rotate(38deg) scale(1.14); }
+}
+@keyframes auroraDrift2 {
+  from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1.08); }
+  to   { transform: translate3d(-5vw, -6vh, 0) rotate(-32deg) scale(0.98); }
+}
+
+/* Halo ring — a slow orbital instrument behind the headline */
+.hero-halo {
+  position: absolute;
+  width: min(64vw, 620px); height: min(64vw, 620px);
+  left: 50%; top: 44%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(from 0deg,
+    transparent 0deg, rgba(125, 211, 252, 0.0) 40deg,
+    rgba(125, 211, 252, 0.55) 92deg, rgba(91, 147, 240, 0.10) 150deg,
+    transparent 210deg, rgba(246, 201, 135, 0.28) 300deg, transparent 340deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
+  animation: haloSpin 26s linear infinite;
+  opacity: 0.8;
+}
+.hero-halo::after {
+  content: "";
+  position: absolute; inset: 26px;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg,
+    transparent 0deg, rgba(91, 147, 240, 0.45) 70deg, transparent 160deg,
+    rgba(125, 211, 252, 0.22) 260deg, transparent 320deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
+  animation: haloSpinReverse 34s linear infinite;
+}
+@keyframes haloSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes haloSpinReverse { to { transform: rotate(-360deg); } }
+
+/* Perspective grid floor — the "lab table" the hero stands on */
+.hero-floor {
+  position: absolute;
+  left: -25%; right: -25%; bottom: -6%;
+  height: 46%;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 147, 240, 0.20) 1px, transparent 1px);
+  background-size: 100% 46px, 64px 100%;
+  transform: perspective(520px) rotateX(62deg);
+  transform-origin: 50% 100%;
+  animation: floorFlow 3.2s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse 60% 92% at 50% 100%, #000 40%, transparent 76%);
+  mask-image: radial-gradient(ellipse 60% 92% at 50% 100%, #000 40%, transparent 76%);
+  opacity: 0.45;
+}
+@keyframes floorFlow {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 0 46px, 0 0; }
+}
+
+/* Soften the scanline into an occasional instrument sweep */
+.hero-scanline { opacity: 0.65; animation-duration: 12s; }
+
+/* Kicker → clinical glass chip */
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 92%;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  color: #d8e6ff;
+  background: rgba(13, 36, 80, 0.55);
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset, 0 6px 30px rgba(5, 16, 40, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Headline — larger, tighter, with a living gold-light gradient */
+.hero-title {
+  font-size: clamp(3rem, 8.5vw, 6rem);
+  line-height: 1.03;
+  letter-spacing: 0.005em;
+}
+.hero-title .hero-hl {
+  background: linear-gradient(100deg, #ffd89b 0%, #fff3dc 30%, #f3b75f 52%, #ffe9c4 74%, #ffd89b 100%);
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: hlSheen 7s ease-in-out infinite;
+}
+@keyframes hlSheen {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+/* Word-cascade reveal (spans injected by polish.js) —
+   must out-rank `.hero-title span { display: block }` in style.css */
+.hero-title span.ht-word.ht-line { display: block; }
+.hero-title span.ht-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em) rotate(2.5deg);
+  filter: blur(10px);
+  transition: opacity 0.7s var(--ease-out), transform 0.9s var(--ease-out), filter 0.8s var(--ease-out);
+  transition-delay: var(--wd, 0s);
+  will-change: transform, filter;
+}
+.hero-cascade .hero-title span.ht-word {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.hero-sub { font-size: 1.08rem; color: #c9d8f0; }
+
+/* CTA row: primary button breathes light */
+.hero-cta .btn-gold {
+  border-radius: 6px;
+  box-shadow:
+    0 4px 24px rgba(47, 109, 212, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset;
+  animation: ctaBreath 3.4s ease-in-out infinite;
+}
+@keyframes ctaBreath {
+  0%, 100% { box-shadow: 0 4px 22px rgba(47, 109, 212, 0.40), 0 0 0 0 rgba(125, 211, 252, 0.42), 0 0 0 1px rgba(255,255,255,0.22) inset; }
+  50% { box-shadow: 0 6px 30px rgba(56, 189, 248, 0.55), 0 0 0 9px rgba(125, 211, 252, 0), 0 0 0 1px rgba(255,255,255,0.22) inset; }
+}
+.hero-cta .btn-ghost { border-radius: 6px; }
+/* Dark-hero ghost buttons only — .hero-cta is reused on light sections */
+.hero .hero-cta .btn-ghost,
+.gt-hero .hero-cta .btn-ghost {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(190, 214, 255, 0.4);
+  color: #eaf2ff;
+}
+.hero .hero-cta .btn-ghost:hover,
+.gt-hero .hero-cta .btn-ghost:hover { background: rgba(255, 255, 255, 0.16); color: #fff; }
+
+/* Friction-melting microcopy under the CTAs */
+.hero-micro {
+  margin-top: 0.9rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9db8e4;
+}
+.hero-micro strong { color: #f6c987; font-weight: 600; }
+.hero-micro .hm-dot { margin: 0 0.55em; color: rgba(125, 211, 252, 0.6); }
+
+/* Five-star proof chip */
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(10, 28, 62, 0.55);
+  border: 1px solid rgba(246, 201, 135, 0.30);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.78rem;
+  color: #dbe7fb;
+}
+.hero-rating .hr-stars {
+  color: #f6c987;
+  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+  text-shadow: 0 0 12px rgba(246, 201, 135, 0.55);
+}
+
+/* Trust bar: frosted glass panel */
+.hero-trust {
+  border-radius: 14px;
+  padding: 0.9rem 1.4rem;
+  background: rgba(11, 30, 66, 0.45);
+  border: 1px solid rgba(125, 165, 235, 0.22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 14px 40px rgba(5, 16, 40, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* EKG vital line along the hero's lower edge */
+.hero-ekg {
+  position: absolute;
+  left: 0; right: 0; bottom: 3.2rem;
+  width: 100%; height: 54px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.hero-ekg path {
+  fill: none;
+  stroke: url(#ekgGrad);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1420;
+  stroke-dashoffset: 1420;
+  animation: ekgDraw 7s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(125, 211, 252, 0.8));
+}
+@keyframes ekgDraw {
+  0% { stroke-dashoffset: 1420; opacity: 0; }
+  6% { opacity: 1; }
+  62% { stroke-dashoffset: 0; opacity: 1; }
+  78% { stroke-dashoffset: 0; opacity: 1; }
+  92%, 100% { stroke-dashoffset: -1420; opacity: 0; }
+}
+
+/* Scroll cue: glass pill */
+.scroll-cue { opacity: 0.85; }
+
+/* ---------- Focus stats: instrument readouts ---------- */
+.focus-stat strong,
+.focus-stat .counter {
+  background: linear-gradient(120deg, #9cc3ff 0%, #7dd3fc 45%, #f6c987 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   MOTION SYSTEM v2 — cinematic reveals
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px) scale(0.992);
+  filter: blur(9px);
+  transition:
+    opacity 0.85s var(--ease-out),
+    transform 1s var(--ease-out),
+    filter 0.85s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Eyebrows glow softly as they land */
+.eyebrow { text-shadow: 0 0 22px rgba(47, 109, 212, 0.35); }
+
+/* Section titles: gradient ink sheen on the shimmer spans */
+.gold-shimmer { animation-duration: 6.5s; }
+
+/* On dark surfaces the royal-blue shimmer is too dim — go luminous */
+.portal-promo-card .gold-shimmer,
+.pricing-promise .gold-shimmer {
+  background: linear-gradient(110deg, #9cc3ff 20%, #e6f2ff 42%, #7dd3fc 55%, #9cc3ff 80%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ============================================================
+   BUTTONS — magnetic, luminous
+   ============================================================ */
+.btn { border-radius: 6px; }
+.btn-gold {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 45%) padding-box,
+    var(--gold-grad) padding-box;
+  will-change: transform;
+}
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 34px rgba(47, 109, 212, 0.45), 0 2px 10px rgba(56, 189, 248, 0.35);
+}
+.btn-ghost { border-radius: 6px; }
+
+/* ============================================================
+   CARD SYSTEM — glass, gradient hairlines, pointer spotlight
+   ============================================================ */
+.price-card, .lab-card, .result-card, .senior-card, .tw-local,
+.book-card, .refer-benefit, .bridge-point, .plan-step {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 252, 255, 0.92)) padding-box,
+    var(--hairline-soft) border-box;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), background 0.5s;
+}
+.price-card:hover, .lab-card:hover, .result-card:hover, .senior-card:hover,
+.tw-local:hover, .book-card:hover, .refer-benefit:hover, .bridge-point:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lift);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(250, 252, 255, 0.96)) padding-box,
+    var(--hairline) border-box;
+}
+
+/* Pointer-tracked spotlight (coords set by polish.js) */
+.card-spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(91, 147, 240, 0.13), rgba(56, 189, 248, 0.05) 45%, transparent 68%);
+}
+.card-spot:hover::after { opacity: 1; }
+
+/* Featured price card: living conic border */
+.price-featured {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, #ffffff, #f8fbff) padding-box,
+    conic-gradient(from var(--ang, 0deg),
+      #5b93f0 0deg, #38bdf8 70deg, #1e40af 160deg,
+      #5b93f0 230deg, #f6c987 300deg, #5b93f0 360deg) border-box;
+  animation: featuredSpin 5.5s linear infinite;
+  box-shadow: 0 0 55px rgba(91, 147, 240, 0.22), var(--shadow-soft);
+}
+@property --ang {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes featuredSpin { to { --ang: 360deg; } }
+
+/* Result metrics: aurora numerals */
+.rc-metric {
+  background: linear-gradient(120deg, #1e40af 0%, #2f6dd4 40%, #38bdf8 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Path cards inherit the hairline treatment */
+.path-card {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(250, 252, 255, 0.93)) padding-box,
+    var(--hairline-soft) border-box;
+  box-shadow: var(--shadow-soft);
+}
+.path-card:hover { box-shadow: var(--shadow-lift); }
+
+/* ---------- Pricing assurance band: glass chips ---------- */
+.pricing-assurance .pa-item { transition: transform 0.4s var(--ease-out); }
+.pricing-assurance .pa-item:hover { transform: translateY(-4px); }
+
+/* ---------- Olympian Promise: aurora banner ---------- */
+.pricing-promise {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, #0f2a52, #0c1f3f) padding-box,
+    var(--hairline) border-box;
+}
+.pricing-promise::before {
+  content: "";
+  position: absolute;
+  top: -60%; left: -20%;
+  width: 70%; height: 220%;
+  background: linear-gradient(105deg, transparent, rgba(125, 211, 252, 0.12), transparent);
+  transform: skewX(-18deg);
+  animation: promiseSweep 6.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes promiseSweep {
+  0% { left: -45%; }
+  60%, 100% { left: 130%; }
+}
+
+/* ---------- Testimonial slider: glass panel ---------- */
+.slider {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 255, 0.9)) padding-box,
+    var(--hairline-soft) border-box;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------- Forms: luminous focus ---------- */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus,
+.bs-form input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(91, 147, 240, 0.18), 0 0 18px rgba(91, 147, 240, 0.12);
+  outline: none;
+}
+.contact-form {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 255, 0.95)) padding-box,
+    var(--hairline) border-box;
+  box-shadow: var(--shadow-lift);
+}
+
+/* ---------- Footer: aurora hairline crown ---------- */
+.footer { position: relative; }
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #5b93f0, #38bdf8, #f6c987, #5b93f0, transparent);
+  background-size: 220% 100%;
+  animation: footerAurora 8s linear infinite;
+}
+@keyframes footerAurora { to { background-position: 220% 0; } }
+
+/* ---------- Sticky CTA: glass capsule with live pulse ---------- */
+.sticky-cta {
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 50%) padding-box,
+    var(--gold-grad) padding-box;
+  box-shadow: 0 10px 34px rgba(30, 64, 175, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+  animation: ctaBreath 3.4s ease-in-out infinite;
+}
+
+/* ---------- Mobile dock: frosted glass ---------- */
+.mobile-dock {
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+}
+
+/* ---------- Back-to-top ---------- */
+.to-top {
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 55%) padding-box,
+    var(--gold-grad) padding-box;
+  box-shadow: 0 8px 26px rgba(30, 64, 175, 0.4);
+}
+
+/* ============================================================
+   OFFSCREEN ANIMATION PAUSE — polish.js toggles .anim-paused on
+   decorative layers whose section has scrolled out of view, so
+   the compositor never burns frames (or GPU memory) invisibly
+   ============================================================ */
+.anim-paused,
+.anim-paused::before,
+.anim-paused::after,
+.anim-paused path {
+  animation-play-state: paused !important;
+}
+.anim-paused.hero-aurora,
+.anim-paused.hero-halo,
+.anim-paused.hero-floor { visibility: hidden; }
+
+/* ============================================================
+   REDUCED MOTION — everything calms down
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora, .hero-halo, .hero-halo::after, .hero-floor,
+  .hero-ekg path, .hero-title .hero-hl, .preloader::before,
+  .preloader::after, .preloader-name, .price-featured,
+  .pricing-promise::before, .footer::before,
+  .hero-cta .btn-gold, .sticky-cta {
+    animation: none !important;
+  }
+  .ht-word {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .hero-ekg { display: none; }
+}
+
+/* ============================================================
+   SMALL SCREENS — keep the drama, lose the weight
+   ============================================================ */
+@media (max-width: 720px) {
+  .hero { min-height: clamp(540px, 88vh, 820px); }
+  .hero-halo { width: 120vw; height: 120vw; opacity: 0.5; }
+  .hero-aurora { filter: blur(52px); opacity: 0.45; }
+  .hero-kicker {
+    letter-spacing: 0.14em;
+    font-size: 0.6rem;
+    padding: 0.5rem 0.9rem;
+  }
+  .hero-ekg { bottom: 2.4rem; opacity: 0.45; }
+  .hero-micro { font-size: 0.62rem; letter-spacing: 0.12em; }
+}
