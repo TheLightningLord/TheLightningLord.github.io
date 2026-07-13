@@ -93,3 +93,30 @@ export function escapeHtml(s) {
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
   })[c]);
 }
+
+/* ---------- Formatting helpers ---------- */
+
+/* "just now", "5m ago", "3h ago", "2d ago", else a short date. */
+export function timeAgo(input) {
+  const then = new Date(input).getTime();
+  if (Number.isNaN(then)) return "";
+  const s = Math.max(0, Math.round((Date.now() - then) / 1000));
+  if (s < 45) return "just now";
+  const m = Math.round(s / 60);
+  if (m < 60) return m + "m ago";
+  const h = Math.round(m / 60);
+  if (h < 24) return h + "h ago";
+  const d = Math.round(h / 24);
+  if (d < 7) return d + "d ago";
+  return new Date(input).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
+
+/* Up to two uppercase initials from a name or email. */
+export function initials(nameOrEmail = "") {
+  const s = String(nameOrEmail).trim();
+  if (!s) return "?";
+  const base = s.includes("@") ? s.split("@")[0].replace(/[._-]+/g, " ") : s;
+  const parts = base.split(/\s+/).filter(Boolean);
+  const take = (parts[0]?.[0] || "") + (parts.length > 1 ? parts[parts.length - 1][0] : "");
+  return (take || base[0] || "?").toUpperCase();
+}

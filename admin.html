@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=14" />
   <link rel="stylesheet" href="css/polish.css?v=1" />
-  <link rel="stylesheet" href="css/portal.css?v=1" />
+  <link rel="stylesheet" href="css/portal.css?v=4" />
   <script src="js/portal-config.js"></script>
 </head>
 <body>
@@ -41,19 +41,53 @@
 
   <main class="portal-main" id="top">
     <div class="portal-wrap">
-      <div class="portal-head">
+      <div class="portal-head fade-up d1">
         <h1>Coach Admin</h1>
-        <p>Create materials and assign them to your clients.</p>
+        <p>Create materials, assign them to clients, and answer their questions.</p>
       </div>
 
       <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
 
-      <section id="gate" class="portal-card"><p class="empty-state">Checking access…</p></section>
+      <section id="gate" class="portal-card fade-up d1"><p class="empty-state">Checking access…</p></section>
 
       <div id="adminBody" hidden>
 
+        <!-- ===== Client questions (inbox) ===== -->
+        <section class="portal-card fade-up d1">
+          <div class="checklist-head">
+            <h2 class="section-label" style="margin:0;">Client questions</h2>
+            <span class="checklist-count" id="inboxCount">0 unread</span>
+          </div>
+
+          <!-- Inbox list -->
+          <div id="inboxView">
+            <div class="inbox-list" id="inboxList"><p class="empty-state">Loading…</p></div>
+          </div>
+
+          <!-- Single thread -->
+          <div id="threadView" hidden>
+            <button class="back-link" id="backToInbox" type="button">← All questions</button>
+            <div class="thread-shell">
+              <div class="thread-intro">
+                <span class="msg-avatar" id="threadAvatar" aria-hidden="true">C</span>
+                <div class="who">
+                  <strong id="threadName">Client</strong>
+                  <small id="threadEmail">—</small>
+                </div>
+              </div>
+              <div class="thread" id="adminThread"></div>
+              <form class="composer" id="adminComposer">
+                <div class="composer-row">
+                  <textarea id="adminReply" rows="1" placeholder="Write your reply…" maxlength="4000"></textarea>
+                  <button type="submit" class="btn btn-gold send-btn" id="adminSendBtn">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
         <!-- ===== Create material ===== -->
-        <section class="portal-card">
+        <section class="portal-card fade-up d2">
           <h2 class="section-label">Create a material</h2>
           <div class="form-row">
             <label for="mType">Type</label>
@@ -68,7 +102,6 @@
             <input type="text" id="mTitle" placeholder="e.g. Week 1 — Lower Body" />
           </div>
 
-          <!-- note fields -->
           <div id="noteFields">
             <div class="form-row">
               <label for="mNote">Note</label>
@@ -76,14 +109,12 @@
             </div>
           </div>
 
-          <!-- workout fields -->
           <div id="workoutFields" hidden>
             <label class="section-label" style="font-size:1rem;">Exercises</label>
             <div id="exRows"></div>
             <button type="button" class="btn btn-ghost btn-small" id="addExBtn">+ Add exercise</button>
           </div>
 
-          <!-- pdf fields -->
           <div id="pdfFields" hidden>
             <div class="form-row">
               <label for="mFile">PDF file</label>
@@ -95,13 +126,13 @@
         </section>
 
         <!-- ===== Materials + assignment ===== -->
-        <section class="portal-card">
+        <section class="portal-card fade-up d2">
           <h2 class="section-label">Materials</h2>
           <div id="materialsList"><p class="empty-state">Loading…</p></div>
         </section>
 
         <!-- ===== Clients ===== -->
-        <section class="portal-card">
+        <section class="portal-card fade-up d3">
           <h2 class="section-label">Clients</h2>
           <div id="clientsList"><p class="empty-state">Loading…</p></div>
         </section>
@@ -111,7 +142,7 @@
   </main>
 
   <script type="module">
-    import { supabase, requireAdmin, signOut, el, escapeHtml } from "./js/portal.js";
+    import { supabase, requireAdmin, signOut, el, escapeHtml, timeAgo, initials } from "./js/portal.js";
 
     const $ = (id) => document.getElementById(id);
     $("signOutNav").addEventListener("click", (e) => { e.preventDefault(); signOut(); });
@@ -122,6 +153,9 @@
     }
 
     let clients = [];
+    let ADMIN_ID = null;
+    let ALL_MESSAGES = [];
+    let openClientId = null;
 
     /* ---------- type switcher ---------- */
     $("mType").addEventListener("change", () => {
@@ -208,14 +242,19 @@
       wrap.innerHTML = "";
       if (!clients.length) { wrap.append(el("p", { class: "empty-state" }, "No clients have signed up yet.")); return; }
       const table = el("table", { class: "admin-table" },
-        el("thead", {}, el("tr", {}, el("th", {}, "Name"), el("th", {}, "Email"))),
-        el("tbody", {}, ...clients.map((c) => el("tr", {},
-          el("td", {}, (c.full_name || "—")), el("td", {}, c.email || "—"))))
+        el("thead", {}, el("tr", {}, el("th", {}, "Name"), el("th", {}, "Email"), el("th", {}, ""))),
+        el("tbody", {}, ...clients.map((c) => {
+          const openBtn = el("button", { class: "btn btn-ghost btn-small", type: "button", onClick: () => openThread(c.id) }, "💬 Message");
+          return el("tr", {}, el("td", {}, (c.full_name || "—")), el("td", {}, c.email || "—"), el("td", {}, openBtn));
+        }))
       );
       wrap.append(table);
     }
 
-    /* ---------- load materials + assignment controls ---------- */
+    function clientById(id) { return clients.find((x) => x.id === id); }
+    function clientName(id) { const c = clientById(id); return c ? (c.full_name || c.email) : "Unknown client"; }
+
+    /* ---------- load + render materials ---------- */
     async function loadMaterials() {
       const [{ data: mats, error: mErr }, { data: asgs }] = await Promise.all([
         supabase.from("materials").select("id, type, title, created_at").order("created_at", { ascending: false }),
@@ -237,27 +276,15 @@
       wrap.append(table);
     }
 
-    function clientName(id) {
-      const c = clients.find((x) => x.id === id);
-      return c ? (c.full_name || c.email) : "unknown";
-    }
-
     function materialRow(m, assigns) {
-      const assignedNames = assigns.length
-        ? assigns.map((a) => clientName(a.client_id)).join(", ") : "—";
-
+      const assignedNames = assigns.length ? assigns.map((a) => clientName(a.client_id)).join(", ") : "—";
       const select = el("select", {},
         el("option", { value: "" }, "Choose client…"),
-        ...clients
-          .filter((c) => !assigns.some((a) => a.client_id === c.id))
+        ...clients.filter((c) => !assigns.some((a) => a.client_id === c.id))
           .map((c) => el("option", { value: c.id }, c.full_name || c.email))
       );
-      const assignBtn = el("button", { class: "btn btn-gold btn-small", type: "button",
-        onClick: () => assign(m.id, select.value) }, "Assign");
-
-      const delBtn = el("button", { class: "btn-x", type: "button",
-        onClick: () => removeMaterial(m.id, m.title) }, "Delete");
-
+      const assignBtn = el("button", { class: "btn btn-gold btn-small", type: "button", onClick: () => assign(m.id, select.value) }, "Assign");
+      const delBtn = el("button", { class: "btn-x", type: "button", onClick: () => removeMaterial(m.id, m.title) }, "Delete");
       return el("tr", {},
         el("td", {}, m.title),
         el("td", {}, el("span", { class: "mtag " + m.type }, m.type)),
@@ -269,9 +296,8 @@
 
     async function assign(materialId, clientId) {
       if (!clientId) return showMsg("Pick a client first.", "error");
-      const { data: u } = await supabase.auth.getUser();
       const { error } = await supabase.from("assignments")
-        .insert({ material_id: materialId, client_id: clientId, assigned_by: u.user.id });
+        .insert({ material_id: materialId, client_id: clientId, assigned_by: ADMIN_ID });
       if (error) return showMsg(error.message, "error");
       showMsg("Assigned.", "success");
       loadMaterials();
@@ -285,14 +311,111 @@
       loadMaterials();
     }
 
+    /* ============================================================
+       CLIENT QUESTIONS — inbox + thread
+       ============================================================ */
+    async function loadMessages() {
+      const { data, error } = await supabase.from("messages")
+        .select("id, client_id, sender_id, material_id, body, read_at, created_at")
+        .order("created_at", { ascending: true });
+      if (error) { $("inboxList").innerHTML = ""; $("inboxList").append(el("p", { class: "empty-state" }, error.message)); return; }
+      ALL_MESSAGES = data || [];
+      renderInbox();
+    }
+
+    // A message is "from the client" when the sender is the client themselves.
+    const fromClient = (m) => m.sender_id === m.client_id;
+
+    function renderInbox() {
+      // Group by client_id, keep only clients who have at least one message.
+      const byClient = {};
+      ALL_MESSAGES.forEach((m) => { (byClient[m.client_id] ||= []).push(m); });
+
+      const threads = Object.entries(byClient).map(([cid, msgs]) => {
+        const last = msgs[msgs.length - 1];
+        const unread = msgs.filter((m) => fromClient(m) && !m.read_at).length;
+        return { cid, msgs, last, unread };
+      }).sort((a, b) => new Date(b.last.created_at) - new Date(a.last.created_at));
+
+      const totalUnread = threads.reduce((n, t) => n + t.unread, 0);
+      $("inboxCount").textContent = totalUnread + " unread";
+
+      const wrap = $("inboxList"); wrap.innerHTML = "";
+      if (!threads.length) { wrap.append(el("p", { class: "empty-state" }, "No questions yet. When a client asks something, it shows up here.")); return; }
+
+      threads.forEach((t) => {
+        const nm = clientName(t.cid);
+        const item = el("button", { class: "inbox-item" + (t.unread ? " unread" : ""), type: "button", onClick: () => openThread(t.cid) },
+          el("span", { class: "msg-avatar" }, initials(nm)),
+          el("div", { class: "ix-body" },
+            el("div", { class: "ix-name" }, nm, ...(t.unread ? [el("span", { class: "unread-dot" })] : [])),
+            el("div", { class: "ix-snippet" }, (fromClient(t.last) ? "" : "You: ") + t.last.body)),
+          el("span", { class: "ix-time" }, timeAgo(t.last.created_at))
+        );
+        wrap.append(item);
+      });
+    }
+
+    function renderAdminThread(cid) {
+      const msgs = ALL_MESSAGES.filter((m) => m.client_id === cid);
+      const box = $("adminThread"); box.innerHTML = "";
+      if (!msgs.length) { box.append(el("p", { class: "thread-empty" }, "No messages yet — start the conversation below.")); }
+      msgs.forEach((m) => {
+        const mine = !fromClient(m);   // coach (me) vs client
+        const nm = clientName(cid);
+        const av = el("span", { class: "msg-avatar" }, mine ? "Z" : initials(nm));
+        box.append(el("div", { class: "msg-line " + (mine ? "me" : "coach") }, av,
+          el("div", { class: "bubble" }, m.body, el("span", { class: "stamp" }, timeAgo(m.created_at)))));
+      });
+      requestAnimationFrame(() => { box.scrollTop = box.scrollHeight; });
+    }
+
+    async function openThread(cid) {
+      openClientId = cid;
+      const c = clientById(cid);
+      $("threadName").textContent = c ? (c.full_name || c.email) : "Client";
+      $("threadEmail").textContent = c ? (c.email || "") : "";
+      $("threadAvatar").textContent = initials(clientName(cid));
+      $("inboxView").hidden = true;
+      $("threadView").hidden = false;
+      renderAdminThread(cid);
+
+      // Mark this client's inbound messages as read.
+      const unread = ALL_MESSAGES.filter((m) => m.client_id === cid && fromClient(m) && !m.read_at);
+      if (unread.length) {
+        const now = new Date().toISOString();
+        unread.forEach((m) => (m.read_at = now));
+        await supabase.from("messages").update({ read_at: now })
+          .eq("client_id", cid).eq("sender_id", cid).is("read_at", null);
+      }
+    }
+
+    $("backToInbox").addEventListener("click", () => {
+      $("threadView").hidden = true; $("inboxView").hidden = false; openClientId = null; renderInbox();
+    });
+
+    const areply = $("adminReply");
+    areply.addEventListener("input", () => { areply.style.height = "auto"; areply.style.height = Math.min(160, areply.scrollHeight) + "px"; });
+    $("adminComposer").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const body = areply.value.trim(); if (!body || !openClientId) return;
+      $("adminSendBtn").disabled = true;
+      const { data, error } = await supabase.from("messages")
+        .insert({ client_id: openClientId, sender_id: ADMIN_ID, body }).select().single();
+      if (error) { showMsg("Couldn't send: " + error.message, "error"); }
+      else { ALL_MESSAGES.push(data); areply.value = ""; areply.style.height = "auto"; renderAdminThread(openClientId); }
+      $("adminSendBtn").disabled = false; areply.focus();
+    });
+
     /* ---------- boot ---------- */
     (async () => {
       const profile = await requireAdmin();
       if (!profile) return;
+      ADMIN_ID = profile.id;
       $("gate").hidden = true;
       $("adminBody").hidden = false;
       await loadClients();
-      await loadMaterials();
+      await Promise.all([loadMaterials(), loadMessages()]);
     })();
   </script>
 </body>

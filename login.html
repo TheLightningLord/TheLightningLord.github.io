@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=14" />
   <link rel="stylesheet" href="css/polish.css?v=1" />
-  <link rel="stylesheet" href="css/portal.css?v=2" />
+  <link rel="stylesheet" href="css/portal.css?v=4" />
   <script src="js/portal-config.js"></script>
 </head>
 <body>
@@ -47,69 +47,91 @@
   <main class="portal-main" id="top">
     <div class="portal-wrap narrow">
 
-      <!-- Summer Kickoff promo — shown to new sign-ups -->
-      <div class="promo-banner" id="promoBanner">
-        <span class="promo-flare" aria-hidden="true"></span>
-        <span class="promo-badge">☀️ Summer Kickoff 2026</span>
-        <p class="promo-headline">Create a free account &amp; unlock your first plan today.</p>
-        <ul class="promo-perks">
-          <li><span aria-hidden="true">🎁</span> Free intro consultation with Zeuse</li>
-          <li><span aria-hidden="true">💪</span> A personalized starter workout — instantly in your dashboard</li>
-          <li><span aria-hidden="true">🔒</span> Locked-in summer member rates</li>
-        </ul>
+      <div class="auth-split fade-up d1">
+
+        <!-- ===== Left: prestige showcase panel ===== -->
+        <aside class="aurora-panel">
+          <div class="brand-lockup">
+            <img src="img/logo-mark.png?v=2" alt="" width="46" height="46" />
+            <span>
+              <b>Olympian</b>
+              <small>Health Solutions</small>
+            </span>
+          </div>
+
+          <div class="panel-body">
+            <p class="aurora-eyebrow">Private Client Portal</p>
+            <h2 id="panelTitle">Your training,<br><em>elevated.</em></h2>
+            <p class="lede" id="panelLede">Everything Zeuse builds for you — programmed workouts, notes, and a direct line to your coach — in one calm, private space.</p>
+
+            <ul class="aurora-benefits">
+              <li><span class="tick" aria-hidden="true">✓</span> Personalized workouts, laid out set-by-set</li>
+              <li><span class="tick" aria-hidden="true">✓</span> Ask questions and get answers from your coach</li>
+              <li><span class="tick" aria-hidden="true">✓</span> Track progress and stay accountable</li>
+            </ul>
+
+            <blockquote class="aurora-quote">
+              “Training with Zeuse gave me back strength I thought was gone for good.”
+              <cite>— A Clark County client</cite>
+            </blockquote>
+          </div>
+        </aside>
+
+        <!-- ===== Right: the auth form ===== -->
+        <section class="auth-pane">
+          <div class="portal-head">
+            <h1 id="authHeading">Welcome back</h1>
+            <p id="authSub">Sign in to view the plans, workouts and notes Zeuse assigned you.</p>
+          </div>
+
+          <div class="auth-tabs" role="tablist">
+            <button class="auth-tab active" id="tabSignin" role="tab" aria-selected="true">Sign in</button>
+            <button class="auth-tab" id="tabSignup" role="tab" aria-selected="false">Create account</button>
+          </div>
+
+          <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
+
+          <form id="authForm" novalidate>
+            <div class="form-row" id="nameRow" hidden>
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Your name" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required />
+            </div>
+            <div class="form-row">
+              <label for="password">Password</label>
+              <div class="pw-wrap">
+                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required minlength="6" />
+                <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">Show</button>
+              </div>
+              <div class="pw-strength" id="pwStrength" hidden>
+                <div class="pw-bar"><span id="pwBar"></span></div>
+                <small id="pwHint">Use at least 6 characters.</small>
+              </div>
+            </div>
+            <div class="form-row" id="promoRow" hidden>
+              <label for="promoCode">Promo code <span class="opt">(optional)</span></label>
+              <input type="text" id="promoCode" name="promoCode" autocomplete="off" placeholder="SUMMER" />
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-block" id="submitBtn">Sign in</button>
+          </form>
+
+          <p class="auth-switch" id="authSwitch">
+            New to Olympian? <a href="#" id="switchToSignup">Create your free account →</a>
+          </p>
+
+          <p class="portal-foot-link">
+            <a href="#" id="forgotLink">Forgot your password?</a>
+          </p>
+
+          <p class="trust-line">🔒 Private &amp; secure. Your data is never shared. Cancel anytime.</p>
+        </section>
+
       </div>
 
-      <div class="portal-card">
-        <div class="portal-head center" style="text-align:center;">
-          <h1 id="authHeading">Client Portal</h1>
-          <p id="authSub">Sign in to view the materials Zeuse has assigned to you.</p>
-        </div>
-
-        <div class="auth-tabs" role="tablist">
-          <button class="auth-tab active" id="tabSignin" role="tab" aria-selected="true">Sign in</button>
-          <button class="auth-tab" id="tabSignup" role="tab" aria-selected="false">Create account</button>
-        </div>
-
-        <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
-
-        <form id="authForm" novalidate>
-          <div class="form-row" id="nameRow" hidden>
-            <label for="fullName">Full name</label>
-            <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Your name" />
-          </div>
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" required />
-          </div>
-          <div class="form-row">
-            <label for="password">Password</label>
-            <div class="pw-wrap">
-              <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required minlength="6" />
-              <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">Show</button>
-            </div>
-            <div class="pw-strength" id="pwStrength" hidden>
-              <div class="pw-bar"><span id="pwBar"></span></div>
-              <small id="pwHint">Use at least 6 characters.</small>
-            </div>
-          </div>
-          <div class="form-row" id="promoRow" hidden>
-            <label for="promoCode">Promo code <span class="opt">(optional)</span></label>
-            <input type="text" id="promoCode" name="promoCode" autocomplete="off" placeholder="SUMMER" />
-          </div>
-
-          <button type="submit" class="btn btn-gold btn-block" id="submitBtn">Sign in</button>
-        </form>
-
-        <p class="auth-switch" id="authSwitch" hidden>
-          New to Olympian? <a href="#" id="switchToSignup">Create your free account →</a>
-        </p>
-
-        <p class="portal-foot-link">
-          <a href="#" id="forgotLink">Forgot your password?</a>
-        </p>
-
-        <p class="trust-line">🔒 Private &amp; secure. Your data is never shared. Cancel anytime.</p>
-      </div>
       <p class="portal-foot-link"><a href="index.html">← Back to the main site</a></p>
     </div>
   </main>
@@ -157,12 +179,17 @@
       $("promoRow").hidden = signin;
       $("pwStrength").hidden = signin;
       $("authSwitch").hidden = !signin;
-      $("promoBanner").classList.toggle("dim", signin);
       $("password").autocomplete = signin ? "current-password" : "new-password";
       $("authHeading").textContent = signin ? "Welcome back" : "Create your free account";
       $("authSub").textContent = signin
         ? "Sign in to view the plans, workouts and notes Zeuse assigned you."
         : "It takes 20 seconds. You'll get a free starter workout the moment you're in.";
+      $("panelTitle").innerHTML = signin
+        ? "Your training,<br><em>elevated.</em>"
+        : "Start strong,<br><em>today.</em>";
+      $("panelLede").textContent = signin
+        ? "Everything Zeuse builds for you — programmed workouts, notes, and a direct line to your coach — in one calm, private space."
+        : "Create your free account and get a personalized starter workout the moment you're in — plus a direct line to your coach.";
       submitBtn.textContent = signin ? "Sign in" : "Create my free account →";
       clearMsg();
     }
@@ -236,7 +263,7 @@
         showMsg(err.message || "Something went wrong. Please try again.", "error");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = mode === "signin" ? "Sign in" : "Create account";
+        submitBtn.textContent = mode === "signin" ? "Sign in" : "Create my free account →";
       }
     });
 

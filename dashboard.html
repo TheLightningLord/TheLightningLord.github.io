@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=14" />
   <link rel="stylesheet" href="css/polish.css?v=1" />
-  <link rel="stylesheet" href="css/portal.css?v=2" />
+  <link rel="stylesheet" href="css/portal.css?v=4" />
   <script src="js/portal-config.js"></script>
 </head>
 <body>
@@ -42,39 +42,61 @@
 
   <main class="portal-main" id="top">
     <div class="portal-wrap">
-      <div class="portal-userbar">
-        <div class="who">
-          <strong id="greeting">Welcome</strong>
-          <small id="subline">Loading your materials…</small>
-        </div>
-        <a href="index.html#contact" class="btn btn-gold btn-small" id="topConsult" hidden>📞 Book free consult</a>
-      </div>
 
       <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
 
-      <section id="loading" class="portal-card">
+      <section id="loading" class="portal-card fade-up d1">
         <p class="empty-state">Loading your dashboard…</p>
       </section>
 
       <div id="content" hidden>
 
-        <!-- ===== New-member onboarding (shown when nothing is assigned yet) ===== -->
-        <div id="onboarding" hidden>
+        <!-- ===== Greeting hero ===== -->
+        <div class="portal-hero fade-up d1">
+          <div class="hero-id">
+            <span class="brand-orb" id="orb" aria-hidden="true">O</span>
+            <div>
+              <h1 id="greeting">Welcome</h1>
+              <p class="subline" id="subline">Loading your materials…</p>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="index.html#contact" class="btn btn-gold btn-small" id="topConsult">📞 Book a free consult</a>
+          </div>
+        </div>
 
-          <!-- Welcome + Summer promo hero -->
-          <section class="welcome-hero portal-card">
-            <span class="promo-flare" aria-hidden="true"></span>
+        <!-- ===== Stat tiles ===== -->
+        <div class="stat-row fade-up d2">
+          <div class="stat-tile"><div class="stat-ico">🗓️</div><div class="stat-num" id="statDay">1</div><div class="stat-label">Day as member</div></div>
+          <div class="stat-tile"><div class="stat-ico">🏋️</div><div class="stat-num" id="statWorkouts">0</div><div class="stat-label">Workouts</div></div>
+          <div class="stat-tile"><div class="stat-ico">✅</div><div class="stat-num" id="statDone">0</div><div class="stat-label">Completed</div></div>
+          <div class="stat-tile"><div class="stat-ico">🎯</div><div class="stat-num" id="statGoal" style="font-size:1.2rem;line-height:1.9;">—</div><div class="stat-label">Your goal</div></div>
+        </div>
+
+        <!-- ===== Segmented navigation ===== -->
+        <nav class="seg-nav fade-up d2" id="segNav" aria-label="Dashboard sections">
+          <button class="seg-btn active" data-tab="overview"><span class="seg-ico">✨</span> Overview</button>
+          <button class="seg-btn" data-tab="workouts"><span class="seg-ico">🏋️</span> Workouts</button>
+          <button class="seg-btn" data-tab="ask"><span class="seg-ico">💬</span> Ask Coach <span class="seg-badge" id="askBadge" hidden>0</span></button>
+          <button class="seg-btn" data-tab="progress"><span class="seg-ico">📈</span> Progress</button>
+        </nav>
+
+        <!-- ================= OVERVIEW ================= -->
+        <div class="tab-panel active" data-panel="overview" id="panelOverview">
+
+          <!-- New-member welcome (shown only when nothing assigned) -->
+          <section class="portal-card welcome-hero" id="welcomeHero" hidden>
             <span class="promo-badge">☀️ Summer Kickoff 2026</span>
             <h1 id="welcomeTitle">Welcome to Olympian! 🎉</h1>
             <p id="welcomeSub">You're in. Here's how to turn this account into real results — starting today.</p>
             <div class="welcome-cta">
               <a href="index.html#contact" class="btn btn-gold" id="claimConsult">🎁 Claim your free consultation</a>
-              <a href="#starter" class="btn btn-ghost">Jump to your free workout ↓</a>
+              <button class="btn btn-ghost" type="button" data-goto="workouts">See your free workout ↓</button>
             </div>
           </section>
 
-          <!-- Getting started checklist -->
-          <section class="portal-card">
+          <!-- Getting-started checklist (new members) -->
+          <section class="portal-card" id="checklistCard" hidden>
             <div class="checklist-head">
               <h2 class="section-label" style="margin:0;">Get started in 4 steps</h2>
               <span class="checklist-count" id="checklistCount">1 of 4 done</span>
@@ -91,7 +113,7 @@
               </li>
               <li class="check-item" data-step="workout">
                 <span class="check-dot" aria-hidden="true"></span>
-                <div><strong>Try your free starter workout</strong><small>A full-body session you can do today.</small></div>
+                <div><strong>Try your free starter workout</strong><small>Open the Workouts tab and give it a go.</small></div>
               </li>
               <li class="check-item" data-step="consult">
                 <span class="check-dot" aria-hidden="true"></span>
@@ -100,10 +122,10 @@
             </ul>
           </section>
 
-          <!-- Goal picker -->
+          <!-- Goal picker (everyone) -->
           <section class="portal-card">
             <h2 class="section-label">What are you training for?</h2>
-            <p class="card-lead">Pick one — I'll tailor your starter workout and, once we talk, your full program.</p>
+            <p class="card-lead">Pick one — I'll tailor your workouts and, once we talk, your full program.</p>
             <div class="goal-grid" id="goalGrid">
               <button class="goal-card" data-goal="strength"><span class="goal-ico">🏋️</span><strong>Build Strength</strong><small>Get stronger &amp; add muscle</small></button>
               <button class="goal-card" data-goal="fatloss"><span class="goal-ico">🔥</span><strong>Lose Fat</strong><small>Lean out &amp; boost energy</small></button>
@@ -112,53 +134,119 @@
             </div>
           </section>
 
-          <!-- Free starter workout -->
-          <section class="portal-card" id="starter">
-            <div class="checklist-head">
-              <h2 class="section-label" style="margin:0;">Your free starter workout</h2>
-              <span class="mtag workout">Free · Full Body</span>
-            </div>
-            <p class="card-lead" id="starterTip">Do this 2–3× this week. Rest 60–90s between sets. Form first, always.</p>
-            <div id="starterTable"></div>
-            <button class="btn btn-gold btn-small" id="workoutDone" style="margin-top:1rem;">✓ Mark workout complete</button>
+          <!-- Latest from coach (returning members) -->
+          <section class="portal-card" id="latestNote" hidden>
+            <h2 class="section-label">Latest note from Zeuse</h2>
+            <div id="latestNoteBody"></div>
           </section>
 
-          <!-- Free resources -->
-          <section class="portal-card">
-            <h2 class="section-label">Free reads to get you going</h2>
-            <div class="portal-grid cols-2" id="resourceList"></div>
+          <!-- What's next nudge -->
+          <section class="portal-card" id="nextUp">
+            <h2 class="section-label">Have a question?</h2>
+            <p class="card-lead">Anything about your workouts — form, swaps, soreness, schedule — send it to your coach and get a real answer. No question is too small.</p>
+            <button class="btn btn-gold btn-small" type="button" data-goto="ask">💬 Ask your coach</button>
           </section>
-
         </div>
 
-        <!-- ===== Assigned materials (existing clients) ===== -->
-        <section class="portal-card" id="notesSection" hidden>
-          <h2 class="section-label">Notes from Zeuse</h2>
-          <div id="notesList" class="portal-grid"></div>
-        </section>
+        <!-- ================= WORKOUTS ================= -->
+        <div class="tab-panel" data-panel="workouts" id="panelWorkouts">
 
-        <section class="portal-card" id="workoutsSection" hidden>
-          <h2 class="section-label">Your Workouts</h2>
-          <div id="workoutsList" class="portal-grid"></div>
-        </section>
+          <!-- Free starter workout (new members) -->
+          <section class="portal-card" id="starter" hidden>
+            <div class="wk-head">
+              <div>
+                <h3>Your free starter workout</h3>
+                <p class="meta" id="starterTip">Do this 2–3× this week. Rest 60–90s between sets. Form first, always.</p>
+              </div>
+              <span class="mtag free">Free · Full Body</span>
+            </div>
+            <div id="starterTable"></div>
+            <div class="wk-foot">
+              <button class="btn btn-gold btn-small" id="workoutDone">✓ Mark workout complete</button>
+              <button class="btn btn-ghost btn-small" type="button" data-goto="ask">💬 Ask about this workout</button>
+            </div>
+          </section>
 
-        <section class="portal-card" id="pdfsSection" hidden>
-          <h2 class="section-label">Documents &amp; Plans</h2>
-          <div id="pdfsList" class="portal-grid cols-2"></div>
-        </section>
+          <!-- Assigned workouts -->
+          <section id="workoutsSection" hidden>
+            <div id="workoutsList" class="portal-grid"></div>
+          </section>
 
-        <!-- Resources footer for returning clients who DO have materials -->
-        <section class="portal-card" id="resourcesFooter" hidden>
-          <h2 class="section-label">More from the Olympian Journal</h2>
-          <div class="portal-grid cols-2" id="resourceListFooter"></div>
-        </section>
+          <!-- Notes -->
+          <section class="portal-card" id="notesSection" hidden>
+            <h2 class="section-label">Notes from Zeuse</h2>
+            <div id="notesList" class="portal-grid"></div>
+          </section>
+
+          <!-- Documents -->
+          <section class="portal-card" id="pdfsSection" hidden>
+            <h2 class="section-label">Documents &amp; Plans</h2>
+            <div id="pdfsList" class="portal-grid cols-2"></div>
+          </section>
+        </div>
+
+        <!-- ================= ASK COACH ================= -->
+        <div class="tab-panel" data-panel="ask" id="panelAsk">
+          <section class="portal-card">
+            <div class="thread-shell">
+              <div class="thread-intro">
+                <span class="coach-avatar" aria-hidden="true"><img src="img/logo-mark.png?v=2" alt="" /></span>
+                <div class="who">
+                  <strong>Zeuse Valentine</strong>
+                  <small>Your coach · <span class="dot-on">usually replies within a day</span></small>
+                </div>
+              </div>
+
+              <div class="thread" id="thread">
+                <div class="thread-empty" id="threadEmpty">
+                  <p style="font-size:2rem;margin-bottom:.4rem;">💬</p>
+                  <p><strong>Ask me anything about your training.</strong></p>
+                  <p class="card-lead" style="margin:.4rem auto 0;max-width:36ch;">Form checks, exercise swaps, how a movement should feel, scheduling — I read every message personally.</p>
+                </div>
+              </div>
+
+              <form class="composer" id="composer">
+                <div class="ref-select" id="refWrap" hidden>
+                  <label for="refWorkout">About</label>
+                  <select id="refWorkout"><option value="">General question</option></select>
+                </div>
+                <div class="composer-row">
+                  <textarea id="composerText" rows="1" placeholder="Type your question for Zeuse…" maxlength="4000"></textarea>
+                  <button type="submit" class="btn btn-gold send-btn" id="sendBtn">Send</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= PROGRESS ================= -->
+        <div class="tab-panel" data-panel="progress" id="panelProgress">
+          <section class="portal-card">
+            <h2 class="section-label">Your progress</h2>
+            <div class="progress-split">
+              <div class="ring" id="ring"><span class="ring-val" id="ringVal">0%</span><span class="ring-cap">complete</span></div>
+              <div>
+                <p class="card-lead" id="progressLead" style="margin-top:0;">Every completed workout moves this ring. Consistency beats intensity — small wins stack up fast.</p>
+                <div class="checklist-head" style="margin-bottom:.6rem;">
+                  <span class="checklist-count" id="progWorkouts">0 workouts done</span>
+                  <span class="checklist-count" id="progGoal">Goal: not set</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="portal-card">
+            <h2 class="section-label">Free reads to keep you moving</h2>
+            <div class="portal-grid cols-2" id="resourceList"></div>
+          </section>
+        </div>
 
       </div>
     </div>
   </main>
 
   <script type="module">
-    import { supabase, requireSession, getProfile, signOut, el, escapeHtml } from "./js/portal.js";
+    import { supabase, requireSession, getProfile, signOut, el, escapeHtml, timeAgo, initials } from "./js/portal.js";
 
     const $ = (id) => document.getElementById(id);
     $("signOutNav").addEventListener("click", (e) => { e.preventDefault(); signOut(); });
@@ -167,16 +255,15 @@
       const m = $("msg"); m.textContent = text; m.className = "portal-msg show " + kind;
     }
 
-    /* ---------- Static content: starter workout + free resources ---------- */
+    /* ---------- Static content ---------- */
     const STARTER = [
-      { name: "Bodyweight Squat",              sets: "3", reps: "10–12", notes: "Sit back like into a chair; chest tall." },
-      { name: "Incline Push-Up (counter/bench)", sets: "3", reps: "8–12", notes: "Body in one straight line." },
-      { name: "Glute Bridge",                  sets: "3", reps: "12–15", notes: "Squeeze at the top for 1 second." },
-      { name: "Bent-Over Row (band/dumbbells)", sets: "3", reps: "10–12", notes: "Pull elbows past your ribs." },
-      { name: "Dead Bug",                      sets: "3", reps: "8 / side", notes: "Keep your low back flat to the floor." },
-      { name: "Plank Hold",                    sets: "2", reps: "20–40s", notes: "Squeeze glutes; don't let hips sag." },
+      { name: "Bodyweight Squat",                 sets: "3", reps: "10–12",  notes: "Sit back like into a chair; chest tall." },
+      { name: "Incline Push-Up (counter/bench)",  sets: "3", reps: "8–12",   notes: "Body in one straight line." },
+      { name: "Glute Bridge",                     sets: "3", reps: "12–15",  notes: "Squeeze at the top for 1 second." },
+      { name: "Bent-Over Row (band/dumbbells)",   sets: "3", reps: "10–12",  notes: "Pull elbows past your ribs." },
+      { name: "Dead Bug",                         sets: "3", reps: "8 / side", notes: "Keep your low back flat to the floor." },
+      { name: "Plank Hold",                       sets: "2", reps: "20–40s", notes: "Squeeze glutes; don't let hips sag." },
     ];
-
     const GOAL_TIPS = {
       strength: "Move heavy but clean — add a little weight or a slower tempo each week.",
       fatloss:  "Keep rest short (45–60s) to keep your heart rate up and burn more.",
@@ -184,7 +271,6 @@
       senior:   "Hold a sturdy chair for balance on the squats. No rush — quality over speed.",
     };
     const GOAL_LABEL = { strength: "Build Strength", fatloss: "Lose Fat", mobility: "Move Better", senior: "Age Strong" };
-
     const RESOURCES = [
       { title: "The 20-Minute Workout for Busy People", tag: "Time-crunched", href: "blog/20-minute-workout-busy-schedule.html" },
       { title: "Strength Training After 60: What the Research Says", tag: "Longevity", href: "blog/strength-training-after-60.html" },
@@ -192,108 +278,178 @@
       { title: "Can Exercise Really Help Chronic Pain?", tag: "Recovery", href: "blog/exercise-for-chronic-pain.html" },
     ];
 
-    function starterTable() {
+    function tableFromRows(rows) {
       return el("table", { class: "workout-table" },
         el("thead", {}, el("tr", {},
-          el("th", {}, "Exercise"), el("th", {}, "Sets"), el("th", {}, "Reps"), el("th", {}, "Notes"))),
-        el("tbody", {}, ...STARTER.map((x) => el("tr", {},
-          el("td", {}, x.name), el("td", {}, x.sets), el("td", {}, x.reps), el("td", {}, x.notes))))
+          el("th", {}, "Exercise"), el("th", { class: "col-num" }, "Sets"),
+          el("th", { class: "col-num" }, "Reps"), el("th", {}, "Notes"))),
+        el("tbody", {}, ...rows.map((x) => el("tr", {},
+          el("td", {}, x.name || ""), el("td", { class: "col-num" }, x.sets || ""),
+          el("td", { class: "col-num" }, x.reps || ""), el("td", {}, x.notes || ""))))
       );
     }
-
     function resourceCards(targetId) {
       RESOURCES.forEach((r) => {
-        const card = el("a", { class: "resource-card", href: r.href },
+        $(targetId).append(el("a", { class: "resource-card", href: r.href },
           el("span", { class: "mtag note" }, r.tag),
           el("h3", {}, r.title),
-          el("span", { class: "resource-go" }, "Read →")
-        );
-        $(targetId).append(card);
+          el("span", { class: "resource-go" }, "Read →")));
       });
     }
 
-    /* ---------- Onboarding progress (local, per-user) ---------- */
+    /* ---------- Local per-user state (goal + completions) ---------- */
     let STORE_KEY = "ohs_onboard";
-    let state = { goal: null, done: { account: true, goal: false, workout: false, consult: false } };
-
+    let state = { goal: null, done: { account: true, goal: false, workout: false, consult: false }, completed: {} };
     function loadState(userId) {
       STORE_KEY = "ohs_onboard_" + userId;
       try {
         const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-        if (saved) state = { ...state, ...saved, done: { ...state.done, ...(saved.done || {}) } };
+        if (saved) state = { ...state, ...saved, done: { ...state.done, ...(saved.done || {}) }, completed: { ...(saved.completed || {}) } };
       } catch (_) {}
       state.done.account = true;
     }
-    function saveState() {
-      try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) {}
-    }
+    function saveState() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) {} }
 
-    function renderProgress() {
+    /* ---------- Tab navigation ---------- */
+    function goTab(name) {
+      document.querySelectorAll(".seg-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
+      document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.dataset.panel === name));
+      if (history.replaceState) history.replaceState(null, "", "#" + name);
+      if (name === "ask") { markCoachRead(); scrollThread(); }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    $("segNav").addEventListener("click", (e) => {
+      const b = e.target.closest(".seg-btn"); if (b) goTab(b.dataset.tab);
+    });
+    document.addEventListener("click", (e) => {
+      const g = e.target.closest("[data-goto]"); if (g) goTab(g.dataset.goto);
+    });
+
+    /* ---------- Onboarding progress ---------- */
+    function renderChecklist() {
       const steps = ["account", "goal", "workout", "consult"];
       const done = steps.filter((s) => state.done[s]).length;
       $("progressFill").style.width = (done / steps.length) * 100 + "%";
-      $("checklistCount").textContent = done + " of " + steps.length + " done";
-      document.querySelectorAll(".check-item").forEach((li) => {
-        li.classList.toggle("done", !!state.done[li.dataset.step]);
-      });
-      if (done === steps.length) {
-        $("checklistCount").textContent = "All done — you're set! 🎉";
-      }
+      $("checklistCount").textContent = done === steps.length ? "All done — you're set! 🎉" : (done + " of " + steps.length + " done");
+      document.querySelectorAll(".check-item").forEach((li) => li.classList.toggle("done", !!state.done[li.dataset.step]));
     }
 
     function applyGoal(goal, { persist = true } = {}) {
-      state.goal = goal;
-      state.done.goal = true;
-      document.querySelectorAll(".goal-card").forEach((b) =>
-        b.classList.toggle("selected", b.dataset.goal === goal));
-      $("starterTip").textContent =
-        "Do this 2–3× this week. " + (GOAL_TIPS[goal] || "Form first, always.");
-      $("welcomeSub").textContent =
-        "Goal set: " + (GOAL_LABEL[goal] || "") + ". Here's how to turn this into real results — starting today.";
-      renderProgress();
-      if (persist) {
-        saveState();
-        // Best-effort: attach the goal to the auth user so Zeuse can see it too.
-        supabase.auth.updateUser({ data: { goal } }).catch(() => {});
-      }
+      state.goal = goal; state.done.goal = true;
+      document.querySelectorAll(".goal-card").forEach((b) => b.classList.toggle("selected", b.dataset.goal === goal));
+      const label = GOAL_LABEL[goal] || "—";
+      $("statGoal").textContent = label;
+      $("progGoal").textContent = "Goal: " + label;
+      const tipEl = $("starterTip");
+      if (tipEl) tipEl.textContent = "Do this 2–3× this week. " + (GOAL_TIPS[goal] || "Form first, always.");
+      renderChecklist();
+      if (persist) { saveState(); supabase.auth.updateUser({ data: { goal } }).catch(() => {}); }
+    }
+    $("goalGrid").addEventListener("click", (e) => {
+      const btn = e.target.closest(".goal-card"); if (btn) applyGoal(btn.dataset.goal);
+    });
+
+    /* ---------- Completion + progress ---------- */
+    let totalWorkouts = 1; // at least the starter
+    function completedCount() { return Object.values(state.completed).filter(Boolean).length; }
+    function renderProgress() {
+      const done = completedCount();
+      $("statDone").textContent = done;
+      $("progWorkouts").textContent = done + " workout" + (done === 1 ? "" : "s") + " done";
+      const pct = totalWorkouts ? Math.min(100, Math.round((done / totalWorkouts) * 100)) : 0;
+      const ring = $("ring"); ring.style.setProperty("--pct", pct);
+      $("ringVal").textContent = pct + "%";
+    }
+    function markComplete(key) {
+      state.completed[key] = true; state.done.workout = true; saveState();
+      renderProgress(); renderChecklist();
     }
 
-    /* ---------- Existing assigned-material rendering ---------- */
-    function workoutTable(body) {
-      const rows = (body && Array.isArray(body.exercises)) ? body.exercises : [];
-      return el("table", { class: "workout-table" },
-        el("thead", {}, el("tr", {},
-          el("th", {}, "Exercise"), el("th", {}, "Sets"), el("th", {}, "Reps"), el("th", {}, "Notes"))),
-        el("tbody", {}, ...rows.map((x) => el("tr", {},
-          el("td", {}, x.name || ""), el("td", {}, x.sets || ""),
-          el("td", {}, x.reps || ""), el("td", {}, x.notes || ""))))
-      );
+    /* ---------- Messaging (Ask Coach) ---------- */
+    let USER_ID = null, ME_NAME = "You", MAT_TITLES = {}, MESSAGES = [];
+    const thread = $("thread");
+
+    function scrollThread() { requestAnimationFrame(() => { thread.scrollTop = thread.scrollHeight; }); }
+
+    function bubble(m) {
+      const mine = m.sender_id === USER_ID;
+      const av = el("span", { class: "msg-avatar" }, mine ? initials(ME_NAME) : "Z");
+      const inner = [];
+      if (m.material_id && MAT_TITLES[m.material_id]) inner.push(el("span", { class: "ref" }, "Re: " + MAT_TITLES[m.material_id]));
+      inner.push(document.createTextNode(m.body));
+      inner.push(el("span", { class: "stamp" }, timeAgo(m.created_at)));
+      const b = el("div", { class: "bubble" }, ...inner);
+      return el("div", { class: "msg-line " + (mine ? "me" : "coach") }, av, b);
     }
-    function materialCard(m, extra) {
-      const card = el("div", { class: "material" },
-        el("span", { class: "mtag " + m.type }, m.type === "pdf" ? "Document" : m.type),
-        el("h3", {}, m.title),
-        el("div", { class: "meta" }, "Assigned " + new Date(m.assigned_at).toLocaleDateString())
-      );
-      if (extra) card.append(extra);
-      return card;
+    function renderThread() {
+      thread.querySelectorAll(".msg-line").forEach((n) => n.remove());
+      $("threadEmpty").hidden = MESSAGES.length > 0;
+      MESSAGES.forEach((m) => thread.append(bubble(m)));
+      scrollThread();
+    }
+    function unreadFromCoach() { return MESSAGES.filter((m) => m.sender_id !== USER_ID && !m.read_at).length; }
+    function renderAskBadge() {
+      const n = unreadFromCoach();
+      const badge = $("askBadge");
+      badge.hidden = n === 0; badge.textContent = n;
+    }
+    async function markCoachRead() {
+      const unread = MESSAGES.filter((m) => m.sender_id !== USER_ID && !m.read_at);
+      if (!unread.length) return;
+      unread.forEach((m) => (m.read_at = new Date().toISOString()));
+      renderAskBadge();
+      await supabase.from("messages").update({ read_at: new Date().toISOString() })
+        .eq("client_id", USER_ID).is("read_at", null).neq("sender_id", USER_ID);
+    }
+
+    // Composer: auto-grow + send
+    const ta = $("composerText");
+    ta.addEventListener("input", () => { ta.style.height = "auto"; ta.style.height = Math.min(160, ta.scrollHeight) + "px"; });
+    $("composer").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const body = ta.value.trim(); if (!body) return;
+      const material_id = $("refWorkout").value || null;
+      $("sendBtn").disabled = true;
+      const optimistic = { sender_id: USER_ID, client_id: USER_ID, material_id, body, created_at: new Date().toISOString(), read_at: new Date().toISOString() };
+      MESSAGES.push(optimistic); renderThread();
+      ta.value = ""; ta.style.height = "auto";
+      const { data, error } = await supabase.from("messages")
+        .insert({ client_id: USER_ID, sender_id: USER_ID, material_id, body }).select().single();
+      if (error) { showMsg("Couldn't send: " + error.message, "error"); MESSAGES.pop(); renderThread(); }
+      else { Object.assign(optimistic, data); state.done.consult = state.done.consult; }
+      $("sendBtn").disabled = false; ta.focus();
+    });
+
+    async function loadMessages() {
+      const { data, error } = await supabase.from("messages")
+        .select("id, sender_id, client_id, material_id, body, read_at, created_at")
+        .eq("client_id", USER_ID).order("created_at", { ascending: true });
+      if (error) { console.warn("[messages]", error.message); return; }
+      MESSAGES = data || [];
+      renderThread(); renderAskBadge();
     }
 
     /* ---------- Boot ---------- */
     (async () => {
       const session = await requireSession();
       if (!session) return;
+      USER_ID = session.user.id;
 
       const profile = await getProfile();
       const name = (profile?.full_name || "").trim() || (profile?.email || "").split("@")[0];
-      $("greeting").textContent = "Welcome" + (name ? ", " + name : "");
-      loadState(session.user.id);
-      // Pull a previously-chosen goal from auth metadata if local storage was cleared.
+      ME_NAME = name || "You";
+      const first = name ? name.split(" ")[0] : "";
+      $("greeting").innerHTML = "Welcome back" + (first ? ', <span class="grad">' + escapeHtml(first) + "</span>" : "");
+      $("orb").textContent = initials(name || profile?.email || "O");
+      loadState(USER_ID);
       if (!state.goal && session.user.user_metadata?.goal) state.goal = session.user.user_metadata.goal;
 
-      if (profile?.role === "admin") {
-        const a = $("adminNavLink"); a.hidden = false; a.href = "admin.html";
-      }
+      // Days as member
+      const created = new Date(session.user.created_at || Date.now());
+      const days = Math.max(1, Math.floor((Date.now() - created.getTime()) / 86400000) + 1);
+      $("statDay").textContent = days;
+
+      if (profile?.role === "admin") { const a = $("adminNavLink"); a.hidden = false; a.href = "admin.html"; }
 
       const { data, error } = await supabase
         .from("assignments")
@@ -302,88 +458,124 @@
 
       $("loading").hidden = true;
       $("content").hidden = false;
-      $("topConsult").hidden = false;
 
-      if (error) {
-        showMsg("Couldn't load your materials: " + error.message, "error");
-      }
+      if (error) showMsg("Couldn't load your materials: " + error.message, "error");
 
-      const items = (data || [])
-        .filter((r) => r.materials)
-        .map((r) => ({ ...r.materials, assigned_at: r.assigned_at }));
-
+      const items = (data || []).filter((r) => r.materials).map((r) => ({ ...r.materials, assigned_at: r.assigned_at }));
       const notes = items.filter((m) => m.type === "note");
       const workouts = items.filter((m) => m.type === "workout");
       const pdfs = items.filter((m) => m.type === "pdf");
 
+      // Build workout-title map for message references + populate the ref selector
+      const refSel = $("refWorkout");
+      workouts.forEach((w) => { MAT_TITLES[w.id] = w.title; refSel.append(el("option", { value: w.id }, w.title)); });
+
+      $("statWorkouts").textContent = workouts.length || 1;
+
       if (!items.length) {
-        /* -------- NEW MEMBER: full onboarding experience -------- */
+        /* -------- NEW MEMBER -------- */
         $("subline").textContent = "Let's get you started 👇";
-        $("onboarding").hidden = false;
-        if (new URLSearchParams(location.search).get("welcome") === "1") {
-          $("welcomeTitle").textContent = "You're in, " + (name ? name.split(" ")[0] : "welcome") + "! 🎉";
-        }
+        $("welcomeHero").hidden = false;
+        $("checklistCard").hidden = false;
+        $("latestNote").hidden = true;
+        if (new URLSearchParams(location.search).get("welcome") === "1")
+          $("welcomeTitle").textContent = "You're in, " + (first || "welcome") + "! 🎉";
 
-        $("starterTable").append(starterTable());
-        resourceCards("resourceList");
-        if (state.goal) applyGoal(state.goal, { persist: false });
-        renderProgress();
-
-        // Goal picker
-        $("goalGrid").addEventListener("click", (e) => {
-          const btn = e.target.closest(".goal-card");
-          if (btn) applyGoal(btn.dataset.goal);
-        });
-        // Mark workout complete
+        // Free starter workout
+        $("starter").hidden = false;
+        $("starterTable").append(tableFromRows(STARTER));
+        MAT_TITLES["starter"] = "Free starter workout";
+        refSel.append(el("option", { value: "starter" }, "Free starter workout"));
+        totalWorkouts = 1;
+        if (state.completed["starter"]) { $("workoutDone").textContent = "✓ Completed"; $("workoutDone").disabled = true; }
         $("workoutDone").addEventListener("click", () => {
-          state.done.workout = true; saveState(); renderProgress();
-          $("workoutDone").textContent = "✓ Nice work — logged!";
-          $("workoutDone").disabled = true;
+          markComplete("starter");
+          $("workoutDone").textContent = "✓ Nice work — logged!"; $("workoutDone").disabled = true;
         });
-        if (state.done.workout) {
-          $("workoutDone").textContent = "✓ Completed";
-          $("workoutDone").disabled = true;
-        }
-        // Book consult marks the step, then navigates
-        [$("claimConsult"), $("topConsult")].forEach((a) =>
-          a.addEventListener("click", () => { state.done.consult = true; saveState(); }));
+        [$("claimConsult"), $("topConsult")].forEach((a) => a.addEventListener("click", () => { state.done.consult = true; saveState(); }));
       } else {
-        /* -------- RETURNING CLIENT: assigned materials -------- */
-        $("subline").textContent =
-          items.length + " item" + (items.length === 1 ? "" : "s") + " assigned to you";
+        /* -------- RETURNING CLIENT -------- */
+        $("subline").textContent = items.length + " item" + (items.length === 1 ? "" : "s") + " assigned to you";
+        $("welcomeHero").hidden = true;
+        $("checklistCard").hidden = true;
+        $("nextUp").querySelector(".section-label").textContent = "Have a question about your plan?";
+        totalWorkouts = Math.max(1, workouts.length);
+
+        if (workouts.length) {
+          $("workoutsSection").hidden = false;
+          workouts.forEach((m) => {
+            const key = "wk_" + m.id;
+            const done = !!state.completed[key];
+            const foot = el("div", { class: "wk-foot" });
+            const doneBtn = el("button", { class: "btn " + (done ? "btn-ghost" : "btn-gold") + " btn-small" }, done ? "✓ Completed" : "✓ Mark complete");
+            if (done) doneBtn.disabled = true;
+            doneBtn.addEventListener("click", () => {
+              markComplete(key); doneBtn.textContent = "✓ Completed"; doneBtn.classList.remove("btn-gold"); doneBtn.classList.add("btn-ghost"); doneBtn.disabled = true;
+            });
+            const askBtn = el("button", { class: "btn btn-ghost btn-small", type: "button" }, "💬 Ask about this");
+            askBtn.addEventListener("click", () => { $("refWorkout").value = m.id; goTab("ask"); ta.focus(); });
+            foot.append(doneBtn, askBtn);
+
+            const card = el("div", { class: "wk-card" },
+              el("div", { class: "wk-head" },
+                el("div", {}, el("h3", {}, m.title), el("p", { class: "meta" }, "Assigned " + new Date(m.assigned_at).toLocaleDateString())),
+                el("span", { class: "mtag workout" }, "Workout")),
+              tableFromRows((m.body && Array.isArray(m.body.exercises)) ? m.body.exercises : []),
+              foot);
+            $("workoutsList").append(card);
+          });
+        }
 
         if (notes.length) {
           $("notesSection").hidden = false;
           notes.forEach((m) => {
             const text = (m.body && (m.body.text ?? "")) || "";
-            $("notesList").append(materialCard(m, el("div", { class: "body" }, text)));
+            $("notesList").append(el("div", { class: "wk-card" },
+              el("div", { class: "wk-head" },
+                el("div", {}, el("h3", {}, m.title), el("p", { class: "meta" }, "Assigned " + new Date(m.assigned_at).toLocaleDateString())),
+                el("span", { class: "mtag note" }, "Note")),
+              el("div", { class: "body-note" }, text)));
           });
+          // Surface the latest note on the overview tab too
+          const latest = notes[0];
+          $("latestNote").hidden = false;
+          $("latestNoteBody").append(el("div", { class: "wk-card" },
+            el("h3", {}, latest.title),
+            el("div", { class: "body-note" }, (latest.body && (latest.body.text ?? "")) || "")));
         }
-        if (workouts.length) {
-          $("workoutsSection").hidden = false;
-          workouts.forEach((m) => $("workoutsList").append(materialCard(m, workoutTable(m.body))));
-        }
+
         if (pdfs.length) {
           $("pdfsSection").hidden = false;
           for (const m of pdfs) {
-            const card = materialCard(m);
             const link = el("a", { class: "btn btn-gold btn-small", href: "#", target: "_blank", rel: "noopener" }, "Open PDF");
             link.style.marginTop = ".8rem";
             if (m.file_path) {
-              const { data: signed } = await supabase
-                .storage.from("materials").createSignedUrl(m.file_path, 3600);
-              if (signed?.signedUrl) { link.href = signed.signedUrl; }
-              else { link.textContent = "Unavailable"; link.classList.add("btn-ghost"); link.classList.remove("btn-gold"); }
+              const { data: signed } = await supabase.storage.from("materials").createSignedUrl(m.file_path, 3600);
+              if (signed?.signedUrl) link.href = signed.signedUrl;
+              else { link.textContent = "Unavailable"; link.classList.replace("btn-gold", "btn-ghost"); }
             }
-            card.append(link);
-            $("pdfsList").append(card);
+            $("pdfsList").append(el("div", { class: "wk-card" },
+              el("div", { class: "wk-head" }, el("div", {}, el("h3", {}, m.title),
+                el("p", { class: "meta" }, "Assigned " + new Date(m.assigned_at).toLocaleDateString())),
+                el("span", { class: "mtag pdf" }, "Document")), link));
           }
         }
-
-        // Everyone still gets the free-resources strip.
-        $("resourcesFooter").hidden = false;
-        resourceCards("resourceListFooter");
       }
+
+      // Show the ref selector in the composer if there's anything to reference
+      if (refSel.options.length > 1) $("refWrap").hidden = false;
+
+      // Goal + progress + resources
+      if (state.goal) applyGoal(state.goal, { persist: false }); else renderChecklist();
+      renderProgress();
+      resourceCards("resourceList");
+
+      // Messages
+      await loadMessages();
+
+      // Deep-link to a tab via hash (#ask, #workouts, #progress)
+      const hash = (location.hash || "").replace("#", "");
+      if (["overview", "workouts", "ask", "progress"].includes(hash)) goTab(hash);
     })();
   </script>
 </body>

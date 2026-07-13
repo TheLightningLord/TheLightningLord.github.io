@@ -150,6 +150,55 @@ create policy "client reads assigned materials"
   );
 
 -- ============================================================
+-- 3b. MESSAGES  (client ↔ coach Q&A thread)
+--     One row per message. `client_id` is always the CLIENT the
+--     thread belongs to; `sender_id` is whoever wrote the line
+--     (the client themselves, or the admin/coach replying).
+--     `material_id` optionally ties a question to a workout.
+-- ============================================================
+create table if not exists public.messages (
+  id           uuid primary key default gen_random_uuid(),
+  client_id    uuid not null references auth.users(id) on delete cascade,
+  sender_id    uuid not null references auth.users(id) on delete cascade,
+  material_id  uuid references public.materials(id) on delete set null,
+  body         text not null check (char_length(body) between 1 and 4000),
+  read_at      timestamptz,                       -- set when the other party has seen it
+  created_at   timestamptz not null default now()
+);
+
+create index if not exists messages_client_created_idx
+  on public.messages (client_id, created_at);
+
+alter table public.messages enable row level security;
+
+drop policy if exists "client reads own thread"    on public.messages;
+drop policy if exists "client writes own thread"    on public.messages;
+drop policy if exists "client marks own thread read" on public.messages;
+drop policy if exists "admin manages messages"      on public.messages;
+
+-- Client: can read every message in THEIR thread…
+create policy "client reads own thread"
+  on public.messages for select
+  using (client_id = auth.uid());
+
+-- …and can post, but only into their own thread, as themselves.
+create policy "client writes own thread"
+  on public.messages for insert
+  with check (client_id = auth.uid() and sender_id = auth.uid());
+
+-- Client: may mark coach replies in their thread as read.
+create policy "client marks own thread read"
+  on public.messages for update
+  using (client_id = auth.uid())
+  with check (client_id = auth.uid());
+
+-- Admin/coach: full control over every thread.
+create policy "admin manages messages"
+  on public.messages for all
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- ============================================================
 -- 4. STORAGE  (private bucket for PDF materials)
 -- ============================================================
 insert into storage.buckets (id, name, public)

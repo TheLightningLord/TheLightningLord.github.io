@@ -25,8 +25,12 @@ steps once and the **Client Login** link on the site goes live.
 2. Open [`supabase/setup.sql`](supabase/setup.sql) from this repo, copy the
    **entire** file, paste it into the editor, and click **Run**.
 3. You should see "Success. No rows returned." That created the `profiles`,
-   `materials`, and `assignments` tables, the security policies, and the
-   private `materials` storage bucket.
+   `materials`, `assignments`, and `messages` tables, the security policies, and
+   the private `materials` storage bucket.
+
+   > **Already ran an older version?** Just paste and **Run** the whole file
+   > again — every statement is idempotent, so it only adds the new `messages`
+   > table (which powers the client ↔ coach Q&A) and leaves your data untouched.
 
 ## 3. Plug your keys into the site
 
@@ -82,6 +86,9 @@ Supabase → **Authentication** → **URL Configuration**:
     table), or a PDF upload.
   - **Assign** any material to any client. They see it instantly on next load.
   - **Delete** materials (also un-assigns them).
+  - **Answer questions** — the **Client questions** inbox shows every thread;
+    open one to read what a client asked about their workouts and reply. They
+    see your answer under **Ask Coach** on their dashboard, with an unread badge.
 
 ## Files in this feature
 
