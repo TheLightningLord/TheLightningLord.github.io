@@ -229,7 +229,174 @@ create policy "client reads assigned files"
   );
 
 -- ============================================================
--- 5. MAKE YOURSELF AN ADMIN
+-- 5. QUESTIONNAIRES  (assignments + synchronized responses)
+--    The questionnaire CONTENT lives in js/questionnaires.js.
+--    Here we only store WHICH forms are assigned to a client and
+--    the client's saved ANSWERS (autosaved per-answer = "synced").
+-- ============================================================
+
+-- 5a. Which questionnaires a coach has assigned to a client.
+create table if not exists public.form_assignments (
+  id           uuid primary key default gen_random_uuid(),
+  client_id    uuid not null references auth.users(id) on delete cascade,
+  form_key     text not null,                 -- matches a key in questionnaires.js
+  assigned_by  uuid references auth.users(id) on delete set null,
+  assigned_at  timestamptz not null default now(),
+  due_at       timestamptz,
+  note         text,                          -- optional coach note shown to client
+  unique (client_id, form_key)
+);
+
+alter table public.form_assignments enable row level security;
+
+drop policy if exists "client reads own form assignments" on public.form_assignments;
+drop policy if exists "admin manages form assignments"     on public.form_assignments;
+
+create policy "client reads own form assignments"
+  on public.form_assignments for select
+  using (client_id = auth.uid());
+
+create policy "admin manages form assignments"
+  on public.form_assignments for all
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- 5b. A client's saved answers for one form (one row per client+form).
+--     `answers` is a jsonb map { question_id: value }. Autosaved as
+--     the client works, so they can resume on any device.
+create table if not exists public.form_responses (
+  id            uuid primary key default gen_random_uuid(),
+  client_id     uuid not null references auth.users(id) on delete cascade,
+  form_key      text not null,
+  answers       jsonb not null default '{}'::jsonb,
+  status        text not null default 'in_progress'
+                  check (status in ('in_progress','completed')),
+  completed_at  timestamptz,
+  updated_at    timestamptz not null default now(),
+  unique (client_id, form_key)
+);
+
+alter table public.form_responses enable row level security;
+
+drop policy if exists "client manages own responses" on public.form_responses;
+drop policy if exists "admin reads all responses"     on public.form_responses;
+
+-- Client: full control over their OWN responses (insert / update / read).
+create policy "client manages own responses"
+  on public.form_responses for all
+  using (client_id = auth.uid())
+  with check (client_id = auth.uid());
+
+-- Admin/coach: read every client's responses.
+create policy "admin reads all responses"
+  on public.form_responses for select
+  using (public.is_admin());
+
+-- ============================================================
+-- 6. SESSIONS  (paper-tracked in-person workouts, logged by coach)
+--    The coach logs a session they did WITH the client; the client
+--    sees it on their dashboard and can rate / comment on it.
+-- ============================================================
+create table if not exists public.sessions (
+  id            uuid primary key default gen_random_uuid(),
+  client_id     uuid not null references auth.users(id) on delete cascade,
+  coach_id      uuid references auth.users(id) on delete set null,
+  session_date  date not null default current_date,
+  title         text not null,
+  focus         text,                    -- e.g. "Lower body + conditioning"
+  body          jsonb,                   -- { exercises: [ { name, sets, reps, load, notes } ] }
+  coach_notes   text,                    -- what the coach wants the client to see
+  created_at    timestamptz not null default now()
+);
+
+create index if not exists sessions_client_date_idx
+  on public.sessions (client_id, session_date desc);
+
+alter table public.sessions enable row level security;
+
+drop policy if exists "client reads own sessions" on public.sessions;
+drop policy if exists "admin manages sessions"     on public.sessions;
+
+create policy "client reads own sessions"
+  on public.sessions for select
+  using (client_id = auth.uid());
+
+create policy "admin manages sessions"
+  on public.sessions for all
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- 6b. The client's rating + comment on a logged session.
+create table if not exists public.session_feedback (
+  id            uuid primary key default gen_random_uuid(),
+  session_id    uuid not null references public.sessions(id) on delete cascade,
+  client_id     uuid not null references auth.users(id) on delete cascade,
+  rating        int check (rating between 1 and 5),
+  comment       text check (char_length(comment) <= 2000),
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now(),
+  unique (session_id, client_id)
+);
+
+alter table public.session_feedback enable row level security;
+
+drop policy if exists "client manages own session feedback" on public.session_feedback;
+drop policy if exists "admin reads session feedback"         on public.session_feedback;
+
+-- Client: rate / comment only on THEIR OWN sessions.
+create policy "client manages own session feedback"
+  on public.session_feedback for all
+  using (client_id = auth.uid())
+  with check (
+    client_id = auth.uid()
+    and exists (
+      select 1 from public.sessions s
+      where s.id = session_feedback.session_id
+        and s.client_id = auth.uid()
+    )
+  );
+
+create policy "admin reads session feedback"
+  on public.session_feedback for select
+  using (public.is_admin());
+
+-- ============================================================
+-- 7. FEEDBACK  (the "Give feedback" button — client → coach)
+-- ============================================================
+create table if not exists public.feedback (
+  id           uuid primary key default gen_random_uuid(),
+  client_id    uuid not null references auth.users(id) on delete cascade,
+  category     text not null default 'general'
+                 check (category in ('general','portal','workouts','nutrition','coaching','bug','idea')),
+  rating       int check (rating between 1 and 5),
+  body         text not null check (char_length(body) between 1 and 4000),
+  read_at      timestamptz,
+  created_at   timestamptz not null default now()
+);
+
+create index if not exists feedback_created_idx on public.feedback (created_at desc);
+
+alter table public.feedback enable row level security;
+
+drop policy if exists "client writes own feedback" on public.feedback;
+drop policy if exists "client reads own feedback"   on public.feedback;
+drop policy if exists "admin manages feedback"      on public.feedback;
+
+create policy "client writes own feedback"
+  on public.feedback for insert
+  with check (client_id = auth.uid());
+
+create policy "client reads own feedback"
+  on public.feedback for select
+  using (client_id = auth.uid());
+
+create policy "admin manages feedback"
+  on public.feedback for all
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- ============================================================
+-- 8. MAKE YOURSELF AN ADMIN
 --    Sign up through the website FIRST (so your auth user exists),
 --    then run the line below with your email.
 -- ============================================================

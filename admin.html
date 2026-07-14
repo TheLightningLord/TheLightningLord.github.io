@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=14" />
   <link rel="stylesheet" href="css/polish.css?v=1" />
-  <link rel="stylesheet" href="css/portal.css?v=4" />
+  <link rel="stylesheet" href="css/portal.css?v=5" />
   <script src="js/portal-config.js"></script>
 </head>
 <body>
@@ -43,7 +43,7 @@
     <div class="portal-wrap">
       <div class="portal-head fade-up d1">
         <h1>Coach Admin</h1>
-        <p>Create materials, assign them to clients, and answer their questions.</p>
+        <p>Run your business from here — assignments, sessions, materials, and every client conversation.</p>
       </div>
 
       <div class="portal-msg" id="msg" role="status" aria-live="polite"></div>
@@ -52,90 +52,177 @@
 
       <div id="adminBody" hidden>
 
-        <!-- ===== Client questions (inbox) ===== -->
-        <section class="portal-card fade-up d1">
-          <div class="checklist-head">
-            <h2 class="section-label" style="margin:0;">Client questions</h2>
-            <span class="checklist-count" id="inboxCount">0 unread</span>
-          </div>
+        <!-- ================= MAIN (list) VIEW ================= -->
+        <div id="adminMain">
 
-          <!-- Inbox list -->
-          <div id="inboxView">
-            <div class="inbox-list" id="inboxList"><p class="empty-state">Loading…</p></div>
-          </div>
+          <!-- ===== Clients ===== -->
+          <section class="portal-card fade-up d1">
+            <div class="checklist-head">
+              <h2 class="section-label" style="margin:0;">Clients</h2>
+              <span class="checklist-count" id="clientCount">0 clients</span>
+            </div>
+            <p class="card-lead">Open a client to assign questionnaires, read their answers, log a session, and message them.</p>
+            <div id="clientsList"><p class="empty-state">Loading…</p></div>
+          </section>
 
-          <!-- Single thread -->
-          <div id="threadView" hidden>
-            <button class="back-link" id="backToInbox" type="button">← All questions</button>
-            <div class="thread-shell">
-              <div class="thread-intro">
-                <span class="msg-avatar" id="threadAvatar" aria-hidden="true">C</span>
-                <div class="who">
-                  <strong id="threadName">Client</strong>
-                  <small id="threadEmail">—</small>
+          <!-- ===== Client questions (inbox) ===== -->
+          <section class="portal-card fade-up d1">
+            <div class="checklist-head">
+              <h2 class="section-label" style="margin:0;">Client questions</h2>
+              <span class="checklist-count" id="inboxCount">0 unread</span>
+            </div>
+            <div id="inboxView">
+              <div class="inbox-list" id="inboxList"><p class="empty-state">Loading…</p></div>
+            </div>
+            <div id="threadView" hidden>
+              <button class="back-link" id="backToInbox" type="button">← All questions</button>
+              <div class="thread-shell">
+                <div class="thread-intro">
+                  <span class="msg-avatar" id="threadAvatar" aria-hidden="true">C</span>
+                  <div class="who">
+                    <strong id="threadName">Client</strong>
+                    <small id="threadEmail">—</small>
+                  </div>
                 </div>
+                <div class="thread" id="adminThread"></div>
+                <form class="composer" id="adminComposer">
+                  <div class="composer-row">
+                    <textarea id="adminReply" rows="1" placeholder="Write your reply…" maxlength="4000"></textarea>
+                    <button type="submit" class="btn btn-gold send-btn" id="adminSendBtn">Send</button>
+                  </div>
+                </form>
               </div>
-              <div class="thread" id="adminThread"></div>
-              <form class="composer" id="adminComposer">
-                <div class="composer-row">
-                  <textarea id="adminReply" rows="1" placeholder="Write your reply…" maxlength="4000"></textarea>
-                  <button type="submit" class="btn btn-gold send-btn" id="adminSendBtn">Send</button>
-                </div>
-              </form>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- ===== Create material ===== -->
-        <section class="portal-card fade-up d2">
-          <h2 class="section-label">Create a material</h2>
-          <div class="form-row">
-            <label for="mType">Type</label>
-            <select id="mType">
-              <option value="note">Note / message</option>
-              <option value="workout">Structured workout</option>
-              <option value="pdf">PDF document</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="mTitle">Title</label>
-            <input type="text" id="mTitle" placeholder="e.g. Week 1 — Lower Body" />
-          </div>
+          <!-- ===== Client feedback inbox ===== -->
+          <section class="portal-card fade-up d2">
+            <div class="checklist-head">
+              <h2 class="section-label" style="margin:0;">Client feedback</h2>
+              <span class="checklist-count" id="fbCount">0 new</span>
+            </div>
+            <div id="feedbackList"><p class="empty-state">Loading…</p></div>
+          </section>
 
-          <div id="noteFields">
+          <!-- ===== Create material ===== -->
+          <section class="portal-card fade-up d2">
+            <h2 class="section-label">Create a material</h2>
             <div class="form-row">
-              <label for="mNote">Note</label>
-              <textarea id="mNote" rows="5" placeholder="Write a personalized message or instructions…"></textarea>
+              <label for="mType">Type</label>
+              <select id="mType">
+                <option value="note">Note / message</option>
+                <option value="workout">Structured workout</option>
+                <option value="pdf">PDF document</option>
+              </select>
             </div>
-          </div>
+            <div class="form-row">
+              <label for="mTitle">Title</label>
+              <input type="text" id="mTitle" placeholder="e.g. Week 1 — Lower Body" />
+            </div>
 
-          <div id="workoutFields" hidden>
+            <div id="noteFields">
+              <div class="form-row">
+                <label for="mNote">Note</label>
+                <textarea id="mNote" rows="5" placeholder="Write a personalized message or instructions…"></textarea>
+              </div>
+            </div>
+
+            <div id="workoutFields" hidden>
+              <label class="section-label" style="font-size:1rem;">Exercises</label>
+              <div id="exRows"></div>
+              <button type="button" class="btn btn-ghost btn-small" id="addExBtn">+ Add exercise</button>
+            </div>
+
+            <div id="pdfFields" hidden>
+              <div class="form-row">
+                <label for="mFile">PDF file</label>
+                <input type="file" id="mFile" accept="application/pdf" />
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-gold" id="createBtn" style="margin-top:.6rem;">Save material</button>
+          </section>
+
+          <!-- ===== Materials + assignment ===== -->
+          <section class="portal-card fade-up d3">
+            <h2 class="section-label">Materials</h2>
+            <div id="materialsList"><p class="empty-state">Loading…</p></div>
+          </section>
+
+        </div>
+
+        <!-- ================= CLIENT DETAIL VIEW ================= -->
+        <div id="clientDetail" hidden>
+          <button class="back-link" id="backToClients" type="button">← All clients</button>
+
+          <section class="portal-card">
+            <div class="client-detail-head">
+              <span class="msg-avatar" id="cdAvatar">C</span>
+              <div>
+                <h2 id="cdName" style="font-family:var(--serif);color:var(--marble);font-size:1.6rem;">Client</h2>
+                <p class="meta" id="cdEmail">—</p>
+              </div>
+              <button class="btn btn-ghost btn-small" id="cdMessage" type="button" style="margin-left:auto;">💬 Message</button>
+            </div>
+          </section>
+
+          <!-- Assign a questionnaire -->
+          <section class="portal-card">
+            <h2 class="section-label">Assign a questionnaire</h2>
+            <p class="card-lead">Send a science-backed intake to complete. They'll see it on their Assignments tab and answers save as they go.</p>
+            <div class="form-row">
+              <label for="cdForm">Questionnaire</label>
+              <select id="cdForm"></select>
+            </div>
+            <div class="form-row">
+              <label for="cdFormNote">Note (optional)</label>
+              <input type="text" id="cdFormNote" placeholder="e.g. Please finish before our Thursday call" />
+            </div>
+            <button class="btn btn-gold btn-small" id="cdAssignForm" type="button">Assign questionnaire</button>
+            <div id="cdAssignments" class="cd-assign-list"></div>
+          </section>
+
+          <!-- Their responses -->
+          <section class="portal-card">
+            <h2 class="section-label">Their answers</h2>
+            <div id="cdResponses"><p class="empty-state">Loading…</p></div>
+          </section>
+
+          <!-- Log a session -->
+          <section class="portal-card">
+            <h2 class="section-label">Log a session</h2>
+            <p class="card-lead">Enter a workout you did together. It appears on their dashboard training log, where they can rate it and leave a comment.</p>
+            <div class="form-grid-2">
+              <div class="form-row">
+                <label for="sDate">Date</label>
+                <input type="date" id="sDate" />
+              </div>
+              <div class="form-row">
+                <label for="sTitle">Title</label>
+                <input type="text" id="sTitle" placeholder="e.g. Lower Body — Session 4" />
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="sFocus">Focus (optional)</label>
+              <input type="text" id="sFocus" placeholder="e.g. Strength + conditioning" />
+            </div>
             <label class="section-label" style="font-size:1rem;">Exercises</label>
-            <div id="exRows"></div>
-            <button type="button" class="btn btn-ghost btn-small" id="addExBtn">+ Add exercise</button>
-          </div>
-
-          <div id="pdfFields" hidden>
-            <div class="form-row">
-              <label for="mFile">PDF file</label>
-              <input type="file" id="mFile" accept="application/pdf" />
+            <div class="ex-head ex-head-load"><span>Exercise</span><span>Sets</span><span>Reps</span><span>Load</span><span>Notes</span><span></span></div>
+            <div id="sExRows"></div>
+            <button type="button" class="btn btn-ghost btn-small" id="sAddEx">+ Add exercise</button>
+            <div class="form-row" style="margin-top:1rem;">
+              <label for="sNotes">Coach note to client (optional)</label>
+              <textarea id="sNotes" rows="3" placeholder="What they crushed, what to work on, how to recover…"></textarea>
             </div>
-          </div>
+            <button type="button" class="btn btn-gold" id="sSave" style="margin-top:.4rem;">Save session to their log</button>
+          </section>
 
-          <button type="button" class="btn btn-gold" id="createBtn" style="margin-top:.6rem;">Save material</button>
-        </section>
-
-        <!-- ===== Materials + assignment ===== -->
-        <section class="portal-card fade-up d2">
-          <h2 class="section-label">Materials</h2>
-          <div id="materialsList"><p class="empty-state">Loading…</p></div>
-        </section>
-
-        <!-- ===== Clients ===== -->
-        <section class="portal-card fade-up d3">
-          <h2 class="section-label">Clients</h2>
-          <div id="clientsList"><p class="empty-state">Loading…</p></div>
-        </section>
+          <!-- Their sessions -->
+          <section class="portal-card">
+            <h2 class="section-label">Session history &amp; feedback</h2>
+            <div id="cdSessions"><p class="empty-state">Loading…</p></div>
+          </section>
+        </div>
 
       </div>
     </div>
@@ -143,6 +230,7 @@
 
   <script type="module">
     import { supabase, requireAdmin, signOut, el, escapeHtml, timeAgo, initials } from "./js/portal.js";
+    import { QUESTIONNAIRES, getQuestionnaire, answerableQuestions } from "./js/questionnaires.js";
 
     const $ = (id) => document.getElementById(id);
     $("signOutNav").addEventListener("click", (e) => { e.preventDefault(); signOut(); });
@@ -156,6 +244,7 @@
     let ADMIN_ID = null;
     let ALL_MESSAGES = [];
     let openClientId = null;
+    let detailClientId = null;
 
     /* ---------- type switcher ---------- */
     $("mType").addEventListener("change", () => {
@@ -166,7 +255,7 @@
       if (t === "workout" && !$("exRows").children.length) addExRow();
     });
 
-    /* ---------- workout builder ---------- */
+    /* ---------- workout builder (materials) ---------- */
     function addExRow(ex = {}) {
       const row = el("div", { class: "ex-row" },
         el("input", { type: "text", placeholder: "Exercise", value: ex.name || "", class: "ex-name" }),
@@ -237,6 +326,7 @@
         .from("profiles").select("id, email, full_name, role").order("created_at", { ascending: true });
       if (error) { $("clientsList").innerHTML = ""; $("clientsList").append(el("p", { class: "empty-state" }, error.message)); return; }
       clients = (data || []).filter((p) => p.role === "client");
+      $("clientCount").textContent = clients.length + " client" + (clients.length === 1 ? "" : "s");
 
       const wrap = $("clientsList");
       wrap.innerHTML = "";
@@ -244,8 +334,10 @@
       const table = el("table", { class: "admin-table" },
         el("thead", {}, el("tr", {}, el("th", {}, "Name"), el("th", {}, "Email"), el("th", {}, ""))),
         el("tbody", {}, ...clients.map((c) => {
-          const openBtn = el("button", { class: "btn btn-ghost btn-small", type: "button", onClick: () => openThread(c.id) }, "💬 Message");
-          return el("tr", {}, el("td", {}, (c.full_name || "—")), el("td", {}, c.email || "—"), el("td", {}, openBtn));
+          const openBtn = el("button", { class: "btn btn-gold btn-small", type: "button", onClick: () => openClientDetail(c.id) }, "Open");
+          const msgBtn = el("button", { class: "btn btn-ghost btn-small", type: "button", onClick: () => openThread(c.id) }, "💬");
+          return el("tr", {}, el("td", {}, (c.full_name || "—")), el("td", {}, c.email || "—"),
+            el("td", {}, el("div", { class: "inline-form" }, openBtn, msgBtn)));
         }))
       );
       wrap.append(table);
@@ -323,11 +415,9 @@
       renderInbox();
     }
 
-    // A message is "from the client" when the sender is the client themselves.
     const fromClient = (m) => m.sender_id === m.client_id;
 
     function renderInbox() {
-      // Group by client_id, keep only clients who have at least one message.
       const byClient = {};
       ALL_MESSAGES.forEach((m) => { (byClient[m.client_id] ||= []).push(m); });
 
@@ -361,7 +451,7 @@
       const box = $("adminThread"); box.innerHTML = "";
       if (!msgs.length) { box.append(el("p", { class: "thread-empty" }, "No messages yet — start the conversation below.")); }
       msgs.forEach((m) => {
-        const mine = !fromClient(m);   // coach (me) vs client
+        const mine = !fromClient(m);
         const nm = clientName(cid);
         const av = el("span", { class: "msg-avatar" }, mine ? "Z" : initials(nm));
         box.append(el("div", { class: "msg-line " + (mine ? "me" : "coach") }, av,
@@ -371,6 +461,8 @@
     }
 
     async function openThread(cid) {
+      // Ensure we're on the main view and the inbox card is showing the thread
+      $("clientDetail").hidden = true; $("adminMain").hidden = false;
       openClientId = cid;
       const c = clientById(cid);
       $("threadName").textContent = c ? (c.full_name || c.email) : "Client";
@@ -379,8 +471,8 @@
       $("inboxView").hidden = true;
       $("threadView").hidden = false;
       renderAdminThread(cid);
+      $("threadView").scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Mark this client's inbound messages as read.
       const unread = ALL_MESSAGES.filter((m) => m.client_id === cid && fromClient(m) && !m.read_at);
       if (unread.length) {
         const now = new Date().toISOString();
@@ -407,6 +499,251 @@
       $("adminSendBtn").disabled = false; areply.focus();
     });
 
+    /* ============================================================
+       FEEDBACK INBOX
+       ============================================================ */
+    const FB_CAT_LABEL = { general: "General", portal: "Portal", workouts: "Workouts", nutrition: "Nutrition", coaching: "Coaching", bug: "Bug", idea: "Idea" };
+    async function loadFeedback() {
+      const { data, error } = await supabase.from("feedback")
+        .select("id, client_id, category, rating, body, read_at, created_at").order("created_at", { ascending: false });
+      const wrap = $("feedbackList"); wrap.innerHTML = "";
+      if (error) { wrap.append(el("p", { class: "empty-state" }, error.message)); return; }
+      const rows = data || [];
+      const unread = rows.filter((f) => !f.read_at).length;
+      $("fbCount").textContent = unread + " new";
+      if (!rows.length) { wrap.append(el("p", { class: "empty-state" }, "No feedback yet.")); return; }
+      rows.forEach((f) => {
+        const stars = f.rating ? "★".repeat(f.rating) + "☆".repeat(5 - f.rating) : "";
+        const card = el("div", { class: "fb-item" + (f.read_at ? "" : " unread") },
+          el("div", { class: "fb-item-top" },
+            el("span", { class: "msg-avatar" }, initials(clientName(f.client_id))),
+            el("div", { class: "fb-item-id" },
+              el("strong", {}, clientName(f.client_id)),
+              el("span", { class: "fb-cat" }, FB_CAT_LABEL[f.category] || f.category),
+              stars ? el("span", { class: "fb-stars-inline" }, stars) : null),
+            el("span", { class: "ix-time" }, timeAgo(f.created_at))),
+          el("p", { class: "fb-body" }, f.body));
+        if (!f.read_at) {
+          const mark = el("button", { class: "btn btn-ghost btn-small", type: "button" }, "Mark read");
+          mark.addEventListener("click", async () => {
+            await supabase.from("feedback").update({ read_at: new Date().toISOString() }).eq("id", f.id);
+            loadFeedback();
+          });
+          card.append(mark);
+        }
+        wrap.append(card);
+      });
+    }
+
+    /* ============================================================
+       CLIENT DETAIL — assign forms, read answers, log sessions
+       ============================================================ */
+    function openClientDetail(cid) {
+      detailClientId = cid;
+      const c = clientById(cid);
+      $("cdName").textContent = c ? (c.full_name || c.email) : "Client";
+      $("cdEmail").textContent = c ? (c.email || "") : "";
+      $("cdAvatar").textContent = initials(clientName(cid));
+      $("adminMain").hidden = true;
+      $("clientDetail").hidden = false;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // default session date = today
+      $("sDate").value = new Date().toISOString().slice(0, 10);
+      $("sTitle").value = ""; $("sFocus").value = ""; $("sNotes").value = "";
+      $("sExRows").innerHTML = ""; addSessionRow();
+
+      // populate questionnaire select
+      const sel = $("cdForm"); sel.innerHTML = "";
+      QUESTIONNAIRES.forEach((f) => sel.append(el("option", { value: f.key }, f.icon + "  " + f.title)));
+      $("cdFormNote").value = "";
+
+      loadClientForms(cid);
+      loadClientSessions(cid);
+    }
+    $("backToClients").addEventListener("click", () => {
+      $("clientDetail").hidden = true; $("adminMain").hidden = false; detailClientId = null;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    $("cdMessage").addEventListener("click", () => { if (detailClientId) openThread(detailClientId); });
+
+    /* ----- Assign questionnaire + show assignment status ----- */
+    $("cdAssignForm").addEventListener("click", async () => {
+      if (!detailClientId) return;
+      const form_key = $("cdForm").value;
+      const note = $("cdFormNote").value.trim() || null;
+      $("cdAssignForm").disabled = true;
+      const { error } = await supabase.from("form_assignments")
+        .upsert({ client_id: detailClientId, form_key, note, assigned_by: ADMIN_ID, assigned_at: new Date().toISOString() },
+          { onConflict: "client_id,form_key" });
+      $("cdAssignForm").disabled = false;
+      if (error) return showMsg(error.message, "error");
+      showMsg("Assigned " + (getQuestionnaire(form_key)?.title || form_key) + ".", "success");
+      $("cdFormNote").value = "";
+      loadClientForms(detailClientId);
+    });
+
+    async function loadClientForms(cid) {
+      const [{ data: asg }, { data: resp }] = await Promise.all([
+        supabase.from("form_assignments").select("form_key, note, assigned_at").eq("client_id", cid),
+        supabase.from("form_responses").select("form_key, answers, status, completed_at, updated_at").eq("client_id", cid),
+      ]);
+      const respByKey = {}; (resp || []).forEach((r) => { respByKey[r.form_key] = r; });
+
+      // assignment status list
+      const aWrap = $("cdAssignments"); aWrap.innerHTML = "";
+      const assigned = asg || [];
+      if (!assigned.length) aWrap.append(el("p", { class: "meta" }, "No questionnaires assigned yet."));
+      assigned.forEach((a) => {
+        const form = getQuestionnaire(a.form_key);
+        const r = respByKey[a.form_key];
+        const status = r && r.status === "completed" ? "✓ Completed" : r ? "In progress" : "Not started";
+        const cls = r && r.status === "completed" ? "done" : r ? "in-progress" : "not-started";
+        const remove = el("button", { class: "btn-x", type: "button", title: "Unassign" }, "✕");
+        remove.addEventListener("click", async () => {
+          await supabase.from("form_assignments").delete().eq("client_id", cid).eq("form_key", a.form_key);
+          loadClientForms(cid);
+        });
+        aWrap.append(el("div", { class: "cd-assign-item" },
+          el("span", {}, (form?.icon || "📋") + " " + (form?.title || a.form_key)),
+          el("span", { class: "q-status " + cls }, status),
+          remove));
+      });
+
+      // rendered responses (any form with saved answers)
+      const rWrap = $("cdResponses"); rWrap.innerHTML = "";
+      const withAnswers = (resp || []).filter((r) => r.answers && Object.keys(r.answers).length);
+      if (!withAnswers.length) { rWrap.append(el("p", { class: "empty-state" }, "No answers yet. Once they start a questionnaire, their responses show here.")); return; }
+      withAnswers.forEach((r) => rWrap.append(renderResponse(r)));
+    }
+
+    function renderResponse(r) {
+      const form = getQuestionnaire(r.form_key);
+      const title = form ? form.title : r.form_key;
+      const statusTag = r.status === "completed"
+        ? el("span", { class: "q-status done" }, "✓ Completed " + (r.completed_at ? timeAgo(r.completed_at) : ""))
+        : el("span", { class: "q-status in-progress" }, "In progress");
+      const details = el("div", { class: "resp-body" });
+      if (form) {
+        answerableQuestions(form).forEach((q) => {
+          const val = r.answers[q.id];
+          if (val === undefined || val === null || val === "" || (Array.isArray(val) && !val.length)) return;
+          details.append(el("div", { class: "resp-qa" },
+            el("div", { class: "resp-q" }, q.label),
+            el("div", { class: "resp-a" }, formatAnswer(q, val))));
+        });
+      } else {
+        details.append(el("pre", { class: "resp-raw" }, JSON.stringify(r.answers, null, 2)));
+      }
+      const head = el("summary", { class: "resp-head" },
+        el("span", {}, (form?.icon || "📋") + "  " + title), statusTag);
+      return el("details", { class: "resp-card", open: r.status !== "completed" ? null : null }, head, details);
+    }
+
+    function formatAnswer(q, val) {
+      const optLabel = (v) => { const o = (q.options || []).find((x) => x.value === v); return o ? o.label : v; };
+      if (q.type === "single") return optLabel(val);
+      if (q.type === "multi") return (Array.isArray(val) ? val : []).map(optLabel).join(", ");
+      if (q.type === "scale") return val + " / " + (q.scale?.max ?? 5);
+      if (q.type === "number") return val + (q.unit ? " " + q.unit : "");
+      if (q.type === "grid") {
+        const rows = q.rows || [];
+        return el("ul", { class: "resp-grid" }, ...Object.entries(val || {}).map(([rid, v]) => {
+          const row = rows.find((x) => x.id === rid);
+          let label = v;
+          if (q.options) { const o = q.options.find((x) => x.value === v); label = o ? o.label : v; }
+          else if (q.scale) label = v + " / " + q.scale.max;
+          return el("li", {}, el("strong", {}, (row?.label || rid) + ": "), String(label));
+        }));
+      }
+      return String(val);
+    }
+
+    /* ----- Session builder ----- */
+    function addSessionRow(ex = {}) {
+      const row = el("div", { class: "ex-row ex-row-load" },
+        el("input", { type: "text", placeholder: "Exercise", value: ex.name || "", class: "ex-name" }),
+        el("input", { type: "text", placeholder: "Sets", value: ex.sets || "", class: "ex-sets" }),
+        el("input", { type: "text", placeholder: "Reps", value: ex.reps || "", class: "ex-reps" }),
+        el("input", { type: "text", placeholder: "Load", value: ex.load || "", class: "ex-load" }),
+        el("input", { type: "text", placeholder: "Notes", value: ex.notes || "", class: "ex-notes" }),
+        el("button", { type: "button", class: "btn-x", onClick: (e) => e.target.closest(".ex-row").remove() }, "✕")
+      );
+      $("sExRows").append(row);
+    }
+    $("sAddEx").addEventListener("click", () => addSessionRow());
+
+    function collectSession() {
+      return Array.from($("sExRows").querySelectorAll(".ex-row")).map((r) => ({
+        name: r.querySelector(".ex-name").value.trim(),
+        sets: r.querySelector(".ex-sets").value.trim(),
+        reps: r.querySelector(".ex-reps").value.trim(),
+        load: r.querySelector(".ex-load").value.trim(),
+        notes: r.querySelector(".ex-notes").value.trim(),
+      })).filter((x) => x.name);
+    }
+
+    $("sSave").addEventListener("click", async () => {
+      if (!detailClientId) return;
+      const title = $("sTitle").value.trim();
+      if (!title) return showMsg("Give the session a title.", "error");
+      const exercises = collectSession();
+      $("sSave").disabled = true;
+      const { error } = await supabase.from("sessions").insert({
+        client_id: detailClientId,
+        coach_id: ADMIN_ID,
+        session_date: $("sDate").value || new Date().toISOString().slice(0, 10),
+        title,
+        focus: $("sFocus").value.trim() || null,
+        body: exercises.length ? { exercises } : null,
+        coach_notes: $("sNotes").value.trim() || null,
+      });
+      $("sSave").disabled = false;
+      if (error) return showMsg(error.message, "error");
+      showMsg("Session logged to " + clientName(detailClientId) + "'s dashboard.", "success");
+      $("sTitle").value = ""; $("sFocus").value = ""; $("sNotes").value = ""; $("sExRows").innerHTML = ""; addSessionRow();
+      loadClientSessions(detailClientId);
+    });
+
+    async function loadClientSessions(cid) {
+      const [{ data: sess }, { data: fb }] = await Promise.all([
+        supabase.from("sessions").select("id, session_date, title, focus, body, coach_notes").eq("client_id", cid).order("session_date", { ascending: false }),
+        supabase.from("session_feedback").select("session_id, rating, comment, updated_at"),
+      ]);
+      const fbByS = {}; (fb || []).forEach((f) => { fbByS[f.session_id] = f; });
+      const wrap = $("cdSessions"); wrap.innerHTML = "";
+      const sessions = sess || [];
+      if (!sessions.length) { wrap.append(el("p", { class: "empty-state" }, "No sessions logged for this client yet.")); return; }
+      sessions.forEach((s) => {
+        const f = fbByS[s.id];
+        const dateStr = new Date(s.session_date + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+        const head = el("div", { class: "wk-head" },
+          el("div", {}, el("h3", {}, s.title), el("p", { class: "meta" }, "🗓 " + dateStr + (s.focus ? " · " + s.focus : ""))),
+          el("span", { class: "mtag workout" }, "Session"));
+        const card = el("div", { class: "wk-card" }, head);
+        const ex = (s.body && Array.isArray(s.body.exercises)) ? s.body.exercises : [];
+        if (ex.length) {
+          card.append(el("p", { class: "meta" }, ex.map((x) => x.name + (x.load ? " (" + x.load + ")" : "")).join(" · ")));
+        }
+        if (f && (f.rating || f.comment)) {
+          const stars = f.rating ? "★".repeat(f.rating) + "☆".repeat(5 - f.rating) : "";
+          card.append(el("div", { class: "client-fb" },
+            el("span", { class: "client-fb-tag" }, "Client feedback " + (stars ? stars : "")),
+            f.comment ? el("p", {}, f.comment) : el("p", { class: "meta" }, "No comment left.")));
+        } else {
+          card.append(el("p", { class: "meta", style: "margin-top:.6rem;" }, "Awaiting client feedback."));
+        }
+        const del = el("button", { class: "btn-x", type: "button", style: "margin-top:.6rem;" }, "Delete session");
+        del.addEventListener("click", async () => {
+          if (!confirm("Delete this session?")) return;
+          await supabase.from("sessions").delete().eq("id", s.id);
+          loadClientSessions(cid);
+        });
+        card.append(del);
+        wrap.append(card);
+      });
+    }
+
     /* ---------- boot ---------- */
     (async () => {
       const profile = await requireAdmin();
@@ -415,7 +752,7 @@
       $("gate").hidden = true;
       $("adminBody").hidden = false;
       await loadClients();
-      await Promise.all([loadMaterials(), loadMessages()]);
+      await Promise.all([loadMaterials(), loadMessages(), loadFeedback()]);
     })();
   </script>
 </body>

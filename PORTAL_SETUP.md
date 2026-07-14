@@ -25,12 +25,14 @@ steps once and the **Client Login** link on the site goes live.
 2. Open [`supabase/setup.sql`](supabase/setup.sql) from this repo, copy the
    **entire** file, paste it into the editor, and click **Run**.
 3. You should see "Success. No rows returned." That created the `profiles`,
-   `materials`, `assignments`, and `messages` tables, the security policies, and
-   the private `materials` storage bucket.
+   `materials`, `assignments`, `messages`, `form_assignments`, `form_responses`,
+   `sessions`, `session_feedback`, and `feedback` tables, the security policies,
+   and the private `materials` storage bucket.
 
    > **Already ran an older version?** Just paste and **Run** the whole file
-   > again — every statement is idempotent, so it only adds the new `messages`
-   > table (which powers the client ↔ coach Q&A) and leaves your data untouched.
+   > again — every statement is idempotent, so it only adds the new tables
+   > (questionnaire assignments + answers, logged training sessions + client
+   > ratings, and the feedback inbox) and leaves your data untouched.
 
 ## 3. Plug your keys into the site
 
@@ -89,6 +91,20 @@ Supabase → **Authentication** → **URL Configuration**:
   - **Answer questions** — the **Client questions** inbox shows every thread;
     open one to read what a client asked about their workouts and reply. They
     see your answer under **Ask Coach** on their dashboard, with an unread badge.
+  - **Open a client** (from the Clients list) for their personal hub, where you:
+    - **Assign a questionnaire** — a science-backed intake (health screen, goals
+      & readiness, nutrition, or movement preferences). It shows on their
+      **Assignments** tab; answers autosave as they go, resumable on any device.
+    - **Read their answers** — every completed questionnaire, formatted for you.
+    - **Log a session** — enter a paper-tracked workout you did together (date,
+      exercises with load, coach note). It drops onto their **Training** log,
+      where they can leave a 1–5 star rating and a comment you'll see back here.
+  - **Read feedback** — the **Client feedback** inbox collects everything sent
+    via the floating **Give feedback** button on the dashboard.
+
+- **Questionnaire content** lives in `js/questionnaires.js` (four instruments,
+  edit the questions there any time). Clients can also self-start any
+  questionnaire from their **Assignments** and **Nutrition** tabs.
 
 ## Files in this feature
 
@@ -98,6 +114,7 @@ Supabase → **Authentication** → **URL Configuration**:
 | `dashboard.html` | Client view of assigned materials |
 | `admin.html` | Your coach console (gated to admin) |
 | `js/portal.js` | Shared Supabase client + auth guards |
+| `js/questionnaires.js` | The four questionnaires (content + helpers) |
 | `js/portal-config.js` | **Your keys go here** |
 | `css/portal.css` | Portal styling (reuses site theme) |
 | `supabase/setup.sql` | Database schema + security policies |

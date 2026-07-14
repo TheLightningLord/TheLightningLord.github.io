@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=14" />
   <link rel="stylesheet" href="css/polish.css?v=1" />
-  <link rel="stylesheet" href="css/portal.css?v=4" />
+  <link rel="stylesheet" href="css/portal.css?v=5" />
   <script src="js/portal-config.js"></script>
 </head>
 <body>
@@ -68,15 +68,17 @@
         <!-- ===== Stat tiles ===== -->
         <div class="stat-row fade-up d2">
           <div class="stat-tile"><div class="stat-ico">🗓️</div><div class="stat-num" id="statDay">1</div><div class="stat-label">Day as member</div></div>
-          <div class="stat-tile"><div class="stat-ico">🏋️</div><div class="stat-num" id="statWorkouts">0</div><div class="stat-label">Workouts</div></div>
-          <div class="stat-tile"><div class="stat-ico">✅</div><div class="stat-num" id="statDone">0</div><div class="stat-label">Completed</div></div>
+          <div class="stat-tile"><div class="stat-ico">🏋️</div><div class="stat-num" id="statSessions">0</div><div class="stat-label">Sessions logged</div></div>
+          <div class="stat-tile"><div class="stat-ico">📋</div><div class="stat-num" id="statAssign">0</div><div class="stat-label">Assignments done</div></div>
           <div class="stat-tile"><div class="stat-ico">🎯</div><div class="stat-num" id="statGoal" style="font-size:1.2rem;line-height:1.9;">—</div><div class="stat-label">Your goal</div></div>
         </div>
 
         <!-- ===== Segmented navigation ===== -->
         <nav class="seg-nav fade-up d2" id="segNav" aria-label="Dashboard sections">
           <button class="seg-btn active" data-tab="overview"><span class="seg-ico">✨</span> Overview</button>
-          <button class="seg-btn" data-tab="workouts"><span class="seg-ico">🏋️</span> Workouts</button>
+          <button class="seg-btn" data-tab="assignments"><span class="seg-ico">📋</span> Assignments <span class="seg-badge" id="assignBadge" hidden>0</span></button>
+          <button class="seg-btn" data-tab="training"><span class="seg-ico">🏋️</span> Training</button>
+          <button class="seg-btn" data-tab="nutrition"><span class="seg-ico">🥗</span> Nutrition</button>
           <button class="seg-btn" data-tab="ask"><span class="seg-ico">💬</span> Ask Coach <span class="seg-badge" id="askBadge" hidden>0</span></button>
           <button class="seg-btn" data-tab="progress"><span class="seg-ico">📈</span> Progress</button>
         </nav>
@@ -91,8 +93,18 @@
             <p id="welcomeSub">You're in. Here's how to turn this account into real results — starting today.</p>
             <div class="welcome-cta">
               <a href="index.html#contact" class="btn btn-gold" id="claimConsult">🎁 Claim your free consultation</a>
-              <button class="btn btn-ghost" type="button" data-goto="workouts">See your free workout ↓</button>
+              <button class="btn btn-ghost" type="button" data-goto="assignments">Start your first assignment ↓</button>
             </div>
+          </section>
+
+          <!-- Priority assignments strip (any pending questionnaires) -->
+          <section class="portal-card" id="overviewAssign" hidden>
+            <div class="checklist-head">
+              <h2 class="section-label" style="margin:0;">Your assignments</h2>
+              <span class="checklist-count" id="overviewAssignCount">0 to do</span>
+            </div>
+            <p class="card-lead">Knock these out and I can build you a plan that actually fits — your goals, your body, your life.</p>
+            <div class="q-card-list" id="overviewAssignList"></div>
           </section>
 
           <!-- Getting-started checklist (new members) -->
@@ -107,13 +119,13 @@
                 <span class="check-dot" aria-hidden="true"></span>
                 <div><strong>Create your account</strong><small>Done — welcome aboard.</small></div>
               </li>
+              <li class="check-item" data-step="intake">
+                <span class="check-dot" aria-hidden="true"></span>
+                <div><strong>Complete your intake</strong><small>Health, goals &amp; preferences — in the Assignments tab.</small></div>
+              </li>
               <li class="check-item" data-step="goal">
                 <span class="check-dot" aria-hidden="true"></span>
                 <div><strong>Pick your main goal</strong><small>Tell me what you're training for (below).</small></div>
-              </li>
-              <li class="check-item" data-step="workout">
-                <span class="check-dot" aria-hidden="true"></span>
-                <div><strong>Try your free starter workout</strong><small>Open the Workouts tab and give it a go.</small></div>
               </li>
               <li class="check-item" data-step="consult">
                 <span class="check-dot" aria-hidden="true"></span>
@@ -148,8 +160,23 @@
           </section>
         </div>
 
-        <!-- ================= WORKOUTS ================= -->
-        <div class="tab-panel" data-panel="workouts" id="panelWorkouts">
+        <!-- ================= ASSIGNMENTS ================= -->
+        <div class="tab-panel" data-panel="assignments" id="panelAssignments">
+          <section class="portal-card">
+            <h2 class="section-label">Assignments from your coach</h2>
+            <p class="card-lead">Careful, science-backed questionnaires so I can coach the real you — not a guess. Answers save as you go, so you can stop and pick up on any device.</p>
+            <div class="q-card-list" id="assignedList"><p class="empty-state">Loading…</p></div>
+          </section>
+
+          <section class="portal-card">
+            <h2 class="section-label">Explore on your own</h2>
+            <p class="card-lead">Optional questionnaires you can take any time. The more I know, the better your program.</p>
+            <div class="q-card-list" id="exploreList"></div>
+          </section>
+        </div>
+
+        <!-- ================= TRAINING ================= -->
+        <div class="tab-panel" data-panel="training" id="panelTraining">
 
           <!-- Free starter workout (new members) -->
           <section class="portal-card" id="starter" hidden>
@@ -167,8 +194,19 @@
             </div>
           </section>
 
+          <!-- Logged sessions (paper-tracked, entered by coach) -->
+          <section class="portal-card" id="sessionsSection" hidden>
+            <div class="checklist-head">
+              <h2 class="section-label" style="margin:0;">Your training log</h2>
+              <span class="checklist-count" id="sessionsCount">0 sessions</span>
+            </div>
+            <p class="card-lead">Every session we do together, logged here. Tap the stars and leave a note — your feedback shapes your next session.</p>
+            <div id="sessionsList" class="portal-grid"></div>
+          </section>
+
           <!-- Assigned workouts -->
           <section id="workoutsSection" hidden>
+            <h2 class="section-label">Your assigned workouts</h2>
             <div id="workoutsList" class="portal-grid"></div>
           </section>
 
@@ -182,6 +220,47 @@
           <section class="portal-card" id="pdfsSection" hidden>
             <h2 class="section-label">Documents &amp; Plans</h2>
             <div id="pdfsList" class="portal-grid cols-2"></div>
+          </section>
+
+          <!-- Empty training state -->
+          <section class="portal-card" id="trainingEmpty" hidden>
+            <p class="empty-state">No sessions logged yet. After our first workout together, it'll show up right here — and once you've done your assignments, I'll load your program in too.</p>
+            <div style="text-align:center;margin-top:.8rem;">
+              <button class="btn btn-gold btn-small" type="button" data-goto="assignments">📋 Start with your assignments</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= NUTRITION ================= -->
+        <div class="tab-panel" data-panel="nutrition" id="panelNutrition">
+          <section class="portal-card nutrition-hero">
+            <span class="promo-badge">🥗 Nutrition</span>
+            <h1>Nutrition is where results are made.</h1>
+            <p>You can't out-train a diet that fights you. Start with the intake below — it's the same structured picture a dietitian builds — and I'll turn it into simple, doable changes that fit your life.</p>
+          </section>
+
+          <!-- Nutrition snapshot (appears once intake is completed) -->
+          <section class="portal-card" id="nutritionSnapshot" hidden>
+            <h2 class="section-label">Your nutrition at a glance</h2>
+            <p class="card-lead">Pulled straight from your saved intake — this is what we're working with.</p>
+            <div class="snapshot-grid" id="snapshotGrid"></div>
+            <button class="btn btn-ghost btn-small" type="button" id="reviewNutrition" style="margin-top:1rem;">Review / update my answers</button>
+          </section>
+
+          <section class="portal-card">
+            <h2 class="section-label">Nutrition assignments</h2>
+            <div class="q-card-list" id="nutritionList"></div>
+          </section>
+
+          <section class="portal-card">
+            <h2 class="section-label">Have a nutrition question?</h2>
+            <p class="card-lead">Meal ideas, portions, eating out, cravings, supplements — ask away. I answer every message myself.</p>
+            <button class="btn btn-gold btn-small" type="button" data-goto="ask">💬 Ask about nutrition</button>
+          </section>
+
+          <section class="portal-card">
+            <h2 class="section-label">Reads to sharpen your nutrition</h2>
+            <div class="portal-grid cols-2" id="nutritionResources"></div>
           </section>
         </div>
 
@@ -235,6 +314,17 @@
             </div>
           </section>
 
+          <!-- Snapshot counters -->
+          <section class="portal-card">
+            <h2 class="section-label">Your Olympian journey</h2>
+            <div class="stat-row" style="margin-bottom:0;">
+              <div class="stat-tile"><div class="stat-ico">🏋️</div><div class="stat-num" id="progSessions">0</div><div class="stat-label">Sessions together</div></div>
+              <div class="stat-tile"><div class="stat-ico">⭐</div><div class="stat-num" id="progAvgRating">—</div><div class="stat-label">Avg session rating</div></div>
+              <div class="stat-tile"><div class="stat-ico">📋</div><div class="stat-num" id="progAssign">0</div><div class="stat-label">Assignments done</div></div>
+              <div class="stat-tile"><div class="stat-ico">✅</div><div class="stat-num" id="progDone">0</div><div class="stat-label">Workouts completed</div></div>
+            </div>
+          </section>
+
           <section class="portal-card">
             <h2 class="section-label">Free reads to keep you moving</h2>
             <div class="portal-grid cols-2" id="resourceList"></div>
@@ -245,14 +335,98 @@
     </div>
   </main>
 
+  <!-- ===== Floating "Give feedback" button ===== -->
+  <button class="fab-feedback" id="fabFeedback" type="button" hidden>💬 Give feedback</button>
+
+  <!-- ===== Feedback modal ===== -->
+  <div class="ohs-modal" id="fbModal" hidden>
+    <div class="ohs-backdrop" data-fb-close></div>
+    <div class="ohs-dialog fb-dialog" role="dialog" aria-modal="true" aria-labelledby="fbTitle">
+      <header class="ohs-top">
+        <div>
+          <h2 id="fbTitle">Give feedback</h2>
+          <p class="card-lead" style="margin:.2rem 0 0;">Tell me what's working and what isn't. This goes straight to Zeuse.</p>
+        </div>
+        <button class="q-close" type="button" data-fb-close aria-label="Close">✕</button>
+      </header>
+      <div class="ohs-body">
+        <div class="form-row">
+          <label for="fbCat">What's this about?</label>
+          <select id="fbCat">
+            <option value="general">General</option>
+            <option value="coaching">My coaching / sessions</option>
+            <option value="workouts">Workouts</option>
+            <option value="nutrition">Nutrition</option>
+            <option value="portal">This portal</option>
+            <option value="idea">An idea / request</option>
+            <option value="bug">Something's broken</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>How's your experience overall?</label>
+          <div class="stars fb-stars" id="fbStars" role="radiogroup" aria-label="Overall rating">
+            <button type="button" class="star" data-val="1" aria-label="1 star">★</button>
+            <button type="button" class="star" data-val="2" aria-label="2 stars">★</button>
+            <button type="button" class="star" data-val="3" aria-label="3 stars">★</button>
+            <button type="button" class="star" data-val="4" aria-label="4 stars">★</button>
+            <button type="button" class="star" data-val="5" aria-label="5 stars">★</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="fbBody">Your feedback</label>
+          <textarea id="fbBody" rows="5" maxlength="4000" placeholder="Be as honest as you like — it's how this gets better."></textarea>
+        </div>
+      </div>
+      <footer class="ohs-foot">
+        <button class="btn btn-ghost btn-small" type="button" data-fb-close>Cancel</button>
+        <button class="btn btn-gold" type="button" id="fbSend">Send feedback</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ===== Questionnaire modal (reused for every form) ===== -->
+  <div class="ohs-modal q-modal" id="qModal" hidden>
+    <div class="ohs-backdrop" data-q-close></div>
+    <div class="ohs-dialog q-dialog" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+      <header class="ohs-top q-top">
+        <div class="q-top-id">
+          <span class="q-ico" id="qIco" aria-hidden="true">📋</span>
+          <div>
+            <h2 id="qTitle">Questionnaire</h2>
+            <p class="q-tagline" id="qTagline"></p>
+          </div>
+        </div>
+        <button class="q-close" type="button" data-q-close aria-label="Close">✕</button>
+      </header>
+      <div class="q-progress"><span id="qProgFill"></span></div>
+      <div class="q-progress-meta">
+        <span id="qProgText">0% complete</span>
+        <span class="q-save" id="qSaveState"></span>
+      </div>
+      <div class="q-body" id="qBody"></div>
+      <footer class="ohs-foot q-foot">
+        <span class="q-foot-hint" id="qFootHint"></span>
+        <div class="q-foot-btns">
+          <button class="btn btn-ghost btn-small" type="button" data-q-close>Save &amp; close</button>
+          <button class="btn btn-gold" type="button" id="qComplete">Mark complete</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
   <script type="module">
     import { supabase, requireSession, getProfile, signOut, el, escapeHtml, timeAgo, initials } from "./js/portal.js";
+    import {
+      QUESTIONNAIRES, getQuestionnaire, listByCategory,
+      completionRatio, requiredComplete, answerableQuestions, isAnswered,
+    } from "./js/questionnaires.js";
 
     const $ = (id) => document.getElementById(id);
     $("signOutNav").addEventListener("click", (e) => { e.preventDefault(); signOut(); });
 
     function showMsg(text, kind = "info") {
       const m = $("msg"); m.textContent = text; m.className = "portal-msg show " + kind;
+      if (kind === "success") setTimeout(() => (m.className = "portal-msg"), 4000);
     }
 
     /* ---------- Static content ---------- */
@@ -277,20 +451,30 @@
       { title: "Best Exercises for Lower Back Pain", tag: "Pain-free", href: "blog/exercises-for-lower-back-pain.html" },
       { title: "Can Exercise Really Help Chronic Pain?", tag: "Recovery", href: "blog/exercise-for-chronic-pain.html" },
     ];
+    const NUTRITION_RESOURCES = [
+      { title: "Exercise, Inflammation & Muscle Growth", tag: "Fuel & recovery", href: "blog/exercise-inflammation-muscle-growth.html" },
+      { title: "Strength Training After 60: What the Research Says", tag: "Longevity", href: "blog/strength-training-after-60.html" },
+    ];
 
-    function tableFromRows(rows) {
+    function tableFromRows(rows, opts = {}) {
+      const withLoad = !!opts.load;
+      const head = [el("th", {}, "Exercise"), el("th", { class: "col-num" }, "Sets"), el("th", { class: "col-num" }, "Reps")];
+      if (withLoad) head.push(el("th", { class: "col-num" }, "Load"));
+      head.push(el("th", {}, "Notes"));
       return el("table", { class: "workout-table" },
-        el("thead", {}, el("tr", {},
-          el("th", {}, "Exercise"), el("th", { class: "col-num" }, "Sets"),
-          el("th", { class: "col-num" }, "Reps"), el("th", {}, "Notes"))),
-        el("tbody", {}, ...rows.map((x) => el("tr", {},
-          el("td", {}, x.name || ""), el("td", { class: "col-num" }, x.sets || ""),
-          el("td", { class: "col-num" }, x.reps || ""), el("td", {}, x.notes || ""))))
+        el("thead", {}, el("tr", {}, ...head)),
+        el("tbody", {}, ...rows.map((x) => {
+          const cells = [el("td", {}, x.name || ""), el("td", { class: "col-num" }, x.sets || ""), el("td", { class: "col-num" }, x.reps || "")];
+          if (withLoad) cells.push(el("td", { class: "col-num" }, x.load || x.weight || ""));
+          cells.push(el("td", {}, x.notes || ""));
+          return el("tr", {}, ...cells);
+        }))
       );
     }
-    function resourceCards(targetId) {
-      RESOURCES.forEach((r) => {
-        $(targetId).append(el("a", { class: "resource-card", href: r.href },
+    function resourceCards(targetId, list = RESOURCES) {
+      const wrap = $(targetId); if (!wrap) return;
+      list.forEach((r) => {
+        wrap.append(el("a", { class: "resource-card", href: r.href },
           el("span", { class: "mtag note" }, r.tag),
           el("h3", {}, r.title),
           el("span", { class: "resource-go" }, "Read →")));
@@ -299,7 +483,7 @@
 
     /* ---------- Local per-user state (goal + completions) ---------- */
     let STORE_KEY = "ohs_onboard";
-    let state = { goal: null, done: { account: true, goal: false, workout: false, consult: false }, completed: {} };
+    let state = { goal: null, done: { account: true, intake: false, goal: false, consult: false }, completed: {} };
     function loadState(userId) {
       STORE_KEY = "ohs_onboard_" + userId;
       try {
@@ -311,6 +495,7 @@
     function saveState() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) {} }
 
     /* ---------- Tab navigation ---------- */
+    const TABS = ["overview", "assignments", "training", "nutrition", "ask", "progress"];
     function goTab(name) {
       document.querySelectorAll(".seg-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
       document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.dataset.panel === name));
@@ -327,7 +512,7 @@
 
     /* ---------- Onboarding progress ---------- */
     function renderChecklist() {
-      const steps = ["account", "goal", "workout", "consult"];
+      const steps = ["account", "intake", "goal", "consult"];
       const done = steps.filter((s) => state.done[s]).length;
       $("progressFill").style.width = (done / steps.length) * 100 + "%";
       $("checklistCount").textContent = done === steps.length ? "All done — you're set! 🎉" : (done + " of " + steps.length + " done");
@@ -354,19 +539,487 @@
     function completedCount() { return Object.values(state.completed).filter(Boolean).length; }
     function renderProgress() {
       const done = completedCount();
-      $("statDone").textContent = done;
       $("progWorkouts").textContent = done + " workout" + (done === 1 ? "" : "s") + " done";
+      $("progDone").textContent = done;
       const pct = totalWorkouts ? Math.min(100, Math.round((done / totalWorkouts) * 100)) : 0;
       const ring = $("ring"); ring.style.setProperty("--pct", pct);
       $("ringVal").textContent = pct + "%";
     }
     function markComplete(key) {
-      state.completed[key] = true; state.done.workout = true; saveState();
-      renderProgress(); renderChecklist();
+      state.completed[key] = true; saveState();
+      renderProgress();
     }
 
+    /* ============================================================
+       QUESTIONNAIRES — cards, modal renderer, autosave
+       ============================================================ */
+    let USER_ID = null, ME_NAME = "You";
+    let RESPONSES = {};      // form_key -> { answers, status, ... }
+    let ASSIGNED_KEYS = [];  // form_keys assigned by coach (in order)
+    let ASSIGNMENT_META = {};// form_key -> { note, due_at }
+
+    function responseFor(key) { return RESPONSES[key] || null; }
+    function statusFor(key) {
+      const r = responseFor(key);
+      const form = getQuestionnaire(key);
+      if (r && r.status === "completed") return "done";
+      if (r && form && completionRatio(form, r.answers) > 0) return "in-progress";
+      return "not-started";
+    }
+    function completedAssignmentCount() {
+      return QUESTIONNAIRES.filter((f) => statusFor(f.key) === "done").length;
+    }
+
+    function questionnaireCard(form) {
+      const st = statusFor(form.key);
+      const r = responseFor(form.key);
+      const pct = r ? Math.round(completionRatio(form, r.answers) * 100) : 0;
+      const meta = ASSIGNMENT_META[form.key];
+
+      const statusPill =
+        st === "done" ? el("span", { class: "q-status done" }, "✓ Completed")
+        : st === "in-progress" ? el("span", { class: "q-status in-progress" }, pct + "% done")
+        : el("span", { class: "q-status not-started" }, "Not started");
+
+      const btnLabel = st === "done" ? "Review" : st === "in-progress" ? "Continue" : "Start";
+      const btn = el("button", { class: "btn " + (st === "done" ? "btn-ghost" : "btn-gold") + " btn-small", type: "button" }, btnLabel);
+      btn.addEventListener("click", () => openForm(form.key));
+
+      const bar = st === "in-progress"
+        ? el("div", { class: "q-card-bar" }, el("span", { style: "width:" + pct + "%" }))
+        : null;
+
+      const noteEl = meta && meta.note ? el("p", { class: "q-card-note" }, "📌 " + meta.note) : null;
+
+      return el("div", { class: "q-card" + (st === "done" ? " is-done" : "") },
+        el("span", { class: "q-card-ico" }, form.icon || "📋"),
+        el("div", { class: "q-card-body" },
+          el("div", { class: "q-card-head" }, el("h3", {}, form.title), statusPill),
+          el("p", { class: "q-card-tag" }, form.tagline || ""),
+          noteEl,
+          el("p", { class: "q-card-meta" }, "⏱ ~" + (form.estMinutes || 5) + " min · " + answerableQuestions(form).length + " questions"),
+          bar,
+          el("div", { class: "q-card-foot" }, btn)
+        )
+      );
+    }
+
+    function renderAssignmentCards() {
+      const assignedForms = ASSIGNED_KEYS.map(getQuestionnaire).filter(Boolean);
+      const exploreForms = QUESTIONNAIRES.filter((f) => f.selfServe && !ASSIGNED_KEYS.includes(f.key));
+
+      // Assignments tab
+      const aWrap = $("assignedList"); aWrap.innerHTML = "";
+      if (!assignedForms.length) {
+        aWrap.append(el("p", { class: "empty-state" }, "No assignments from your coach yet — but you can start any questionnaire below any time."));
+      } else {
+        assignedForms.forEach((f) => aWrap.append(questionnaireCard(f)));
+      }
+      const eWrap = $("exploreList"); eWrap.innerHTML = "";
+      exploreForms.forEach((f) => eWrap.append(questionnaireCard(f)));
+
+      // Overview strip — pending assigned forms
+      const pending = assignedForms.filter((f) => statusFor(f.key) !== "done");
+      const ov = $("overviewAssign"), ovList = $("overviewAssignList");
+      if (pending.length) {
+        ov.hidden = false;
+        $("overviewAssignCount").textContent = pending.length + " to do";
+        ovList.innerHTML = "";
+        pending.slice(0, 3).forEach((f) => ovList.append(questionnaireCard(f)));
+      } else { ov.hidden = true; }
+
+      // Nutrition tab cards
+      const nWrap = $("nutritionList"); nWrap.innerHTML = "";
+      listByCategory("nutrition").forEach((f) => nWrap.append(questionnaireCard(f)));
+
+      // Badges + stats
+      const pendingCount = QUESTIONNAIRES.filter((f) => ASSIGNED_KEYS.includes(f.key) && statusFor(f.key) !== "done").length;
+      const badge = $("assignBadge");
+      badge.hidden = pendingCount === 0; badge.textContent = pendingCount;
+      const doneCount = completedAssignmentCount();
+      $("statAssign").textContent = doneCount;
+      $("progAssign").textContent = doneCount;
+
+      // Intake checklist step done when the core three are completed
+      const core = ["readiness", "goals", "workout-prefs"];
+      state.done.intake = core.every((k) => statusFor(k) === "done");
+      renderChecklist();
+
+      renderNutritionSnapshot();
+    }
+
+    /* ----- Nutrition snapshot from saved answers ----- */
+    function renderNutritionSnapshot() {
+      const r = responseFor("nutrition");
+      const snap = $("nutritionSnapshot");
+      if (!r || r.status !== "completed") { snap.hidden = true; return; }
+      const a = r.answers || {};
+      const chips = [];
+      if (a.self_rating != null) chips.push(["Self-rating", a.self_rating + " / 10"]);
+      const goalMap = { fatloss: "Lose fat", muscle: "Build muscle", energy: "More energy", health: "Health markers", performance: "Performance", relationship: "Food relationship" };
+      if (a.goal_link) chips.push(["Focus", goalMap[a.goal_link] || a.goal_link]);
+      const mealMap = { "1": "Once a day", "2": "Twice a day", "3": "3× a day", "4-5": "4–5× a day", grazing: "Grazes all day" };
+      if (a.meals_per_day) chips.push(["Meals", mealMap[a.meals_per_day] || a.meals_per_day]);
+      const waterMap = { low: "Low (<4 cups)", mid: "Moderate (4–8)", high: "High (8+)", unsure: "Unsure" };
+      if (a.water) chips.push(["Water", waterMap[a.water] || a.water]);
+      const proteinMap = { yes: "Most meals", some: "Some meals", no: "Rarely" };
+      if (a.protein_aware) chips.push(["Protein", proteinMap[a.protein_aware] || a.protein_aware]);
+      const sleepMap = { good: "Solid (7h+)", ok: "Okay (6–7h)", poor: "Rough (<6h)" };
+      if (a.sleep) chips.push(["Sleep", sleepMap[a.sleep] || a.sleep]);
+
+      const grid = $("snapshotGrid"); grid.innerHTML = "";
+      chips.forEach(([label, val]) => grid.append(
+        el("div", { class: "snap-tile" }, el("div", { class: "snap-label" }, label), el("div", { class: "snap-val" }, val))
+      ));
+      snap.hidden = chips.length === 0;
+    }
+    $("reviewNutrition").addEventListener("click", () => openForm("nutrition"));
+
+    /* ============================================================
+       QUESTIONNAIRE MODAL — render + autosave
+       ============================================================ */
+    let OPEN_KEY = null, OPEN_FORM = null, OPEN_ANSWERS = {}, saveTimer = null;
+
+    function openModal(el2) { el2.hidden = false; document.body.style.overflow = "hidden"; }
+    function closeModal(el2) { el2.hidden = true; document.body.style.overflow = ""; }
+
+    function openForm(key) {
+      const form = getQuestionnaire(key); if (!form) return;
+      OPEN_KEY = key; OPEN_FORM = form;
+      const r = responseFor(key);
+      OPEN_ANSWERS = r && r.answers ? JSON.parse(JSON.stringify(r.answers)) : {};
+      $("qIco").textContent = form.icon || "📋";
+      $("qTitle").textContent = form.title;
+      $("qTagline").textContent = form.tagline || "";
+      $("qSaveState").textContent = "";
+      $("qFootHint").textContent = "";
+      renderFormBody();
+      updateFormProgress();
+      const done = r && r.status === "completed";
+      $("qComplete").textContent = done ? "Save changes" : "Mark complete";
+      openModal($("qModal"));
+      $("qBody").scrollTop = 0;
+    }
+
+    function setAnswer(id, value) {
+      if (value === null || value === undefined || (Array.isArray(value) && !value.length) || (typeof value === "object" && !Array.isArray(value) && !Object.keys(value).length)) {
+        delete OPEN_ANSWERS[id];
+      } else {
+        OPEN_ANSWERS[id] = value;
+      }
+      updateFormProgress();
+      scheduleSave();
+    }
+
+    function updateFormProgress() {
+      const pct = Math.round(completionRatio(OPEN_FORM, OPEN_ANSWERS) * 100);
+      $("qProgFill").style.width = pct + "%";
+      $("qProgText").textContent = pct + "% complete";
+    }
+
+    function scheduleSave() {
+      $("qSaveState").textContent = "Saving…"; $("qSaveState").className = "q-save saving";
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveForm, 600);
+    }
+
+    async function saveForm(finalStatus) {
+      if (!OPEN_KEY) return;
+      const existing = responseFor(OPEN_KEY);
+      const status = finalStatus || (existing && existing.status === "completed" ? "completed" : "in_progress");
+      const payload = {
+        client_id: USER_ID,
+        form_key: OPEN_KEY,
+        answers: OPEN_ANSWERS,
+        status,
+        updated_at: new Date().toISOString(),
+      };
+      if (status === "completed") payload.completed_at = new Date().toISOString();
+      const { data, error } = await supabase.from("form_responses")
+        .upsert(payload, { onConflict: "client_id,form_key" }).select().single();
+      if (error) {
+        $("qSaveState").textContent = "Couldn't save — check your connection"; $("qSaveState").className = "q-save err";
+        return false;
+      }
+      RESPONSES[OPEN_KEY] = data;
+      $("qSaveState").textContent = "Saved ✓"; $("qSaveState").className = "q-save ok";
+      return true;
+    }
+
+    $("qComplete").addEventListener("click", async () => {
+      if (!requiredComplete(OPEN_FORM, OPEN_ANSWERS)) {
+        // Highlight first missing required question
+        const missing = answerableQuestions(OPEN_FORM).find((q) => q.required && !isAnswered(OPEN_ANSWERS[q.id]));
+        $("qFootHint").textContent = "A few required questions still need an answer.";
+        if (missing) {
+          const node = document.querySelector('[data-qid="' + missing.id + '"]');
+          if (node) { node.classList.add("q-missing"); node.scrollIntoView({ behavior: "smooth", block: "center" }); }
+        }
+        return;
+      }
+      $("qComplete").disabled = true;
+      clearTimeout(saveTimer);
+      const ok = await saveForm("completed");
+      $("qComplete").disabled = false;
+      if (!ok) return;
+      closeModal($("qModal"));
+      renderAssignmentCards();
+      showMsg("Thanks — " + OPEN_FORM.title + " saved. This makes your coaching sharper. 🙌", "success");
+    });
+
+    document.querySelectorAll("[data-q-close]").forEach((b) =>
+      b.addEventListener("click", async () => {
+        clearTimeout(saveTimer);
+        await saveForm();
+        closeModal($("qModal"));
+        renderAssignmentCards();
+      })
+    );
+
+    /* ----- Build the form body from the template ----- */
+    function renderFormBody() {
+      const body = $("qBody"); body.innerHTML = "";
+      if (OPEN_FORM.intro) body.append(el("div", { class: "q-intro" }, OPEN_FORM.intro));
+      (OPEN_FORM.sections || []).forEach((sec) => {
+        const secEl = el("section", { class: "q-section" },
+          el("h3", { class: "q-section-title" }, sec.title));
+        if (sec.help) secEl.append(el("p", { class: "q-section-help" }, sec.help));
+        (sec.questions || []).forEach((q) => secEl.append(renderQuestion(q)));
+        body.append(secEl);
+      });
+    }
+
+    function renderQuestion(q) {
+      if (q.type === "info") {
+        return el("div", { class: "q-info" },
+          el("span", { class: "q-info-ico" }, q.icon || "•"),
+          el("div", {}, el("strong", {}, q.label), el("p", {}, q.body || "")));
+      }
+      const wrap = el("div", { class: "q-question", "data-qid": q.id });
+      wrap.addEventListener("input", () => wrap.classList.remove("q-missing"), { once: false });
+      const labelRow = el("div", { class: "q-label" }, q.label);
+      if (q.required) labelRow.append(el("span", { class: "q-required" }, "required"));
+      wrap.append(labelRow);
+      if (q.help) wrap.append(el("p", { class: "q-help" }, q.help));
+
+      const cur = OPEN_ANSWERS[q.id];
+      if (q.type === "single") wrap.append(renderOptions(q, cur, false));
+      else if (q.type === "multi") wrap.append(renderOptions(q, cur, true));
+      else if (q.type === "scale") wrap.append(renderScale(q, cur));
+      else if (q.type === "grid") wrap.append(renderGrid(q, cur));
+      else if (q.type === "number") wrap.append(renderNumber(q, cur));
+      else if (q.type === "short") wrap.append(renderText(q, cur, false));
+      else if (q.type === "long") wrap.append(renderText(q, cur, true));
+      return wrap;
+    }
+
+    function renderOptions(q, cur, multi) {
+      const selected = multi ? new Set(Array.isArray(cur) ? cur : []) : cur;
+      const box = el("div", { class: "q-opts" });
+      (q.options || []).forEach((opt) => {
+        const isSel = multi ? selected.has(opt.value) : selected === opt.value;
+        const btn = el("button", { type: "button", class: "q-opt" + (isSel ? " selected" : "") },
+          el("span", { class: "q-opt-main" }, opt.label));
+        if (opt.desc) btn.append(el("span", { class: "q-opt-desc" }, opt.desc));
+        btn.addEventListener("click", () => {
+          if (multi) {
+            if (selected.has(opt.value)) selected.delete(opt.value); else selected.add(opt.value);
+            box.querySelectorAll(".q-opt").forEach((b, i) => b.classList.toggle("selected", selected.has((q.options[i]).value)));
+            setAnswer(q.id, Array.from(selected));
+          } else {
+            box.querySelectorAll(".q-opt").forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            setAnswer(q.id, opt.value);
+          }
+        });
+        box.append(btn);
+      });
+      return box;
+    }
+
+    function renderScale(q, cur) {
+      const { min = 1, max = 5, minLabel = "", maxLabel = "" } = q.scale || {};
+      const track = el("div", { class: "q-scale-track" });
+      for (let v = min; v <= max; v++) {
+        const b = el("button", { type: "button", class: "q-scale-btn" + (cur === v ? " selected" : "") }, String(v));
+        b.addEventListener("click", () => {
+          track.querySelectorAll(".q-scale-btn").forEach((x) => x.classList.remove("selected"));
+          b.classList.add("selected"); setAnswer(q.id, v);
+        });
+        track.append(b);
+      }
+      return el("div", { class: "q-scale" }, track,
+        el("div", { class: "q-scale-labels" }, el("span", {}, minLabel), el("span", {}, maxLabel)));
+    }
+
+    function renderGrid(q, cur) {
+      const answer = (cur && typeof cur === "object") ? { ...cur } : {};
+      const useScale = !!q.scale;
+      const cols = useScale
+        ? Array.from({ length: q.scale.max - q.scale.min + 1 }, (_, i) => ({ value: q.scale.min + i, label: String(q.scale.min + i) }))
+        : (q.options || []);
+      const grid = el("div", { class: "q-grid" });
+      (q.rows || []).forEach((row) => {
+        const rowEl = el("div", { class: "q-grid-row" });
+        const labelWrap = el("div", { class: "q-grid-label" }, el("strong", {}, row.label));
+        if (row.desc) labelWrap.append(el("small", {}, row.desc));
+        rowEl.append(labelWrap);
+        const opts = el("div", { class: "q-grid-opts" + (useScale ? " scale" : "") });
+        cols.forEach((c) => {
+          const isSel = answer[row.id] === c.value;
+          const b = el("button", { type: "button", class: "q-grid-opt" + (isSel ? " selected" : "") }, c.label);
+          b.addEventListener("click", () => {
+            answer[row.id] = c.value;
+            opts.querySelectorAll(".q-grid-opt").forEach((x) => x.classList.remove("selected"));
+            b.classList.add("selected");
+            setAnswer(q.id, answer);
+          });
+          opts.append(b);
+        });
+        rowEl.append(opts);
+        grid.append(rowEl);
+      });
+      return grid;
+    }
+
+    function renderNumber(q, cur) {
+      const input = el("input", { type: "number", class: "q-num", value: cur != null ? cur : "", placeholder: q.placeholder || "" });
+      if (q.min != null) input.min = q.min;
+      if (q.max != null) input.max = q.max;
+      input.addEventListener("input", () => {
+        const v = input.value.trim();
+        setAnswer(q.id, v === "" ? null : Number(v));
+      });
+      const row = el("div", { class: "q-num-row" }, input);
+      if (q.unit) row.append(el("span", { class: "q-unit" }, q.unit));
+      return row;
+    }
+
+    function renderText(q, cur, long) {
+      const node = long
+        ? el("textarea", { class: "q-textarea", rows: "4", placeholder: q.placeholder || "" })
+        : el("input", { type: "text", class: "q-text", placeholder: q.placeholder || "" });
+      node.value = cur || "";
+      node.addEventListener("input", () => setAnswer(q.id, node.value));
+      return node;
+    }
+
+    /* ============================================================
+       SESSIONS (logged workouts) + client rating/comment
+       ============================================================ */
+    let SESSIONS = [], SESSION_FB = {}; // session_id -> feedback row
+
+    async function loadSessions() {
+      const [{ data: sess, error: sErr }, { data: fb }] = await Promise.all([
+        supabase.from("sessions").select("id, session_date, title, focus, body, coach_notes, created_at").order("session_date", { ascending: false }),
+        supabase.from("session_feedback").select("id, session_id, rating, comment"),
+      ]);
+      if (sErr) { console.warn("[sessions]", sErr.message); return; }
+      SESSIONS = sess || [];
+      SESSION_FB = {}; (fb || []).forEach((f) => { SESSION_FB[f.session_id] = f; });
+      renderSessions();
+    }
+
+    function renderSessions() {
+      const wrap = $("sessionsList"); wrap.innerHTML = "";
+      $("statSessions").textContent = SESSIONS.length;
+      $("progSessions").textContent = SESSIONS.length;
+      const rated = Object.values(SESSION_FB).filter((f) => f.rating);
+      $("progAvgRating").textContent = rated.length ? (rated.reduce((n, f) => n + f.rating, 0) / rated.length).toFixed(1) : "—";
+      if (!SESSIONS.length) { $("sessionsSection").hidden = true; return; }
+      $("sessionsSection").hidden = false;
+      $("sessionsCount").textContent = SESSIONS.length + " session" + (SESSIONS.length === 1 ? "" : "s");
+      SESSIONS.forEach((s) => wrap.append(sessionCard(s)));
+    }
+
+    function sessionCard(s) {
+      const exercises = (s.body && Array.isArray(s.body.exercises)) ? s.body.exercises : [];
+      const dateStr = new Date(s.session_date + "T00:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+      const card = el("div", { class: "wk-card session-card" });
+      card.append(el("div", { class: "wk-head" },
+        el("div", {}, el("h3", {}, s.title), el("p", { class: "meta session-date" }, "🗓 " + dateStr + (s.focus ? " · " + s.focus : ""))),
+        el("span", { class: "mtag workout" }, "Session")));
+      if (exercises.length) card.append(tableFromRows(exercises, { load: true }));
+      if (s.coach_notes) card.append(el("div", { class: "coach-note" }, el("span", { class: "coach-note-tag" }, "Coach's note"), el("p", {}, s.coach_notes)));
+      card.append(feedbackWidget(s));
+      return card;
+    }
+
+    function feedbackWidget(s) {
+      const existing = SESSION_FB[s.id] || {};
+      const wrap = el("div", { class: "session-fb" });
+      wrap.append(el("div", { class: "session-fb-label" }, "How was this session?"));
+      const stars = el("div", { class: "stars", role: "radiogroup", "aria-label": "Rate this session" });
+      let chosen = existing.rating || 0;
+      const paint = (n) => stars.querySelectorAll(".star").forEach((st, i) => st.classList.toggle("on", i < n));
+      for (let i = 1; i <= 5; i++) {
+        const star = el("button", { type: "button", class: "star" + (i <= chosen ? " on" : ""), "aria-label": i + " star" }, "★");
+        star.addEventListener("mouseenter", () => paint(i));
+        star.addEventListener("mouseleave", () => paint(chosen));
+        star.addEventListener("click", () => { chosen = i; paint(i); saveSessionFeedback(s.id, chosen, comment.value); });
+        stars.append(star);
+      }
+      wrap.append(stars);
+      const comment = el("textarea", { class: "q-textarea session-comment", rows: "2", placeholder: "Add a comment — how it felt, what was hard, anything I should know…", maxlength: "2000" });
+      comment.value = existing.comment || "";
+      const saveBtn = el("button", { type: "button", class: "btn btn-ghost btn-small" }, "Save feedback");
+      const status = el("span", { class: "session-fb-status" }, existing.rating || existing.comment ? "Saved ✓" : "");
+      saveBtn.addEventListener("click", async () => {
+        saveBtn.disabled = true;
+        const ok = await saveSessionFeedback(s.id, chosen || null, comment.value.trim());
+        status.textContent = ok ? "Saved ✓" : "Couldn't save";
+        saveBtn.disabled = false;
+      });
+      wrap.append(comment, el("div", { class: "session-fb-foot" }, saveBtn, status));
+      return wrap;
+    }
+
+    async function saveSessionFeedback(sessionId, rating, comment) {
+      const payload = { session_id: sessionId, client_id: USER_ID, rating: rating || null, comment: comment || null, updated_at: new Date().toISOString() };
+      const { data, error } = await supabase.from("session_feedback")
+        .upsert(payload, { onConflict: "session_id,client_id" }).select().single();
+      if (error) { console.warn("[session_feedback]", error.message); return false; }
+      SESSION_FB[sessionId] = data;
+      const rated = Object.values(SESSION_FB).filter((f) => f.rating);
+      $("progAvgRating").textContent = rated.length ? (rated.reduce((n, f) => n + f.rating, 0) / rated.length).toFixed(1) : "—";
+      return true;
+    }
+
+    /* ============================================================
+       GIVE FEEDBACK button + modal
+       ============================================================ */
+    let fbRating = 0;
+    $("fabFeedback").addEventListener("click", () => openModal($("fbModal")));
+    document.querySelectorAll("[data-fb-close]").forEach((b) => b.addEventListener("click", () => closeModal($("fbModal"))));
+    $("fbStars").addEventListener("click", (e) => {
+      const s = e.target.closest(".star"); if (!s) return;
+      fbRating = Number(s.dataset.val);
+      $("fbStars").querySelectorAll(".star").forEach((x, i) => x.classList.toggle("on", i < fbRating));
+    });
+    $("fbSend").addEventListener("click", async () => {
+      const body = $("fbBody").value.trim();
+      if (!body) { $("fbBody").focus(); return; }
+      $("fbSend").disabled = true;
+      const { error } = await supabase.from("feedback").insert({
+        client_id: USER_ID, category: $("fbCat").value, rating: fbRating || null, body,
+      });
+      $("fbSend").disabled = false;
+      if (error) { showMsg("Couldn't send feedback: " + error.message, "error"); return; }
+      closeModal($("fbModal"));
+      $("fbBody").value = ""; fbRating = 0; $("fbStars").querySelectorAll(".star").forEach((x) => x.classList.remove("on"));
+      showMsg("Got it — thank you for the feedback. It genuinely helps. 🙏", "success");
+    });
+
+    // Close any modal on Escape / backdrop
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (!$("qModal").hidden) { clearTimeout(saveTimer); saveForm().then(() => { closeModal($("qModal")); renderAssignmentCards(); }); }
+        if (!$("fbModal").hidden) closeModal($("fbModal"));
+      }
+    });
+
     /* ---------- Messaging (Ask Coach) ---------- */
-    let USER_ID = null, ME_NAME = "You", MAT_TITLES = {}, MESSAGES = [];
+    let MAT_TITLES = {}, MESSAGES = [];
     const thread = $("thread");
 
     function scrollThread() { requestAnimationFrame(() => { thread.scrollTop = thread.scrollHeight; }); }
@@ -416,7 +1069,7 @@
       const { data, error } = await supabase.from("messages")
         .insert({ client_id: USER_ID, sender_id: USER_ID, material_id, body }).select().single();
       if (error) { showMsg("Couldn't send: " + error.message, "error"); MESSAGES.pop(); renderThread(); }
-      else { Object.assign(optimistic, data); state.done.consult = state.done.consult; }
+      else { Object.assign(optimistic, data); }
       $("sendBtn").disabled = false; ta.focus();
     });
 
@@ -427,6 +1080,17 @@
       if (error) { console.warn("[messages]", error.message); return; }
       MESSAGES = data || [];
       renderThread(); renderAskBadge();
+    }
+
+    /* ---------- Load questionnaire responses + assignments ---------- */
+    async function loadFormsState() {
+      const [{ data: resp }, { data: asg }] = await Promise.all([
+        supabase.from("form_responses").select("id, form_key, answers, status, completed_at, updated_at"),
+        supabase.from("form_assignments").select("form_key, note, due_at, assigned_at").order("assigned_at", { ascending: false }),
+      ]);
+      RESPONSES = {}; (resp || []).forEach((r) => { RESPONSES[r.form_key] = r; });
+      ASSIGNED_KEYS = []; ASSIGNMENT_META = {};
+      (asg || []).forEach((a) => { ASSIGNED_KEYS.push(a.form_key); ASSIGNMENT_META[a.form_key] = { note: a.note, due_at: a.due_at }; });
     }
 
     /* ---------- Boot ---------- */
@@ -451,13 +1115,14 @@
 
       if (profile?.role === "admin") { const a = $("adminNavLink"); a.hidden = false; a.href = "admin.html"; }
 
-      const { data, error } = await supabase
-        .from("assignments")
-        .select("assigned_at, materials ( id, type, title, body, file_path )")
-        .order("assigned_at", { ascending: false });
+      const [{ data, error }] = await Promise.all([
+        supabase.from("assignments").select("assigned_at, materials ( id, type, title, body, file_path )").order("assigned_at", { ascending: false }),
+        loadFormsState(),
+      ]);
 
       $("loading").hidden = true;
       $("content").hidden = false;
+      $("fabFeedback").hidden = false;
 
       if (error) showMsg("Couldn't load your materials: " + error.message, "error");
 
@@ -470,9 +1135,8 @@
       const refSel = $("refWorkout");
       workouts.forEach((w) => { MAT_TITLES[w.id] = w.title; refSel.append(el("option", { value: w.id }, w.title)); });
 
-      $("statWorkouts").textContent = workouts.length || 1;
-
-      if (!items.length) {
+      const isNew = !items.length;
+      if (isNew) {
         /* -------- NEW MEMBER -------- */
         $("subline").textContent = "Let's get you started 👇";
         $("welcomeHero").hidden = false;
@@ -536,7 +1200,6 @@
                 el("span", { class: "mtag note" }, "Note")),
               el("div", { class: "body-note" }, text)));
           });
-          // Surface the latest note on the overview tab too
           const latest = notes[0];
           $("latestNote").hidden = false;
           $("latestNoteBody").append(el("div", { class: "wk-card" },
@@ -565,17 +1228,24 @@
       // Show the ref selector in the composer if there's anything to reference
       if (refSel.options.length > 1) $("refWrap").hidden = false;
 
+      // Questionnaire cards (assignments + nutrition + overview strip)
+      renderAssignmentCards();
+
       // Goal + progress + resources
       if (state.goal) applyGoal(state.goal, { persist: false }); else renderChecklist();
       renderProgress();
       resourceCards("resourceList");
+      resourceCards("nutritionResources", NUTRITION_RESOURCES);
 
-      // Messages
-      await loadMessages();
+      // Sessions + messages
+      await Promise.all([loadSessions(), loadMessages()]);
 
-      // Deep-link to a tab via hash (#ask, #workouts, #progress)
+      // Empty-training hint when nothing is loaded
+      if (!SESSIONS.length && !workouts.length && !notes.length && !pdfs.length && !isNew) $("trainingEmpty").hidden = false;
+
+      // Deep-link to a tab via hash
       const hash = (location.hash || "").replace("#", "");
-      if (["overview", "workouts", "ask", "progress"].includes(hash)) goTab(hash);
+      if (TABS.includes(hash)) goTab(hash);
     })();
   </script>
 </body>
