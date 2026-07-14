@@ -66,6 +66,7 @@ create trigger on_auth_user_created
 drop policy if exists "own profile read"   on public.profiles;
 drop policy if exists "own profile update" on public.profiles;
 drop policy if exists "admin reads all profiles" on public.profiles;
+drop policy if exists "admin updates profiles"   on public.profiles;
 
 create policy "own profile read"
   on public.profiles for select
