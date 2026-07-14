@@ -509,6 +509,7 @@
    SHARED MODAL SHELL
    ============================================================ */
 .ohs-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-end; justify-content: center; }
+.ohs-modal[hidden] { display: none; }   /* the hidden attribute must win over display:flex */
 @media (min-width: 720px) { .ohs-modal { align-items: center; padding: 2rem; } }
 .ohs-backdrop { position: absolute; inset: 0; background: rgba(10,20,45,.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .ohs-dialog {
