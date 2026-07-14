@@ -42,11 +42,17 @@
 /* Slightly crisper body copy against the airy background */
 body { color: #2e4763; }
 
-/* ---------- Scroll progress: aurora beam ---------- */
+/* ---------- Scroll progress: full-spectrum beam ----------
+   The gradient is pinned to the viewport width, so as the bar grows
+   it literally reveals new colors — a subtle "theme shift" as you scroll. */
 .scroll-progress {
   height: 3px;
-  background: linear-gradient(90deg, #5b93f0, #38bdf8 45%, #2f6dd4 80%, #1e40af);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 0 4px rgba(91, 147, 240, 0.8);
+  background: linear-gradient(90deg,
+    #5b93f0 0%, #38bdf8 16%, #22d3ee 30%, #34d399 46%,
+    #fcd34d 62%, #fb923c 76%, #fb7185 88%, #f43f5e 100%);
+  background-size: 100vw 3px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6), 0 0 4px rgba(251, 146, 60, 0.7);
 }
 
 /* ---------- Preloader: pulse ring + charge line ---------- */
@@ -114,8 +120,8 @@ body { color: #2e4763; }
    HERO — cinematic clinical aurora
    ============================================================ */
 .hero {
-  min-height: clamp(560px, 94vh, 1020px);
-  padding-top: 7rem;
+  min-height: clamp(380px, 56vh, 620px);
+  padding-top: 7.4rem;
 }
 
 /* Deeper, richer sky with a cyan clinical glow */
@@ -240,8 +246,8 @@ body { color: #2e4763; }
 
 /* Headline — larger, tighter, with a living gold-light gradient */
 .hero-title {
-  font-size: clamp(3rem, 8.5vw, 6rem);
-  line-height: 1.03;
+  font-size: clamp(2.2rem, 4.7vw, 3.6rem);
+  line-height: 1.05;
   letter-spacing: 0.005em;
 }
 .hero-title .hero-hl {
@@ -301,7 +307,7 @@ body { color: #2e4763; }
 
 /* Friction-melting microcopy under the CTAs */
 .hero-micro {
-  margin-top: 0.9rem;
+  margin-top: 0.7rem;
   font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -315,7 +321,7 @@ body { color: #2e4763; }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  margin-top: 1.5rem;
+  margin-top: 0.8rem;
   padding: 0.5rem 1.1rem;
   border-radius: 999px;
   background: rgba(10, 28, 62, 0.55);
@@ -615,10 +621,12 @@ body { color: #2e4763; }
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .hero-aurora, .hero-halo, .hero-halo::after, .hero-floor,
-  .hero-ekg path, .hero-title .hero-hl, .preloader::before,
+  .vital-ekg path, .hero-title .hero-hl, .preloader::before,
   .preloader::after, .preloader-name, .price-featured,
   .pricing-promise::before, .footer::before,
-  .hero-cta .btn-gold, .sticky-cta {
+  .hero-cta .btn-gold, .sticky-cta,
+  .sa-orb, .sa-sun, .sa-rays, .ba-orb,
+  .seniors-immersive .gold-shimmer, .bridge-immersive .gold-shimmer {
     animation: none !important;
   }
   .ht-word {
@@ -633,14 +641,15 @@ body { color: #2e4763; }
     filter: none;
     transition: none;
   }
-  .hero-ekg { display: none; }
+  /* Show the vital line fully drawn (its draw animation is disabled) */
+  .vital-ekg path { stroke-dashoffset: 0 !important; opacity: 1 !important; }
 }
 
 /* ============================================================
    SMALL SCREENS — keep the drama, lose the weight
    ============================================================ */
 @media (max-width: 720px) {
-  .hero { min-height: clamp(540px, 88vh, 820px); }
+  .hero { min-height: clamp(420px, 64vh, 640px); }
   .hero-halo { width: 120vw; height: 120vw; opacity: 0.5; }
   .hero-aurora { filter: blur(52px); opacity: 0.45; }
   .hero-kicker {
@@ -648,6 +657,273 @@ body { color: #2e4763; }
     font-size: 0.6rem;
     padding: 0.5rem 0.9rem;
   }
-  .hero-ekg { bottom: 2.4rem; opacity: 0.45; }
   .hero-micro { font-size: 0.62rem; letter-spacing: 0.12em; }
+}
+
+/* ============================================================
+   SCROLL MOTION SYSTEM v3 — directional reveal variants
+   Higher specificity than the base .reveal so they win cleanly.
+   ============================================================ */
+.reveal.rv-up    { transform: translateY(60px); }
+.reveal.rv-left  { transform: translateX(-56px); }
+.reveal.rv-right { transform: translateX(56px); }
+.reveal.rv-scale { transform: scale(0.86); }
+.reveal.rv-up.visible,
+.reveal.rv-left.visible,
+.reveal.rv-right.visible,
+.reveal.rv-scale.visible { transform: none; }
+
+/* ============================================================
+   VITAL LINE — the heart-rate pulse, relocated into Bridge
+   ============================================================ */
+.vital-ekg {
+  position: relative;
+  width: min(760px, 88%);
+  height: 58px;
+  margin: 1.7rem auto 0.2rem;
+}
+.vital-ekg svg { width: 100%; height: 100%; display: block; }
+.vital-ekg path {
+  fill: none;
+  stroke: url(#ekgGrad);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1420;
+  stroke-dashoffset: 1420;
+  animation: ekgDraw 6.5s linear infinite;
+  filter: drop-shadow(0 0 7px rgba(251, 146, 60, 0.85));
+}
+
+/* ============================================================
+   SENIORS — immersive "your strongest years" showpiece
+   Deep teal→navy field, warm sunrise, drifting color orbs
+   ============================================================ */
+.seniors-immersive {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 118%, rgba(246, 201, 135, 0.22), transparent 60%),
+    linear-gradient(162deg, #04302e 0%, #063a48 46%, #072a4d 100%);
+  color: #dbe7f5;
+  border-top: 1px solid rgba(127, 227, 201, 0.18);
+  border-bottom: 1px solid rgba(10, 24, 48, 0.6);
+}
+.seniors-immersive .container { position: relative; z-index: 2; }
+
+/* aurora field */
+.seniors-aurora { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.seniors-aurora .sa-sun {
+  position: absolute; left: 50%; bottom: -32%;
+  width: 78%; height: 78%; transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 214, 150, 0.5), rgba(255, 184, 120, 0.16) 42%, transparent 68%);
+  filter: blur(6px);
+  animation: saSun 9s ease-in-out infinite;
+}
+.seniors-aurora .sa-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(60px); opacity: 0.62; will-change: transform;
+}
+.sa-orb-1 { width: 44vw; height: 44vw; max-width: 560px; max-height: 560px; top: -12%; left: -8%;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.6), transparent 70%); animation: orbA 17s ease-in-out infinite; }
+.sa-orb-2 { width: 40vw; height: 40vw; max-width: 520px; max-height: 520px; top: 18%; right: -10%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.55), transparent 70%); animation: orbB 21s ease-in-out infinite; }
+.sa-orb-3 { width: 30vw; height: 30vw; max-width: 380px; max-height: 380px; bottom: -10%; left: 34%;
+  background: radial-gradient(circle, rgba(246, 201, 135, 0.5), transparent 70%); animation: orbC 15s ease-in-out infinite; }
+.seniors-aurora .sa-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 210, 225, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 210, 225, 0.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 80% 74% at 50% 42%, black 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 74% at 50% 42%, black 20%, transparent 78%);
+}
+.seniors-aurora .sa-rays {
+  position: absolute; left: 50%; bottom: -40%; width: 140%; height: 120%;
+  transform: translateX(-50%);
+  background: conic-gradient(from 180deg at 50% 100%,
+    transparent 0deg, rgba(255, 210, 150, 0.05) 12deg, transparent 24deg,
+    rgba(127, 227, 201, 0.05) 40deg, transparent 56deg,
+    rgba(255, 210, 150, 0.05) 76deg, transparent 96deg);
+  mask-image: radial-gradient(ellipse 60% 90% at 50% 100%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 90% at 50% 100%, black, transparent 75%);
+  animation: raysSpin 40s linear infinite;
+}
+
+/* seniors text on the dark field */
+.seniors-immersive .eyebrow { color: #7fe3c9; text-shadow: 0 0 22px rgba(110, 231, 208, 0.4); }
+.seniors-immersive .section-title { color: #f2f8ff; }
+.seniors-immersive .gold-shimmer {
+  background: linear-gradient(110deg, #ffd89b 16%, #fff4dc 38%, #7fe3c9 58%, #9cc3ff 82%);
+  background-size: 220% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.seniors-immersive .seniors-lede {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  font-style: italic;
+  line-height: 1.2;
+  color: #f6c987;
+  margin: 0.2rem 0 1.1rem;
+  text-shadow: 0 2px 18px rgba(246, 201, 135, 0.25);
+}
+.seniors-immersive .seniors-copy p { color: #cddbef; }
+.seniors-immersive .seniors-copy strong { color: #ffffff; }
+.seniors-immersive .senior-stat {
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 3px solid #f6c987;
+  color: #e7f0fb;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 12px 34px rgba(4, 20, 26, 0.4);
+}
+.seniors-immersive .spec-getstarted {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 3px solid #7fe3c9;
+  color: #dbe7f5;
+}
+.seniors-immersive .spec-getstarted strong { color: #fff; }
+.seniors-immersive .spec-gs-ico { color: #7fe3c9; }
+.seniors-immersive .seniors-note { color: #a7bad6; }
+
+/* seniors feature cards — keep the bright white glass, add color identity */
+.seniors-immersive .senior-card {
+  box-shadow: 0 20px 50px rgba(4, 18, 34, 0.45);
+}
+.senior-card[data-accent] .sc-icon {
+  display: inline-grid; place-items: center;
+  width: 54px; height: 54px; border-radius: 15px;
+  font-size: 1.55rem; margin-bottom: 0.7rem;
+}
+.senior-card[data-accent="sky"]     { border-top-color: #38bdf8; }
+.senior-card[data-accent="emerald"] { border-top-color: #10b981; }
+.senior-card[data-accent="gold"]    { border-top-color: #f59e0b; }
+.senior-card[data-accent="rose"]    { border-top-color: #f43f5e; }
+.senior-card[data-accent="sky"]     .sc-icon { background: rgba(56, 189, 248, 0.16); }
+.senior-card[data-accent="emerald"] .sc-icon { background: rgba(16, 185, 129, 0.16); }
+.senior-card[data-accent="gold"]    .sc-icon { background: rgba(245, 158, 11, 0.18); }
+.senior-card[data-accent="rose"]    .sc-icon { background: rgba(244, 63, 94, 0.15); }
+.senior-card[data-accent="sky"]:hover     { box-shadow: 0 26px 60px rgba(56, 189, 248, 0.30); }
+.senior-card[data-accent="emerald"]:hover { box-shadow: 0 26px 60px rgba(16, 185, 129, 0.30); }
+.senior-card[data-accent="gold"]:hover    { box-shadow: 0 26px 60px rgba(245, 158, 11, 0.30); }
+.senior-card[data-accent="rose"]:hover    { box-shadow: 0 26px 60px rgba(244, 63, 94, 0.28); }
+
+/* ============================================================
+   BRIDGE — immersive "rehab to strong" showpiece
+   Deep plum→wine field, amber/rose orbs, the vital line
+   ============================================================ */
+.bridge-immersive {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(110% 80% at 50% -10%, rgba(251, 146, 60, 0.16), transparent 58%),
+    linear-gradient(162deg, #2a1533 0%, #3a1c2b 50%, #191233 100%);
+  color: #ecdff2;
+  border-top: 1px solid rgba(251, 191, 36, 0.18);
+  border-bottom: 1px solid rgba(12, 8, 26, 0.6);
+}
+.bridge-immersive .container { position: relative; z-index: 2; }
+.bridge-aurora { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.bridge-aurora .ba-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(64px); opacity: 0.6; will-change: transform;
+}
+.ba-orb-1 { width: 42vw; height: 42vw; max-width: 540px; max-height: 540px; top: -14%; left: -8%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.6), transparent 70%); animation: orbA 19s ease-in-out infinite; }
+.ba-orb-2 { width: 40vw; height: 40vw; max-width: 520px; max-height: 520px; bottom: -16%; right: -10%;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.5), transparent 70%); animation: orbB 23s ease-in-out infinite; }
+.ba-orb-3 { width: 30vw; height: 30vw; max-width: 400px; max-height: 400px; top: 30%; left: 46%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.42), transparent 70%); animation: orbC 16s ease-in-out infinite; }
+.bridge-aurora .ba-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(251, 191, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 191, 36, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 82% 78% at 50% 40%, black 18%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 82% 78% at 50% 40%, black 18%, transparent 80%);
+}
+
+/* bridge text on the dark field */
+.bridge-immersive .eyebrow { color: #fbbf24; text-shadow: 0 0 22px rgba(251, 191, 36, 0.4); }
+.bridge-immersive .section-title { color: #fdf4ff; }
+.bridge-immersive .section-sub { color: #d9c8e6; }
+.bridge-immersive .section-sub strong { color: #fff; }
+.bridge-immersive .gold-shimmer {
+  background: linear-gradient(110deg, #fcd34d 16%, #fff0c4 38%, #fb923c 58%, #fb7185 84%);
+  background-size: 220% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* bridge flow stages — glass-dark with per-stage color */
+.bridge-immersive .bridge-stage {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: 0 18px 44px rgba(10, 6, 24, 0.42);
+}
+.bridge-immersive .bridge-stage strong { color: #ffffff; }
+.bridge-immersive .bridge-stage p { color: #cbb9dc; }
+.bridge-immersive .bridge-stage-start { border-top: 3px solid #fb7185; }
+.bridge-immersive .bridge-stage-end   { border-top: 3px solid #34d399; }
+.bridge-immersive .bridge-stage-mid {
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  background: linear-gradient(165deg, rgba(251, 191, 36, 0.18), rgba(251, 146, 60, 0.05)), rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 48px rgba(251, 146, 60, 0.3);
+}
+.bridge-immersive .bridge-arrow { color: #fbbf24; text-shadow: 0 0 14px rgba(251, 191, 36, 0.6); }
+
+/* bridge points — glass-dark, colored spines */
+.bridge-immersive .bridge-point {
+  background: rgba(255, 255, 255, 0.045);
+  border-left: 3px solid #fbbf24;
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.bridge-immersive .bridge-point:nth-of-type(1) { border-left-color: #fb7185; }
+.bridge-immersive .bridge-point:nth-of-type(2) { border-left-color: #fbbf24; }
+.bridge-immersive .bridge-point:nth-of-type(3) { border-left-color: #34d399; }
+.bridge-immersive .bridge-point h3 { color: #ffffff; }
+.bridge-immersive .bridge-point p { color: #cbb9dc; }
+
+/* bridge get-started note */
+.bridge-immersive .spec-getstarted {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 3px solid #fbbf24;
+  color: #e7dcef;
+}
+.bridge-immersive .spec-getstarted strong { color: #fff; }
+.bridge-immersive .spec-gs-ico { color: #fbbf24; }
+
+/* ---------- shared decorative keyframes ---------- */
+@keyframes orbA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 5%) scale(1.12); }
+}
+@keyframes orbB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-7%, -4%) scale(1.1); }
+}
+@keyframes orbC {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4%, -6%) scale(0.92); }
+}
+@keyframes saSun {
+  0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.06); }
+}
+@keyframes raysSpin { to { transform: translateX(-50%) rotate(360deg); } }
+
+/* Pause the heavier orb/sun motion when a section is scrolled away */
+.anim-paused .sa-orb, .anim-paused .sa-sun, .anim-paused .sa-rays,
+.anim-paused .ba-orb { animation-play-state: paused; }
+
+@media (max-width: 720px) {
+  .seniors-aurora .sa-orb, .bridge-aurora .ba-orb { filter: blur(46px); opacity: 0.5; }
+  .vital-ekg { height: 46px; margin-top: 1.2rem; }
+  .seniors-immersive .seniors-lede { font-size: 1.3rem; }
 }

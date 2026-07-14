@@ -46,8 +46,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=22" />
-  <link rel="stylesheet" href="css/polish.css?v=1" />
+  <link rel="stylesheet" href="css/style.css?v=23" />
+  <link rel="stylesheet" href="css/polish.css?v=2" />
 </head>
 <body>
 
@@ -60,7 +60,6 @@
        • Schema profiles ... replace REPLACE_WITH_YOUR_HANDLE (JSON-LD sameAs)
        • Headshot .......... img/zeuse.jpg           (about section)
        • Intro video ....... data-embed=""           (about section)
-       • Before/After ...... swap .ba-ph placeholders (proof section)
        ============================================================ -->
 
   <a class="skip-link" href="#about">Skip to content</a>
@@ -109,7 +108,6 @@
         <a href="seniors.html">Seniors</a>
         <a href="for-clinics.html">For Clinics</a>
         <a href="#lab">The Lab</a>
-        <a href="#pricing">Pricing</a>
         <a href="login.html" class="btn btn-ghost btn-small nav-login">🔒 Client Login</a>
         <a href="#contact" class="btn btn-gold btn-small">Book Free Consult</a>
       </nav>
@@ -139,16 +137,15 @@
       </div>
 
       <div class="hero-content">
-        <p class="hero-kicker reveal">🌍 &nbsp;Personal Training, Anywhere on Earth — in Your Language &nbsp;·&nbsp; Portable In-Home Sessions Across Clark County, WA</p>
+        <p class="hero-kicker reveal">🌍 Live Online, in Your Language &nbsp;·&nbsp; 🏠 In-Home Across Clark County, WA</p>
         <h1 class="hero-title">
-          <span class="reveal d1">Your Strongest Years</span>
-          <span class="reveal d2 hero-hl">Are Still Ahead.</span>
+          <span class="reveal d1">Global Personal Training,</span>
+          <span class="reveal d2 hero-hl">Proudly Delivered to Clark County.</span>
         </h1>
         <p class="hero-sub reveal d3">
           World-class, science-based coaching that comes to you — <em>wherever you are</em>.
           Train live from anywhere on Earth in your own language, or bring a portable
-          in-home session to your door across Clark County, WA. Move without pain, rebuild
-          real strength, and stay independent — at any age.
+          in-home session to your door across Clark County, WA.
         </p>
         <div class="hero-cta reveal d4">
           <a href="schedule.html" class="btn btn-gold btn-lg">Reserve Your Free Session</a>
@@ -175,18 +172,6 @@
         </div>
       </div>
 
-      <svg class="hero-ekg" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="ekgGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#5b93f0" stop-opacity="0" />
-            <stop offset="0.18" stop-color="#5b93f0" />
-            <stop offset="0.5" stop-color="#7dd3fc" />
-            <stop offset="0.82" stop-color="#5b93f0" />
-            <stop offset="1" stop-color="#5b93f0" stop-opacity="0" />
-          </linearGradient>
-        </defs>
-        <path d="M0,32 H210 l14,0 8,-13 10,26 9,-30 10,38 8,-24 6,3 H480 l12,0 8,-11 10,22 9,-27 10,34 8,-21 6,3 H900 l12,0 8,-12 10,24 9,-28 10,36 8,-23 6,3 H1200" />
-      </svg>
       <a href="#focus" class="scroll-cue" aria-label="Scroll down">
         <span class="scroll-cue-line"></span>
       </a>
@@ -390,7 +375,7 @@
               <li>Your first in-home visit is free</li>
               <li>Perfect for seniors &amp; post-PT</li>
             </ul>
-            <a href="#pricing" class="tw-cta">See in-home pricing <span aria-hidden="true">→</span></a>
+            <a href="schedule.html" class="tw-cta">Book in-home training <span aria-hidden="true">→</span></a>
           </div>
 
           <div class="tw-card tw-global">
@@ -411,11 +396,20 @@
     </section>
 
     <!-- ===== Senior Fitness Specialty ===== -->
-    <section class="seniors section section-light" id="seniors">
+    <section class="seniors section seniors-immersive" id="seniors">
+      <div class="seniors-aurora" aria-hidden="true">
+        <span class="sa-sun"></span>
+        <span class="sa-orb sa-orb-1"></span>
+        <span class="sa-orb sa-orb-2"></span>
+        <span class="sa-orb sa-orb-3"></span>
+        <span class="sa-grid"></span>
+        <span class="sa-rays"></span>
+      </div>
       <div class="container seniors-grid">
         <div class="seniors-copy">
           <p class="eyebrow reveal">Primary Specialty · Senior Fitness</p>
-          <h2 class="section-title reveal d1">Strength Has<br>No Age Limit.</h2>
+          <h2 class="section-title reveal d1 rv-up">Your Strongest Years<br><span class="gold-shimmer">Are Still Ahead.</span></h2>
+          <p class="seniors-lede reveal d2">Strength has no age limit.</p>
           <p class="reveal d2">
             Some of my proudest work happens with clients in their 60s, 70s, and beyond.
             With <strong>doctoral-level physical therapy training</strong>, I specialize in helping
@@ -435,22 +429,22 @@
         </div>
 
         <div class="senior-features">
-          <article class="senior-card reveal">
+          <article class="senior-card reveal rv-scale" data-accent="sky">
             <div class="sc-icon">🦶</div>
             <h3>Balance &amp; Fall Prevention</h3>
             <p>Evidence-based balance and stability training that keeps you steady on your feet — at home, on stairs, on the beach.</p>
           </article>
-          <article class="senior-card reveal d1">
+          <article class="senior-card reveal rv-scale d1" data-accent="emerald">
             <div class="sc-icon">💪</div>
             <h3>Strength for Independence</h3>
             <p>Carry your own groceries. Lift your grandkids. Travel with confidence. We train for real life, not the mirror.</p>
           </article>
-          <article class="senior-card reveal d2">
+          <article class="senior-card reveal rv-scale d2" data-accent="gold">
             <div class="sc-icon">🦴</div>
             <h3>Bone &amp; Joint Friendly</h3>
             <p>Safe, progressive resistance training that supports bone density and works with arthritis — never against it.</p>
           </article>
-          <article class="senior-card reveal d3">
+          <article class="senior-card reveal rv-scale d3" data-accent="rose">
             <div class="sc-icon">❤️</div>
             <h3>A Patient, Personal Pace</h3>
             <p>Every exercise is scaled to you. No intimidation, no rushing — just steady progress and genuine encouragement.</p>
@@ -460,18 +454,40 @@
     </section>
 
     <!-- ===== Bridge: Post-PT program ===== -->
-    <section class="bridge section" id="bridge">
+    <section class="bridge section bridge-immersive" id="bridge">
+      <div class="bridge-aurora" aria-hidden="true">
+        <span class="ba-orb ba-orb-1"></span>
+        <span class="ba-orb ba-orb-2"></span>
+        <span class="ba-orb ba-orb-3"></span>
+        <span class="ba-grid"></span>
+      </div>
       <div class="container">
         <p class="eyebrow center reveal">Primary Specialty · Post-PT</p>
-        <h2 class="section-title center reveal d1">Bridge: <span class="gold-shimmer">From Rehab to Strong</span></h2>
+        <h2 class="section-title center reveal d1 rv-up">Bridge: <span class="gold-shimmer">From Rehab to Strong</span></h2>
         <p class="section-sub center reveal d2">Physical therapy gets you out of pain. <strong>Bridge</strong> gets you strong enough to stay that way — the missing step between the clinic and real life.</p>
 
+        <!-- Vital line: strength coming back to life (relocated from the hero) -->
+        <div class="vital-ekg reveal d2" aria-hidden="true">
+          <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ekgGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#f59e0b" stop-opacity="0" />
+                <stop offset="0.18" stop-color="#fb923c" />
+                <stop offset="0.5" stop-color="#fcd34d" />
+                <stop offset="0.82" stop-color="#fb7185" />
+                <stop offset="1" stop-color="#f43f5e" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0,32 H210 l14,0 8,-13 10,26 9,-30 10,38 8,-24 6,3 H480 l12,0 8,-11 10,22 9,-27 10,34 8,-21 6,3 H900 l12,0 8,-12 10,24 9,-28 10,36 8,-23 6,3 H1200" />
+          </svg>
+        </div>
+
         <div class="bridge-flow reveal d2">
-          <div class="bridge-stage"><span>🏥</span><div><strong>You finished PT</strong><p>Cleared, but not confident — and nervous about re-injury.</p></div></div>
+          <div class="bridge-stage bridge-stage-start"><span>🏥</span><div><strong>You finished PT</strong><p>Cleared, but not confident — and nervous about re-injury.</p></div></div>
           <div class="bridge-arrow" aria-hidden="true">→</div>
           <div class="bridge-stage bridge-stage-mid"><span>⚡</span><div><strong>The Bridge</strong><p>Doctoral-level programming that rebuilds strength around your history — safely, progressively.</p></div></div>
           <div class="bridge-arrow" aria-hidden="true">→</div>
-          <div class="bridge-stage"><span>🏆</span><div><strong>Stronger than before</strong><p>Back to lifting, hiking, playing, and living — without fear of the pain returning.</p></div></div>
+          <div class="bridge-stage bridge-stage-end"><span>🏆</span><div><strong>Stronger than before</strong><p>Back to lifting, hiking, playing, and living — without fear of the pain returning.</p></div></div>
         </div>
 
         <div class="bridge-points">
@@ -495,22 +511,22 @@
         <p class="section-sub center reveal d2">Real people, real numbers — every one of them started with a single free consultation.</p>
 
         <div class="result-cards">
-          <div class="result-card reveal">
+          <div class="result-card reveal rv-scale">
             <div class="rc-metric">−28<span>lbs</span></div>
             <p>Down 28 pounds in 16 weeks — and consistent for the first time ever.</p>
             <div class="rc-who">Kayla R. · 1-on-1 Client</div>
           </div>
-          <div class="result-card reveal d1">
+          <div class="result-card reveal rv-scale d1">
             <div class="rc-metric">+45<span>lb DL</span></div>
             <p>Added 45 lbs to her deadlift, completely pain-free, at 54.</p>
             <div class="rc-who">Marcus T. · Post-PT Client</div>
           </div>
-          <div class="result-card reveal d2">
+          <div class="result-card reveal rv-scale d2">
             <div class="rc-metric">1<span>st pull-up</span></div>
             <p>First-ever pull-up after 12 weeks of structured training.</p>
             <div class="rc-who">Jordan M. · 1-on-1 Client</div>
           </div>
-          <div class="result-card reveal d3">
+          <div class="result-card reveal rv-scale d3">
             <div class="rc-metric">0<span>falls</span></div>
             <p>A year of balance work — independent, steady, and confident again.</p>
             <div class="rc-who">Linda K. · Senior Strength</div>
@@ -543,27 +559,10 @@
           </div>
           <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Testimonials"></div>
         </div>
-
-        <!-- Before / After showcase -->
-        <div class="ba-wrap reveal d2">
-          <div class="ba-slider" id="baSlider">
-            <div class="ba-pane ba-after">
-              <span class="ba-tag ba-tag-after">After</span>
-              <div class="ba-ph">After photo</div>
-            </div>
-            <div class="ba-pane ba-before" id="baBefore">
-              <span class="ba-tag ba-tag-before">Before</span>
-              <div class="ba-ph">Before photo</div>
-            </div>
-            <div class="ba-handle" id="baHandle" aria-hidden="true"><span></span></div>
-            <input type="range" min="0" max="100" value="50" class="ba-range" id="baRange" aria-label="Drag to reveal before and after" />
-          </div>
-          <p class="ba-note">Drag the handle to compare. Swap the placeholders for real client before/after photos in <code>img/</code> — see the README.</p>
-        </div>
       </div>
     </section>
 
-    <!-- ===== Choose Your Path (services menu — full pricing lives in #pricing) ===== -->
+    <!-- ===== Choose Your Path (services menu) ===== -->
     <section class="programs section" id="programs">
       <div class="container">
         <p class="eyebrow center reveal">Choose Your Path</p>
@@ -590,7 +589,7 @@
                 <li>Programming that evolves with you</li>
               </ul>
             </div>
-            <a href="#pricing" class="path-cta path-cta-full">See plans &amp; pricing <span aria-hidden="true">→</span></a>
+            <a href="#contact" class="path-cta path-cta-full">Book a free consult <span aria-hidden="true">→</span></a>
           </article>
 
           <!-- Path 2: Post-PT -->
@@ -614,7 +613,7 @@
             </div>
             <div class="path-cta-row">
               <a href="#bridge" class="path-link">How it works</a>
-              <a href="#pricing" class="path-cta">See pricing <span aria-hidden="true">→</span></a>
+              <a href="#contact" class="path-cta">Get started <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
@@ -639,185 +638,12 @@
             </div>
             <div class="path-cta-row">
               <a href="#seniors" class="path-link">How it works</a>
-              <a href="#pricing" class="path-cta">See pricing <span aria-hidden="true">→</span></a>
+              <a href="#contact" class="path-cta">Get started <span aria-hidden="true">→</span></a>
             </div>
           </article>
         </div>
 
         <p class="path-note reveal d2">Not sure which fits? After a free consultation I'll recommend the session length and frequency that make the most sense for you.</p>
-      </div>
-    </section>
-
-    <!-- ===== Pricing (single source of truth) ===== -->
-    <section class="pricing section section-alt" id="pricing">
-      <div class="container">
-        <p class="eyebrow center reveal">Investment</p>
-        <h2 class="section-title center reveal d1">Earn Your Crown</h2>
-        <p class="section-sub center reveal d2">Compare a private trainer at $70–$120 a session. My global membership gives you a coach, a plan, and a home gym — for less than the price of a single gym visit a week. Every program is built around <em>you</em>, and the roster is capped so each client gets my full attention.</p>
-
-        <!-- Risk-reversal / trust band -->
-        <div class="pricing-assurance reveal d2">
-          <div class="pa-item"><span class="pa-ico" aria-hidden="true">🛡️</span><div><strong>14-day promise</strong><span>Not a fit? Full refund, no questions.</span></div></div>
-          <div class="pa-item"><span class="pa-ico" aria-hidden="true">🔓</span><div><strong>No lock-in</strong><span>Month-to-month. Cancel anytime.</span></div></div>
-          <div class="pa-item"><span class="pa-ico" aria-hidden="true">📦</span><div><strong>Free FitPack</strong><span>A $75 home gym, on the house.</span></div></div>
-          <div class="pa-item"><span class="pa-ico" aria-hidden="true">🎓</span><div><strong>Doctor-level coaching</strong><span>DPT student · B.S. Kinesiology.</span></div></div>
-        </div>
-
-        <!-- Segmented toggle · Online vs In-Home (CSS-only) -->
-        <input type="radio" name="priceMode" id="priceOnline" class="pt-radio" checked />
-        <input type="radio" name="priceMode" id="priceInhome" class="pt-radio" />
-        <div class="price-toggle reveal d2" role="tablist" aria-label="Choose coaching type">
-          <label for="priceOnline" class="pt-opt"><span class="pt-ico" aria-hidden="true">🌍</span><span class="pt-txt"><strong>Train Anywhere</strong><small>Online · monthly</small></span></label>
-          <label for="priceInhome" class="pt-opt"><span class="pt-ico" aria-hidden="true">📍</span><span class="pt-txt"><strong>Clark County</strong><small>In-home · per session</small></span></label>
-          <span class="pt-thumb" aria-hidden="true"></span>
-        </div>
-
-        <div class="price-panels reveal d2">
-          <!-- ONLINE -->
-          <div class="price-panel price-panel-online">
-            <div class="pricing-grid">
-              <a href="#contact" class="price-card">
-                <h3>Essentials</h3>
-                <p class="price-desc">Coach-built training you run on your own schedule.</p>
-                <div class="price"><span class="price-num">$99</span><span class="price-per">/ month</span></div>
-                <p class="price-anchor">≈ $23/week — less than one gym drop-in</p>
-                <ul>
-                  <li>Custom app program, refreshed monthly</li>
-                  <li>Free FitPack shipped nationwide <span class="li-tag">$75 value</span></li>
-                  <li>Demo videos for every movement</li>
-                  <li>Message support + monthly check-in</li>
-                  <li>Train in your language — real-time translation</li>
-                </ul>
-                <span class="price-choose">Get started <span aria-hidden="true">→</span></span>
-              </a>
-
-              <a href="#contact" class="price-card price-featured">
-                <div class="program-badge">★ Most Popular</div>
-                <h3>Pro</h3>
-                <p class="price-desc">Live coaching + a plan that adapts every week.</p>
-                <div class="price"><span class="price-num">$199</span><span class="price-per">/ month</span></div>
-                <p class="price-anchor">2 live sessions alone would cost $140+ elsewhere</p>
-                <ul>
-                  <li><strong>Everything in Essentials</strong></li>
-                  <li>2 live 1-on-1 video sessions / month</li>
-                  <li>Real-time translation on every session</li>
-                  <li>Weekly check-ins &amp; program adjustments</li>
-                  <li>Priority messaging — answers within a day</li>
-                </ul>
-                <span class="price-choose">Start with Pro <span aria-hidden="true">→</span></span>
-              </a>
-
-              <a href="#contact" class="price-card">
-                <div class="program-badge badge-value">Best Value</div>
-                <h3>Elite</h3>
-                <p class="price-desc">My highest-touch coaching, anywhere in the world.</p>
-                <div class="price"><span class="price-num">$349</span><span class="price-per">/ month</span></div>
-                <p class="price-anchor">4 weekly sessions + nutrition — ≈ $87/session</p>
-                <ul>
-                  <li><strong>Everything in Pro</strong></li>
-                  <li>Weekly live 1-on-1 sessions (4 / month)</li>
-                  <li>Nutrition &amp; recovery coaching</li>
-                  <li>Same-day priority support</li>
-                  <li>Quarterly progress deep-dive</li>
-                </ul>
-                <span class="price-choose">Apply for Elite <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-            <p class="pricing-subnote center">Free FitPack with every plan · ships free nationwide · cancel anytime</p>
-          </div>
-
-          <!-- IN-HOME -->
-          <div class="price-panel price-panel-inhome">
-            <div class="pricing-grid">
-              <a href="#contact" class="price-card">
-                <h3>Senior Strength</h3>
-                <p class="price-desc">Gentle, in-home training to keep you strong &amp; independent.</p>
-                <div class="price"><span class="price-num">$45</span><span class="price-per">/ session</span></div>
-                <p class="price-anchor">Most-loved by families caring for a parent</p>
-                <ul>
-                  <li>30-minute focus sessions, 1–5× per week</li>
-                  <li>I come to your living room or chosen spot</li>
-                  <li>Balance, strength &amp; fall prevention</li>
-                  <li>Patient pace — family welcome to join</li>
-                </ul>
-                <span class="price-choose">Book a gentle session <span aria-hidden="true">→</span></span>
-              </a>
-
-              <a href="#contact" class="price-card price-featured">
-                <div class="program-badge">★ Most Popular</div>
-                <h3>1-on-1 Portable</h3>
-                <p class="price-desc">Full private training, brought to your door.</p>
-                <div class="price"><span class="price-num">$75</span><span class="price-per">/ session</span></div>
-                <p class="price-anchor">Everything a $120 studio session gives — at home</p>
-                <ul>
-                  <li>60-minute private sessions</li>
-                  <li>Movement assessment included</li>
-                  <li>Custom programming for your goals</li>
-                  <li>Perfect for post-PT, strength &amp; fat loss</li>
-                  <li>I bring the equipment &amp; the plan</li>
-                </ul>
-                <span class="price-choose">Book a session <span aria-hidden="true">→</span></span>
-              </a>
-
-              <a href="#contact" class="price-card">
-                <div class="program-badge badge-value">Save up to 20%</div>
-                <h3>Session Packs</h3>
-                <p class="price-desc">Commit to the work, save on every session.</p>
-                <div class="price"><span class="price-num">Save</span><span class="price-per">on 6+</span></div>
-                <p class="price-anchor">The path most transformations actually take</p>
-                <ul>
-                  <li>Best value for real, lasting results</li>
-                  <li>Available on Senior &amp; 1-on-1 sessions</li>
-                  <li>Priority scheduling</li>
-                  <li>Build momentum with consistency</li>
-                </ul>
-                <span class="price-choose">Ask about packs <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-
-            <!-- Full in-home rate card (single source for all in-home numbers) -->
-            <div class="inhome-ratecard">
-              <p class="ratecard-title">The full in-home rate card <small>Clark County, WA · your first visit is free, no travel fee</small></p>
-              <div class="ratecard-groups">
-                <div class="price-group">
-                  <h4>Single Sessions</h4>
-                  <div class="pr-row"><span class="pr-name">60-Minute Full Session</span><span class="pr-amt">$75</span></div>
-                  <div class="pr-row pr-sub"><span class="pr-name">30-Minute Focus Session</span><span class="pr-amt">$45</span></div>
-                </div>
-                <div class="price-group">
-                  <h4>Monthly Plans <small>60-min · steady progress</small></h4>
-                  <div class="pr-row"><span class="pr-name">Weekly Foundation <em>4 / mo</em></span><span class="pr-amt">$279</span></div>
-                  <div class="pr-row"><span class="pr-name">Progress Plan <em>8 / mo</em></span><span class="pr-amt">$539</span></div>
-                  <div class="pr-row"><span class="pr-name">High-Support <em>12 / mo</em></span><span class="pr-amt">$779</span></div>
-                </div>
-                <div class="price-group">
-                  <h4>Monthly Focus Plans <small>30-min · seniors &amp; post-PT</small></h4>
-                  <div class="pr-row"><span class="pr-name">Weekly Focus <em>4 / mo</em></span><span class="pr-amt">$169</span></div>
-                  <div class="pr-row"><span class="pr-name">Focus Progress <em>8 / mo</em></span><span class="pr-amt">$319</span></div>
-                  <div class="pr-row"><span class="pr-name">High-Support Focus <em>12 / mo</em></span><span class="pr-amt">$459</span></div>
-                </div>
-                <div class="price-group">
-                  <h4>Session Bundles <small>save vs single</small></h4>
-                  <div class="pr-row"><span class="pr-name">3 / 6 / 12 × 60-min</span><span class="pr-amt">$215 / $420 / $795</span></div>
-                  <div class="pr-row pr-sub"><span class="pr-name">3 / 6 / 12 × 30-min focus</span><span class="pr-amt">$130 / $250 / $465</span></div>
-                </div>
-              </div>
-            </div>
-            <p class="pricing-subnote center">First in-home visit is free · no travel fee across Clark County, WA</p>
-          </div>
-        </div>
-
-        <!-- The Olympian Promise -->
-        <div class="pricing-promise reveal d2">
-          <span class="pp-crown" aria-hidden="true">👑</span>
-          <div class="pp-body">
-            <h3>The Olympian Promise</h3>
-            <p>Train with me for two full weeks. If you don't feel stronger, clearer, and genuinely looked-after, I'll refund every dollar — and you keep the FitPack. All the risk is on me, because I only win when you do.</p>
-          </div>
-          <a href="schedule.html" class="btn btn-gold btn-lg pp-cta">Claim Your Crown →</a>
-        </div>
-
-        <p class="pricing-note reveal">Not sure which fits? <a href="schedule.html">Reserve a free session</a> — no pressure, just a plan.</p>
       </div>
     </section>
 
@@ -1323,7 +1149,6 @@
         <a href="#books">Books &amp; Journal</a>
         <a href="blog/index.html">Blog</a>
         <a href="#faq">FAQ</a>
-        <a href="#pricing">Pricing</a>
         <a href="schedule.html">Schedule a Call</a>
         <a href="#contact">Free Assessment</a>
         <a href="login.html">Client Login</a>
@@ -1351,7 +1176,7 @@
     <a href="#programs" class="dock-item" data-spy="programs"><span class="dock-ico">🏛️</span><span>Programs</span></a>
     <a href="#lab" class="dock-item" data-spy="lab"><span class="dock-ico">🔬</span><span>Lab</span></a>
     <a href="#contact" class="dock-item dock-cta"><span class="dock-ico">⚡</span><span>Book</span></a>
-    <a href="#pricing" class="dock-item" data-spy="pricing"><span class="dock-ico">💲</span><span>Pricing</span></a>
+    <a href="#seniors" class="dock-item" data-spy="seniors"><span class="dock-ico">🦴</span><span>Seniors</span></a>
     <a href="#top" class="dock-item"><span class="dock-ico">↑</span><span>Top</span></a>
   </nav>
 
@@ -1560,8 +1385,8 @@
   }
   </script>
 
-  <script src="js/main.js?v=10"></script>
-  <script src="js/polish.js?v=1"></script>
+  <script src="js/main.js?v=11"></script>
+  <script src="js/polish.js?v=2"></script>
   <script src="js/quiz.js?v=5"></script>
 </body>
 </html>

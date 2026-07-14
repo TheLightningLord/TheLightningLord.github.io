@@ -467,19 +467,6 @@
     });
   }
 
-  /* ---------- Before / After slider ---------- */
-  const baRange = document.getElementById("baRange");
-  if (baRange) {
-    const baBefore = document.getElementById("baBefore");
-    const baHandle = document.getElementById("baHandle");
-    const setBA = (v) => {
-      baBefore.style.width = v + "%";
-      baHandle.style.left = v + "%";
-    };
-    baRange.addEventListener("input", (e) => setBA(e.target.value));
-    setBA(baRange.value);
-  }
-
   /* ---------- Intro video: load embed on play ---------- */
   const videoPlay = document.getElementById("videoPlay");
   if (videoPlay) {

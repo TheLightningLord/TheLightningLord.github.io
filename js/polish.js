@@ -112,6 +112,9 @@
   }
   document.querySelectorAll(".price-featured, .pricing-promise, .footer, .sticky-cta")
     .forEach((el) => pauseWatch([el], el));
+  // Immersive specialty sections: pause their aurora orbs when scrolled away
+  document.querySelectorAll(".seniors-immersive, .bridge-immersive")
+    .forEach((el) => pauseWatch([el], el));
 
   /* ---------- Aurora layers drift with scroll ---------- */
   const auroras = document.querySelectorAll(".hero-aurora");
